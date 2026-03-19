@@ -1,0 +1,62 @@
+# ──────────────────────────────────────────────────────────────────────
+# Weekly Content Calendar — GitHub Actions Workflow
+# ──────────────────────────────────────────────────────────────────────
+# Runs content_calendar.py every Sunday at 1am UTC to generate the
+# upcoming week's Instagram content calendar for @getrootedmedia.
+# The output markdown file is committed back to the repo automatically.
+#
+# Requirements:
+#   - Add your Anthropic API key as a GitHub secret named ANTHROPIC_API_KEY
+#     (Settings → Secrets and variables → Actions → New repository secret)
+# ──────────────────────────────────────────────────────────────────────
+
+name: Weekly Content Calendar
+
+# ──────────────────────────────────────────────────────────────────────
+# TRIGGERS — when this workflow runs
+# ──────────────────────────────────────────────────────────────────────
+on:
+  # Scheduled: every Sunday at 1:00 AM UTC
+  schedule:
+    - cron: "0 1 * * 0"
+
+  # Manual: lets you click "Run workflow" in the GitHub Actions tab
+  workflow_dispatch:
+
+# ──────────────────────────────────────────────────────────────────────
+# JOBS — the steps that execute
+# ──────────────────────────────────────────────────────────────────────
+jobs:
+  generate-calendar:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Check out the repo so we have access to content_calendar.py
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Set up Python 3.12
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Step 3: Install the anthropic SDK
+      - name: Install dependencies
+        run: pip install anthropic
+
+      # Step 4: Run the script (reads API key from environment)
+      - name: Generate weekly content calendar
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python content_calendar.py
+
+      # Step 5: Commit and push the generated markdown file back to the repo
+      - name: Commit and push calendar
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add output/
+          # Only commit if there are changes (avoids failing on no-op runs)
+          git diff --staged --quiet || git commit -m "chore: add weekly content calendar $(date +%Y-%m-%d)"
+          git push
