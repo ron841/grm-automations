@@ -26,14 +26,22 @@ on:
 # ──────────────────────────────────────────────────────────────────────
 # JOBS — the steps that execute
 # ──────────────────────────────────────────────────────────────────────
+# ──────────────────────────────────────────────────────────────────────
+# PERMISSIONS — allow the workflow to push commits back to the repo
+# ──────────────────────────────────────────────────────────────────────
+permissions:
+  contents: write
+
 jobs:
   generate-calendar:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Check out the repo so we have access to content_calendar.py
+      # Step 1: Check out the repo with a token that has push permission
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       # Step 2: Set up Python 3.12
       - name: Set up Python
@@ -51,12 +59,19 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python content_calendar.py
 
-      # Step 5: Commit and push the generated markdown file back to the repo
+      # Step 5: Verify the output file was created
+      - name: Verify output file exists
+        run: |
+          echo "Listing output directory:"
+          ls -la output/
+          cat output/weekly_calendar_*.md | head -20
+
+      # Step 6: Commit and push the generated markdown file back to the repo
       - name: Commit and push calendar
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add output/
+          git add -f output/
           # Only commit if there are changes (avoids failing on no-op runs)
           git diff --staged --quiet || git commit -m "chore: add weekly content calendar $(date +%Y-%m-%d)"
           git push
