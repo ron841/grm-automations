@@ -96,12 +96,20 @@ Before closing any build day chat:
 - `docs/GRM_Weekly_Playbook.md` created — weekly operating checklist
 - `docs/GRM_Build_Log.md` created — full system inventory with Daily Build Protocol
 
+**Additional discovery after initial build:**
+
+- Manus GitHub connector confirmed working — Manus can read directly from `ron841/grm-automations` repo
+- Google Drive manual transfer step eliminated — Manus pulls content straight from GitHub
+- Monday 8:30 AM recurring Manus task set up — pulls latest GitHub files, generates Canva graphics, sends Ron a preview, publishes immediately on approval
+- Weekly content time reduced to under 30 minutes total
+
 **What changed from the original plan:**
 
 - Manus cannot natively schedule to Instagram via Meta API — uses Manus Instagram connector instead (better)
 - Added Google Drive bridge planning — deferred to Week 3 (Google Cloud setup required)
 - Added Manus Canva connector — not in original plan, major upgrade
 - Monday editor skill now reads from Sunday's calendar automatically — smarter than original hardcoded input
+- Manus GitHub connector eliminates the manual Google Drive transfer step — major workflow simplification not in original plan
 
 **Ron's ongoing actions from Friday's build:**
 
