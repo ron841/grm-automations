@@ -1,6 +1,6 @@
 # Get Rooted Media — Build Log
 
-Last updated: 2026-03-21
+Last updated: 2026-03-22
 Repository: `ron841/grm-automations`
 
 ## Daily Build Protocol
@@ -25,7 +25,34 @@ Every build day ends with these 5 steps — no exceptions:
 
 This document tracks every script, automation, and tool built for Get Rooted Media's content operations. It's the single source of truth for what exists, what it does, and what's coming next.
 
-**Next session goal:** Add `ANTHROPIC_API_KEY` to GitHub Secrets and test both workflows end-to-end. Set up Google Cloud service account if time allows.
+**Next session goal:** Sunday — Review Saturday's builds, confirm Meta Developer App is approved, test /meta-ads-campaign skill with a real campaign.
+
+---
+
+## Saturday March 22 — Build Day 2
+
+**Goal:** Meta Developer App setup + /meta-ads-campaign skill + Design Advisor skill with CSV database
+
+### Before Starting
+
+- [ ] Review Friday's build log entries (scroll down to March 21 session)
+- [ ] Confirm all Friday automations ran successfully — check GitHub Actions tab for green checkmarks on both workflows
+- [ ] Open Claude Code and terminal ready
+
+### End of Day Checklist
+
+- [ ] Update GRM_Build_Log.md with everything built
+- [ ] Update GRM_Weekly_Playbook.md with new human actions
+- [ ] Test every new automation
+- [ ] Push all changes to GitHub
+- [ ] Write Sunday's goal in Next Session Goal field
+
+### Human Workflow Reminders for Saturday
+
+- **Meta Developer App requires your Facebook login and phone for 2FA** — You'll need to be logged into Facebook in your browser and have your phone nearby for verification. This cannot be automated.
+- **Budget 90 minutes for Meta Developer setup — don't rush it** — The approval process has multiple screens, permission scopes to select, and a review submission. Going too fast leads to rejected apps.
+- **The /meta-ads-campaign skill gets tested with a real campaign after build** — Have a test campaign idea ready (audience, budget, creative) so you can validate end-to-end.
+- **Design Advisor CSV needs to be populated with real GRM advertiser categories** — Pull from your current Closing Table and Front Porch advertiser lists. The skill is only as good as the data it references.
 
 ---
 
