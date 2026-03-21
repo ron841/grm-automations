@@ -5,6 +5,38 @@ Repository: `ron841/grm-automations`
 
 This document tracks every script, automation, and tool built for Get Rooted Media's content operations. It's the single source of truth for what exists, what it does, and what's coming next.
 
+**Next session goal:** Add `ANTHROPIC_API_KEY` to GitHub Secrets and test both workflows end-to-end. Set up Google Cloud service account if time allows.
+
+---
+
+## Build Session: March 21, 2026
+
+Everything below was built or updated in a single session. This is the day the content automation pipeline went from a single calendar script to a full operating system.
+
+### What was built (in order):
+
+| Time | Commit | What |
+|------|--------|------|
+| 12:53 PM | `6b4da8c` | **Viral reel scripts** — Rewrote 2 top-scoring reels for GRM brand voice. Reel A (NEWOWNER pillar, CTA to The Front Porch) and Reel B (PLAYBOOK pillar, CTA to The Closing Table). Saved to `output/viral_scripts/GRM_Reel_Scripts_2026-03-21.md`. |
+| 1:32 PM | `1830780` | **Brand voice editor script + workflow** — Created `editor_skill.py` (Claude Haiku 4.5, takes raw content, returns Short + Long versions in GRM voice). Created `editor-skill.yml` GitHub Actions workflow (Monday 8 AM ET, manual trigger with custom input). |
+| 1:35 PM | `b09b957` | **Edited content output** — GitHub Actions bot committed auto-generated edited content to `output/edited_content_2026-03-21.md`. |
+| 1:41 PM | `ad67687` | **Week 1 content calendar** — Full Mon–Fri shooting calendar with targets (Closing Table vs. Front Porch), formats (humor reels, B-roll, vlog, property tour), visual/audio direction, on-screen text, and full captions with hashtags. Saved to `output/content_calendar/Week1_Content_Calendar_2026-03-21.md`. |
+| 2:40 PM | `a6710c1` | **Editor workflow upgrade** — Updated `editor-skill.yml` to auto-read from the latest content calendar instead of using hardcoded input. Uses awk to extract Monday's post. Added failure notification step. Sunday → Monday pipeline now fully automated. |
+| 2:43 PM | `2131637` | **Google Drive upload script** — Created `scripts/google_drive_upload.py` with full setup instructions. Uses Google Cloud Service Account auth. Ready to deploy but not yet wired into workflows (pending credentials). |
+| 2:47 PM | `98377f0` | **Playbook + build log** — Created `docs/GRM_Weekly_Playbook.md` (Sunday–Friday operating checklist with monthly reminders) and `docs/GRM_Build_Log.md` (this file). |
+
+### Key decisions made:
+- **Claude Haiku 4.5** for the editor script (fast, cheap, good enough for tone editing)
+- **Claude Sonnet 4.6** for the calendar generator (needs more creativity for topic generation)
+- **awk-based extraction** in the workflow to pull Monday's post from the calendar file — simple, no extra dependencies
+- **Google Drive integration deferred** — script is built and ready, but setting up the Google Cloud service account is a separate 20-30 minute task that doesn't block anything else
+- **No ManyChat integration yet** — noted for a future session
+
+### What was NOT completed:
+- `ANTHROPIC_API_KEY` not yet added to GitHub Secrets (both workflows need this to run)
+- Google Cloud service account not yet created (blocks Drive upload)
+- Editor script not tested end-to-end with a live API key (key was invalid during the session)
+
 ---
 
 ## Scripts
@@ -137,28 +169,37 @@ A React-based video generation project using the Remotion framework. Contains so
 
 ## What's Built
 
-- [x] Content calendar generator (`content_calendar.py`)
-- [x] Brand voice editor (`editor_skill.py`)
-- [x] Weekly content calendar workflow (Sunday auto-run)
-- [x] Brand voice editor workflow (Monday auto-run, reads from calendar)
-- [x] Google Drive upload script (ready to deploy)
-- [x] 5 content plans across all pillars
-- [x] 2 article drafts + frameworks for March print issues
-- [x] 2 viral reel shooting scripts
-- [x] Week 1 custom content calendar with full production notes
-- [x] Remotion video project scaffolded
-- [x] Weekly operating playbook (`docs/GRM_Weekly_Playbook.md`)
+### Scripts & Automations
+- [x] Content calendar generator (`content_calendar.py`) — built March 19
+- [x] Brand voice editor (`editor_skill.py`) — built March 21
+- [x] Google Drive upload script (`scripts/google_drive_upload.py`) — built March 21, not yet connected
+- [x] Weekly content calendar workflow (Sunday auto-run) — built March 19
+- [x] Brand voice editor workflow (Monday auto-run, reads from calendar) — built March 21, upgraded same day to auto-read from calendar
+
+### Content Assets
+- [x] 5 content plans across all pillars (`content-plans/`)
+- [x] 2 article drafts + frameworks for March print issues (`content/`)
+- [x] 2 viral reel shooting scripts with shot directions (`output/viral_scripts/`) — built March 21
+- [x] Week 1 custom content calendar with full production notes (`output/content_calendar/`) — built March 21
+- [x] Remotion video project scaffolded (`remotion-video/`)
+
+### Documentation
+- [x] Weekly operating playbook with end-of-day checklist (`docs/GRM_Weekly_Playbook.md`) — built March 21
+- [x] Complete build log with session history (`docs/GRM_Build_Log.md`) — built March 21
 
 ## In Progress
 
-- [ ] Google Drive integration — Script built, needs service account credentials and workflow wiring
-- [ ] `ANTHROPIC_API_KEY` in GitHub Secrets — Required for both workflows to run
+- [ ] **`ANTHROPIC_API_KEY` in GitHub Secrets** — Required for both workflows to actually run. Blocked: need a valid API key (the one tested on March 21 had a doubled prefix and was invalid).
+- [ ] **Google Drive integration** — Script built and fully commented. Blocked: need to create a Google Cloud service account (~20-30 min setup) and add credentials to GitHub Secrets.
+- [ ] **End-to-end pipeline test** — Sunday calendar → Monday editor → output file. Need the API key in Secrets first.
 
 ## What's Next
 
-- [ ] Wire `google_drive_upload.py` into both workflows after credentials are set up
+- [ ] Add `ANTHROPIC_API_KEY` to GitHub Secrets and test both workflows
+- [ ] Set up Google Cloud service account and wire `google_drive_upload.py` into workflows
 - [ ] ManyChat integration for "Comment TOUR" lead-gen DM automation
-- [ ] Remotion video templates for automated Reel generation from scripts
+- [ ] Remotion video templates for automated Reel generation from shooting scripts
 - [ ] Engagement tracking dashboard or weekly metrics report
 - [ ] Advertiser CRM or outreach tracking automation
 - [ ] Content approval flow (e.g., Slack or email notification before posting)
+- [ ] Manus AI integration for automated competitive intel and market research reports

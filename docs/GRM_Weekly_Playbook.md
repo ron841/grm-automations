@@ -6,6 +6,21 @@ This is the weekly operating rhythm for Get Rooted Media LLC. Follow this checkl
 
 ---
 
+## End of Day Checklist (Build Days)
+
+Run this checklist at the end of every session where new automations, scripts, or content assets were built. This keeps the system documented and prevents anything from getting lost between sessions.
+
+- [ ] **Review what was built today** — Open `docs/GRM_Build_Log.md` and confirm every new script, workflow, content file, and connection is logged. If anything is missing, add it now. The build log is useless if it's incomplete.
+- [ ] **Test anything new** — Run each new script locally or trigger each new workflow manually from GitHub Actions. Don't assume it works because the code looks right. Specifically:
+  - New Python scripts: run with a test input and check the output file was created
+  - New/updated workflows: trigger via Actions > workflow name > Run workflow
+  - New content files: open them in GitHub and confirm formatting is correct
+- [ ] **Update the weekly playbook** — If today's build introduced new manual steps (e.g., a new approval you need to do, a new file to check), add them to the appropriate day in this playbook. The playbook should always reflect reality.
+- [ ] **Push all changes to GitHub** — Run `git status` to check for any uncommitted files. Stage, commit, and push. Nothing lives only on your local machine.
+- [ ] **Note tomorrow's build goal** — Write one sentence about what the next session should focus on. Put it at the top of `docs/GRM_Build_Log.md` in the "Next Session Goal" field, or just keep it in your head — but having it written down means you can pick up fast.
+
+---
+
 ## Sunday Night (30 min)
 
 **Goal:** Set the week up so Monday morning runs itself.
