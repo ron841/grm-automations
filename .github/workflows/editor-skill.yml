@@ -5,6 +5,11 @@
 # the Claude API and gets back two versions edited in GRM's brand voice.
 # The output markdown file is committed back to the repo automatically.
 #
+# PIPELINE: The Sunday content calendar workflow generates a weekly calendar
+# file in output/content_calendar/. On Monday morning, THIS workflow reads
+# that calendar, extracts Monday's post, and polishes it through Claude.
+# No manual input needed — Sunday's calendar feeds Monday's editor.
+#
 # Triggers:
 #   - Every Monday at 8:00 AM Eastern (1:00 PM UTC)
 #   - Manual trigger from the GitHub Actions tab (workflow_dispatch)
@@ -20,13 +25,14 @@ on:
     - cron: "0 13 * * 1"
 
   # MANUAL RUN: Click "Run workflow" in the GitHub Actions tab anytime.
-  # The input field lets you override the default content to edit.
+  # You can optionally paste custom content to edit. If left blank,
+  # the workflow reads from the latest content calendar automatically.
   workflow_dispatch:
     inputs:
       content:
-        description: "Raw content to edit in GRM brand voice"
+        description: "Optional: paste custom content to edit. Leave blank to auto-read from the latest content calendar."
         required: false
-        default: "Marion County is the fastest growing county in Florida — new residents are discovering Ocala every day"
+        default: ""
 
 # ── Permissions ──────────────────────────────────────────────────────────
 # The workflow needs write access to push the output file back to the repo.
@@ -40,7 +46,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Check out the repository so we have access to our script.
+      # Step 1: Check out the repository so we have access to our scripts
+      # and the output/content_calendar/ folder with calendar files.
       - name: Checkout repository
         uses: actions/checkout@v4
 
@@ -54,20 +61,91 @@ jobs:
       - name: Install dependencies
         run: pip install anthropic
 
-      # Step 4: Run the editor script.
-      # - For scheduled runs, we use the default test input.
-      # - For manual runs, we use whatever was typed in the input field.
+      # Step 4: Extract the first post from the latest content calendar.
+      # HOW THIS WORKS:
+      #   - If the user provided manual content via workflow_dispatch, use that.
+      #   - Otherwise, find the most recent file in output/content_calendar/
+      #     (sorted by filename, which contains a date, so newest = last).
+      #   - Extract Monday's post: everything from the first day header
+      #     (e.g. "Monday, 8:00 AM —") up to the next day header
+      #     (e.g. "Tuesday, 8:00 AM —").
+      #   - Save it to an environment variable so the next step can use it.
+      - name: Extract content from latest calendar
+        id: extract
+        run: |
+          # If manual content was provided, use it and skip calendar parsing.
+          MANUAL_INPUT="${{ github.event.inputs.content }}"
+          if [ -n "$MANUAL_INPUT" ]; then
+            echo "Using manual input from workflow_dispatch."
+            # Write to a temp file — safer than env vars for multi-line content.
+            echo "$MANUAL_INPUT" > /tmp/editor_input.txt
+            exit 0
+          fi
+
+          echo "Looking for the latest content calendar file..."
+
+          # Find the most recent calendar file by sorting filenames (date is in the name).
+          # ls -1 lists one file per line; sort gives us alphabetical order;
+          # tail -1 grabs the last (most recent) file.
+          CALENDAR_DIR="output/content_calendar"
+
+          if [ ! -d "$CALENDAR_DIR" ] || [ -z "$(ls -A "$CALENDAR_DIR" 2>/dev/null)" ]; then
+            echo "::error::No content calendar files found in $CALENDAR_DIR"
+            exit 1
+          fi
+
+          LATEST_FILE=$(ls -1 "$CALENDAR_DIR"/*.md 2>/dev/null | sort | tail -1)
+
+          if [ -z "$LATEST_FILE" ]; then
+            echo "::error::No .md files found in $CALENDAR_DIR"
+            exit 1
+          fi
+
+          echo "Found calendar: $LATEST_FILE"
+
+          # Extract the first post from the calendar.
+          # We use awk to grab everything between the first day header
+          # (a line starting with a day name + comma, like "Monday, 8:00 AM")
+          # and the second day header (the next post).
+          #
+          # AWK LOGIC:
+          #   - When we hit a line matching "Day, time —", increment a counter.
+          #   - Print lines only while the counter equals 1 (= first post).
+          #   - When counter hits 2, stop.
+          FIRST_POST=$(awk '
+            /^(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday), / {
+              day_count++
+              if (day_count == 2) exit
+            }
+            day_count == 1 { print }
+          ' "$LATEST_FILE")
+
+          if [ -z "$FIRST_POST" ]; then
+            echo "::error::Could not extract a post from $LATEST_FILE"
+            exit 1
+          fi
+
+          echo "Extracted first post:"
+          echo "$FIRST_POST"
+          echo "---"
+
+          # Save to a temp file for the next step to read.
+          echo "$FIRST_POST" > /tmp/editor_input.txt
+
+      # Step 5: Run the editor script with the extracted content.
+      # - Reads the content from the temp file created in Step 4.
       # - ANTHROPIC_API_KEY is pulled from GitHub Secrets (never exposed in logs).
       - name: Run editor_skill.py
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
-          INPUT="${{ github.event.inputs.content || 'Marion County is the fastest growing county in Florida — new residents are discovering Ocala every day' }}"
+          INPUT=$(cat /tmp/editor_input.txt)
+          echo "Sending to editor_skill.py..."
           python editor_skill.py "$INPUT"
 
-      # Step 5: Commit and push the generated output file back to the repo.
+      # Step 6: Commit and push the generated output file back to the repo.
       # - We configure a bot identity for the commit author.
-      # - "git diff --quiet" returns exit code 1 if there are changes,
+      # - "git diff --cached --quiet" returns exit code 1 if there are changes,
       #   so we only commit when there's actually new output to save.
       - name: Commit and push output
         run: |
@@ -80,3 +158,24 @@ jobs:
           else
             echo "No new output files to commit."
           fi
+
+      # Step 7: Failure notification.
+      # GitHub does NOT have a built-in "send email" action, but it DOES
+      # send automatic email notifications for failed workflows when you
+      # enable them in: GitHub.com > Settings > Notifications > Actions.
+      #
+      # This step creates a visible annotation in the Actions UI so you
+      # can quickly see what went wrong without scrolling through logs.
+      - name: Notify on failure
+        if: failure()
+        run: |
+          echo "::error::GRM Brand Voice Editor workflow FAILED."
+          echo "::error::Check the logs above to see which step failed."
+          echo ""
+          echo "Common fixes:"
+          echo "  - ANTHROPIC_API_KEY not set: Go to Settings > Secrets > Actions"
+          echo "  - No calendar file found: Ensure the content calendar workflow ran first"
+          echo "  - API error: Check your Anthropic account at console.anthropic.com"
+          echo ""
+          echo "GitHub will email you about this failure automatically if you have"
+          echo "Actions notifications enabled at: github.com/settings/notifications"
