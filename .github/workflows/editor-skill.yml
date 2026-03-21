@@ -49,11 +49,11 @@ jobs:
       # Step 1: Check out the repository so we have access to our scripts
       # and the output/content_calendar/ folder with calendar files.
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       # Step 2: Install Python 3.11 on the runner.
       - name: Set up Python 3.11
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.11"
 

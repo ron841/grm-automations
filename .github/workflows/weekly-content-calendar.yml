@@ -39,13 +39,13 @@ jobs:
     steps:
       # Step 1: Check out the repo with a token that has push permission
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       # Step 2: Set up Python 3.12
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.12"
 
@@ -75,3 +75,18 @@ jobs:
           # Only commit if there are changes (avoids failing on no-op runs)
           git diff --staged --quiet || git commit -m "chore: add weekly content calendar $(date +%Y-%m-%d)"
           git push
+
+      # Step 7: Failure notification.
+      # Creates a visible annotation in the Actions UI so Ron can
+      # quickly see what went wrong. GitHub also emails on failure
+      # when Actions notifications are enabled in Settings.
+      - name: Notify on failure
+        if: failure()
+        run: |
+          echo "::error::Weekly Content Calendar workflow FAILED."
+          echo "::error::Check the logs above to see which step failed."
+          echo ""
+          echo "Common fixes:"
+          echo "  - ANTHROPIC_API_KEY not set: Go to Settings > Secrets > Actions"
+          echo "  - API error: Check your Anthropic account at console.anthropic.com"
+          echo "  - Python error: Check content_calendar.py for syntax issues"

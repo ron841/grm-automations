@@ -237,8 +237,23 @@ def main():
     print(f"Generating weekly content calendar for @getrootedmedia...")
     print(f"Using model: {MODEL}")
 
-    # Call Claude and get the markdown content
-    markdown = generate_calendar()
+    # Call Claude and get the markdown content.
+    # We wrap this in a try/except so that API errors (bad key, rate limit,
+    # network issues) print a clear message instead of a raw Python traceback.
+    try:
+        markdown = generate_calendar()
+    except anthropic.AuthenticationError:
+        print("ERROR: Invalid API key. Check your ANTHROPIC_API_KEY.")
+        sys.exit(1)
+    except anthropic.RateLimitError:
+        print("ERROR: Rate limited by the API. Wait a minute and try again.")
+        sys.exit(1)
+    except anthropic.APIConnectionError:
+        print("ERROR: Could not connect to the Anthropic API. Check your internet.")
+        sys.exit(1)
+    except anthropic.APIStatusError as e:
+        print(f"ERROR: API returned status {e.status_code}: {e.message}")
+        sys.exit(1)
 
     # Save to a file
     filepath = save_calendar(markdown)

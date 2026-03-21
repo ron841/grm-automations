@@ -50,7 +50,6 @@ Environment Variables (set in GitHub Actions workflow):
 import os       # For reading environment variables
 import sys      # For command-line arguments and exit codes
 import json     # For parsing the service account JSON key
-import tempfile  # For writing the JSON key to a temporary file
 
 # google-auth: Handles authentication with Google's APIs using the service account.
 from google.oauth2 import service_account
