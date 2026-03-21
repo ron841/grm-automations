@@ -1,0 +1,82 @@
+# ============================================================================
+# editor-skill.yml — Get Rooted Media Brand Voice Editor (Automated)
+# ============================================================================
+# This workflow runs our editor_skill.py script, which sends raw content to
+# the Claude API and gets back two versions edited in GRM's brand voice.
+# The output markdown file is committed back to the repo automatically.
+#
+# Triggers:
+#   - Every Monday at 8:00 AM Eastern (1:00 PM UTC)
+#   - Manual trigger from the GitHub Actions tab (workflow_dispatch)
+# ============================================================================
+
+name: GRM Brand Voice Editor
+
+# ── When this workflow runs ──────────────────────────────────────────────
+on:
+  # SCHEDULED RUN: Every Monday at 8am Eastern (1pm UTC).
+  # Cron format: minute hour day-of-month month day-of-week
+  schedule:
+    - cron: "0 13 * * 1"
+
+  # MANUAL RUN: Click "Run workflow" in the GitHub Actions tab anytime.
+  # The input field lets you override the default content to edit.
+  workflow_dispatch:
+    inputs:
+      content:
+        description: "Raw content to edit in GRM brand voice"
+        required: false
+        default: "Marion County is the fastest growing county in Florida — new residents are discovering Ocala every day"
+
+# ── Permissions ──────────────────────────────────────────────────────────
+# The workflow needs write access to push the output file back to the repo.
+permissions:
+  contents: write
+
+# ── Jobs ─────────────────────────────────────────────────────────────────
+jobs:
+  run-editor:
+    name: Edit Content with Claude API
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Check out the repository so we have access to our script.
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Install Python 3.11 on the runner.
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # Step 3: Install the anthropic package (the Claude API library).
+      - name: Install dependencies
+        run: pip install anthropic
+
+      # Step 4: Run the editor script.
+      # - For scheduled runs, we use the default test input.
+      # - For manual runs, we use whatever was typed in the input field.
+      # - ANTHROPIC_API_KEY is pulled from GitHub Secrets (never exposed in logs).
+      - name: Run editor_skill.py
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          INPUT="${{ github.event.inputs.content || 'Marion County is the fastest growing county in Florida — new residents are discovering Ocala every day' }}"
+          python editor_skill.py "$INPUT"
+
+      # Step 5: Commit and push the generated output file back to the repo.
+      # - We configure a bot identity for the commit author.
+      # - "git diff --quiet" returns exit code 1 if there are changes,
+      #   so we only commit when there's actually new output to save.
+      - name: Commit and push output
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add output/
+          if ! git diff --cached --quiet; then
+            git commit -m "Add edited content output $(date +'%Y-%m-%d')"
+            git push
+          else
+            echo "No new output files to commit."
+          fi
