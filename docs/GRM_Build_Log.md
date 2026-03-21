@@ -3,6 +3,26 @@
 Last updated: 2026-03-21
 Repository: `ron841/grm-automations`
 
+## Daily Build Protocol
+
+Every build day ends with these 5 steps — no exceptions:
+
+1. **Update GRM_Build_Log.md** with everything built today
+2. **Update GRM_Weekly_Playbook.md** with any new human actions
+3. **Test every new automation** before closing out
+4. **Push all changes to GitHub**
+5. **Write tomorrow's goal** in the "Next Session Goal" field below
+
+### Ron's Weekly Human Actions (non-negotiable)
+
+- **Sunday 9 PM** — Read Manus intel email, note top 3 takeaways
+- **Monday morning** — Review GitHub editor output, move to Google Drive
+- **Once per week** — Film any pending reel content
+- **Once per week** — Schedule approved posts in Manus
+- **Once per month** — Advertiser outreach for both publications
+
+---
+
 This document tracks every script, automation, and tool built for Get Rooted Media's content operations. It's the single source of truth for what exists, what it does, and what's coming next.
 
 **Next session goal:** Add `ANTHROPIC_API_KEY` to GitHub Secrets and test both workflows end-to-end. Set up Google Cloud service account if time allows.
