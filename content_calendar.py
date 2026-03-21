@@ -188,7 +188,9 @@ def generate_calendar() -> str:
 
 def save_calendar(markdown_content: str) -> str:
     """
-    Saves the generated content to output/weekly_calendar_YYYY-MM-DD.md.
+    Saves the generated content to output/content_calendar/weekly_calendar_YYYY-MM-DD.md.
+    This is the same folder the Monday editor workflow reads from, so
+    Sunday's auto-generated calendar feeds directly into Monday's editor.
     Returns the file path so we can print it to the terminal.
     """
 
@@ -197,8 +199,11 @@ def save_calendar(markdown_content: str) -> str:
 
     # Build the output directory path relative to this script's location.
     # os.path.dirname(__file__) gives us the folder this script lives in.
+    # We save to output/content_calendar/ so the Monday editor workflow
+    # can find this file automatically — it looks in that folder for the
+    # most recent .md file.
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    output_dir = os.path.join(script_dir, "output")
+    output_dir = os.path.join(script_dir, "output", "content_calendar")
 
     # Create the output folder if it doesn't exist yet
     os.makedirs(output_dir, exist_ok=True)
