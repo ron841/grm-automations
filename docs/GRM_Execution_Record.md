@@ -4,6 +4,51 @@ The real story of what got built, what changed, and what Ron does each week.
 
 ---
 
+## HOW TO USE THIS DOCUMENT
+
+### Starting a new build session
+
+When you start a new Claude chat for a build day:
+
+1. Upload `GRM_Execution_Record.md` from your GitHub repo
+2. Upload `GRM_AI_Build_Sprint.docx` — the original sprint plan
+3. Tell Claude: **"We are building Get Rooted Media. Here is our execution record and our sprint plan. Review both and tell me where we left off and what today's goal is."**
+4. Claude will orient itself, confirm the current state, and pick up exactly where we left off
+
+### Ending a build session
+
+Before closing any build day chat:
+
+1. Tell Claude: **"We are done for today. Update the execution record with everything we built, any changes from the original plan, and Ron's ongoing actions from today's work."**
+2. Claude will generate the full update
+3. Paste it into Claude Code with: **"Update docs/GRM_Execution_Record.md with this content and push to GitHub"**
+4. Confirm the push in GitHub
+5. Download the updated `GRM_Execution_Record.md` from GitHub to your Desktop for tomorrow's session
+
+### Where to find the file for tomorrow
+
+- **GitHub:** github.com/ron841/grm-automations > docs > GRM_Execution_Record.md
+- Click the file > click the download icon > save to Desktop
+- Upload it at the start of your next Claude chat
+
+### What this document contains
+
+- Every day's build history — what was planned vs. what actually got built
+- Every change from the original sprint plan with reasoning
+- Ron's complete ongoing weekly actions from each build day
+- Full system map — what's automated, what's semi-automated, what's manual
+- Ready-to-deploy scripts waiting for the right moment
+
+### The three documents that run GRM
+
+| Document | Purpose |
+|----------|---------|
+| **GRM_Execution_Record.md** | Upload this to start every new chat session |
+| **GRM_Build_Log.md** | Technical inventory of every script and automation |
+| **GRM_Weekly_Playbook.md** | Your weekly operating checklist |
+
+---
+
 ## THURSDAY MARCH 19 — COMPLETED ✅
 
 **Original goal:** One automated Claude skill running live in GitHub Actions.
