@@ -54,3 +54,6 @@ DO NOT use Logo-04 (circle only) on covers. Logo-04 is for footer and page numbe
 | Quote block with no photo | Every quote block needs a background image — black void is a render failure |
 | Quote positioned too high in photo | Move to lower third — quote in sky or upper image looks accidental |
 | MacBook/brick wall photo | This is not Ocala — reject immediately and search Pexels for local replacement |
+| Mountain/hill background on horse photo | Florida is flat — mountains mean wrong region, replace immediately |
+| Horse photo reused across pages | Retire any photo used more than once — track usage across both PDFs |
+| Generic Southern home photo | Must have Florida identifier — Spanish moss, palms, or lush green flatlands |

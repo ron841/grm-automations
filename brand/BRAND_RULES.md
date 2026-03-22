@@ -67,3 +67,21 @@ Black · Teal · Cream · White — these four only.
 - Each PDF must use a completely different hero image — no shared photos across titles
 - Cover title must sit INSIDE the dark bar at bottom — never overlaying the photo
 - Media kit pages use local lifestyle photography — never the media kit graphic itself
+
+## Florida Visual Identity — What Ocala Looks Like
+
+All photos must reflect the actual landscape of Marion County Florida:
+
+- FLAT terrain — no hills, no mountains, no rolling elevation
+- Green grass pastures — lush, manicured, Florida green
+- Spanish moss on oak trees — the single most recognizable Ocala visual
+- White or black horse fencing — iconic to horse country
+- Warm golden Florida light — sunrise/sunset over flat fields
+- Sandy light-colored soil where visible
+
+NEVER use photos showing:
+
+- Mountains or hills in the background
+- Rocky terrain or dry Western landscapes
+- Northeast or Pacific Northwest tree types
+- Generic Southern US homes with no Florida identifiers
