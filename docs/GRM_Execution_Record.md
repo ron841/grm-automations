@@ -185,6 +185,55 @@ All systems live tested and confirmed. Repo is clean. Ready for Saturday build.
 
 ---
 
+## SUNDAY MARCH 22, 2026
+
+### What we built
+
+**Brand System — fully operational**
+
+- Created `brand/BRAND_RULES.md` — permanent color, typography, logo, voice standards
+- Removed gold (#C9973A) from palette — three colors only: #090c0b, #00b7ce, #FAF8F4
+- Created `brand/DESIGN_REVIEW.md` — 4-step checklist all tools follow before any creative work
+- Created `brand/assets/` folder structure with 9 design assets: 4 SVG logos, 2 media kits, business card, Front Porch cover comp, spread comps
+- Created `.claude/skills/design/SKILL.md` — /design skill live in Claude Code
+- Updated Manus custom instructions — reads brand rules and reviews assets before every creative session
+- Added 4 Manus connectors: Pexels/Unsplash, ElevenLabs, Cloudinary, Pinterest
+
+**FOUNDER Lead Magnet — in final render**
+
+- 5 revision passes with Manus
+- Key lessons learned: GRM brand is black + teal + cream, NOT forest green. Logo must be SVG not text. GRM is publisher above content title. No tombstoning.
+- Final PDF pending approval — uploading to Google Drive next
+
+**Three-brand architecture documented**
+
+- GET ROOTED MEDIA (parent — always on top)
+- THE CLOSING TABLE (agent audience)
+- THE FRONT PORCH (homeowner audience)
+- Locked into /design skill and BRAND_RULES.md
+
+### What's next
+
+- Approve FOUNDER PDF > upload to Google Drive > get shareable link
+- Build remaining 4 PDFs: LISTINGS, FOLLOWUP, NEWOWNER, PLAYBOOK (batch last 3 after LISTINGS approved)
+- Build 5 ManyChat keyword automations
+- Build ManyChat welcome DM (agent vs homeowner paths)
+- Saturday carryover: Meta Developer App, /meta-ads-campaign skill, Design Advisor skill
+
+### Ron's ongoing weekly actions
+
+- Sunday 9 PM: GitHub Actions generates weekly content calendar
+- Monday morning: review competitor intel report
+- Weekly: approve Manus Instagram scheduled posts
+- Monthly: advertiser outreach for CT and FP
+
+### Key contacts locked in
+
+- Ron Kolb: 352-598-7289 / ron@getrootedmedia.com
+- Cameron Cowart: 352-875-0326 / cameron@getrootedmedia.com
+
+---
+
 ## SYSTEM MAP — Everything Running as of March 21, 2026
 
 ### Automated (zero human action required)
