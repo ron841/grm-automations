@@ -246,6 +246,18 @@ Remaining polish items deferred to next session:
 
 These require direct Canva editing or fresh targeted Manus session — one page at a time approach.
 
+### Logo placement — final approach
+
+After 5 revision rounds, discovered Manus struggles with SVG logo placement via Canva API. Two solutions:
+
+**SOLUTION A — Manual (fastest right now):**
+Open completed PDF in Canva editor, delete placeholder, upload Logo_Get_Rooted_Media-01.svg from Mac, place top left, 220px wide, white (#FFFFFF all paths). 5 minutes per PDF.
+
+**SOLUTION B — Manus exact spec prompt (testing on LISTINGS):**
+"Place Logo_Get_Rooted_Media-01.svg from brand/assets/logos/ Width: 220px. Position: 24px from left, 24px from top. Color: white (#FFFFFF) on ALL paths. Zoom in and confirm both tree symbol AND Get Rooted Media text visible before full render. Try 02/03/04 variants if 01 fails."
+
+LISTINGS render in progress with Solution B test.
+
 ---
 
 ## SYSTEM MAP — Everything Running as of March 21, 2026
