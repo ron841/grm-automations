@@ -21,3 +21,17 @@ Agents reading a content strategy guide see the actual magazine they could be fe
 - CT cover: brand/assets/publication-covers/GRM-FP-Cvr-Comp
 - FP cover: brand/assets/publication-covers/
 - Spread examples: brand/assets/publication-covers/GRM-Spread-Comps
+
+## Logo placement — CONFIRMED WORKING FORMULA
+
+Discovered Sunday March 22 on LISTINGS render.
+
+Use Logo_Get_Rooted_Media-01.svg (full horizontal wordmark with tree symbol).
+
+Exact Manus instruction that works:
+
+"Place Logo_Get_Rooted_Media-01.svg from brand/assets/logos/ on the cover. Width: 220px. Position: 24px from left, 24px from top. Color: white (#FFFFFF) applied to ALL paths. Both tree symbol AND Get Rooted Media text must be visible. Zoom in and confirm before full render."
+
+This produces the symbol + GET ROOTED MEDIA wordmark stacked — correct masthead treatment.
+
+DO NOT use Logo-04 (circle only) on covers. Logo-04 is for footer and page number use only.
