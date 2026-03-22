@@ -33,3 +33,7 @@ Run this before every Manus or Canva session.
 - [ ] Pull quotes positioned in lower third of photo — never centered high where they compete with the image subject
 - [ ] Generic urban/coffee shop photos (MacBook, brick walls, city scenes) are never acceptable — flag and replace every time
 - [ ] Photo audit required before export — list every photo used and confirm no image appears more than once in the same document
+
+### Step 5 — PDF Design Playbook Gate
+
+Before delivering any PDF, read brand/PDF_DESIGN_PLAYBOOK.md and confirm every item in the QA Checklist passes. No exceptions.

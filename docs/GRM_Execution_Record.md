@@ -290,6 +290,8 @@ LISTINGS render in progress with Solution B test.
 - Zapier — workflow automation
 - ElevenLabs — confirm connected, activate voiceovers for reels
 
+FOUNDER v11 and LISTINGS v7 approved final after full-day design session. PDF_DESIGN_PLAYBOOK.md created with complete Manus build standards: document specs, photo rules, Florida visual identity rules, badge spacing, pull quote rules, publication page rules, QA checklist, and output filename convention. These two PDFs are the approved reference templates for FOLLOWUP, NEWOWNER, and PLAYBOOK builds. Both ready for Google Drive upload and ManyChat deployment.
+
 **Pending from today — carry to next session:**
 
 - Drive upload both PDFs, get shareable links
