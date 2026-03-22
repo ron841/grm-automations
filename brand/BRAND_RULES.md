@@ -34,6 +34,13 @@ Black · Teal · Cream · White — these four only.
 - Accent text / pull quotes: #00b7ce italic
 - Never use decorative or script fonts for body text
 
+## Typography Rules
+
+- All text must have proper word spacing — never allow words to run together
+- Font encoding: always use UTF-8 with standard space characters between words
+- Never use condensed tracking that eliminates word spaces
+- Test every text block for readability before finalizing
+
 ## Voice & Tone
 
 - Warm, locally rooted, professionally authoritative
