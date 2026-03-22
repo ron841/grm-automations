@@ -232,6 +232,20 @@ All systems live tested and confirmed. Repo is clean. Ready for Saturday build.
 - Ron Kolb: 352-598-7289 / ron@getrootedmedia.com
 - Cameron Cowart: 352-875-0326 / cameron@getrootedmedia.com
 
+### FOUNDER decision — approved at v4
+
+v4 approved for Drive upload and ManyChat deployment.
+
+Remaining polish items deferred to next session:
+
+- Cover: replace circle icon with full wordmark (Logo-01.svg)
+- All pages: fix merged word spacing (font encoding issue)
+- Pages 10/11: add CT and FP cover mockup thumbnails
+- Pages 4/9/12: add editorial spread asset snippets
+- Page numbers: GRM circle icon treatment
+
+These require direct Canva editing or fresh targeted Manus session — one page at a time approach.
+
 ---
 
 ## SYSTEM MAP — Everything Running as of March 21, 2026
