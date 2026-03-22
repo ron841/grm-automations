@@ -150,11 +150,38 @@ All systems live tested and confirmed. Repo is clean. Ready for Saturday build.
 
 ---
 
-## SATURDAY MARCH 22 — IN PROGRESS
+## SATURDAY MARCH 22 — PARTIAL COMPLETE
 
 **Goal:** Meta Developer App setup + /meta-ads-campaign skill + Design Advisor skill with CSV database
 
-**Status:** Starting now.
+**Completed tonight:**
+
+- Brand identity extracted from SVG files — exact hex codes: GRM Teal #00B7CE, GRM Dark #090C0B
+- 5 AI-generated Instagram graphics built in Canva via Manus with GRM branding
+- All 5 graphics saved to Canva account and Google Drive GRM Content Queue
+- Graphics scheduled: Wed Mar 26, Fri Mar 28, Mon Mar 30, Wed Apr 1, Fri Apr 3 at 8 AM ET
+- ManyChat account confirmed connected to @getrootedmedia
+- `MANYCHAT_API_KEY` saved to GitHub Secrets
+- Discovered 5 content plans already exist in `content-plans/` folder with full ManyChat keyword flows and PDF outlines
+- 5 keywords: FOUNDER, LISTINGS, FOLLOWUP, NEWOWNER, PLAYBOOK
+
+**NOT completed — Sunday morning task:**
+
+- 5 PDFs need to be built in Canva (outlines exist in `content-plans/` folder)
+- 5 PDFs need to be uploaded to Google Drive and links added to content plans
+- 5 ManyChat keyword automations need to be built in ManyChat visual builder
+- ManyChat welcome DM for new followers needs to be built
+- Meta Developer App setup
+- /meta-ads-campaign skill in Claude Code
+- Design Advisor skill with CSV database
+
+**Sunday morning order of operations:**
+
+1. Build 5 PDFs in Canva using Manus — use outlines in `content-plans/` folder
+2. Upload to Google Drive, get real links
+3. Build 5 ManyChat keyword automations in visual builder
+4. Build ManyChat welcome DM
+5. Continue Saturday build doc items
 
 ---
 
