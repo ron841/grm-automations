@@ -59,3 +59,11 @@ Black · Teal · Cream · White — these four only.
 - Every page has the GRM logo
 - Footer always includes: getrootedmedia.com · @getrootedmedia
 - Photography: Ocala/Marion County local feel — horses, moss trees, communities, families. Never generic stock.
+
+## Photography Rules
+
+- Hero images must feel Ocala/Marion County local — neighborhoods, main streets, real estate context
+- NEVER use photos that could belong to any American city
+- Each PDF must use a completely different hero image — no shared photos across titles
+- Cover title must sit INSIDE the dark bar at bottom — never overlaying the photo
+- Media kit pages use local lifestyle photography — never the media kit graphic itself

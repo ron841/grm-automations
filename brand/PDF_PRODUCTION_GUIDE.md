@@ -35,3 +35,16 @@ Exact Manus instruction that works:
 This produces the symbol + GET ROOTED MEDIA wordmark stacked — correct masthead treatment.
 
 DO NOT use Logo-04 (circle only) on covers. Logo-04 is for footer and page number use only.
+
+## Common Failures — Check Every Build
+
+| Issue | Fix |
+|-------|-----|
+| Cover title overlaying photo | Move into dark bar at bottom |
+| Same photo across two PDFs | Different Pexels/Unsplash search per title |
+| Empty half-page | Pull quote, local photo, or stat block |
+| Callout box at top | Move to bottom anchor |
+| Editorial crop cut off | Full bleed or clean framed crop only |
+| Media kit graphic on content page | Replace with local lifestyle photo |
+| Empty back cover | Logo + tagline + contact centered |
+| Merged words | Review every page at 100% zoom before export |
