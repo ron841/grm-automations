@@ -3,7 +3,7 @@
 ## Colors (official, from SVG logo files)
 
 - Primary dark: #090c0b (near black — backgrounds, headers, logo)
-- Accent: #00b7ce (bright teal — callout bars, highlights, links)
+- Accent: #00b7ce (bright teal — callout bars, highlights, dividers, footer rules, links)
 - Background: #FAF8F4 (warm cream — page backgrounds)
 - White: #FFFFFF (text on dark backgrounds)
 
