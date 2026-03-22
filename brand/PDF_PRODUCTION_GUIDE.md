@@ -48,3 +48,9 @@ DO NOT use Logo-04 (circle only) on covers. Logo-04 is for footer and page numbe
 | Media kit graphic on content page | Replace with local lifestyle photo |
 | Empty back cover | Logo + tagline + contact centered |
 | Merged words | Review every page at 100% zoom before export |
+| Pillar badge overlapping headline | Badge must sit above headline with 8px minimum gap — adjust badge position not headline |
+| Subject cropped at photo edge | Reframe photo so full subject visible — horses, people, buildings never cut off |
+| Dark bar text collision | Title and subtitle need breathing room — add padding or reduce font size |
+| Quote block with no photo | Every quote block needs a background image — black void is a render failure |
+| Quote positioned too high in photo | Move to lower third — quote in sky or upper image looks accidental |
+| MacBook/brick wall photo | This is not Ocala — reject immediately and search Pexels for local replacement |
