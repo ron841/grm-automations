@@ -5,11 +5,15 @@
 - Primary dark: #090c0b (near black — backgrounds, headers, logo)
 - Accent: #00b7ce (bright teal — callout bars, highlights, links)
 - Background: #FAF8F4 (warm cream — page backgrounds)
-- Gold accent: #C9973A (dividers, pull quotes — use sparingly)
 - White: #FFFFFF (text on dark backgrounds)
+
+## Active Palette
+
+Black · Teal · Cream · White — these four only.
 
 ## Never use
 
+- Gold #C9973A — **retired**. Replace all instances with teal #00b7ce or white.
 - Forest green, olive green, or any shade of #2D5016 or similar
 - Bright orange, red, or purple as primary colors
 - Generic real estate color palettes
@@ -18,7 +22,8 @@
 
 - Always use the SVG logo file (Logo_Get_Rooted_Media-01.svg)
 - Never replace the logo with text
-- Logo appears on cover and footer of every document
+- Cover pages: prominent logo top-left
+- Interior pages: teal circle icon in footer only — no logo at top of interior pages
 - On dark backgrounds use white version of logo
 - On light backgrounds use dark (#090c0b) version
 
@@ -26,7 +31,7 @@
 
 - Headlines: serif font, bold, #090c0b or white on dark
 - Body: clean sans-serif, #090c0b, 10-12pt
-- Accent text / pull quotes: #00b7ce or #C9973A italic
+- Accent text / pull quotes: #00b7ce italic
 - Never use decorative or script fonts for body text
 
 ## Voice & Tone
