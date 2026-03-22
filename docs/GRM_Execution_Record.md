@@ -258,6 +258,47 @@ Open completed PDF in Canva editor, delete placeholder, upload Logo_Get_Rooted_M
 
 LISTINGS render in progress with Solution B test.
 
+### AFTERNOON/EVENING SESSION COMPLETED
+
+**Brand System — fully locked**
+
+- `DESIGN_REVIEW.md` created with 4-step pre-build checklist
+- `BRAND_RULES.md` updated with Photography Rules and Florida Visual Identity
+- `PDF_PRODUCTION_GUIDE.md` updated with Common Failures table (12+ entries)
+- Florida Visual Identity locked: flat terrain, Spanish moss, white fencing, golden light. Mountains, rocky terrain, generic urban photos explicitly banned.
+- Same-document photo duplicate audit rule added
+- Badge overlap rule added (8px minimum gap)
+- Photo reuse rule added (no photo used more than once across series)
+
+**FOUNDER Lead Magnet — v8, pending final approval**
+
+- 8 revision passes completed
+- All major issues resolved: spreads removed, badge overlaps fixed, MacBook photos removed, watermarks removed, Cameron Cowart Top 20 Agent attribution added to p4
+- Final photo audit in progress — one duplicate photo being resolved
+- Status: ONE MORE MANUS PASS then Drive upload
+
+**LISTINGS Lead Magnet — v4, pending final approval**
+
+- All major issues resolved: cover title fixed, p6 photo added, p8 quote repositioned, p9 photo replaced
+- Final photo audit in progress — same pass as FOUNDER
+- Status: ONE MORE MANUS PASS then Drive upload
+
+**Connector Hit List — do after PDFs approved:**
+
+- Cloudinary — photo processing and smart crop
+- Pinterest — visual reference before builds
+- Zapier — workflow automation
+- ElevenLabs — confirm connected, activate voiceovers for reels
+
+**Pending from today — carry to next session:**
+
+- Drive upload both PDFs, get shareable links
+- Update `content-plans/ai-as-co-founder-content-plan.md` and `content-plans/ai-listing-descriptions-content-plan.md` with Drive links
+- Build 5 ManyChat keyword automations (FOUNDER, LISTINGS, FOLLOWUP, NEWOWNER, PLAYBOOK)
+- Build ManyChat welcome DM (agent vs homeowner paths)
+- Create `docs/GRM_Design_System_Complete.md` — full build journal
+- Saturday carryover: Meta Developer App, /meta-ads-campaign skill, Design Advisor skill
+
 ---
 
 ## SYSTEM MAP — Everything Running as of March 21, 2026

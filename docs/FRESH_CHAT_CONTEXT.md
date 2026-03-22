@@ -8,11 +8,13 @@ Paste this into Claude:
 
 "We are building Get Rooted Media. Read docs/GRM_Execution_Record.md from my GitHub repo ron841/grm-automations and tell me where we left off and what today's goal is."
 
-## Current state
+## Current State
 
-- FOUNDER lead magnet: v4 approved, needs Drive upload then logo manual fix in Canva (5 min)
-- LISTINGS: rendering in Manus with exact logo spec test
-- FOLLOWUP, NEWOWNER, PLAYBOOK: not started yet
+- FOUNDER v8: Final photo audit complete, pending Drive upload
+- LISTINGS v4: Final photo audit complete, pending Drive upload
+- Both PDFs passed Ronnie's visual approval (30 years magazine experience)
+- Brand system fully locked in GitHub — BRAND_RULES, DESIGN_REVIEW, PDF_PRODUCTION_GUIDE all updated
+- Florida Visual Identity rules locked — flat terrain, Spanish moss, no mountains
 
 ## Brand system location
 
@@ -60,15 +62,15 @@ GET ROOTED MEDIA (parent publisher — always on top)
 
 Before any creative task, read brand/DESIGN_REVIEW.md and review brand/assets/ before building anything.
 
-## What's next in priority order
+## What's Next in Priority Order
 
-1. Upload FOUNDER v4 to Google Drive > get link
-2. Update content-plans/FOUNDER.md with real Drive link
-3. Approve LISTINGS render > Drive > link
-4. Build FOLLOWUP, NEWOWNER, PLAYBOOK PDFs
-5. Build 5 ManyChat keyword automations
-6. Build ManyChat welcome DM (agent vs homeowner)
-7. Saturday carryover: Meta Developer App, /meta-ads-campaign skill, Design Advisor skill
+1. Open new chat, upload both final PDFs for one last review
+2. Approve and upload to Google Drive
+3. Update content-plans/ with Drive links in Claude Code
+4. Build 5 ManyChat keyword automations
+5. Build ManyChat welcome DM
+6. Create GRM_Design_System_Complete.md
+7. Activate connector hit list: Cloudinary, Pinterest, Zapier, ElevenLabs
 
 ## PDF production process (short version)
 
