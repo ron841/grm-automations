@@ -32,3 +32,4 @@ Run this before every Manus or Canva session.
 - [ ] Quote blocks must have a background photo — never render on pure black with no image
 - [ ] Pull quotes positioned in lower third of photo — never centered high where they compete with the image subject
 - [ ] Generic urban/coffee shop photos (MacBook, brick walls, city scenes) are never acceptable — flag and replace every time
+- [ ] Photo audit required before export — list every photo used and confirm no image appears more than once in the same document

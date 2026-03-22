@@ -57,3 +57,4 @@ DO NOT use Logo-04 (circle only) on covers. Logo-04 is for footer and page numbe
 | Mountain/hill background on horse photo | Florida is flat — mountains mean wrong region, replace immediately |
 | Horse photo reused across pages | Retire any photo used more than once — track usage across both PDFs |
 | Generic Southern home photo | Must have Florida identifier — Spanish moss, palms, or lush green flatlands |
+| Duplicate photo in same document | Run photo audit before export — list all photos, flag any used twice, replace immediately |
