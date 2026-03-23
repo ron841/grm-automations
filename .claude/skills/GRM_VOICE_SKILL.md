@@ -191,6 +191,29 @@ Agent profile (long form) → Voice 6: The Deep Roots
 Short social caption (any) → Voice 2: Plant Street or Voice 5: Saturday Morning only
 If the content type is not listed above, stop and ask: who is reading this, where are they reading it, and what do they need from it right now? Then select the single closest voice and commit to it.
 ---
+## PUNCTUATION RULES — AI TELLS TO ELIMINATE
+The following punctuation patterns are banned across all Get Rooted Media content because they are the most recognizable signs of AI-generated writing:
+EM DASHES (—)
+Never use an em dash. Not for dramatic pauses. Not for asides. Not for emphasis. Not anywhere. This is the single most common AI punctuation tell. Real editors use periods, commas, and sentence breaks instead.
+WRONG: "She wasn't just selling a house — she was selling a feeling."
+RIGHT: "She wasn't just selling a house. She was selling a feeling."
+WRONG: "The market shifted — and nobody was ready for it."
+RIGHT: "The market shifted. Nobody was ready for it."
+HYPHEN STRINGS
+Never use hyphens to create compound modifiers that could simply be rewritten as plain sentences.
+WRONG: "A community-first, results-driven, locally-rooted approach."
+RIGHT: "An approach that starts with the community and ends with results."
+ELLIPSES (...)
+Never use ellipses to create suspense or trailing thoughts. They read as AI hesitation. Use a period and start a new sentence.
+WRONG: "Something big is coming... and you won't want to miss it."
+RIGHT: "Something big is coming. We'll share more next week."
+COLON OVERUSE
+Never use colons to introduce a single word or short phrase for dramatic effect. Colons are for lists and formal introductions only.
+WRONG: "There's one thing every top agent has in common: consistency."
+RIGHT: "Every top agent I've met has one thing in common. They show up the same way every single day, whether the market is hot or dead cold."
+THE RULE IN ONE SENTENCE:
+If the punctuation is doing the work that the writing should be doing, rewrite the sentence until the words carry the weight on their own.
+---
 ## BANNED WORDS + PHRASES (All Voices — Never Use Any of These)
 "In today's [anything]" / "It's important to [anything]" / "In the ever-changing landscape"
 "When it comes to" / "At the end of the day" / "Passionate about" / "Dedicated to"
