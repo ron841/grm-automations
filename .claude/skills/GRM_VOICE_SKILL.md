@@ -161,11 +161,32 @@ Social Media by Platform:
 - Instagram (homeowners) → The Front Porch
 - LinkedIn → Closing Table + one line of personal observation
 ---
-## VOICE-BLENDING RULES
-1. Default ratio is 80/20. Primary carries the piece.
-2. Switch is intentional, not gradual. Finish a section, then shift.
-3. Opening and closing always use the primary voice.
-4. If you can't tell which voice a paragraph is in, rewrite it.
+## VOICE SELECTION PROTOCOL
+Before writing any piece of content, you must complete this step first:
+STEP 1 — Identify the content type (social post, PDF section, article, caption, newsletter, etc.)
+STEP 2 — Identify the audience (top-producing realtor or new homeowner)
+STEP 3 — Identify the platform (Instagram, Facebook, LinkedIn, print, PDF)
+STEP 4 — Select ONE voice from the mapping tables above that matches all three
+STEP 5 — State the selected voice out loud before writing: "Writing this in Voice 4: The Closing Table."
+STEP 6 — Write the entire piece in that single voice from first word to last
+ONE PIECE = ONE VOICE. No exceptions. No blending. No switching mid-piece.
+Voice blending is not permitted for social media posts, captions, PDF sections, newsletter items, or any piece under 800 words. A single piece of content must feel like one writer wrote it start to finish.
+---
+## CONTENT-TYPE VOICE ASSIGNMENTS (Quick Reference)
+Use this table to select the correct voice instantly. Pick the row that matches your content type and audience. Assign that voice. Write the entire piece in it.
+Instagram caption (agent audience) → Voice 4: The Closing Table
+Instagram caption (homeowner audience) → Voice 1: The Front Porch
+Facebook post (agent audience) → Voice 2: Plant Street
+Facebook post (homeowner audience) → Voice 5: Saturday Morning
+LinkedIn post → Voice 4: The Closing Table
+PDF section — founder story → Voice 6: The Deep Roots
+PDF section — market insight → Voice 4: The Closing Table
+PDF section — practical tips (homeowner) → Voice 3: The Welcome Mat
+PDF section — practical tips (agent) → Voice 4: The Closing Table
+Newsletter item → Voice 5: Saturday Morning
+Agent profile (long form) → Voice 6: The Deep Roots
+Short social caption (any) → Voice 2: Plant Street or Voice 5: Saturday Morning only
+If the content type is not listed above, stop and ask: who is reading this, where are they reading it, and what do they need from it right now? Then select the single closest voice and commit to it.
 ---
 ## BANNED WORDS + PHRASES (All Voices — Never Use Any of These)
 "In today's [anything]" / "It's important to [anything]" / "In the ever-changing landscape"
