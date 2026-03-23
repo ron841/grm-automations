@@ -211,6 +211,16 @@ COLON OVERUSE
 Never use colons to introduce a single word or short phrase for dramatic effect. Colons are for lists and formal introductions only.
 WRONG: "There's one thing every top agent has in common: consistency."
 RIGHT: "Every top agent I've met has one thing in common. They show up the same way every single day, whether the market is hot or dead cold."
+BULLET POINTS AND LISTS
+When content requires a list, bullet points must follow these rules exactly:
+Alignment: The bullet point marker must align vertically with the top of the first line of text, not the bottom or middle. Never let the dot float below the baseline of the text it introduces.
+Spacing: Each bullet item needs consistent top padding above it. Do not compress bullet items together. Give each one room to breathe.
+Length: Each bullet item should be one complete thought. If it runs more than two lines, it is a paragraph, not a bullet. Rewrite it as prose.
+Punctuation: End each bullet item with a period if it is a complete sentence. No periods if it is a short label or fragment. Be consistent within the same list. Never mix sentence-length bullets with fragment bullets in the same list.
+Bold labels: If a bullet uses a bold label followed by a description, separate the label from the description with a period. Never run them together with no separation.
+WRONG: "Origin Story Why did you get into real estate?"
+RIGHT: "Origin Story. Why did you get into real estate?"
+When producing content for Canva or any PDF layout, flag any list with more than five bullet items. Lists that long belong in a table or a numbered framework, not a bullet list.
 THE RULE IN ONE SENTENCE:
 If the punctuation is doing the work that the writing should be doing, rewrite the sentence until the words carry the weight on their own.
 ---
