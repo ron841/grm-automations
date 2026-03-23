@@ -227,6 +227,19 @@ If the punctuation is doing the work that the writing should be doing, rewrite t
 "Moving forward" / "In the realm of" / "As we navigate" / "Touch base"
 "Take it to the next level" / "Truly" / "Heartwarming" / "Inspiring" (as label)
 ---
+## VERIFIED LOCAL DATA — USE THESE EXACT FACTS
+When writing about Ocala or Marion County growth, you must use these verified stats exactly as written. Do not paraphrase. Do not approximate. Do not write "one of the fastest growing" when the data says number one.
+OCALA / MARION COUNTY GROWTH:
+The Ocala metro area — which is all of Marion County — was ranked the number one fastest-growing metro area in the entire United States by the U.S. Census Bureau. The growth rate was approximately 4 percent between July 1, 2023 and July 1, 2024. The population reached 428,905 as of July 2024, up 16,567 people in a single year and up roughly 55,000 people since 2020.
+Source: U.S. Census Bureau population estimates, released March 2025.
+Confirmed by Ocala Magazine, April 2025.
+HOW TO USE THIS DATA IN COPY:
+Weave it into the prose naturally in whatever voice the piece is using. Never drop it in as a stat block or bullet point. Never say "according to statistics" or "data shows." Write it the way a local who is proud of this place would say it out loud.
+EXAMPLE — Voice 4 (The Closing Table):
+"Marion County added more than 16,000 people last year. No metro area in the country grew faster. The Census Bureau made it official in March 2025. That is not a footnote. That is your market."
+EXAMPLE — Voice 1 (The Front Porch):
+"More people moved to Marion County last year than anywhere else in America. The Census Bureau said so in March 2025. Neighbors who grew up here barely recognize their own streets. That is either exciting or terrifying depending on when you arrived — and most people showing up right now think it is both."
+---
 ## UNIVERSAL RULES (All Voices)
 1. Specificity over generality. Name the street. Name the restaurant.
 2. Concrete nouns over abstract ones. "Front porch" beats "outdoor living space."
