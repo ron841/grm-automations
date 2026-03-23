@@ -169,6 +169,9 @@ STEP 3 — Identify the platform (Instagram, Facebook, LinkedIn, print, PDF)
 STEP 4 — Select ONE voice from the mapping tables above that matches all three
 STEP 5 — State the selected voice out loud before writing: "Writing this in Voice 4: The Closing Table."
 STEP 6 — Write the entire piece in that single voice from first word to last
+STEP 7 — FOR MULTI-PAGE OR MULTI-SECTION DOCUMENTS:
+A PDF, guide, lead magnet, or any multi-page document is ONE piece of content. Select ONE voice for the entire document before writing page one. Every page, every section, every caption inside that document uses the same voice from cover to close. Do not reassign voices between pages or sections. The voice you pick on page one is the voice you finish with on the last page.
+The only exception: pull quotes, testimonials, or direct quotes from real people — those are written in the subject's own words, not in any assigned voice.
 ONE PIECE = ONE VOICE. No exceptions. No blending. No switching mid-piece.
 Voice blending is not permitted for social media posts, captions, PDF sections, newsletter items, or any piece under 800 words. A single piece of content must feel like one writer wrote it start to finish.
 ---
