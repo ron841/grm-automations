@@ -62,9 +62,15 @@ jobs:
       # Step 5: Verify the output file was created
       - name: Verify output file exists
         run: |
-          echo "Listing output directory:"
-          ls -la output/
-          cat output/weekly_calendar_*.md | head -20
+          echo "Listing output/content_calendar/ directory:"
+          ls -la output/content_calendar/
+          LATEST=$(ls -1 output/content_calendar/*.md 2>/dev/null | sort | tail -1)
+          if [ -z "$LATEST" ]; then
+            echo "::error::No calendar file found in output/content_calendar/"
+            exit 1
+          fi
+          echo "Latest file: $LATEST"
+          head -20 "$LATEST"
 
       # Step 6: Commit and push the generated markdown file back to the repo
       - name: Commit and push calendar

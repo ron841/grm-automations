@@ -90,15 +90,17 @@ jobs:
           CALENDAR_DIR="output/content_calendar"
 
           if [ ! -d "$CALENDAR_DIR" ] || [ -z "$(ls -A "$CALENDAR_DIR" 2>/dev/null)" ]; then
-            echo "::error::No content calendar files found in $CALENDAR_DIR"
-            exit 1
+            echo "No content calendar found in $CALENDAR_DIR — skipping this run."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            exit 0
           fi
 
           LATEST_FILE=$(ls -1 "$CALENDAR_DIR"/*.md 2>/dev/null | sort | tail -1)
 
           if [ -z "$LATEST_FILE" ]; then
-            echo "::error::No .md files found in $CALENDAR_DIR"
-            exit 1
+            echo "No .md files found in $CALENDAR_DIR — skipping this run."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            exit 0
           fi
 
           echo "Found calendar: $LATEST_FILE"
@@ -121,8 +123,9 @@ jobs:
           ' "$LATEST_FILE")
 
           if [ -z "$FIRST_POST" ]; then
-            echo "::error::Could not extract a post from $LATEST_FILE"
-            exit 1
+            echo "Could not extract a post from $LATEST_FILE — skipping this run."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            exit 0
           fi
 
           echo "Extracted first post:"
@@ -135,7 +138,9 @@ jobs:
       # Step 5: Run the editor script with the extracted content.
       # - Reads the content from the temp file created in Step 4.
       # - ANTHROPIC_API_KEY is pulled from GitHub Secrets (never exposed in logs).
+      # - Skipped if no calendar was found in Step 4.
       - name: Run editor_skill.py
+        if: steps.extract.outputs.skip != 'true'
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
@@ -147,7 +152,9 @@ jobs:
       # - We configure a bot identity for the commit author.
       # - "git diff --cached --quiet" returns exit code 1 if there are changes,
       #   so we only commit when there's actually new output to save.
+      # - Skipped if no calendar was found in Step 4.
       - name: Commit and push output
+        if: steps.extract.outputs.skip != 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
