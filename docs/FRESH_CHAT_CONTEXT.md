@@ -93,3 +93,15 @@ We instructed Manus to rewrite 5 Instagram captions to remove em dashes and resc
 
 OLD CONTENT-PLAN PDFs — SCRAPPED:
 The content-plans/ folder has outlines for LISTINGS, FOLLOWUP, NEWOWNER, and PLAYBOOK as separate lead magnet PDFs. These are scrapped. The AI Partner Playbook is now the single lead magnet for GRM. Do not build the old PDF outlines.
+
+DESIGN ASSETS NOT IN GITHUB:
+Ron's designer delivered logos, cover comps, and spread examples. These exist locally only. Upload them at the start of the website build session so Claude can see the actual design before writing any code.
+
+COLOR PALETTE NEEDS RESOLUTION:
+Website copy doc adds expanded palette beyond original 3 colors. Before website build starts, confirm which colors are live: gold #B8860B, midnight #1A1A2E, fern #4A6741, terracotta #C17B3A. Update Design Advisor colors.csv once confirmed.
+
+21ST.DEV MCP NOT CONNECTED:
+Sign up at 21st.dev, get free API key, add to Claude Code MCP settings before website build. Gives access to production-ready React components during build.
+
+UX-GUIDELINES.CSV MISSING:
+Design Advisor needs ux-guidelines.csv with 100 UX do/dont rules. Build this before website build starts.

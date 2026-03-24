@@ -1,0 +1,9 @@
+name,hex,usage,never_use_with
+Primary Dark,#090C0B,"Backgrounds, headers, logo on light backgrounds, body text on cream/white, cover dark bar, card backgrounds","Teal text on dark — low contrast. Never pair dark-on-dark."
+Teal,#00B7CE,"Accent bars, highlights, dividers, footer rules, links, callout text, badge backgrounds, stat callout numbers, header bar backgrounds","Dark backgrounds for text (low contrast). Never use teal text on teal background. Never use as full-page background."
+Cream,#FAF8F4,"Page backgrounds, light section backgrounds, breathing space between sections","Dark gray text directly on cream without sufficient contrast. Never use cream text on white."
+White,#FFFFFF,"Text on dark backgrounds, text on teal backgrounds, card text on dark/teal cards, logo on dark backgrounds","Never use white text on cream — insufficient contrast. Never use white as a primary accent color."
+Dark Gray,#444444,"Body text on cream/white backgrounds, caption text, supporting copy","Never use on dark backgrounds. Never use for headlines — headlines use #090C0B or #FFFFFF only."
+Light Gray,#CCCCCC,"Divider lines, subtle borders, inactive UI states, separators","Never use as text color — too low contrast. Never use as background — use cream #FAF8F4 instead."
+RETIRED Gold,#C9973A,"NEVER USE — retired from palette. Replace all instances with teal #00B7CE or white #FFFFFF.","Everything. This color is banned from all GRM materials."
+BANNED Forest Green,#2D5016,"NEVER USE — not part of GRM palette.","Everything. No shade of green is approved for GRM."
