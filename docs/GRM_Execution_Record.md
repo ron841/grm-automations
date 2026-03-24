@@ -424,18 +424,29 @@ Content is complete. PDF design started in Manus today. Lead magnet strategy: PL
 - Section 8 ManyChat flows table added
 - Commits 0a37e00 and 8dfca24
 
-### ManyChat flows — 4 of 6 live
+### ManyChat — 4 of 6 flows built and live via Cowork
 
-docs/MANYCHAT_FLOWS.md created with all 6 flows documented. All copy written in correct GRM voice. No em dashes. No banned words. All keyword flows funnel toward CLOSING conversation.
+All four flows built directly in ManyChat browser using Cowork:
 
-- PLAYBOOK Keyword Flow — LIVE ✅
+- PLAYBOOK Keyword Flow — LIVE ✅ (built first, most time-sensitive)
 - FOUNDER Keyword Flow — LIVE ✅
 - CLOSING Keyword Flow — LIVE ✅
 - LISTINGS Keyword Flow — LIVE ✅
-- FOLLOWUP Keyword Flow — TO BUILD (2 min task)
-- New Follower Welcome DM — TO BUILD (5 min task)
+- FOLLOWUP Keyword Flow — Ron builds (2 min, copy in MANYCHAT_FLOWS.md)
+- New Follower Welcome DM — Ron builds (5 min, under Settings > Growth Tools)
+
+docs/MANYCHAT_FLOWS.md has all 6 flows documented with approved copy. All written in correct GRM voice. No em dashes. No banned words. All keyword flows funnel toward CLOSING conversation.
 
 Commit 1dff7b2
+
+### AI Partner Playbook PDF — COMPLETE ✅
+
+Built by Manus. 28 pages. All brand rules and voice guidelines followed.
+File: GRM_AI_Partner_Playbook.pdf
+Location: Google Drive > GRM Content Queue folder
+Drive link: https://drive.google.com/file/d/17AMZ6oSZg1YdPl-BlYHo9Kya3NRPI1xN/view?usp=drivesdk
+
+Ron action required: Set sharing to Anyone with link can view. Then update PLAYBOOK and FOUNDER ManyChat flows with real Drive link.
 
 ### Execution record updated
 
@@ -466,11 +477,6 @@ Build FOLLOWUP flow:
 
 Build Welcome DM — Settings then Growth Tools then New Follower:
 - Message: "Welcome to Get Rooted Media. We cover Marion County from two angles. The Closing Table for real estate professionals and The Front Porch for new homeowners. Reply AGENT or HOMEOWNER and we will make sure you get the right content."
-
-PDF — COMPLETE ✅
-AI Partner Playbook PDF built by Manus. 28 pages. All brand rules followed. Saved to Google Drive GRM Content Queue as GRM_AI_Partner_Playbook.pdf
-Drive link: https://drive.google.com/file/d/17AMZ6oSZg1YdPl-BlYHo9Kya3NRPI1xN/view?usp=drivesdk
-Ron action: Set sharing to "Anyone with the link can view" then update PLAYBOOK and FOUNDER ManyChat flows with real Drive link.
 
 ---
 
