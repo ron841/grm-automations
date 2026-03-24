@@ -303,70 +303,219 @@ FOUNDER v11 and LISTINGS v7 approved final after full-day design session. PDF_DE
 
 ---
 
-## TUESDAY MARCH 24, 2026 — COMPLETED
+## MONDAY MARCH 23, 2026 — BIRTHDAY SESSION
 
-### What we built
+Ron's birthday. Limited build day by design.
 
-**Workflow bug fix**
+What we worked on:
 
-- Editor workflow path bug fixed. The editor-skill.yml verify step was looking in `output/` but `content_calendar.py` saves to `output/content_calendar/`. Corrected the verify step to match.
-- Graceful skip added to editor workflow. If no calendar file exists, the workflow now logs "No content calendar found -- skipping this run" and exits with a green checkmark instead of a red X.
-- `input/draft.md` placeholder created so the path exists for manual workflow_dispatch overrides.
+- Extended editorial session focused on The Closing Table and The Front Porch media kits
+- Tightened copy on both media kits using GRM voice principles
+- Applied Voice 4 (The Closing Table) to CT advertiser-facing copy
+- Applied Voice 1 (The Front Porch) to FP homeowner copy
+- This was the first session where the voice skill was applied directly to production media kit documents
 
-**Brand system fully connected**
+Status: Media kit copy tightened. Files not pushed to GitHub this session. Ron has working copies.
 
-- `.claude/skills/editor/SKILL.md` inline voice rules removed, replaced with pointer to GRM_VOICE_SKILL.md.
-- `.claude/skills/content-plan/SKILL.md` inline voice rules removed, replaced with pointer to GRM_VOICE_SKILL.md. CTA, emoji, and hashtag rules kept (format-specific).
-- `.claude/skills/design/SKILL.md` updated. Voice skill reference added to top of pre-build protocol: read GRM_VOICE_SKILL.md and select correct voice before writing any copy.
-- All four skills (voice, design, editor, content-plan) now point to one source of truth for voice.
+Ron's action: No code work. Rest day earned.
 
-**Design system completed for PDF builds**
+---
 
-- `brand/templates/FOUNDER_PAGE_MAP.md` created. 14-page layout map with content placement, photo direction, and design notes per page. Reuse rules for FOLLOWUP, NEWOWNER, and PLAYBOOK builds.
-- Typography specs table added to `brand/PDF_DESIGN_PLAYBOOK.md`. 14-row table with exact point sizes for every text element (cover title 36pt, body 11pt, pull quotes 20pt, stat callouts 48pt, etc.).
-- `brand/assets/PHOTO_INVENTORY.md` created. Photo tracking document with FOUNDER v14 and LISTINGS v7 sections. Prevents cross-document photo reuse.
+## TUESDAY MARCH 24, 2026 — COMPLETED ✅
 
-**Master calendar created**
+**Full day build session. Here is everything that was done.**
 
-- `docs/GRM_MASTER_CALENDAR.md` created. Tracks reel launch series, automated Instagram posts, scripted reels, lead magnet drops, sales milestones, and session log in one file.
-- Social launch calendar confirmed: Reel 2 posts March 26, Reel 3 posts March 28 with ManyChat keyword PLAYBOOK, Reel 4 posts March 30 (sales launch day).
-- Automated Instagram posts paused until April 6.
-- AI Partner Playbooks 1/2/3 confirmed as lead magnets tied to reel CTAs.
+### Context loaded at start of session
 
-**Other**
+- GRM_AI_Build_Sprint_UPDATED.docx uploaded and reviewed
+- Confirmed Thursday March 19 and Friday March 20 fully complete
+- Confirmed Saturday March 21 partially complete
+- Confirmed Sunday March 22 brand and voice work complete
+- GRM_VOICE_SKILL.md loaded and active for entire session
+- FOUNDER lead magnet v11 and v14 uploaded and compared
+- v14 confirmed as approved design benchmark going forward
 
-- Design Advisor CSV database built with real GRM values.
-- FOUNDER v14 reviewed and confirmed as approved benchmark template for all future PDF builds.
-- Manus weekly intel report unstuck and delivered to inbox.
+### About the voice skill — full context
 
-### Ron's ongoing actions from Tuesday's build
+GRM_VOICE_SKILL.md was created Sunday March 22 through an editorial study session. Claude read issues of The Local (Winter Garden FL), Good Life Ocala, and Ocala Magazine. From that study, six named editorial voices were derived:
 
-This afternoon (March 24):
-- Film Reels 2 and 3 with Cameron
-- Cancel this week's Manus Instagram schedule (push to April 6)
+- Voice 1: The Front Porch — warm, scene-driven, homeowner stories
+- Voice 2: Plant Street — first-person, opinionated, agent social
+- Voice 3: The Welcome Mat — practical, insider-tip, newcomer guides
+- Voice 4: The Closing Table — sharp, insight-driven, agent authority
+- Voice 5: Saturday Morning — clear, upbeat, community events
+- Voice 6: The Deep Roots — literary feature, long-form profiles
 
-Thursday March 27:
-- Film Reel 4
+Full rules, banned words, punctuation laws, and voice selection protocol documented in .claude/skills/GRM_VOICE_SKILL.md
 
-Wednesday March 26 at 7 AM:
-- Post Reel 2 ("What We Built") to @ron__kolb
+ONE PIECE = ONE VOICE. No blending. No switching. Ever.
 
-Friday March 28 at 7 AM:
-- Post Reel 3 ("Our Third Co-Founder") with caption CTA: keyword PLAYBOOK in comments
+### About the FOUNDER PDF versions
 
-Monday March 30 at 7 AM:
-- Post Reel 4 ("Why It Actually Matters") -- sales launch day
-- First outbound calls begin. Ron and Cameron dialing.
+v11 = earlier version without full voice corrections
+v14 = approved final version. Voice 4 throughout. Exact Census data used. No em dashes. No banned words. This is the design and copy benchmark for all future PDFs.
 
-### Pending from today -- carry to next session
+Design standard: #090c0b dark, #00b7ce teal, #FAF8F4 cream. Logo top left 220px white. Full bleed photography. Teal accent bar.
 
-- Build ManyChat PLAYBOOK keyword automation before Reel 3 posts March 28
-- Build ManyChat FOUNDER keyword automation
-- Drive upload FOUNDER v14 and LISTINGS v7 PDFs, get shareable links
-- Write Reel 2, 3, and 4 scripts if not done during filming
-- Build remaining PDFs: FOLLOWUP, NEWOWNER, PLAYBOOK via Manus
-- Saturday carryover: Meta Developer App, /meta-ads-campaign skill
-- Build ManyChat welcome DM (agent vs homeowner paths)
+### Automation fixes
+
+- Brand Voice Editor workflow path bug fixed
+- Editor now reads from correct output/content_calendar/ directory
+- Graceful skip added. Green checkmark even when no calendar found
+- input/draft.md placeholder created
+- Commit 8e2ef6d
+
+### Brand system — fully connected for first time
+
+- All four skills now point to single source of truth
+- GRM_VOICE_SKILL.md is the only voice reference across all tools
+- /editor skill inline rules removed, replaced with pointer
+- /content-plan skill inline rules removed, replaced with pointer
+- /design skill updated to read voice skill before any copy
+- Five brand integration files pushed
+
+### Design Advisor CSV database — built
+
+- colors.csv — real GRM hex values with usage rules
+- typography.csv — exact point sizes for every text element
+- ui-reasoning.csv — anti-patterns for local media publishing
+- styles.csv — CT vs FP visual personality differences
+- landing.csv — section guidance for GRM website build
+
+No placeholder data anywhere. All real values.
+
+### Manus — unstuck and updated
+
+- Weekly Intel Report ran Sunday but was stuck waiting for approval
+- Email delivered to ron@getrootedmedia.com at 8:07 AM Tuesday
+- Confirmed saved to Google Drive GRM Weekly Intel folder
+- KEY INTEL THIS WEEK:
+  1. "8 Gross Things" maintenance reel by @denise.foster.fl — 1119 likes, 4924 shares. Tough love seller walkthrough = highest performing content format right now. Adaptable for GRM.
+  2. Florida AI home sale story — Cooper City homeowner sold via ChatGPT in 5 days, saved 3% commission. Perfect reaction reel opportunity defending local agent value in Marion County.
+- Manus custom instructions updated with GRM_VOICE_SKILL.md URL: https://raw.githubusercontent.com/ron841/grm-automations/main/.claude/skills/GRM_VOICE_SKILL.md
+- Manus Instagram posts rescheduled — start March 31 afternoon
+- Manus rewriting 5 captions to remove em dashes per voice rules
+
+### Social strategy — reviewed and locked
+
+Social Rollout Strategy doc reviewed. 4-reel personal brand launch series confirmed:
+
+- Reel 1: "I Walked Away" — POSTED ✅ performing well
+- Reel 2: "What We Built" — filming today, post Wed March 26 7AM
+- Reel 3: "Our Third Co-Founder" — filming today, post Fri March 28 7AM
+- Reel 4: "Why It Actually Matters" — film Thu March 27, post Mon March 30 7AM
+
+### AI Partner Playbooks — reviewed
+
+Three playbooks reviewed from uploaded docs:
+
+- Playbook 1: Core AI prompts for business building
+- Playbook 2: Local Business Advantage — competitor intelligence, content visibility, advertiser demo stack
+- Playbook 3: Personal Wealth and Career Toolkit
+
+Content is complete. PDF design started in Manus today. Lead magnet strategy: PLAYBOOK keyword on Reel 3 delivers AI Partner Playbook PDF via ManyChat DM automatically.
+
+### Master calendar — created and corrected
+
+- docs/GRM_MASTER_CALENDAR.md created
+- Automated posts start March 31 afternoon not April 6
+- Weekly rhythm: mornings for reels, afternoons for automated posts
+- Section 7 weekly rhythm table added
+- Section 8 ManyChat flows table added
+- Commits 0a37e00 and 8dfca24
+
+### ManyChat flows — 4 of 6 live
+
+docs/MANYCHAT_FLOWS.md created with all 6 flows documented. All copy written in correct GRM voice. No em dashes. No banned words. All keyword flows funnel toward CLOSING conversation.
+
+- PLAYBOOK Keyword Flow — LIVE ✅
+- FOUNDER Keyword Flow — LIVE ✅
+- CLOSING Keyword Flow — LIVE ✅
+- LISTINGS Keyword Flow — LIVE ✅
+- FOLLOWUP Keyword Flow — TO BUILD (2 min task)
+- New Follower Welcome DM — TO BUILD (5 min task)
+
+Commit 1dff7b2
+
+### Execution record updated
+
+This document updated with complete March 24 session.
+
+---
+
+### Ron's action items before next session
+
+TONIGHT — FILM:
+- Reel 2 "What We Built" with Cameron. Outside, natural light, somewhere Ocala-feeling. Cameron speaks his own 1-2 lines naturally.
+- Reel 3 "Our Third Co-Founder." Laptop open to real Claude conversation on screen. The visual of actual conversation makes it real.
+
+THIS WEEK — POST:
+- Wednesday March 26 at 7 AM: Post Reel 2
+- Friday March 28 at 7 AM: Post Reel 3. Include keyword PLAYBOOK in caption.
+- Thursday March 27: Film Reel 4. Solo, outside, golden hour.
+
+NEXT WEEK:
+- Monday March 30 at 7 AM: Post Reel 4. Sales calls begin same day.
+- Monday March 31 afternoon: Automated FOUNDER post goes live.
+
+MANYCHAT — FINISH BEFORE FRIDAY MARCH 28:
+
+Build FOLLOWUP flow:
+- Keyword: FOLLOWUP
+- Message: "The agents who build durable businesses treat the closing as the starting line. If you want to see the 90 day follow up system the top producers in Marion County use, reply CLOSING and we will send you the details."
+
+Build Welcome DM — Settings then Growth Tools then New Follower:
+- Message: "Welcome to Get Rooted Media. We cover Marion County from two angles. The Closing Table for real estate professionals and The Front Porch for new homeowners. Reply AGENT or HOMEOWNER and we will make sure you get the right content."
+
+PDF — WAITING ON MANUS:
+AI Partner Playbook PDF being designed in Manus right now. When Manus finishes: download PDF, upload to Google Drive GRM Content Queue folder, get shareable link, update PLAYBOOK and FOUNDER ManyChat flows with real link before Friday.
+
+---
+
+### Carry-forward to next session — Saturday carryover still not done
+
+1. Meta Developer App setup (developers.facebook.com)
+   - Create app: GRM Ad Deployer
+   - Create system user: Claude Code Deployer with Admin role
+   - Generate token — permissions: ads_management, ads_read, pages_read_engagement, pages_manage_ads
+   - Save token to GitHub secrets as META_ACCESS_TOKEN
+   - Save Ad Account ID (format act_XXXXXXXXX)
+   - Save Facebook Page ID
+
+2. /meta-ads-campaign skill in Claude Code
+   - Install at .claude/skills/meta-ads-campaign/SKILL.md
+   - SQLite database for campaign records and ad account mappings
+   - .env template with META_ACCESS_TOKEN, META_AD_ACCOUNT_ID, FACEBOOK_PAGE_ID placeholders
+   - 6-phase pipeline: gather context, create record, generate copy, generate UTM links, pre-deploy checklist, deploy PAUSED
+
+3. Website build — waiting on brand assets from creative team
+   - Assets expected: photos, finalized logo files, brand pack
+   - Once received: update Design Advisor CSVs with any new values
+   - Run /design on all 5 pages before writing a line of code
+   - Tech stack: Next.js 15, TypeScript, Tailwind, shadcn/ui
+
+---
+
+### System status as of end of day March 24
+
+AUTOMATED AND RUNNING:
+- Sunday 9 PM: GitHub content calendar generates
+- Sunday 9:30 PM: Manus intel report runs, saves to Drive, emails Ron
+- Monday 8 AM: GitHub editor skill polishes Monday content
+
+MANYCHAT LIVE:
+- PLAYBOOK, FOUNDER, CLOSING, LISTINGS keyword flows active
+
+SCHEDULED AND READY:
+- Reels 2, 3, 4 filming and posting this week
+- Automated Instagram posts starting March 31 afternoon
+- Sales calls beginning March 30
+
+WAITING:
+- AI Partner Playbook PDF (Manus building now)
+- FOLLOWUP flow and Welcome DM (5 min task for Ron)
+- Meta Developer App and /meta-ads-campaign skill
+- Brand assets from creative team for website build
 
 ---
 

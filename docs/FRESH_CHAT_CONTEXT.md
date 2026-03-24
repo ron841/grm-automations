@@ -1,43 +1,56 @@
 # GRM Fresh Chat Context
 
-Last updated: Sunday March 22, 2026
+Last updated: Tuesday March 24, 2026
 
 ## How to start any new session
 
 Paste this into Claude:
 
-"We are building Get Rooted Media. Read docs/GRM_Execution_Record.md from my GitHub repo ron841/grm-automations and tell me where we left off and what today's goal is."
+"We are building Get Rooted Media. Read these two files completely before saying anything:
 
-## Current State
+https://raw.githubusercontent.com/ron841/grm-automations/main/docs/GRM_Execution_Record.md
 
-- FOUNDER v8: Final photo audit complete, pending Drive upload
-- LISTINGS v4: Final photo audit complete, pending Drive upload
-- Both PDFs passed Ronnie's visual approval (30 years magazine experience)
-- Brand system fully locked in GitHub — BRAND_RULES, DESIGN_REVIEW, PDF_PRODUCTION_GUIDE all updated
-- Florida Visual Identity rules locked — flat terrain, Spanish moss, no mountains
+https://raw.githubusercontent.com/ron841/grm-automations/main/docs/GRM_MASTER_CALENDAR.md
+
+Also read the voice skill. It governs everything we write:
+
+https://raw.githubusercontent.com/ron841/grm-automations/main/.claude/skills/GRM_VOICE_SKILL.md
+
+Tell me where we left off and what today's goal is."
+
+## Current state as of March 24
+
+REELS: Reel 1 posted. Reels 2 and 3 filming today. Post schedule locked in GRM_MASTER_CALENDAR.md.
+
+MANYCHAT: 4 of 6 flows live. FOLLOWUP and Welcome DM still to build.
+
+PDF: AI Partner Playbook PDF being designed in Manus. When done: upload to Drive, get link, update ManyChat flows.
+
+SALES: Launch Monday March 30. Reel 4 posts same morning.
+
+SATURDAY CARRYOVER STILL PENDING:
+- Meta Developer App setup
+- /meta-ads-campaign skill in Claude Code
+- Website build (waiting on brand assets)
 
 ## Brand system location
 
-All brand rules, assets, and design guides live in:
-grm-automations/brand/
+brand/BRAND_RULES.md — colors, fonts, logo rules
+brand/DESIGN_REVIEW.md — 5-step pre-build checklist
+brand/PDF_DESIGN_PLAYBOOK.md — full PDF build spec
+brand/PDF_PRODUCTION_GUIDE.md — Manus build instructions
+brand/templates/FOUNDER_PAGE_MAP.md — page layout template
+.claude/skills/GRM_VOICE_SKILL.md — THE voice standard
+.claude/skills/design/data/ — CSV design database
 
-Key files:
+## Brand colors — never change
 
-- brand/BRAND_RULES.md — colors, fonts, logo rules
-- brand/DESIGN_REVIEW.md — 4-step pre-build checklist
-- brand/PDF_PRODUCTION_GUIDE.md — full PDF process
-- brand/assets/logos/ — 4 SVG logo variants
-- brand/assets/media-kits/ — CT and FP media kits
-- brand/assets/publication-covers/ — cover comps
-- .claude/skills/design/SKILL.md — /design skill
+Primary dark: #090c0b
+Accent teal: #00b7ce
+Background cream: #FAF8F4
+White: #FFFFFF
 
-## Brand colors (never change these)
-
-- Primary dark: #090c0b
-- Accent teal: #00b7ce
-- Background cream: #FAF8F4
-- White: #FFFFFF
-- NO gold, NO green, NO generic real estate colors
+NO gold. NO green. NO generic real estate colors.
 
 ## Three-brand architecture
 
@@ -45,38 +58,25 @@ GET ROOTED MEDIA (parent publisher — always on top)
 ├── THE CLOSING TABLE (agents — professional)
 └── THE FRONT PORCH (homeowners — warm)
 
-## Logo placement spec (exact)
+## Logo placement spec
 
-- File: Logo_Get_Rooted_Media-01.svg
-- Width: 220px
-- Position: 24px from left, 24px from top
-- Color: white (#FFFFFF) on ALL paths
-- Fallback: try 02, 03, 04 if 01 fails
+File: Logo_Get_Rooted_Media-01.svg
+Width: 220px
+Position: 24px from left, 24px from top
+Color: white (#FFFFFF) on ALL paths
+Fallback: try 02, 03, 04 if 01 fails
 
 ## Contact info
 
-- Ron Kolb — Publisher: 352-598-7289 / ron@getrootedmedia.com
-- Cameron Cowart — Sales: 352-875-0326 / cameron@getrootedmedia.com
+Ron Kolb — Publisher: 352-598-7289 / ron@getrootedmedia.com
+Cameron Cowart — Sales: 352-875-0326 / cameron@getrootedmedia.com
 
-## Manus custom instruction (already set)
+## What is next in priority order
 
-Before any creative task, read brand/DESIGN_REVIEW.md and review brand/assets/ before building anything.
-
-## What's Next in Priority Order
-
-1. Open new chat, upload both final PDFs for one last review
-2. Approve and upload to Google Drive
-3. Update content-plans/ with Drive links in Claude Code
-4. Build 5 ManyChat keyword automations
-5. Build ManyChat welcome DM
-6. Create GRM_Design_System_Complete.md
-7. Activate connector hit list: Cloudinary, Pinterest, Zapier, ElevenLabs
-
-## PDF production process (short version)
-
-1. Tell Manus: read brand/DESIGN_REVIEW.md first
-2. Reference content from content-plans/ in repo
-3. Test 1 solo > approve > 1 solo > approve > batch 3
-4. Check cover, page 2, last page on every preview
-5. Logo: use exact spec above or fix manually in Canva
-6. Common fixes: merged words, empty page halves, pillar badge collisions, wrong colors
+1. FOLLOWUP ManyChat flow — 2 minutes, Ron builds
+2. New Follower Welcome DM — 5 minutes, Ron builds
+3. Get AI Partner Playbook PDF Drive link from Manus
+4. Update PLAYBOOK and FOUNDER ManyChat flows with real Drive link
+5. Meta Developer App setup — Saturday carryover
+6. /meta-ads-campaign skill in Claude Code
+7. Website build — starts when brand assets arrive
