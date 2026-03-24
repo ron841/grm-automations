@@ -15,6 +15,26 @@ Last updated: March 22, 2026
 - Fonts: Bold headlines (Montserrat or similar sans-serif), Italic subheads (Georgia or similar serif), Body (clean sans-serif)
 - Header bar: Teal (#00B7CE), full width, 0.28 inch tall, white bold caps label centered
 - Footer: GRM logo icon + "Get Rooted Media" left, publication names + page number right. Teal rule line above footer.
+
+### TYPOGRAPHY SPECS — Exact Point Sizes
+
+| Element | Font | Weight | Size | Color | Notes |
+|---------|------|--------|------|-------|-------|
+| Cover title | Montserrat or similar sans-serif | Bold | 36pt | #FFFFFF | Inside dark bar, all caps or title case |
+| Cover subtitle | Georgia or similar serif | Italic | 16pt | #FFFFFF | Below title, inside dark bar |
+| Section header (H2) | Montserrat or similar sans-serif | Bold | 24pt | #090C0B or #FFFFFF on dark | Used in header bars and page openers |
+| Page subheader (H3) | Montserrat or similar sans-serif | Semibold | 18pt | #090C0B | Section dividers within a page |
+| Body text | Open Sans or similar clean sans-serif | Regular | 11pt | #444444 | Line height 1.5x. Never below 10pt. |
+| Caption text | Open Sans or similar clean sans-serif | Regular | 9pt | #444444 | Photo captions, footnotes |
+| Footer text | Open Sans or similar clean sans-serif | Regular | 8pt | #090C0B or #FFFFFF | Logo left, publication + page right |
+| Badge text | Montserrat or similar sans-serif | Bold | 10pt | #FFFFFF | Inside pill badge, all caps, letter-spacing 1.5px |
+| Pull quote text | Georgia or similar serif | Italic | 20pt | #FFFFFF or #090C0B | White on photo overlay, dark on cream background |
+| Stat callout number | Montserrat or similar sans-serif | Bold | 48pt | #00B7CE | Large feature numbers for data points |
+| Stat callout label | Open Sans or similar clean sans-serif | Regular | 12pt | #090C0B | Below the stat number |
+| Header bar label | Montserrat or similar sans-serif | Bold | 12pt | #FFFFFF | All caps, centered in teal bar, letter-spacing 2px |
+| Card heading | Montserrat or similar sans-serif | Bold | 14pt | #FFFFFF | Inside dark or teal cards |
+| Card body | Open Sans or similar clean sans-serif | Regular | 11pt | #FFFFFF | Inside dark or teal cards |
+
 ---
 ## 2. PHOTO RULES (CRITICAL)
 - Every photo must be unique — no photo used more than once within a document, and no photo shared between FOUNDER and LISTINGS or any two pillar PDFs

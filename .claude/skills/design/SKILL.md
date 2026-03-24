@@ -6,6 +6,8 @@ Use this skill with /design before ANY creative work for Get Rooted Media.
 
 ## Required steps before building anything
 
+Before writing any copy in this document, read .claude/skills/GRM_VOICE_SKILL.md and select the correct voice per the content-type mapping table.
+
 ### Step 1 — Load brand rules
 
 Read brand/BRAND_RULES.md — confirm:
