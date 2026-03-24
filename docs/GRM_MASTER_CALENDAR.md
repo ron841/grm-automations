@@ -15,25 +15,25 @@
 
 ---
 
-## SECTION 2: AUTOMATED INSTAGRAM POSTS (Monday/Wednesday/Friday)
+## SECTION 2: AUTOMATED INSTAGRAM POSTS (Monday/Wednesday/Friday Afternoons)
 
-**Schedule starts: April 6, 2026**
-**Status: PAUSED until April 6**
+**Schedule starts: Monday March 31, 2026 — AFTERNOON only**
+**Note: March 30 morning belongs to Reel 4 at 7 AM. March 31 morning is clear. Automated posts go live after noon on March 31.**
 
-Weekly pillar rotation:
-- Monday: FOUNDER
-- Wednesday: LISTINGS
-- Friday: NEWOWNER
+Weekly pillar rotation (all posts afternoon, after 12 PM ET):
+- Monday afternoon: FOUNDER
+- Wednesday afternoon: LISTINGS
+- Friday afternoon: NEWOWNER
 
 Content source: output/content_calendar/ in grm-automations repo (generated Sunday 9pm by GitHub Actions).
 Graphics: Built in Manus/Canva from weekly calendar content.
 Posting: Manus pulls from GitHub Monday 9am, creates Canva graphics, previews to Ron, publishes on approval.
 
-| Week | Mon (FOUNDER) | Wed (LISTINGS) | Fri (NEWOWNER) |
-|------|--------------|----------------|----------------|
-| April 6-10 | First automated post | First automated post | First automated post |
-| April 13-17 | TBD | TBD | TBD |
-| April 20-24 | TBD | TBD | TBD |
+| Week | Mon PM (FOUNDER) | Wed PM (LISTINGS) | Fri PM (NEWOWNER) |
+|------|-----------------|-------------------|-------------------|
+| March 31 - April 4 | First automated post (March 31 PM) | April 2 PM | April 4 PM |
+| April 7-11 | April 7 PM | April 9 PM | April 11 PM |
+| April 14-18 | April 14 PM | April 16 PM | April 18 PM |
 
 ---
 
@@ -68,8 +68,8 @@ Ongoing cadence: Two scripted reels per week (Tue/Thu), topics sourced from Manu
 
 | Date | Milestone | Status |
 |------|-----------|--------|
-| March 30 | First outbound calls begin. Ron and Cameron dialing. | UPCOMING |
-| April 6 | Automated content posts begin supporting outbound. | UPCOMING |
+| March 30 | Reel 4 posts at 7 AM. First outbound calls begin same morning. Ron and Cameron dialing. | UPCOMING |
+| March 31 | Automated content posts begin (afternoon). Supporting outbound from day one. | UPCOMING |
 | April 30 | Target: 20 advertisers secured across CT and FP before first print run. | TARGET |
 
 ---
@@ -83,3 +83,23 @@ Update this section at the end of every build session. One line per session.
 [March 21] — Brand system built, FOUNDER v14 approved, Instagram graphics scheduled
 [March 22] — Voice skill created, media kit editorial work, brand system fully documented
 [March 24] — Workflow path bug fixed, brand system connected, Design Advisor CSV database built, Manus intel report unstuck, master calendar created
+
+---
+
+## SECTION 7: WEEKLY RHYTHM
+
+Every week ongoing once launch is live:
+
+| Time | Day | What Happens |
+|------|-----|-------------|
+| Sunday 9:00 PM | Sunday | GitHub Actions: content_calendar.py generates weekly content calendar automatically |
+| Sunday 9:30 PM | Sunday | Manus: weekly intel report runs, saves to Drive, emails ron@getrootedmedia.com |
+| Monday 7:00 AM | Monday | Scripted reel or special post (if scheduled) |
+| Monday 8:00 AM | Monday | GitHub Actions: editor_skill.py polishes Monday content automatically |
+| Monday afternoon | Monday | Automated pillar post: FOUNDER |
+| Tuesday morning | Tuesday | Scripted reel with Ron or Cameron |
+| Wednesday afternoon | Wednesday | Automated pillar post: LISTINGS |
+| Thursday morning | Thursday | Scripted reel with Ron or Cameron |
+| Friday afternoon | Friday | Automated pillar post: NEWOWNER |
+
+Morning = reels and personal content. Afternoon = automated pillar posts. No overlap.
