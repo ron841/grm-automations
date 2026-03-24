@@ -424,16 +424,18 @@ Content is complete. PDF design started in Manus today. Lead magnet strategy: PL
 - Section 8 ManyChat flows table added
 - Commits 0a37e00 and 8dfca24
 
-### ManyChat — 4 of 6 flows built and live via Cowork
+### ManyChat — fully updated with real Drive links
 
-All four flows built directly in ManyChat browser using Cowork:
+All four flows built directly in ManyChat browser using Cowork. Real Drive links added to PLAYBOOK and FOUNDER flows.
 
-- PLAYBOOK Keyword Flow — LIVE ✅ (built first, most time-sensitive)
-- FOUNDER Keyword Flow — LIVE ✅
+- PLAYBOOK Keyword Flow — LIVE ✅ — real Drive link added to message
+- FOUNDER Keyword Flow — LIVE ✅ — real Drive link added to message
 - CLOSING Keyword Flow — LIVE ✅
 - LISTINGS Keyword Flow — LIVE ✅
-- FOLLOWUP Keyword Flow — Ron builds (2 min, copy in MANYCHAT_FLOWS.md)
-- New Follower Welcome DM — Ron builds (5 min, under Settings > Growth Tools)
+- FOLLOWUP Keyword Flow — Ron builds tomorrow (2 min, copy in MANYCHAT_FLOWS.md)
+- New Follower Welcome DM — Ron builds tomorrow (5 min, under Settings > Growth Tools)
+
+Drive link in both PLAYBOOK and FOUNDER flows: https://drive.google.com/file/d/17AMZ6oSZg1YdPl-BlYHo9Kya3NRPI1xN/view
 
 docs/MANYCHAT_FLOWS.md has all 6 flows documented with approved copy. All written in correct GRM voice. No em dashes. No banned words. All keyword flows funnel toward CLOSING conversation.
 

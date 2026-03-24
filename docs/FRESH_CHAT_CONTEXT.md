@@ -22,9 +22,9 @@ Tell me where we left off and what today's goal is."
 
 REELS: Reel 1 posted. Reels 2 and 3 filming today. Post schedule locked in GRM_MASTER_CALENDAR.md.
 
-MANYCHAT: 4 of 6 flows LIVE — PLAYBOOK, FOUNDER, CLOSING, LISTINGS. FOLLOWUP and Welcome DM still to build (5 min total).
+MANYCHAT: 4 flows LIVE with real Drive links in PLAYBOOK and FOUNDER. FOLLOWUP and Welcome DM still to build tomorrow — 5 min total.
 
-PDF: AI Partner Playbook PDF complete. 28 pages. Drive link ready. Set sharing then update ManyChat flows.
+PDF: Fully live and shareable.
 
 SALES: Launch Monday March 30. Reel 4 posts same morning.
 
