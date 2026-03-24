@@ -75,8 +75,21 @@ Cameron Cowart — Sales: 352-875-0326 / cameron@getrootedmedia.com
 
 1. FOLLOWUP ManyChat flow — 2 minutes, Ron builds
 2. New Follower Welcome DM — 5 minutes, Ron builds
-3. Get AI Partner Playbook PDF Drive link from Manus
-4. Update PLAYBOOK and FOUNDER ManyChat flows with real Drive link
-5. Meta Developer App setup — Saturday carryover
-6. /meta-ads-campaign skill in Claude Code
-7. Website build — starts when brand assets arrive
+3. Confirm Manus Instagram caption rewrites before March 31
+4. Meta Developer App setup — Saturday carryover
+5. /meta-ads-campaign skill in Claude Code
+6. Website build — starts when brand assets arrive
+
+## Known gaps and open items from March 24 session
+
+AI PARTNER PLAYBOOK CONTENT — NOT IN GITHUB:
+The Playbook Word docs were fed directly to Manus and exist only as a finished PDF in Google Drive. Raw content is not in the repo. If the PDF ever needs to be edited or rebuilt, Ron will need to re-upload the original Word docs.
+PDF location: Google Drive > GRM Content Queue
+File: GRM_AI_Partner_Playbook.pdf
+Drive link: https://drive.google.com/file/d/17AMZ6oSZg1YdPl-BlYHo9Kya3NRPI1xN/view
+
+MANUS INSTAGRAM CAPTIONS — CONFIRM BEFORE MARCH 31:
+We instructed Manus to rewrite 5 Instagram captions to remove em dashes and reschedule posts to March 31 afternoon. This was never confirmed complete. Before March 31 open the Instagram scheduling task in Manus and approve the rewritten captions.
+
+OLD CONTENT-PLAN PDFs — SCRAPPED:
+The content-plans/ folder has outlines for LISTINGS, FOLLOWUP, NEWOWNER, and PLAYBOOK as separate lead magnet PDFs. These are scrapped. The AI Partner Playbook is now the single lead magnet for GRM. Do not build the old PDF outlines.
