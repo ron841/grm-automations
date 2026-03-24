@@ -103,3 +103,20 @@ Every week ongoing once launch is live:
 | Friday afternoon | Friday | Automated pillar post: NEWOWNER |
 
 Morning = reels and personal content. Afternoon = automated pillar posts. No overlap.
+
+---
+
+## SECTION 8: MANYCHAT FLOWS
+
+Full copy and build specs in docs/MANYCHAT_FLOWS.md.
+
+| Keyword / Trigger | Voice | What It Delivers | PDF Link | Status | Tag |
+|-------------------|-------|-----------------|----------|--------|-----|
+| FOUNDER | Voice 4 | The Local Media Playbook PDF + 24hr follow-up | [FOUNDER_PDF_LINK] | TO BUILD | FOUNDER-LEAD |
+| PLAYBOOK | Voice 4 | The AI Partner Playbook PDF + 24hr follow-up | [AI_PLAYBOOK_LINK] | TO BUILD | PLAYBOOK-LEAD |
+| LISTINGS | Voice 4 | Market shift context + CLOSING soft invite | N/A | TO BUILD | LISTINGS-LEAD |
+| FOLLOWUP | Voice 4 | 90-day follow-up framework + CLOSING soft invite | N/A | TO BUILD | FOLLOWUP-LEAD |
+| CLOSING | Voice 4 | The Closing Table details + Ron/Cameron personal follow-up | N/A | TO BUILD | CT-PROSPECT |
+| New follower | Voice 5 | Welcome DM + routing (reply CLOSING or WELCOME) | N/A | TO BUILD | NEW-FOLLOWER |
+
+Build order: FOUNDER first (active Reel 1 CTA), PLAYBOOK second (needed before Reel 3 posts March 28), CLOSING third, then LISTINGS, FOLLOWUP, Welcome DM.
