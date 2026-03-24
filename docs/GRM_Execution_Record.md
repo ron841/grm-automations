@@ -467,8 +467,10 @@ Build FOLLOWUP flow:
 Build Welcome DM — Settings then Growth Tools then New Follower:
 - Message: "Welcome to Get Rooted Media. We cover Marion County from two angles. The Closing Table for real estate professionals and The Front Porch for new homeowners. Reply AGENT or HOMEOWNER and we will make sure you get the right content."
 
-PDF — WAITING ON MANUS:
-AI Partner Playbook PDF being designed in Manus right now. When Manus finishes: download PDF, upload to Google Drive GRM Content Queue folder, get shareable link, update PLAYBOOK and FOUNDER ManyChat flows with real link before Friday.
+PDF — COMPLETE ✅
+AI Partner Playbook PDF built by Manus. 28 pages. All brand rules followed. Saved to Google Drive GRM Content Queue as GRM_AI_Partner_Playbook.pdf
+Drive link: https://drive.google.com/file/d/17AMZ6oSZg1YdPl-BlYHo9Kya3NRPI1xN/view?usp=drivesdk
+Ron action: Set sharing to "Anyone with the link can view" then update PLAYBOOK and FOUNDER ManyChat flows with real Drive link.
 
 ---
 
