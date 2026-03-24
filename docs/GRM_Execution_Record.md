@@ -303,6 +303,73 @@ FOUNDER v11 and LISTINGS v7 approved final after full-day design session. PDF_DE
 
 ---
 
+## TUESDAY MARCH 24, 2026 — COMPLETED
+
+### What we built
+
+**Workflow bug fix**
+
+- Editor workflow path bug fixed. The editor-skill.yml verify step was looking in `output/` but `content_calendar.py` saves to `output/content_calendar/`. Corrected the verify step to match.
+- Graceful skip added to editor workflow. If no calendar file exists, the workflow now logs "No content calendar found -- skipping this run" and exits with a green checkmark instead of a red X.
+- `input/draft.md` placeholder created so the path exists for manual workflow_dispatch overrides.
+
+**Brand system fully connected**
+
+- `.claude/skills/editor/SKILL.md` inline voice rules removed, replaced with pointer to GRM_VOICE_SKILL.md.
+- `.claude/skills/content-plan/SKILL.md` inline voice rules removed, replaced with pointer to GRM_VOICE_SKILL.md. CTA, emoji, and hashtag rules kept (format-specific).
+- `.claude/skills/design/SKILL.md` updated. Voice skill reference added to top of pre-build protocol: read GRM_VOICE_SKILL.md and select correct voice before writing any copy.
+- All four skills (voice, design, editor, content-plan) now point to one source of truth for voice.
+
+**Design system completed for PDF builds**
+
+- `brand/templates/FOUNDER_PAGE_MAP.md` created. 14-page layout map with content placement, photo direction, and design notes per page. Reuse rules for FOLLOWUP, NEWOWNER, and PLAYBOOK builds.
+- Typography specs table added to `brand/PDF_DESIGN_PLAYBOOK.md`. 14-row table with exact point sizes for every text element (cover title 36pt, body 11pt, pull quotes 20pt, stat callouts 48pt, etc.).
+- `brand/assets/PHOTO_INVENTORY.md` created. Photo tracking document with FOUNDER v14 and LISTINGS v7 sections. Prevents cross-document photo reuse.
+
+**Master calendar created**
+
+- `docs/GRM_MASTER_CALENDAR.md` created. Tracks reel launch series, automated Instagram posts, scripted reels, lead magnet drops, sales milestones, and session log in one file.
+- Social launch calendar confirmed: Reel 2 posts March 26, Reel 3 posts March 28 with ManyChat keyword PLAYBOOK, Reel 4 posts March 30 (sales launch day).
+- Automated Instagram posts paused until April 6.
+- AI Partner Playbooks 1/2/3 confirmed as lead magnets tied to reel CTAs.
+
+**Other**
+
+- Design Advisor CSV database built with real GRM values.
+- FOUNDER v14 reviewed and confirmed as approved benchmark template for all future PDF builds.
+- Manus weekly intel report unstuck and delivered to inbox.
+
+### Ron's ongoing actions from Tuesday's build
+
+This afternoon (March 24):
+- Film Reels 2 and 3 with Cameron
+- Cancel this week's Manus Instagram schedule (push to April 6)
+
+Thursday March 27:
+- Film Reel 4
+
+Wednesday March 26 at 7 AM:
+- Post Reel 2 ("What We Built") to @ron__kolb
+
+Friday March 28 at 7 AM:
+- Post Reel 3 ("Our Third Co-Founder") with caption CTA: keyword PLAYBOOK in comments
+
+Monday March 30 at 7 AM:
+- Post Reel 4 ("Why It Actually Matters") -- sales launch day
+- First outbound calls begin. Ron and Cameron dialing.
+
+### Pending from today -- carry to next session
+
+- Build ManyChat PLAYBOOK keyword automation before Reel 3 posts March 28
+- Build ManyChat FOUNDER keyword automation
+- Drive upload FOUNDER v14 and LISTINGS v7 PDFs, get shareable links
+- Write Reel 2, 3, and 4 scripts if not done during filming
+- Build remaining PDFs: FOLLOWUP, NEWOWNER, PLAYBOOK via Manus
+- Saturday carryover: Meta Developer App, /meta-ads-campaign skill
+- Build ManyChat welcome DM (agent vs homeowner paths)
+
+---
+
 ## SYSTEM MAP — Everything Running as of March 21, 2026
 
 ### Automated (zero human action required)
