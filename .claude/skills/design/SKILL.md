@@ -1,122 +1,126 @@
 # GRM Design Skill
+# Get Rooted Media — Design Advisor
+# Built from Em Agency assets — March 2026
+# Last updated: March 25, 2026
 
 ## Trigger
+Use /design before ANY creative work for Get Rooted Media.
 
-Use this skill with /design before ANY creative work for Get Rooted Media.
+## Em Agency Is the Design Authority
+All values in this skill come from Em Agency deliverables received March 2026.
+If any AI-generated planning doc conflicts with Em Agency assets, Em Agency wins — always.
 
-## Data Sources
+## Three-Brand Architecture
+GRM has three brands. Design every piece with this hierarchy in mind:
 
-This skill uses a CSV database for design decisions. Load these files before any creative work:
+GET ROOTED MEDIA (parent publisher — always on top, every page)
+├── THE CLOSING TABLE (agents — bold, dark, authoritative, aerial photography)
+└── THE FRONT PORCH (homeowners — warm, light, community, porch photography)
 
-- `.claude/skills/design/data/colors.csv` — approved palette with usage rules and banned colors
-- `.claude/skills/design/data/typography.csv` — exact font, size, weight, and line-height for every text element
-- `.claude/skills/design/data/ui-reasoning.csv` — anti-patterns specific to local media publishing with correct approaches
-- `.claude/skills/design/data/styles.csv` — publication-specific personality for Closing Table vs Front Porch
-- `.claude/skills/design/data/landing.csv` — website section guidance with visual treatment, copy direction, and conversion goals
+## Official Color System (Em Agency — LOCKED)
+- #52B5CB — GRM Teal — primary accent, CTAs, dividers, teal O in Front Porch logo
+- #E0A6A6 — Dusty Rose — Front Porch lifestyle sections ONLY
+- #78AD4E — Sage Green — Front Porch pull quotes ONLY
+- #9D8365 — Warm Brown — second O in Front Porch logo, earth tone accents
+- #1A1A1A — Near Black — backgrounds, headers, body text
+- #FFFFFF — White — text on dark, logo on dark
+- #FAF8F4 — Warm Cream — page backgrounds, breathing space
 
-## Required steps before building anything
+BANNED FOREVER: #C9973A gold, #090C0B old black, #00B7CE old teal
+Dusty Rose, Sage Green, and Warm Brown are Front Porch colors ONLY — never in Closing Table.
 
-Before writing any copy in this document, read .claude/skills/GRM_VOICE_SKILL.md and select the correct voice per the content-type mapping table.
+## Official Font System (Em Agency — LOCKED)
+- Comfortaa — Display font. ALL CAPS for headlines and mastheads. Semibold for subheaders.
+- Grand Hotel — Script accent. Used ONLY for 'The' above publication names. Nothing else.
+- Merriweather Light / Italic — Editorial serif body. Feature articles, agent profiles, pull quotes.
+- Nunito Regular — Body sans-serif. Body text, captions, navigation, labels, UI copy.
+- Google Fonts URL: https://fonts.google.com/share?selection.family=Comfortaa:wght@400;600;700|Grand+Hotel|Merriweather:ital,wght@0,300;0,400;1,300;1,400|Nunito:wght@400;600;700
 
-### Step 1 — Load brand rules and CSV database
+## Data Files — Load Before Any Creative Work
+- data/colors.csv — official palette with usage rules and never-use-with rules
+- data/typography.csv — exact font, size, weight, and line-height for every text element
+- data/ui-reasoning.csv — 17 anti-patterns specific to GRM with severity ratings
+- data/styles.csv — Closing Table vs Front Porch publication personality
+- data/landing.csv — website section-by-section guidance with photo recommendations
+- data/ux-guidelines.csv — 16 UX do/don't rules for the website build
 
-Read brand/BRAND_RULES.md and all 5 CSV files from .claude/skills/design/data/ — confirm:
+## Required Steps Before Building Anything
 
-- Primary dark: #090c0b
-- Accent teal: #00b7ce
+### Step 1 — Identify which brand and publication
+Confirm: Is this for GRM parent, The Closing Table, or The Front Porch?
+This determines which colors, which photography style, and which voice applies.
+
+### Step 2 — Load the right data files
+For all work: colors.csv, typography.csv, ui-reasoning.csv
+For publications: add styles.csv
+For website: add landing.csv and ux-guidelines.csv
+
+### Step 3 — Confirm color compliance
+- Primary dark: #1A1A1A
+- Accent teal: #52B5CB
 - Background: #FAF8F4
-- No gold, no green, no generic real estate colors
-- All typography sizes match typography.csv exactly
-- Color pairings follow colors.csv never_use_with rules
+- Dusty rose and sage green: Front Porch ONLY
+- No gold anywhere
 
-### Step 2 — Review existing assets
+### Step 4 — Confirm typography hierarchy
+- Display/Masthead: Comfortaa Bold ALL CAPS
+- Script accent: Grand Hotel — only before 'The Closing Table' or 'The Front Porch'
+- Body serif: Merriweather Light for editorial features
+- Body sans: Nunito Regular for everything else
+- Never Comfortaa for body text
+- Never Grand Hotel outside of publication name treatment
 
-Read these files from brand/assets/:
+### Step 5 — Select photography
+Reference landing.csv for specific photo file recommendations.
+Closing Table: aerial, architectural, professional, dark treatment acceptable
+Front Porch: ground-level, family, community, warm golden light
+Both: Marion County specific only — flat terrain, Spanish moss, horse farms
 
-- logos/ — use these SVG files for all logo placements
-- media-kits/ — match this visual standard
-- publication-covers/ — match this photography style
+### Step 6 — Select voice
+Reference GRM_VOICE_SKILL.md before writing any copy.
+Closing Table content: Voice 4 (The Closing Table) or Voice 6 (The Deep Roots)
+Front Porch content: Voice 1 (The Front Porch) or Voice 3 (The Welcome Mat)
+Never mix voices within a single piece.
 
-### Step 3 — Confirm brand hierarchy
+### Step 7 — Scan anti-patterns
+Read ui-reasoning.csv. Check the CRITICAL and HIGH severity patterns first.
+Confirm none are present in the planned design before building.
 
-Every GRM document must show this hierarchy:
-
-- GRM is the PUBLISHER (top of every document)
-- Publication name is secondary (Closing Table, Front Porch)
-- Content title is tertiary
-
-Never let a content title outrank the GRM brand.
-
-### Step 4 — Typography check
-
-Reference typography.csv for exact values. Key rules:
-
-- Cover titles: 36pt Bold Montserrat, white on dark bar
-- Section headers: 24pt Bold, body text: 11pt Regular
-- Proper word spacing — never merged words
-- White text on #090c0b backgrounds
-- #00b7ce for all accent text and callout elements
-- Badge text: 10pt Bold, all caps, 1.5px letter-spacing
-- Stat callouts: 48pt Bold teal numbers
-
-### Step 5 — Photography direction
-
-- Ocala/Marion County specific imagery always
-- Horse farms, moss trees, springs, communities, families
-- Never generic Florida stock photography
-- Full bleed on cover and section opener pages
-- Check ui-reasoning.csv for photo anti-patterns
-
-### Step 6 — Publication personality check
-
-Reference styles.csv to match the correct publication feel:
-
-- Closing Table: authoritative, data-forward, professional
-- Front Porch: warm, welcoming, community-forward
-
-### Step 7 — Website sections (when building web pages)
-
-Reference landing.csv for section-by-section guidance including visual treatment, copy direction, and conversion goals.
-
-### Step 8 — Anti-pattern scan
-
-Read ui-reasoning.csv and verify the design avoids all 12 documented anti-patterns before finalizing.
-
-### Step 9 — State out loud before building
-
-"Colors: #090c0b + #00b7ce + #FAF8F4 confirmed.
-Logo: GRM SVG from brand/assets/logos/ confirmed.
-Typography: sizes from typography.csv confirmed.
-Publication personality: styles.csv checked.
-Anti-patterns: ui-reasoning.csv scanned.
-Brand hierarchy: GRM publisher confirmed.
+### Step 8 — State out loud before building
+"Colors: #1A1A1A + #52B5CB + #FAF8F4 confirmed. Em Agency palette.
+Publication: [CT or FP]. Color restrictions applied.
+Fonts: Comfortaa display, Grand Hotel script (publication name only), Merriweather editorial, Nunito body.
+Photography: Marion County specific, [aerial/ground-level] treatment.
+Voice: [Voice number and name] selected.
+Anti-patterns: ui-reasoning.csv scanned, none present.
 Ready to build."
 
-## Three-brand architecture
+## Photo Asset Reference
+Em Agency provided photography library. Key recommended photos:
+- Hero (website): 1-Horse-Country-1.jpeg — two horses at golden hour, Spanish moss, flat terrain
+- Downtown Ocala: 4-Ocala-1.jpeg — Ocala Square gazebo at golden hour
+- Ocala park: 4-Ocala-2.jpeg — Tuscawilla Park, Spanish moss, lake reflection
+- Front Porch publication: 6-Mag-Lifestyle-1.jpg — woman reading The Front Porch magazine
+- Closing Table publication: 7-Closing-2.jpeg — The Closing Table magazine on dark table
+- Ron (About page): DSC01296.JPG — outdoor warm smile, plaid shirt
+- Cameron (About page): DSC01234.JPG — studio, linen blazer
+- Ron + Cameron together: DSC01489.JPG — both outdoors, Florida sky
 
-GRM has three brands — always design with this in mind:
+## Logo Files
+Four SVG variants in brand/assets/logos/:
+- Logo_Get_Rooted_Media-01.svg — primary logo with tree/roots/book icon + wordmark
+- Logo_Get_Rooted_Media-02.svg — variant 2
+- Logo_Get_Rooted_Media-03.svg — variant 3
+- Logo_Get_Rooted_Media-04.svg — variant 4
+Use -01 as default. Place at 220px wide, top-left of all pages and documents.
 
-GET ROOTED MEDIA (parent — black + teal, editorial)
-├── THE CLOSING TABLE (agents — professional, authoritative)
-└── THE FRONT PORCH (homeowners — warm, community)
-
-Each publication has its own feel but shares the GRM parent brand DNA. Lead magnets and digital content should always show which publication they belong to AND that GRM is the publisher.
-
-## Anti-patterns — never do these
-
-Full list with reasoning in .claude/skills/design/data/ui-reasoning.csv. Summary:
-
-- Dark forest green as primary color
-- Gold as a main accent
-- Logo as text instead of SVG file
-- Generic real estate photography
-- Words running together (font encoding issue)
-- Empty bottom halves on pages (tombstoning)
-- Content title bigger than GRM brand name on cover
-- Half-filled pages — every page must be complete
-- Badge collisions with headlines (min 8pt gap)
-- Mountains or non-Florida terrain in any photo
-- Duplicate photos across documents
-- Unnecessary dark overlays on photos
-- Em dashes in body copy
-- Missing local Ocala/Marion County references
+## Banned Forever
+- Em dashes in any GRM copy (Voice Skill rule)
+- Gold color in any design
+- #00B7CE old teal (replaced by #52B5CB)
+- #090C0B old black (replaced by #1A1A1A)
+- Dusty rose or sage green in Closing Table materials
+- Grand Hotel script for anything except 'The' before publication name
+- Comfortaa for body text
+- Generic non-Marion County photography
+- Mountains or hills in any background photo

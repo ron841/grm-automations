@@ -1,15 +1,17 @@
-element,font,size_pt,weight,line_height,notes
-cover_title,Montserrat or similar sans-serif,36,Bold,1.2,"Inside dark bar at bottom of cover. All caps or title case. Color #FFFFFF only."
-cover_subtitle,Georgia or similar serif,16,Italic,1.3,"Below title inside dark bar. Color #FFFFFF."
-section_header,Montserrat or similar sans-serif,24,Bold,1.2,"H2 level. #090C0B on light backgrounds or #FFFFFF on dark. Used in header bars and page openers."
-page_subheader,Montserrat or similar sans-serif,18,Semibold,1.3,"H3 level. #090C0B. Section dividers within a page."
-body_text,Open Sans or similar clean sans-serif,11,Regular,1.5,"#444444 on cream/white backgrounds. Never below 10pt. UTF-8 encoding required — verify word spacing."
-caption_text,Open Sans or similar clean sans-serif,9,Regular,1.4,"#444444. Photo captions and footnotes."
-footer_text,Open Sans or similar clean sans-serif,8,Regular,1.3,"#090C0B or #FFFFFF. Logo left with publication name and page number right. Teal rule line above."
-badge_text,Montserrat or similar sans-serif,10,Bold,1.0,"#FFFFFF inside pill badge. All caps. Letter-spacing 1.5px. Min 8pt clear space below badge before headline."
-pull_quote_text,Georgia or similar serif,20,Italic,1.4,"#FFFFFF on photo overlay with dark overlay 0.55-0.72 alpha. Or #090C0B on cream with teal left accent line."
-stat_callout,Montserrat or similar sans-serif,48,Bold,1.0,"#00B7CE. Large feature numbers for data points. Label below at 12pt Regular #090C0B."
-byline,Open Sans or similar clean sans-serif,10,Regular,1.3,"Format: First Last comma Title comma Location. Dash prefix. Example: — Cameron Cowart comma Top 20 Agent comma Marion County"
-header_bar_label,Montserrat or similar sans-serif,12,Bold,1.0,"#FFFFFF. All caps centered in teal bar. Letter-spacing 2px. Bar height 0.28 inches."
-card_heading,Montserrat or similar sans-serif,14,Bold,1.2,"#FFFFFF inside dark or teal cards."
-card_body,Open Sans or similar clean sans-serif,11,Regular,1.4,"#FFFFFF inside dark or teal cards. All text fully visible — never truncate with ellipsis."
+element,font_family,font_source,size_pt,size_px,weight,line_height,color,notes,publication
+display_headline,Comfortaa,Google Fonts,48-72,64-96,700 Bold,1.1,#FFFFFF on dark or #1A1A1A on light,ALL CAPS always. Used for publication mastheads: THE CLOSING TABLE and FRONT PORCH. The defining typographic voice of GRM. Never use sentence case for display headlines.,Both
+publication_script,Grand Hotel,Google Fonts,24-36,32-48,400 Regular,1.2,#1A1A1A or #FFFFFF,Italic script used exclusively for 'The' above publication names. Sets editorial tone. Never use for body content or navigation.,Both
+section_header,Comfortaa,Google Fonts,24,32,700 Bold,1.2,#1A1A1A on light or #FFFFFF on dark,"H2 level. Used for editorial section headers: THE STORY, THE MARKET, THE AUDIENCE. All caps. Teal bar treatment optional.",Both
+page_subheader,Comfortaa,Google Fonts,18,24,600 Semibold,1.3,#1A1A1A,H3 level. Section dividers within a page. Title case acceptable at this level.,Both
+body_text,Nunito,Google Fonts,11,14.5,400 Regular,1.6,#1A1A1A,Primary body text throughout all GRM materials. Clean and readable at small sizes. UTF-8 encoding required. Never below 10pt in print.,Both
+body_serif,Merriweather,Google Fonts,11,14.5,300 Light,1.6,#1A1A1A,"Editorial body text for long-form content. Feature articles, agent profiles, homeowner stories. Pairs with Comfortaa headlines for premium editorial feel.",Both
+pull_quote,Merriweather,Google Fonts,20,26,400 Italic,1.4,#78AD4E for Front Porch or #52B5CB for GRM/CT,Italic pull quotes. Front Porch uses sage green italic for warmth. Closing Table uses teal italic for authority. Never use em dashes in pull quotes.,Both
+caption_text,Nunito,Google Fonts,9,12,400 Regular,1.4,#666666,Photo captions and footnotes. Slightly lighter gray for visual hierarchy.,Both
+footer_text,Nunito,Google Fonts,8,10.5,400 Regular,1.3,#1A1A1A or #FFFFFF,"Logo left, publication name and page number right. Teal rule line above. Consistent across all pages.",Both
+badge_text,Comfortaa,Google Fonts,10,13,700 Bold,1,#FFFFFF,Inside pill badge. ALL CAPS. Letter-spacing 1.5px. Min 8pt clear space below badge before headline starts.,Both
+stat_callout_number,Comfortaa,Google Fonts,48,64,700 Bold,1,#52B5CB,Large feature numbers for market data callouts. Teal color only. Label below at 12pt Nunito Regular in near-black.,Both
+byline,Nunito,Google Fonts,10,13,400 Regular,1.3,#666666,Format: Name comma Title comma Location. No dash prefix in GRM style.,Both
+nav_label,Comfortaa,Google Fonts,12,16,600 Semibold,1,#1A1A1A,Website navigation and UI labels. Title case for nav. All caps for header bar labels with 2px letter-spacing.,Both
+card_heading,Comfortaa,Google Fonts,14,18.5,700 Bold,1.2,#FFFFFF on dark or teal cards,Card headlines. All caps optional for Closing Table. Title case for Front Porch cards.,Both
+card_body,Nunito,Google Fonts,11,14.5,400 Regular,1.4,#FFFFFF on dark cards or #1A1A1A on light,All card text must be fully visible. Never truncate with ellipsis on printed materials.,Both
+google_fonts_link,Combined URL,,,,,,,"https://fonts.google.com/share?selection.family=Comfortaa:wght@400;600;700|Grand+Hotel|Merriweather:ital,wght@0,300;0,400;1,300;1,400|Nunito:wght@400;600;700",Both
