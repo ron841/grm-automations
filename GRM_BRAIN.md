@@ -88,7 +88,7 @@ Front Cover $2,000/mo ($6,000 per issue) / Back Cover $1,667 / Inside Front-Back
 
 The math: $345/month = $11/day reaching 12,000+ new homeowners over the year.
 
-Category-limited spots. Once HVAC is taken it is taken for the year.
+Category-limited spots. A few spots available per category. First to sign gets the strongest position. Once a category fills it is closed for the year.
 
 Social tiers: Same as CT — Tier 1 $400 / Tier 2 $900 / Tier 3 $1,350 per month.
 
