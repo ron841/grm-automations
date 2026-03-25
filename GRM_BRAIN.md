@@ -36,19 +36,25 @@ What it is: A local media company. A publisher. Not a brokerage. Not an ad agenc
 
 Brand hierarchy: GET ROOTED MEDIA always above The Closing Table and The Front Porch.
 
-## COLOR SYSTEM — LOCKED MARCH 24 2026
+## COLOR SYSTEM — LOCKED MARCH 25 2026
 
-Confirmed from Em Agency SVG source files. Never changes without Em approval.
+Updated from Em Agency official brand assets. Never changes without Em approval.
 
-#090c0b — GRM Black — backgrounds, headers, dark sections
+#1A1A1A — Near Black — backgrounds, headers, dark sections, body text
 
-#00b7ce — GRM Teal — THE accent color. CTAs, labels, dividers, links, all bars
+#52B5CB — GRM Teal — THE accent color. CTAs, labels, dividers, links, all bars
 
 #FAF8F4 — Warm Cream — page and card backgrounds
 
 #FFFFFF — White — text on dark, clean sections
 
-Gold is permanently retired. Never use any shade of gold, green, navy, or purple.
+#E0A6A6 — Dusty Rose — Front Porch lifestyle sections ONLY
+
+#78AD4E — Sage Green — Front Porch pull quotes ONLY
+
+#9D8365 — Warm Brown — Front Porch logo accent, earth tone accents ONLY
+
+Banned forever: #C9973A gold, #090C0B old black, #00B7CE old teal, #B8860B dark goldenrod, any shade of gold.
 
 ## THE CLOSING TABLE
 
@@ -180,9 +186,15 @@ Automated schedule: Sunday 9pm content calendar, Sunday 9:30pm Manus intel repor
 
 ## DECISIONS MADE — DATED LOG
 
-March 24: Gold retired permanently. Teal #00b7ce is the system accent everywhere.
+March 24: Gold retired permanently.
 
 March 24: Em Agency assets are the only design authority. AI planning docs are secondary.
+
+March 25: Em Agency official brand assets received. Color system updated: #1A1A1A near black, #52B5CB teal, #E0A6A6 dusty rose (FP only), #78AD4E sage green (FP only), #9D8365 warm brown (FP only). Old #090C0B and #00B7CE banned.
+
+March 25: Font system locked from Em Agency: Comfortaa display, Grand Hotel script, Merriweather editorial serif, Nunito body sans-serif.
+
+March 25: Website project initialized. Next.js 16 (App Router), TypeScript, Tailwind CSS v4, shadcn/ui. Tailwind tokens match Em Agency palette exactly.
 
 March 24: ManyChat DMs use brand voice only. No personal names in automated flows.
 
