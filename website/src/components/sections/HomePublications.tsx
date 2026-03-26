@@ -70,7 +70,7 @@ export default function HomePublications() {
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(to bottom left, rgba(250,248,244,0.70) 0%, rgba(250,248,244,0.30) 100%)",
+                "linear-gradient(to bottom left, rgba(250,248,244,0.65) 0%, rgba(250,248,244,0.35) 100%)",
             }}
           />
           <div className="absolute inset-0 flex flex-col items-end justify-end p-7 text-right md:p-12">
