@@ -1,52 +1,68 @@
-"use client";
-
+import Image from "next/image";
 import Link from "next/link";
-import { ImagesSlider } from "@/components/ui/images-slider";
-
-const IMAGES = [
-  "/images/ct-hero.webp",
-  "/images/publications/7-Closing-1.webp",
-  "/images/publications/7-Closing-2.webp",
-  "/images/publications/6-Mag-Lifestyle-2.webp",
-];
 
 export default function CTHero() {
   return (
-    <ImagesSlider
-      images={IMAGES}
-      className="min-h-screen"
-      overlayClassName="bg-gradient-to-t from-black/70 via-black/40 to-black/20"
-      autoplay
-      direction="up"
-    >
-      <div className="relative z-50 flex flex-col items-center justify-center px-6 text-center">
-        <p className="mb-6 font-comfortaa text-[11px] font-bold uppercase tracking-[0.2em] text-grm-teal">
-          A GET ROOTED MEDIA PUBLICATION &middot; MONTHLY &middot; MARION COUNTY
-        </p>
+    <section className="relative h-screen w-full overflow-hidden">
+      {/* Background image */}
+      <Image
+        src="/images/ct-hero.webp"
+        alt="The Closing Table magazine on a dark table with white flowers"
+        fill
+        priority
+        className="object-cover"
+      />
 
-        <h1 className="mb-6 max-w-2xl font-merriweather text-[36px] font-bold leading-tight text-white lg:text-[56px]">
-          No one gets to the closing table alone.
-        </h1>
+      {/* Dark overlay */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.35) 100%)",
+        }}
+      />
 
-        <p className="mb-10 max-w-[480px] font-nunito text-lg text-white/80">
-          The monthly magazine for Marion County&apos;s top real estate
-          professionals.
-        </p>
+      {/* Content — lower-left quadrant */}
+      <div className="absolute inset-0 flex items-end pb-[20vh] px-8 md:px-20">
+        <div className="max-w-xl">
+          {/* Eyebrow */}
+          <p className="mb-4 font-comfortaa text-[11px] font-bold uppercase tracking-[0.2em] text-grm-teal">
+            A GET ROOTED MEDIA PUBLICATION &middot; MONTHLY &middot; MARION
+            COUNTY
+          </p>
 
-        <Link
-          href="#advertising"
-          className="rounded-[3px] bg-grm-teal px-8 py-3.5 font-nunito text-sm font-bold text-white transition-opacity hover:opacity-90"
-        >
-          See Advertising Options
-        </Link>
+          {/* Publication name — script "The" + serif "Closing Table" */}
+          <div className="mb-6">
+            <span className="block font-grand-hotel text-[52px] text-white leading-none">
+              The
+            </span>
+            <span className="block font-merriweather text-[56px] md:text-[88px] font-bold text-white leading-none">
+              Closing Table
+            </span>
+          </div>
 
-        <Link
-          href="/about"
-          className="mt-5 font-nunito text-sm text-white/70 no-underline transition-colors hover:text-white hover:underline"
-        >
-          Read the founding story
-        </Link>
+          {/* Headline */}
+          <p className="max-w-[520px] font-merriweather text-[20px] md:text-[24px] font-normal text-white leading-relaxed">
+            No one gets to the closing table alone.
+          </p>
+
+          {/* CTA buttons */}
+          <div className="mt-9 flex flex-wrap items-center gap-4">
+            <Link
+              href="#advertising"
+              className="rounded-[3px] bg-grm-teal px-8 py-3.5 font-nunito text-sm font-bold text-white transition-opacity hover:opacity-90"
+            >
+              See Advertising Options
+            </Link>
+            <Link
+              href="/about"
+              className="rounded-[3px] border border-white px-8 py-3.5 font-nunito text-sm font-bold text-white transition-colors hover:bg-white/10"
+            >
+              Read the founding story
+            </Link>
+          </div>
+        </div>
       </div>
-    </ImagesSlider>
+    </section>
   );
 }
