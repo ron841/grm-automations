@@ -5,9 +5,8 @@ import { ImagesSlider } from "@/components/ui/images-slider";
 
 const IMAGES = [
   "/images/fp-hero.webp",
-  "/images/fp/2-Family-1.webp",
-  "/images/fp/2-Family-2.webp",
   "/images/fp/3-Exterior-1.webp",
+  "/images/fp/3-Exterior-2.webp",
 ];
 
 export default function FPHero() {
