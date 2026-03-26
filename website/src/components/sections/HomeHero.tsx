@@ -76,8 +76,9 @@ export default function HomeHero() {
           Professionally Grown.
         </h1>
         <p className="max-w-2xl font-nunito text-base md:text-lg mt-8 text-grm-cream/70">
-          The publications Marion County&apos;s real estate professionals and
-          new homeowners actually read.
+          The fastest-growing county in America has two stories worth
+          telling. One for the agents who close the deals. One for the
+          families putting down roots.
         </p>
         <Link
           href="#publications"
