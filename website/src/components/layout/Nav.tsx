@@ -13,17 +13,23 @@ const NAV_LINKS = [
 ];
 
 export default function Nav() {
-  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
   const isContactPage = pathname === "/contact";
+  const noHeroPages = ["/contact", "/about"];
+  const alwaysSolid = noHeroPages.includes(pathname);
+  const [scrolled, setScrolled] = useState(alwaysSolid);
 
   useEffect(() => {
+    if (alwaysSolid) {
+      setScrolled(true);
+      return;
+    }
     const handleScroll = () => setScrolled(window.scrollY > 50);
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [alwaysSolid]);
 
   // Close mobile menu on route change
   useEffect(() => {
