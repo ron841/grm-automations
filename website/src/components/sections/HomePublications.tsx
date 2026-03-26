@@ -1,100 +1,91 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import React, { useState } from "react";
+import { cn } from "@/lib/utils";
 
 const PUBLICATIONS = [
   {
-    slug: "the-closing-table",
-    image: "/images/publications/7-Closing-1.webp",
-    imageAlt:
-      "The Closing Table magazine on a professional real estate setting in Marion County",
+    image: "/images/ct-hero.webp",
+    imageAlt: "The Closing Table magazine on a dark table with white flowers",
     label: "MONTHLY MAGAZINE · JUNE 2026",
-    scriptThe: true,
-    titleCaps: "CLOSING TABLE",
-    body: "The monthly magazine for Marion County\u2019s top real estate professionals.",
-    stats:
-      "850-1,000 copies · 12 issues per year · $2.8B in annual sales volume",
-    cta: "See The Closing Table \u2192",
+    title: "The Closing Table",
+    description:
+      "The monthly magazine for Marion County\u2019s top real estate professionals.",
+    href: "/the-closing-table",
   },
   {
-    slug: "the-front-porch",
-    image: "/images/fp/2-Family-1.webp",
-    imageAlt:
-      "Family arriving at their new home in a Marion County neighborhood",
+    image: "/images/fp-hero.webp",
+    imageAlt: "Woman reading The Front Porch magazine at home",
     label: "BI-MONTHLY GUIDE · JULY 2026",
-    scriptThe: true,
-    titleCaps: "FRONT PORCH",
-    body: "The bi-monthly resource guide mailed to every new homeowner in Marion County within their first 60 days.",
-    stats:
-      "1,500-2,000 new homeowners per issue · 6 issues per year · 60-day decision window",
-    cta: "See The Front Porch \u2192",
+    title: "The Front Porch",
+    description:
+      "The bi-monthly resource guide mailed to every new homeowner in Marion County within their first 60 days.",
+    href: "/the-front-porch",
   },
 ];
 
 export default function HomePublications() {
+  const [hovered, setHovered] = useState<number | null>(null);
+
   return (
-    <section className="bg-grm-cream px-6 py-20 lg:px-8">
-      <div className="mx-auto max-w-5xl">
-        {/* Brand line */}
-        <p className="mb-6 text-center font-merriweather text-[22px] italic text-grm-teal">
-          Seen in the magazine. Found online. Chosen when the purchase happens.
-        </p>
+    <section id="publications" className="bg-grm-cream px-6 py-20 lg:px-8">
+      <p className="mb-10 text-center font-comfortaa text-[11px] font-bold uppercase tracking-widest text-grm-teal">
+        OUR PUBLICATIONS
+      </p>
 
-        {/* Cards */}
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-          {PUBLICATIONS.map((pub) => (
+      <div className="mx-auto grid max-w-7xl grid-cols-1 md:grid-cols-2">
+        {PUBLICATIONS.map((pub, index) => (
+          <div
+            key={pub.title}
+            onMouseEnter={() => setHovered(index)}
+            onMouseLeave={() => setHovered(null)}
+            className={cn(
+              "relative min-h-[600px] overflow-hidden transition-all duration-500 ease-out",
+              hovered !== null && hovered !== index && "blur-sm scale-[0.98]"
+            )}
+          >
+            {/* Full-bleed image */}
+            <Image
+              src={pub.image}
+              alt={pub.imageAlt}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+
+            {/* Subtle gradient at rest */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+
+            {/* Hover overlay with content */}
             <div
-              key={pub.slug}
-              className="overflow-hidden rounded-[4px] bg-white shadow-md transition-shadow duration-200 hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)]"
+              className={cn(
+                "absolute inset-0 flex flex-col justify-end bg-black/50 p-8 transition-opacity duration-300 lg:p-12",
+                hovered === index ? "opacity-100" : "opacity-0"
+              )}
             >
-              {/* Image — top 40% */}
-              <div className="relative aspect-[5/3]">
-                <Image
-                  src={pub.image}
-                  alt={pub.imageAlt}
-                  fill
-                  className="object-cover object-bottom"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                />
-              </div>
+              <p className="mb-3 font-comfortaa text-[11px] font-bold uppercase tracking-widest text-grm-teal">
+                {pub.label}
+              </p>
 
-              {/* Content */}
-              <div className="p-8">
-                {/* Label */}
-                <p className="mb-3 font-comfortaa text-[11px] font-bold uppercase tracking-widest text-grm-teal">
-                  {pub.label}
-                </p>
+              <h3 className="mb-3 font-merriweather text-2xl font-bold text-white lg:text-3xl">
+                {pub.title}
+              </h3>
 
-                {/* Headline with script "The" */}
-                <h3 className="mb-4">
-                  <span className="font-grand-hotel text-[22px] font-normal text-grm-black">
-                    The
-                  </span>{" "}
-                  <span className="font-comfortaa text-[24px] font-bold uppercase text-grm-black">
-                    {pub.titleCaps}
-                  </span>
-                </h3>
+              <p className="mb-5 max-w-sm font-nunito text-base leading-relaxed text-white/85">
+                {pub.description}
+              </p>
 
-                {/* Body */}
-                <p className="mb-4 font-nunito text-base leading-relaxed text-grm-black">
-                  {pub.body}
-                </p>
-
-                {/* Stats */}
-                <p className="mb-6 font-nunito text-[13px] text-grm-teal">
-                  {pub.stats}
-                </p>
-
-                {/* Button */}
-                <Link
-                  href={`/${pub.slug}`}
-                  className="inline-block rounded-md bg-grm-teal px-6 py-3 font-nunito text-sm font-bold text-white transition-opacity hover:opacity-90"
-                >
-                  {pub.cta}
-                </Link>
-              </div>
+              <Link
+                href={pub.href}
+                className="font-nunito text-sm text-grm-teal no-underline transition-colors hover:underline"
+              >
+                Read More &rarr;
+              </Link>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </section>
   );
