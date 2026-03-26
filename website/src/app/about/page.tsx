@@ -187,8 +187,9 @@ export default function AboutPage() {
               We are not building a magazine.
             </p>
             <p className="font-nunito text-[17px] leading-[1.7] text-grm-black">
-              We are building the infrastructure of community connection. Marion
-              County is where we start. But this model was built to travel.
+              We are building something that makes this county work better for
+              the people who live here. Marion County is where we start. But
+              this model was built to travel.
             </p>
           </div>
 
@@ -267,7 +268,7 @@ export default function AboutPage() {
                 neighborhoods, the places that make Marion County worth moving
                 to. He walks into a meeting with the conviction of someone who
                 believes in what he is selling. You can tell it the
-                moment he starts talking. His job: connect every business that
+                moment he starts talking. He is here to connect every business that
                 belongs in these magazines with the readers who need to find
                 them.
               </p>
