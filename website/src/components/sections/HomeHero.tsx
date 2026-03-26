@@ -1,77 +1,163 @@
+"use client";
+
+import React from "react";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useSpring,
+  MotionValue,
+} from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 
+const IMAGES = [
+  // Row 1 (5 images)
+  { title: "Horse Country", thumbnail: "/images/hero/1-Horse-Country-1.webp" },
+  { title: "Downtown Ocala", thumbnail: "/images/hero/4-Ocala-1.webp" },
+  { title: "The Closing Table", thumbnail: "/images/publications/7-Closing-2.webp" },
+  { title: "Marion County Home", thumbnail: "/images/fp/3-Exterior-1.webp" },
+  { title: "Equestrian Life", thumbnail: "/images/hero/5-Equestrian-1.webp" },
+  // Row 2 (5 images)
+  { title: "The Front Porch", thumbnail: "/images/publications/6-Mag-Lifestyle-1.webp" },
+  { title: "Tuscawilla Park", thumbnail: "/images/hero/4-Ocala-2.webp" },
+  { title: "Family Roots", thumbnail: "/images/fp/2-Family-1.webp" },
+  { title: "Magazine Editorial", thumbnail: "/images/ct-hero.webp" },
+  { title: "Horse Farm", thumbnail: "/images/hero/1-Horse-Country-2.webp" },
+  // Row 3 (5 images)
+  { title: "New Homeowners", thumbnail: "/images/fp/2-Family-2.webp" },
+  { title: "Equestrian County", thumbnail: "/images/hero/5-Equestrian-2.webp" },
+  { title: "Lifestyle Magazine", thumbnail: "/images/publications/6-Mag-Lifestyle-3.webp" },
+  { title: "Marion County Living", thumbnail: "/images/fp/3-Exterior-2.webp" },
+  { title: "The Front Porch Guide", thumbnail: "/images/fp-hero.webp" },
+];
+
 export default function HomeHero() {
+  const firstRow = IMAGES.slice(0, 5);
+  const secondRow = IMAGES.slice(5, 10);
+  const thirdRow = IMAGES.slice(10, 15);
+  const ref = React.useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+
+  const springConfig = { stiffness: 300, damping: 30, bounce: 100 };
+
+  const translateX = useSpring(
+    useTransform(scrollYProgress, [0, 1], [0, 1000]),
+    springConfig
+  );
+  const translateXReverse = useSpring(
+    useTransform(scrollYProgress, [0, 1], [0, -1000]),
+    springConfig
+  );
+  const rotateX = useSpring(
+    useTransform(scrollYProgress, [0, 0.2], [15, 0]),
+    springConfig
+  );
+  const opacity = useSpring(
+    useTransform(scrollYProgress, [0, 0.2], [0.2, 1]),
+    springConfig
+  );
+  const rotateZ = useSpring(
+    useTransform(scrollYProgress, [0, 0.2], [20, 0]),
+    springConfig
+  );
+  const translateY = useSpring(
+    useTransform(scrollYProgress, [0, 0.2], [-700, 500]),
+    springConfig
+  );
+
   return (
-    <section className="relative h-[85vh] min-h-[600px] max-h-[90vh]">
-      {/* Background image */}
-      <Image
-        src="/images/hero/1-Horse-Country-1.webp"
-        alt="Two horses grazing at golden hour on a Marion County horse farm with Spanish moss trees in background"
-        fill
-        priority
-        className="object-cover"
-        style={{ objectPosition: "center 60%" }}
-        sizes="100vw"
-      />
-
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-black/50" />
-
-      {/* Content */}
-      <div className="relative z-10 flex h-full flex-col justify-center px-6 lg:px-8">
-        <div className="mx-auto w-full max-w-7xl text-center lg:text-left">
-          {/* Kicker */}
-          <p className="mb-4 font-comfortaa text-xs font-bold uppercase tracking-[0.15em] text-white/70">
-            PRINT + DIGITAL. COMMUNITY FIRST.
-          </p>
-
-          {/* Headline */}
-          <h1 className="mb-6 font-merriweather text-[40px] font-bold leading-tight text-white lg:text-[64px]">
-            You&apos;re home.<br />
-            But you&apos;re not rooted.
-          </h1>
-
-          {/* Subheadline */}
-          <p className="mx-auto mb-10 max-w-[580px] font-nunito text-xl leading-relaxed text-white/85 lg:mx-0">
-            Two publications. The businesses that built Marion County, and the
-            people arriving every week who need them.
-          </p>
-
-          {/* Buttons */}
-          <div className="flex flex-col items-center gap-4 sm:flex-row lg:items-start">
-            <Link
-              href="/contact"
-              className="rounded-md bg-grm-teal px-8 py-3.5 font-nunito text-sm font-bold text-white transition-opacity hover:opacity-90"
-            >
-              Advertise With Us
-            </Link>
-            <Link
-              href="/about"
-              className="rounded-md border border-white px-8 py-3.5 font-nunito text-sm font-bold text-white transition-colors hover:bg-white/10"
-            >
-              Our Story
-            </Link>
-          </div>
-        </div>
-      </div>
-
-      {/* Animated bounce chevron */}
-      <div className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 animate-bounce">
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="text-white/50"
+    <div
+      ref={ref}
+      className="h-[300vh] overflow-hidden bg-grm-black py-40 antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]"
+    >
+      {/* GRM Header */}
+      <div className="max-w-7xl relative mx-auto py-20 md:py-40 px-6 w-full left-0 top-0">
+        <p className="font-comfortaa text-xs font-bold uppercase tracking-[0.2em] text-grm-teal mb-6">
+          MARION COUNTY&apos;S MEDIA COMPANY
+        </p>
+        <h1 className="font-merriweather text-4xl md:text-6xl lg:text-7xl font-bold text-grm-cream leading-tight">
+          Locally Rooted.
+          <br />
+          Professionally Grown.
+        </h1>
+        <p className="max-w-2xl font-nunito text-base md:text-lg mt-8 text-grm-cream/70">
+          The publications Marion County&apos;s real estate professionals and
+          new homeowners actually read.
+        </p>
+        <Link
+          href="#publications"
+          className="mt-8 inline-block rounded-md bg-grm-teal px-8 py-3.5 font-nunito text-sm font-bold text-white transition-opacity hover:opacity-90"
         >
-          <polyline points="6 9 12 15 18 9" />
-        </svg>
+          See Our Publications
+        </Link>
       </div>
-    </section>
+
+      {/* Parallax image rows */}
+      <motion.div
+        style={{ rotateX, rotateZ, translateY, opacity }}
+      >
+        <motion.div className="flex flex-row-reverse space-x-reverse space-x-20 mb-20">
+          {firstRow.map((img) => (
+            <ParallaxCard
+              key={img.title}
+              image={img}
+              translate={translateX}
+            />
+          ))}
+        </motion.div>
+        <motion.div className="flex flex-row mb-20 space-x-20">
+          {secondRow.map((img) => (
+            <ParallaxCard
+              key={img.title}
+              image={img}
+              translate={translateXReverse}
+            />
+          ))}
+        </motion.div>
+        <motion.div className="flex flex-row-reverse space-x-reverse space-x-20">
+          {thirdRow.map((img) => (
+            <ParallaxCard
+              key={img.title}
+              image={img}
+              translate={translateX}
+            />
+          ))}
+        </motion.div>
+      </motion.div>
+    </div>
+  );
+}
+
+function ParallaxCard({
+  image,
+  translate,
+}: {
+  image: { title: string; thumbnail: string };
+  translate: MotionValue<number>;
+}) {
+  return (
+    <motion.div
+      style={{ x: translate }}
+      whileHover={{ y: -20 }}
+      className="group/product h-96 w-[30rem] relative flex-shrink-0"
+    >
+      <div className="block">
+        <Image
+          src={image.thumbnail}
+          height={600}
+          width={600}
+          className="object-cover object-center absolute h-full w-full inset-0 rounded-sm"
+          alt={image.title}
+        />
+      </div>
+      <div className="absolute inset-0 h-full w-full opacity-0 group-hover/product:opacity-60 bg-grm-black rounded-sm pointer-events-none transition-opacity" />
+      <h2 className="absolute bottom-4 left-4 opacity-0 group-hover/product:opacity-100 text-white font-nunito text-sm transition-opacity">
+        {image.title}
+      </h2>
+    </motion.div>
   );
 }
