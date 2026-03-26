@@ -16,7 +16,7 @@ export default function Nav() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
   const isContactPage = pathname === "/contact";
-  const noHeroPages = ["/contact", "/about"];
+  const noHeroPages = ["/contact", "/about", "/the-closing-table"];
   const alwaysSolid = noHeroPages.includes(pathname);
   const [scrolled, setScrolled] = useState(alwaysSolid);
 
