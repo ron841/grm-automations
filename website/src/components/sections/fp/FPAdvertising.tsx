@@ -17,7 +17,7 @@ const VALUE_PROPS = [
 
 export default function FPAdvertising() {
   return (
-    <section className="bg-white px-6 py-20 lg:px-8">
+    <section id="advertising" className="bg-white px-6 py-20 lg:px-8">
       <div className="mx-auto max-w-4xl">
         <h2 className="mb-4 text-center font-comfortaa text-[18px] font-bold uppercase leading-relaxed tracking-wide text-grm-teal lg:text-[22px]">
           SEEN IN THE GUIDE. FOUND ONLINE. CHOSEN AT THE RIGHT MOMENT.
