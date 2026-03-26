@@ -126,10 +126,11 @@ export default function AboutPage() {
 
         <div className="relative min-h-[380px] w-full md:min-h-[480px] md:w-[52%]">
           <Image
-            src="/images/hero/5-Equestrian-2.webp"
-            alt="Marion County equestrian lifestyle at golden hour"
+            src="/images/team/DSC01469.webp"
+            alt="Cameron Cowart, Co-Founder and Director of Sales at Get Rooted Media"
             fill
-            className="object-cover object-center"
+            className="object-cover"
+            style={{ objectPosition: "center 20%" }}
             sizes="(max-width: 768px) 100vw, 52vw"
           />
           <div
