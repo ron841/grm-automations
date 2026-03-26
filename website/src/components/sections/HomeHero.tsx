@@ -24,18 +24,11 @@ const IMAGES = [
   { title: "New Homeowners", thumbnail: "/images/fp/2-Family-2.webp" },
   { title: "Equestrian County", thumbnail: "/images/hero/5-Equestrian-2.webp" },
   { title: "Marion County Living", thumbnail: "/images/fp/3-Exterior-2.webp" },
-  // Row 3
-  { title: "Tuscawilla Park", thumbnail: "/images/hero/4-Ocala-2.webp" },
-  { title: "Ocala Square", thumbnail: "/images/hero/4-Ocala-1.webp" },
-  { title: "Horse Country", thumbnail: "/images/hero/1-Horse-Country-1.webp" },
-  { title: "Equestrian Life", thumbnail: "/images/hero/5-Equestrian-1.webp" },
-  { title: "Family Roots", thumbnail: "/images/fp/2-Family-1.webp" },
 ];
 
 export default function HomeHero() {
   const firstRow = IMAGES.slice(0, 5);
   const secondRow = IMAGES.slice(5, 10);
-  const thirdRow = IMAGES.slice(10, 15);
   const ref = React.useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -72,7 +65,7 @@ export default function HomeHero() {
   return (
     <div
       ref={ref}
-      className="h-[250vh] overflow-hidden bg-grm-black py-40 antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]"
+      className="h-[200vh] overflow-hidden bg-grm-black py-40 antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]"
     >
       {/* GRM Header */}
       <div className="max-w-7xl relative mx-auto py-10 md:py-20 px-6 w-full left-0 top-0">
@@ -115,15 +108,6 @@ export default function HomeHero() {
               key={img.title}
               image={img}
               translate={translateXReverse}
-            />
-          ))}
-        </motion.div>
-        <motion.div className="flex flex-row-reverse space-x-reverse space-x-20">
-          {thirdRow.map((img) => (
-            <ParallaxCard
-              key={img.title}
-              image={img}
-              translate={translateX}
             />
           ))}
         </motion.div>
