@@ -69,8 +69,13 @@ export default function HomePublications() {
                 {pub.label}
               </p>
 
-              <h3 className="mb-3 font-merriweather text-2xl font-bold text-white lg:text-3xl">
-                {pub.title}
+              <h3 className="mb-3 text-white">
+                <span className="block font-grand-hotel text-[32px] leading-none lg:text-[38px]">
+                  The
+                </span>
+                <span className="block font-merriweather text-2xl font-bold lg:text-3xl">
+                  {pub.title.replace("The ", "")}
+                </span>
               </h3>
 
               <p className="mb-5 max-w-sm font-nunito text-base leading-relaxed text-white/85">

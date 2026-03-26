@@ -34,15 +34,17 @@ export default function Footer() {
             <nav className="flex flex-col gap-3">
               <Link
                 href="/the-closing-table"
-                className="font-nunito text-sm text-white transition-colors hover:text-grm-teal"
+                className="text-sm text-white transition-colors hover:text-grm-teal"
               >
-                The Closing Table
+                <span className="font-grand-hotel">The</span>{" "}
+                <span className="font-nunito">Closing Table</span>
               </Link>
               <Link
                 href="/the-front-porch"
-                className="font-nunito text-sm text-white transition-colors hover:text-grm-teal"
+                className="text-sm text-white transition-colors hover:text-grm-teal"
               >
-                The Front Porch
+                <span className="font-grand-hotel">The</span>{" "}
+                <span className="font-nunito">Front Porch</span>
               </Link>
             </nav>
           </div>
