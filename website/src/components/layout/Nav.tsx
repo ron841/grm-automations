@@ -99,7 +99,7 @@ export default function Nav() {
             <span
               className={`block h-0.5 w-6 transition-all duration-300 ${
                 mobileOpen
-                  ? "translate-y-2 rotate-45 bg-grm-black"
+                  ? "translate-y-2 rotate-45 bg-white"
                   : "bg-white"
               }`}
             />
@@ -111,7 +111,7 @@ export default function Nav() {
             <span
               className={`block h-0.5 w-6 transition-all duration-300 ${
                 mobileOpen
-                  ? "-translate-y-2 -rotate-45 bg-grm-black"
+                  ? "-translate-y-2 -rotate-45 bg-white"
                   : "bg-white"
               }`}
             />
@@ -121,24 +121,28 @@ export default function Nav() {
 
       {/* Mobile menu overlay */}
       <div
-        className={`fixed inset-0 z-40 bg-white transition-transform duration-300 lg:hidden ${
+        className={`fixed inset-0 z-40 bg-grm-black transition-transform duration-300 lg:hidden ${
           mobileOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="flex h-full flex-col items-center justify-center gap-8 px-6">
+        {/* Logo — top-left, matching desktop position */}
+        <div className="absolute left-6 top-4">
           <Image
-            src="/logos/Logo_Get Rooted Media.svg"
+            src="/logos/Logo_Get Rooted Media-REV.svg"
             alt="Get Rooted Media"
             width={180}
             height={60}
-            className="mb-4 h-10 w-auto"
+            className="h-10 w-auto"
           />
+        </div>
+
+        <div className="flex h-full flex-col items-center justify-center gap-8 px-6">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               onClick={() => setMobileOpen(false)}
-              className="font-nunito text-xl text-grm-black transition-colors hover:text-grm-teal"
+              className="font-nunito text-xl text-white transition-colors hover:text-grm-teal"
             >
               {link.label}
             </Link>
@@ -148,7 +152,7 @@ export default function Nav() {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => setMobileOpen(false)}
-            className="mt-4 rounded-md bg-grm-teal px-8 py-3 font-nunito text-base font-bold text-white transition-opacity hover:opacity-90"
+            className="mt-4 rounded-[2px] bg-grm-teal px-8 py-3 font-nunito text-base font-bold text-white transition-opacity hover:opacity-90"
           >
             Let&apos;s Talk
           </a>
