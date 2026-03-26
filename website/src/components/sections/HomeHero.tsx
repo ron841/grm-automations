@@ -12,24 +12,24 @@ import Image from "next/image";
 import Link from "next/link";
 
 const IMAGES = [
-  // Row 1 (5 images)
+  // Row 1
   { title: "Horse Country", thumbnail: "/images/hero/1-Horse-Country-1.webp" },
   { title: "Downtown Ocala", thumbnail: "/images/hero/4-Ocala-1.webp" },
-  { title: "The Closing Table", thumbnail: "/images/publications/7-Closing-2.webp" },
-  { title: "Marion County Home", thumbnail: "/images/fp/3-Exterior-1.webp" },
   { title: "Equestrian Life", thumbnail: "/images/hero/5-Equestrian-1.webp" },
-  // Row 2 (5 images)
-  { title: "The Front Porch", thumbnail: "/images/publications/6-Mag-Lifestyle-1.webp" },
-  { title: "Tuscawilla Park", thumbnail: "/images/hero/4-Ocala-2.webp" },
+  { title: "Marion County Home", thumbnail: "/images/fp/3-Exterior-1.webp" },
   { title: "Family Roots", thumbnail: "/images/fp/2-Family-1.webp" },
-  { title: "Magazine Editorial", thumbnail: "/images/ct-hero.webp" },
+  // Row 2
+  { title: "Tuscawilla Park", thumbnail: "/images/hero/4-Ocala-2.webp" },
   { title: "Horse Farm", thumbnail: "/images/hero/1-Horse-Country-2.webp" },
-  // Row 3 (5 images)
   { title: "New Homeowners", thumbnail: "/images/fp/2-Family-2.webp" },
   { title: "Equestrian County", thumbnail: "/images/hero/5-Equestrian-2.webp" },
-  { title: "Lifestyle Magazine", thumbnail: "/images/publications/6-Mag-Lifestyle-3.webp" },
   { title: "Marion County Living", thumbnail: "/images/fp/3-Exterior-2.webp" },
-  { title: "The Front Porch Guide", thumbnail: "/images/fp-hero.webp" },
+  // Row 3
+  { title: "Tuscawilla Park", thumbnail: "/images/hero/4-Ocala-2.webp" },
+  { title: "Ocala Square", thumbnail: "/images/hero/4-Ocala-1.webp" },
+  { title: "Horse Country", thumbnail: "/images/hero/1-Horse-Country-1.webp" },
+  { title: "Equestrian Life", thumbnail: "/images/hero/5-Equestrian-1.webp" },
+  { title: "Family Roots", thumbnail: "/images/fp/2-Family-1.webp" },
 ];
 
 export default function HomeHero() {
