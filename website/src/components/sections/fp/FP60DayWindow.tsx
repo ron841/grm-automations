@@ -24,7 +24,7 @@ export default function FP60DayWindow() {
         </p>
 
         {/* Pull quote */}
-        <div className="mx-auto max-w-lg border-l-[4px] border-fp-rose py-2 pl-6 text-left">
+        <div className="mx-auto max-w-lg border-l-[4px] border-grm-teal py-2 pl-6 text-left">
           <p className="font-merriweather text-[28px] font-bold leading-tight text-grm-black lg:text-[32px]">
             Google gives them 50 options. The Front Porch gives them yours.
           </p>

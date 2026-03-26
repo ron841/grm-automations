@@ -6,7 +6,7 @@ import FPCategoryGrid from "@/components/sections/fp/FPCategoryGrid";
 import FPAdvertising from "@/components/sections/fp/FPAdvertising";
 import FPReaderSignup from "@/components/sections/fp/FPReaderSignup";
 import FPFAQ from "@/components/sections/fp/FPFAQ";
-import FPFoundingPartner from "@/components/sections/fp/FPFoundingPartner";
+import FPClosingCTA from "@/components/sections/fp/FPClosingCTA";
 
 export const metadata: Metadata = {
   title:
@@ -25,7 +25,7 @@ export default function FrontPorchPage() {
       <FPAdvertising />
       <FPReaderSignup />
       <FPFAQ />
-      <FPFoundingPartner />
+      <FPClosingCTA />
     </main>
   );
 }
