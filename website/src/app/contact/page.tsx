@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import CalEmbed from "@/components/CalEmbed";
 
 export const metadata: Metadata = {
   title: "Let's Talk | Get Rooted Media | Marion County, Florida",
@@ -27,17 +28,10 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* ───── CALENDLY PLACEHOLDER ───── */}
+      {/* ───── CAL.COM BOOKING ───── */}
       <section className="bg-white px-6 pb-20 lg:px-8">
         <div className="mx-auto max-w-3xl">
-          <div
-            id="calendly-embed"
-            className="flex min-h-[600px] items-center justify-center rounded-md bg-grm-cream"
-          >
-            <p className="px-6 text-center font-nunito text-base italic text-grm-teal">
-              Calendly booking widget — configure before launch
-            </p>
-          </div>
+          <CalEmbed />
         </div>
       </section>
 
