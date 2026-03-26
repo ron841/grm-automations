@@ -7,7 +7,7 @@ const VALUE_PROPS = [
   },
   {
     title: "Category positioning that means something.",
-    body: "One business per category, per year. Once your category is claimed, no competitor appears in that guide until your agreement ends. The dentist a new family finds in month one is probably their dentist for the next decade.",
+    body: "A few spots available per category, per year. Once a category fills, it is closed for the year. The dentist a new family finds in month one is probably their dentist for the next decade.",
   },
   {
     title: "Social media that follows them every month.",

@@ -14,13 +14,12 @@ export default function FPHero() {
         sizes="100vw"
       />
 
-      {/* Warm gradient overlay — cream-toned for FP warmth */}
+      {/* Warm gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/30 to-transparent" />
 
       <div className="relative z-10 flex min-h-screen items-center px-6 pt-[100px] lg:px-8 lg:pt-[120px]">
-        <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-12 lg:grid-cols-2">
-          {/* Left — Copy */}
-          <div className="text-center lg:text-left">
+        <div className="mx-auto w-full max-w-7xl">
+          <div className="max-w-xl text-center lg:text-left">
             <p className="mb-6 font-comfortaa text-[11px] font-bold uppercase tracking-[0.15em] text-white/70">
               A GET ROOTED MEDIA PUBLICATION &middot; BI-MONTHLY &middot; MARION
               COUNTY
@@ -56,20 +55,6 @@ export default function FPHero() {
             >
               New to Marion County? Skip to the resident section &darr;
             </a>
-          </div>
-
-          {/* Right — Guide mockup, desktop only */}
-          <div className="hidden justify-center lg:flex lg:justify-end">
-            <div className="relative h-[480px] w-[360px]">
-              <Image
-                src="/images/publications/6-Mag-Lifestyle-1.webp"
-                alt="The Front Porch magazine guide"
-                fill
-                priority
-                className="rounded-sm object-cover shadow-2xl"
-                sizes="360px"
-              />
-            </div>
           </div>
         </div>
       </div>

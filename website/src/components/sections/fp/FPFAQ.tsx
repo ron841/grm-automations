@@ -11,7 +11,7 @@ const FAQS = [
   {
     question: "What does category-limited mean?",
     answer:
-      "One business per category, per year. If you\u2019re the HVAC company in The Front Porch, no other HVAC company appears until your agreement ends. You own the space.",
+      "A few spots available per category, per year. If you\u2019re one of the HVAC companies in The Front Porch, your competitors have limited space to appear. First to sign gets the strongest position.",
   },
   {
     question: "How is this different from ValPak?",

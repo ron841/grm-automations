@@ -8,7 +8,7 @@ const ROWS = [
     isNot: "A mass mailer to 50,000 people who already have a dentist",
   },
   {
-    is: "Category-limited: one HVAC, one dentist, one landscaper",
+    is: "Category-limited: a few spots available per category",
     isNot: "Five plumbers fighting for attention on the same page",
   },
   {

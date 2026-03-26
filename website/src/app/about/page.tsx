@@ -44,7 +44,7 @@ export default function AboutPage() {
           <div className="text-center">
             <div className="relative mx-auto h-[200px] w-[200px] overflow-hidden rounded border-[3px] border-grm-teal">
               <Image
-                src="/images/team/DSC01296.webp"
+                src="/images/team/DSC01569.webp"
                 alt="Ron Kolb, Founder and Publisher of Get Rooted Media"
                 fill
                 className="object-cover object-top"
@@ -59,7 +59,7 @@ export default function AboutPage() {
           <div className="text-center">
             <div className="relative mx-auto h-[200px] w-[200px] overflow-hidden rounded border-[3px] border-grm-teal">
               <Image
-                src="/images/team/DSC01234.webp"
+                src="/images/team/DSC01469.webp"
                 alt="Cameron Cowart, Co-Founder and Sales Director of Get Rooted Media"
                 fill
                 className="object-cover object-top"
@@ -222,7 +222,7 @@ export default function AboutPage() {
             <div className="rounded bg-white p-10 shadow-sm">
               <div className="relative mx-auto mb-6 h-[200px] w-[200px] overflow-hidden rounded border-[3px] border-grm-teal">
                 <Image
-                  src="/images/team/DSC01296.webp"
+                  src="/images/team/DSC01569.webp"
                   alt="Ron Kolb, Founder and Publisher"
                   fill
                   className="object-cover object-top"
@@ -250,7 +250,7 @@ export default function AboutPage() {
             <div className="rounded bg-white p-10 shadow-sm">
               <div className="relative mx-auto mb-6 h-[200px] w-[200px] overflow-hidden rounded border-[3px] border-grm-teal">
                 <Image
-                  src="/images/team/DSC01234.webp"
+                  src="/images/team/DSC01469.webp"
                   alt="Cameron Cowart, Co-Founder and Sales Director"
                   fill
                   className="object-cover object-top"
