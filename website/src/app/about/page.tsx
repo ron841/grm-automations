@@ -47,7 +47,7 @@ export default function AboutPage() {
                 src="/images/team/DSC01296.webp"
                 alt="Ron Kolb, Founder and Publisher of Get Rooted Media"
                 fill
-                className="object-cover"
+                className="object-cover object-top"
                 sizes="200px"
               />
             </div>
@@ -62,7 +62,7 @@ export default function AboutPage() {
                 src="/images/team/DSC01234.webp"
                 alt="Cameron Cowart, Co-Founder and Sales Director of Get Rooted Media"
                 fill
-                className="object-cover"
+                className="object-cover object-top"
                 sizes="200px"
               />
             </div>
@@ -225,7 +225,7 @@ export default function AboutPage() {
                   src="/images/team/DSC01296.webp"
                   alt="Ron Kolb, Founder and Publisher"
                   fill
-                  className="object-cover"
+                  className="object-cover object-top"
                   sizes="200px"
                 />
               </div>
@@ -253,7 +253,7 @@ export default function AboutPage() {
                   src="/images/team/DSC01234.webp"
                   alt="Cameron Cowart, Co-Founder and Sales Director"
                   fill
-                  className="object-cover"
+                  className="object-cover object-top"
                   sizes="200px"
                 />
               </div>
