@@ -5,6 +5,15 @@ export const metadata: Metadata = {
   title: "Let's Talk | Get Rooted Media | Marion County, Florida",
   description:
     "Book 15 minutes with Ron or Cameron. We'll show you who reads it, what it costs, and whether it's the right fit.",
+  openGraph: {
+    title: "Let's Talk | Get Rooted Media | Marion County, Florida",
+    description:
+      "Book 15 minutes with Ron or Cameron. We'll show you who reads it, what it costs, and whether it's the right fit.",
+    type: "website",
+    url: "https://getrootedmedia.com/contact",
+    siteName: "Get Rooted Media",
+    images: [{ url: "/images/ct-hero.webp" }],
+  },
 };
 
 export default function ContactPage() {

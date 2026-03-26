@@ -12,6 +12,15 @@ export const metadata: Metadata = {
   title: "The Closing Table | Monthly Magazine for Marion County Real Estate",
   description:
     "Monthly print magazine for the top 500 agents and service companies in Marion and Sumter Counties. Issue 1 June 2026.",
+  openGraph: {
+    title: "The Closing Table | Monthly Magazine for Marion County Real Estate",
+    description:
+      "Monthly print magazine for the top 500 agents and service companies in Marion and Sumter Counties. Issue 1 June 2026.",
+    type: "website",
+    url: "https://getrootedmedia.com/the-closing-table",
+    siteName: "Get Rooted Media",
+    images: [{ url: "/images/ct-hero.webp" }],
+  },
 };
 
 export default function ClosingTablePage() {

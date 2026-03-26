@@ -38,9 +38,9 @@ export default function CTHero() {
             <span className="block font-grand-hotel text-[52px] text-white leading-none">
               The
             </span>
-            <span className="block font-merriweather text-[56px] md:text-[88px] font-bold text-white leading-none">
+            <h1 className="block font-merriweather text-[56px] md:text-[88px] font-bold text-white leading-none">
               Closing Table
-            </span>
+            </h1>
           </div>
 
           {/* Headline */}

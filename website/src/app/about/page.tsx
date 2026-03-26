@@ -5,6 +5,15 @@ export const metadata: Metadata = {
   title: "About | Get Rooted Media | Marion County, Florida",
   description:
     "A father and son. Thirty years in publishing and a front-row seat to the fastest-growing county in America. Meet Ron Kolb and Cameron Cowart.",
+  openGraph: {
+    title: "About | Get Rooted Media | Marion County, Florida",
+    description:
+      "A father and son. Thirty years in publishing and a front-row seat to the fastest-growing county in America. Meet Ron Kolb and Cameron Cowart.",
+    type: "website",
+    url: "https://getrootedmedia.com/about",
+    siteName: "Get Rooted Media",
+    images: [{ url: "/images/ct-hero.webp" }],
+  },
 };
 
 export default function AboutPage() {

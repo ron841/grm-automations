@@ -37,6 +37,15 @@ export const metadata: Metadata = {
   title: "Get Rooted Media | Marion County's Premium Local Media Company",
   description:
     "Two publications serving Marion County. The Closing Table for top-producing real estate agents. The Front Porch for new homeowners. Locally rooted. Professionally grown.",
+  openGraph: {
+    title: "Get Rooted Media | Marion County's Premium Local Media Company",
+    description:
+      "Two publications serving Marion County. The Closing Table for top-producing real estate agents. The Front Porch for new homeowners. Locally rooted. Professionally grown.",
+    type: "website",
+    url: "https://getrootedmedia.com",
+    siteName: "Get Rooted Media",
+    images: [{ url: "/images/ct-hero.webp" }],
+  },
 };
 
 export default function RootLayout({
