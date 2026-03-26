@@ -58,17 +58,17 @@ export default function HomeHero() {
     springConfig
   );
   const translateY = useSpring(
-    useTransform(scrollYProgress, [0, 0.2], [-400, 500]),
+    useTransform(scrollYProgress, [0, 0.2], [-50, 500]),
     springConfig
   );
 
   return (
     <div
       ref={ref}
-      className="h-[250vh] overflow-hidden bg-grm-black antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]"
+      className="relative h-[200vh] overflow-hidden bg-grm-black antialiased flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]"
     >
-      {/* GRM Header */}
-      <div className="max-w-7xl relative mx-auto pt-32 pb-10 px-4 w-full left-0 top-0">
+      {/* GRM Header — absolutely positioned over image rows */}
+      <div className="absolute top-0 left-0 right-0 z-10 max-w-7xl mx-auto pt-24 pb-10 px-4 w-full">
         <p className="font-comfortaa text-xs font-bold uppercase tracking-[0.2em] text-grm-teal mb-6">
           MARION COUNTY&apos;S MEDIA COMPANY
         </p>
