@@ -1,48 +1,53 @@
-const STEPS = [
-  {
-    number: "01",
-    headline: "Print opens the door.",
-    body: "Your business in a premium magazine that top agents and new homeowners actually read, share, and keep.",
-  },
-  {
-    number: "02",
-    headline: "Digital keeps it open.",
-    body: "Your campaign runs as a collaboration through our social pages. Our audience. Your business. Third-party credibility no ad buy can replicate.",
-  },
-  {
-    number: "03",
-    headline: "Community makes it last.",
-    body: "Events, features, and word-of-mouth turn one ad buy into something that compounds.",
-  },
-];
-
 export default function HomeHowItWorks() {
   return (
-    <section className="bg-white px-6 py-20 lg:px-8">
-      <div className="mx-auto max-w-[1100px]">
-        {/* Label */}
-        <p className="text-center font-comfortaa text-[11px] font-bold uppercase tracking-widest text-grm-teal">
-          THE MODEL
-        </p>
+    <section className="bg-grm-black px-8 py-12 md:px-20 md:py-[72px]">
+      <div className="mx-auto flex max-w-7xl flex-col items-start gap-10 md:flex-row md:items-stretch md:gap-0">
+        {/* ITEM 1 — 40% */}
+        <div className="w-full pr-0 md:w-[40%] md:pr-12">
+          <p className="mb-4 font-merriweather text-[11px] font-bold uppercase tracking-[0.3em] text-grm-teal">
+            01
+          </p>
+          <h3 className="mb-4 font-merriweather text-[28px] font-bold leading-[1.2] text-white">
+            Print opens the door.
+          </h3>
+          <p className="font-nunito text-[14px] leading-[1.7] text-white/65">
+            Your business in a premium magazine that top agents and new
+            homeowners actually read, share, and keep.
+          </p>
+        </div>
 
-        {/* Teal rule */}
-        <div className="mx-auto mb-10 mt-4 h-[3px] w-10 bg-grm-teal" />
+        {/* Vertical divider */}
+        <div className="hidden w-px self-center bg-grm-teal md:block" style={{ height: 60 }} />
 
-        {/* Three steps */}
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-3 md:gap-10">
-          {STEPS.map((step) => (
-            <div key={step.number} className="text-center md:text-left">
-              <p className="font-merriweather text-[56px] font-bold leading-none text-grm-teal">
-                {step.number}
-              </p>
-              <h3 className="mt-4 font-merriweather text-[22px] font-bold text-grm-black">
-                {step.headline}
-              </h3>
-              <p className="mt-3 font-nunito text-base leading-[1.7] text-grm-black">
-                {step.body}
-              </p>
-            </div>
-          ))}
+        {/* ITEM 2 — 30% */}
+        <div className="w-full pl-0 md:w-[30%] md:pl-12">
+          <p className="mb-4 font-merriweather text-[11px] font-bold uppercase tracking-[0.3em] text-grm-teal">
+            02
+          </p>
+          <h3 className="mb-4 font-merriweather text-[24px] font-bold leading-[1.2] text-white">
+            Digital keeps it open.
+          </h3>
+          <p className="font-nunito text-[13px] leading-[1.7] text-white/65">
+            Your campaign extends through our social pages. Our audience. Your
+            business. Third-party credibility no ad buy can replicate.
+          </p>
+        </div>
+
+        {/* Vertical divider */}
+        <div className="hidden w-px self-center bg-grm-teal md:block" style={{ height: 60 }} />
+
+        {/* ITEM 3 — 30% */}
+        <div className="w-full pl-0 md:w-[30%] md:pl-12">
+          <p className="mb-4 font-merriweather text-[11px] font-bold uppercase tracking-[0.3em] text-grm-teal">
+            03
+          </p>
+          <h3 className="mb-4 font-merriweather text-[24px] font-bold leading-[1.2] text-white">
+            Community makes it last.
+          </h3>
+          <p className="font-nunito text-[13px] leading-[1.7] text-white/65">
+            Events, features, and word-of-mouth turn one ad buy into something
+            that compounds.
+          </p>
         </div>
       </div>
     </section>
