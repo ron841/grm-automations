@@ -11,6 +11,7 @@ export default function HomeHero() {
         fill
         priority
         className="object-cover"
+        style={{ objectPosition: "center 60%" }}
         sizes="100vw"
       />
 
