@@ -45,7 +45,7 @@ export default function AboutPage() {
             <div className="relative mx-auto h-[200px] w-[200px] overflow-hidden rounded border-[3px] border-grm-teal">
               <Image
                 src="/images/team/DSC01296.webp"
-                alt="Ron Kolb, Publisher of Get Rooted Media"
+                alt="Ron Kolb, Founder and Publisher of Get Rooted Media"
                 fill
                 className="object-cover"
                 sizes="200px"
@@ -54,13 +54,13 @@ export default function AboutPage() {
             <p className="mt-4 font-merriweather text-lg font-bold text-grm-black">
               Ron Kolb
             </p>
-            <p className="font-nunito text-sm text-grm-black/60">Publisher</p>
+            <p className="font-nunito text-sm text-grm-black/60">Founder and Publisher</p>
           </div>
           <div className="text-center">
             <div className="relative mx-auto h-[200px] w-[200px] overflow-hidden rounded border-[3px] border-grm-teal">
               <Image
                 src="/images/team/DSC01234.webp"
-                alt="Cameron Cowart, Sales Director of Get Rooted Media"
+                alt="Cameron Cowart, Co-Founder and Sales Director of Get Rooted Media"
                 fill
                 className="object-cover"
                 sizes="200px"
@@ -111,9 +111,9 @@ export default function AboutPage() {
             He always knew where home was.
           </p>
           <p className="mb-6 font-merriweather text-lg leading-[1.8] text-grm-black">
-            Cameron Cowart was born and raised in Marion County. He is in his
-            mid-twenties, already one of the top real estate agents in the
-            county, married, with a new baby at home. He knows this market the
+            Cameron Cowart was born and raised in Marion County. He is one of
+            the top twenty real estate agents in the county, co-founder of Get
+            Rooted Media, married, with a new baby at home. He knows this market the
             way you know a place you never left. The neighborhoods, the agents,
             the families putting down roots every week. He wanted to build
             something that gives back to the community he grew up in.
@@ -222,7 +222,7 @@ export default function AboutPage() {
               <div className="relative mx-auto mb-6 h-[200px] w-[200px] overflow-hidden rounded border-[3px] border-grm-teal">
                 <Image
                   src="/images/team/DSC01296.webp"
-                  alt="Ron Kolb, Publisher"
+                  alt="Ron Kolb, Founder and Publisher"
                   fill
                   className="object-cover"
                   sizes="200px"
@@ -250,7 +250,7 @@ export default function AboutPage() {
               <div className="relative mx-auto mb-6 h-[200px] w-[200px] overflow-hidden rounded border-[3px] border-grm-teal">
                 <Image
                   src="/images/team/DSC01234.webp"
-                  alt="Cameron Cowart, Sales Director"
+                  alt="Cameron Cowart, Co-Founder and Sales Director"
                   fill
                   className="object-cover"
                   sizes="200px"
@@ -260,13 +260,13 @@ export default function AboutPage() {
                 Cameron Cowart
               </h3>
               <p className="mb-6 text-center font-nunito text-sm text-grm-black/60">
-                Sales Director
+                Co-Founder and Sales Director
               </p>
               <p className="font-nunito text-base leading-[1.7] text-grm-black">
                 Cameron grew up in this market. He knows the agents, the
                 neighborhoods, the places that make Marion County worth moving
-                to. He walks into a meeting with the energy of someone who
-                genuinely believes in what he&apos;s selling. You can tell it the
+                to. He walks into a meeting with the conviction of someone who
+                believes in what he is selling. You can tell it the
                 moment he starts talking. His job: connect every business that
                 belongs in these magazines with the readers who need to find
                 them.
