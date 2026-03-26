@@ -65,17 +65,17 @@ export default function HomeHero() {
     springConfig
   );
   const translateY = useSpring(
-    useTransform(scrollYProgress, [0, 0.2], [-700, 500]),
+    useTransform(scrollYProgress, [0, 0.2], [-300, 500]),
     springConfig
   );
 
   return (
     <div
       ref={ref}
-      className="h-[300vh] overflow-hidden bg-grm-black py-40 antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]"
+      className="h-[250vh] overflow-hidden bg-grm-black py-40 antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]"
     >
       {/* GRM Header */}
-      <div className="max-w-7xl relative mx-auto py-20 md:py-40 px-6 w-full left-0 top-0">
+      <div className="max-w-7xl relative mx-auto py-10 md:py-20 px-6 w-full left-0 top-0">
         <p className="font-comfortaa text-xs font-bold uppercase tracking-[0.2em] text-grm-teal mb-6">
           MARION COUNTY&apos;S MEDIA COMPANY
         </p>
