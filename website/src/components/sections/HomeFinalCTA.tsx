@@ -34,7 +34,7 @@ export default function HomeFinalCTA() {
           </a>
           <p className="mt-4">
             <span className="font-nunito text-[13px] text-grm-teal no-underline transition-colors hover:underline cursor-pointer">
-              or download our media kit
+              or request our media kit
             </span>
           </p>
         </div>

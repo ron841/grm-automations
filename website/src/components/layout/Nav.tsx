@@ -126,6 +126,13 @@ export default function Nav() {
         }`}
       >
         <div className="flex h-full flex-col items-center justify-center gap-8 px-6">
+          <Image
+            src="/logos/Logo_Get Rooted Media.svg"
+            alt="Get Rooted Media"
+            width={180}
+            height={60}
+            className="mb-4 h-10 w-auto"
+          />
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}

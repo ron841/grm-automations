@@ -5,6 +5,25 @@ import { useState } from "react";
 export default function FPReaderSignup() {
   const [submitted, setSubmitted] = useState(false);
 
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const data = new FormData(form);
+
+    try {
+      const res = await fetch("https://formspree.io/f/meepogwz", {
+        method: "POST",
+        body: data,
+        headers: { Accept: "application/json" },
+      });
+      if (res.ok) {
+        setSubmitted(true);
+      }
+    } catch {
+      // Fail silently — form stays visible for retry
+    }
+  }
+
   return (
     <section id="reader-signup" className="bg-grm-cream px-6 py-20 lg:px-8">
       <div className="mx-auto max-w-[480px]">
@@ -24,17 +43,16 @@ export default function FPReaderSignup() {
           </p>
 
           {submitted ? (
-            <p className="font-nunito text-base font-semibold text-grm-teal">
-              You&apos;re signed up. Welcome to Marion County.
-            </p>
+            <div>
+              <p className="font-merriweather text-[18px] italic leading-[1.6] text-grm-black">
+                You&apos;re on the list. We&apos;ll have it in your mailbox when
+                Issue 1 ships.
+              </p>
+              <div className="mt-6 h-px w-8 bg-grm-teal" />
+            </div>
           ) : (
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                setSubmitted(true);
-              }}
-              className="flex flex-col gap-4"
-            >
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+              <input type="hidden" name="_subject" value="New Front Porch Signup — getrootedmedia.com" />
               <input
                 type="text"
                 name="name"

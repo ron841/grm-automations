@@ -100,7 +100,7 @@ export default function Footer() {
               href="/contact"
               className="font-nunito text-sm text-white no-underline transition-colors hover:underline hover:text-grm-teal"
             >
-              or download our media kit
+              or request our media kit
             </Link>
           </div>
         </div>
