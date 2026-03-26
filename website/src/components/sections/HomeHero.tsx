@@ -17,18 +17,16 @@ const IMAGES = [
   { title: "Downtown Ocala", thumbnail: "/images/hero/4-Ocala-1.webp" },
   { title: "Equestrian Life", thumbnail: "/images/hero/5-Equestrian-1.webp" },
   { title: "Marion County Home", thumbnail: "/images/fp/3-Exterior-1.webp" },
-  { title: "Family Roots", thumbnail: "/images/fp/2-Family-1.webp" },
   // Row 2
   { title: "Tuscawilla Park", thumbnail: "/images/hero/4-Ocala-2.webp" },
   { title: "Horse Farm", thumbnail: "/images/hero/1-Horse-Country-2.webp" },
-  { title: "New Homeowners", thumbnail: "/images/fp/2-Family-2.webp" },
   { title: "Equestrian County", thumbnail: "/images/hero/5-Equestrian-2.webp" },
   { title: "Marion County Living", thumbnail: "/images/fp/3-Exterior-2.webp" },
 ];
 
 export default function HomeHero() {
-  const firstRow = IMAGES.slice(0, 5);
-  const secondRow = IMAGES.slice(5, 10);
+  const firstRow = IMAGES.slice(0, 4);
+  const secondRow = IMAGES.slice(4, 8);
   const ref = React.useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
