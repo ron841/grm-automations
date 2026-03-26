@@ -196,6 +196,8 @@ March 25: Font system locked from Em Agency: Comfortaa display, Grand Hotel scri
 
 March 25: Website project initialized. Next.js 16 (App Router), TypeScript, Tailwind CSS v4, shadcn/ui. Tailwind tokens match Em Agency palette exactly.
 
+March 25: Website build complete. All 5 pages built and approved. Homepage, The Closing Table, The Front Porch, About, Contact. Nav and Footer complete. All Em Agency assets loaded. Full voice audit complete. Pre-deploy fixes applied. Site is ready for Vercel deployment. Last clean commit: eb41f99. Publication card image changes pending final approval at next session before Vercel deploy.
+
 March 24: ManyChat DMs use brand voice only. No personal names in automated flows.
 
 March 24: Front Porch is bi-monthly, 6 issues per year, 60-day delivery window.

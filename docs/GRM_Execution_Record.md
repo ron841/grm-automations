@@ -564,6 +564,34 @@ WAITING:
 
 ---
 
+## MARCH 25, 2026 — WEBSITE BUILD SPRINT COMPLETE ✅
+
+**Status:** Ready for Vercel deployment
+
+**Pages built:**
+
+- Homepage (7 sections): Hero, Story, Publications, Stats, How It Works, Final CTA, Nav + Footer
+- The Closing Table (8 sections): Hero, Agent Callout, Why This Works, What's Inside, Issue 1 Preview, Advertising, FAQ, Founding Partner CTA
+- The Front Porch (8 sections): Hero, 60-Day Window, Comparison Table, Category Grid, Advertising, Reader Signup, FAQ, Founding Partner CTA
+- About (6 sections): Hero, Origin Story, The Gap, Mission, What We Believe, Team Bios, Final CTA
+- Contact (3 sections): Headline, Calendly Placeholder, Direct Contact
+
+**Assets:** 25 images optimized to WebP, 9 Em Agency SVG logos loaded, EXIF rotation corrected on team photos
+
+**Voice audit:** Complete. All banned words removed. All em dashes removed. All AI tells corrected.
+
+**Open items before Vercel:**
+
+1. Approve homepage publication card image swap. CT card using 6-Mag-Lifestyle-2, FP card using 6-Mag-Lifestyle-1. Preview at localhost:3000 to confirm before committing.
+2. Headshot rotation. Verify Ron and Cameron photos are upright at next session.
+3. Calendly setup. Configure before domain goes live.
+4. Media kit PDFs. Add real download links before launch.
+5. Connect getrootedmedia.com DNS to Vercel after deploy.
+
+**Tech stack confirmed:** Next.js 16, TypeScript, Tailwind CSS v4, shadcn/ui, deployed to Vercel. Repo: github.com/ron841/grm-automations. Website in /website subfolder.
+
+---
+
 ## SYSTEM MAP — Everything Running as of March 21, 2026
 
 ### Automated (zero human action required)
