@@ -45,7 +45,7 @@ export default function CTFAQ() {
           {FAQS.map((faq, i) => (
             <div
               key={i}
-              className="rounded-md bg-white"
+              className="bg-white"
             >
               <button
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}

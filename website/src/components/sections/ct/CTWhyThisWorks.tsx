@@ -8,7 +8,7 @@ const STATS = [
 
 export default function CTWhyThisWorks() {
   return (
-    <section className="bg-white px-6 py-20 lg:px-8">
+    <section className="bg-white px-6 py-14 lg:px-8 lg:py-16">
       <div className="mx-auto grid max-w-5xl grid-cols-1 gap-12 lg:grid-cols-5">
         {/* Left column — copy (60%) */}
         <div className="lg:col-span-3">

@@ -1,59 +1,74 @@
-import Link from "next/link";
-
 const BENEFITS = [
-  "Rate lock. Your monthly rate never increases as long as you remain an advertiser.",
-  "Founding Partner recognition in Issue 1. The one people keep.",
-  "First right of renewal. No one takes your position before you get the first call.",
-  "Featured in the launch story. Everywhere Issue 1 goes.",
+  {
+    number: "01",
+    title: "Rate lock.",
+    body: "Your monthly rate never increases as long as you remain an advertiser.",
+  },
+  {
+    number: "02",
+    title: "Founding Partner recognition.",
+    body: "Issue 1 is the one people keep. Your name is in it permanently.",
+  },
+  {
+    number: "03",
+    title: "First right of renewal.",
+    body: "No one takes your position before you get the first call.",
+  },
+  {
+    number: "04",
+    title: "Featured in the launch story.",
+    body: "Everywhere Issue 1 goes, your name goes with it.",
+  },
 ];
 
 export default function CTFoundingPartner() {
   return (
-    <section className="bg-grm-black px-6 py-20 lg:px-8">
-      <div className="mx-auto max-w-[640px] text-center">
-        <p className="mb-4 font-comfortaa text-[11px] font-bold uppercase tracking-widest text-grm-teal">
-          FOUNDING PARTNER BENEFITS
+    <section className="flex flex-col md:flex-row">
+      {/* LEFT COLUMN — 52% */}
+      <div className="w-full bg-grm-black px-8 py-12 md:w-[52%] md:px-16 md:py-[72px]">
+        <p className="mb-4 font-comfortaa text-[10px] font-bold uppercase tracking-[0.2em] text-grm-teal">
+          FOUNDING PARTNER &middot; LIMITED AVAILABILITY
         </p>
-        <div className="mx-auto mb-10 h-[3px] w-10 bg-grm-teal" />
-
-        <p className="mb-8 font-nunito text-lg text-white/80">
+        <div className="mb-7 h-px w-8 bg-grm-teal" />
+        <h2 className="font-merriweather text-[32px] font-bold leading-[1.2] text-white md:text-[42px]">
           Right now, there is a difference between being first and being next.
+        </h2>
+        <p className="mt-5 max-w-[420px] font-nunito text-[15px] leading-[1.75] text-white/70">
           Cover positions are limited to four per issue. Interior spots are
-          filling.
+          filling. Founding partners receive four commitments not available
+          after Issue 1: rate lock forever, recognition in Issue 1, first
+          right of renewal, and a featured role in the launch story.
         </p>
+        <a
+          href="https://cal.com/ron-kolb-cdlgsw/30min"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-9 inline-block rounded-[2px] bg-grm-teal px-10 py-4 font-nunito text-[15px] font-bold text-white transition-colors duration-200 hover:bg-[#3da0b5]"
+        >
+          Let&apos;s Talk About Advertising
+        </a>
+      </div>
 
-        <p className="mb-8 font-nunito text-lg text-white/80">
-          Founding partners receive four commitments not available after Issue 1:
-        </p>
-
-        <div className="mb-10 flex flex-col gap-4 text-left">
-          {BENEFITS.map((benefit, i) => (
-            <div key={i} className="flex gap-3">
-              <span className="mt-1 shrink-0 font-merriweather text-lg font-bold text-grm-teal">
-                {i + 1}.
-              </span>
-              <p className="font-nunito text-base leading-relaxed text-white/80">
-                {benefit}
+      {/* RIGHT COLUMN — 48% */}
+      <div className="flex w-full items-center bg-[#222222] px-8 py-12 md:w-[48%] md:px-14 md:py-[72px]">
+        <div className="w-full">
+          {BENEFITS.map((b, i) => (
+            <div key={b.number}>
+              <p className="mb-2 font-comfortaa text-[11px] font-bold tracking-[0.2em] text-grm-teal">
+                {b.number}
               </p>
+              <p className="font-merriweather text-[16px] font-bold leading-[1.4] text-white">
+                {b.title}
+              </p>
+              <p className="mt-1.5 font-nunito text-[13px] leading-[1.6] text-white/60">
+                {b.body}
+              </p>
+              {i < BENEFITS.length - 1 && (
+                <div className="my-6 h-px w-full bg-white/10" />
+              )}
             </div>
           ))}
         </div>
-
-        <p className="mb-10 font-merriweather text-xl italic text-white">
-          The founding partner window closes when Issue 1 goes to print.
-        </p>
-
-        <Link
-          href="/contact"
-          className="inline-block rounded-md bg-grm-teal px-10 py-4 font-nunito text-base font-bold text-white transition-opacity hover:opacity-90"
-        >
-          Let&apos;s Talk
-        </Link>
-
-        <p className="mt-4 font-nunito text-sm text-white/50">
-          15 minutes. No pitch. A conversation about whether this is right for
-          your business.
-        </p>
       </div>
     </section>
   );
