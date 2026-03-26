@@ -21,9 +21,8 @@ export default function ContactPage() {
             Book 15 minutes with Ron or Cameron.
           </h1>
           <p className="font-nunito text-lg text-grm-black/70">
-            Fifteen minutes with Ron or Cameron. We&apos;ll show you the
-            publications, who reads them, and whether this is the right fit for
-            your business.
+            We&apos;ll show you who reads it, what it costs, and whether
+            it&apos;s the right fit. No pitch. No pressure.
           </p>
         </div>
       </section>

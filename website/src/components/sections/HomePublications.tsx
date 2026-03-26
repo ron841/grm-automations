@@ -4,14 +4,6 @@ import Link from "next/link";
 export default function HomePublications() {
   return (
     <section id="publications">
-      {/* Section label */}
-      <div className="bg-grm-cream pt-16 pb-10">
-        <p className="text-center font-comfortaa text-[11px] font-bold uppercase tracking-[0.2em] text-grm-teal">
-          OUR PUBLICATIONS
-        </p>
-        <div className="mx-auto mt-4 h-px w-8 bg-grm-teal" />
-      </div>
-
       {/* Two-panel spread */}
       <div className="grid grid-cols-1 md:grid-cols-2">
         {/* LEFT PANEL — The Closing Table */}

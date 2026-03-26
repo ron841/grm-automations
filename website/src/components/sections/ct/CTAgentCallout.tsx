@@ -13,8 +13,7 @@ export default function CTAgentCallout() {
           </h2>
           <p className="mt-4 max-w-[480px] font-nunito text-[15px] leading-[1.75] text-white/70">
             If you&apos;re one of Marion County&apos;s top producers and you
-            want your story told as a real editorial piece about how you built
-            your business, we want to hear from you.
+            want your story told the right way, we want to hear from you.
           </p>
         </div>
 

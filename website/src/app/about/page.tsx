@@ -95,7 +95,7 @@ export default function AboutPage() {
         <div className="flex w-full items-center bg-grm-cream md:w-[48%]">
           <div className="p-8 md:px-12 md:py-14">
             <p className="mb-4 font-comfortaa text-[10px] font-bold uppercase tracking-[0.2em] text-grm-teal">
-              THE DIRECTOR OF SALES
+              CO-FOUNDER &middot; DIRECTOR OF SALES
             </p>
             <div className="mb-6 h-px w-8 bg-grm-teal" />
             <p className="mb-4 font-merriweather text-[16px] leading-[1.8] text-grm-black">
@@ -107,8 +107,9 @@ export default function AboutPage() {
             <p className="font-merriweather text-[16px] leading-[1.8] text-grm-black">
               He wanted to build something that gives back to the community he
               grew up in. He walks into a meeting with the conviction of someone
-              who believes in what he is selling. You can tell it the moment he
-              starts talking.
+              who believes in what he is selling. He knows every agent in this
+              county by name. He is here to connect every business that belongs
+              in these magazines with the readers who need to find them.
             </p>
           </div>
         </div>

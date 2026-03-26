@@ -18,14 +18,19 @@ export default function Nav() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
   const isContactPage = pathname === "/contact";
-  const [scrolled, setScrolled] = useState(false);
+  const alwaysDark = pathname === "/contact";
+  const [scrolled, setScrolled] = useState(alwaysDark);
 
   useEffect(() => {
+    if (alwaysDark) {
+      setScrolled(true);
+      return;
+    }
     const handleScroll = () => setScrolled(window.scrollY > 20);
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [alwaysDark]);
 
   // Close mobile menu on route change
   useEffect(() => {
