@@ -255,3 +255,32 @@ Get Rooted Media LLC — Ocala, Florida
 The Closing Table — The Front Porch
 
 Locally rooted. Professionally grown.
+
+## DESIGN UPGRADE SPRINT — March 26, 2026
+
+Latest clean commit: 8cb9b20
+Status: Design upgrade in progress. Site not yet deployed to Vercel.
+
+Components installed today:
+- Aceternity Hero Parallax — homepage hero. framer-motion added to package.json
+- Aceternity Focus Cards — homepage publications
+- Aceternity Images Slider — CT and FP hero pages
+
+Design philosophy locked:
+Place first (Marion County), then publication. Dark cinematic heroes, warm cream content sections. Motion reveals — does not decorate. Reference: Garden & Gun, Texas Monthly, Magnolia Journal.
+
+Component source: ui.aceternity.com + 21st.dev
+Install pattern: npx shadcn@latest add @aceternity/[name]
+
+Pending upgrades in priority order:
+1. Explore CT/FP hero alternatives — Ron not 100% sold on current design
+2. Homepage stats — Text Generate Effect
+3. Homepage final CTA — Spotlight
+4. CT and FP content sections — Sticky Scroll Reveal
+5. About page team — 3D Card Effect
+6. Vercel deployment
+
+Brand locked:
+Colors: #1A1A1A, #52B5CB, #FAF8F4, white only
+Fonts: Comfortaa eyebrows, Merriweather headlines, Nunito body
+Banned: em dashes, ellipses, gradients, pill buttons, gold

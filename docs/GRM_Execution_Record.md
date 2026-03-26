@@ -614,3 +614,28 @@ WAITING:
 
 - Google Drive auto-upload from GitHub (`scripts/google_drive_upload.py`)
 - Full pipeline: GitHub > Drive > Manus > Instagram (Week 3)
+
+---
+
+## March 26, 2026 — Design Upgrade Sprint
+
+Session type: Full design upgrade sprint
+All changes verified at localhost:3000 with zero console errors throughout.
+
+Commits in order:
+- 79a2db5: CT hero two-column layout, ct-hero.webp
+- bc838cf: FP hero two-column layout, fp-hero.webp, solid nav fix on both pages
+- bac4fc1: Homepage hero replaced with Aceternity Hero Parallax, framer-motion installed
+- 6eea109: Hero parallax curated to Marion County images only (10 images, 2 rows of 5)
+- 8d83f98: Homepage publications replaced with Focus Cards hover blur interaction
+- b97de42: CT and FP heroes replaced with Aceternity Images Slider, 4 images each
+- 8cb9b20: FINAL — Hero header absolutely positioned z-10 over images, translateY -50, no black void, headline visible on load
+
+What was built:
+Hero Parallax homepage (place-first concept), Focus Cards publications section (editorial hover), Images Slider CT and FP heroes (cinematic rotation), Marion County image curation (hero folder only)
+
+What is next:
+CT/FP hero alternatives, stats upgrade, CTA upgrade, content section upgrades, About page, Vercel deploy
+
+Blockers: None. Zero console errors throughout.
+Ron feedback: Homepage looking great. Publication pages need more options before finalizing design.
