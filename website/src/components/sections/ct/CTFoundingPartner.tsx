@@ -35,9 +35,9 @@ export default function CTFoundingPartner() {
         </h2>
         <p className="mt-5 max-w-[420px] font-nunito text-[15px] leading-[1.75] text-white/70">
           Cover positions are limited to four per issue. Interior spots are
-          filling. Founding partners receive four commitments not available
-          after Issue 1: rate lock forever, recognition in Issue 1, first
-          right of renewal, and a featured role in the launch story.
+          filling. The businesses that come in now get terms, recognition,
+          and access that will not be offered again after Issue 1 goes to
+          print.
         </p>
         <a
           href="https://cal.com/ron-kolb-cdlgsw/30min"
