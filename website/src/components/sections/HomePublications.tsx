@@ -1,96 +1,104 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
-import { cn } from "@/lib/utils";
-
-const PUBLICATIONS = [
-  {
-    image: "/images/ct-hero.webp",
-    imageAlt: "The Closing Table magazine on a dark table with white flowers",
-    label: "MONTHLY MAGAZINE · JUNE 2026",
-    title: "The Closing Table",
-    description:
-      "The monthly magazine for Marion County\u2019s top real estate professionals.",
-    href: "/the-closing-table",
-  },
-  {
-    image: "/images/fp-hero.webp",
-    imageAlt: "Woman reading The Front Porch magazine at home",
-    label: "BI-MONTHLY GUIDE · JULY 2026",
-    title: "The Front Porch",
-    description:
-      "The bi-monthly resource guide mailed to every new homeowner in Marion County within their first 60 days.",
-    href: "/the-front-porch",
-  },
-];
 
 export default function HomePublications() {
-  const [hovered, setHovered] = useState<number | null>(null);
-
   return (
-    <section id="publications" className="bg-grm-cream px-6 py-20 lg:px-8">
-      <p className="mb-10 text-center font-comfortaa text-[11px] font-bold uppercase tracking-widest text-grm-teal">
-        OUR PUBLICATIONS
-      </p>
+    <section id="publications">
+      {/* Section label */}
+      <div className="bg-grm-cream pt-16 pb-10">
+        <p className="text-center font-comfortaa text-[11px] font-bold uppercase tracking-[0.2em] text-grm-teal">
+          OUR PUBLICATIONS
+        </p>
+        <div className="mx-auto mt-4 h-px w-8 bg-grm-teal" />
+      </div>
 
-      <div className="mx-auto grid max-w-7xl grid-cols-1 md:grid-cols-2">
-        {PUBLICATIONS.map((pub, index) => (
+      {/* Two-panel spread */}
+      <div className="grid grid-cols-1 md:grid-cols-2">
+        {/* LEFT PANEL — The Closing Table */}
+        <div className="relative min-h-[60vh] md:min-h-[85vh] overflow-hidden">
+          <Image
+            src="/images/ct-hero.webp"
+            alt="The Closing Table magazine on a dark table with white flowers"
+            fill
+            className="object-cover object-center"
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
           <div
-            key={pub.title}
-            onMouseEnter={() => setHovered(index)}
-            onMouseLeave={() => setHovered(null)}
-            className={cn(
-              "relative min-h-[600px] overflow-hidden transition-all duration-500 ease-out",
-              hovered !== null && hovered !== index && "blur-sm scale-[0.98]"
-            )}
-          >
-            {/* Full-bleed image */}
-            <Image
-              src={pub.image}
-              alt={pub.imageAlt}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
-
-            {/* Subtle gradient at rest */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-
-            {/* Hover overlay with content */}
-            <div
-              className={cn(
-                "absolute inset-0 flex flex-col justify-end bg-black/50 p-8 transition-opacity duration-300 lg:p-12",
-                hovered === index ? "opacity-100" : "opacity-0"
-              )}
-            >
-              <p className="mb-3 font-comfortaa text-[11px] font-bold uppercase tracking-widest text-grm-teal">
-                {pub.label}
-              </p>
-
-              <h3 className="mb-3 text-white">
-                <span className="block font-grand-hotel text-[32px] leading-none lg:text-[38px]">
-                  The
-                </span>
-                <span className="block font-merriweather text-2xl font-bold lg:text-3xl">
-                  {pub.title.replace("The ", "")}
-                </span>
-              </h3>
-
-              <p className="mb-5 max-w-sm font-nunito text-base leading-relaxed text-white/85">
-                {pub.description}
-              </p>
-
-              <Link
-                href={pub.href}
-                className="font-nunito text-sm text-grm-teal no-underline transition-colors hover:underline"
-              >
-                Read More &rarr;
-              </Link>
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(to bottom right, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.45) 100%)",
+            }}
+          />
+          <div className="absolute inset-0 flex flex-col justify-end p-7 md:p-12">
+            <p className="font-comfortaa text-[10px] font-bold uppercase tracking-[0.18em] text-grm-teal">
+              MONTHLY MAGAZINE &middot; JUNE 2026
+            </p>
+            <div className="mt-3">
+              <span className="block font-grand-hotel text-[44px] leading-none text-white md:text-[44px]">
+                The
+              </span>
+              <span className="block font-merriweather text-[48px] font-bold leading-none text-white md:text-[64px]">
+                Closing Table
+              </span>
             </div>
+            <div className="my-5 h-px w-8 bg-grm-teal" />
+            <p className="max-w-[320px] font-nunito text-[13px] leading-relaxed text-white/80 md:text-[14px]">
+              The monthly magazine for Marion County&apos;s top real estate
+              professionals. 500 agents. $2.8 billion in annual home sales.
+              They read this.
+            </p>
+            <Link
+              href="/the-closing-table"
+              className="mt-5 inline-block font-nunito text-[13px] text-grm-teal no-underline transition-colors hover:underline"
+            >
+              Read more &rarr;
+            </Link>
           </div>
-        ))}
+        </div>
+
+        {/* RIGHT PANEL — The Front Porch */}
+        <div className="relative min-h-[60vh] md:min-h-[85vh] overflow-hidden">
+          <Image
+            src="/images/fp-hero.webp"
+            alt="Woman reading The Front Porch magazine at home"
+            fill
+            className="object-cover object-right-center"
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(to bottom left, rgba(250,248,244,0.70) 0%, rgba(250,248,244,0.30) 100%)",
+            }}
+          />
+          <div className="absolute inset-0 flex flex-col items-end justify-end p-7 text-right md:p-12">
+            <p className="font-comfortaa text-[10px] font-bold uppercase tracking-[0.18em] text-grm-teal">
+              BI-MONTHLY GUIDE &middot; JULY 2026
+            </p>
+            <div className="mt-3">
+              <span className="block text-right font-grand-hotel text-[44px] leading-none text-grm-black md:text-[44px]">
+                The
+              </span>
+              <span className="block text-right font-merriweather text-[48px] font-bold leading-none text-grm-black md:text-[64px]">
+                Front Porch
+              </span>
+            </div>
+            <div className="my-5 ml-auto h-px w-8 bg-grm-teal" />
+            <p className="max-w-[320px] font-nunito text-[13px] leading-relaxed text-grm-black/75 md:text-[14px]">
+              The bi-monthly resource guide mailed to every new homeowner in
+              Marion County within their first 60 days. The dentist they find
+              now is probably their dentist for the next decade.
+            </p>
+            <Link
+              href="/the-front-porch"
+              className="mt-5 inline-block font-nunito text-[13px] text-grm-teal no-underline transition-colors hover:underline"
+            >
+              Read more &rarr;
+            </Link>
+          </div>
+        </div>
       </div>
     </section>
   );
