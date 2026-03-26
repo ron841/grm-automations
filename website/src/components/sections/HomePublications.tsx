@@ -4,7 +4,7 @@ import Link from "next/link";
 const PUBLICATIONS = [
   {
     slug: "the-closing-table",
-    image: "/images/publications/7-Closing-2.webp",
+    image: "/images/publications/7-Closing-1.webp",
     imageAlt:
       "The Closing Table magazine on a professional real estate setting in Marion County",
     label: "MONTHLY MAGAZINE · JUNE 2026",
@@ -52,7 +52,7 @@ export default function HomePublications() {
                   src={pub.image}
                   alt={pub.imageAlt}
                   fill
-                  className="object-cover"
+                  className="object-cover object-bottom"
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
               </div>
