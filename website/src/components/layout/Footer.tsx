@@ -95,7 +95,7 @@ export default function Footer() {
               Let&apos;s Talk
             </Link>
             <Link
-              href="#media-kit"
+              href="/contact"
               className="font-nunito text-sm text-white no-underline transition-colors hover:underline hover:text-grm-teal"
             >
               or download our media kit

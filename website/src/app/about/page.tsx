@@ -138,8 +138,8 @@ export default function AboutPage() {
           </p>
           <p className="mb-10 font-merriweather text-lg leading-[1.8] text-grm-black">
             The new homeowners arriving every week had no guide waiting for
-            them. No curated answer to the question they all ask within their
-            first 60 days: who do you use for everything?
+            them. No real answer to the question they all ask within their first
+            60 days: who do you use for everything?
           </p>
           <p className="font-merriweather text-[24px] font-bold leading-tight text-grm-black">
             The gap was wide open.

@@ -40,13 +40,13 @@ export default function HomeHero() {
           {/* Buttons */}
           <div className="flex flex-col items-center gap-4 sm:flex-row lg:items-start">
             <Link
-              href="/advertise"
+              href="/contact"
               className="rounded-md bg-grm-teal px-8 py-3.5 font-nunito text-sm font-bold text-white transition-opacity hover:opacity-90"
             >
               Advertise With Us
             </Link>
             <Link
-              href="#about"
+              href="/about"
               className="rounded-md border border-white px-8 py-3.5 font-nunito text-sm font-bold text-white transition-colors hover:bg-white/10"
             >
               Our Story
