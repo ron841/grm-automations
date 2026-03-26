@@ -256,31 +256,51 @@ The Closing Table — The Front Porch
 
 Locally rooted. Professionally grown.
 
-## DESIGN UPGRADE SPRINT — March 26, 2026
+## Website — Status: READY TO DEPLOY
 
-Latest clean commit: 8cb9b20
-Status: Design upgrade in progress. Site not yet deployed to Vercel.
+- Stack: Next.js 15/16, TypeScript, Tailwind CSS v4
+- Repo subfolder: /website
+- Domain: getrootedmedia.com (IONOS)
+- Vercel account: ron-7323
+- Root directory for Vercel: website
+- DNS A record: @ → 76.76.21.21
+- DNS CNAME: www → cname.vercel-dns.com
+- 5 pages: / | /the-closing-table | /the-front-porch | /about | /contact
+- All pages: approved, zero console errors, SEO clean
 
-Components installed today:
-- Aceternity Hero Parallax — homepage hero. framer-motion added to package.json
-- Aceternity Focus Cards — homepage publications
-- Aceternity Images Slider — CT and FP hero pages
+## Integrations
 
-Design philosophy locked:
-Place first (Marion County), then publication. Dark cinematic heroes, warm cream content sections. Motion reveals — does not decorate. Reference: Garden & Gun, Texas Monthly, Magnolia Journal.
+- Cal.com: cal.com/ron-kolb-cdlgsw/30min (all CTAs)
+- Formspree: formspree.io/f/meepogwz (FP signup)
+- Email Ron: ron@getrootedmedia.com
+- Email Cameron: cameron@getrootedmedia.com
 
-Component source: ui.aceternity.com + 21st.dev
-Install pattern: npx shadcn@latest add @aceternity/[name]
+## Brand — Locked
 
-Pending upgrades in priority order:
-1. Explore CT/FP hero alternatives — Ron not 100% sold on current design
-2. Homepage stats — Text Generate Effect
-3. Homepage final CTA — Spotlight
-4. CT and FP content sections — Sticky Scroll Reveal
-5. About page team — 3D Card Effect
-6. Vercel deployment
+- Near Black: #1A1A1A
+- GRM Teal: #52B5CB (ONLY accent color)
+- Warm Cream: #FAF8F4
+- Fonts: Comfortaa (eyebrows) / Grand Hotel (The) / Merriweather (editorial) / Nunito (body)
+- BANNED: all green, #C9973A gold, gradients, purple
+- BANNED: rounded corners, box shadows, equal 3-col grids, centered-text layouts, stock images
 
-Brand locked:
-Colors: #1A1A1A, #52B5CB, #FAF8F4, white only
-Fonts: Comfortaa eyebrows, Merriweather headlines, Nunito body
-Banned: em dashes, ellipses, gradients, pill buttons, gold
+## Cameron Title (confirmed March 26)
+
+Co-Founder and Director of Sales — everywhere
+
+## Key Copy — DO NOT CHANGE
+
+- CT tagline: "No one gets to the closing table alone."
+- Homepage sub: "The fastest-growing county in America has two stories worth telling. One for the agents who close the deals. One for the families putting down roots."
+- FP best line: "Google gives them 50 options. The Front Porch gives them yours."
+- About hero: "We're a father and son."
+- Homepage CTA: "After Issue 1, you're an advertiser."
+
+## Stats — Verified (Census Bureau March 2025)
+
+- #1 fastest-growing metro in America
+- 16,567+ net new residents 2024
+- ~10,000 homes sold per year
+- $4.3B equine industry impact
+- Population 428,905 as of July 2024
+- 318 people moving in per week
