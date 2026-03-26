@@ -8,7 +8,7 @@ export default function FPReaderSignup() {
   return (
     <section id="reader-signup" className="bg-grm-cream px-6 py-20 lg:px-8">
       <div className="mx-auto max-w-[480px]">
-        <div className="rounded-md border-l-[4px] border-fp-rose bg-white p-8 lg:p-10">
+        <div className="border-l-[3px] border-grm-teal p-8 lg:p-10">
           <h2 className="mb-2 font-comfortaa text-[22px] font-bold uppercase tracking-wide text-grm-black">
             NEW TO MARION COUNTY?
           </h2>
@@ -24,7 +24,7 @@ export default function FPReaderSignup() {
           </p>
 
           {submitted ? (
-            <p className="font-nunito text-base font-semibold text-fp-sage">
+            <p className="font-nunito text-base font-semibold text-grm-teal">
               You&apos;re signed up. Welcome to Marion County.
             </p>
           ) : (
@@ -58,7 +58,7 @@ export default function FPReaderSignup() {
               />
               <button
                 type="submit"
-                className="mt-2 rounded-md bg-fp-sage px-6 py-3 font-nunito text-sm font-bold text-white transition-opacity hover:opacity-90"
+                className="mt-2 rounded-[2px] bg-grm-teal px-6 py-3 font-nunito text-sm font-bold text-white transition-opacity hover:opacity-90"
               >
                 Sign Me Up
               </button>

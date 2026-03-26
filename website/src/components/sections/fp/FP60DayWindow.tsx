@@ -30,7 +30,7 @@ export default function FP60DayWindow() {
           </p>
         </div>
 
-        <p className="mt-10 font-merriweather text-xl italic text-fp-sage">
+        <p className="mt-10 font-merriweather text-xl italic text-grm-teal">
           Before Google. Before a neighbor&apos;s recommendation. Before anyone
           else.
         </p>

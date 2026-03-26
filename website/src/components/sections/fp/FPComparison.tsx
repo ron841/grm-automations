@@ -23,7 +23,7 @@ export default function FPComparison() {
       <div className="mx-auto max-w-4xl">
         {/* Header row */}
         <div className="mb-6 grid grid-cols-2 gap-6">
-          <h3 className="font-comfortaa text-[13px] font-bold uppercase tracking-widest text-fp-sage">
+          <h3 className="font-comfortaa text-[13px] font-bold uppercase tracking-widest text-grm-teal">
             WHAT THE FRONT PORCH IS
           </h3>
           <h3 className="font-comfortaa text-[13px] font-bold uppercase tracking-widest text-grm-black">

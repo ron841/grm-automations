@@ -35,7 +35,7 @@ export default function FPCategoryGrid() {
           {CATEGORIES.slice(0, 3).map((cat) => (
             <div
               key={cat.group}
-              className="border-l-4 border-fp-sage bg-white py-5 pl-5 pr-4"
+              className="border-l-4 border-grm-teal bg-white py-5 pl-5 pr-4"
             >
               <h3 className="mb-3 font-comfortaa text-[12px] font-bold uppercase tracking-widest text-grm-black">
                 {cat.group}
@@ -59,7 +59,7 @@ export default function FPCategoryGrid() {
           {CATEGORIES.slice(3).map((cat) => (
             <div
               key={cat.group}
-              className="w-full border-l-4 border-fp-sage bg-white py-5 pl-5 pr-4 sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
+              className="w-full border-l-4 border-grm-teal bg-white py-5 pl-5 pr-4 sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
             >
               <h3 className="mb-3 font-comfortaa text-[12px] font-bold uppercase tracking-widest text-grm-black">
                 {cat.group}

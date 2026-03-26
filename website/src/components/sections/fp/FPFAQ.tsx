@@ -48,7 +48,7 @@ export default function FPFAQ() {
 
         <div className="flex flex-col gap-3">
           {FAQS.map((faq, i) => (
-            <div key={i} className="rounded-md bg-grm-cream">
+            <div key={i} className="bg-grm-cream">
               <button
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
                 className="flex w-full items-center justify-between p-6 text-left"
