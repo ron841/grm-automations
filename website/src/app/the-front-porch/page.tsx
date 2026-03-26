@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 import FPHero from "@/components/sections/fp/FPHero";
 import FP60DayWindow from "@/components/sections/fp/FP60DayWindow";
+import FPComparison from "@/components/sections/fp/FPComparison";
+import FPCategoryGrid from "@/components/sections/fp/FPCategoryGrid";
+import FPAdvertising from "@/components/sections/fp/FPAdvertising";
+import FPReaderSignup from "@/components/sections/fp/FPReaderSignup";
+import FPFAQ from "@/components/sections/fp/FPFAQ";
+import FPFoundingPartner from "@/components/sections/fp/FPFoundingPartner";
 
 export const metadata: Metadata = {
   title:
@@ -14,6 +20,12 @@ export default function FrontPorchPage() {
     <main>
       <FPHero />
       <FP60DayWindow />
+      <FPComparison />
+      <FPCategoryGrid />
+      <FPAdvertising />
+      <FPReaderSignup />
+      <FPFAQ />
+      <FPFoundingPartner />
     </main>
   );
 }
