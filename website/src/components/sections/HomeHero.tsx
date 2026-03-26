@@ -46,26 +46,26 @@ export default function HomeHero() {
     springConfig
   );
   const rotateX = useSpring(
-    useTransform(scrollYProgress, [0, 0.2], [8, 0]),
+    useTransform(scrollYProgress, [0, 0.2], [15, 0]),
     springConfig
   );
   const opacity = useSpring(
-    useTransform(scrollYProgress, [0, 0.05], [0.5, 1]),
+    useTransform(scrollYProgress, [0, 0.2], [0.2, 1]),
     springConfig
   );
   const rotateZ = useSpring(
-    useTransform(scrollYProgress, [0, 0.2], [8, 0]),
+    useTransform(scrollYProgress, [0, 0.2], [20, 0]),
     springConfig
   );
   const translateY = useSpring(
-    useTransform(scrollYProgress, [0, 0.2], [-150, 300]),
+    useTransform(scrollYProgress, [0, 0.2], [-400, 500]),
     springConfig
   );
 
   return (
     <div
       ref={ref}
-      className="h-[200vh] overflow-hidden bg-grm-black antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]"
+      className="h-[250vh] overflow-hidden bg-grm-black antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]"
     >
       {/* GRM Header */}
       <div className="max-w-7xl relative mx-auto pt-32 pb-10 px-4 w-full left-0 top-0">
