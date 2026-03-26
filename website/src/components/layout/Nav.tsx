@@ -12,24 +12,20 @@ const NAV_LINKS = [
   { href: "/contact", label: "Contact" },
 ];
 
+const CAL_URL = "https://cal.com/ron-kolb-cdlgsw/30min";
+
 export default function Nav() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
   const isContactPage = pathname === "/contact";
-  const noHeroPages = ["/contact", "/about", "/the-closing-table", "/the-front-porch"];
-  const alwaysSolid = noHeroPages.includes(pathname);
-  const [scrolled, setScrolled] = useState(alwaysSolid);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    if (alwaysSolid) {
-      setScrolled(true);
-      return;
-    }
-    const handleScroll = () => setScrolled(window.scrollY > 50);
+    const handleScroll = () => setScrolled(window.scrollY > 20);
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [alwaysSolid]);
+  }, []);
 
   // Close mobile menu on route change
   useEffect(() => {
@@ -47,63 +43,49 @@ export default function Nav() {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out ${
           scrolled
-            ? "bg-white/95 backdrop-blur-sm shadow-sm"
+            ? "bg-grm-black/95 backdrop-blur-sm shadow-sm"
             : "bg-transparent"
         }`}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
-          {/* Logo */}
+          {/* Logo — always show reversed (white) version */}
           <Link href="/" className="relative shrink-0">
-            {/* Dark logo — visible when scrolled (white/light backgrounds) */}
-            <Image
-              src="/logos/Logo_Get Rooted Media.svg"
-              alt="Get Rooted Media"
-              width={180}
-              height={60}
-              priority
-              className={`h-10 w-auto transition-opacity duration-300 ${
-                scrolled ? "opacity-100" : "opacity-0"
-              }`}
-            />
-            {/* Reversed logo — visible over hero (dark backgrounds) */}
             <Image
               src="/logos/Logo_Get Rooted Media-REV.svg"
               alt="Get Rooted Media"
               width={180}
               height={60}
               priority
-              className={`absolute inset-0 h-10 w-auto transition-opacity duration-300 ${
-                scrolled ? "opacity-0" : "opacity-100"
-              }`}
+              className="h-10 w-auto"
             />
           </Link>
 
-          {/* Desktop nav links */}
+          {/* Desktop nav links — always white */}
           <div className="hidden items-center gap-8 lg:flex">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`font-nunito text-[15px] transition-colors duration-300 hover:opacity-80 ${
-                  scrolled ? "text-grm-black" : "text-white"
-                }`}
+                className="font-nunito text-[15px] text-white transition-opacity duration-300 hover:opacity-80"
               >
                 {link.label}
               </Link>
             ))}
           </div>
 
-          {/* Desktop CTA button */}
-          <Link
-            href="/contact"
+          {/* Desktop CTA button — cal.com, new tab */}
+          <a
+            href={CAL_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="hidden rounded-md bg-grm-teal px-5 py-2.5 font-nunito text-sm font-bold text-white transition-opacity hover:opacity-90 lg:block"
           >
             Let&apos;s Talk
-          </Link>
+          </a>
 
-          {/* Mobile hamburger */}
+          {/* Mobile hamburger — always white */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             className="relative z-50 flex h-10 w-10 flex-col items-center justify-center gap-1.5 lg:hidden"
@@ -113,27 +95,19 @@ export default function Nav() {
               className={`block h-0.5 w-6 transition-all duration-300 ${
                 mobileOpen
                   ? "translate-y-2 rotate-45 bg-grm-black"
-                  : scrolled
-                    ? "bg-grm-black"
-                    : "bg-white"
+                  : "bg-white"
               }`}
             />
             <span
               className={`block h-0.5 w-6 transition-all duration-300 ${
-                mobileOpen
-                  ? "opacity-0"
-                  : scrolled
-                    ? "bg-grm-black"
-                    : "bg-white"
+                mobileOpen ? "opacity-0" : "bg-white"
               }`}
             />
             <span
               className={`block h-0.5 w-6 transition-all duration-300 ${
                 mobileOpen
                   ? "-translate-y-2 -rotate-45 bg-grm-black"
-                  : scrolled
-                    ? "bg-grm-black"
-                    : "bg-white"
+                  : "bg-white"
               }`}
             />
           </button>
@@ -157,29 +131,33 @@ export default function Nav() {
               {link.label}
             </Link>
           ))}
-          <Link
-            href="/contact"
+          <a
+            href={CAL_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={() => setMobileOpen(false)}
             className="mt-4 rounded-md bg-grm-teal px-8 py-3 font-nunito text-base font-bold text-white transition-opacity hover:opacity-90"
           >
             Let&apos;s Talk
-          </Link>
+          </a>
         </div>
       </div>
 
       {/* Mobile fixed bottom CTA — hidden on /contact and when menu is open */}
       {!isContactPage && (
         <div
-          className={`fixed bottom-0 left-0 right-0 z-40 border-t border-grm-black/10 bg-white p-4 lg:hidden ${
+          className={`fixed bottom-0 left-0 right-0 z-40 border-t border-white/10 bg-grm-black p-4 lg:hidden ${
             mobileOpen ? "hidden" : ""
           }`}
         >
-          <Link
-            href="/contact"
+          <a
+            href={CAL_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="block w-full rounded-md bg-grm-teal py-3 text-center font-nunito text-sm font-bold text-white transition-opacity hover:opacity-90"
           >
             Let&apos;s Talk
-          </Link>
+          </a>
         </div>
       )}
     </>
