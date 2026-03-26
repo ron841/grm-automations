@@ -111,7 +111,7 @@ export default function HomeStats() {
         <p className="mx-auto mt-10 max-w-[600px] text-center font-nunito text-lg leading-relaxed text-white/80">
           Marion County is not just growing. It is the fastest-growing metro in
           America. Nobody was connecting the businesses that serve this community
-          with the people who need them most. We changed that.
+          with the people who need them most. Until now.
         </p>
       </div>
     </section>
