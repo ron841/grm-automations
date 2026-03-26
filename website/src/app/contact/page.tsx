@@ -70,7 +70,7 @@ export default function ContactPage() {
                 Cameron Cowart
               </p>
               <p className="font-nunito text-sm text-grm-black/60">
-                Co-Founder and Sales Director
+                Co-Founder and Director of Sales
               </p>
             </div>
           </div>
