@@ -126,7 +126,7 @@ function ParallaxCard({
     <motion.div
       style={{ x: translate }}
       whileHover={{ y: -20 }}
-      className="group/product h-96 w-[30rem] relative flex-shrink-0"
+      className="group/product h-[520px] w-[30rem] relative flex-shrink-0"
     >
       <div className="block">
         <Image
