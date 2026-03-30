@@ -113,7 +113,7 @@ export default function ContactPage() {
             Book a Call
           </a>
           <p className="mt-4 font-nunito text-[13px] text-grm-black/50">
-            or email us directly &mdash;{" "}
+            or email us at{" "}
             <a
               href="mailto:ron@getrootedmedia.com"
               className="text-grm-black/50 transition-colors hover:text-grm-black"
