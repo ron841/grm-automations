@@ -11,7 +11,7 @@ const FAQS = [
   {
     question: "I\u2019m a lender. Will agents actually see my ad?",
     answer:
-      "Every issue is mailed to the top 350 producing agents in Marion County, sourced from Stellar MLS transaction data. Not a random list. The agents closing the most deals. Your ad appears next to cover stories about their peers.",
+      "Every issue is mailed to 500 of the top-producing agents across Marion County and The Villages \u2014 350 sourced from Stellar MLS transaction data in Marion County, 150 from Sumter County. Not a random list. The agents closing the most deals in both markets. Your ad appears next to cover stories about their peers.",
   },
   {
     question: "What if I don\u2019t have print-ready artwork?",
