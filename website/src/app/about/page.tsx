@@ -93,8 +93,8 @@ export default function AboutPage() {
               takes to earn the trust of the people whose names go on the cover.
             </p>
             <p className="font-merriweather text-[16px] leading-[1.8] text-grm-black">
-              Then he left. He spent twenty years building things across the
-              country. He always knew where home was.
+              Then he left. He spent twenty years in media and sales across the
+              country. Home was always Ocala.
             </p>
           </div>
         </div>
@@ -105,18 +105,18 @@ export default function AboutPage() {
         <div className="flex w-full items-center bg-grm-cream md:w-[48%]">
           <div className="p-8 md:px-12 md:py-14">
             <p className="mb-4 font-comfortaa text-[10px] font-bold uppercase tracking-[0.2em] text-grm-teal">
-              CO-FOUNDER &middot; DIRECTOR OF SALES
+              CO-FOUNDER &middot; SALES DIRECTOR
             </p>
             <div className="mb-6 h-px w-8 bg-grm-teal" />
             <p className="mb-4 font-merriweather text-[16px] leading-[1.8] text-grm-black">
               Cameron Cowart was born and raised in Marion County. He is one of
-              the top twenty real estate agents in the county. He knows this
+              the top twenty producing agents in Marion County. He knows this
               market the way you know a place you never left. The neighborhoods,
               the agents, the families putting down roots every week.
             </p>
             <p className="font-merriweather text-[16px] leading-[1.8] text-grm-black">
-              He wanted to build something that gives back to the community he
-              grew up in. He walks into a meeting with the conviction of someone
+              He wanted to put Marion County businesses in front of the people
+              moving here every week. He walks into a meeting with the conviction of someone
               who believes in what he is selling. He knows every agent in this
               county by name. He is here to connect every business that belongs
               in these magazines with the readers who need to find them.
@@ -145,7 +145,7 @@ export default function AboutPage() {
               Cameron Cowart
             </p>
             <p className="mt-2 font-comfortaa text-[11px] font-bold uppercase tracking-[0.15em] text-grm-teal">
-              Co-Founder and Director of Sales
+              Co-Founder and Sales Director
             </p>
           </div>
         </div>
@@ -184,11 +184,8 @@ export default function AboutPage() {
         <div className="mx-auto max-w-3xl text-center">
           <div className="mx-auto mb-14 h-px w-20 bg-white/10" />
 
-          <h2 className="mx-auto mb-5 max-w-[640px] font-merriweather text-[32px] font-bold leading-[1.2] text-white md:text-[42px]">
-            We&apos;d rather show you than tell you.
-          </h2>
           <p className="mx-auto mb-10 max-w-[480px] font-nunito text-[16px] leading-[1.75] text-white/65">
-            Book 15 minutes with Ron or Cameron. We&apos;ll walk you through
+            Book 30 minutes with Ron or Cameron. We&apos;ll walk you through
             the magazines, the audience, and exactly how it works for your
             business. No pitch. No pressure.
           </p>
