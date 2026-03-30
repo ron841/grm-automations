@@ -34,11 +34,11 @@ const nunito = Nunito({
 });
 
 export const metadata: Metadata = {
-  title: "Get Rooted Media | Marion County's Premium Local Media Company",
+  title: "Get Rooted Media | Marion County's Local Media Company",
   description:
     "Two publications serving Marion County. The Closing Table for top-producing real estate agents. The Front Porch for new homeowners. Locally rooted. Professionally grown.",
   openGraph: {
-    title: "Get Rooted Media | Marion County's Premium Local Media Company",
+    title: "Get Rooted Media | Marion County's Local Media Company",
     description:
       "Two publications serving Marion County. The Closing Table for top-producing real estate agents. The Front Porch for new homeowners. Locally rooted. Professionally grown.",
     type: "website",

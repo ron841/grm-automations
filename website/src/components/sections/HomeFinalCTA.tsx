@@ -18,6 +18,9 @@ export default function HomeFinalCTA() {
           <p className="mb-4 font-nunito text-[17px] leading-[1.8] text-[#1A1A1A]/70">
             The businesses who come in now are not just buying ad space.
           </p>
+          <p className="mb-4 font-nunito text-[17px] leading-[1.8] text-[#1A1A1A]/70">
+            They&apos;re part of the story.
+          </p>
           <p className="font-nunito text-[17px] leading-[1.8] text-[#1A1A1A]/70">
             After Issue 1, you&apos;re an advertiser.
           </p>

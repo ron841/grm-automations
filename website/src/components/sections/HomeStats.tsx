@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 const STATS = [
   { number: "16,567+", label: "Net new residents, 2024" },
-  { number: "~10,000", label: "Homes sold every year" },
+  { number: "10,000+", label: "Homes sold every year" },
   { number: "$4.3B", label: "Equine industry impact" },
   { number: "#1", label: "Fastest-growing metro in America" },
 ];
