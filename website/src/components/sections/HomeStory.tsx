@@ -4,13 +4,13 @@ export default function HomeStory() {
   return (
     <section id="our-story" className="flex flex-col md:flex-row">
       {/* LEFT COLUMN — dark with image (appears second on mobile) */}
-      <div className="relative order-2 min-h-[380px] w-full md:order-1 md:min-h-[560px] md:w-[55%]">
+      <div className="relative order-2 min-h-[380px] w-full md:order-1 md:min-h-[560px] md:w-1/2">
         <Image
           src="/images/hero/4-Ocala-2.webp"
           alt="Downtown Ocala, Marion County"
           fill
           className="object-cover object-center"
-          sizes="(max-width: 768px) 100vw, 55vw"
+          sizes="(max-width: 768px) 100vw, 50vw"
         />
         {/* Top-to-bottom overlay */}
         <div
@@ -51,7 +51,7 @@ export default function HomeStory() {
       </div>
 
       {/* RIGHT COLUMN — warm cream (appears first on mobile) */}
-      <div className="order-1 flex min-h-[380px] w-full items-center bg-grm-cream md:order-2 md:min-h-[560px] md:w-[45%]">
+      <div className="order-1 flex min-h-[380px] w-full items-center bg-grm-cream md:order-2 md:min-h-[560px] md:w-1/2">
         <div className="p-8 md:px-12 md:py-14">
           <p className="mb-7 font-merriweather text-[20px] font-bold leading-[1.5] text-grm-black md:text-[26px]">
             Now you need a doctor. Your kid needs a school. Your AC is going to
