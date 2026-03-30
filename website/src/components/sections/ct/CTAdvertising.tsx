@@ -3,7 +3,7 @@ export default function CTAdvertising() {
     <section id="advertising" className="bg-grm-black px-8 py-12 md:px-20 md:py-[72px]">
       <div className="mx-auto flex max-w-7xl flex-col items-start gap-10 md:flex-row md:items-start md:gap-0">
         {/* ITEM 1 — 38% */}
-        <div className="w-full pr-0 md:w-[38%] md:pr-12">
+        <div className="w-full pr-0 md:w-[30%] md:pr-12">
           <p className="mb-4 font-comfortaa text-[10px] font-bold uppercase tracking-[0.25em] text-grm-teal">
             01
           </p>
@@ -20,11 +20,11 @@ export default function CTAdvertising() {
 
         {/* Vertical divider */}
         <div
-          className="hidden w-px self-start mt-8 bg-grm-teal md:block h-24"
+          className="hidden w-px self-stretch bg-grm-teal md:block md:mx-auto"
         />
 
         {/* ITEM 2 — 31% */}
-        <div className="w-full pl-0 md:w-[31%] md:pl-12">
+        <div className="w-full pl-0 md:w-[30%] md:pl-12">
           <p className="mb-4 font-comfortaa text-[10px] font-bold uppercase tracking-[0.25em] text-grm-teal">
             02
           </p>
@@ -40,11 +40,11 @@ export default function CTAdvertising() {
 
         {/* Vertical divider */}
         <div
-          className="hidden w-px self-start mt-8 bg-grm-teal md:block h-24"
+          className="hidden w-px self-stretch bg-grm-teal md:block md:mx-auto"
         />
 
         {/* ITEM 3 — 31% */}
-        <div className="w-full pl-0 md:w-[31%] md:pl-12">
+        <div className="w-full pl-0 md:w-[30%] md:pl-12">
           <p className="mb-4 font-comfortaa text-[10px] font-bold uppercase tracking-[0.25em] text-grm-teal">
             03
           </p>
