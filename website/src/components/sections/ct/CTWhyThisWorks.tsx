@@ -12,7 +12,7 @@ export default function CTWhyThisWorks() {
       <div className="mx-auto grid max-w-5xl grid-cols-1 gap-12 lg:grid-cols-5">
         {/* Left column — copy (60%) */}
         <div className="lg:col-span-3">
-          <p className="mb-4 font-comfortaa text-[11px] font-bold uppercase tracking-widest text-grm-teal">
+          <p className="mb-4 font-comfortaa text-[13px] font-bold uppercase tracking-widest text-grm-teal">
             WHY THIS WORKS
           </p>
           <div className="mb-6 h-[3px] w-10 bg-grm-teal" />

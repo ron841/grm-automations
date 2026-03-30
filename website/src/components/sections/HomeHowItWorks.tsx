@@ -4,7 +4,7 @@ export default function HomeHowItWorks() {
       <div className="mx-auto flex max-w-7xl flex-col items-start gap-10 md:flex-row md:items-start md:gap-0">
         {/* ITEM 1 — 40% */}
         <div className="w-full pr-0 md:w-[30%] md:pr-12">
-          <p className="mb-4 font-merriweather text-[11px] font-bold uppercase tracking-[0.3em] text-grm-teal">
+          <p className="mb-4 font-merriweather text-[13px] font-bold uppercase tracking-[0.3em] text-grm-teal">
             01
           </p>
           <h3 className="mb-4 font-merriweather text-[28px] font-bold leading-[1.2] text-white">
@@ -21,7 +21,7 @@ export default function HomeHowItWorks() {
 
         {/* ITEM 2 — 30% */}
         <div className="w-full pl-0 md:w-[30%] md:pl-12">
-          <p className="mb-4 font-merriweather text-[11px] font-bold uppercase tracking-[0.3em] text-grm-teal">
+          <p className="mb-4 font-merriweather text-[13px] font-bold uppercase tracking-[0.3em] text-grm-teal">
             02
           </p>
           <h3 className="mb-4 font-merriweather text-[24px] font-bold leading-[1.2] text-white">
@@ -38,7 +38,7 @@ export default function HomeHowItWorks() {
 
         {/* ITEM 3 — 30% */}
         <div className="w-full pl-0 md:w-[30%] md:pl-12">
-          <p className="mb-4 font-merriweather text-[11px] font-bold uppercase tracking-[0.3em] text-grm-teal">
+          <p className="mb-4 font-merriweather text-[13px] font-bold uppercase tracking-[0.3em] text-grm-teal">
             03
           </p>
           <h3 className="mb-4 font-merriweather text-[24px] font-bold leading-[1.2] text-white">

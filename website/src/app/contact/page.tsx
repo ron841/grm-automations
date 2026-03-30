@@ -45,7 +45,7 @@ export default function ContactPage() {
         />
 
         <div className="relative z-10 flex h-full min-h-[50vh] flex-col justify-center px-8 py-10 md:min-h-screen md:px-14 md:py-16">
-          <p className="mb-4 font-comfortaa text-[10px] font-bold uppercase tracking-[0.2em] text-grm-teal">
+          <p className="mb-4 font-comfortaa text-[12px] font-bold uppercase tracking-[0.2em] text-grm-teal">
             GET ROOTED MEDIA
           </p>
           <div className="mb-7 h-px w-8 bg-grm-teal" />
@@ -59,7 +59,7 @@ export default function ContactPage() {
             <p className="font-merriweather text-[15px] font-bold text-white">
               Ron Kolb
             </p>
-            <p className="mt-1 font-comfortaa text-[10px] font-bold uppercase tracking-[0.12em] text-grm-teal">
+            <p className="mt-1 font-comfortaa text-[12px] font-bold uppercase tracking-[0.12em] text-grm-teal">
               FOUNDER AND PUBLISHER
             </p>
             <a
@@ -77,7 +77,7 @@ export default function ContactPage() {
             <p className="font-merriweather text-[15px] font-bold text-white">
               Cameron Cowart
             </p>
-            <p className="mt-1 font-comfortaa text-[10px] font-bold uppercase tracking-[0.12em] text-grm-teal">
+            <p className="mt-1 font-comfortaa text-[12px] font-bold uppercase tracking-[0.12em] text-grm-teal">
               CO-FOUNDER &middot; SALES DIRECTOR
             </p>
             <a
@@ -93,7 +93,7 @@ export default function ContactPage() {
       {/* RIGHT — cream booking column (appears first on mobile) */}
       <div className="order-1 flex min-h-[50vh] w-full items-center bg-grm-cream md:order-2 md:min-h-screen md:w-1/2">
         <div className="w-full px-8 py-10 md:px-14 md:py-16">
-          <p className="mb-4 font-comfortaa text-[10px] font-bold uppercase tracking-[0.2em] text-grm-teal">
+          <p className="mb-4 font-comfortaa text-[12px] font-bold uppercase tracking-[0.2em] text-grm-teal">
             LET&apos;S TALK
           </p>
           <div className="mb-7 h-px w-8 bg-grm-teal" />

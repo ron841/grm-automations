@@ -32,7 +32,7 @@ export default function HomeStory() {
         {/* Content — upper-left */}
         <div className="relative z-10 flex h-full flex-col justify-start p-8 md:p-14">
           <div className="max-w-[480px]">
-            <p className="mb-3.5 font-comfortaa text-[10px] font-bold uppercase tracking-[0.2em] text-grm-teal">
+            <p className="mb-3.5 font-comfortaa text-[12px] font-bold uppercase tracking-[0.2em] text-grm-teal">
               OUR STORY
             </p>
             <div className="mb-7 h-px w-8 bg-grm-teal" />
@@ -41,7 +41,7 @@ export default function HomeStory() {
             </h2>
             <p className="mt-6 font-nunito text-[15px] leading-[1.75] text-white/75">
               The agent finds you the house. The lender makes the numbers work.
-              The title company handles the paperwork. And then one afternoon,
+              The title company handles the paperwork. Then one afternoon,
               you&apos;re standing in a kitchen that&apos;s yours, holding a set
               of keys. The entire team that got you there has moved on to their
               next deal.
@@ -63,12 +63,12 @@ export default function HomeStory() {
             You don&apos;t know anyone yet.
           </p>
           <p className="mb-9 font-nunito text-[15px] leading-[1.75] text-grm-black/65">
-            That&apos;s the moment The Front Porch exists for. And when your
-            agent closes the deal, The Closing Table makes sure the whole
+            That&apos;s the moment The Front Porch exists for. When your agent
+            closes the deal, The Closing Table makes sure the whole
             professional network knows who made it happen.
           </p>
           <div className="mb-7 h-px w-12 bg-grm-teal" />
-          <p className="font-comfortaa text-[11px] font-bold uppercase tracking-[0.15em] text-grm-teal">
+          <p className="font-comfortaa text-[13px] font-bold uppercase tracking-[0.15em] text-grm-teal">
             GET ROOTED MEDIA &middot; MARION COUNTY, FLORIDA
           </p>
         </div>

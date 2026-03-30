@@ -4,7 +4,7 @@ export default function CTAgentCallout() {
       <div className="mx-auto flex max-w-7xl flex-col gap-10 md:flex-row md:items-center md:gap-0">
         {/* LEFT — 60% */}
         <div className="w-full md:w-[60%]">
-          <p className="mb-4 font-comfortaa text-[10px] font-bold uppercase tracking-[0.2em] text-grm-teal">
+          <p className="mb-4 font-comfortaa text-[12px] font-bold uppercase tracking-[0.2em] text-grm-teal">
             ISSUE 1 &middot; JUNE 2026
           </p>
           <div className="mb-6 h-px w-8 bg-grm-teal" />

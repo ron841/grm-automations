@@ -2,7 +2,7 @@ export default function HomeFinalCTA() {
   return (
     <section className="bg-grm-cream px-8 py-[72px] md:px-20 md:py-[100px]">
       <div className="mx-auto max-w-3xl text-center">
-        <p className="mb-6 font-comfortaa text-[10px] font-bold uppercase tracking-[0.25em] text-grm-teal">
+        <p className="mb-6 font-comfortaa text-[12px] font-bold uppercase tracking-[0.25em] text-grm-teal">
           FOUNDING PARTNER &middot; LIMITED AVAILABILITY
         </p>
         <div className="mx-auto mb-10 h-px w-10 bg-grm-teal" />

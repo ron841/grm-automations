@@ -2,7 +2,7 @@ export default function FP60DayWindow() {
   return (
     <section className="bg-grm-cream px-6 py-[100px] lg:px-8">
       <div className="mx-auto max-w-[680px] text-center">
-        <p className="mb-4 font-comfortaa text-[11px] font-bold uppercase tracking-widest text-grm-teal">
+        <p className="mb-4 font-comfortaa text-[13px] font-bold uppercase tracking-widest text-grm-teal">
           THE 60-DAY WINDOW
         </p>
         <div className="mx-auto mb-10 h-[3px] w-10 bg-grm-teal" />

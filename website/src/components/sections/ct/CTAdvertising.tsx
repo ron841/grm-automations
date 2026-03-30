@@ -4,7 +4,7 @@ export default function CTAdvertising() {
       <div className="mx-auto flex max-w-7xl flex-col items-start gap-10 md:flex-row md:items-start md:gap-0">
         {/* ITEM 1 — 38% */}
         <div className="w-full pr-0 md:w-[30%] md:pr-12">
-          <p className="mb-4 font-comfortaa text-[10px] font-bold uppercase tracking-[0.25em] text-grm-teal">
+          <p className="mb-4 font-comfortaa text-[12px] font-bold uppercase tracking-[0.25em] text-grm-teal">
             01
           </p>
           <h3 className="mb-3.5 font-merriweather text-[28px] font-bold leading-[1.2] text-white">
@@ -25,7 +25,7 @@ export default function CTAdvertising() {
 
         {/* ITEM 2 — 31% */}
         <div className="w-full pl-0 md:w-[30%] md:pl-12">
-          <p className="mb-4 font-comfortaa text-[10px] font-bold uppercase tracking-[0.25em] text-grm-teal">
+          <p className="mb-4 font-comfortaa text-[12px] font-bold uppercase tracking-[0.25em] text-grm-teal">
             02
           </p>
           <h3 className="mb-3.5 font-merriweather text-[24px] font-bold leading-[1.2] text-white">
@@ -45,7 +45,7 @@ export default function CTAdvertising() {
 
         {/* ITEM 3 — 31% */}
         <div className="w-full pl-0 md:w-[30%] md:pl-12">
-          <p className="mb-4 font-comfortaa text-[10px] font-bold uppercase tracking-[0.25em] text-grm-teal">
+          <p className="mb-4 font-comfortaa text-[12px] font-bold uppercase tracking-[0.25em] text-grm-teal">
             03
           </p>
           <h3 className="mb-3.5 font-merriweather text-[24px] font-bold leading-[1.2] text-white">

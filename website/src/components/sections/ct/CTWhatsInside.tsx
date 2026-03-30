@@ -26,7 +26,7 @@ export default function CTWhatsInside() {
     <section className="bg-grm-cream px-8 py-12 md:px-20 md:py-20">
       {/* Header */}
       <div className="mx-auto max-w-5xl text-center">
-        <p className="font-comfortaa text-[10px] font-bold uppercase tracking-[0.25em] text-grm-teal">
+        <p className="font-comfortaa text-[12px] font-bold uppercase tracking-[0.25em] text-grm-teal">
           INSIDE EVERY ISSUE
         </p>
         <div className="mx-auto mt-3.5 h-px w-8 bg-grm-teal" />

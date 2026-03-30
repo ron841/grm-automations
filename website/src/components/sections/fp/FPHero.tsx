@@ -19,7 +19,7 @@ export default function FPHero() {
       direction="up"
     >
       <div className="relative z-50 flex flex-col items-center justify-center px-6 text-center">
-        <p className="mb-6 font-comfortaa text-[11px] font-bold uppercase tracking-[0.2em] text-grm-teal">
+        <p className="mb-6 font-comfortaa text-[13px] font-bold uppercase tracking-[0.2em] text-grm-teal">
           A GET ROOTED MEDIA PUBLICATION &middot; BI-MONTHLY &middot; MARION
           COUNTY
         </p>

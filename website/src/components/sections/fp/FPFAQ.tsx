@@ -41,7 +41,7 @@ export default function FPFAQ() {
   return (
     <section className="bg-grm-cream px-6 py-20 lg:px-8">
       <div className="mx-auto max-w-3xl">
-        <p className="mb-4 text-center font-comfortaa text-[11px] font-bold uppercase tracking-widest text-grm-teal">
+        <p className="mb-4 text-center font-comfortaa text-[13px] font-bold uppercase tracking-widest text-grm-teal">
           FREQUENTLY ASKED QUESTIONS
         </p>
         <div className="mx-auto mb-10 h-[3px] w-10 bg-grm-teal" />

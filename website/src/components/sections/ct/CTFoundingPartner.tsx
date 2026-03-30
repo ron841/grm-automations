@@ -26,7 +26,7 @@ export default function CTFoundingPartner() {
     <section className="flex flex-col md:flex-row">
       {/* LEFT COLUMN — 52% */}
       <div className="w-full bg-grm-black px-8 py-12 md:w-[52%] md:px-16 md:py-[72px]">
-        <p className="mb-4 font-comfortaa text-[10px] font-bold uppercase tracking-[0.2em] text-grm-teal">
+        <p className="mb-4 font-comfortaa text-[12px] font-bold uppercase tracking-[0.2em] text-grm-teal">
           FOUNDING PARTNER &middot; LIMITED AVAILABILITY
         </p>
         <div className="mb-7 h-px w-8 bg-grm-teal" />
@@ -63,7 +63,7 @@ export default function CTFoundingPartner() {
         <div className="w-full">
           {BENEFITS.map((b, i) => (
             <div key={b.number}>
-              <p className="mb-2 font-comfortaa text-[11px] font-bold tracking-[0.2em] text-grm-teal">
+              <p className="mb-2 font-comfortaa text-[13px] font-bold tracking-[0.2em] text-grm-teal">
                 {b.number}
               </p>
               <p className="font-merriweather text-[16px] font-bold leading-[1.4] text-white">

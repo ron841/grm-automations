@@ -11,7 +11,7 @@ export default function FPFoundingPartner() {
   return (
     <section className="bg-grm-black px-6 py-20 lg:px-8">
       <div className="mx-auto max-w-[640px] text-center">
-        <p className="mb-4 font-comfortaa text-[11px] font-bold uppercase tracking-widest text-grm-teal">
+        <p className="mb-4 font-comfortaa text-[13px] font-bold uppercase tracking-widest text-grm-teal">
           FOUNDING PARTNER BENEFITS
         </p>
         <div className="mx-auto mb-10 h-[3px] w-10 bg-grm-teal" />

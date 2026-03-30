@@ -28,7 +28,7 @@ export default function CTHero() {
       <div className="absolute inset-0 flex items-end pb-[20vh] px-8 md:px-20">
         <div className="max-w-xl">
           {/* Eyebrow */}
-          <p className="mb-4 font-comfortaa text-[11px] font-bold uppercase tracking-[0.2em] text-grm-teal">
+          <p className="mb-4 font-comfortaa text-[13px] font-bold uppercase tracking-[0.2em] text-grm-teal">
             A GET ROOTED MEDIA PUBLICATION &middot; MONTHLY &middot; MARION
             COUNTY
           </p>

@@ -32,7 +32,7 @@ export default function AboutPage() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-black/60" />
         <div className="relative z-10 flex min-h-[70vh] items-end px-6 pb-20 pt-[120px] lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
-            <p className="mb-4 font-comfortaa text-[11px] font-bold uppercase tracking-widest text-grm-teal">
+            <p className="mb-4 font-comfortaa text-[13px] font-bold uppercase tracking-widest text-grm-teal">
               LOCALLY ROOTED. PROFESSIONALLY GROWN.
             </p>
             <h1 className="font-merriweather text-[36px] font-bold leading-tight text-white lg:text-[48px]">
@@ -68,7 +68,7 @@ export default function AboutPage() {
             <p className="font-merriweather text-[28px] font-bold text-white">
               Ron Kolb
             </p>
-            <p className="mt-2 font-comfortaa text-[11px] font-bold uppercase tracking-[0.15em] text-grm-teal">
+            <p className="mt-2 font-comfortaa text-[13px] font-bold uppercase tracking-[0.15em] text-grm-teal">
               Founder and Publisher
             </p>
           </div>
@@ -76,7 +76,7 @@ export default function AboutPage() {
 
         <div className="flex w-full items-center bg-grm-cream md:w-[48%]">
           <div className="p-8 md:px-12 md:py-14">
-            <p className="mb-4 font-comfortaa text-[10px] font-bold uppercase tracking-[0.2em] text-grm-teal">
+            <p className="mb-4 font-comfortaa text-[12px] font-bold uppercase tracking-[0.2em] text-grm-teal">
               THE PUBLISHER
             </p>
             <div className="mb-6 h-px w-8 bg-grm-teal" />
@@ -104,7 +104,7 @@ export default function AboutPage() {
       <section className="flex flex-col md:flex-row">
         <div className="flex w-full items-center bg-grm-cream md:w-[48%]">
           <div className="p-8 md:px-12 md:py-14">
-            <p className="mb-4 font-comfortaa text-[10px] font-bold uppercase tracking-[0.2em] text-grm-teal">
+            <p className="mb-4 font-comfortaa text-[12px] font-bold uppercase tracking-[0.2em] text-grm-teal">
               CO-FOUNDER &middot; SALES DIRECTOR
             </p>
             <div className="mb-6 h-px w-8 bg-grm-teal" />
@@ -144,7 +144,7 @@ export default function AboutPage() {
             <p className="font-merriweather text-[28px] font-bold text-white">
               Cameron Cowart
             </p>
-            <p className="mt-2 font-comfortaa text-[11px] font-bold uppercase tracking-[0.15em] text-grm-teal">
+            <p className="mt-2 font-comfortaa text-[13px] font-bold uppercase tracking-[0.15em] text-grm-teal">
               Co-Founder and Sales Director
             </p>
           </div>
@@ -154,7 +154,7 @@ export default function AboutPage() {
       {/* ───── SECTION 3: WHY WE BUILT THIS ───── */}
       <section className="bg-grm-black px-8 py-16 md:px-20 md:py-20">
         <div className="mx-auto max-w-5xl text-center">
-          <p className="mb-4 font-comfortaa text-[10px] font-bold uppercase tracking-[0.2em] text-grm-teal">
+          <p className="mb-4 font-comfortaa text-[12px] font-bold uppercase tracking-[0.2em] text-grm-teal">
             WHY WE BUILT THIS
           </p>
           <div className="mx-auto mb-12 h-px w-10 bg-grm-teal" />

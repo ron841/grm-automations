@@ -23,7 +23,7 @@ export default function HomePublications() {
             }}
           />
           <div className="absolute inset-0 flex flex-col justify-center p-7 md:p-12">
-            <p className="font-comfortaa text-[10px] font-bold uppercase tracking-[0.18em] text-grm-teal">
+            <p className="font-comfortaa text-[12px] font-bold uppercase tracking-[0.18em] text-grm-teal">
               MONTHLY MAGAZINE &middot; JUNE 2026
             </p>
             <div className="mt-3">
@@ -66,7 +66,7 @@ export default function HomePublications() {
             }}
           />
           <div className="absolute inset-0 flex flex-col items-end justify-center p-7 text-right md:p-12">
-            <p className="font-comfortaa text-[10px] font-bold uppercase tracking-[0.18em] text-grm-teal">
+            <p className="font-comfortaa text-[12px] font-bold uppercase tracking-[0.18em] text-grm-teal">
               BI-MONTHLY GUIDE &middot; JULY 2026
             </p>
             <div className="mt-3">

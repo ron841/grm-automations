@@ -28,7 +28,7 @@ export default function Footer() {
 
           {/* Column 2 — Publications */}
           <div className="flex flex-col gap-4">
-            <h3 className="font-comfortaa text-[11px] font-bold uppercase tracking-widest text-grm-teal">
+            <h3 className="font-comfortaa text-[13px] font-bold uppercase tracking-widest text-grm-teal">
               Publications
             </h3>
             <nav className="flex flex-col gap-3">
@@ -51,7 +51,7 @@ export default function Footer() {
 
           {/* Column 3 — Connect */}
           <div className="flex flex-col gap-4">
-            <h3 className="font-comfortaa text-[11px] font-bold uppercase tracking-widest text-grm-teal">
+            <h3 className="font-comfortaa text-[13px] font-bold uppercase tracking-widest text-grm-teal">
               Connect
             </h3>
             <nav className="flex flex-col gap-3">
