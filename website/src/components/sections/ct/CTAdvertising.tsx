@@ -1,7 +1,7 @@
 export default function CTAdvertising() {
   return (
     <section id="advertising" className="bg-grm-black px-8 py-12 md:px-20 md:py-[72px]">
-      <div className="mx-auto flex max-w-7xl flex-col items-start gap-10 md:flex-row md:items-stretch md:gap-0">
+      <div className="mx-auto flex max-w-7xl flex-col items-start gap-10 md:flex-row md:items-start md:gap-0">
         {/* ITEM 1 — 38% */}
         <div className="w-full pr-0 md:w-[38%] md:pr-12">
           <p className="mb-4 font-comfortaa text-[10px] font-bold uppercase tracking-[0.25em] text-grm-teal">
