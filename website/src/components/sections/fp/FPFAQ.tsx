@@ -6,7 +6,7 @@ const FAQS = [
   {
     question: "How do new homeowners get The Front Porch?",
     answer:
-      "We mail it to every new homeowner in Marion County within their first 60 days, sourced from county property records. It arrives when they need it most, without them having to search for it.",
+      "We mail it to every new homeowner in Marion County within their first 60 days, sourced from county property records. It arrives when they need it most. They don\u2019t have to look for it.",
   },
   {
     question: "What does category-limited mean?",
@@ -26,7 +26,7 @@ const FAQS = [
   {
     question: "What if my category is already taken?",
     answer:
-      "Then it\u2019s taken for the year. The businesses that move first get the strongest position. This is the urgency built into the model.",
+      "Then it\u2019s taken for the year. The businesses that move first get the strongest position.",
   },
   {
     question: "Can I be in both publications?",

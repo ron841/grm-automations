@@ -44,7 +44,7 @@ export default function FPHero() {
           href="#reader-signup"
           className="mt-5 font-nunito text-sm text-white/70 no-underline transition-colors hover:text-white hover:underline"
         >
-          New to Marion County? Find your resources below
+          New to Marion County?
         </Link>
       </div>
     </ImagesSlider>

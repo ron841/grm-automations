@@ -37,9 +37,7 @@ export default function FPReaderSignup() {
           </p>
 
           <p className="mb-8 font-nunito text-base leading-relaxed text-grm-black/70">
-            Sign up to have it delivered to your mailbox when it ships.
-            We&apos;ll send the guide as soon as it&apos;s off the press, plus a
-            few local recommendations to hold you over in the meantime.
+            Sign up and we&apos;ll mail it to you the day it ships.
           </p>
 
           {submitted ? (
