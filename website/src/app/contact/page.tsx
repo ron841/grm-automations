@@ -4,11 +4,11 @@ import Image from "next/image";
 export const metadata: Metadata = {
   title: "Let's Talk | Get Rooted Media | Marion County, Florida",
   description:
-    "Book 15 minutes with Ron or Cameron. We'll show you who reads it, what it costs, and whether it's the right fit.",
+    "Book 30 minutes with Ron or Cameron. We'll show you who reads it, how it works, and whether it's the right fit.",
   openGraph: {
     title: "Let's Talk | Get Rooted Media | Marion County, Florida",
     description:
-      "Book 15 minutes with Ron or Cameron. We'll show you who reads it, what it costs, and whether it's the right fit.",
+      "Book 30 minutes with Ron or Cameron. We'll show you who reads it, how it works, and whether it's the right fit.",
     type: "website",
     url: "https://getrootedmedia.com/contact",
     siteName: "Get Rooted Media",
@@ -50,8 +50,8 @@ export default function ContactPage() {
           </p>
           <div className="mb-7 h-px w-8 bg-grm-teal" />
           <p className="mb-12 max-w-[400px] font-merriweather text-[22px] italic leading-[1.4] text-white md:text-[28px]">
-            We&apos;d rather show you than tell you. Fifteen minutes and
-            you&apos;ll know exactly whether this is right for your business.
+            Thirty minutes and you&apos;ll know if this is right for your
+            business.
           </p>
 
           {/* Ron */}
@@ -78,7 +78,7 @@ export default function ContactPage() {
               Cameron Cowart
             </p>
             <p className="mt-1 font-comfortaa text-[10px] font-bold uppercase tracking-[0.12em] text-grm-teal">
-              CO-FOUNDER &middot; DIRECTOR OF SALES
+              CO-FOUNDER &middot; SALES DIRECTOR
             </p>
             <a
               href="mailto:cameron@getrootedmedia.com"
@@ -98,10 +98,10 @@ export default function ContactPage() {
           </p>
           <div className="mb-7 h-px w-8 bg-grm-teal" />
           <h1 className="mb-5 font-merriweather text-[32px] font-bold leading-[1.2] text-grm-black md:text-[40px]">
-            Book 15 minutes with Ron or Cameron.
+            Book 30 minutes with Ron or Cameron.
           </h1>
           <p className="mb-10 max-w-[380px] font-nunito text-[16px] leading-[1.75] text-grm-black/65">
-            We&apos;ll show you who reads it, what it costs, and whether
+            We&apos;ll show you who reads it, how it works, and whether
             it&apos;s the right fit. No pitch. No pressure.
           </p>
           <a
