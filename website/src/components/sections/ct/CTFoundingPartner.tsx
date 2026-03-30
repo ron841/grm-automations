@@ -31,13 +31,12 @@ export default function CTFoundingPartner() {
         </p>
         <div className="mb-7 h-px w-8 bg-grm-teal" />
         <h2 className="font-merriweather text-[32px] font-bold leading-[1.2] text-white md:text-[42px]">
-          Right now, there is a difference between being first and being next.
+          There is a difference between being first and being next. Right now, you can still be first.
         </h2>
         <p className="mt-5 max-w-[420px] font-nunito text-[15px] leading-[1.75] text-white/70">
           Cover positions are limited to four per issue. Interior spots are
           filling. The businesses that come in now get terms, recognition,
-          and access that will not be offered again after Issue 1 goes to
-          print.
+          and access that will not be offered again after Issue 1 prints.
         </p>
         <a
           href="https://cal.com/ron-kolb-cdlgsw/30min"

@@ -2,7 +2,7 @@ const ENTRIES = [
   {
     number: "01",
     title: "Cover Story",
-    body: "An in-depth feature on one of Marion County\u2019s top-producing agents. Not a puff piece. An honest conversation about how they built their business and what they\u2019ve learned.",
+    body: "An in-depth feature on one of Marion County\u2019s top-producing agents. An honest conversation about how they built their business. What worked. What didn\u2019t.",
   },
   {
     number: "02",
@@ -17,7 +17,7 @@ const ENTRIES = [
   {
     number: "04",
     title: "Industry Insights",
-    body: "One timely article per issue. Legislative changes, market shifts, negotiation strategies. Written for practitioners, not academics.",
+    body: "One timely article per issue. Legislative changes, market shifts, negotiation strategies. Written for people who work the market, not study it.",
   },
 ];
 

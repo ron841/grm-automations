@@ -60,7 +60,7 @@ export default function CTHero() {
               href="/about"
               className="rounded-[3px] border border-white px-8 py-3.5 font-nunito text-sm font-bold text-white transition-colors hover:bg-white/10"
             >
-              Read the founding story
+              How it started
             </Link>
           </div>
         </div>

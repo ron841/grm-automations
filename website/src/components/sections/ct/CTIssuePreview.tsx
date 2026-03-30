@@ -17,9 +17,9 @@ export default function CTIssuePreview() {
         </p>
 
         <p className="mb-10 font-nunito text-lg leading-relaxed text-white/80">
-          What she does: she makes sure every lender, title rep, inspector, and
-          attorney she works with knows exactly when she has a client who needs
-          them. And they do the same for her.
+          She makes sure every lender, title rep, inspector, and attorney she
+          works with knows exactly when she has a client who needs them. And
+          they do the same for her.
         </p>
 
         {/* Pull quote */}

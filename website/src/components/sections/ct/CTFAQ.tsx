@@ -6,12 +6,12 @@ const FAQS = [
   {
     question: "How is this different from Real Producers?",
     answer:
-      "Real Producers mails only to agents. The Closing Table mails to agents and the 500+ service companies who support real estate in Marion County. Your ad reaches both sides of the referral relationship.",
+      "Real Producers mails only to agents. The Closing Table mails to agents and the 500 service companies who support real estate in Marion County. Your ad reaches both sides of the referral relationship.",
   },
   {
     question: "I\u2019m a lender. Will agents actually see my ad?",
     answer:
-      "Every issue is mailed to 500 of the top-producing agents across Marion County and The Villages \u2014 350 sourced from Stellar MLS transaction data in Marion County, 150 from Sumter County. Not a random list. The agents closing the most deals in both markets. Your ad appears next to cover stories about their peers.",
+      "Every issue is mailed to 500 of the top-producing agents across Marion County and The Villages. 350 sourced from Stellar MLS transaction data in Marion County, 150 from Sumter County. Not a random list. The agents closing the most deals in both markets. Your ad appears next to cover stories about their peers.",
   },
   {
     question: "What if I don\u2019t have print-ready artwork?",
