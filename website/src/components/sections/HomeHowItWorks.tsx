@@ -1,9 +1,9 @@
 export default function HomeHowItWorks() {
   return (
     <section className="bg-grm-black px-8 py-12 md:px-20 md:py-[72px]">
-      <div className="mx-auto flex max-w-7xl flex-col items-start gap-10 md:flex-row md:items-stretch md:gap-0">
+      <div className="mx-auto flex max-w-7xl flex-col items-start gap-10 md:flex-row md:items-start md:gap-0">
         {/* ITEM 1 — 40% */}
-        <div className="w-full pr-0 md:w-[40%] md:pr-12">
+        <div className="w-full pr-0 md:w-[30%] md:pr-12">
           <p className="mb-4 font-merriweather text-[11px] font-bold uppercase tracking-[0.3em] text-grm-teal">
             01
           </p>
@@ -17,7 +17,7 @@ export default function HomeHowItWorks() {
         </div>
 
         {/* Vertical divider */}
-        <div className="hidden w-px self-center bg-grm-teal md:block" style={{ height: 60 }} />
+        <div className="hidden w-px self-stretch bg-grm-teal md:block md:mx-auto" />
 
         {/* ITEM 2 — 30% */}
         <div className="w-full pl-0 md:w-[30%] md:pl-12">
@@ -34,7 +34,7 @@ export default function HomeHowItWorks() {
         </div>
 
         {/* Vertical divider */}
-        <div className="hidden w-px self-center bg-grm-teal md:block" style={{ height: 60 }} />
+        <div className="hidden w-px self-stretch bg-grm-teal md:block md:mx-auto" />
 
         {/* ITEM 3 — 30% */}
         <div className="w-full pl-0 md:w-[30%] md:pl-12">
