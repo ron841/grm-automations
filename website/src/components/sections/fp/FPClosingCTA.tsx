@@ -32,9 +32,14 @@ export default function FPClosingCTA() {
             Let&apos;s Talk About The Front Porch
           </a>
           <p className="mt-4">
-            <span className="cursor-pointer font-nunito text-[13px] text-grm-teal no-underline transition-colors hover:underline">
+            <a
+              href="/media-kits/front-porch-media-kit.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-nunito text-[13px] text-grm-teal no-underline transition-colors hover:underline"
+            >
               or request the media kit
-            </span>
+            </a>
           </p>
         </div>
       </div>

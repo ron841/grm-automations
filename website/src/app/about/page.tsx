@@ -198,9 +198,12 @@ export default function AboutPage() {
             Let&apos;s Talk
           </a>
           <p className="mt-4">
-            <span className="cursor-pointer font-nunito text-[13px] text-grm-teal no-underline transition-colors hover:underline">
+            <a
+              href="/contact"
+              className="font-nunito text-[13px] text-grm-teal no-underline transition-colors hover:underline"
+            >
               or request our media kit
-            </span>
+            </a>
           </p>
         </div>
       </section>

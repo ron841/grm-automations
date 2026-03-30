@@ -54,12 +54,14 @@ export default function FPFoundingPartner() {
         </Link>
 
         <p className="mt-4">
-          <Link
-            href="/contact"
+          <a
+            href="/media-kits/front-porch-media-kit.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             className="font-nunito text-sm text-white/50 no-underline transition-colors hover:text-white hover:underline"
           >
             or request The Front Porch media kit
-          </Link>
+          </a>
         </p>
       </div>
     </section>

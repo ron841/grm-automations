@@ -33,9 +33,14 @@ export default function HomeFinalCTA() {
             Let&apos;s Talk
           </a>
           <p className="mt-4">
-            <span className="font-nunito text-[13px] text-grm-teal no-underline transition-colors hover:underline cursor-pointer">
+            <a
+              href="/media-kits/closing-table-media-kit.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-nunito text-[13px] text-grm-teal no-underline transition-colors hover:underline"
+            >
               or request our media kit
-            </span>
+            </a>
           </p>
         </div>
       </div>

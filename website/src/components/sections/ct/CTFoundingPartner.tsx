@@ -46,6 +46,16 @@ export default function CTFoundingPartner() {
         >
           Let&apos;s Talk About Advertising
         </a>
+        <p className="mt-4">
+          <a
+            href="/media-kits/closing-table-media-kit.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-nunito text-[13px] text-white/50 no-underline transition-colors hover:text-white hover:underline"
+          >
+            or request the media kit
+          </a>
+        </p>
       </div>
 
       {/* RIGHT COLUMN — 48% */}
