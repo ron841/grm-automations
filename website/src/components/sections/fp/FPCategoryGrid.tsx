@@ -37,7 +37,7 @@ export default function FPCategoryGrid() {
               key={cat.group}
               className="border-l-4 border-grm-teal bg-white py-5 pl-5 pr-4"
             >
-              <h3 className="mb-3 font-comfortaa text-[12px] font-bold uppercase tracking-widest text-grm-black">
+              <h3 className="mb-3 font-comfortaa text-[14px] font-bold uppercase tracking-widest text-grm-black">
                 {cat.group}
               </h3>
               <div className="flex flex-col gap-1.5">
@@ -61,7 +61,7 @@ export default function FPCategoryGrid() {
               key={cat.group}
               className="w-full border-l-4 border-grm-teal bg-white py-5 pl-5 pr-4 sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
             >
-              <h3 className="mb-3 font-comfortaa text-[12px] font-bold uppercase tracking-widest text-grm-black">
+              <h3 className="mb-3 font-comfortaa text-[14px] font-bold uppercase tracking-widest text-grm-black">
                 {cat.group}
               </h3>
               <div className="flex flex-col gap-1.5">

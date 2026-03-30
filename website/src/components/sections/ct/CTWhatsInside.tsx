@@ -42,7 +42,7 @@ export default function CTWhatsInside() {
             <div className="flex flex-col gap-4 py-7 md:flex-row md:items-baseline md:gap-0">
               {/* Number — 15% */}
               <div className="w-full md:w-[15%]">
-                <span className="font-merriweather text-[13px] font-bold tracking-[0.2em] text-grm-teal">
+                <span className="font-merriweather text-[15px] font-bold tracking-[0.2em] text-grm-teal">
                   {entry.number}
                 </span>
               </div>
