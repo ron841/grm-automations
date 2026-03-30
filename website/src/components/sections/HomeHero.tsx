@@ -84,7 +84,7 @@ export default function HomeHero() {
           href="#publications"
           className="mt-8 inline-block rounded-md bg-grm-teal px-8 py-3.5 font-nunito text-sm font-bold text-white transition-opacity hover:opacity-90"
         >
-          See Our Publications
+          See the Publications
         </Link>
       </div>
 
