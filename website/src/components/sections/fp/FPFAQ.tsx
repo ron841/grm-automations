@@ -39,7 +39,7 @@ export default function FPFAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="bg-white px-6 py-20 lg:px-8">
+    <section className="bg-grm-cream px-6 py-20 lg:px-8">
       <div className="mx-auto max-w-3xl">
         <p className="mb-4 text-center font-comfortaa text-[11px] font-bold uppercase tracking-widest text-grm-teal">
           FREQUENTLY ASKED QUESTIONS

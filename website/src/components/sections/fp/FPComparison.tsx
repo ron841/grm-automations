@@ -19,7 +19,7 @@ const ROWS = [
 
 export default function FPComparison() {
   return (
-    <section className="bg-white px-6 py-20 lg:px-8">
+    <section className="bg-grm-cream px-6 py-20 lg:px-8">
       <div className="mx-auto max-w-4xl">
         {/* Header row */}
         <div className="mb-6 grid grid-cols-2 gap-6">
