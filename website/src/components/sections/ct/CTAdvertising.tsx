@@ -31,7 +31,7 @@ export default function CTAdvertising() {
           <h3 className="mb-3.5 font-merriweather text-[24px] font-bold leading-[1.2] text-white">
             Digital.
           </h3>
-          <p className="font-nunito text-[13px] leading-[1.7] text-white/60">
+          <p className="font-nunito text-[15px] leading-[1.7] text-white/60">
             Your campaign runs through The Closing Table&apos;s Instagram and
             Facebook pages. When agents see your business in their feed, they
             see a recommendation from the publication they already trust.
@@ -51,7 +51,7 @@ export default function CTAdvertising() {
           <h3 className="mb-3.5 font-merriweather text-[24px] font-bold leading-[1.2] text-white">
             Community.
           </h3>
-          <p className="font-nunito text-[13px] leading-[1.7] text-white/60">
+          <p className="font-nunito text-[15px] leading-[1.7] text-white/60">
             Two mixers and one annual awards gala. Every advertiser receives two
             complimentary tickets. Your brand in the room with the top 500
             agents and service companies in Marion and Sumter Counties.

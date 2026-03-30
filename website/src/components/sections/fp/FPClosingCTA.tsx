@@ -36,7 +36,7 @@ export default function FPClosingCTA() {
               href="/media-kits/front-porch-media-kit.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-nunito text-[13px] text-grm-teal no-underline transition-colors hover:underline"
+              className="font-nunito text-[15px] text-grm-teal no-underline transition-colors hover:underline"
             >
               or request the media kit
             </a>

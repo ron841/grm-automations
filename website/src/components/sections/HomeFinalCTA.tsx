@@ -40,7 +40,7 @@ export default function HomeFinalCTA() {
               href="/media-kits/closing-table-media-kit.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-nunito text-[13px] text-grm-teal no-underline transition-colors hover:underline"
+              className="font-nunito text-[15px] text-grm-teal no-underline transition-colors hover:underline"
             >
               or request our media kit
             </a>

@@ -21,7 +21,7 @@ export default function Footer() {
             <p className="font-merriweather text-sm italic leading-relaxed text-white">
               Locally rooted. Professionally grown.
             </p>
-            <p className="font-nunito text-[13px] text-white/60">
+            <p className="font-nunito text-[15px] text-white/60">
               Marion County, FL
             </p>
           </div>

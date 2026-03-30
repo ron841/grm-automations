@@ -27,7 +27,7 @@ export default function HomeHowItWorks() {
           <h3 className="mb-4 font-merriweather text-[24px] font-bold leading-[1.2] text-white">
             Digital keeps it open.
           </h3>
-          <p className="font-nunito text-[13px] leading-[1.7] text-white/65">
+          <p className="font-nunito text-[15px] leading-[1.7] text-white/65">
             Your campaign extends through our social pages. Our audience. Your
             business. Third-party credibility no ad buy can replicate.
           </p>
@@ -44,7 +44,7 @@ export default function HomeHowItWorks() {
           <h3 className="mb-4 font-merriweather text-[24px] font-bold leading-[1.2] text-white">
             Community makes it last.
           </h3>
-          <p className="font-nunito text-[13px] leading-[1.7] text-white/65">
+          <p className="font-nunito text-[15px] leading-[1.7] text-white/65">
             Events, features, and word-of-mouth turn one ad buy into something
             that compounds.
           </p>

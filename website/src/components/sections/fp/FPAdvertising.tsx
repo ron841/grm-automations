@@ -30,7 +30,7 @@ export default function FPAdvertising() {
           <h3 className="mb-3.5 font-merriweather text-[24px] font-bold leading-[1.2] text-white">
             Category.
           </h3>
-          <p className="font-nunito text-[13px] leading-[1.7] text-white/60">
+          <p className="font-nunito text-[15px] leading-[1.7] text-white/60">
             A few spots available per category, per year. Once a category
             fills, it is closed for the year. The dentist a new family finds in
             month one is probably their dentist for the next decade.
@@ -50,7 +50,7 @@ export default function FPAdvertising() {
           <h3 className="mb-3.5 font-merriweather text-[24px] font-bold leading-[1.2] text-white">
             Social.
           </h3>
-          <p className="font-nunito text-[13px] leading-[1.7] text-white/60">
+          <p className="font-nunito text-[15px] leading-[1.7] text-white/60">
             Your ad lands in their mailbox in the first 60 days. Then your
             campaign runs through our social pages every month after that. Seen
             in the guide. Found on their phone. Chosen when they&apos;re ready.

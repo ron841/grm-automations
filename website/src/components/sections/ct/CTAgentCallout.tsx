@@ -27,7 +27,7 @@ export default function CTAgentCallout() {
           >
             Tell Us Your Story
           </a>
-          <p className="mt-3 font-nunito text-[12px] text-white/50">
+          <p className="mt-3 font-nunito text-[14px] text-white/50">
             Takes 30 minutes. No obligation.
           </p>
         </div>

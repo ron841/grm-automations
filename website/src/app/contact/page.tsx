@@ -64,7 +64,7 @@ export default function ContactPage() {
             </p>
             <a
               href="mailto:ron@getrootedmedia.com"
-              className="mt-1.5 inline-block font-nunito text-[13px] text-white/65 transition-colors hover:text-white/90"
+              className="mt-1.5 inline-block font-nunito text-[15px] text-white/65 transition-colors hover:text-white/90"
             >
               ron@getrootedmedia.com
             </a>
@@ -82,7 +82,7 @@ export default function ContactPage() {
             </p>
             <a
               href="mailto:cameron@getrootedmedia.com"
-              className="mt-1.5 inline-block font-nunito text-[13px] text-white/65 transition-colors hover:text-white/90"
+              className="mt-1.5 inline-block font-nunito text-[15px] text-white/65 transition-colors hover:text-white/90"
             >
               cameron@getrootedmedia.com
             </a>
@@ -112,7 +112,7 @@ export default function ContactPage() {
           >
             Book a Call
           </a>
-          <p className="mt-4 font-nunito text-[13px] text-grm-black/50">
+          <p className="mt-4 font-nunito text-[15px] text-grm-black/50">
             or email us at{" "}
             <a
               href="mailto:ron@getrootedmedia.com"

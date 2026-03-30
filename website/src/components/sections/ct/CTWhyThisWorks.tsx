@@ -41,7 +41,7 @@ export default function CTWhyThisWorks() {
                 <p className="font-merriweather text-4xl font-bold text-grm-teal">
                   {stat.number}
                 </p>
-                <p className="mt-1 font-nunito text-[13px] text-grm-black/60">
+                <p className="mt-1 font-nunito text-[15px] text-grm-black/60">
                   {stat.label}
                 </p>
               </div>

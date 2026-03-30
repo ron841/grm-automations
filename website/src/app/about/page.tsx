@@ -200,7 +200,7 @@ export default function AboutPage() {
           <p className="mt-4">
             <a
               href="/contact"
-              className="font-nunito text-[13px] text-grm-teal no-underline transition-colors hover:underline"
+              className="font-nunito text-[15px] text-grm-teal no-underline transition-colors hover:underline"
             >
               or request our media kit
             </a>

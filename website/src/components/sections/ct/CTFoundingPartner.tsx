@@ -51,7 +51,7 @@ export default function CTFoundingPartner() {
             href="/media-kits/closing-table-media-kit.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-nunito text-[13px] text-white/50 no-underline transition-colors hover:text-white hover:underline"
+            className="font-nunito text-[15px] text-white/50 no-underline transition-colors hover:text-white hover:underline"
           >
             or request the media kit
           </a>
@@ -69,7 +69,7 @@ export default function CTFoundingPartner() {
               <p className="font-merriweather text-[16px] font-bold leading-[1.4] text-white">
                 {b.title}
               </p>
-              <p className="mt-1.5 font-nunito text-[13px] leading-[1.6] text-white/60">
+              <p className="mt-1.5 font-nunito text-[15px] leading-[1.6] text-white/60">
                 {b.body}
               </p>
               {i < BENEFITS.length - 1 && (
