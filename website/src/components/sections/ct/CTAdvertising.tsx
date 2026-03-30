@@ -20,7 +20,7 @@ export default function CTAdvertising() {
 
         {/* Vertical divider */}
         <div
-          className="hidden w-px self-center bg-grm-teal md:block h-20"
+          className="hidden w-px self-start mt-8 bg-grm-teal md:block h-24"
         />
 
         {/* ITEM 2 — 31% */}
@@ -40,7 +40,7 @@ export default function CTAdvertising() {
 
         {/* Vertical divider */}
         <div
-          className="hidden w-px self-center bg-grm-teal md:block h-20"
+          className="hidden w-px self-start mt-8 bg-grm-teal md:block h-24"
         />
 
         {/* ITEM 3 — 31% */}
