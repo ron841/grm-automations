@@ -714,3 +714,13 @@ Session type: Pre-launch editorial sweep, layout fixes, and Vercel deployment.
 - IONOS DNS: A record @ → 76.76.21.21 saved and propagated globally — confirmed via dnschecker.org
 - SSL certificate provisioned automatically by Vercel
 - getrootedmedia.com confirmed live with visual screenshot verification
+
+### Evening post-launch fixes (additional commits):
+- Publications section order corrected — Closing Table left, Front Porch right, matching nav order
+- Body text size increased site-wide — base bumped to 16px
+- Dark photo overlay strengthened on publications blocks for readability
+- GitHub connected to Vercel dashboard — auto-deploy on push to main now active
+- "And then one afternoon" → "Then one afternoon" — homepage HomeStory.tsx
+- "And when your agent closes the deal" → "When your agent closes the deal" — homepage HomeStory.tsx
+- Eyebrow labels bumped site-wide: 10px→12px, 11px→13px — commit 358c55f
+- All changes live on getrootedmedia.com via auto-deploy

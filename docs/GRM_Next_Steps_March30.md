@@ -43,3 +43,4 @@ Meta only. Tech stack: Next.js, Tailwind, Supabase. Features: campaign data in a
 - Pushing to main branch auto-deploys to getrootedmedia.com
 - DNS: managed at IONOS — do not touch nameservers
 - Calendly: cal.com/ron-kolb-cdlgsw/30min — live and wired to nav and contact page
+- GitHub is now connected to Vercel dashboard — every push to main auto-deploys to getrootedmedia.com. No more manual `vercel --prod` needed.
