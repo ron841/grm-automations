@@ -665,3 +665,52 @@ Ron feedback: Homepage looking great. Publication pages need more options before
 
 ### Handoff Document
 GRM_Session_Handoff_March26.docx — generated and downloaded. Contains full deploy instructions, brand system, voice skill, locked copy, image library, research notes, and working relationship context.
+
+---
+
+## MARCH 30, 2026 — PRE-LAUNCH EDITS + DEPLOYMENT
+
+Session type: Pre-launch editorial sweep, layout fixes, and Vercel deployment.
+19 commits total.
+
+### Design and layout
+
+- Publications section swapped and mirrored — Front Porch left/left-aligned, Closing Table right/right-aligned
+- HomeStory.tsx columns corrected from 55/45 to 50/50 — commit 962b357
+- Founding Partner section background changed from dark to cream (#FAF8F4)
+- Print/Digital/Community dividers fixed on The Closing Table page — commit 97d870f
+- Print/Digital/Community dividers fixed on The Front Porch page
+- Print/Digital/Community dividers fixed on Homepage — commit e8b7610 — this was missed in the original build, not a revert
+- bg-white changed to bg-grm-cream on both publication pages — commit 1bbf827
+- Homepage meta title: "Premium" removed
+- Stats section: ~10,000 changed to 10,000+
+- Founding Partner section: added "They're part of the story."
+- Photo strip height increased to reduce black gap below hero parallax
+
+### Editorial (voice skill applied across all pages)
+
+- Hero CTA: "See Our Publications" changed to "See the Publications"
+- 8 editorial fixes on The Closing Table — banned patterns removed, em dashes removed, voice skill applied
+- 5 editorial and layout fixes on The Front Porch
+- 7 editorial fixes on About page — Cameron's title corrected to "Co-Founder and Sales Director" in all locations
+- 5 editorial fixes on Contact page — em dash removed, 15 minutes changed to 30 minutes, title corrected, pricing language removed
+- FAQ on Closing Table updated: Villages agent count added (350 Marion County + 150 Sumter County = 500 total)
+
+### Media kits
+
+- Both PDFs copied from desktop to /public/media-kits/
+- closing-table-media-kit.pdf and front-porch-media-kit.pdf
+- All "request our media kit" links updated across all pages with correct routing per page
+
+### Code
+
+- TypeScript fix in images-slider.tsx — framer-motion ease type mismatch resolved with tuple cast
+
+### Deployment
+
+- Deployed via Vercel CLI to ron-7323 account, project grm-website
+- Production URL: website-rosy-nu-95.vercel.app
+- Custom domain added in Vercel: getrootedmedia.com and www.getrootedmedia.com
+- IONOS DNS: A record @ → 76.76.21.21 saved and propagated globally — confirmed via dnschecker.org
+- SSL certificate provisioned automatically by Vercel
+- getrootedmedia.com confirmed live with visual screenshot verification

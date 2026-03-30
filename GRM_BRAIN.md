@@ -4,7 +4,7 @@
 
 ## Load this at the start of every new chat session.
 
-## Last updated: Tuesday March 24, 2026
+## Last updated: Monday March 30, 2026
 
 ## HOW TO START EVERY NEW CHAT
 
@@ -228,45 +228,27 @@ Never pitch on outbound calls. The appointment is the only goal.
 
 Never move fast on design decisions. This brand took time to get right.
 
-## OPEN ITEMS AS OF MARCH 24
+## Post-launch pending
 
-Meta Developer App setup at developers.facebook.com
+- Meta Pixel + GA4 — not yet installed. Must be done before driving any traffic.
+- Instagram content automation via Manus — not yet active
+- Ads Dashboard v1 — not yet built (Meta only, Supabase, nightly sync)
+- Front Porch media kit cover reads "quarterly" — Em Agency must fix before distribution
+- Real photos of Ron and Cameron for About page — pending from Em Agency
+- Canonical tags — add to all pages in Next.js metadata config
 
-/meta-ads-campaign skill in Claude Code
+## Website — Status: LIVE
 
-Pre-load website copy into Claude Code project context
-
-Receive logo files and hi-res photos from Em Agency
-
-Confirm website platform Namecheap or IONOS
-
-Website build day
-
-ManyChat upgrade from TRIAL to Pro
-
-Build separate FOUNDER and PLAYBOOK PDFs
-
-Configure Auto-DM from comments flow
-
-Cameron outstanding Marion County MLS verification items
-
-Get Rooted Media LLC — Ocala, Florida
-
-The Closing Table — The Front Porch
-
-Locally rooted. Professionally grown.
-
-## Website — Status: READY TO DEPLOY
-
-- Stack: Next.js 15/16, TypeScript, Tailwind CSS v4
+- Site is LIVE at getrootedmedia.com
+- Stack: Next.js 16, TypeScript, Tailwind CSS v4
 - Repo subfolder: /website
-- Domain: getrootedmedia.com (IONOS)
-- Vercel account: ron-7323
-- Root directory for Vercel: website
-- DNS A record: @ → 76.76.21.21
-- DNS CNAME: www → cname.vercel-dns.com
-- 5 pages: / | /the-closing-table | /the-front-porch | /about | /contact
-- All pages: approved, zero console errors, SEO clean
+- Deployed to Vercel, ron-7323 account, project name grm-website
+- Production URL: website-rosy-nu-95.vercel.app
+- DNS configured in IONOS — A record @ → 76.76.21.21, SSL provisioned automatically by Vercel
+- All 5 pages live and verified: / | /the-closing-table | /the-front-porch | /about | /contact
+- Media kit PDFs live at /media-kits/closing-table-media-kit.pdf and /media-kits/front-porch-media-kit.pdf
+- Any push to main branch auto-deploys to getrootedmedia.com via Vercel GitHub integration
+- Calendly live at cal.com/ron-kolb-cdlgsw/30min — wired to nav and contact page
 
 ## Integrations
 
@@ -284,9 +266,9 @@ Locally rooted. Professionally grown.
 - BANNED: all green, #C9973A gold, gradients, purple
 - BANNED: rounded corners, box shadows, equal 3-col grids, centered-text layouts, stock images
 
-## Cameron Title (confirmed March 26)
+## Cameron Title (confirmed March 30)
 
-Co-Founder and Director of Sales — everywhere
+Co-Founder and Sales Director — everywhere
 
 ## Key Copy — DO NOT CHANGE
 
@@ -300,7 +282,7 @@ Co-Founder and Director of Sales — everywhere
 
 - #1 fastest-growing metro in America
 - 16,567+ net new residents 2024
-- ~10,000 homes sold per year
+- 10,000+ homes sold per year
 - $4.3B equine industry impact
 - Population 428,905 as of July 2024
 - 318 people moving in per week
