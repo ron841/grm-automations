@@ -22,7 +22,7 @@ export default function HomePublications() {
                 "linear-gradient(to bottom left, rgba(250,248,244,0.65) 0%, rgba(250,248,244,0.35) 100%)",
             }}
           />
-          <div className="absolute inset-0 flex flex-col justify-end p-7 md:p-12">
+          <div className="absolute inset-0 flex flex-col justify-center p-7 md:p-12">
             <p className="font-comfortaa text-[10px] font-bold uppercase tracking-[0.18em] text-grm-teal">
               BI-MONTHLY GUIDE &middot; JULY 2026
             </p>
@@ -65,7 +65,7 @@ export default function HomePublications() {
                 "linear-gradient(to bottom right, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.45) 100%)",
             }}
           />
-          <div className="absolute inset-0 flex flex-col items-end justify-end p-7 text-right md:p-12">
+          <div className="absolute inset-0 flex flex-col items-end justify-center p-7 text-right md:p-12">
             <p className="font-comfortaa text-[10px] font-bold uppercase tracking-[0.18em] text-grm-teal">
               MONTHLY MAGAZINE &middot; JUNE 2026
             </p>
