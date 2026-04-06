@@ -5,13 +5,17 @@ export default function WebServices() {
         <div className="mb-7 flex items-center gap-3">
           <div className="h-px w-8 bg-grm-teal" />
           <span className="font-comfortaa text-[12px] uppercase tracking-[0.18em] text-grm-teal">
-            New · Websites Built Right
+            The Storefront · Marion County
           </span>
         </div>
 
         <h2 className="font-merriweather text-[32px] leading-[1.15] md:text-[44px] md:leading-[1.1]">
-          Web Services
+          The Storefront
         </h2>
+
+        <p className="mt-6 font-merriweather italic text-[18px] leading-[1.5] text-white/85 md:text-[20px]">
+          We build it. We host it. We update it. You answer the phone.
+        </p>
 
         <div className="mt-9 space-y-6 font-nunito text-[16px] leading-[1.7] text-white/75 md:text-[17px]">
           <p>
