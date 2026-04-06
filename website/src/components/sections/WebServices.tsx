@@ -2,11 +2,11 @@ export default function WebServices() {
   return (
     <section className="bg-grm-black text-white">
       <div className="mx-auto max-w-3xl px-8 py-20 md:px-12 md:py-28">
-        <div className="mb-7 flex items-center gap-3">
-          <div className="h-px w-8 bg-grm-teal" />
+        <div className="mb-7">
           <span className="font-comfortaa text-[12px] uppercase tracking-[0.18em] text-grm-teal">
             The Storefront · Marion County
           </span>
+          <div className="mt-2 h-px w-8 bg-grm-teal" />
         </div>
 
         <h2 className="font-merriweather text-[32px] leading-[1.15] md:text-[44px] md:leading-[1.1]">
