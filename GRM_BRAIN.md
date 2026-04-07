@@ -4,7 +4,7 @@
 
 ## Load this at the start of every new chat session.
 
-## Last updated: Monday March 30, 2026
+## Last updated: Monday April 6, 2026
 
 ## HOW TO START EVERY NEW CHAT
 
@@ -242,13 +242,31 @@ Never move fast on design decisions. This brand took time to get right.
 - Site is LIVE at getrootedmedia.com
 - Stack: Next.js 16, TypeScript, Tailwind CSS v4
 - Repo subfolder: /website
-- Deployed to Vercel, ron-7323 account, project name grm-website
+- Deployed to Vercel, ron-7323 account, project name `website` (NOT grm-website — the brain previously had this wrong)
+- Vercel Root Directory must be set to `website` (NOT blank, NOT `./`)
+- Vercel Build Command must be the default `npm run build` (NOT `npm run vercel-build` — that script does not exist and causes 0ms build failures)
 - Production URL: website-rosy-nu-95.vercel.app
 - DNS configured in IONOS — A record @ → 76.76.21.21, SSL provisioned automatically by Vercel
 - All 5 pages live and verified: / | /the-closing-table | /the-front-porch | /about | /contact
 - Media kit PDFs live at /media-kits/closing-table-media-kit.pdf and /media-kits/front-porch-media-kit.pdf
 - Any push to main branch auto-deploys to getrootedmedia.com via Vercel GitHub integration
 - Calendly live at cal.com/ron-kolb-cdlgsw/30min — wired to nav and contact page
+
+## Vercel projects on the ron-7323 team (April 6 2026 audit)
+
+Three projects exist. Know what each one is before touching anything.
+
+* `website` — ACTIVE. Serves getrootedmedia.com. Real production project for the GRM company website. Auto-deploy is on. This is the only one that should ever be edited for company website work.
+* `tandf-electric` — ACTIVE. Serves tandf-electric.vercel.app. Flagship 1, the web services proof of concept used in sales calls. DO NOT TOUCH under any circumstances.
+* `grm-website` — DORMANT. Last successful deploy March 30. The only true orphan. Was likely the original project name before the production project got renamed to `website`. Safe to delete in a future cleanup session, not urgent.
+
+## Vercel deploy troubleshooting (read this when a deploy fails)
+
+If a build fails on the `website` project, check these in order before debugging code:
+
+1. Vercel dashboard → website project → Settings → Build & Deployment → Build Command. Must be the default (toggle OFF) or explicitly `npm run build`. If it shows `npm run vercel-build`, that is the bug. Fix and redeploy.
+2. Same Settings page → Root Directory. Must be `website` (no slash, no `./`). If it shows `./` or blank, that is the bug. Fix and redeploy.
+3. Only after both of the above are confirmed correct, look at code or commits for the actual failure.
 
 ## Integrations
 
