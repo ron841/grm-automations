@@ -304,3 +304,11 @@ Co-Founder and Sales Director — everywhere
 - $4.3B equine industry impact
 - Population 428,905 as of July 2024
 - 318 people moving in per week
+
+## Wednesday April 8, 2026 — Session close, v0.7 handoff
+
+v0.6 prospect-site skill was installed and dry-run against Joe's Tree Service (joestreeserviceocala.com). The content layer was strong: Plant Street voice applied correctly, 6 real testimonials with real names, 4 services captured verbatim, Google Places direct data (4.8 stars, 169 reviews) flowing through, owners Joe and Christina Licari identified. The visual layer failed. Pattern B Full-Bleed was under-specified in v0.6 (25 lines vs 35 for Pattern A), producing a hero where the nav floated as a disconnected white bar above the image instead of overlaying it, dark text over dark canopy was unreadable, stats counter stuck at 0, marquee duplicated, logo rendered as a giant section background on about.html.
+
+v0.6.1 patches (8 total) were applied: Pattern B CSS rewrite, logo usage hard rule, 8 content generation fixes, 4 new Phase 6 checks, Manual Asset Injection sub-phase, --from-phase resume flag, house style additions, 6 LESSONS.md entries. The rebuild deployed to a diagnostic URL. Manus critique confirmed the output was improved but still templated and not at the wow line. The hero felt like a stock template, not a custom agency build.
+
+v0.7 thesis agreed: Dramatic Asymmetric Split hero as the new default, mandatory dark section for visual weight, asymmetric services grid with real photos instead of icons, and tighter integration between the copy layer (which is working) and the visual layer (which needs to catch up). T&F Electric remains healthy and deployed at tandf-electric.vercel.app. Joe's Tree Service data archived at ~/grm-sites-prospects/archive/joes-tree-service-v0.6.1-scrapped-2026-04-08/ with the hero aerial live oak image preserved. Handoff brief saved to Desktop. Thursday morning resumes with v0.7 spec drafting.
