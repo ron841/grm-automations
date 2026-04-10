@@ -4,7 +4,7 @@
 
 ## Load this at the start of every new chat session.
 
-## Last updated: Monday April 6, 2026
+## Last updated: Friday April 10, 2026
 
 ## HOW TO START EVERY NEW CHAT
 
@@ -258,6 +258,7 @@ Three projects exist. Know what each one is before touching anything.
 
 * `website` — ACTIVE. Serves getrootedmedia.com. Real production project for the GRM company website. Auto-deploy is on. This is the only one that should ever be edited for company website work.
 * `tandf-electric` — ACTIVE. Serves tandf-electric.vercel.app. Flagship 1, the web services proof of concept used in sales calls. DO NOT TOUCH under any circumstances.
+* `tandf-electric-v07` — ACTIVE. Serves tandf-electric-v07.vercel.app. Second T&F reference, built Friday April 10 2026 from a fully clean v0.7.1 end-to-end run (zero intervention, zero fabrication). Used alongside the flagship as a newer proof point in sales calls. Flagship `tandf-electric` remains untouchable.
 * `grm-website` — DORMANT. Last successful deploy March 30. The only true orphan. Was likely the original project name before the production project got renamed to `website`. Safe to delete in a future cleanup session, not urgent.
 
 ## Vercel deploy troubleshooting (read this when a deploy fails)
@@ -304,6 +305,35 @@ Co-Founder and Sales Director — everywhere
 - $4.3B equine industry impact
 - Population 428,905 as of July 2024
 - 318 people moving in per week
+
+## Friday April 10, 2026 — v0.7.1 clean run shipped, v0.7.2 installed
+
+First fully clean end-to-end prospect-site skill run in project history. Zero intervention, zero fabrication, three real-world observations captured and shipped as v0.7.2 the same night.
+
+**Morning:** audited, fixed, and installed prospect-site v0.7.1 at `~/.claude/skills/prospect-site/`. Phase 0 all 7 hard checks green. Google Places API unblocked by enabling the legacy Places API on the key alongside Places API New (queued LESSONS.md entry, category INTEGRATION: "Google Places key restricted to 'Places API (New)' will REQUEST_DENIED legacy endpoint calls even when the key is valid"). Prior skill backed up at `~/.claude/skills/prospect-site.backup.20260410-093850`.
+
+**Afternoon:** invoked `/prospect-site` on T&F Electric (`https://www.tandfelectric.com/`), deploy target new Vercel project `tandf-electric-v07`. Flagship `tandf-electric` untouched per scope. All phases completed without intervention: Phase 0 → 2.5 → 3 → 5 → 6 → Vercel deploy. Live at `https://tandf-electric-v07.vercel.app`. Production verification all passed: HTTP 200, title correct, H1 "Fifty years. Two Tuccis. One phone number.", 8 tel: links / 15 display phone instances, 5 hero slides, exactly 1 dark stats section, 6 testimonials, 6 FAQ items, 10 services plus featured card, JSON-LD parses with real data (EC13007855, 4.6/41 Google reviews, founded 1976), zero em dashes, Google photo attribution present. **v0.7.1 clean run SHIPPED.**
+
+**Evening:** mobile review of T&F v07 produced three real-world observations, all skill-level not site-level:
+1. Logo reconstructed in CSS/HTML type instead of downloaded from hero. Conversion-killer on first impression.
+2. OG thumbnail rendered hardcoded blue while the site itself is red. Undermines "this is yours" pitch when the link is shared.
+3. Same featured service card image used on both Home and Services grid pages. With Unsplash available, each instance should pull a different image from the same topical query.
+
+All three fixes shipped same night as **prospect-site v0.7.2**:
+- `image-handling.md` + LOGO CAPTURE TIERED WITH SOFT-WARNING FALLBACK (Tier 1 `<img>` in header/hero/nav, Tier 2 OG image / apple-touch-icon / favicon ≥128×128, Tier 3 type-based wordmark only, Phase 6 soft warning, never hard-fails)
+- `image-handling.md` + FEATURED SERVICE CARD IMAGE ROTATION (per-service rotation list, Phase 6 hard fail if a featured card image appears on more than one page)
+- `seo-geo.md` + OG IMAGE COLOR MUST PULL FROM CAPTURED BRAND PALETTE (hardcoded defaults forbidden, null fallback `#1a1a1a` neutral dark gray never an accent, Phase 6 hue-drift check within 20°)
+- SKILL.md updated to v0.7.2 at line 6 and line 734, Changelog section added with v0.7.2 / v0.7.1 / v0.7 entries, cross-references placed at Phase 1 step 4, Phase 2 step 5, Phase 5 Hard rules, Phase 5.5 SEO/GEO
+- Skill backup at `~/.claude/skills/prospect-site.backup.20260410-181329`
+- Line deltas: SKILL.md 729 → 758 (+29), image-handling.md 833 → 928 (+95), seo-geo.md 1431 → 1478 (+47), total +171
+
+**v0.7.2 status:** INSTALLED AND BELIEVED CORRECT. NOT YET PROVEN CORRECT. Validation deferred to Flagship 2 next session — select fresh prospect from ~28-site shortlist, run clean end-to-end, verify all three new rules actually fire (tiered logo grabs the real logo or triggers the soft warning, OG thumbnail renders in captured brand color, featured cards on Home vs Services show different images).
+
+**LESSONS.md queue:** Places API legacy endpoint INTEGRATION entry (from morning Phase 0 unblock) + four LESSONS.md entries already appended from the T&F clean run (DEPLOYMENT Vercel --scope, INTEGRATION Static Forms bot challenge, COLOR no logo file inline CSS, DATA review source mismatch rule tightening).
+
+**Handoff:** `docs/handoffs/FRIDAY_EVENING_HANDOFF_2026-04-10.md` in repo. Same file uploaded to Google Drive handoffs folder.
+
+**What changed in the understanding of the skill:** before tonight the skill was "good, with known rough edges we'd patch per-site." After tonight, the skill is a real system hardened from real-world feedback, not a template we babysit. v0.7.2 improvements apply to Flagship 2, Flagship 3, and every build after. Stopped patching sites, started improving the skill that builds sites. Jump from craft to production.
 
 ## Wednesday April 8, 2026 — Session close, v0.7 handoff
 
