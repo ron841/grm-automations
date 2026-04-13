@@ -343,6 +343,65 @@ v0.6.1 patches (8 total) were applied: Pattern B CSS rewrite, logo usage hard ru
 
 v0.7 thesis agreed: Dramatic Asymmetric Split hero as the new default, mandatory dark section for visual weight, asymmetric services grid with real photos instead of icons, and tighter integration between the copy layer (which is working) and the visual layer (which needs to catch up). T&F Electric remains healthy and deployed at tandf-electric.vercel.app. Joe's Tree Service data archived at ~/grm-sites-prospects/archive/joes-tree-service-v0.6.1-scrapped-2026-04-08/ with the hero aerial live oak image preserved. Handoff brief saved to Desktop. Thursday morning resumes with v0.7 spec drafting.
 
+## 2026-04-13 (afternoon) — v0.7.3 reverted, v0.7.1 is the active floor
+
+### What changed today
+
+The skill is back at v0.7.1 active code at git commit `0498ca3`. Six hours of v0.7.2 → v0.7.3 engineering work was reverted at 3:30 PM after the deployed v0.7.3 build did not meaningfully improve on v0.7.1. v0.7.2's regressions (OG color overcorrection, logo false-rejection on T&F's emotion header) were real, but v0.7.3's attempt to fix them produced a build that still missed the bar.
+
+### Permanent infrastructure wins
+
+These hold regardless of the revert:
+
+- **Skill is now under git version control.** Was unversioned plain markdown until this morning. Every future skill change is now diffable, revertable, and recoverable. Lives at `~/.claude/skills/prospect-site/.git`.
+- **site-review v1.1 (CSS background-image scan).** Committed in `grm-automations` at `437ae94`. Works against any deployed site, including v0.7.1 builds. The featured-service-image-rotation check now reads CSS `background-image` URLs correctly.
+- **Audit infrastructure proven.** grm-browser + Playwright produced a 36-capture creative-director audit in ~30 minutes. Pattern is reusable for future skill iterations.
+
+### Active strategy for the rest of the week
+
+- **Skill at v0.7.1.** No skill engineering until after Wednesday's kickoff.
+- **Manual touch-up per deployed site.** Each F3-F6 build gets a 15-30 minute manual edit pass before being prospect-ready. This is the accepted workflow, not a fallback.
+- **Post-build edit playbook** at `~/grm-automations/docs/post-build-edit-playbook.md` documents the manual touch-up workflow. Refer to this before editing any deployed prospect site.
+
+### Vercel project state
+
+| Project | Status |
+|---|---|
+| `tandf-electric.vercel.app` | Live, untouched, Flagship 1 (hand-built) |
+| `tandf-electric-v07.vercel.app` | Live, untouched, Friday's clean v0.7.1 build |
+| `tandf-electric-v072.vercel.app` | Live, untouched, Monday morning's v0.7.2 build |
+| `tandf-electric-grm.vercel.app` | Live, Monday afternoon's failed v0.7.3 build, delete in next housekeeping pass |
+
+### Skill git history (newest first, all preserved)
+
+```
+0498ca3  Revert to v0.7.1: restore from desktop md files v1 backup
+47135d9  Rule 6: OG image entropy gate (v0.7.3) — REVERTED
+582ba71  Rule 5: OG photo composite generator (v0.7.3) — REVERTED
+2268406  Rule 4: logo capture photo signage fallback (v0.7.3) — REVERTED
+3c60dae  Rule 3: crop-to-bounds post-processor (v0.7.3) — REVERTED
+d897c1b  Rule 2: content-aware solid-color check (v0.7.3) — REVERTED
+e688101  Rule 1: logo capture domain filter (v0.7.3) — REVERTED
+7134045  v0.7.3 spec: seven rules locked, implementation pending
+98569ee  Baseline: v0.7.2 as installed after T&F F2 validation
+```
+
+All v0.7.2 and v0.7.3 commits remain in git history. None are deleted. They can be inspected, cherry-picked, or restored anytime.
+
+### Pickup point
+
+Original two-day plan resumes from **Block 3 (Monday afternoon cleanup):** HubSpot stop, Google Places + Unsplash API key rotation, dormant `grm-website` Vercel orphan deletion, magic-mcp #49 symptom comment update, LESSONS.md Places API entry. Then Tuesday F3-F6 builds on v0.7.1 with manual touch-up per build. Wednesday AM polish + lunch kickoff. Sales calls Wednesday afternoon, Cameron observes.
+
+### Reference docs from today
+
+- Handoff: `~/grm-automations/docs/handoffs/HANDOFF_2026-04-13.md`
+- LESSONS.md entry: appended to `~/.claude/skills/prospect-site/references/LESSONS.md`
+- Post-build edit playbook: `~/grm-automations/docs/post-build-edit-playbook.md` (new)
+- v0.7.3 spec (preserved for reference): git commit `7134045` in skill repo, also on Ron's desktop
+- Audit captures: `~/grm-automations/audits/tandf-v07-vs-v072-2026-04-13/`
+- OG mockups (b1 through b6): `~/grm-automations/audits/tandf-v07-vs-v072-2026-04-13/og-mockups/`
+- v0.7.2 snapshot: `~/grm-automations/flagship-snapshots/tandf-electric-v072-2026-04-13/`
+
 ## 2026-04-13 — Monday morning: Stream 2 closed + two-day plan drafted
 
 **Stream 2 (Playwright toolkit) shipped and committed.**
