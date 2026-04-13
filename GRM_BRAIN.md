@@ -342,3 +342,22 @@ v0.6 prospect-site skill was installed and dry-run against Joe's Tree Service (j
 v0.6.1 patches (8 total) were applied: Pattern B CSS rewrite, logo usage hard rule, 8 content generation fixes, 4 new Phase 6 checks, Manual Asset Injection sub-phase, --from-phase resume flag, house style additions, 6 LESSONS.md entries. The rebuild deployed to a diagnostic URL. Manus critique confirmed the output was improved but still templated and not at the wow line. The hero felt like a stock template, not a custom agency build.
 
 v0.7 thesis agreed: Dramatic Asymmetric Split hero as the new default, mandatory dark section for visual weight, asymmetric services grid with real photos instead of icons, and tighter integration between the copy layer (which is working) and the visual layer (which needs to catch up). T&F Electric remains healthy and deployed at tandf-electric.vercel.app. Joe's Tree Service data archived at ~/grm-sites-prospects/archive/joes-tree-service-v0.6.1-scrapped-2026-04-08/ with the hero aerial live oak image preserved. Handoff brief saved to Desktop. Thursday morning resumes with v0.7 spec drafting.
+
+## 2026-04-13 — Monday morning: Stream 2 closed + two-day plan drafted
+
+**Stream 2 (Playwright toolkit) shipped and committed.**
+- `grm-browser` engine live at `~/grm-automations/tools/grm-browser/` with four primitives: capture, extract, probe, compare. Playwright Chromium, 2s/domain politeness, 14-day cache prune. Smoke tests green.
+- `site-review` mission v1 installed as thin wrapper over the engine. Five checks: logo-is-image, og-image-brand-color, featured-service-image-rotation, wow-gap-structural, mobile-render-baseline. Observation-only — not yet wired into prospect-site Phase 6.
+- Commit `f56b7cc` on `origin/main`.
+- Known v1.1 patch items logged in commit message: site-review blind to CSS `background-image` duplicates; Tier-2 logo fallback too permissive (accepts any og:image). Both non-blocking.
+
+**T&F v07 OG color bug surfaced by site-review smoke test.**
+- og:image is `gp-01.jpg` (building photo under blue sky). Dominant non-neutral color is sky blue `#6a9ace`, 144° off brand red `#c4121f`. Built on v0.7.1 before OG color rule existed.
+- Fix plan: rebuild T&F v07 fresh on v0.7.2 in Monday afternoon block. Doubles as v0.7.2 validation run (previously scoped as Flagship 2).
+
+**Two-day sales kickoff plan drafted and saved.**
+- Handoff at `docs/handoffs/TWO_DAY_SALES_KICKOFF_PLAN_2026-04-13.md`.
+- North star: Ron dials Wednesday 2026-04-15 after lunch. Cameron observes.
+- Scope: T&F v07 rebuild + F3, F4, F5, F6 new flagships + Storefront dedicated page on getrootedmedia.com + GEO story section + HubSpot stop/build + prospecting prompts session + housekeeping.
+- Service agreements, pricing one-pager, order form already done — removed from board.
+- Cameron observing only Wednesday — no call materials required.
