@@ -165,8 +165,11 @@ def check_service_image_rotation(url, services_path):
             return _check("featured-service-image-rotation", "hard", "pass",
                           "no service card images on either page")
 
-        # Tag each image with featured flag
+        # Tag each image with featured flag (v1.1: use the featured field
+        # from the extractor if present, fall back to section/heading heuristic)
         def is_featured(img_entry):
+            if img_entry.get("featured"):
+                return True
             section = (img_entry.get("section", "") or "").lower()
             heading = (img_entry.get("heading", "") or "").lower()
             return "featured" in section or "featured" in heading

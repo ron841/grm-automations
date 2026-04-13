@@ -89,25 +89,71 @@ def _nav_images(page):
 
 
 def _service_card_images(page):
-    """Extract images from elements whose class contains 'service' or 'card'."""
+    """Extract images from elements whose class contains 'service' or 'card'.
+
+    v1.1: also reads CSS background-image (inline style + computed style)
+    in addition to <img> tags. This catches featured service cards that use
+    background-image on the container div instead of an <img> element.
+    """
     return page.evaluate("""() => {
         const results = [];
         const els = document.querySelectorAll('[class*="service"], [class*="card"]');
         for (const el of els) {
+            // Find nearest heading and section for context
+            let heading = '';
+            const h = el.querySelector('h1,h2,h3,h4,h5,h6');
+            if (h) heading = h.textContent.trim();
+            let section = '';
+            const sec = el.closest('section');
+            if (sec) section = sec.id || sec.className || '';
+            const featured = (el.className || '').toLowerCase().includes('featured');
+
+            // Source 1: <img> tags inside the element
             for (const img of el.querySelectorAll('img')) {
-                // Find nearest heading
-                let heading = '';
-                const h = el.querySelector('h1,h2,h3,h4,h5,h6');
-                if (h) heading = h.textContent.trim();
-                // Find containing section id or class
-                let section = '';
-                const sec = el.closest('section');
-                if (sec) section = sec.id || sec.className || '';
                 results.push({
                     src: img.src || img.getAttribute('src') || '',
                     heading: heading,
                     section: section,
+                    featured: featured,
+                    source: 'img-tag',
                 });
+            }
+
+            // Source 2: inline style background-image on the element itself
+            const inlineStyle = el.getAttribute('style') || '';
+            const inlineMatch = inlineStyle.match(/background-image:\\s*url\\(['"]?([^'"\\)]+)['"]?\\)/i);
+            if (inlineMatch) {
+                // Resolve relative URL to absolute
+                const a = document.createElement('a');
+                a.href = inlineMatch[1];
+                results.push({
+                    src: a.href,
+                    heading: heading,
+                    section: section,
+                    featured: featured,
+                    source: 'inline-bg',
+                });
+            }
+
+            // Source 3: computed style background-image (catches CSS-class-driven bg)
+            const computed = window.getComputedStyle(el).backgroundImage;
+            if (computed && computed !== 'none') {
+                const compMatch = computed.match(/url\\(['"]?([^'"\\)]+)['"]?\\)/i);
+                if (compMatch) {
+                    const a = document.createElement('a');
+                    a.href = compMatch[1];
+                    // Only add if not already captured from inline
+                    const alreadyHave = results.some(r => r.src === a.href);
+                    if (!alreadyHave) {
+                        results.push({
+                            src: a.href,
+                            heading: heading,
+                            section: section,
+                            featured: featured,
+                            source: 'computed-bg',
+                        });
+                    }
+                }
             }
         }
         // Deduplicate by src
