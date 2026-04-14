@@ -4,7 +4,7 @@
 
 ## Load this at the start of every new chat session.
 
-## Last updated: Friday April 10, 2026
+## Last updated: Sunday April 13, 2026
 
 ## HOW TO START EVERY NEW CHAT
 
@@ -305,6 +305,19 @@ Co-Founder and Sales Director — everywhere
 - $4.3B equine industry impact
 - Population 428,905 as of July 2024
 - 318 people moving in per week
+
+## Prospect-audit skill (installed April 13, 2026)
+
+- **Location:** `~/.claude/skills/prospect-audit/`
+- **Repo:** https://github.com/ron841/grm-skills (private)
+- **Command:** `python3 ~/.claude/skills/prospect-audit/scripts/run.py`
+- **Architecture:** Google Places API discovery (Ocala + The Villages anchors) + Marion County Chamber scrape → Playwright screenshots (desktop + mobile) → Lighthouse CLI scoring → 100pt rebuild score (60pt Lighthouse, 40pt GRM heuristics) → Sunbiz owner enrichment → xlsx + pitch briefs + session notes
+- **Quality floor:** Tier 1 (50+ reviews, 4.0+ stars) and Tier 2 (25-49 reviews, 4.5+ stars)
+- **Rebuild score threshold:** 45/100
+- **Persistent ledger:** `~/grm-sites-prospects/audits/seen.csv` (dedupes across runs)
+- **Output location:** `~/grm-sites-prospects/audits/YYYY-MM-DD-HHMM/`
+- **Open question from verification run:** tree-service category topped out at 41/100, suggesting rubric may under-weight GRM heuristics vs Lighthouse. Full-category sweep will confirm whether to rebalance to 50/50.
+- **Dependencies flagged for rotation/maintenance:** Google Places API key at `~/grm-sites-prospects/.env` (previously exposed, still needs rotation); Sunbiz and Chamber selectors may drift over time.
 
 ## Friday April 10, 2026 — v0.7.1 clean run shipped, v0.7.2 installed
 
