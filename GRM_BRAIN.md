@@ -433,3 +433,109 @@ Original two-day plan resumes from **Block 3 (Monday afternoon cleanup):** HubSp
 - Scope: T&F v07 rebuild + F3, F4, F5, F6 new flagships + Storefront dedicated page on getrootedmedia.com + GEO story section + HubSpot stop/build + prospecting prompts session + housekeeping.
 - Service agreements, pricing one-pager, order form already done — removed from board.
 - Cameron observing only Wednesday — no call materials required.
+
+GRM_BRAIN.md update — append or merge under matching sections
+
+Magic MCP Fair Test — Result: DEFERRED (2026-04-15)
+Verdict: Fork deleted. v0.7.1 remains the production skill. Do not revisit Magic MCP for contractor/local-services sites in its previous all-sections form. Post-launch, a narrower bounded re-test against commodity components only (footers, service cards, FAQ, CTAs — never heroes or testimonials) is worth one session's effort as option-preserving insurance.
+
+What was tested: A forked prospect-site-magic skill that swapped the deterministic hero decision tree and section pattern library for 21st.dev Magic MCP's 21st_magic_component_inspiration tool at every component generation point. Fork built in Session 1 (isolated, under separate Vercel slug convention -grm-magic). Session 2 (this session) ran the first real test against T&F Electric.
+
+What happened: Phases 1–4 ran clean (profile, photos, scoring, hero mode all resolved correctly). Phase 5.0 (the new procurement phase) made 4 Magic MCP calls before the fork's own safety threshold (4+ failures = abort) triggered:
+
+Trust marquee query → returned a single-badge component (wrong shape)
+Contractor hero query → returned a phone-mockup SaaS product hero
+Glassmorphism trust hero query → returned the right component with "PREMIUM / ACTIVE / Award-Winning Design" marketing copy baked in
+Abort threshold hit. Build halted cleanly. No deploy.
+
+Why it failed (architectural, not query-writing): Cowork research across GitHub, Reddit, Discord, Dev.to, and Twitter/X surfaced zero documented cases of Magic MCP being used for contractors, restaurants, healthcare, or other non-SaaS local business sites. The 21st.dev catalog is sourced from a shadcn/Tailwind design-engineer community that overwhelmingly builds SaaS/dashboard UIs. Similarity scoring rewards components that exist in abundance — so when you query "trust marquee", you get a badge, because the catalog has hundreds of badges and almost no marquees. No documented workaround exists (no prefix syntax, no author filter, no threshold calibration, no refiner success stories).
+
+Evidence preserved:
+
+~/grm-automations/audits/2026-04-15-magic-mcp-test/ — magic-cache.json, magic-failures.log, profile-draft.json, README
+~/grm-sites-prospects/archive/tf-electric-raw-captures-2026-04-15/ — 12 raw HTML pages from a deeper T&F crawl (homepage, about-us, services, contact-us, customer-testimonials, sitemap, our-team, plus 5 service sub-pages) in case T&F is ever rebuilt and the additional captures are useful
+
+Post-launch design upgrade path (planned, not scheduled): The v0.7.1 skill ships sites at ~90% quality; the 10% gap is hero variety and testimonial layout variety. Post-launch priorities in order:
+
+Expand v0.7.1's hero pattern library with 2–3 new hand-built variants tuned for different business archetypes (photo-rich, credential-heavy, story-led). Directly addresses the "hero imagery that doesn't match the business vibe" gap. Highest-leverage, lowest-risk upgrade.
+
+Expand v0.7.1's testimonial section patterns with 2–3 layout variants (quote-grid, featured-quote-with-photo, video-testimonial-card) to replace the current limited variety.
+
+Bounded Magic MCP re-test limited to commodity components only — footers, service cards, FAQ accordions, CTAs. Never heroes or testimonials. Fresh setup (not tied to tonight's fork code). Explicit abort criteria. Time-boxed to one session. Answers the one open question Cowork's research left unresolved: is the catalog bias total, or are commodity shapes workable?
+
+Phases 1 and 2 are the guaranteed wins. Phase 3 is cheap option-preserving insurance. None of this happens before sales kickoff, HubSpot pipeline, and Square payment links are live.
+
+Optional follow-up (still available, low priority): File a GitHub issue on 21st-dev/magic-mcp titled "Inspiration tool biased toward SaaS aesthetics — no path to editorial/local-business components." Would be the first public documentation of the bias and might surface undocumented workarounds from a maintainer. Cowork's research brief and our failure logs are sufficient raw material.
+
+
+Vercel architecture — current state and planned migration
+Current state (verified 2026-04-15 via REST API, authoritative):
+
+One Vercel account, one team, two projects:
+
+Project
+projectId
+Production URL
+Purpose
+website
+prj_Tx1lbX0CI9qQZOK7DpelRuidueVb
+getrootedmedia.com (+ www + 3 .vercel.app aliases)
+GRM corporate site
+tandf-electric-v07
+prj_yR835QQ6A9KIAYNNtU6k2HkEBnNb
+tandf-electric-v07.vercel.app
+Flagship 1 / v0.7.1 reference build
+
+Team: ron-7323's projects, id team_KCAi5VnxkXE0c5ERJWOb7jXE, role OWNER. Same team ID referenced in Phase 0 of the prospect-site skill.
+
+Deleted 2026-04-15: The dormant grm-website orphan project (prj_t8VxXEoSb6Y9U5iYjC45kAGKDZbb). Had no custom domains, only .vercel.app aliases. Per Monday's handoff: was safe to delete. Backup of the local .vercel/project.json that had been pointing at it retained at ~/Desktop/Claude : Get Rooted/website/.vercel/project.json.bak-before-relink-20260415-150119.
+
+Link correction applied 2026-04-15: The local dev folder ~/Desktop/Claude : Get Rooted/website/ was linked (via .vercel/project.json) to the now-deleted grm-website orphan. Re-linked to the real website project. This means any future vercel / vercel --prod from that folder now deploys to getrootedmedia.com correctly. Pre-change backup preserved.
+
+Open question: The fact that the local folder was pointing at the wrong project means the corporate site may never have been successfully deployed from that folder. The production site at getrootedmedia.com is live and serving correctly, so whatever was deployed is fine — but the question of "what's the source of truth for the code running on getrootedmedia.com" is unanswered. Worth investigating next time the corporate site needs an update. Low priority.
+
+Planned migration (trigger: 3–5 paying client sites): Move to two-team architecture — ron-7323's projects (corporate) + a new grm-client-sites team (hosted client production). Real separation between GRM's own sites and client sites for billing, access control, and dashboard clarity. Cost: second Pro subscription (~$20/month). Do not migrate before there are real paying clients — the problem doesn't bite at current scale.
+
+CLI quirk noted: vercel projects ls from the CLI reported 0 projects under ron-7323s-projects, while the REST API authoritatively shows 2 projects on the same team. CLI is buggy or caching; REST API is source of truth. If future builds hit Phase 7 deploy failures with "no projects found", check the REST API before assuming auth is broken.
+
+
+Skill state (confirmed 2026-04-15 end of session)
+~/.claude/skills/ contains exactly three directories:
+
+archive/ — pre-git historical backups, untouched
+prospect-audit/ — the prospecting skill (Tuesday's work, deployed)
+prospect-site/ — the production site-generation skill, v0.7.1 (production floor, do not modify until after Wednesday's sales kickoff per Monday's lockdown)
+
+Version label fix applied 2026-04-15: prospect-site/SKILL.md line 6 was reading (v0.7) — updated to (v0.7.1) to match handoff terminology. Committed as 2a94e9e on main with clean diff. This is the only skill file modification since Monday's revert and is a documentation fix, not functional code.
+
+Deleted 2026-04-15: prospect-site-magic/ (the killed fork) and both dated backup copies (prospect-site.backup.20260410-093850/, prospect-site.backup.20260410-181329/). Backups are redundant now that the skill is under git version control.
+
+Git identity note: The skill repo has no user.name or user.email configured — commits fall back to auto-detected Ron Kolb <ronkolb@Mac.lan>. Works fine, but worth a one-time git config cleanup when there's a polish window. Not urgent.
+
+
+Next session — first move (2026-04-16, Thursday)
+Plan: Two prospect builds on v0.7.1 — F2 and F3. Validate the production skill on additional archetypes beyond T&F. No skill engineering. Each build gets a human polish pass after generation per Ron's established workflow.
+
+After F2 and F3 prove the skill on two new archetypes, work shifts to sales infrastructure (no more skill work until post-launch):
+
+Pause legacy magazine automation in HubSpot (Monday carryover)
+Build web services HubSpot pipeline (Elevate and Launch stages, deal properties, basic stage-change automations)
+Set up Square payment links
+Finalize one-pager and order form (already drafted)
+Sales kickoff — Ron dials, Cameron observes
+
+Post-launch (after sales kickoff is behind us), the design upgrade path returns as described under the Magic MCP entry above — hero pattern library expansion first, then testimonial variants, then the bounded Magic MCP re-test.
+
+Rule still in force from Monday: no skill engineering until after Wednesday's sales kickoff. Tonight's version-label fix was the only exception and was a documentation correction, not functional code.
+
+
+Carryover from Monday's handoff (still open)
+Items from the April 13 handoff that were not addressed this session:
+
+Pause old magazine call automation in HubSpot (preserve history, do not delete)
+Rotate Google Places API key, update ~/grm-sites-prospects/.env
+Rotate Unsplash API key, same update path
+Post updated symptom comment on 21st-dev/magic-mcp #49 (the broken-MCP-registration issue — note: now overtaken by a bigger concern, the SaaS-bias issue; if filing any 21st-dev issue, the bias issue is the higher-value one)
+LESSONS.md entry for Places API legacy endpoint
+
+All still on deck for the next available session, not urgent for Thursday's F2/F3 builds.
