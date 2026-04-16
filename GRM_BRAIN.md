@@ -4,7 +4,7 @@
 
 ## Load this at the start of every new chat session.
 
-## Last updated: Sunday April 13, 2026
+## Last updated: Wednesday April 16, 2026
 
 ## HOW TO START EVERY NEW CHAT
 
@@ -384,6 +384,8 @@ These hold regardless of the revert:
 | `tandf-electric-v07.vercel.app` | Live, untouched, Friday's clean v0.7.1 build |
 | `tandf-electric-v072.vercel.app` | Live, untouched, Monday morning's v0.7.2 build |
 | `tandf-electric-grm.vercel.app` | Live, Monday afternoon's failed v0.7.3 build, delete in next housekeeping pass |
+| `a-1-payless-septic-grm.vercel.app` | Live, Flagship 2 (F2), social metadata retrofitted to v0.7.2 standard |
+| `chads-lawn-and-landscape-grm.vercel.app` | Live, Flagship 3 (F3), first clean v0.7.2 build, validated all three bug patches |
 
 ### Skill git history (newest first, all preserved)
 
@@ -513,10 +515,10 @@ Deleted 2026-04-15: prospect-site-magic/ (the killed fork) and both dated backup
 Git identity note: The skill repo has no user.name or user.email configured — commits fall back to auto-detected Ron Kolb <ronkolb@Mac.lan>. Works fine, but worth a one-time git config cleanup when there's a polish window. Not urgent.
 
 
-Next session — first move (2026-04-16, Thursday)
-Plan: Two prospect builds on v0.7.1 — F2 and F3. Validate the production skill on additional archetypes beyond T&F. No skill engineering. Each build gets a human polish pass after generation per Ron's established workflow.
+Next session — first move (2026-04-17, Thursday)
+Plan: Two prospect builds on v0.7.2 — F4 (Grandview Inc, grandviewinc.com) and F5. Skill is validated and tagged. Each build uses the proven Phase 0-8 pipeline with Playwright audit.
 
-After F2 and F3 prove the skill on two new archetypes, work shifts to sales infrastructure (no more skill work until post-launch):
+After F4-F5 Thursday and F6-F7 Friday, work shifts to sales infrastructure over the weekend:
 
 Pause legacy magazine automation in HubSpot (Monday carryover)
 Build web services HubSpot pipeline (Elevate and Launch stages, deal properties, basic stage-change automations)
@@ -526,9 +528,9 @@ Sales kickoff — Ron dials, Cameron observes
 
 Post-launch (after sales kickoff is behind us), the design upgrade path returns as described under the Magic MCP entry above — hero pattern library expansion first, then testimonial variants, then the bounded Magic MCP re-test.
 
-Rule still in force from Monday: no skill engineering until after Wednesday's sales kickoff. Tonight's version-label fix was the only exception and was a documentation correction, not functional code.
+Skill engineering rule updated: scoped, named fixes are approved when bugs are specific, enumerated, and clear. The standing lockdown from Monday is lifted now that v0.7.2 is validated on a real build.
 
-SKILL PATCH SESSION 2026-04-16 (9 commits):
+SKILL PATCH SESSION 2026-04-16 morning (9 commits):
 Bug 2 fixed: CTA trailing-fragment hallucination (anti-slop ban + local reinforcement + check #3 expanded)
 Bug 4 fixed: Social metadata now mandated on every page (template upgraded to 15 tags + check #18 enforces)
 Bug 5 fixed: Phase 7 slug reconciliation before deploy (Step 2.5 + Check 7.10 + done-report visibility)
@@ -536,7 +538,15 @@ Phase 6 checks now 18 (was 17). Phase 7 steps now 8 (was 7). Check 7.10 added.
 Bugs 1 and 3 deferred deliberately. Check-numbering drift in content-rules.md and seo-geo.md logged for post-launch.
 Standing rule revised: scoped, named skill fixes are approved when bugs are specific, enumerated, and clear.
 claude-mem adopted as Claude Code observation/memory layer.
-Next: F3 build validates patches, then F2/F1 retroactive updates.
+
+F3 BUILD + v0.7.2 TAG 2026-04-16 afternoon:
+F3 (Chad's Lawn and Landscape) built and deployed. Summerfield FL, lawn care/landscaping/hardscaping, 13 services, 124 Google reviews at 4.4/5, owner Chad Saucier. Professional tier (48/100), glass-crossfade hero, Space Grotesk/Inter typography. Live at chads-lawn-and-landscape-grm.vercel.app.
+All three v0.7.1 bug patches validated on F3: Bug 2 (zero trailing fragments), Bug 4 (15-tag social metadata on all 5 pages), Bug 5 (slug reconciliation clean). Honeypot field added to contact form template.
+Skill tagged v0.7.2. Committed to project repo at .claude/skills/prospect-site/ (commit 9c60009).
+F2 (A-1 Payless Septic) retrofitted: replaced non-standard og:image:secure_url with og:site_name, added og:locale, added full 15-tag block to thank-you.html. Redeployed.
+Playwright audit infrastructure built: audit.mjs with scroll-to-reveal for accurate full-page screenshots, 10 screenshots (5 pages x 2 viewports), all checks passed.
+Fleet is now 3 flagships live (T&F v07, A-1 Payless Septic, Chad's Lawn and Landscape).
+Next: F4 (Grandview Inc, grandviewinc.com) + F5 Thursday, F6-F7 Friday. Sales infrastructure moved to weekend.
 
 
 Carryover from Monday's handoff (still open)
