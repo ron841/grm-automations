@@ -528,6 +528,16 @@ Post-launch (after sales kickoff is behind us), the design upgrade path returns 
 
 Rule still in force from Monday: no skill engineering until after Wednesday's sales kickoff. Tonight's version-label fix was the only exception and was a documentation correction, not functional code.
 
+SKILL PATCH SESSION 2026-04-16 (9 commits):
+Bug 2 fixed: CTA trailing-fragment hallucination (anti-slop ban + local reinforcement + check #3 expanded)
+Bug 4 fixed: Social metadata now mandated on every page (template upgraded to 15 tags + check #18 enforces)
+Bug 5 fixed: Phase 7 slug reconciliation before deploy (Step 2.5 + Check 7.10 + done-report visibility)
+Phase 6 checks now 18 (was 17). Phase 7 steps now 8 (was 7). Check 7.10 added.
+Bugs 1 and 3 deferred deliberately. Check-numbering drift in content-rules.md and seo-geo.md logged for post-launch.
+Standing rule revised: scoped, named skill fixes are approved when bugs are specific, enumerated, and clear.
+claude-mem adopted as Claude Code observation/memory layer.
+Next: F3 build validates patches, then F2/F1 retroactive updates.
+
 
 Carryover from Monday's handoff (still open)
 Items from the April 13 handoff that were not addressed this session:
