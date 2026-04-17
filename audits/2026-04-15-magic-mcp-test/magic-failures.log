@@ -1,0 +1,12 @@
+# Magic MCP procurement failures log — T&F Electric build
+# Paused at 2026-04-15T17:50:36Z
+
+- [promoBar] similarity 0.043 below 0.5 threshold
+  query: announcement bar
+
+- [trustMarquee] top hit (Hero Badge) wrong component type; Marquee match at 0.161 below 0.5 threshold
+  query: trust marquee badges
+
+- [hero] top hit by similarity was SaaS phone-mockup hero, not contractor. Second hit (Glassmorphism Trust Hero) selected by name match but has SaaS-specific copy baked in.
+  query: glass hero crossfade
+

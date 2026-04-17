@@ -1,0 +1,50 @@
+{
+  "procuredAt": "2026-04-15T17:50:36Z",
+  "skillVersion": "v0.7-magic-test",
+  "status": "PAUSED_FAILURE_THRESHOLD_REACHED",
+  "sections": {
+    "nav": {
+      "componentName": "Floating Header",
+      "similarity": 1.88,
+      "note": "shadcn + radix-dialog sheet, workable generic nav"
+    },
+    "promoBar": null,
+    "hero": {
+      "componentName": "Glassmorphism Trust Hero",
+      "similarity": 3.047,
+      "note": "2nd result by similarity but best structural match by name \u2014 has stats card + trust marquee + badges. SaaS-flavored copy ('ACTIVE/PREMIUM/Award-Winning') would need replacement. Top result 'Hero Section' with phone mockup discarded as wrong intent."
+    },
+    "trustMarquee": {
+      "componentName": "Marquee",
+      "similarity": 0.161,
+      "note": "2nd result. BELOW 0.5 similarity threshold \u2014 formal FAIL per magic-procurement.md. Usable structurally as a CSS marquee primitive."
+    },
+    "servicesGrid": null,
+    "statsDark": null,
+    "beforeAfterGallery": null,
+    "testimonials": null,
+    "promoCallout": null,
+    "faq": null,
+    "contactForm": null,
+    "footer": null,
+    "aboutPage": null
+  },
+  "failures": [
+    {
+      "section": "promoBar",
+      "reason": "similarity 0.043 below 0.5 threshold",
+      "query": "announcement bar"
+    },
+    {
+      "section": "trustMarquee",
+      "reason": "top hit (Hero Badge) wrong component type; Marquee match at 0.161 below 0.5 threshold",
+      "query": "trust marquee badges"
+    },
+    {
+      "section": "hero",
+      "reason": "top hit by similarity was SaaS phone-mockup hero, not contractor. Second hit (Glassmorphism Trust Hero) selected by name match but has SaaS-specific copy baked in.",
+      "query": "glass hero crossfade"
+    }
+  ],
+  "halt_reason": "Per magic-procurement.md: 'If 4 or more of 13 sections fail: STOP the build.' Three confirmed failures across first four calls, projecting 7+ more on contractor-specific sections (stats, before/after, promo callout, FAQ, contact form, about page). Also consuming ~50K tokens per call \u2014 remaining 9 calls would blow context budget before Phase 5 HTML generation completes."
+}

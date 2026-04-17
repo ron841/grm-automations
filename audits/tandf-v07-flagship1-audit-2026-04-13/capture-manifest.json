@@ -1,0 +1,461 @@
+{
+  "base_url": "https://tandf-electric-v07.vercel.app",
+  "pages": {
+    "index": "captured",
+    "services": "captured",
+    "about": "captured",
+    "testimonials": "captured",
+    "contact": "captured",
+    "thanks": "captured"
+  },
+  "bg_images": {
+    "index-desktop": [
+      {
+        "tag": "div",
+        "className": "hero-crossfade-slide active",
+        "id": "",
+        "bgImage": "url(\"https://tandf-electric-v07.vercel.app/assets/photos/google/gp-01.jpg\")",
+        "top": 0,
+        "height": 971.96875,
+        "width": 1440,
+        "selector": "div.hero-crossfade-slide.active",
+        "screenshot": "index-bg0-desktop.png"
+      },
+      {
+        "tag": "div",
+        "className": "hero-crossfade-slide",
+        "id": "",
+        "bgImage": "url(\"https://tandf-electric-v07.vercel.app/assets/photos/google/gp-03.jpg\")",
+        "top": 0,
+        "height": 971.96875,
+        "width": 1440,
+        "selector": "div.hero-crossfade-slide",
+        "screenshot": "index-bg1-desktop.png"
+      },
+      {
+        "tag": "div",
+        "className": "hero-crossfade-slide",
+        "id": "",
+        "bgImage": "url(\"https://tandf-electric-v07.vercel.app/assets/photos/google/gp-04.jpg\")",
+        "top": 0,
+        "height": 971.96875,
+        "width": 1440,
+        "selector": "div.hero-crossfade-slide",
+        "screenshot": "index-bg2-desktop.png"
+      },
+      {
+        "tag": "div",
+        "className": "hero-crossfade-slide",
+        "id": "",
+        "bgImage": "url(\"https://tandf-electric-v07.vercel.app/assets/photos/google/gp-05.jpg\")",
+        "top": 0,
+        "height": 971.96875,
+        "width": 1440,
+        "selector": "div.hero-crossfade-slide",
+        "screenshot": "index-bg3-desktop.png"
+      },
+      {
+        "tag": "div",
+        "className": "hero-crossfade-slide",
+        "id": "",
+        "bgImage": "url(\"https://tandf-electric-v07.vercel.app/assets/photos/google/gp-06.jpg\")",
+        "top": 0,
+        "height": 971.96875,
+        "width": 1440,
+        "selector": "div.hero-crossfade-slide",
+        "screenshot": "index-bg4-desktop.png"
+      },
+      {
+        "tag": "div",
+        "className": "hero-crossfade-overlay",
+        "id": "",
+        "bgImage": "linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.65) 100%)",
+        "top": 0,
+        "height": 971.96875,
+        "width": 1440,
+        "selector": "div.hero-crossfade-overlay",
+        "screenshot": "index-bg5-desktop.png"
+      },
+      {
+        "tag": "div",
+        "className": "service-card service-card-featured",
+        "id": "",
+        "bgImage": "url(\"https://tandf-electric-v07.vercel.app/assets/photos/google/gp-09.jpg\")",
+        "top": 1487.765625,
+        "height": 460,
+        "width": 630,
+        "selector": "div.service-card.service-card-featured",
+        "screenshot": "index-bg6-desktop.png"
+      },
+      {
+        "tag": "div",
+        "className": "service-card-overlay",
+        "id": "",
+        "bgImage": "linear-gradient(rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.88) 100%)",
+        "top": 1488.765625,
+        "height": 458,
+        "width": 628,
+        "selector": "div.service-card-overlay",
+        "screenshot": "index-bg7-desktop.png"
+      },
+      {
+        "tag": "div",
+        "className": "stats-number",
+        "id": "",
+        "bgImage": "linear-gradient(rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0.7) 100%)",
+        "top": 2880.5625,
+        "height": 96,
+        "width": 258,
+        "selector": "div.stats-number",
+        "screenshot": "index-bg8-desktop.png"
+      },
+      {
+        "tag": "div",
+        "className": "stats-number",
+        "id": "",
+        "bgImage": "linear-gradient(rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0.7) 100%)",
+        "top": 2880.5625,
+        "height": 96,
+        "width": 258,
+        "selector": "div.stats-number",
+        "screenshot": "index-bg9-desktop.png"
+      },
+      {
+        "tag": "div",
+        "className": "stats-number-static",
+        "id": "",
+        "bgImage": "linear-gradient(rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0.7) 100%)",
+        "top": 2880.5625,
+        "height": 96,
+        "width": 258,
+        "selector": "div.stats-number-static",
+        "screenshot": "index-bg10-desktop.png"
+      },
+      {
+        "tag": "div",
+        "className": "stats-number-static",
+        "id": "",
+        "bgImage": "linear-gradient(rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0.7) 100%)",
+        "top": 2880.5625,
+        "height": 96,
+        "width": 258,
+        "selector": "div.stats-number-static",
+        "screenshot": "index-bg11-desktop.png"
+      }
+    ],
+    "index-mobile": [
+      {
+        "tag": "div",
+        "className": "hero-crossfade-slide active",
+        "id": "",
+        "bgImage": "url(\"https://tandf-electric-v07.vercel.app/assets/photos/google/gp-01.jpg\")",
+        "top": 0,
+        "height": 989.75,
+        "width": 390,
+        "selector": "div.hero-crossfade-slide.active",
+        "screenshot": "index-bg0-mobile.png"
+      },
+      {
+        "tag": "div",
+        "className": "hero-crossfade-slide",
+        "id": "",
+        "bgImage": "url(\"https://tandf-electric-v07.vercel.app/assets/photos/google/gp-03.jpg\")",
+        "top": 0,
+        "height": 989.75,
+        "width": 390,
+        "selector": "div.hero-crossfade-slide",
+        "screenshot": "index-bg1-mobile.png"
+      },
+      {
+        "tag": "div",
+        "className": "hero-crossfade-slide",
+        "id": "",
+        "bgImage": "url(\"https://tandf-electric-v07.vercel.app/assets/photos/google/gp-04.jpg\")",
+        "top": 0,
+        "height": 989.75,
+        "width": 390,
+        "selector": "div.hero-crossfade-slide",
+        "screenshot": "index-bg2-mobile.png"
+      },
+      {
+        "tag": "div",
+        "className": "hero-crossfade-slide",
+        "id": "",
+        "bgImage": "url(\"https://tandf-electric-v07.vercel.app/assets/photos/google/gp-05.jpg\")",
+        "top": 0,
+        "height": 989.75,
+        "width": 390,
+        "selector": "div.hero-crossfade-slide",
+        "screenshot": "index-bg3-mobile.png"
+      },
+      {
+        "tag": "div",
+        "className": "hero-crossfade-slide",
+        "id": "",
+        "bgImage": "url(\"https://tandf-electric-v07.vercel.app/assets/photos/google/gp-06.jpg\")",
+        "top": 0,
+        "height": 989.75,
+        "width": 390,
+        "selector": "div.hero-crossfade-slide",
+        "screenshot": "index-bg4-mobile.png"
+      },
+      {
+        "tag": "div",
+        "className": "hero-crossfade-overlay",
+        "id": "",
+        "bgImage": "linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.65) 100%)",
+        "top": 0,
+        "height": 989.75,
+        "width": 390,
+        "selector": "div.hero-crossfade-overlay",
+        "screenshot": "index-bg5-mobile.png"
+      },
+      {
+        "tag": "div",
+        "className": "service-card service-card-featured",
+        "id": "",
+        "bgImage": "url(\"https://tandf-electric-v07.vercel.app/assets/photos/google/gp-09.jpg\")",
+        "top": 1470.125,
+        "height": 420,
+        "width": 342,
+        "selector": "div.service-card.service-card-featured",
+        "screenshot": "index-bg6-mobile.png"
+      },
+      {
+        "tag": "div",
+        "className": "service-card-overlay",
+        "id": "",
+        "bgImage": "linear-gradient(rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.88) 100%)",
+        "top": 1471.125,
+        "height": 418,
+        "width": 340,
+        "selector": "div.service-card-overlay",
+        "screenshot": "index-bg7-mobile.png"
+      },
+      {
+        "tag": "div",
+        "className": "stats-number",
+        "id": "",
+        "bgImage": "linear-gradient(rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0.7) 100%)",
+        "top": 3379.71875,
+        "height": 64,
+        "width": 154.390625,
+        "selector": "div.stats-number",
+        "screenshot": "index-bg8-mobile.png"
+      },
+      {
+        "tag": "div",
+        "className": "stats-number",
+        "id": "",
+        "bgImage": "linear-gradient(rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0.7) 100%)",
+        "top": 3379.71875,
+        "height": 64,
+        "width": 99.609375,
+        "selector": "div.stats-number",
+        "screenshot": "index-bg9-mobile.png"
+      },
+      {
+        "tag": "div",
+        "className": "stats-number-static",
+        "id": "",
+        "bgImage": "linear-gradient(rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0.7) 100%)",
+        "top": 3565.71875,
+        "height": 64,
+        "width": 154.390625,
+        "selector": "div.stats-number-static",
+        "screenshot": "index-bg10-mobile.png"
+      },
+      {
+        "tag": "div",
+        "className": "stats-number-static",
+        "id": "",
+        "bgImage": "linear-gradient(rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0.7) 100%)",
+        "top": 3565.71875,
+        "height": 64,
+        "width": 99.609375,
+        "selector": "div.stats-number-static",
+        "screenshot": "index-bg11-mobile.png"
+      }
+    ],
+    "services-desktop": [
+      {
+        "tag": "section",
+        "className": "subpage-hero",
+        "id": "",
+        "bgImage": "linear-gradient(135deg, rgb(26, 1, 3) 0%, rgb(69, 1, 5) 50%, rgb(26, 1, 3) 100%)",
+        "top": 0,
+        "height": 497.984375,
+        "width": 1440,
+        "selector": "section.subpage-hero",
+        "screenshot": "services-bg0-desktop.png"
+      },
+      {
+        "tag": "div",
+        "className": "service-card service-card-featured",
+        "id": "",
+        "bgImage": "url(\"https://tandf-electric-v07.vercel.app/assets/photos/google/gp-09.jpg\")",
+        "top": 617.984375,
+        "height": 460,
+        "width": 630,
+        "selector": "div.service-card.service-card-featured",
+        "screenshot": "services-bg1-desktop.png"
+      },
+      {
+        "tag": "div",
+        "className": "service-card-overlay",
+        "id": "",
+        "bgImage": "linear-gradient(rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.88) 100%)",
+        "top": 618.984375,
+        "height": 458,
+        "width": 628,
+        "selector": "div.service-card-overlay",
+        "screenshot": "services-bg2-desktop.png"
+      }
+    ],
+    "services-mobile": [
+      {
+        "tag": "section",
+        "className": "subpage-hero",
+        "id": "",
+        "bgImage": "linear-gradient(135deg, rgb(26, 1, 3) 0%, rgb(69, 1, 5) 50%, rgb(26, 1, 3) 100%)",
+        "top": 0,
+        "height": 449.765625,
+        "width": 390,
+        "selector": "section.subpage-hero",
+        "screenshot": "services-bg0-mobile.png"
+      },
+      {
+        "tag": "div",
+        "className": "service-card service-card-featured",
+        "id": "",
+        "bgImage": "url(\"https://tandf-electric-v07.vercel.app/assets/photos/google/gp-09.jpg\")",
+        "top": 529.765625,
+        "height": 420,
+        "width": 342,
+        "selector": "div.service-card.service-card-featured",
+        "screenshot": "services-bg1-mobile.png"
+      },
+      {
+        "tag": "div",
+        "className": "service-card-overlay",
+        "id": "",
+        "bgImage": "linear-gradient(rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.88) 100%)",
+        "top": 530.765625,
+        "height": 418,
+        "width": 340,
+        "selector": "div.service-card-overlay",
+        "screenshot": "services-bg2-mobile.png"
+      }
+    ],
+    "about-desktop": [
+      {
+        "tag": "section",
+        "className": "subpage-hero",
+        "id": "",
+        "bgImage": "linear-gradient(135deg, rgb(26, 1, 3) 0%, rgb(69, 1, 5) 50%, rgb(26, 1, 3) 100%)",
+        "top": 0,
+        "height": 497.984375,
+        "width": 1440,
+        "selector": "section.subpage-hero",
+        "screenshot": "about-bg0-desktop.png"
+      }
+    ],
+    "about-mobile": [
+      {
+        "tag": "section",
+        "className": "subpage-hero",
+        "id": "",
+        "bgImage": "linear-gradient(135deg, rgb(26, 1, 3) 0%, rgb(69, 1, 5) 50%, rgb(26, 1, 3) 100%)",
+        "top": 0,
+        "height": 449.765625,
+        "width": 390,
+        "selector": "section.subpage-hero",
+        "screenshot": "about-bg0-mobile.png"
+      }
+    ],
+    "testimonials-desktop": [
+      {
+        "tag": "section",
+        "className": "subpage-hero",
+        "id": "",
+        "bgImage": "linear-gradient(135deg, rgb(26, 1, 3) 0%, rgb(69, 1, 5) 50%, rgb(26, 1, 3) 100%)",
+        "top": 0,
+        "height": 410.390625,
+        "width": 1440,
+        "selector": "section.subpage-hero",
+        "screenshot": "testimonials-bg0-desktop.png"
+      }
+    ],
+    "testimonials-mobile": [
+      {
+        "tag": "section",
+        "className": "subpage-hero",
+        "id": "",
+        "bgImage": "linear-gradient(135deg, rgb(26, 1, 3) 0%, rgb(69, 1, 5) 50%, rgb(26, 1, 3) 100%)",
+        "top": 0,
+        "height": 411.96875,
+        "width": 390,
+        "selector": "section.subpage-hero",
+        "screenshot": "testimonials-bg0-mobile.png"
+      }
+    ],
+    "contact-desktop": [
+      {
+        "tag": "section",
+        "className": "subpage-hero",
+        "id": "",
+        "bgImage": "linear-gradient(135deg, rgb(26, 1, 3) 0%, rgb(69, 1, 5) 50%, rgb(26, 1, 3) 100%)",
+        "top": 0,
+        "height": 439.1875,
+        "width": 1440,
+        "selector": "section.subpage-hero",
+        "screenshot": "contact-bg0-desktop.png"
+      }
+    ],
+    "contact-mobile": [
+      {
+        "tag": "section",
+        "className": "subpage-hero",
+        "id": "",
+        "bgImage": "linear-gradient(135deg, rgb(26, 1, 3) 0%, rgb(69, 1, 5) 50%, rgb(26, 1, 3) 100%)",
+        "top": 0,
+        "height": 411.96875,
+        "width": 390,
+        "selector": "section.subpage-hero",
+        "screenshot": "contact-bg0-mobile.png"
+      }
+    ],
+    "thanks-desktop": [
+      {
+        "tag": "section",
+        "className": "subpage-hero",
+        "id": "",
+        "bgImage": "linear-gradient(135deg, rgb(26, 1, 3) 0%, rgb(69, 1, 5) 50%, rgb(26, 1, 3) 100%)",
+        "top": 0,
+        "height": 439.1875,
+        "width": 1440,
+        "selector": "section.subpage-hero",
+        "screenshot": "thanks-bg0-desktop.png"
+      }
+    ],
+    "thanks-mobile": [
+      {
+        "tag": "section",
+        "className": "subpage-hero",
+        "id": "",
+        "bgImage": "linear-gradient(135deg, rgb(26, 1, 3) 0%, rgb(69, 1, 5) 50%, rgb(26, 1, 3) 100%)",
+        "top": 0,
+        "height": 374.171875,
+        "width": 390,
+        "selector": "section.subpage-hero",
+        "screenshot": "thanks-bg0-mobile.png"
+      }
+    ]
+  },
+  "og": {
+    "og_url": "https://tandf-electric-v07.vercel.app/assets/photos/google/gp-01.jpg",
+    "og_title": "T&F Electric | Dunnellon & Marion County Electrician",
+    "og_description": "Fifty years. Two Tuccis. One phone number. Florida license EC13007855. Call (352) 465-4600.",
+    "downloaded": "/Users/ronkolb/grm-automations/audits/tandf-v07-flagship1-audit-2026-04-13/og/og-image.png"
+  }
+}

@@ -1,0 +1,516 @@
+{
+  "business": {
+    "name": "T&F Electric",
+    "legalName": "T & F Electric Co",
+    "slug": "tf-electric-magic",
+    "url": "https://www.tandfelectric.com/",
+    "category": "electrician",
+    "tagline": "#1 Pick for Electrical Services in Marion and all surrounding counties",
+    "phone": "(352) 465-4600",
+    "phoneTel": "3524654600",
+    "fax": "(352) 489-2952",
+    "email": "tandfelectric@gmail.com",
+    "address": {
+      "street": "1737 SW Big Tree Rd",
+      "city": "Dunnellon",
+      "state": "FL",
+      "zip": "34431",
+      "country": "US"
+    },
+    "license": "EC13007855",
+    "licenseType": "FL Electrical Contractor",
+    "hours": {
+      "Monday": "9:00 AM - 4:00 PM",
+      "Tuesday": "9:00 AM - 4:00 PM",
+      "Wednesday": "9:00 AM - 4:00 PM",
+      "Thursday": "9:00 AM - 4:00 PM",
+      "Friday": "9:00 AM - 4:00 PM",
+      "Saturday": "Closed",
+      "Sunday": "Closed"
+    },
+    "yearsInBusiness": 50,
+    "owners": [
+      {
+        "name": "Ben Tucci",
+        "role": "Owner / Licensed Electrician"
+      },
+      {
+        "name": "Wendy Tucci",
+        "role": "Owner / Office"
+      }
+    ],
+    "teamName": "Tucci & Family Electric Team"
+  },
+  "serviceArea": [
+    "Dunnellon, FL",
+    "Ocala, FL",
+    "Belleview, FL",
+    "The Villages, FL",
+    "Marion County, FL"
+  ],
+  "clientTypes": [
+    "Residential",
+    "Commercial",
+    "Agricultural",
+    "Industrial"
+  ],
+  "services": [
+    {
+      "name": "Panel Upgrades",
+      "slug": "panel-upgrades",
+      "description": "Upgrade your electrical panel to handle today's loads safely. Modernize old structures and add capacity for additions or new construction.",
+      "category": "panel"
+    },
+    {
+      "name": "Generators (Whole Home)",
+      "slug": "generators",
+      "description": "Generac standby generator installation. Keep the lights on through Florida storm season, automatic transfer switches, full turnkey install.",
+      "category": "generator",
+      "featured": true
+    },
+    {
+      "name": "Whole House Surge Protection",
+      "slug": "surge-protection",
+      "description": "Whole house surge arrestors at the main panel. One install protects every circuit, every outlet, every appliance from lightning and utility spikes.",
+      "category": "surge",
+      "featured": true
+    },
+    {
+      "name": "New Construction Wiring",
+      "slug": "new-construction",
+      "description": "Full electrical rough-in and finish for new homes, additions, and alterations. Residential, commercial, agricultural, and industrial.",
+      "category": "new-construction"
+    },
+    {
+      "name": "Lighting Installation",
+      "slug": "lighting",
+      "description": "Interior lighting fixtures, ceiling fans, outside lighting and landscape lighting. Recessed, pendant, track, and energy-efficient LED upgrades.",
+      "category": "lighting"
+    },
+    {
+      "name": "Landscape Lighting",
+      "slug": "landscape-lighting",
+      "description": "Low-voltage outdoor lighting for paths, trees, architectural features, and security. Designed, installed, and wired by licensed electricians.",
+      "category": "landscape"
+    },
+    {
+      "name": "Electrical Maintenance & Repair",
+      "slug": "maintenance-repair",
+      "description": "Troubleshooting, repair, and preventative maintenance of existing electrical systems. Stop guessing, start fixing, before a small issue becomes an outage.",
+      "category": "repair"
+    },
+    {
+      "name": "Modernization of Old Wiring",
+      "slug": "modernization",
+      "description": "Rewire and modernize electrical systems in older Marion County homes. Bring your house up to current code, safely, with minimal disruption.",
+      "category": "rewire"
+    },
+    {
+      "name": "Additions & Alterations",
+      "slug": "additions",
+      "description": "Electrical for room additions, garage conversions, pool houses, and renovations. Permits pulled, inspections passed, work guaranteed.",
+      "category": "additions"
+    },
+    {
+      "name": "Commercial Electrical",
+      "slug": "commercial",
+      "description": "Storefront, office, retail, and small-business electrical. Service upgrades, tenant build-outs, and commercial panel work.",
+      "category": "commercial"
+    },
+    {
+      "name": "Agricultural & Industrial",
+      "slug": "industrial",
+      "description": "Barns, horse stables, ag outbuildings, and industrial service. Three-phase, heavy feeders, and equipment circuits.",
+      "category": "industrial"
+    },
+    {
+      "name": "Phone & Online Tech Support",
+      "slug": "tech-support",
+      "description": "Quick troubleshooting by phone or video when you're not sure if it's a breaker, a bulb, or a bigger problem. Charges may apply.",
+      "category": "support"
+    }
+  ],
+  "testimonials": [
+    {
+      "n": 1,
+      "name": "Jack C.",
+      "city": "Dunnellon, FL",
+      "quote": "T & F Electric has done my electrical work for years. They're the only one I rely on in Dunnellon. Very prompt, great service, fair price.",
+      "rating": 5,
+      "source": "T&F Electric website"
+    },
+    {
+      "n": 2,
+      "name": "ALan G.",
+      "city": "Dunnellon, FL",
+      "quote": "Our company went through several electricians before we found T & F Electric. Now we can finally stop looking for a company that always responds quickly, sends experienced professionals and can handle any problem, including replacing worn-out cables.",
+      "rating": 5,
+      "source": "T&F Electric website"
+    },
+    {
+      "n": 3,
+      "name": "Dallas D.",
+      "city": "Ocala, FL",
+      "quote": "Great service!",
+      "rating": 5,
+      "source": "T&F Electric website"
+    },
+    {
+      "n": 4,
+      "name": "Charles V.",
+      "city": "Dunnellon, FL",
+      "quote": "Arrived on time and completed all work as requested.",
+      "rating": 5,
+      "source": "T&F Electric website"
+    },
+    {
+      "n": 5,
+      "name": "Joe N.",
+      "city": "Ocala, FL",
+      "quote": "They kept their appointment and were on time. I didn't use them this time but was impressed with their professionalism and their knowledge of the electrical trade.",
+      "rating": 5,
+      "source": "T&F Electric website"
+    },
+    {
+      "n": 6,
+      "name": "Karen W.",
+      "city": "Ocala, FL",
+      "quote": "Very nice young man installed the ceiling fans for me and I would recommend him to others.",
+      "rating": 5,
+      "source": "T&F Electric website"
+    },
+    {
+      "n": 7,
+      "name": "Louise Q.",
+      "city": "The Villages, FL",
+      "quote": "Very punctual, courteous, knowledgeable.",
+      "rating": 5,
+      "source": "T&F Electric website"
+    },
+    {
+      "n": 8,
+      "name": "James E.",
+      "city": "Dunnellon, FL",
+      "quote": "Upon contacting T&F Electric, the President of the Company came out in a timely manner to inspect the job site and review the requirements. Within 24 hours, I had a quote in hand. They arrived at the time they were supposed to and completed the job in a timely manner. They even asked if we had a vacuum cleaner they could use to clean up the work area. An excellent company I would strongly recommend.",
+      "rating": 5,
+      "source": "T&F Electric website"
+    },
+    {
+      "n": 9,
+      "name": "Leslie B.",
+      "city": "Belleview, FL",
+      "quote": "Easy to work with, professional, and you can't beat the price.",
+      "rating": 5,
+      "source": "T&F Electric website"
+    },
+    {
+      "n": 10,
+      "name": "Elaine M.",
+      "city": "Dunnellon, FL",
+      "quote": "They responded by phone while I was still online. Got the supplies needed and completed the job the following day. Fair pricing and fast service. Very satisfied.",
+      "rating": 5,
+      "source": "T&F Electric website"
+    },
+    {
+      "n": 11,
+      "name": "Denise Martinez",
+      "city": "Marion County, FL",
+      "quote": "T and F is very responsive. They do great workmanship. Their team was friendly and explained things well.",
+      "rating": 5,
+      "source": "Google"
+    },
+    {
+      "n": 12,
+      "name": "James Robinson",
+      "city": "Marion County, FL",
+      "quote": "The only one I found that was reasonably priced. I needed power to a new 30x60 garage. They came and did the job as promised.",
+      "rating": 5,
+      "source": "Google"
+    },
+    {
+      "n": 13,
+      "name": "Debra Stoffel",
+      "city": "Marion County, FL",
+      "quote": "I had several estimates from other local electricians. T&F were awesome. Highly recommend.",
+      "rating": 5,
+      "source": "Google"
+    },
+    {
+      "n": 14,
+      "name": "Tony Cruz",
+      "city": "Marion County, FL",
+      "quote": "Best electric company in Marion County hands down. From customer service to execution and communication, the owner calls personally.",
+      "rating": 5,
+      "source": "Google"
+    },
+    {
+      "n": 15,
+      "name": "Michael Johnson",
+      "city": "Marion County, FL",
+      "quote": "Thank you so much for your fast response. Your company and technicians are awesome. If there were 6 stars you would have them.",
+      "rating": 5,
+      "source": "Google"
+    }
+  ],
+  "reviews": {
+    "google": {
+      "rating": 4.6,
+      "count": 41,
+      "source": "Google Business Profile"
+    },
+    "homeAdvisor": {
+      "count": 50,
+      "source": "HomeAdvisor 50+ Reviews badge"
+    },
+    "websiteTestimonials": 10
+  },
+  "featuredPromotion": {
+    "headline": "Generator Installation + Whole House Surge Protection",
+    "bodyVerbatim": "Generator Installation - Whole House Surge Protection. Don't be a victim of the next lightning storm. Call Today.",
+    "offerText": "Ask about Generac generator installation paired with whole house surge protection. One call protects the home when the next Florida storm rolls through.",
+    "cta": "Call (352) 465-4600"
+  },
+  "credentials": [
+    "Licensed FL Electrical Contractor EC13007855",
+    "50 Years of Experience",
+    "Google Reviews 4.6 from 41 customers",
+    "HomeAdvisor 50+ Reviews",
+    "Clean and Workman-like Manner guarantee",
+    "Residential, Commercial, Agricultural, Industrial",
+    "Family owned: Ben and Wendy Tucci",
+    "Marion County based, Dunnellon FL"
+  ],
+  "brandPalette": {
+    "primary": "#3b7bc4",
+    "darkPrimary": "#1e4b8e",
+    "accent": "#65abe8",
+    "neutral": "#627f92",
+    "background": "#f4f7fa",
+    "darkBackground": "#0f1e33",
+    "textPrimary": "#0f172a",
+    "textMuted": "#475569",
+    "palettetemp": "cool",
+    "source": "node-vibrant on Google Places photo 01 (site exterior with T&F van). Primary blue matches van lettering. DarkVibrant (#330610) discarded because logo had no actual logo asset (the downloaded 'cache_908552104.png' was a team photo, not a logo); dark blue derived from primary instead.",
+    "vibrantRaw": {
+      "Vibrant": "#3b7bc4",
+      "DarkVibrant": "#330610",
+      "LightVibrant": "#65abe8",
+      "Muted": "#627f92",
+      "DarkMuted": "#31465e",
+      "LightMuted": "#d2c3b6"
+    }
+  },
+  "designChoices": {
+    "heroBackground": "#f4f7fa",
+    "heroGlassVariant": "default",
+    "heroMode": "glass-crossfade",
+    "tier": "Standard",
+    "score": 34,
+    "scoreBreakdown": {
+      "copy": 6,
+      "visual": 4,
+      "maturity": 16,
+      "sophistication": 3,
+      "brand": 5
+    }
+  },
+  "typography": {
+    "heading": "Fraunces",
+    "body": "Inter",
+    "googleFontsPath": "Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600"
+  },
+  "photoAssignments": {
+    "heroCandidates": [
+      "google/01.jpg",
+      "google/04.jpg",
+      "google/09.jpg",
+      "google/05.jpg",
+      "google/03.jpg",
+      "google/06.jpg",
+      "google/00.jpg"
+    ],
+    "ownerPortrait": null,
+    "servicesGridPhotos": {
+      "generators": "google/09.jpg",
+      "surge-protection": "google/05.jpg",
+      "panel-upgrades": "google/06.jpg",
+      "new-construction": "google/03.jpg",
+      "lighting": "google/04.jpg",
+      "landscape-lighting": "google/04.jpg",
+      "commercial": "google/05.jpg",
+      "industrial": "google/02.jpg",
+      "maintenance-repair": "google/06.jpg",
+      "modernization": "google/03.jpg",
+      "additions": "google/01.jpg",
+      "tech-support": "google/07.jpg"
+    },
+    "galleryPhotos": [
+      "google/00.jpg",
+      "google/01.jpg",
+      "google/02.jpg",
+      "google/03.jpg",
+      "google/04.jpg",
+      "google/05.jpg",
+      "google/06.jpg",
+      "google/09.jpg"
+    ],
+    "aboutTeamPhoto": "site/homepage-team.png",
+    "vanPhoto": "google/07.jpg"
+  },
+  "migrationData": {
+    "currentCms": "IONOS MyWebsite Editor (204.mod.mywebsite-editor.com)",
+    "indexedPages": [
+      "https://www.tandfelectric.com/",
+      "https://www.tandfelectric.com/services/",
+      "https://www.tandfelectric.com/customer-testimonials/",
+      "https://www.tandfelectric.com/about-us/",
+      "https://www.tandfelectric.com/contact-us/",
+      "https://www.tandfelectric.com/sitemap/"
+    ],
+    "redirectMap": {
+      "/": "/",
+      "/services/": "/services.html",
+      "/customer-testimonials/": "/testimonials.html",
+      "/about-us/": "/about.html",
+      "/contact-us/": "/contact.html",
+      "/sitemap/": "/sitemap.xml"
+    },
+    "archiveSnapshots": "Not pulled in Phase 2.5 (Wayback check deferred to migration workflow)",
+    "siteSearchIndex": "Not pulled in Phase 2.5 (Google site: deferred to migration workflow)"
+  },
+  "googlePlacesId": "ChIJOX5Aa6ph6IgRHVNEQBKcAMM",
+  "photoInventory": {
+    "google/00.jpg": {
+      "contentType": "branded_detail",
+      "orientation": "landscape",
+      "longEdgePx": 1600,
+      "disqualifiers": [],
+      "caption": "T&F Electric office signage"
+    },
+    "google/01.jpg": {
+      "contentType": "jobsite_exterior",
+      "orientation": "landscape",
+      "longEdgePx": 1600,
+      "disqualifiers": [],
+      "caption": "Truck and service van at a Marion County jobsite"
+    },
+    "google/02.jpg": {
+      "contentType": "finished_work_agricultural",
+      "orientation": "portrait",
+      "longEdgePx": 1600,
+      "disqualifiers": [],
+      "caption": "Horse stable lighting, agricultural service"
+    },
+    "google/03.jpg": {
+      "contentType": "team_working",
+      "orientation": "landscape",
+      "longEdgePx": 1600,
+      "disqualifiers": [],
+      "caption": "T&F Electric on a new-construction rough-in"
+    },
+    "google/04.jpg": {
+      "contentType": "finished_work_residential",
+      "orientation": "landscape",
+      "longEdgePx": 1600,
+      "disqualifiers": [],
+      "caption": "Residential kitchen lighting remodel"
+    },
+    "google/05.jpg": {
+      "contentType": "finished_work_commercial",
+      "orientation": "landscape",
+      "longEdgePx": 1600,
+      "disqualifiers": [],
+      "caption": "Commercial meter bank installation"
+    },
+    "google/06.jpg": {
+      "contentType": "jobsite_service",
+      "orientation": "landscape",
+      "longEdgePx": 1600,
+      "disqualifiers": [],
+      "caption": "Underground conduit and service run"
+    },
+    "google/07.jpg": {
+      "contentType": "team_van",
+      "orientation": "landscape",
+      "longEdgePx": 1600,
+      "disqualifiers": [
+        "unrelated_storefront_signage"
+      ],
+      "caption": "T&F service van on call"
+    },
+    "google/08.jpg": {
+      "contentType": "branded_billboard",
+      "orientation": "landscape",
+      "longEdgePx": 1600,
+      "disqualifiers": [
+        "co_branded_text_heavy"
+      ],
+      "caption": "T&F Electric billboard"
+    },
+    "google/09.jpg": {
+      "contentType": "finished_work_generator",
+      "orientation": "landscape",
+      "longEdgePx": 1600,
+      "disqualifiers": [],
+      "caption": "Generac standby generator + transfer switch install"
+    },
+    "site/homepage-team.png": {
+      "contentType": "team_group",
+      "orientation": "landscape",
+      "longEdgePx": 430,
+      "disqualifiers": [
+        "five_stars_banner_overlay",
+        "below_1600px"
+      ],
+      "caption": "The Tucci Family T&F Electric team"
+    },
+    "site/services-1.jpg": {
+      "contentType": "team_van",
+      "orientation": "landscape",
+      "longEdgePx": 212,
+      "disqualifiers": [
+        "below_1600px"
+      ],
+      "caption": "T&F service van"
+    },
+    "site/about-1.jpg": {
+      "contentType": "placeholder_silhouette",
+      "orientation": "portrait",
+      "longEdgePx": 130,
+      "disqualifiers": [
+        "silhouette_placeholder",
+        "below_1600px"
+      ],
+      "caption": "Placeholder"
+    },
+    "site/about-2.jpg": {
+      "contentType": "placeholder_silhouette",
+      "orientation": "portrait",
+      "longEdgePx": 130,
+      "disqualifiers": [
+        "silhouette_placeholder",
+        "below_1600px"
+      ],
+      "caption": "Placeholder"
+    }
+  },
+  "photoAttribution": {
+    "googlePlaces": "Photos provided by Google. Contributor: T & F Electric Co.",
+    "site": "Photo \u00a9 T & F Electric"
+  },
+  "buildStatus": {
+    "phase": "5.0 \u2014 Magic MCP procurement",
+    "state": "PAUSED \u2014 failure threshold reached",
+    "completedPhases": [
+      "0",
+      "1",
+      "2",
+      "2.5 (partial)",
+      "3",
+      "3.5",
+      "4"
+    ],
+    "pausedAt": "2026-04-15T17:50:36Z",
+    "nextAction": "User decision required"
+  }
+}

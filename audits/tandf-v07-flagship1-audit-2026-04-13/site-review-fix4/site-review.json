@@ -1,0 +1,43 @@
+{
+  "url": "https://tandf-electric-v07.vercel.app",
+  "timestamp": "2026-04-13T21:16:29.724745+00:00",
+  "brand_primary": null,
+  "checks": [
+    {
+      "id": "logo-is-image",
+      "status": "pass",
+      "severity": "soft",
+      "detail": "1 image(s) found in nav/header"
+    },
+    {
+      "id": "og-image-brand-color",
+      "status": "skip",
+      "severity": "hard",
+      "detail": "no --brand-primary provided"
+    },
+    {
+      "id": "featured-service-image-rotation",
+      "status": "pass",
+      "severity": "hard",
+      "detail": "home=1 images, services=1 images, no featured duplicates"
+    },
+    {
+      "id": "wow-gap-structural",
+      "status": "pass",
+      "severity": "hard",
+      "detail": "all 5 structural elements present (hero H1, stats, testimonials, services, CTA)"
+    },
+    {
+      "id": "mobile-render-baseline",
+      "status": "pass",
+      "severity": "soft",
+      "detail": "path=/Users/ronkolb/grm-automations/audits/tandf-v07-flagship1-audit-2026-04-13/site-review-fix4/mobile-screenshot.png, bytes=326446"
+    }
+  ],
+  "summary": {
+    "pass": 4,
+    "fail": 0,
+    "warn": 0,
+    "skip": 1
+  }
+}
