@@ -675,6 +675,35 @@ Do not ship slop. "Close enough" is not the standard.
 
 ---
 
+## Unknown-field claim vocabulary
+
+When a `profile.json` field is listed in `unknownFields[]`, Phase 6 check 20 (unknown-field guard) greps the generated site for the vocabulary associated with that field. Any match fails the build.
+
+This map is the single source of truth for which phrases to grep against which unknown fields. Extend this map whenever a new prospect-level fact category is added to `profile.json`.
+
+### Field-to-vocabulary map
+
+| Field              | Vocabulary greps                                                                                                         |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------ |
+| `license_number`   | licensed, license, state-licensed, licensing                                                                             |
+| `insurance_carrier`| insured, insurance, fully-insured, coverage                                                                              |
+| `bond_number`      | bonded, bond, surety                                                                                                     |
+| `certifications`   | certified, certification, accreditation                                                                                  |
+| `awards`           | award, award-winning, award winning, honored, recognized, decorated                                                      |
+| `founding_year`    | since [YEAR], established [YEAR], founded [YEAR], [N]-year-old, for [N] years, [N] years in business (if unknown: no founding claim at all) |
+| `ratings_overall`  | top-rated, top rated, highest-rated, five-star, [N]-star, best-reviewed                                                  |
+| `bbb_rating`       | BBB, Better Business Bureau, A+ rated                                                                                    |
+| `angi_presence`    | Angi, Angie's List, HomeAdvisor                                                                                          |
+| `ranking_source`   | #1 in, best in, leading [industry], top [industry]                                                                       |
+
+### Notes
+
+- `[YEAR]` and `[N]` in the patterns above are meta-placeholders. The grep implementation should detect numeric tokens in proximity to the phrase pattern (e.g., "since 1999" matches "since [YEAR]").
+- Matches are case-insensitive.
+- Matches are word-boundary-aware ("license" matches but "unlicensed-software" does not — the grep should tokenize).
+
+---
+
 ## Version
 
 anti-slop-rules.md v0.7.0. The no-fly zone reference. Loaded by Phase 4 (font, color, hero mode selection), Phase 5 (component and copy generation), and Phase 6 (final verification). Every rule in this file exists because a prior build shipped the banned pattern and produced a slop result. This file is the institutional memory of every "never again" lesson. Last updated April 9, 2026.

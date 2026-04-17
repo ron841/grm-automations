@@ -828,6 +828,116 @@ Phase 3 sets these flags during the content type tagging step. Phase 6 check 6 v
 
 ---
 
+## Logo alpha rebuild procedure
+
+Referenced from SKILL.md Phase 1 step 4a.
+
+Implementation target: `scripts/rebuild_logo_alpha.py`
+Library: Pillow (no OpenCV dependency)
+Input: `assets/logo.png` (as saved by step 4)
+Output: `assets/logo.png` (overwritten with RGBA version if rebuild was needed)
+
+### Algorithm
+
+1. Load the input PNG with Pillow.
+
+2. Mode check. If the image is already `RGBA`, proceed to corner transparency check. If the image is `RGB`, `P`, `L`, or any other mode, convert to `RGBA` as a first step — this alone does not add transparency, but it gives us the alpha channel to work with.
+
+3. Corner transparency check. Sample the alpha values of the four corner pixels. If all four are 0 (fully transparent), the logo already has proper transparency — exit without modification. If any corner pixel has alpha > 0, proceed to rebuild.
+
+4. Corner color sampling. Crop a 20x20 pixel region from each of the four corners (top-left, top-right, bottom-left, bottom-right). Average the RGB values within each region, then average those four averaged values to get the canonical "background color".
+
+5. Threshold selection. Based on the background color:
+   - If all channels of the averaged background are ≥ 240, treat as "near-white" and use the default threshold: pixels with all RGB channels ≥ 250 become fully transparent; pixels with all channels between 225 and 250 get a proportional alpha in [0, 255] for feathered edges.
+   - If the background is a colored non-white (rare but possible — e.g., a logo saved with a gray or cream canvas), use a color-distance threshold: pixels within a Euclidean RGB distance of 10 from the background color become transparent; pixels within 10–30 distance get proportional alpha feather.
+
+6. Alpha mask application. For each pixel in the image, compute its new alpha value per the threshold rule. Apply to the image's alpha channel.
+
+7. Save the result as PNG with RGBA mode, overwriting the original `assets/logo.png`.
+
+### Edge cases
+
+- **Logo content matches background color.** If the chroma-key algorithm would erase significant portions of the logo itself (detected by measuring the percentage of non-transparent pixels in the result — if less than 15% of the image is opaque after the rebuild, something went wrong), log a warning and restore the original non-transparent logo. Phase 6 will catch rendering issues downstream.
+
+- **Very small logos.** If the input is under 100x100 pixels, skip the rebuild entirely. Small logos may have no clean corners to sample from. Phase 5 can style them with explicit background containers if needed.
+
+- **JPEG input.** Should not occur (Phase 1 step 4 saves as PNG), but if encountered, convert to RGBA as the first step of step 2 above.
+
+### Testing expectation
+
+The rebuild should be idempotent: running it on an already-transparent logo should exit at step 3 without changes. Running it on a logo that needs rebuilding should produce a clean RGBA result. Running it again on that result should exit at step 3 without further changes.
+
+---
+
+## Secondary brand mark detection
+
+Referenced from SKILL.md Phase 1 step 4b.
+
+### Detection criteria
+
+An image crawled during Phase 1 qualifies as a secondary brand mark candidate when ALL of the following are true:
+
+1. **Aspect ratio.** Width divided by height falls between 0.9 and 1.1 inclusive. This captures round logos, square badges, and near-square seals. Wider or taller images are excluded — rectangular banner logos are already handled by primary logo detection.
+
+2. **Size.** The long edge of the image is between 150 pixels and 600 pixels inclusive. Below 150 is typically a favicon or icon spacer. Above 600 is typically a hero image or gallery photo.
+
+3. **Source path.** The image URL path contains one of these patterns (case-insensitive):
+
+   - `/wp-content/uploads/`
+   - `/uploads/`
+   - `/media/`
+   - `/assets/brand/`
+   - `/sites/default/files/`
+   - `/images/brand/`
+
+   These are conventional CMS upload directories where deliberately-uploaded brand assets live. Images from other paths (stock photo CDNs, theme asset directories, external hosting) are excluded.
+
+4. **Not primary logo.** The image must not be the file already identified as the primary logo in Phase 1 step 3.
+
+5. **Not a stock / gallery signature.** If the surrounding HTML context (parent element classes, alt text, or section heading) strongly suggests stock photography or a gallery (e.g., class names containing `gallery`, `portfolio`, `featured-image`), exclude the image even if the other criteria match.
+
+### profile.json schema for secondaryMarkCandidates[]
+
+Each candidate entry:
+
+```json
+{
+  "filename": "string",
+  "source_url": "string",
+  "dimensions": "WxH",
+  "source_path": "string",
+  "proposed_use": "string | null"
+}
+```
+
+Fields:
+
+- `filename` — local filename after download
+- `source_url` — full URL on the prospect's site
+- `dimensions` — `WxH` format (e.g., `396x396`)
+- `source_path` — URL path portion
+- `proposed_use` — populated at the Phase 4 gate
+
+`proposed_use` values recognized by Phase 5:
+
+- `about-page` — figure near founding/history copy
+- `service-card-icon` — replaces SVG icon on a specific service card (accompanied by a `target_service` field naming which service)
+- `sub-page-overlay` — circular overlay in sub-page hero (accompanied by a `target_subpage` field)
+- `specialty-section` — featured in a dedicated specialty block
+- `skip` — do not use — noted for completeness only
+
+### Phase 4 gate interaction
+
+When `secondaryMarkCandidates[]` is non-empty at the Phase 4 scoring and decision report, the report must include a "Secondary brand marks" subsection that shows each candidate's dimensions and source path, and prompts Ron for the `proposed_use` decision per candidate before the build proceeds.
+
+### Storage location
+
+Candidates are downloaded to: `assets/candidate-brand-marks/`
+
+This directory is separate from `assets/photos/` so that Phase 5 photo selection does not accidentally pull brand marks into photo galleries or hero slides.
+
+---
+
 ## Version
 
 image-handling.md v0.7.0. Foundation file for Phase 3 photo pipeline. Referenced by Phase 4 (hero mode decision), Phase 5 (HTML generation), and Phase 6 (verification gates).

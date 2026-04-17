@@ -137,6 +137,35 @@ Every line of generated copy is checked against this list during Phase 5 generat
 - "From start to finish" / "Above and beyond" / "Every step of the way"
 - "Around the clock" (use "24/7" only if literally true)
 
+### Banned credential and trust claims (conditional on profile.json)
+
+The following words and phrases must NEVER appear in generated output unless profile.json contains the specific credential, number, or issuing body that supports the claim.
+
+Agents will reach for these words to fill "confidence slots" in titles, hero copy, og:title, meta descriptions, and JSON-LD even when Phase 1/2 did not capture supporting data. Phase 6 check 3 (Banned output check) greps for each of these. Any hit without a corresponding profile.json field fails the build.
+
+Banned unless captured:
+
+    "Licensed"        requires profile.license_number
+    "Insured"         requires profile.insurance_carrier or insurance_note
+    "Bonded"          requires profile.bond_number or bond_note
+    "Certified"       requires profile.certifications[] (non-empty)
+    "Accredited"      requires profile.accreditations[] (non-empty)
+    "Award-winning"   requires profile.awards[] (non-empty)
+    "Award winning"   same — also banned without hyphen
+    "Trusted"         generic trust label — always banned standalone
+    "Premier"         generic superlative — always banned
+    "Leading"         generic superlative — always banned
+    "Top-rated"       requires review data that supports it
+    "Top rated"       same — also banned without hyphen
+    "Best in [area]"  always banned unless from quoted testimonial
+    "#1 in [area]"    always banned unless profile.ranking_source
+
+Agents must not paraphrase around this list. "Fully licensed" counts. "Licensed professionals" counts. "A licensed contractor" counts. The word "licensed" itself is the trigger. Same pattern applies to every other term — any sentence containing the banned root fails check 3 unless the supporting profile field exists.
+
+If the prospect's own website uses one of these claims, Phase 1 must capture the supporting data and store it in the appropriate profile.json field. Only then may the generated site repeat the claim. If Phase 1/2 cannot verify, the claim does not ship.
+
+Grandview F4 2026-04-16 context: agent-generated title read "Licensed Ocala Landscaping Since 1999" — "Licensed" was fabricated. Chad F3 2026-04-16 context: agent-generated hero copy read "124 five-star reviews" — the "124" was correct but the "five-star" was fabricated (actual rating 4.4/5). This list stops both patterns at the banned-phrase grep layer.
+
 ### CTA trailing-fragment hallucinations (HTML slop)
 
 Hallucinated structural elements that leak into generated HTML even when no template authorizes them. Claude Code pattern-matches on "this is a CTA section" and invents training-data-style fine-print, SMS opt-out copy, or secondary buttons that are not defined in `section-patterns.md` or `hero-patterns.md`. Bug 2 from A-1 Payless Septic flagship (2026-04-15). Every instance is slop.
@@ -1067,6 +1096,24 @@ Before marking any generated page content complete, verify:
 - [ ] Footer tagline uses Front Porch voice
 - [ ] Stats section uses Closing Table voice and only real numbers from Phase 2
 - [ ] Featured promotion callout only rendered if real promotion captured, otherwise omitted
+
+---
+
+## Sales-ammunition categories (Phase 8 done-report)
+
+Phase 8 done-report surfaces the following categories as sales talking points, populated from `profile.json` during the build:
+
+- Broken internal links (from Phase 2 broken-link capture step)
+- Stale copyright year in footer (from Phase 1 footer parse)
+- Stale "since [YEAR]" or "[N] years in business" claims where the stated duration is materially shorter than the actual duration
+- Missing JSON-LD schema (detected via Phase 1 HTML parse)
+- Plugin-artifact `og:image` (tracking pixels, placeholder images, 1x1 transparent GIFs)
+- Missing `tel:` link on phone numbers displayed as plain text
+- Missing physical address despite being a local business (PO Box only, or no address at all)
+- CMS age indicators (e.g., Elementor + WordPress of a certain vintage, Joomla/Drupal pre-modern versions)
+- Social presence gaps (e.g., Facebook-only for a visual business that should have Instagram)
+
+These are captured automatically during Phase 1 and Phase 2 and flow through `profile.json` to the Phase 8 report. Do not fabricate or speculate — only report what was verifiably captured.
 
 ---
 

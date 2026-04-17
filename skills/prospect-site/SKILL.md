@@ -3,7 +3,7 @@ name: prospect-site
 description: "Generate a custom multi-page preview website for a local home services contractor prospect from their live URL. Deeply crawls the prospect's real site, captures their brand data (owners, services, testimonials, credentials, colors, photos, promotions), scores their current web presence, picks a hero background mode from a data-driven decision tree, builds a multi-page site using the GRM house style and the GRM voice mapping (Closing Table for hero/promos/cards/stats, Saturday Morning for marquees/section headers, Front Porch for footer/About), runs automated quality gates, and deploys to Vercel. Use this skill whenever the user types /prospect-site followed by a business name and URL, or asks to build a prospect preview site for a local business they want to sell to."
 ---
 
-# Prospect Site Generator (v0.7.2)
+# Prospect Site Generator (v0.7.3)
 
 ## What this skill does
 
@@ -178,6 +178,60 @@ Steps:
 
 4. Download the logo file to `assets/logo.[ext]`. If the logo is SVG, use sharp to convert a PNG copy at `assets/logo.png` for node-vibrant analysis.
 
+4a. **Logo alpha channel check and rebuild.** After download, inspect the logo PNG for alpha channel presence and corner transparency:
+
+    - If source is SVG: skip this step. SVG is transparent by nature.
+    - If PNG has alpha channel AND all four corners sample as transparent: accept as-is.
+    - If PNG has no alpha channel OR corners are opaque: rebuild the logo with chroma-key transparency:
+        * Sample the four corners of the image (20x20px each), average the color
+        * Build an alpha mask where pixels matching the corner color within tolerance become transparent
+        * Tolerance: pixels with all RGB channels ≥ 250 become fully transparent for near-white backgrounds; adjust the threshold based on the actual corner color sample
+        * Feather the mask in the 225–250 range for clean anti-aliased edges
+        * Save the result as `assets/logo.png` (4-channel RGBA)
+    - If chroma-key cannot produce clean transparency (the dominant corner color also appears in the logo content itself), log a warning, leave the logo opaque, and continue. Phase 6 check 17 (mobile render verification) will catch rendering issues if they surface.
+
+    Implementation: `scripts/rebuild_logo_alpha.py` using Pillow. Detailed spec in `references/image-handling.md` § "Logo alpha rebuild procedure".
+
+    Rationale (Grandview F4 2026-04-16): source logo was a GIF from WordPress with solid-white background. sharp conversion to PNG preserved the white fill as opaque. Combined with the footer-logo filter (removed in v0.7.3 #1), the result was an empty white rectangle in the dark footer. Transparent logos render correctly regardless of footer background color.
+
+4b. **Secondary brand mark detection.** While crawling images during Phase 1 step 3, flag any image that meets ALL of these criteria:
+
+    - Aspect ratio between 0.9:1 and 1.1:1 (near-square or round shape)
+    - Long edge between 150px and 600px
+    - Located in a CMS upload directory. Recognized path patterns: `/wp-content/uploads/`, `/uploads/`, `/media/`, `/assets/brand/`, `/sites/default/files/`, `/images/brand/`, or similar conventional CMS conventions
+    - NOT already identified as the primary logo in step 3
+    - NOT a stock photo or gallery image (heuristic: stock photos and gallery images are typically landscape or portrait; round-ratio images in CMS uploads are much more likely to be brand assets)
+
+    These are candidate secondary brand marks — typically round badges, founder portraits, agricultural or industry seals, certification logos, sub-brand marks, or specialty product marks.
+
+    Action for each candidate:
+
+    - Download to `assets/candidate-brand-marks/[original-filename]`
+    - Add an entry to `profile.json` under `secondaryMarkCandidates`:
+      ```json
+      [
+        {
+          "filename": "badge-farms.avif",
+          "source_url": "https://prospect.com/wp-content/uploads/...",
+          "dimensions": "396x396",
+          "source_path": "/wp-content/uploads/2025/09/...",
+          "proposed_use": null
+        }
+      ]
+      ```
+    - At the Phase 4 approval gate, present each candidate to Ron with the question: "Secondary brand mark detected. Use where?" Offer options:
+        * About page placement
+        * Specific service card icon
+        * Sub-page header overlay
+        * Specialty/farm/product page
+        * Skip (not a brand mark)
+
+    Populate the `proposed_use` field based on Ron's selection. Phase 5 reads `proposed_use` values during HTML generation.
+
+    Detailed spec in `references/image-handling.md` § "Secondary brand mark detection".
+
+    Rationale (Grandview F4 2026-04-16): the round "Grandview Farms" badge at `/wp-content/uploads/2025/09/024cf2_...avif` (396x396) was captured by Phase 1 step 3 as generic inline image `s28.avif`, never recognized as a secondary brand mark. The retrofit happened post-build at significant agent-hours cost. Phase 1 flagging prevents this on future builds.
+
 5. Run node-vibrant on `assets/logo.png`. Capture the six semantic swatches (Vibrant, DarkVibrant, LightVibrant, Muted, DarkMuted, LightMuted). Save to `profile-draft.json` under `brandPalette` with role mapping: Vibrant becomes `primary`, DarkVibrant becomes `darkPrimary`, LightVibrant becomes `accent`, Muted becomes `neutral`, LightMuted becomes `background`.
 
 6. Set `designChoices.heroBackground` from the warm/cool temperature of `brandPalette.primary`. Warm brands get cream (`#faf7f2`). Cool brands get cool-white (`#f4f7fa`). Neutral brands default to cream.
@@ -205,7 +259,25 @@ Steps:
 
 4. Save extracted data to `profile-draft.json` as you go.
 
-5. Report to Ron: pages crawled, services captured, testimonials captured (with name list), owner names, featured promotion, any gaps.
+5. **Broken internal link capture.** During Phase 2 crawl, track the HTTP status of every internal link followed. For any link that returns a 404 or 5xx status, record it. Add to `profile.json` as:
+
+   ```json
+   "brokenLinks": [
+     {
+       "source_page": "/",
+       "target": "/sod-services-ocala-fl/",
+       "status": 404
+     }
+   ]
+   ```
+
+   Broken internal links on the prospect's live site are direct "owner stopped paying attention" sales signals. Phase 8 must surface these in the done-report sales-ammunition section.
+
+   If `brokenLinks[]` is non-empty, include a summary line in the Phase 2 report to Ron: "N broken internal links captured (see profile.json.brokenLinks)."
+
+   Rationale (Grandview F4 2026-04-16): the prospect's homepage linked to `/sod-services-ocala-fl/`, which returned 404. A live, customer-facing broken link the owner had not noticed. Pure sales ammunition. Phase 2 must capture automatically; agents should not have to notice incidentally.
+
+6. Report to Ron: pages crawled, services captured, testimonials captured (with name list), owner names, featured promotion, any gaps.
 
 ## Phase 2.5 — Pre-migration SEO audit
 
@@ -518,7 +590,7 @@ Run validation: JSON-LD passes Google Rich Results Test, sitemap validates again
 
 Goal: automated quality gates that fail the build if any check fails. No shipping broken sites. No relying on Ron's eye for things a script can verify.
 
-Phase 6 runs eighteen checks organized into eight categories. All checks must pass before Phase 7 deploy. On any failure, log the specific failure and stop.
+Phase 6 runs twenty checks organized into nine categories. All checks must pass before Phase 7 deploy. On any failure, log the specific failure and stop.
 
 ### Content integrity checks
 
@@ -575,6 +647,18 @@ Phase 6 runs eighteen checks organized into eight categories. All checks must pa
 ### Social metadata integrity
 
 18. **Social metadata completeness check.** Verify every generated page contains the complete social metadata block per the template in `references/seo-geo.md` > "Meta tag templates". For each of `index.html`, `about.html`, `services.html`, `testimonials.html`, `contact.html`, `faq.html` (and any service sub-pages): grep for and count the required OpenGraph tags (`og:type`, `og:title`, `og:description`, `og:url`, `og:image`, `og:image:width`, `og:image:height`, `og:image:alt`, `og:site_name`, `og:locale` — 10 minimum) and Twitter Card tags (`twitter:card`, `twitter:title`, `twitter:description`, `twitter:image`, `twitter:image:alt` — 5 minimum). Then verify `og:image` and `twitter:image` values are absolute URLs beginning with `https://`, and that the image path each URL resolves to exists as a real file in `assets/photos/`. Any missing tag on any page, any relative URL, or any `og:image`/`twitter:image` pointing at a file that does not exist fails the build. This catches the Bug 4 failure mode from A-1 Payless Septic (2026-04-15) where the skill generated only a partial social block on index.html, minimal og-only stubs on four secondary pages, and zero metadata on faq.html.
+
+### Data fabrication checks
+
+19. **Schema-to-profile cross-reference.** For every JSON-LD block on every page, assert that `ratingValue`, `reviewCount`, `foundingDate`, `telephone`, `address`, `priceRange`, and any numeric or factual field matches `profile.json` exactly. Any mismatch fails the build. Implementation: `scripts/verify_schema_against_profile.py` loads both, compares, reports deltas. This rule was spec'd in `seo-geo.md` line 491 but not previously enumerated in the Phase 6 checklist, so it never ran as an automated gate.
+
+20. **Unknown-field guard.** `profile.json` must include a top-level `"unknownFields": []` array listing any data point that Phase 1/2 searched for but could not capture (e.g., `"license_number"`, `"bbb_rating"`, `"founding_year_verified"`). Phase 6 greps generated content for any mention of those fields' associated claim vocabulary (defined in `anti-slop-rules.md` "Unknown-field claim vocabulary" section) and fails the build if claims are made about unknown data.
+
+    Example: if `"license_number"` is in `unknownFields`, the grep checks for "licensed", "license", "state-licensed", "licensing" — the vocabulary tied to that field.
+
+    This check complements `content-rules.md` "Banned credential and trust claims" (which is absolute-banned-unless-captured). Check 20 handles the case where `profile.json` explicitly declares a field as unknown, giving Phase 6 a definitive signal to fail any claim in that domain.
+
+    Implementation: `scripts/verify_unknown_fields.py` loads `profile.json`, reads `unknownFields[]`, looks up each field's claim vocabulary from `anti-slop-rules.md`, greps generated HTML, reports any match.
 
 ### Helper scripts
 
@@ -686,6 +770,26 @@ Ready for Ron to review on mobile. Next step: open the URL on your phone and run
 prospect-site v0.7.2, updated Wednesday April 16, 2026. Built on v0.5's foundation (heavily specified flagship 1 hero, Phase 2.5 SEO audit, Phase 5.5 GEO injection, Plant Street voice, CSS hygiene rules) plus Cowork's 21st.dev hero research (Glassmorphism Trust Hero as content layer, data-driven background modes), plus anthropics/skills progressive disclosure pattern, plus frontend-design anti-slop rules, plus Magic UI extracts for button and card enhancements, plus Aceternity pattern rebuilds in vanilla JS. Architectural antidote to v0.6's four-pattern collapse: one structural pattern, heavily specified, deterministic data-driven variation.
 
 ### Changelog
+
+### v0.7.3 — 2026-04-16 evening — "Grandview Patch"
+
+Evening session after F4 Grandview build. Nine atomic commits addressing bugs surfaced during the build and post-build review.
+
+Fixes:
+
+- **#1** Remove footer-logo brightness/invert filter — multi-color logos now render in native brand colors on dark footers (`e40f19b`)
+- **#2** Progressive-enhancement guard on `[data-reveal]` — sections default visible, only hide when JS confirms it will reveal (`f302d49`)
+- **#3** Banned credential and trust claims list — "Licensed", "Insured", "Certified", etc. require matching `profile.json` data or Phase 6 check 3 fails (`13b4189`)
+- **#4** Phase 6 check #19: schema-to-profile cross-reference (enumerated the already-spec'd `seo-geo.md` rule) (`074e936`)
+- **#5** Phase 6 check #20: unknown-field guard — `profile.json` `unknownFields[]` + anti-slop vocabulary map (`413ac25`)
+- **#6** Phase 1 step 4a: logo alpha channel check + chroma-key rebuild for no-alpha source logos (`b90b57a`)
+- **#7** Phase 1 step 4b: secondary brand mark detection — round-ratio CMS uploads flag as candidate marks at Phase 4 gate (`6d60a9f`)
+- **#8** Phase 2: broken internal link capture as sales ammunition (`9a1e9e9`)
+- **#9** This release commit — version bump, changelog, LESSONS augmentation, tag
+
+Validation plan: F5 build on Friday validates against a fresh prospect. If v0.7.3 has a bug, catch it in F5 and patch before F6.
+
+Retrofit required: F1, F2, F3, F4 need items #1 and #2 backported to their deployed CSS before Monday sales calls.
 
 v0.7.2 — Validated via F3 (Chad's Lawn and Landscape). Bug 2 (CTA trailing-fragment hallucination), Bug 4 (social metadata completeness), and Bug 5 (Phase 7 slug regeneration) confirmed fixed. Honeypot field added to contact form template.
 

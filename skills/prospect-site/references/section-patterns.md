@@ -1599,7 +1599,17 @@ For the full form HTML with Static Forms wiring, see `deployment.md`. CSS goes h
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
-.footer-logo { height: 48px; margin-bottom: 20px; filter: brightness(0) invert(1); }
+/* Logo renders in native brand colors on the dark footer.
+   Previous filter: brightness(0) invert(1) flattened multi-color
+   logos to white silhouettes. Grandview F4 2026-04-16 caught this
+   — multi-color logos (gold wordmark + green palm + banner) became
+   an empty white rectangle. If a prospect's source logo is pure
+   monochrome and needs inversion for dark-footer contrast, handle
+   per-site in Phase 5 as an exception, not as a template default. */
+.footer-logo {
+  height: 48px;
+  margin-bottom: 20px;
+}
 
 .footer-tagline {
   font-size: 14px;

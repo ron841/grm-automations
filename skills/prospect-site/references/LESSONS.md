@@ -416,6 +416,8 @@ Phase 7 slug regeneration — the skill drafts URLs in Phase 1 using the full bu
 
 **Cross-reference.** Same class of bug showed up in the stats `data-target` counters: HTML rendered `0` as baseline and relied on JS to tick up to real numbers. Fix: HTML now renders the final numbers; JS resets to 0 inside the observer callback before animating. No-JS users see correct stats; JS users see the animation. Documented here as a companion lesson.
 
+**RESOLUTION.** v0.7.3 commit #2 (`f302d49`). Skill now defaults `[data-reveal]` sections visible unless JS has added `class="js"` to `<html>`. Required inline script documented in `css-framework.md` "Required head-inline script for progressive-enhancement guard".
+
 ### 2026-04-16 — COPY — Agent-invented "Licensed" in title + schema
 
 **Source:** Grandview Inc (F4), v0.7.2 build, 2026-04-16 afternoon session
@@ -429,6 +431,8 @@ Phase 7 slug regeneration — the skill drafts URLs in Phase 1 using the full bu
 
 **Fix applied (for the skill).** Add to Phase 6 check 3 (banned output check) a specific grep for "Licensed", "Licensure", and "License #" across title tags, meta tags (og, twitter), and all JSON-LD blocks — not just body copy. Build-agent prompts should move the "do not invent license" rule to the top of the section-header instructions (agents regress on later-mentioned constraints when the prompt is long). Consider a dedicated "fabrication check" step in Phase 6 that specifically diffs agent-written metadata against the profile.json `unknownFields` list and fails on any term that matches a known unsourced claim.
 
+**RESOLUTION.** v0.7.3 commits #3 (`13b4189`), #4 (`074e936`), #5 (`413ac25`). Banned credential list in `content-rules.md` blocks "Licensed"/"Insured"/"Certified"/etc. at Phase 6 check 3 unless `profile.json` captures supporting data. Phase 6 checks 19 and 20 add schema-to-profile cross-reference and unknown-field guard for defense in depth.
+
 ### 2026-04-16 — INTEGRATION — Vercel bot mitigation blocks Static Forms curl test
 
 **Source:** Grandview Inc (F4), v0.7.2 build, 2026-04-16 afternoon session
@@ -441,3 +445,29 @@ Phase 7 slug regeneration — the skill drafts URLs in Phase 1 using the full bu
 **Fix applied (for this build).** Marked check 14 as DEFERRED. Plan: verify form submission in a real browser on the deployed URL as part of the Six Checks (check 6, Ron's eye test). Not ideal, but the skill should not block deploy on an integration we can't reach.
 
 **Fix applied (for the skill).** Rewrite check 14 to run the submission through a headless browser that executes the Vercel challenge JS (Playwright with `page.goto` to the staticforms endpoint, then POST via `fetch` in the page context). Alternatively, switch to an accessKey-validation endpoint if Static Forms publishes one, or monitor for a test token delivery to Ron's inbox via Gmail MCP after a build-time submission. Until one of these lands, check 14 is DEFERRED with a visible warning in the Phase 6 report. Add a post-deploy sanity test: Ron taps "Submit" on the real form and confirms the thank-you page within 60 seconds of deploy.
+
+**RESOLUTION.** Not addressed in v0.7.3. Manual browser eye test is the authoritative form check going forward. `deployment.md` language reframe deferred to a future patch.
+
+### 2026-04-16 — TEMPLATE — Footer-logo flatten filter is wrong default
+
+The template's `.footer-logo` CSS applied `filter: brightness(0) invert(1)` to every footer logo. This flattens multi-color logos to white silhouettes. Grandview's multi-color logo (gold wordmark + green palm + banner) became an empty white rectangle in the footer. Compounded by the logo asset having no alpha channel (GIF→PNG conversion preserved white fill as opaque), the silhouette was indistinguishable from a white block.
+
+Fix: v0.7.3 commit #1 (`e40f19b`) removed the filter unconditionally. v0.7.3 commit #6 (`b90b57a`) added a Phase 1 chroma-key rebuild for no-alpha source logos. Logos now render in native brand colors on dark footers.
+
+Lesson: default template CSS choices that "work for most cases" (assuming single-color wordmarks) can fail silently and universally for the cases that do not fit. Template defaults must be defensible against the full range of real inputs, not just the clean-case subset.
+
+### 2026-04-16 — DETECTION — Secondary brand marks need explicit Phase 1 flagging
+
+Grandview had two logos in use: the horizontal wordmark (correctly identified as primary) and a round "Grandview Farms" badge tied to the sod farm / agriculture side of the business. The round badge was inventoried by the crawler as a generic inline image (`s28.avif`) but never recognized as a secondary brand mark. It had to be retrofitted post-build at significant agent-hours cost.
+
+Fix: v0.7.3 commit #7 (`6d60a9f`) added Phase 1 step 4b, which detects round-ratio images 150–600px in CMS upload directories as candidate secondary brand marks and surfaces them at the Phase 4 approval gate.
+
+Lesson: the Phase 1 crawler should not be a passive asset inventory. It must actively categorize images based on shape, size, and source path — these are strong semantic signals about what role the image plays in the prospect's brand system.
+
+### 2026-04-16 — PRESERVATION — Skill-repo durability depends on mirror pattern
+
+The `~/.claude/skills/prospect-site/` repo has no remote configured. Tonight's preservation work established a mirror in `~/grm-automations/skills/prospect-site/`, which has a GitHub remote. The mirror is currently the only off-host copy of the skill tree.
+
+Deferred decision: whether to add a dedicated remote to the skill repo itself (e.g., a GitHub repo specifically for the skill), or formalize the mirror-to-grm-automations pattern as the ongoing preservation mechanism (with periodic rsync + commit + push to the mirror).
+
+Both approaches work. A dedicated remote is cleaner; the mirror pattern is simpler. Decide post-v0.7.3 launch work.

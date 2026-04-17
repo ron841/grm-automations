@@ -1264,19 +1264,28 @@ function scrollReveal() {
 CSS companion (add to shared keyframes section above):
 
 ```css
-[data-reveal] {
+/* Progressive enhancement: sections default visible.
+   Only hide and animate when JS has confirmed it will reveal them.
+   Root <html> gets class="js" via a head-inline script.
+   Without that class, all [data-reveal] content is visible
+   immediately — protects bots, Lighthouse, social preview
+   scrapers, full-page screenshots, and no-JS environments.
+   Grandview F4 2026-04-16 caught the invisible-below-hero bug
+   this guard prevents. */
+
+html.js [data-reveal] {
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-[data-reveal].revealed {
+html.js [data-reveal].revealed {
   opacity: 1;
   transform: translateY(0);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  [data-reveal] {
+  html.js [data-reveal] {
     opacity: 1;
     transform: none;
     transition: none;
@@ -1285,6 +1294,20 @@ CSS companion (add to shared keyframes section above):
 ```
 
 Phase 5 adds `data-reveal` to the top-level element of every major section during HTML generation.
+
+### Required head-inline script for progressive-enhancement guard
+
+The first element inside `<head>`, immediately after `<meta charset>`, must be this script:
+
+```html
+<script>document.documentElement.classList.add('js');</script>
+```
+
+This enables the `html.js [data-reveal]` progressive-enhancement guard defined in this file. The script runs synchronously before any rendering, so the reveal animations trigger normally when JS is available. When JS is absent, disabled, or slow (bots, scrapers, screenshots), the `js` class is never added and all `[data-reveal]` sections stay visible.
+
+This script must appear on every generated page. Phase 5 HTML generation must include it in the base template.
+
+Referenced from: SKILL.md Phase 5 (HTML generation).
 
 ### Supporting utility: navScrolled
 
