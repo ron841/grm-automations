@@ -559,3 +559,77 @@ Post updated symptom comment on 21st-dev/magic-mcp #49 (the broken-MCP-registrat
 LESSONS.md entry for Places API legacy endpoint
 
 All still on deck for the next available session, not urgent for Thursday's F2/F3 builds.
+
+
+## 2026-04-16 (evening) — v0.7.3 "Grandview Patch" shipped, 4-site retrofit live
+
+### Skill state
+v0.7.3 tagged and mirrored. 9 atomic commits. All tests passing.
+
+Commits in order:
+- `49cede7` — Preservation: capture uncommitted v0.7.2 work (changelog, SKILL.md header sync, 2026-04-15 LESSONS, .gitignore)
+- `8d13885` — 2026-04-16 F4 Grandview lessons (3 entries motivating v0.7.3 + v0.7.4 patches)
+- `e40f19b` — v0.7.3 #1 Remove footer-logo flatten filter
+- `f302d49` — v0.7.3 #2 Progressive-enhancement guard on [data-reveal]
+- `13b4189` — v0.7.3 #3 Banned credential and trust claims list
+- `074e936` — v0.7.3 #4 Phase 6 check #19 schema-to-profile cross-reference
+- `413ac25` — v0.7.3 #5 Phase 6 check #20 unknown-field guard + anti-slop vocabulary map
+- `b90b57a` — v0.7.3 #6 Phase 1 step 4a logo alpha check + chroma-key rebuild
+- `6d60a9f` — v0.7.3 #7 Phase 1 step 4b secondary brand mark detection
+- `9a1e9e9` — v0.7.3 #8 Phase 2 broken internal link capture
+- `fa8a5be` — v0.7.3 #9 Release: version bump, changelog, LESSONS augmentation (TAG)
+
+Tag: `v0.7.3` → `fa8a5be`. Annotation: "v0.7.3 — Grandview Patch — 2026-04-16".
+
+Preservation status: `~/.claude/skills/prospect-site/` has NO remote configured. The skill tree is mirrored to `~/grm-automations/skills/prospect-site/` (commit `e0a7fd3` for the v0.7.3 snapshot, `ba58efd` for the mid-session preservation baseline). Mirror is pushed to origin on the grm-automations GitHub. **Deferred decision:** add a dedicated GitHub remote to the skill repo (cleaner) OR formalize the mirror-to-grm-automations pattern (simpler). Both work. Decide post-launch, not blocking tomorrow.
+
+### Fleet state (4 flagships live — all retrofitted to v0.7.3 #1/#2)
+
+- **F1: tandf-electric-v07** — live at https://tandf-electric-v07.vercel.app/. Retrofit deploy `dpl_BdGHvsob9TNctgeBP9fbVCTHJGux`. Fix #1 was N/A (no filter to remove). Fix #2 Part A + B both applied. Eye-test passed.
+- **F2: a-1-payless-septic-grm** — live at https://a-1-payless-septic-grm.vercel.app/. Retrofit deploy `dpl_7uZULBPSJ59Zo7NwEdouxQY17YEk`. Fix #1 was N/A. Fix #2 Part A + B both applied (7 HTML files including minified thank-you.html). Eye-test passed desktop + mobile.
+- **F3: chads-lawn-and-landscape-grm** — live at https://chads-lawn-and-landscape-grm.vercel.app/. Retrofit deploy `dpl_ESeg9YzuZcaJficspSBZemyRcar2`. Fix #1 was N/A. Fix #2 Part A + B applied. A11y upgrade deploy `dpl_2tBHdDdXZLpJ7yz53qXjtje7xcLJ` added the prefers-reduced-motion block F3 was missing entirely (F1 and F2 had it, F3 didn't — accessibility gap closed). Eye-test passed.
+- **F4: grandview-inc-grm** — live at https://grandview-inc-grm.vercel.app/. Inline-patched during build session with divergent pattern (class selector + external-script classList.add). Normalization deploy `dpl_Bz3fd4aMHSfX9rt5u2dcKd9ydytM` brought F4 to exact uniformity with v0.7.3 skill spec (html.js prefix + inline head script). Eye-test passed.
+
+### Bug impact observation (worth remembering)
+Fix #1 (footer-logo brightness/invert filter) only affected F4 in the deployed fleet. F1/F2/F3 never had the filter in their generated CSS despite the template containing it. The rule was in `section-patterns.md:1602` the whole time but only F4's build agent carried it into the generated stylesheet. Agent-variance in spec interpretation, not consistent template carry-through. Worth a separate diagnostic pass later.
+
+### Open items — content audit (DO NOT auto-fix, Ron decides per item)
+
+Content audit of all 4 sites against v0.7.3 check #3 (banned credentials) ran tonight. Full findings in `~/grm-automations/docs/handoffs/audit_2026-04-16_v0.7.3-and-F4.md` companion audit conversation (not a saved doc). Summary:
+
+Verified violations (2):
+- **F2**: `<h2>Seven hundred homes' worth of five-star reviews</h2>` on homepage. Actual data: 4.2 rating from 86 reviews. "Five-star" is fabricated, "700 homes" is unsourced. Classic check #3 failure. **Rewrite before prospect demos.**
+- **F4**: GL insurance claim on services/landscape-maintenance.html FAQ — "Grandview carries commercial general liability insurance and can provide a certificate of insurance naming the property manager or association as additional insured." profile.json has no `insurance_carrier` or `insurance_note`. Either Ron verifies with Grandview and adds the profile field, or the claim needs to come out.
+
+Needs-human-review (8, across 3 sites):
+- **F3** (5 instances): "licensed and insured" generic claims in meta descriptions, card headers, and FAQ. profile.json captures `licensed: true` + `insured: true` as booleans (no license number, no insurance carrier). Florida doesn't require state license for general landscaping. Pest control license IS captured and specifically backs the pest-control-operator claims (those are LEGITIMATE). Cleanest fix: Ron asks Chad "local occupational license? GL insurance carrier?" and profile.json gets populated.
+- **F3** (1 instance): "certified for chinch bugs, webworms, and more" — defensible by pest control license scope but not literally captured. Could add `pestControlCategories[]` array to profile.json.
+- **F1** + **F2** (1 each): FAQ "licensed and insured" references. "Licensed" is backed by state license. "Insured" is implied-true by state licensure (FL DBPR requires GL insurance for both electrical and septic contractors) but not directly in profile.json. Cleanest fix: add `profile.insurance_note` citing legal requirement. No edit to site copy needed.
+
+All 21 other flagged claim-instances classify as LEGITIMATE — profile-backed or contextually correct (e.g., "Licensed Electrician" with EC13007855, "Licensed Florida septic contractor" in credentials[], "Two five-star reviews" as literal count of displayed 5-star reviews, "leading the team" inside a customer testimonial quote).
+
+### Tools / infrastructure
+
+- **claude-mem:** installed this morning, capturing user prompts (39 indexed today) BUT zero observations recorded. `list_corpora` returns `[]`. Worker service on port 37777 or SessionStart hook likely not writing. **Must diagnose tomorrow morning before F5** — tomorrow's tool-call history needs to be captured for next end-of-day audit to be meaningful.
+- **Playwright:** available, used successfully for F3/F4 visual audit and mobile-render checks. Installed in `~/grm-sites-prospects/node_modules/playwright`.
+- **Vercel CLI:** authenticated on `ron-7323` team (legacy team ID `team_KCAi5VnxkXE0c5ERJWOb7jXE`). All 4 flagship projects accessible.
+- **Skill git:** local-only, no remote. Mirror is the preservation pathway.
+- **grm-automations GitHub:** `https://github.com/ron841/grm-automations.git`, pushing clean.
+
+### Tomorrow's priorities (in order)
+1. Diagnose claude-mem observation layer (~15 min) — check worker status on 37777, verify SessionStart hook, confirm `list_corpora` is populated. Without this, tomorrow's session has no end-of-day audit substrate.
+2. F5 build — next prospect per Cameron's queue. Ron picks which prospect.
+3. F6 build — if time permits.
+4. Decision: triage content audit open items this weekend, or let them roll to weekend sales infra work. Neither the F2 fabrication nor the F4 insurance claim is blocking for Monday's first sales call, but both should ship before any prospect demos on those specific sites.
+
+### Weekend sales infrastructure queue (unchanged, carried forward)
+- Service agreements (two pricing tiers)
+- Pricing one-pager
+- HubSpot pipeline setup
+- Magazine call automation pause (Monday carryover)
+
+### Carryover API-key rotation items (also carried from Monday)
+- Google Places API key rotation + update `~/grm-sites-prospects/.env`
+- Unsplash API key rotation + same path
+- 21st-dev/magic-mcp #49 symptom comment update (SaaS-bias concern is now higher value than original MCP-registration bug)
+- LESSONS.md entry for Places API legacy endpoint
