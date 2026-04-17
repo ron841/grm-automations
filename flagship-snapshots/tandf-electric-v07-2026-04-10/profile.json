@@ -1,0 +1,105 @@
+{
+  "business": {
+    "name": "T&F Electric",
+    "slug": "tandf-electric",
+    "url": "https://www.tandfelectric.com/",
+    "phone": "(352) 465-4600",
+    "fax": "(352) 489-2952",
+    "email": "tandfelectric@gmail.com",
+    "address": "1737 SW Big Tree Rd, Dunnellon, FL 34431",
+    "hours": "Mon-Fri 8am-5pm, 24/7 Emergency",
+    "owners": ["Ben Tucci", "Wendy Tucci"],
+    "teamName": "Tucci & Family Electric Team",
+    "yearsInBusiness": 50,
+    "licenseNumber": "EC13007855",
+    "instagram": null,
+    "placeId": "ChIJOX5Aa6ph6IgRHVNEQBKcAMM",
+    "serviceAreas": ["Dunnellon", "Ocala", "Belleview", "The Villages", "Silver Springs", "Rainbow Lakes Estates", "Marion County"]
+  },
+  "services": [
+    { "name": "Residential Electrical", "description": "New construction, renovation, additions and electrical upgrades. Custom lighting installations, pergola wiring, gazebo wiring." },
+    { "name": "Commercial Wiring & Installation", "description": "Commercial design, job site planning, scheduling. Layin lighting, strip lighting installations." },
+    { "name": "Industrial Electrical", "description": "Service/maintenance, new construction, additions/remodels, backup generators, motor control troubleshooting and diagnosing. Cardboard balers, lighting repair." },
+    { "name": "Generator Installation", "description": "Backup generator installation for residential, commercial, and industrial clients." },
+    { "name": "Whole House Surge Protection", "description": "Whole house surge arrestors to protect electronics and appliances from lightning storms. $450.00 special offer." },
+    { "name": "Landscape Lighting", "description": "Outdoor and landscape lighting design and installation." },
+    { "name": "Panel Upgrades", "description": "Electrical panel upgrades for residential and commercial properties." },
+    { "name": "Maintenance & Repair", "description": "Maintenance and repair of existing electrical systems." },
+    { "name": "Lighting Fixture Installation", "description": "Installation of all lighting fixtures, indoor and outdoor." },
+    { "name": "Electrical Modernization", "description": "Modernization of electrical installations in older structures." },
+    { "name": "New Construction Wiring", "description": "Complete electrical wiring for new construction projects." },
+    { "name": "Over the Phone Tech Support", "description": "Remote electrical troubleshooting. Min $75, max $95. House call $125. Overtime charges apply. 24-hour service." }
+  ],
+  "testimonials": [
+    { "name": "Jack C.", "city": "Dunnellon, FL", "quote": "T & F Electric has done my electrical work for years. They're the only one I rely on in Dunnellon. Very prompt, great service, fair price." },
+    { "name": "Alan G.", "city": "Dunnellon, FL", "quote": "Our company went through several electricians before we found T & F Electric. Now, we can finally stop looking for a company that always responds quickly, sends experienced professionals and can handle any problem, including replacing worn-out cables." },
+    { "name": "Dallas D.", "city": "Ocala, FL", "quote": "Great service!" },
+    { "name": "Charles V.", "city": "Dunnellon, FL", "quote": "Arrived on time and completed all work as requested." },
+    { "name": "Joe N.", "city": "Ocala, FL", "quote": "They kept their appointment and were on time. I was impressed with their professionalism as well as their knowledge of their electrical trade." },
+    { "name": "Karen W.", "city": "Ocala, FL", "quote": "Very nice young man installed the ceiling fans for me and I would recommend him to others." },
+    { "name": "Louise Q.", "city": "The Villages, FL", "quote": "Very Punctual, Courteous, Knowledgeable." },
+    { "name": "James E.", "city": "Dunnellon, FL", "quote": "Upon contacting T&F Electric, the President of the Company came out in a timely manner to inspect the job site and review the requirements for doing the job. Within 24 hours, I had a quote in hand. They arrived at the time they were supposed to and completed the job in a timely manner. They even asked if we had a vacuum cleaner they could use to clean up the work area. They are an excellent company who I would strongly recommend." },
+    { "name": "Leslie B.", "city": "Belleview, FL", "quote": "Easy to work with, professional, and you can't beat the price!" },
+    { "name": "Elaine M.", "city": "Dunnellon, FL", "quote": "They responded by phone while I was still on line. Got the supplies needed and completed the job the following day. Fair pricing and fast service. Very satisfied." }
+  ],
+  "promotions": [
+    { "name": "Whole House Surge Protector Special", "description": "Whole house surge protector for $450.00. Protect your flat screen TVs, appliances and electronics from lightning storms.", "price": "$450.00" },
+    { "name": "Generator Installation", "description": "Generator installation available for residential, commercial, and industrial." }
+  ],
+  "credentials": [
+    "Florida Electrical License EC13007855",
+    "5-Star Rating"
+  ],
+  "brandColors": {
+    "primaryRed": "#fd040a",
+    "navRedGradientStart": "#d91403",
+    "navRedGradientEnd": "#a42318",
+    "bodyText": "#666666",
+    "headings": "#181818",
+    "navGray": "#ABABAB"
+  },
+  "fonts": {
+    "body": "PT Sans",
+    "logo": "Ornate serif (custom)"
+  },
+  "designScore": {
+    "total": 52,
+    "copyLanguage": 10,
+    "visualQuality": 8,
+    "businessMaturity": 16,
+    "siteSophistication": 6,
+    "brandIntentionality": 12
+  },
+  "designTier": "Professional",
+  "proposedDesign": {
+    "primaryColor": "#E31207",
+    "accentColor": "#1A1A1A",
+    "headingFont": "Inter",
+    "bodyFont": "Inter",
+    "heroStyle": "static",
+    "styleVariant": "base-vega"
+  },
+  "pagesCrawled": [
+    "homepage", "services", "services/residential", "services/commercial",
+    "services/industrial", "services/generators", "services/surge-protection",
+    "services/landscape-lighting", "services/over-the-phone-tech-support",
+    "customer-testimonials", "news-special-offers", "about-us", "contact-us", "our-team"
+  ],
+  "socialLinks": {
+    "facebook": "share button only, no direct page link found",
+    "twitter": "share button only",
+    "instagram": null
+  },
+  "generatedAt": "2026-04-05T18:00:00-04:00",
+  "previewUrl": "https://tandf-electric.vercel.app",
+  "buildMethod": "Plan B (local HTML, vendor MCP bug workaround)",
+  "sourceFiles": {
+    "rawHtmlFolder": "raw/",
+    "assetsFolder": "assets/"
+  },
+  "pagesBuilt": ["index.html", "about.html", "services.html", "testimonials.html", "specials.html", "contact.html"],
+  "googlePlacesAttribution": ["T & F Electric Co"],
+  "dataIntegrityNotes": [
+    "2026-04-08 patch: Removed homeAdvisorReviews and HomeAdvisor badge credential. These were fabricated in the pre-v0.5 build before the review source verification rule existed. T&F has never been verified as having a HomeAdvisor presence. Only Google reviews (4.6 rating, 41 count) are verified."
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "tandf-preview",
+      "runtimeExecutable": "/usr/local/bin/npx",
+      "runtimeArgs": ["serve", "-l", "4567", "/Users/ronkolb/grm-sites-prospects/tandf-electric"],
+      "port": 4567,
+      "autoPort": true
+    }
+  ]
+}

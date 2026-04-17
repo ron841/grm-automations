@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tandf-electric.vercel.app/sitemap.xml
