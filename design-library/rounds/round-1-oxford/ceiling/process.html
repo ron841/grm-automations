@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Three-Step Rehab — Oxford Lawn process, step by step</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&family=JetBrains+Mono:wght@400;500;600&family=Public+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/base.css" />
+<style>
+  .stepper {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 2.5rem;
+    align-items: start;
+  }
+  @media (max-width: 900px) { .stepper { grid-template-columns: 1fr; } }
+  .step-list {
+    position: sticky; top: 90px;
+    display: flex; flex-direction: column;
+    border-left: 2px solid var(--rule);
+  }
+  .step-btn {
+    all: unset;
+    cursor: pointer;
+    padding: 1.25rem 1.5rem;
+    border-left: 2px solid transparent;
+    margin-left: -2px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+    align-items: center;
+    transition: background 0.15s ease, border-color 0.15s ease;
+  }
+  .step-btn:hover { background: var(--cream-2); }
+  .step-btn.active { border-left-color: var(--lawn-700); background: var(--cream-2); }
+  .step-btn .num {
+    width: 44px; height: 44px; border-radius: 2px;
+    display: grid; place-items: center;
+    font-family: var(--f-display); font-size: 1.2rem;
+    background: var(--cream-2); color: var(--ink);
+    border: 1px solid var(--rule);
+    transition: all 0.2s ease;
+  }
+  .step-btn.active .num { background: var(--lawn-500); color: var(--lawn-900); border-color: var(--lawn-900); }
+  .step-btn .t { font-family: var(--f-display); font-size: 1.2rem; letter-spacing: -0.01em; }
+  .step-btn .s { font-family: var(--f-mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--soil-2); }
+
+  .step-panel { display: none; }
+  .step-panel.active { display: block; animation: fadein 0.35s ease; }
+  @keyframes fadein { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+</style>
+</head>
+<body data-screen-label="04 Process">
+
+<div id="nav-host"></div>
+
+<section class="section-lg">
+  <div class="wrap editorial">
+    <aside class="rail">
+      <div><b>FILE 04</b>The Process</div>
+      <div class="divot"></div>
+      <div><b>Voice</b>Closing Table</div>
+      <div><b>Steps</b>Three</div>
+      <div><b>Duration</b>One visit</div>
+    </aside>
+    <div>
+      <div class="eyebrow">A process diagram · interactive</div>
+      <h1 class="h-display h1" style="margin:0.5rem 0 1.5rem;max-width:22ch;">
+        The rehab, one step at a <em class="display-it" style="color:var(--lawn-700);">time.</em>
+      </h1>
+      <p class="lede" style="color:var(--ink-2);">
+        Each of the three steps does a specific job. They run in order because the next one only works because of the last one. Click through to see what we do, what it costs to skip, and what the lawn looks like underneath.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Interactive stepper -->
+<section class="section" style="background:var(--paper);">
+  <div class="wrap">
+    <div class="stepper" id="stepper">
+
+      <div class="step-list">
+        <button class="step-btn active" data-step="1">
+          <span class="num">01</span>
+          <span>
+            <span class="s">Step one · 0 – 1 in</span><br>
+            <span class="t">Dethatching</span>
+          </span>
+        </button>
+        <button class="step-btn" data-step="2">
+          <span class="num">02</span>
+          <span>
+            <span class="s">Step two · 1 – 4 in</span><br>
+            <span class="t">Core aeration</span>
+          </span>
+        </button>
+        <button class="step-btn" data-step="3">
+          <span class="num">03</span>
+          <span>
+            <span class="s">Step three · 4 – 8 in</span><br>
+            <span class="t">Compost top-dressing</span>
+          </span>
+        </button>
+        <button class="step-btn" data-step="0">
+          <span class="num">00</span>
+          <span>
+            <span class="s">Before we start</span><br>
+            <span class="t">Free assessment</span>
+          </span>
+        </button>
+
+        <div style="padding:1.5rem;border-top:2px solid var(--rule);margin-left:-2px;">
+          <span class="gap-tag systemizable" style="position:relative;display:inline-block;">
+            <b>Systemizable · interactive stepper</b>
+            Sticky left nav + animated right panel. Works for any contractor with a sequenced process: HVAC install, septic pump-out, pool remodel. Step count is a variable.
+          </span>
+        </div>
+      </div>
+
+      <div class="step-panels">
+        <!-- Step 1 -->
+        <div class="step-panel active" data-panel="1">
+          <div class="eyebrow">Step one</div>
+          <h2 class="h-display h2" style="margin:0.5rem 0 1.5rem;max-width:18ch;">
+            Strip the thatch. Reach the soil.
+          </h2>
+          <div class="photo-slot" id="process-photo" style="aspect-ratio:16/10;margin:1.5rem 0;">
+            <span class="slot-label">Step 1 · in progress</span>
+            <span class="slot-meta"><span>photo · dethatcher pulling up thatch mat</span><span>gmb[3]</span></span>
+          </div>
+          <div class="prose">
+            <p>Thatch is the layer of dead grass stems and roots that builds up between green grass and the soil below. A little is fine. Too much, and water pools on top, fungus moves in, and anything we apply sits on the mat instead of reaching the actual soil.</p>
+            <p>We run a mechanical dethatcher across the whole lawn. The blades break the mat up and lift it. Then we short-cut what's left so the grass crown is exposed and the next step can reach what matters.</p>
+          </div>
+          <table class="data" style="margin-top:2rem;">
+            <tbody>
+              <tr><th>Depth</th><td>0 – 1 in</td></tr>
+              <tr><th>Equipment</th><td>Mechanical dethatcher</td></tr>
+              <tr><th>If skipped</th><td>Aeration plugs don't reach soil. Compost sits on mat. Whole rehab fails.</td></tr>
+              <tr><th>What you'll see</th><td>A lot of dead material pulled to the surface. Yard looks worse before better.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="step-panel" data-panel="2">
+          <div class="eyebrow">Step two</div>
+          <h2 class="h-display h2" style="margin:0.5rem 0 1.5rem;max-width:20ch;">
+            Pull plugs. Let the root zone breathe.
+          </h2>
+          <div class="photo-slot" style="aspect-ratio:16/10;margin:1.5rem 0;">
+            <span class="slot-label">Step 2 · after aeration</span>
+            <span class="slot-meta"><span>photo · aeration plugs across lawn</span><span>gmb[5]</span></span>
+          </div>
+          <div class="prose">
+            <p>Central Florida soils are sand-on-clay, and years of mowing compact the root zone into something roots cannot push through. Water beads up. Oxygen can't reach. The grass is growing on concrete.</p>
+            <p>The core aerator pulls thousands of cylindrical plugs of soil out of the lawn and drops them on the surface. The holes open channels for water, oxygen, and everything we are about to apply in step three.</p>
+          </div>
+          <table class="data" style="margin-top:2rem;">
+            <tbody>
+              <tr><th>Depth</th><td>1 – 4 in</td></tr>
+              <tr><th>Equipment</th><td>Walk-behind or tow-behind core aerator</td></tr>
+              <tr><th>If skipped</th><td>Compost sits on surface. Runs off in first rain. Money into the storm drain.</td></tr>
+              <tr><th>What you'll see</th><td>Plugs everywhere. They break down naturally in a week.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="step-panel" data-panel="3">
+          <div class="eyebrow">Step three</div>
+          <h2 class="h-display h2" style="margin:0.5rem 0 1.5rem;max-width:20ch;">
+            Top-dress. Rebuild the living layer.
+          </h2>
+          <div class="photo-slot" style="aspect-ratio:16/10;margin:1.5rem 0;background:var(--lawn-500);">
+            <span class="slot-label">Step 3 · compost applied</span>
+            <span class="slot-meta"><span>photo · ECOLAWN spreader applying compost</span><span>gmb[1]</span></span>
+          </div>
+          <div class="prose">
+            <p>Life Soil's Comand is an organic compost engineered for lawn restoration. Nutrient-rich, full of soil biology, and sized to fall into aeration holes. We apply it liberally with an ECOLAWN spreader and rake it into the holes.</p>
+            <p>From underneath, the soil starts rebuilding its biology within days. Roots reach further. Water holds. The grass you already have starts growing like it finally can.</p>
+          </div>
+          <table class="data" style="margin-top:2rem;">
+            <tbody>
+              <tr><th>Depth</th><td>4 – 8 in (through the aeration holes)</td></tr>
+              <tr><th>Product</th><td>Life Soil's Comand · organic compost</td></tr>
+              <tr><th>If skipped</th><td>You aerated for nothing. Compost is what makes it compound.</td></tr>
+              <tr><th>What you'll see</th><td>A light brown dusting across the lawn. Gone within days.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Step 0 · assessment -->
+        <div class="step-panel" data-panel="0">
+          <div class="eyebrow">Before any of it</div>
+          <h2 class="h-display h2" style="margin:0.5rem 0 1.5rem;max-width:22ch;">
+            The free on-site assessment.
+          </h2>
+          <div class="photo-slot" style="aspect-ratio:16/10;margin:1.5rem 0;">
+            <span class="slot-label">The assessment</span>
+            <span class="slot-meta"><span>photo · Tracy walking a property with a clipboard</span><span>client</span></span>
+          </div>
+          <div class="prose">
+            <p>Before we schedule anything, Tom or Tracy comes out and walks the property. Grass type, irrigation, shade, soil feel, compaction. Maybe a soil plug to see what's under there.</p>
+            <p>Then we tell you what we think. Sometimes it's the full rehab. Sometimes it's one step. Sometimes it's "your lawn is fine, go mow it less aggressively." No charge either way.</p>
+          </div>
+          <div style="margin-top:2rem;">
+            <a class="btn primary" href="contact.html">Book yours →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Strata diagram -->
+<section class="section-lg">
+  <div class="wrap">
+    <div class="eyebrow">Cross-section · where each step works</div>
+    <h2 class="h-display h2" style="margin:0.5rem 0 2rem;max-width:22ch;">
+      Here is your lawn, <em class="display-it" style="color:var(--lawn-700);">in cross-section.</em>
+    </h2>
+
+    <div style="display:grid;grid-template-columns:1.6fr 1fr;gap:2rem;align-items:stretch;position:relative;">
+      <div class="strata-tall" style="min-height:600px;">
+        <div class="layer l-thatch">
+          <div><div class="what">Thatch · step 1</div><div>The mat. Blocks everything.</div></div>
+          <div class="depth">0 – 1 in</div>
+        </div>
+        <div class="layer l-grass">
+          <div><div class="what">Living grass</div><div>Surface. What you see.</div></div>
+          <div class="depth">0 in</div>
+        </div>
+        <div class="layer l-roots">
+          <div><div class="what">Root zone · step 2</div><div>Compacted. Roots can't reach.</div></div>
+          <div class="depth">1 – 4 in</div>
+        </div>
+        <div class="layer l-compost">
+          <div><div class="what">Top-dress zone · step 3</div><div>Life Soil's Comand in the holes.</div></div>
+          <div class="depth">4 – 8 in</div>
+        </div>
+        <div class="layer l-subsoil">
+          <div><div class="what">Subsoil</div><div>Native sand. We leave it alone.</div></div>
+          <div class="depth">8+ in</div>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;justify-content:space-between;padding:1rem 0;">
+        <div>
+          <div class="meta">Step 1 acts here →</div>
+          <p style="margin-top:0.25rem;font-size:0.95rem;">Thatch removal. Surface and sub-surface mat.</p>
+        </div>
+        <div>
+          <div class="meta">Step 2 acts here →</div>
+          <p style="margin-top:0.25rem;font-size:0.95rem;">Core plugs pulled from compacted zone.</p>
+        </div>
+        <div>
+          <div class="meta">Step 3 acts here →</div>
+          <p style="margin-top:0.25rem;font-size:0.95rem;">Compost drops into aeration holes and compounds.</p>
+        </div>
+        <div>
+          <div class="meta">Untouched →</div>
+          <p style="margin-top:0.25rem;font-size:0.95rem;">Native subsoil stays where it is.</p>
+        </div>
+      </div>
+
+      <span class="gap-tag bespoke" style="top:-10px;left:-10px;">
+        <b>Bespoke · annotated cross-section</b>
+        This is the one diagram only a lawn rehab company can use. The "label each layer, map each step" pattern is systemizable; the subject is not.
+      </span>
+    </div>
+  </div>
+</section>
+
+<div id="foot-host"></div>
+<script src="scripts/partials.js"></script>
+<script src="scripts/shared.js"></script>
+<script>
+  // Stepper
+  const buttons = document.querySelectorAll('.step-btn');
+  const panels = document.querySelectorAll('.step-panel');
+  buttons.forEach(b => {
+    b.addEventListener('click', () => {
+      const s = b.dataset.step;
+      buttons.forEach(x => x.classList.toggle('active', x === b));
+      panels.forEach(p => p.classList.toggle('active', p.dataset.panel === s));
+    });
+  });
+</script>
+</body></html>

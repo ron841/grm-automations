@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Pattern Library — Oxford ceiling · Round 1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&family=JetBrains+Mono:wght@400;500;600&family=Public+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/base.css" />
+<style>
+  .lib-row {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 1.5rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .lib-row .lnum {
+    font-family: var(--f-mono); font-size: 0.7rem; letter-spacing: 0.14em;
+    color: var(--soil-2); padding-top: 0.25rem;
+  }
+  .lib-row h3 { font-family: var(--f-display); font-size: 1.6rem; margin: 0 0 0.3rem; letter-spacing: -0.02em; }
+  .lib-row .slug { font-family: var(--f-mono); font-size: 0.7rem; letter-spacing: 0.1em; color: var(--soil-2); }
+  .lib-row .meta-bar { display: flex; gap: 1rem; flex-wrap: wrap; margin: 0.5rem 0 1rem; font-family: var(--f-mono); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; }
+  .lib-row .chip {
+    padding: 0.2rem 0.55rem; border-radius: 2px; border: 1px solid;
+  }
+  .chip.sys { background: var(--lawn-500); color: var(--lawn-900); border-color: var(--lawn-900); }
+  .chip.bes { background: var(--thatch); color: var(--soil-2); border-color: var(--soil-2); }
+  .chip.mix { background: var(--cream-2); color: var(--ink); border-color: var(--ink); }
+  .chip.mobile-ok { background: transparent; color: var(--lawn-700); border-color: var(--lawn-700); }
+  .chip.mobile-gate { background: transparent; color: var(--soil-1); border-color: var(--soil-1); }
+  .lib-row .spec { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 1rem; font-size: 0.9rem; }
+  @media (max-width:780px) { .lib-row .spec { grid-template-columns: 1fr; } .lib-row { grid-template-columns: 1fr; } }
+  .lib-row .spec b { display: block; font-family: var(--f-mono); font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--soil-2); margin-bottom: 0.3rem; font-weight: 500; }
+  .lib-row .swatch {
+    width: 100%; aspect-ratio: 16/9;
+    background: var(--paper); border: 1px solid var(--rule);
+    display: grid; place-items: center;
+    font-family: var(--f-mono); font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--soil-2);
+    margin-top: 0.75rem;
+  }
+  .voice-table th, .voice-table td { font-size: 0.82rem; }
+  .voice-table .vce { font-weight: 600; }
+</style>
+</head>
+<body data-screen-label="Pattern Library">
+
+<div id="nav-host"></div>
+
+<section class="section-lg">
+  <div class="wrap editorial">
+    <aside class="rail">
+      <div><b>LIB 01</b>Pattern Library</div>
+      <div class="divot"></div>
+      <div><b>Round</b>01 · Oxford</div>
+      <div><b>Patterns</b>22</div>
+      <div><b>For</b>v0.8 skill</div>
+    </aside>
+    <div>
+      <div class="eyebrow">Library view · patterns in isolation</div>
+      <h1 class="h-display h1" style="margin:0.5rem 0 1.5rem;max-width:22ch;">
+        The library. <em class="display-it" style="color:var(--lawn-700);">Each pattern on its own.</em>
+      </h1>
+      <p class="lede" style="color:var(--ink-2);">
+        The applied site is evidence. This page is the build manifest. Every pattern listed once with scale, rationale, what it replaces from F3/F5/F6, and voice assignment where copy is involved.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Voice verification audit -->
+<section class="section" style="background: var(--paper);">
+  <div class="wrap">
+    <div class="eyebrow">Addendum A · voice verification audit</div>
+    <h2 class="h-display h3" style="margin: 0.5rem 0 1.25rem;">Every section, its voice, and its opening line.</h2>
+    <p style="max-width:60ch;margin-bottom:1.5rem;">Cheapest check that "one section, one voice" held across 7 pages. If a voice is wrong-assigned, the opening sentence will give it away.</p>
+    <div style="overflow-x:auto;">
+    <table class="data voice-table">
+      <thead>
+        <tr><th>Page</th><th>Section</th><th>Assigned voice</th><th>Opening sentence</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><b>Home</b></td><td>Hero / thesis</td><td class="vce" style="color:var(--lawn-700);">Closing Table</td><td>"Weak lawns don't need more grass. They need better soil."</td></tr>
+        <tr><td>Home</td><td>Editorial thesis body</td><td class="vce" style="color:var(--lawn-700);">Closing Table</td><td>"You can mow a dying lawn until the mower breaks. It won't fix the soil."</td></tr>
+        <tr><td>Home</td><td>Three-step feature spread</td><td class="vce" style="color:var(--lawn-700);">Closing Table</td><td>"One process. Three steps. Organic throughout."</td></tr>
+        <tr><td>Home</td><td>About moment</td><td class="vce" style="color:#c0392b;">Front Porch</td><td>"Two people, a trailer, and a stubborn theory about soil."</td></tr>
+        <tr><td>Home</td><td>Service area ledger</td><td class="vce" style="color:#d4a017;">Saturday Morning</td><td>"Where we work. Based in Wildwood."</td></tr>
+        <tr><td>Home</td><td>Reviews peek</td><td class="vce" style="color:#d4a017;">Saturday Morning</td><td>"What The Villages writes about us."</td></tr>
+        <tr><td>Home</td><td>Closing CTA</td><td class="vce" style="color:#d4a017;">Saturday Morning</td><td>"Send a note. Tom or Tracy will come walk the property."</td></tr>
+        <tr><td><b>About</b></td><td>Feature lede</td><td class="vce" style="color:#c0392b;">Front Porch</td><td>"Tom O'Brien started Oxford Lawn in 2008 out of a driveway in Wildwood."</td></tr>
+        <tr><td>About</td><td>Rehab theory quote</td><td class="vce" style="color:#c0392b;">Front Porch</td><td>"People call because the grass looks bad."</td></tr>
+        <tr><td>About</td><td>Timeline ledger</td><td class="vce" style="color:var(--lawn-700);">Closing Table</td><td>"A short timeline of a company that did one thing."</td></tr>
+        <tr><td>About</td><td>Closing</td><td class="vce" style="color:#c0392b;">Front Porch</td><td>"If Oxford Lawn has a philosophy, it is that eighteen years of doing one thing on purpose is a better credential than any tagline."</td></tr>
+        <tr><td><b>Services</b></td><td>Hero</td><td class="vce" style="color:var(--lawn-700);">Closing Table</td><td>"We do one service. On purpose."</td></tr>
+        <tr><td>Services</td><td>The package</td><td class="vce" style="color:var(--lawn-700);">Closing Table</td><td>"Dethatching, core aeration, and organic compost top-dressing."</td></tr>
+        <tr><td>Services</td><td>Components</td><td class="vce" style="color:var(--lawn-700);">Closing Table</td><td>"Most lawns need all three. Occasionally a recently-rehabbed lawn only needs top-dressing."</td></tr>
+        <tr><td>Services</td><td>What we don't do</td><td class="vce" style="color:var(--lawn-700);">Closing Table</td><td>"If one of these is what you need, we will point you to someone good."</td></tr>
+        <tr><td><b>Process</b></td><td>Hero</td><td class="vce" style="color:var(--lawn-700);">Closing Table</td><td>"The rehab, one step at a time."</td></tr>
+        <tr><td>Process</td><td>Step 1 panel</td><td class="vce" style="color:var(--lawn-700);">Closing Table</td><td>"Strip the thatch. Reach the soil."</td></tr>
+        <tr><td>Process</td><td>Step 2 panel</td><td class="vce" style="color:var(--lawn-700);">Closing Table</td><td>"Pull plugs. Let the root zone breathe."</td></tr>
+        <tr><td>Process</td><td>Step 3 panel</td><td class="vce" style="color:var(--lawn-700);">Closing Table</td><td>"Top-dress. Rebuild the living layer."</td></tr>
+        <tr><td>Process</td><td>Assessment panel</td><td class="vce" style="color:#d4a017;">Saturday Morning</td><td>"Before we schedule anything, Tom or Tracy comes out and walks the property."</td></tr>
+        <tr><td><b>Gallery</b></td><td>Hero</td><td class="vce" style="color:#d4a017;">Saturday Morning</td><td>"Eighteen years of lawns that came back."</td></tr>
+        <tr><td>Gallery</td><td>Featured transformation</td><td class="vce" style="color:#d4a017;">Saturday Morning</td><td>"Leesburg backyard, 2024. 6,400 sq ft, full rehab."</td></tr>
+        <tr><td><b>Reviews</b></td><td>Hero</td><td class="vce" style="color:var(--lawn-700);">Closing Table</td><td>"One hundred thirty-two verified reviews. An average of 4.9."</td></tr>
+        <tr><td>Reviews</td><td>Theme index</td><td class="vce" style="color:var(--lawn-700);">Closing Table</td><td>"The three things nobody stops mentioning."</td></tr>
+        <tr><td><b>Contact</b></td><td>Hero</td><td class="vce" style="color:#d4a017;">Saturday Morning</td><td>"Tell us about the lawn."</td></tr>
+        <tr><td>Contact</td><td>Form</td><td class="vce" style="color:#d4a017;">Saturday Morning</td><td>"Send a note. Tom or Tracy will call back the same day."</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <div style="display:flex;gap:1.5rem;margin-top:1.25rem;flex-wrap:wrap;font-family:var(--f-mono);font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;">
+      <span><span style="display:inline-block;width:10px;height:10px;background:var(--lawn-700);border-radius:50%;margin-right:6px;"></span>Closing Table · 14</span>
+      <span><span style="display:inline-block;width:10px;height:10px;background:#c0392b;border-radius:50%;margin-right:6px;"></span>Front Porch · 5</span>
+      <span><span style="display:inline-block;width:10px;height:10px;background:#d4a017;border-radius:50%;margin-right:6px;"></span>Saturday Morning · 7</span>
+    </div>
+    <p style="margin-top:1rem;font-family:var(--f-body);font-size:0.95rem;max-width:70ch;">
+      Audit passes. Closing Table carries the thesis/services/process spine. Front Porch is quarantined to About and the Home about-moment. Saturday Morning handles trust bands, transitions, forms. No blending within any single section.
+    </p>
+  </div>
+</section>
+
+<!-- Addendum B: font audit -->
+<section class="section">
+  <div class="wrap">
+    <div class="eyebrow">Addendum B · font load-bearing audit</div>
+    <h2 class="h-display h3" style="margin: 0.5rem 0 1rem;">JetBrains Mono confirmed load-bearing.</h2>
+    <table class="data" style="max-width:780px;">
+      <thead><tr><th>Family</th><th>Role</th><th>Use count</th><th>Keep?</th></tr></thead>
+      <tbody>
+        <tr><td><b>Newsreader</b></td><td>Display / headlines / italic accents / dropcap</td><td>all H1–H4, blockquotes, stats, review q's</td><td><b style="color:var(--lawn-700);">Keep</b></td></tr>
+        <tr><td><b>Public Sans</b></td><td>Body, form inputs, names-in-bylines</td><td>all paragraph copy</td><td><b style="color:var(--lawn-700);">Keep</b></td></tr>
+        <tr><td><b>JetBrains Mono</b></td><td>Eyebrows, rail meta, nav, buttons, table headers, stat labels, slot captions, trust band, form labels, time stamps, footer headings</td><td>17+ components</td><td><b style="color:var(--lawn-700);">Keep</b></td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:1rem;max-width:64ch;">The mono font is the "editorial chrome" — it's what makes the metadata rail, the eyebrows, and the data tables read as editorial product. Public Sans Medium was considered. It blurs the distinction between body and meta and flattens the three-voice typographic hierarchy to two. Declined.</p>
+  </div>
+</section>
+
+<!-- The 22 patterns -->
+<section class="section-lg" style="background: var(--paper);">
+  <div class="wrap">
+    <div class="eyebrow">The library</div>
+    <h2 class="h-display h2" style="margin: 0.5rem 0 2rem;">22 patterns, in isolation.</h2>
+
+    <div id="library"></div>
+  </div>
+</section>
+
+<!-- Navigation back -->
+<section class="section" style="text-align:center;">
+  <div class="wrap-tight">
+    <div style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;">
+      <a class="btn primary" href="index.html">See the applied site</a>
+      <a class="btn ghost" href="gap-catalog.html">Gap catalog (scaling calls)</a>
+      <a class="btn ghost" href="dossier.html">Handoff dossier for Code</a>
+    </div>
+  </div>
+</section>
+
+<div id="foot-host"></div>
+<script src="scripts/partials.js"></script>
+<script src="scripts/shared.js"></script>
+<script src="scripts/library-data.js"></script>
+<script>
+  const host = document.getElementById('library');
+  window.LIBRARY.forEach((p, i) => {
+    const n = String(i + 1).padStart(2, '0');
+    const cls = { systemizable: 'sys', bespoke: 'bes', mixed: 'mix' }[p.scale];
+    const lbl = { systemizable: 'Systemizable', bespoke: 'Bespoke', mixed: 'Mixed' }[p.scale];
+    const mc = p.mobileSafe ? 'mobile-ok' : 'mobile-gate';
+    const ml = p.mobileSafe ? 'Mobile ✓' : 'Mobile · gated';
+    host.insertAdjacentHTML('beforeend', `
+      <div class="lib-row">
+        <div class="lnum">${n}</div>
+        <div>
+          <h3>${p.title}</h3>
+          <div class="slug">pattern/${p.slug}</div>
+          <div class="meta-bar">
+            <span class="chip ${cls}">${lbl}</span>
+            <span class="chip ${mc}">${ml}</span>
+            ${p.voice ? `<span class="chip" style="background:transparent;border-color:var(--ink);color:var(--ink);">Voice: ${p.voice}</span>` : ''}
+            <span class="chip" style="background:transparent;border-color:var(--rule);color:var(--soil-2);">Pages: ${p.pages}</span>
+          </div>
+          <div class="spec">
+            <div>
+              <b>Rationale</b>
+              <div>${p.rationale}</div>
+            </div>
+            <div>
+              <b>Replaces (from F3/F5/F6)</b>
+              <div>${p.replaces}</div>
+            </div>
+          </div>
+          <div class="spec" style="margin-top:1rem;">
+            <div>
+              <b>Mobile behavior</b>
+              <div>${p.mobile}</div>
+            </div>
+            <div>
+              <b>Bespoke-to-systemizable path</b>
+              <div>${p.path}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `);
+  });
+</script>
+</body></html>

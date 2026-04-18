@@ -1,0 +1,739 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Soil Cross-Section — Ceiling References (concept, not production)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&family=Public+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/base.css">
+<style>
+  .page-hdr {
+    padding: clamp(2rem, 5vw, 4rem) 0 clamp(1rem, 2vw, 1.5rem);
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+  }
+  .page-hdr .kicker { color: var(--soil-2); margin-bottom: 0.75rem; }
+  .page-hdr h1 {
+    font-family: var(--f-display);
+    font-weight: 400;
+    font-size: var(--step-4);
+    line-height: 1;
+    letter-spacing: -0.025em;
+    margin: 0 0 1rem;
+  }
+  .page-hdr p { max-width: 62ch; color: var(--ink-2); margin: 0; }
+
+  .stamp {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.4rem 0.75rem;
+    background: #8a1a1a;
+    color: #fff;
+    font-family: var(--f-mono); font-size: 0.72rem;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    transform: rotate(-1.5deg);
+    margin-bottom: 1rem;
+  }
+
+  .ref {
+    margin: clamp(3rem, 6vw, 5rem) 0;
+    border: 1px solid var(--rule);
+    background: var(--paper);
+    overflow: hidden;
+  }
+  .ref-chrome {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--rule);
+    font-family: var(--f-mono); font-size: 0.72rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    background: var(--cream-2);
+  }
+  .ref-chrome .tag { color: var(--soil-2); }
+  .ref-chrome .flag {
+    padding: 0.25rem 0.55rem;
+    background: #8a1a1a; color: #fff;
+    letter-spacing: 0.14em;
+  }
+  .ref-body {
+    display: grid;
+    grid-template-columns: 1.35fr 1fr;
+    gap: 0;
+  }
+  .ref-art {
+    position: relative;
+    min-height: 520px;
+    border-right: 1px solid var(--rule);
+  }
+  .ref-notes {
+    padding: 1.75rem;
+  }
+  .ref-notes h3 {
+    font-family: var(--f-display);
+    font-weight: 400;
+    font-size: var(--step-2);
+    letter-spacing: -0.015em;
+    margin: 0 0 0.75rem;
+  }
+  .ref-notes p {
+    margin: 0 0 1rem;
+    max-width: 46ch;
+    color: var(--ink-2);
+  }
+  .ref-notes dl {
+    display: grid; grid-template-columns: 130px 1fr;
+    font-size: 0.9rem; gap: 0;
+    border-top: 1px solid var(--rule);
+    margin-top: 1rem;
+    padding-top: 0.5rem;
+  }
+  .ref-notes dt {
+    font-family: var(--f-mono); font-size: 0.7rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--soil-2);
+    padding: 0.5rem 0;
+  }
+  .ref-notes dd {
+    margin: 0;
+    padding: 0.5rem 0;
+    border-bottom: 1px dotted var(--rule);
+  }
+  .ref-notes dd:last-of-type { border-bottom: none; }
+
+  /* Watermark on every art panel */
+  .ref-art::after {
+    content: "CEILING REFERENCE · NOT PRODUCTION";
+    position: absolute; right: 12px; bottom: 10px;
+    font-family: var(--f-mono); font-size: 0.62rem;
+    letter-spacing: 0.16em;
+    color: rgba(138, 26, 26, 0.55);
+    background: rgba(255,255,255,0.6);
+    padding: 2px 6px;
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  /* ============= A: FIELD-MANUAL DIAGRAM ============= */
+  .art-a {
+    background: #f4ecd8;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(106,80,40,0.05) 0 1px, transparent 1px 28px),
+      repeating-linear-gradient(90deg, rgba(106,80,40,0.05) 0 1px, transparent 1px 28px);
+    padding: 1.5rem;
+  }
+  .art-a svg { width: 100%; height: auto; display: block; }
+
+  /* ============= B: PAINTERLY STRATA PLATE ============= */
+  .art-b {
+    background: #1e1914;
+    padding: 0;
+    display: flex; align-items: stretch;
+  }
+  .art-b svg { width: 100%; height: auto; display: block; }
+
+  /* ============= D: BLUEPRINT ENGINEERING ============= */
+  .art-d {
+    background: #0e2a47;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(255,255,255,0.05) 0 1px, transparent 1px 20px),
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.05) 0 1px, transparent 1px 20px);
+    padding: 1.5rem;
+  }
+  .art-d svg { width: 100%; height: auto; display: block; }
+
+  /* annotation labels shared */
+  .lbl {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .lbl-big {
+    font-family: "Newsreader", Georgia, serif;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  /* production brief */
+  .brief {
+    margin: clamp(3rem, 6vw, 5rem) 0 clamp(2rem, 4vw, 3rem);
+    border: 1px solid var(--rule);
+    background: var(--paper);
+  }
+  .brief-hdr {
+    padding: 1rem 1.5rem;
+    background: var(--ink); color: var(--cream);
+    display: flex; align-items: baseline; justify-content: space-between;
+    font-family: var(--f-mono); font-size: 0.72rem;
+    letter-spacing: 0.14em; text-transform: uppercase;
+  }
+  .brief-body {
+    padding: 1.75rem clamp(1.25rem, 3vw, 2.5rem);
+  }
+  .brief-body h2 {
+    font-family: var(--f-display); font-weight: 400;
+    font-size: var(--step-2); margin: 0 0 0.5rem;
+    letter-spacing: -0.015em;
+  }
+  .brief-grid {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 0;
+    margin-top: 1rem;
+  }
+  .brief-grid dt {
+    font-family: var(--f-mono); font-size: 0.7rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--soil-2); padding: 0.5rem 0;
+  }
+  .brief-grid dd {
+    margin: 0; padding: 0.5rem 0;
+    border-bottom: 1px dotted var(--rule);
+  }
+  .brief-grid dd:last-of-type { border-bottom: none; }
+
+  @media (max-width: 860px) {
+    .ref-body { grid-template-columns: 1fr; }
+    .ref-art { border-right: none; border-bottom: 1px solid var(--rule); }
+    .brief-grid { grid-template-columns: 1fr; }
+    .ref-notes dl { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<main class="wrap">
+
+  <header class="page-hdr">
+    <div class="kicker eyebrow">Round 1 — Soil Cross-Section · Ceiling references</div>
+    <div class="stamp">◆ Concept only · Not production art · No illustrator commissioned</div>
+    <h1>Three ceiling references<br>for the annotated cross-section.</h1>
+    <p>The <code>annotated-soil-cross-section</code> pattern holds a promise: that Oxford can <em>show you the 32 inches under your lawn</em>. The code-drawn version on the Process page is a placeholder. These three concept sketches set the ceiling — the level of craft, annotation density, and material honesty we'd aim at <em>if</em> we commissioned an illustrator. Each is made from SVG + CSS, not painted; they describe a style, not a deliverable. Read them as mood boards with specs attached.</p>
+  </header>
+
+  <!-- ======================================================== -->
+  <!-- REF A — FIELD-MANUAL DIAGRAM -->
+  <!-- ======================================================== -->
+  <section class="ref">
+    <div class="ref-chrome">
+      <span class="tag">Reference A · Field-manual diagram</span>
+      <span class="flag">Ceiling ref · not production</span>
+    </div>
+    <div class="ref-body">
+      <div class="ref-art art-a">
+        <svg viewBox="0 0 640 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Field manual style soil cross-section">
+          <!-- paper is CSS; svg just the diagram -->
+          <defs>
+            <pattern id="hatch-a" patternUnits="userSpaceOnUse" width="6" height="6" patternTransform="rotate(35)">
+              <line x1="0" y1="0" x2="0" y2="6" stroke="#5a4225" stroke-width="0.5"/>
+            </pattern>
+            <pattern id="hatch-b" patternUnits="userSpaceOnUse" width="4" height="4" patternTransform="rotate(-35)">
+              <line x1="0" y1="0" x2="0" y2="4" stroke="#3a2f20" stroke-width="0.5"/>
+            </pattern>
+            <pattern id="dots" patternUnits="userSpaceOnUse" width="5" height="5">
+              <circle cx="1" cy="1" r="0.6" fill="#6a5230"/>
+            </pattern>
+          </defs>
+
+          <!-- grass blades -->
+          <g stroke="#4a7a2e" stroke-width="1.5" stroke-linecap="round" fill="none">
+            <path d="M100 110 L98 90"/><path d="M115 112 L118 88"/>
+            <path d="M130 110 L127 86"/><path d="M145 112 L149 92"/>
+            <path d="M160 110 L156 85"/><path d="M175 112 L179 90"/>
+            <path d="M195 110 L192 87"/><path d="M212 112 L216 91"/>
+            <path d="M230 110 L227 86"/><path d="M248 112 L252 89"/>
+            <path d="M268 110 L264 85"/><path d="M286 112 L290 91"/>
+            <path d="M306 110 L302 86"/><path d="M324 112 L328 90"/>
+            <path d="M344 110 L340 85"/><path d="M362 112 L366 91"/>
+            <path d="M382 110 L378 87"/><path d="M400 112 L404 89"/>
+            <path d="M420 110 L416 86"/><path d="M438 112 L442 92"/>
+            <path d="M458 110 L454 87"/><path d="M476 112 L480 90"/>
+            <path d="M496 110 L492 85"/><path d="M514 112 L518 91"/>
+          </g>
+
+          <!-- Layer 1: Thatch -->
+          <rect x="80" y="110" width="460" height="30" fill="#c9a876" opacity="0.5"/>
+          <rect x="80" y="110" width="460" height="30" fill="url(#hatch-a)"/>
+          <line x1="80" y1="110" x2="540" y2="110" stroke="#3a2f20" stroke-width="1"/>
+          <line x1="80" y1="140" x2="540" y2="140" stroke="#3a2f20" stroke-width="0.7" stroke-dasharray="3 2"/>
+
+          <!-- Layer 2: Topsoil / Loam -->
+          <rect x="80" y="140" width="460" height="85" fill="#8a6a3f" opacity="0.5"/>
+          <rect x="80" y="140" width="460" height="85" fill="url(#dots)" opacity="0.7"/>
+          <!-- roots -->
+          <g stroke="#3a2f20" stroke-width="0.8" fill="none" opacity="0.8">
+            <path d="M120 140 q-3 20 -10 35 q-2 10 2 20"/>
+            <path d="M180 140 q4 25 -2 40 q-3 12 5 25"/>
+            <path d="M250 140 q-2 30 -8 45"/>
+            <path d="M320 140 q3 35 -5 50"/>
+            <path d="M400 140 q-4 28 2 45"/>
+            <path d="M470 140 q2 30 -6 45"/>
+          </g>
+          <line x1="80" y1="225" x2="540" y2="225" stroke="#3a2f20" stroke-width="0.7" stroke-dasharray="3 2"/>
+
+          <!-- Layer 3: Subsoil -->
+          <rect x="80" y="225" width="460" height="100" fill="#5a4225" opacity="0.5"/>
+          <rect x="80" y="225" width="460" height="100" fill="url(#hatch-b)"/>
+          <!-- pebbles -->
+          <g fill="#3a2f20" opacity="0.7">
+            <ellipse cx="140" cy="250" rx="6" ry="3"/>
+            <ellipse cx="210" cy="270" rx="4" ry="2.5"/>
+            <ellipse cx="295" cy="255" rx="7" ry="3.5"/>
+            <ellipse cx="370" cy="285" rx="5" ry="3"/>
+            <ellipse cx="450" cy="260" rx="6" ry="3"/>
+            <ellipse cx="495" cy="295" rx="4" ry="2"/>
+            <ellipse cx="180" cy="305" rx="5" ry="2.5"/>
+            <ellipse cx="340" cy="315" rx="6" ry="3"/>
+          </g>
+          <line x1="80" y1="325" x2="540" y2="325" stroke="#3a2f20" stroke-width="0.7" stroke-dasharray="3 2"/>
+
+          <!-- Layer 4: Weathered bedrock -->
+          <rect x="80" y="325" width="460" height="120" fill="#2a2420" opacity="0.7"/>
+          <g stroke="#6a5230" stroke-width="0.6" fill="none" opacity="0.5">
+            <path d="M80 360 L540 355"/>
+            <path d="M80 385 L540 390"/>
+            <path d="M80 410 L540 405"/>
+            <path d="M80 430 L540 435"/>
+          </g>
+          <!-- cracks -->
+          <g stroke="#c9a876" stroke-width="0.5" fill="none" opacity="0.6">
+            <path d="M160 325 L170 355 L155 395 L175 440"/>
+            <path d="M290 325 L285 360 L305 400 L295 440"/>
+            <path d="M420 325 L430 365 L415 405 L425 445"/>
+          </g>
+
+          <!-- depth ruler -->
+          <g font-family="JetBrains Mono, monospace" font-size="9" fill="#3a2f20" text-anchor="end">
+            <line x1="68" y1="110" x2="75" y2="110" stroke="#3a2f20"/>
+            <text x="62" y="113">0"</text>
+            <line x1="68" y1="140" x2="75" y2="140" stroke="#3a2f20"/>
+            <text x="62" y="143">2"</text>
+            <line x1="68" y1="225" x2="75" y2="225" stroke="#3a2f20"/>
+            <text x="62" y="228">8"</text>
+            <line x1="68" y1="325" x2="75" y2="325" stroke="#3a2f20"/>
+            <text x="62" y="328">18"</text>
+            <line x1="68" y1="445" x2="75" y2="445" stroke="#3a2f20"/>
+            <text x="62" y="448">32"</text>
+            <line x1="72" y1="108" x2="72" y2="447" stroke="#3a2f20" stroke-width="0.8"/>
+          </g>
+
+          <!-- annotation leaders + labels (right side) -->
+          <g font-family="JetBrains Mono, monospace" font-size="9" fill="#2a2420" letter-spacing="0.08em">
+            <!-- 01 Thatch -->
+            <line x1="540" y1="125" x2="590" y2="95" stroke="#2a2420" stroke-width="0.5"/>
+            <circle cx="540" cy="125" r="2" fill="#2a2420"/>
+            <text x="595" y="88" font-weight="700">01 THATCH</text>
+            <text x="595" y="101" font-size="8" fill="#5a4225">Fig. A — 0–2" · matted</text>
+
+            <!-- 02 Topsoil -->
+            <line x1="540" y1="180" x2="595" y2="170" stroke="#2a2420" stroke-width="0.5"/>
+            <circle cx="540" cy="180" r="2" fill="#2a2420"/>
+            <text x="600" y="168" font-weight="700">02 LOAM</text>
+            <text x="600" y="181" font-size="8" fill="#5a4225">Fig. B — 2–8" · root zone</text>
+
+            <!-- 03 Subsoil -->
+            <line x1="540" y1="275" x2="595" y2="260" stroke="#2a2420" stroke-width="0.5"/>
+            <circle cx="540" cy="275" r="2" fill="#2a2420"/>
+            <text x="600" y="258" font-weight="700">03 SUBSOIL</text>
+            <text x="600" y="271" font-size="8" fill="#5a4225">Fig. C — 8–18" · clay</text>
+
+            <!-- 04 Bedrock -->
+            <line x1="540" y1="400" x2="595" y2="380" stroke="#2a2420" stroke-width="0.5"/>
+            <circle cx="540" cy="400" r="2" fill="#2a2420"/>
+            <text x="600" y="378" font-weight="700">04 BEDROCK</text>
+            <text x="600" y="391" font-size="8" fill="#5a4225">Fig. D — 18–32"+</text>
+          </g>
+
+          <!-- title block bottom left -->
+          <g font-family="Newsreader, serif" fill="#2a2420">
+            <text x="80" y="485" font-size="14" font-style="italic">Plate IV.</text>
+            <text x="130" y="485" font-size="12">Soil profile, Upper Chester County.</text>
+          </g>
+          <g font-family="JetBrains Mono, monospace" font-size="8" fill="#5a4225" letter-spacing="0.12em">
+            <text x="80" y="502">SURVEY 1987 · REV. 2024 · OXFORD LAWN CO.</text>
+          </g>
+        </svg>
+      </div>
+      <div class="ref-notes">
+        <h3>Field-manual diagram</h3>
+        <p>Hatched cross-section with leader lines, numbered figure callouts, and a title block. Reads like an agricultural extension bulletin from 1975 — the authoritative reference most rural landowners already trust.</p>
+        <p>This is the <strong>safest ceiling</strong>. Closest to "a real thing you can print and hand to a client." Matches Oxford's editorial voice cleanly. Production risk is low; craft risk is that it becomes too dry.</p>
+        <dl>
+          <dt>Medium</dt><dd>Pen-and-ink illustration on cream stock, scanned at high resolution. OR high-end digital that mimics it.</dd>
+          <dt>Palette</dt><dd>Cream #f4ecd8 base, four ink-brown strata, single-weight linework.</dd>
+          <dt>Annotation</dt><dd>Numbered figures (01–04), leader lines, depth ruler, title block, survey metadata.</dd>
+          <dt>Reuse</dt><dd>Highest. Same system can annotate anything: aeration diagram, drainage map, irrigation schematic.</dd>
+          <dt>Risk</dt><dd>Familiar. Doesn't surprise anyone. Could read as stock.</dd>
+          <dt>Cost estimate</dt><dd>Illustrator: mid. 2–3 weeks, one primary + two secondary diagrams.</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================== -->
+  <!-- REF B — PAINTERLY STRATA PLATE -->
+  <!-- ======================================================== -->
+  <section class="ref">
+    <div class="ref-chrome">
+      <span class="tag">Reference B · Painterly strata plate</span>
+      <span class="flag">Ceiling ref · not production</span>
+    </div>
+    <div class="ref-body">
+      <div class="ref-art art-b">
+        <svg viewBox="0 0 640 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Painterly strata plate">
+          <defs>
+            <filter id="grain">
+              <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="5"/>
+              <feColorMatrix values="0 0 0 0 0
+                                     0 0 0 0 0
+                                     0 0 0 0 0
+                                     0 0 0 0.12 0"/>
+              <feComposite in2="SourceGraphic" operator="in"/>
+            </filter>
+            <filter id="soft">
+              <feGaussianBlur stdDeviation="1.2"/>
+            </filter>
+            <linearGradient id="sky-b" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#2d3a2a"/>
+              <stop offset="1" stop-color="#1a231a"/>
+            </linearGradient>
+            <linearGradient id="lawn-b" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#5a7a3a"/>
+              <stop offset="0.7" stop-color="#3a5224"/>
+              <stop offset="1" stop-color="#2a3a1a"/>
+            </linearGradient>
+            <linearGradient id="strat-1" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#d4b88a"/>
+              <stop offset="1" stop-color="#a8895a"/>
+            </linearGradient>
+            <linearGradient id="strat-2" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#8a6a3f"/>
+              <stop offset="1" stop-color="#5a4225"/>
+            </linearGradient>
+            <linearGradient id="strat-3" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#5a4225"/>
+              <stop offset="1" stop-color="#3a2a15"/>
+            </linearGradient>
+            <linearGradient id="strat-4" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#2a2420"/>
+              <stop offset="1" stop-color="#14100c"/>
+            </linearGradient>
+          </defs>
+
+          <!-- frame -->
+          <rect x="40" y="40" width="560" height="440" fill="url(#sky-b)"/>
+
+          <!-- sky strip -->
+          <rect x="40" y="40" width="560" height="60" fill="url(#sky-b)"/>
+
+          <!-- lawn layer with painterly edge -->
+          <path d="M40 100 Q 80 96, 140 100 T 280 98 T 420 102 T 560 100 T 600 100 L 600 145 L 40 145 Z"
+                fill="url(#lawn-b)" filter="url(#soft)"/>
+          <!-- grass blade flecks -->
+          <g stroke="#acfc64" stroke-width="0.6" opacity="0.6">
+            <path d="M80 100 l-1 -8"/><path d="M100 100 l1 -7"/>
+            <path d="M130 100 l-1 -9"/><path d="M160 100 l1 -7"/>
+            <path d="M190 100 l-1 -8"/><path d="M220 100 l1 -7"/>
+            <path d="M260 100 l-1 -9"/><path d="M300 100 l1 -8"/>
+            <path d="M340 100 l-1 -7"/><path d="M380 100 l1 -8"/>
+            <path d="M420 100 l-1 -9"/><path d="M460 100 l1 -7"/>
+            <path d="M500 100 l-1 -8"/><path d="M540 100 l1 -7"/>
+          </g>
+
+          <!-- Strata: broken, irregular edges -->
+          <path d="M40 145 Q 120 150, 220 143 T 420 148 T 560 144 T 600 146 L 600 195 Q 540 200, 440 193 T 220 198 T 40 194 Z"
+                fill="url(#strat-1)" filter="url(#soft)"/>
+          <path d="M40 195 Q 110 205, 240 198 T 440 202 T 600 199 L 600 290 Q 520 295, 360 288 T 120 294 T 40 290 Z"
+                fill="url(#strat-2)" filter="url(#soft)"/>
+          <path d="M40 290 Q 150 298, 300 293 T 540 297 T 600 295 L 600 380 Q 480 385, 300 380 T 40 384 Z"
+                fill="url(#strat-3)" filter="url(#soft)"/>
+          <path d="M40 380 L 600 380 L 600 480 L 40 480 Z"
+                fill="url(#strat-4)"/>
+
+          <!-- root system, painterly -->
+          <g stroke="#1a1008" stroke-width="1.2" fill="none" opacity="0.7" stroke-linecap="round">
+            <path d="M150 145 q -4 30 -12 50 q -2 20 6 40 q 4 20 -4 40"/>
+            <path d="M250 145 q 6 35 -4 60 q -2 15 4 30"/>
+            <path d="M340 145 q -3 40 5 70 q 2 15 -6 30"/>
+            <path d="M430 145 q 4 50 -8 80 q -2 10 6 20"/>
+            <path d="M510 145 q -6 35 2 60 q 4 20 -2 40"/>
+          </g>
+          <!-- stones in subsoil -->
+          <g opacity="0.8">
+            <ellipse cx="120" cy="240" rx="9" ry="4" fill="#1a1008"/>
+            <ellipse cx="220" cy="260" rx="6" ry="3" fill="#2a1a10"/>
+            <ellipse cx="310" cy="245" rx="11" ry="5" fill="#1a1008"/>
+            <ellipse cx="410" cy="270" rx="7" ry="4" fill="#2a1a10"/>
+            <ellipse cx="500" cy="250" rx="9" ry="4" fill="#1a1008"/>
+            <ellipse cx="180" cy="320" rx="7" ry="3" fill="#1a1008"/>
+            <ellipse cx="380" cy="340" rx="10" ry="4" fill="#2a1a10"/>
+            <ellipse cx="540" cy="330" rx="6" ry="3" fill="#1a1008"/>
+          </g>
+
+          <!-- grain overlay -->
+          <rect x="40" y="40" width="560" height="440" filter="url(#grain)" opacity="0.5"/>
+
+          <!-- serif annotations, elegant -->
+          <g font-family="Newsreader, serif" fill="#f0e8d0">
+            <!-- leader I -->
+            <line x1="540" y1="120" x2="565" y2="115" stroke="#f0e8d0" stroke-width="0.5"/>
+            <text x="568" y="115" font-size="11" font-style="italic">I. Canopy</text>
+            <text x="568" y="127" font-family="JetBrains Mono, monospace" font-size="7" fill="#c9a876" letter-spacing="0.1em">KBG · FINE FESCUE</text>
+
+            <line x1="540" y1="170" x2="565" y2="170" stroke="#f0e8d0" stroke-width="0.5"/>
+            <text x="568" y="170" font-size="11" font-style="italic">II. Thatch</text>
+            <text x="568" y="182" font-family="JetBrains Mono, monospace" font-size="7" fill="#c9a876" letter-spacing="0.1em">0–2" · ORGANIC MAT</text>
+
+            <line x1="540" y1="240" x2="565" y2="240" stroke="#f0e8d0" stroke-width="0.5"/>
+            <text x="568" y="240" font-size="11" font-style="italic">III. Topsoil</text>
+            <text x="568" y="252" font-family="JetBrains Mono, monospace" font-size="7" fill="#c9a876" letter-spacing="0.1em">2–8" · SILT LOAM</text>
+
+            <line x1="540" y1="335" x2="565" y2="335" stroke="#f0e8d0" stroke-width="0.5"/>
+            <text x="568" y="335" font-size="11" font-style="italic">IV. Subsoil</text>
+            <text x="568" y="347" font-family="JetBrains Mono, monospace" font-size="7" fill="#c9a876" letter-spacing="0.1em">8–18" · CLAY</text>
+
+            <line x1="540" y1="430" x2="565" y2="430" stroke="#f0e8d0" stroke-width="0.5"/>
+            <text x="568" y="430" font-size="11" font-style="italic">V. Bedrock</text>
+            <text x="568" y="442" font-family="JetBrains Mono, monospace" font-size="7" fill="#c9a876" letter-spacing="0.1em">18–32"+ · SCHIST</text>
+          </g>
+
+          <!-- bottom caption -->
+          <g font-family="Newsreader, serif" fill="#c9a876">
+            <text x="50" y="470" font-size="10" font-style="italic">— a reading of thirty-two inches. Plate, private collection. —</text>
+          </g>
+        </svg>
+      </div>
+      <div class="ref-notes">
+        <h3>Painterly strata plate</h3>
+        <p>Moody painted cross-section — irregular strata edges, soft grain, root systems rendered as brushwork. Roman-numeral labels set in the serif. Reads like a plate torn from a 19th-century natural history book.</p>
+        <p>This is the <strong>highest craft ceiling</strong>. Best match for Oxford's editorial voice ("Closing Table," literary). Highest production risk — needs a real illustrator at real rates. If we commit to Reference B, it becomes the brand's hero visual.</p>
+        <dl>
+          <dt>Medium</dt><dd>Gouache or digital painting. Scanned grain. Commissioned illustrator.</dd>
+          <dt>Palette</dt><dd>Muted lawn green, four tonal earth strata, cream-on-dark labels.</dd>
+          <dt>Annotation</dt><dd>Roman numerals I–V, italic serif, mono subscripts. No boxes, no leader dots.</dd>
+          <dt>Reuse</dt><dd>Medium. Each new diagram is a new commission. Costly to extend.</dd>
+          <dt>Risk</dt><dd>Expensive. Slow. Hard to update. If illustrator leaves, style dies.</dd>
+          <dt>Cost estimate</dt><dd>Illustrator: high. 6–8 weeks, one primary plate. Secondary plates are separate commissions.</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================== -->
+  <!-- REF D — BLUEPRINT ENGINEERING -->
+  <!-- ======================================================== -->
+  <section class="ref">
+    <div class="ref-chrome">
+      <span class="tag">Reference D · Blueprint / engineering section</span>
+      <span class="flag">Ceiling ref · not production</span>
+    </div>
+    <div class="ref-body">
+      <div class="ref-art art-d">
+        <svg viewBox="0 0 640 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Blueprint engineering section">
+          <defs>
+            <pattern id="bp-hatch" patternUnits="userSpaceOnUse" width="6" height="6" patternTransform="rotate(45)">
+              <line x1="0" y1="0" x2="0" y2="6" stroke="#f0e8d0" stroke-width="0.4"/>
+            </pattern>
+            <pattern id="bp-dots" patternUnits="userSpaceOnUse" width="8" height="8">
+              <circle cx="1" cy="1" r="0.5" fill="#f0e8d0" opacity="0.5"/>
+            </pattern>
+          </defs>
+
+          <!-- title bar -->
+          <g>
+            <rect x="40" y="40" width="560" height="28" fill="none" stroke="#f0e8d0" stroke-width="0.8"/>
+            <text x="55" y="59" font-family="JetBrains Mono, monospace" font-size="10"
+                  fill="#f0e8d0" letter-spacing="0.14em">DWG-04 · SOIL PROFILE · SECTION A-A</text>
+            <text x="585" y="59" font-family="JetBrains Mono, monospace" font-size="10"
+                  fill="#f0e8d0" letter-spacing="0.14em" text-anchor="end">SCALE 1:8 · REV 03</text>
+          </g>
+
+          <!-- grid border -->
+          <rect x="40" y="80" width="560" height="360" fill="none" stroke="#f0e8d0" stroke-width="0.8"/>
+
+          <!-- ground line -->
+          <g stroke="#f0e8d0" fill="none">
+            <line x1="120" y1="120" x2="520" y2="120" stroke-width="1.2"/>
+            <!-- ground hatching above -->
+            <g stroke-width="0.5">
+              <line x1="120" y1="120" x2="135" y2="110"/>
+              <line x1="140" y1="120" x2="155" y2="110"/>
+              <line x1="160" y1="120" x2="175" y2="110"/>
+              <line x1="180" y1="120" x2="195" y2="110"/>
+              <line x1="200" y1="120" x2="215" y2="110"/>
+              <line x1="220" y1="120" x2="235" y2="110"/>
+              <line x1="240" y1="120" x2="255" y2="110"/>
+              <line x1="260" y1="120" x2="275" y2="110"/>
+              <line x1="280" y1="120" x2="295" y2="110"/>
+              <line x1="300" y1="120" x2="315" y2="110"/>
+              <line x1="320" y1="120" x2="335" y2="110"/>
+              <line x1="340" y1="120" x2="355" y2="110"/>
+              <line x1="360" y1="120" x2="375" y2="110"/>
+              <line x1="380" y1="120" x2="395" y2="110"/>
+              <line x1="400" y1="120" x2="415" y2="110"/>
+              <line x1="420" y1="120" x2="435" y2="110"/>
+              <line x1="440" y1="120" x2="455" y2="110"/>
+              <line x1="460" y1="120" x2="475" y2="110"/>
+              <line x1="480" y1="120" x2="495" y2="110"/>
+              <line x1="500" y1="120" x2="515" y2="110"/>
+            </g>
+          </g>
+
+          <!-- strata boxes -->
+          <g stroke="#f0e8d0" stroke-width="0.8" fill="none">
+            <rect x="120" y="120" width="400" height="30"/>
+            <rect x="120" y="150" width="400" height="70"/>
+            <rect x="120" y="220" width="400" height="100"/>
+            <rect x="120" y="320" width="400" height="100"/>
+          </g>
+
+          <!-- fill patterns -->
+          <rect x="120" y="120" width="400" height="30" fill="url(#bp-dots)" opacity="0.6"/>
+          <rect x="120" y="150" width="400" height="70" fill="url(#bp-dots)" opacity="0.4"/>
+          <rect x="120" y="220" width="400" height="100" fill="url(#bp-hatch)" opacity="0.35"/>
+          <rect x="120" y="320" width="400" height="100" fill="url(#bp-hatch)" opacity="0.6"/>
+
+          <!-- dimension lines (left side) -->
+          <g stroke="#f0e8d0" stroke-width="0.6" fill="#f0e8d0" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="0.08em">
+            <!-- L1 -->
+            <line x1="100" y1="120" x2="115" y2="120"/>
+            <line x1="100" y1="150" x2="115" y2="150"/>
+            <line x1="108" y1="120" x2="108" y2="150"/>
+            <polygon points="108,122 105,127 111,127" stroke="none"/>
+            <polygon points="108,148 105,143 111,143" stroke="none"/>
+            <text x="70" y="138" text-anchor="end">2.0"</text>
+
+            <!-- L2 -->
+            <line x1="100" y1="150" x2="115" y2="150"/>
+            <line x1="100" y1="220" x2="115" y2="220"/>
+            <line x1="108" y1="150" x2="108" y2="220"/>
+            <polygon points="108,152 105,157 111,157" stroke="none"/>
+            <polygon points="108,218 105,213 111,213" stroke="none"/>
+            <text x="70" y="188" text-anchor="end">6.0"</text>
+
+            <!-- L3 -->
+            <line x1="100" y1="220" x2="115" y2="220"/>
+            <line x1="100" y1="320" x2="115" y2="320"/>
+            <line x1="108" y1="220" x2="108" y2="320"/>
+            <polygon points="108,222 105,227 111,227" stroke="none"/>
+            <polygon points="108,318 105,313 111,313" stroke="none"/>
+            <text x="70" y="273" text-anchor="end">10.0"</text>
+
+            <!-- L4 -->
+            <line x1="100" y1="320" x2="115" y2="320"/>
+            <line x1="100" y1="420" x2="115" y2="420"/>
+            <line x1="108" y1="320" x2="108" y2="420"/>
+            <polygon points="108,322 105,327 111,327" stroke="none"/>
+            <polygon points="108,418 105,413 111,413" stroke="none"/>
+            <text x="70" y="373" text-anchor="end">14.0"+</text>
+
+            <!-- total -->
+            <line x1="56" y1="120" x2="56" y2="420" stroke-width="0.8"/>
+            <polygon points="56,122 53,127 59,127" stroke="none"/>
+            <polygon points="56,418 53,413 59,413" stroke="none"/>
+            <text x="50" y="273" text-anchor="end" font-size="10" letter-spacing="0.12em">32.0"</text>
+            <text x="50" y="285" text-anchor="end" font-size="7" opacity="0.8">TOTAL DEPTH</text>
+          </g>
+
+          <!-- annotations (right side) with balloons -->
+          <g stroke="#f0e8d0" stroke-width="0.6" fill="none" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="0.1em">
+            <!-- 1 -->
+            <circle cx="550" cy="135" r="10" stroke-width="0.8"/>
+            <text x="550" y="139" text-anchor="middle" stroke="none" fill="#f0e8d0" font-size="10" font-weight="700">1</text>
+            <line x1="538" y1="135" x2="520" y2="135" stroke-width="0.6"/>
+
+            <circle cx="550" cy="185" r="10" stroke-width="0.8"/>
+            <text x="550" y="189" text-anchor="middle" stroke="none" fill="#f0e8d0" font-size="10" font-weight="700">2</text>
+            <line x1="538" y1="185" x2="520" y2="185" stroke-width="0.6"/>
+
+            <circle cx="550" cy="270" r="10" stroke-width="0.8"/>
+            <text x="550" y="274" text-anchor="middle" stroke="none" fill="#f0e8d0" font-size="10" font-weight="700">3</text>
+            <line x1="538" y1="270" x2="520" y2="270" stroke-width="0.6"/>
+
+            <circle cx="550" cy="370" r="10" stroke-width="0.8"/>
+            <text x="550" y="374" text-anchor="middle" stroke="none" fill="#f0e8d0" font-size="10" font-weight="700">4</text>
+            <line x1="538" y1="370" x2="520" y2="370" stroke-width="0.6"/>
+          </g>
+
+          <!-- legend (bottom) -->
+          <g font-family="JetBrains Mono, monospace" font-size="9" fill="#f0e8d0" letter-spacing="0.1em">
+            <text x="60" y="462" font-weight="700">LEGEND</text>
+
+            <circle cx="70" cy="478" r="6" stroke="#f0e8d0" stroke-width="0.6" fill="none"/>
+            <text x="70" y="481" text-anchor="middle" font-size="8" font-weight="700">1</text>
+            <text x="85" y="481">THATCH — organic mat, 2" ± 0.5"</text>
+
+            <circle cx="70" cy="496" r="6" stroke="#f0e8d0" stroke-width="0.6" fill="none"/>
+            <text x="70" y="499" text-anchor="middle" font-size="8" font-weight="700">2</text>
+            <text x="85" y="499">LOAM — root zone, 6.0"</text>
+
+            <circle cx="340" cy="478" r="6" stroke="#f0e8d0" stroke-width="0.6" fill="none"/>
+            <text x="340" y="481" text-anchor="middle" font-size="8" font-weight="700">3</text>
+            <text x="355" y="481">SUBSOIL — clay, 10.0"</text>
+
+            <circle cx="340" cy="496" r="6" stroke="#f0e8d0" stroke-width="0.6" fill="none"/>
+            <text x="340" y="499" text-anchor="middle" font-size="8" font-weight="700">4</text>
+            <text x="355" y="499">BEDROCK — schist, 14.0"+</text>
+          </g>
+
+          <!-- title block corner -->
+          <g stroke="#f0e8d0" stroke-width="0.6" fill="none" font-family="JetBrains Mono, monospace" font-size="8" letter-spacing="0.12em">
+            <rect x="440" y="450" width="160" height="60"/>
+            <line x1="440" y1="470" x2="600" y2="470"/>
+            <line x1="440" y1="490" x2="600" y2="490"/>
+            <line x1="520" y1="450" x2="520" y2="510"/>
+          </g>
+          <g font-family="JetBrains Mono, monospace" font-size="7" fill="#f0e8d0" letter-spacing="0.1em">
+            <text x="448" y="463">CLIENT</text>
+            <text x="528" y="463">OXFORD LAWN CO.</text>
+            <text x="448" y="483">SITE</text>
+            <text x="528" y="483">UPPER CHESTER CO</text>
+            <text x="448" y="503">DATE</text>
+            <text x="528" y="503">03 · 2024</text>
+          </g>
+        </svg>
+      </div>
+      <div class="ref-notes">
+        <h3>Blueprint / engineering section</h3>
+        <p>Architectural section drawing — dimension lines, numbered balloons, title block, scale, revision number. Reads as capital-E engineering. "This is measured. This is the spec."</p>
+        <p>Strongest <strong>proof-of-rigor</strong> ceiling. Pairs well with Class B (Operations-forward) typographic class — even if Oxford doesn't use it, the adjacent SKU might. Risk is coldness: no warmth, no story.</p>
+        <dl>
+          <dt>Medium</dt><dd>Vector drawing, blueprint blue paper. Can be production-generated (this sketch already proves that).</dd>
+          <dt>Palette</dt><dd>Blueprint blue (#0e2a47) + cream linework. No earth tones — the palette itself is the frame.</dd>
+          <dt>Annotation</dt><dd>Dimension lines with arrows, balloon numbers, legend, title block. No prose.</dd>
+          <dt>Reuse</dt><dd>Highest. Any diagram can use this system. Code-drawable without an illustrator.</dd>
+          <dt>Risk</dt><dd>Clinical. Drops the editorial voice entirely. Not Oxford — more a sibling brand's visual.</dd>
+          <dt>Cost estimate</dt><dd>In-house / code-drawable. Minimal. This is the "no-commission" fallback — strong enough to ship as-is.</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================== -->
+  <!-- PRODUCTION BRIEF / RECOMMENDATION -->
+  <!-- ======================================================== -->
+  <section class="brief">
+    <div class="brief-hdr">
+      <span>Recommendation — for the founder review</span>
+      <span style="color: var(--lawn-400);">v1 · no commission yet</span>
+    </div>
+    <div class="brief-body">
+      <h2>If we commission, it's Reference B. If we don't, it's Reference D.</h2>
+      <p style="max-width: 60ch; color: var(--ink-2); margin: 0;">A is strong but risks reading as stock extension-service material. B is the highest ceiling that matches Oxford's editorial voice; D is the highest ceiling we can ship today without hiring anyone. Pick one of those two lanes and the Round 2 illustration budget becomes a single, scoped decision. (Reference C — Wardian-case / terrarium — was removed during founder review: Oxford does core aeration but doesn't collect display samples, so the motif implies a practice that doesn't exist.)</p>
+
+      <dl class="brief-grid">
+        <dt>Round 1 ships</dt><dd>The existing code-drawn diagram on the Process page (unchanged). These references do <em>not</em> replace it.</dd>
+        <dt>Round 2 decision</dt><dd>Commission B or productize D. Not both. The illustration style carries the brand — having two is worse than having neither.</dd>
+        <dt>What this file is</dt><dd>A ceiling. The point is to look at these four and say "yes, that's the level of craft I'm paying for" (or "no, less than that"). Concept only.</dd>
+        <dt>What this file isn't</dt><dd>Production art. No illustrator has been briefed. No commission has been scoped. No cost has been committed. Every panel is stamped.</dd>
+        <dt>Next action (if approved)</dt><dd>Write a one-page illustration brief for the chosen ceiling. Shortlist 2–3 illustrators. Get quotes. Then decide — not before.</dd>
+      </dl>
+    </div>
+  </section>
+
+</main>
+
+</body>
+</html>

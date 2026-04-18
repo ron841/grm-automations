@@ -1,0 +1,568 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Typographic Classes — Round 1 Sketches</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,700;1,6..72,300;1,6..72,400&family=Public+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500&family=Archivo:wght@500;700;900&family=Archivo+Narrow:wght@500;700&family=DM+Mono:wght@400;500&family=Inter+Tight:wght@500;700;900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/base.css">
+<style>
+  :root {
+    /* Operations palette: utility-fleet, high-contrast, no nonsense */
+    --ops-ink: #0f1412;
+    --ops-surface: #f2efe8;
+    --ops-accent: #d9f24a;   /* safety-vest derivative, not lawn green */
+    --ops-rule: #1a1f1c;
+    --ops-mute: #6a6f6a;
+
+    /* Emergency palette: after-hours, signal-first */
+    --em-bg: #0b0d0c;
+    --em-surface: #14181a;
+    --em-ink: #f7f3ea;
+    --em-mute: #8a8f8a;
+    --em-signal: #ff5a3d;    /* emergency orange — not red, not cute */
+    --em-signal-2: #ffd23f;  /* hazard yellow */
+    --em-rule: #2a2f2c;
+  }
+  .page-hdr {
+    padding: clamp(2rem, 5vw, 4rem) 0 clamp(1rem, 2vw, 1.5rem);
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+  }
+  .page-hdr .kicker { color: var(--soil-2); margin-bottom: 0.75rem; }
+  .page-hdr h1 {
+    font-family: var(--f-display);
+    font-weight: 400;
+    font-size: var(--step-4);
+    line-height: 1;
+    letter-spacing: -0.025em;
+    margin: 0 0 1rem;
+  }
+  .page-hdr p { max-width: 60ch; color: var(--ink-2); margin: 0; }
+
+  /* ---- Sketch card shell ---- */
+  .sketch {
+    margin: clamp(3rem, 6vw, 5rem) 0;
+    border: 1px solid var(--rule);
+    background: var(--paper);
+    overflow: hidden;
+  }
+  .sketch-chrome {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--rule);
+    font-family: var(--f-mono); font-size: 0.72rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    background: var(--cream-2);
+  }
+  .sketch-chrome .tag { color: var(--soil-2); }
+  .sketch-chrome .flag {
+    padding: 0.25rem 0.55rem;
+    background: var(--ink); color: var(--cream);
+    letter-spacing: 0.14em;
+  }
+  .sketch-body { padding: 0; }
+
+  /* ---- spec table (shared) ---- */
+  .spec {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    border-top: 1px solid var(--rule);
+    padding: 1.75rem clamp(1.25rem, 3vw, 2.5rem);
+    gap: 0;
+    font-size: 0.95rem;
+  }
+  .spec dt {
+    font-family: var(--f-mono); font-size: 0.7rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--soil-2);
+    padding: 0.35rem 0;
+  }
+  .spec dd {
+    margin: 0;
+    padding: 0.35rem 0;
+    border-bottom: 1px dotted var(--rule);
+  }
+  .spec dd:last-of-type { border-bottom: none; }
+  .spec code { font-family: var(--f-mono); font-size: 0.85rem; color: var(--soil-2); }
+
+  /* ============ CLASS A: EDITORIAL (reference) ============ */
+  .c-edit {
+    background: var(--paper);
+    padding: clamp(2rem, 4vw, 3.5rem) clamp(1.5rem, 4vw, 3rem);
+    color: var(--ink);
+  }
+  .c-edit .kicker { color: var(--soil-2); margin-bottom: 1.25rem; font-size: 0.72rem; letter-spacing: 0.18em; font-family: var(--f-mono); text-transform: uppercase; }
+  .c-edit .headline {
+    font-family: var(--f-display);
+    font-weight: 400;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    line-height: 0.98;
+    letter-spacing: -0.03em;
+    margin: 0 0 1.5rem;
+    max-width: 18ch;
+  }
+  .c-edit .headline em { font-style: italic; font-weight: 300; }
+  .c-edit .dek {
+    font-family: var(--f-display);
+    font-weight: 300;
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+    line-height: 1.35;
+    max-width: 44ch;
+    color: var(--ink-2);
+    margin: 0 0 2rem;
+  }
+  .c-edit .byline {
+    font-family: var(--f-mono); font-size: 0.75rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--soil-2);
+    border-top: 1px solid var(--rule);
+    padding-top: 1rem;
+    display: flex; gap: 1.5rem; flex-wrap: wrap;
+  }
+
+  /* ============ CLASS B: OPERATIONS-FORWARD ============ */
+  .c-ops {
+    background: var(--ops-surface);
+    color: var(--ops-ink);
+    padding: clamp(2rem, 4vw, 3.5rem) clamp(1.5rem, 4vw, 3rem);
+    font-family: "Archivo", var(--f-body);
+  }
+  .c-ops .strip {
+    display: flex; align-items: center; gap: 0.75rem;
+    font-family: "DM Mono", var(--f-mono);
+    font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ops-ink);
+    border-bottom: 2px solid var(--ops-rule);
+    padding-bottom: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+  .c-ops .strip .chip {
+    background: var(--ops-accent);
+    color: var(--ops-ink);
+    padding: 0.3rem 0.55rem;
+    font-weight: 700;
+  }
+  .c-ops .strip .sep { color: var(--ops-mute); }
+  .c-ops .headline {
+    font-family: "Archivo Narrow", "Archivo", var(--f-body);
+    font-weight: 900;
+    font-stretch: 85%;
+    font-size: clamp(3rem, 7vw, 6rem);
+    line-height: 0.92;
+    letter-spacing: -0.015em;
+    text-transform: uppercase;
+    margin: 0 0 1rem;
+    max-width: 16ch;
+  }
+  .c-ops .headline .lo {
+    display: block;
+    font-family: "Archivo", var(--f-body);
+    font-weight: 500;
+    font-stretch: normal;
+    font-size: clamp(1rem, 1.4vw, 1.25rem);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ops-mute);
+    margin-top: 0.75rem;
+  }
+  .c-ops .dek {
+    font-family: "Archivo", var(--f-body);
+    font-weight: 500;
+    font-size: clamp(1.05rem, 1.5vw, 1.25rem);
+    line-height: 1.4;
+    max-width: 46ch;
+    color: var(--ops-ink);
+    margin: 0 0 1.5rem;
+  }
+  .c-ops .kpi-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 2px solid var(--ops-rule);
+    border-bottom: 2px solid var(--ops-rule);
+    margin-top: 1.5rem;
+  }
+  .c-ops .kpi {
+    padding: 1rem 0.75rem 1rem 0;
+    border-right: 1px solid var(--ops-rule);
+  }
+  .c-ops .kpi:last-child { border-right: none; }
+  .c-ops .kpi .n {
+    font-family: "Archivo Narrow", var(--f-body);
+    font-weight: 900;
+    font-size: clamp(2rem, 3vw, 2.6rem);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .c-ops .kpi .l {
+    font-family: "DM Mono", var(--f-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ops-mute);
+    margin-top: 0.4rem;
+  }
+
+  /* ============ CLASS C: EMERGENCY-URGENT ============ */
+  .c-em {
+    background: var(--em-bg);
+    color: var(--em-ink);
+    padding: clamp(2rem, 4vw, 3.5rem) clamp(1.5rem, 4vw, 3rem);
+    font-family: "Inter Tight", var(--f-body);
+    position: relative;
+    overflow: hidden;
+  }
+  .c-em::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image: repeating-linear-gradient(
+      135deg,
+      transparent 0 22px,
+      rgba(255,90,61,0.04) 22px 44px
+    );
+    pointer-events: none;
+  }
+  .c-em .alertbar {
+    display: flex; align-items: center; gap: 0.75rem;
+    background: var(--em-signal);
+    color: #111;
+    padding: 0.55rem 0.85rem;
+    font-family: "IBM Plex Mono", var(--f-mono);
+    font-weight: 500;
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    width: max-content;
+    max-width: 100%;
+    position: relative; z-index: 1;
+  }
+  .c-em .alertbar .dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: #111;
+    animation: em-pulse 1.2s ease-in-out infinite;
+  }
+  @keyframes em-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+  }
+  .c-em .headline {
+    font-family: "Inter Tight", var(--f-body);
+    font-weight: 900;
+    font-size: clamp(3rem, 7.5vw, 6.5rem);
+    line-height: 0.9;
+    letter-spacing: -0.035em;
+    margin: 0 0 1.25rem;
+    max-width: 14ch;
+    position: relative; z-index: 1;
+  }
+  .c-em .headline .accent { color: var(--em-signal); }
+  .c-em .headline .under {
+    display: inline-block;
+    border-bottom: 4px solid var(--em-signal-2);
+    padding-bottom: 2px;
+  }
+  .c-em .dek {
+    font-family: "Inter Tight", var(--f-body);
+    font-weight: 500;
+    font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+    line-height: 1.35;
+    max-width: 42ch;
+    color: var(--em-ink);
+    margin: 0 0 1.75rem;
+    position: relative; z-index: 1;
+  }
+  .c-em .cta-row {
+    display: flex; gap: 0.75rem; flex-wrap: wrap;
+    position: relative; z-index: 1;
+  }
+  .c-em .cta {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    padding: 1rem 1.25rem;
+    font-family: "IBM Plex Mono", var(--f-mono);
+    font-weight: 500;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid var(--em-rule);
+  }
+  .c-em .cta.primary {
+    background: var(--em-signal);
+    color: #111;
+    border-color: var(--em-signal);
+  }
+  .c-em .cta.secondary {
+    background: transparent;
+    color: var(--em-ink);
+  }
+  .c-em .cta .glyph { font-size: 1.1rem; line-height: 1; }
+  .c-em .status-strip {
+    display: flex; gap: 2rem; flex-wrap: wrap;
+    margin-top: 2rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--em-rule);
+    font-family: "IBM Plex Mono", var(--f-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--em-mute);
+    position: relative; z-index: 1;
+  }
+  .c-em .status-strip b {
+    color: var(--em-ink);
+    font-weight: 500;
+  }
+  .c-em .status-strip .live { color: var(--em-signal); }
+
+  /* ---- Comparison matrix ---- */
+  .matrix {
+    border: 1px solid var(--rule);
+    background: var(--paper);
+    margin: clamp(3rem, 6vw, 5rem) 0 clamp(2rem, 4vw, 3rem);
+  }
+  .matrix-hdr {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--rule);
+    background: var(--cream-2);
+    display: flex; align-items: baseline; justify-content: space-between; gap: 1rem;
+  }
+  .matrix-hdr h2 {
+    font-family: var(--f-display); font-weight: 400;
+    font-size: var(--step-2); margin: 0;
+    letter-spacing: -0.015em;
+  }
+  .matrix-hdr .meta { color: var(--soil-2); }
+  .matrix-grid {
+    display: grid;
+    grid-template-columns: 180px repeat(3, 1fr);
+    font-size: 0.9rem;
+  }
+  .matrix-grid > div {
+    padding: 0.85rem 1.25rem;
+    border-bottom: 1px solid var(--rule);
+    border-right: 1px solid var(--rule);
+  }
+  .matrix-grid > div:nth-child(4n) { border-right: none; }
+  .matrix-grid .rowlabel {
+    font-family: var(--f-mono); font-size: 0.7rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--soil-2);
+    background: var(--cream);
+  }
+  .matrix-grid .colhdr {
+    font-family: var(--f-mono); font-size: 0.72rem;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    background: var(--ink); color: var(--cream);
+  }
+
+  @media (max-width: 720px) {
+    .spec { grid-template-columns: 1fr; }
+    .spec dt { padding-top: 0.75rem; border-top: 1px solid var(--rule); }
+    .spec dd { padding-bottom: 0.75rem; border-bottom: none; }
+    .c-ops .kpi-row { grid-template-columns: repeat(2, 1fr); }
+    .c-ops .kpi:nth-child(2) { border-right: none; }
+    .c-ops .kpi:nth-child(1),
+    .c-ops .kpi:nth-child(2) { border-bottom: 1px solid var(--ops-rule); }
+    .matrix-grid { grid-template-columns: 1fr; }
+    .matrix-grid > div { border-right: none; }
+  }
+</style>
+</head>
+<body>
+
+<main class="wrap">
+
+  <header class="page-hdr">
+    <div class="kicker eyebrow">Round 1 — Typographic Class Sketches · v1</div>
+    <h1>Three headline systems.<br>One voice engine.</h1>
+    <p>The library's 22 patterns work because Oxford has a distinct voice ("Closing Table," editorial, landowner-confident). Prospects without that voice need different type. These are headline-system sketches for <b>Operations-Forward</b> and <b>Emergency-Urgent</b> archetypes, shown next to the Oxford editorial reference — not full site rebuilds. Judge whether the type classes feel like three real products, not three themes of one.</p>
+  </header>
+
+  <!-- ========== CLASS A — EDITORIAL (reference) ========== -->
+  <section class="sketch">
+    <div class="sketch-chrome">
+      <span class="tag">Class A · Editorial-specialist</span>
+      <span class="flag">Reference (Oxford)</span>
+    </div>
+    <div class="sketch-body">
+      <div class="c-edit">
+        <div class="kicker">Oxford Lawn Co. · Issue 04 · Spring</div>
+        <h2 class="headline">The lawn is <em>not</em> the project. The soil is.</h2>
+        <p class="dek">Four generations of Upper Chester County turf. We work the thirty-two inches beneath your Kentucky bluegrass the way a vineyard works a terroir — slowly, seasonally, on record.</p>
+        <div class="byline">
+          <span>By E. Prentice · Founder</span>
+          <span>Read · 4 min</span>
+          <span>Filed under: Philosophy</span>
+        </div>
+      </div>
+      <dl class="spec">
+        <dt>Display face</dt><dd>Newsreader (400 / 300 italic) — literary serif with soft optical sizing. Proxy for a licensed face (Chronicle / Mercury) at production.</dd>
+        <dt>Body / UI</dt><dd>Public Sans 400/500 + JetBrains Mono for rails & metadata.</dd>
+        <dt>Voice fit</dt><dd>"Closing Table." Written. Slow. Capital-letter opinions. Italic for mild subversion.</dd>
+        <dt>Archetype</dt><dd>Second-generation operators, landowners, HOA boards, estate managers.</dd>
+        <dt>Price signal</dt><dd>Premium. Named operator. Annual program.</dd>
+        <dt>Status</dt><dd>Shipped across 22 patterns. This is the Round 1 baseline.</dd>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ========== CLASS B — OPERATIONS-FORWARD ========== -->
+  <section class="sketch">
+    <div class="sketch-chrome">
+      <span class="tag">Class B · Operations-forward</span>
+      <span class="flag">Sketch · Archetype: Fleet Lawn Services Co.</span>
+    </div>
+    <div class="sketch-body">
+      <div class="c-ops">
+        <div class="strip">
+          <span class="chip">FLEET · 14 TRUCKS</span>
+          <span class="sep">/</span>
+          <span>Route 6 · Chester &amp; Delaware Co.</span>
+          <span class="sep">/</span>
+          <span>Week 14 · Dispatch 0630</span>
+        </div>
+        <h2 class="headline">
+          We mow<br>242 lawns<br>before lunch.
+          <span class="lo">Commercial + residential · Mon–Sat · 40-person crew</span>
+        </h2>
+        <p class="dek">One-stop contract maintenance for property managers who need it mowed, edged, blown, and off the books by Friday. Route density is the product. The rest is paperwork.</p>
+        <div class="kpi-row">
+          <div class="kpi"><div class="n">242</div><div class="l">Avg stops / day</div></div>
+          <div class="kpi"><div class="n">48 hr</div><div class="l">Quote → first cut</div></div>
+          <div class="kpi"><div class="n">14</div><div class="l">Trucks in fleet</div></div>
+          <div class="kpi"><div class="n">4.6★</div><div class="l">612 Google reviews</div></div>
+        </div>
+      </div>
+      <dl class="spec">
+        <dt>Display face</dt><dd>Archivo Narrow Black — condensed, industrial, fleet-sign-legible. Archivo 500/700 for UI and KPIs.</dd>
+        <dt>Body / UI</dt><dd>Archivo 500 body, DM Mono for metadata strips and route codes.</dd>
+        <dt>Voice fit</dt><dd>Dispatch log. Numeric-first. Present tense, verbs forward. No italics, no em-dashes.</dd>
+        <dt>Archetype</dt><dd>Mid-size fleet operators, multi-property managers, HOA maintenance contracts, commercial landscaping.</dd>
+        <dt>Price signal</dt><dd>Per-visit, per-route, contract. Volume is the proof.</dd>
+        <dt>Color posture</dt><dd>Utility surface (bone), ink (near-black), one high-vis accent (`#d9f24a`). Deliberately off Oxford's lawn-green — this is a different SKU, not a skin.</dd>
+        <dt>Patterns that port</dt><dd>stat-row-editorial (reskinned as KPI row), service-area-ledger-dark, timeline-ledger-dark, numbered-service-cards.</dd>
+        <dt>Patterns that don't</dt><dd>dropcap-editorial-prose, pull-quote-founder, magazine-issue-chrome, annotated-soil-cross-section.</dd>
+        <dt>Status</dt><dd>Sketch. Needs field photography + real fleet data to pressure-test before we commit.</dd>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ========== CLASS C — EMERGENCY-URGENT ========== -->
+  <section class="sketch">
+    <div class="sketch-chrome">
+      <span class="tag">Class C · Emergency-urgent</span>
+      <span class="flag">Sketch · Archetype: Storm Response / 24-Hr Tree &amp; Turf</span>
+    </div>
+    <div class="sketch-body">
+      <div class="c-em">
+        <div class="alertbar">
+          <span class="dot"></span>
+          <span>Active response · 2 crews dispatched · ETA 42 min</span>
+        </div>
+        <h2 class="headline">
+          Tree on the roof.<br>
+          <span class="accent">We're on route.</span><br>
+          <span class="under">Now.</span>
+        </h2>
+        <p class="dek">Storm response, emergency tree removal, and turf triage across Chester, Delaware, and Montgomery counties. One number. Picks up in under 90 seconds, 24/7.</p>
+        <div class="cta-row">
+          <a class="cta primary" href="#"><span class="glyph">☎</span>Call dispatch · 610-555-0199</a>
+          <a class="cta secondary" href="#"><span class="glyph">◆</span>Text photos &amp; address</a>
+        </div>
+        <div class="status-strip">
+          <span><b class="live">●</b> Dispatch LIVE — 4:22 AM</span>
+          <span>Avg pickup <b>84 sec</b></span>
+          <span>Crews on shift <b>3 of 3</b></span>
+          <span>Insured to <b>$2M</b> · PA #HIC-PA-082417</span>
+        </div>
+      </div>
+      <dl class="spec">
+        <dt>Display face</dt><dd>Inter Tight Black — tight tracking, signal-flat, reads at distance and at panic-speed. IBM Plex Mono for alerts, dispatch codes, CTAs.</dd>
+        <dt>Body / UI</dt><dd>Inter Tight 500 body, IBM Plex Mono for buttons and statuses.</dd>
+        <dt>Voice fit</dt><dd>Radio dispatch + 911 intake. Short. Imperative. Never poetic. Numbers do the heavy lifting (ETA, pickup time, coverage limit).</dd>
+        <dt>Archetype</dt><dd>Storm response, emergency tree removal, after-hours turf + irrigation. Adjacent SKUs but share the 3 AM moment.</dd>
+        <dt>Price signal</dt><dd>Call-out fee + hourly. Priced for urgency, not consideration.</dd>
+        <dt>Color posture</dt><dd>Near-black surface, signal-orange primary (`#ff5a3d`), hazard-yellow under-stroke (`#ffd23f`). Pulsing status dot. Diagonal stripe texture. Deliberate "active-site" feel.</dd>
+        <dt>Patterns that port</dt><dd>stat-row-editorial (reskinned as live-status strip), chip-selector-form, service-area-ledger-dark (as "coverage grid"), trust-band-marquee.</dd>
+        <dt>Patterns that don't</dt><dd>Most of the library. Editorial voice, pull quotes, soil metaphor, magazine chrome, dropcap prose, review theme index — all off-brand for this class.</dd>
+        <dt>Failure mode</dt><dd>Easy to become a Craigslist ad. Guardrail is the numeric honesty: real pickup times, real coverage map, real license numbers. Cut the numbers and it collapses.</dd>
+        <dt>Status</dt><dd>Sketch. Tone is high-risk — recommend pressure-testing with 1 real prospect before committing to Class C as a productized offer.</dd>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ========== Comparison matrix ========== -->
+  <section class="matrix">
+    <div class="matrix-hdr">
+      <h2>At a glance</h2>
+      <span class="meta">Side-by-side axes — not a feature grid</span>
+    </div>
+    <div class="matrix-grid">
+      <div class="rowlabel">Axis</div>
+      <div class="colhdr">A · Editorial</div>
+      <div class="colhdr">B · Operations</div>
+      <div class="colhdr">C · Emergency</div>
+
+      <div class="rowlabel">Decision timescale</div>
+      <div>Months — annual program</div>
+      <div>Days — route availability</div>
+      <div>Minutes — "can you come now"</div>
+
+      <div class="rowlabel">Proof element</div>
+      <div>Named operator, photography, prose</div>
+      <div>Route density, fleet count, KPIs</div>
+      <div>Live ETA, pickup time, license #</div>
+
+      <div class="rowlabel">Tense / voice</div>
+      <div>Past-present — "We've worked…"</div>
+      <div>Present — "We mow 242 today."</div>
+      <div>Imperative — "Call now. We're on route."</div>
+
+      <div class="rowlabel">Type posture</div>
+      <div>Large serif, italic accents, drop caps</div>
+      <div>Condensed grotesque, uppercase, numeric</div>
+      <div>Tight grotesque + mono, signal bars</div>
+
+      <div class="rowlabel">Color posture</div>
+      <div>Cream, ink, lawn-green, soil neutrals</div>
+      <div>Bone, ink, one high-vis accent</div>
+      <div>Near-black, signal-orange, hazard-yellow</div>
+
+      <div class="rowlabel">Reuses from Round 1</div>
+      <div>All 22 patterns</div>
+      <div>~9 patterns (reskinned)</div>
+      <div>~5 patterns (reskinned)</div>
+
+      <div class="rowlabel">Flagship pattern</div>
+      <div>dropcap-editorial-prose</div>
+      <div>stat-row-editorial (as KPI row)</div>
+      <div>chip-selector-form + live-status strip</div>
+
+      <div class="rowlabel">Round 1 status</div>
+      <div>Shipped</div>
+      <div>Sketch — archetype concept</div>
+      <div>Sketch — archetype concept</div>
+    </div>
+  </section>
+
+  <section class="sketch" style="border: none; background: transparent; margin-top: 1rem;">
+    <div class="sketch-chrome" style="background: var(--ink); color: var(--cream); border-color: var(--ink);">
+      <span>Open questions for the founder review</span>
+      <span style="color: var(--lawn-400);">v1 — needs your call</span>
+    </div>
+    <dl class="spec" style="padding-top: 1.25rem;">
+      <dt>Class B scope</dt><dd>Is "Operations-forward" a real Oxford product line (sub-brand for commercial / fleet work), or a template we sell to a different operator entirely? The type class is the same answer either way — the commercial question isn't.</dd>
+      <dt>Class C scope</dt><dd>Same. Emergency storm response adjacent to Oxford's core is plausible (tree work, irrigation triage). A standalone "24-Hr Response" SKU is a different bet.</dd>
+      <dt>What's missing</dt><dd>These sketches show headline + supporting strip + proof block only. Full nav, footer, service pages, and photography direction are <em>not</em> in scope for Round 1 typographic-class work per your direction.</dd>
+      <dt>Next gate</dt><dd>If A + B + C all read as distinct products, Round 2 can productize one (you pick) into a full archetype template. If B or C feels forced, kill it here — it's cheaper than Round 2.</dd>
+    </dl>
+  </section>
+
+</main>
+
+</body>
+</html>

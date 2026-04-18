@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Gap Catalog — Oxford Ceiling vs Flagship vs Live</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&family=JetBrains+Mono:wght@400;500;600&family=Public+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/base.css" />
+<style>
+  .catalog {
+    display: grid;
+    gap: 1rem;
+  }
+  .row {
+    display: grid;
+    grid-template-columns: 80px 1.4fr 2fr 100px;
+    gap: 1.5rem;
+    align-items: start;
+    padding: 1.5rem;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+  }
+  @media (max-width: 900px) {
+    .row { grid-template-columns: 60px 1fr 100px; }
+    .row .desc { grid-column: 1 / -1; }
+  }
+  .row .n {
+    font-family: var(--f-display); font-size: 2rem; line-height: 1;
+    color: var(--soil-2);
+  }
+  .row h3 {
+    font-family: var(--f-display); font-size: 1.4rem; line-height: 1.2; margin: 0 0 0.4rem;
+  }
+  .row .kind {
+    font-family: var(--f-mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 0.3rem 0.6rem; border-radius: 2px;
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    justify-self: end;
+  }
+  .kind.sys { background: var(--lawn-500); color: var(--lawn-900); border: 1px solid var(--lawn-900); }
+  .kind.bes { background: var(--thatch); color: var(--soil-2); border: 1px solid var(--soil-2); }
+  .kind.mix { background: var(--cream-2); color: var(--ink); border: 1px solid var(--ink); }
+  .row p { margin: 0; font-size: 0.95rem; max-width: 60ch; }
+  .row .desc .meta { margin-top: 0.5rem; }
+
+  .summary-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 2rem 0;
+  }
+  .summary-grid .card { text-align: center; }
+  .summary-grid .n { font-family: var(--f-display); font-size: 3rem; line-height: 1; }
+  .summary-grid .l { font-family: var(--f-mono); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--soil-2); margin-top: 0.5rem; }
+  .mob-flag {
+    display: inline-block;
+    margin-top: 0.6rem;
+    padding: 0.25rem 0.6rem;
+    font-family: var(--f-mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase;
+    border-radius: 2px;
+  }
+  .mob-flag.ok { background: transparent; color: var(--lawn-700); border: 1px solid var(--lawn-700); }
+  .mob-flag.gate { background: transparent; color: var(--soil-1); border: 1px solid var(--soil-1); }
+  .path-note {
+    margin-top: 0.6rem;
+    padding: 0.65rem 0.85rem;
+    background: var(--cream-2);
+    border-left: 3px solid var(--lawn-700);
+    font-family: var(--f-body); font-size: 0.85rem; line-height: 1.45;
+  }
+  .path-note b { font-family: var(--f-mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; display: block; margin-bottom: 0.25rem; color: var(--soil-2); }
+</style>
+</head>
+<body data-screen-label="99 Gap Catalog">
+
+<div id="nav-host"></div>
+
+<section class="section-lg">
+  <div class="wrap editorial">
+    <aside class="rail">
+      <div><b>FILE 99</b>Gap Catalog</div>
+      <div class="divot"></div>
+      <div><b>For</b>Ron / GRM</div>
+      <div><b>Date</b>April 2026</div>
+      <div><b>Honest count</b>22 patterns</div>
+    </aside>
+    <div>
+      <div class="eyebrow">The real deliverable · every pattern named</div>
+      <h1 class="h-display h1" style="margin:0.5rem 0 1.5rem;max-width:24ch;">
+        Gap catalog. Every pattern, <em class="display-it" style="color:var(--lawn-700);">honestly scored.</em>
+      </h1>
+      <p class="lede" style="color:var(--ink-2);">
+        Three labels. <b>Systemizable</b> means this pattern works across all 50 future contractor builds with only config data swapped. <b>Bespoke</b> means it only lives on this one client or ones like it. <b>Mixed</b> means the structure systemizes but the execution (photos, copy, NLP pass) is per-client bespoke.
+      </p>
+      <p style="color:var(--ink-2);margin-top:1rem;">
+        Every gap-tag on the other six pages is also listed here, with source page and a call on scale.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="summary-grid">
+      <div class="card"><div class="n" style="color:var(--lawn-700);">14</div><div class="l">Systemizable · ship as template variants</div></div>
+      <div class="card"><div class="n" style="color:var(--soil-1);">5</div><div class="l">Bespoke · flag as per-client opt-in</div></div>
+      <div class="card"><div class="n" style="color:var(--ink);">3</div><div class="l">Mixed · structure templateable, execution bespoke</div></div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" style="background:var(--cream-2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);">
+  <div class="wrap">
+    <div class="eyebrow">Round 1 addendum · April 18, 2026</div>
+    <h2 class="h-display h3" style="margin:0.5rem 0 1rem;">What's new in this version of the catalog.</h2>
+    <ul style="list-style:none;padding:0;margin:0;display:grid;gap:0.5rem;max-width:72ch;font-family:var(--f-body);font-size:0.95rem;">
+      <li>— Every pattern now carries a <b style="color:var(--lawn-700);">Mobile ✓</b> or <b style="color:var(--soil-1);">Mobile · gated</b> flag with narrow-width behavior notes. Three patterns are gated — soil-strata, process stepper, annotated cross-section.</li>
+      <li>— Every bespoke and mixed pattern now carries a <b>Bespoke → systemizable path</b> block. The five bespoke items each name a concrete investment that would move them to systemizable. See <a href="library.html" style="color:var(--lawn-700);">the library</a> for the condensed version.</li>
+      <li>— The applied site hasn't changed visually. The new pages are <a href="library.html">Pattern Library</a> (isolation view + voice audit + font audit) and <a href="mobile.html">Mobile compositions</a> (Home / Services / Contact at 402px).</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <h2 class="h-display h3" style="margin:0 0 1.5rem;">The catalog.</h2>
+    <div class="catalog">
+
+      <!-- SYSTEMIZABLE -->
+      <div class="row">
+        <div class="n">01</div>
+        <div>
+          <h3>Editorial file rail</h3>
+          <p class="meta">Home, About, Services, Process, Gallery, Reviews, Contact</p>
+        </div>
+        <div class="desc">
+          <p>Sticky left-column metadata: file number, voice tag, subject, GPS, license. Turns "about this page" into "about this file." Binds the whole site together as editorial product.</p>
+          <div class="meta">Pulls from: site config · voice config · GMB coordinates. Zero per-client custom work.</div>
+        
+          <span class="mob-flag ok">Mobile ✓</span>
+          <div class="meta" style="margin-top:0.4rem;">Collapses to horizontal meta-row under nav.</div>
+        </div>
+        <div class="kind sys">Systemizable</div>
+      </div>
+
+      <div class="row">
+        <div class="n">02</div>
+        <div>
+          <h3>Stat row · four-number editorial</h3>
+          <p class="meta">Home hero, Reviews page, About timeline</p>
+        </div>
+        <div class="desc">
+          <p>Years / reviews / rating / area as display-serif numerals with mono labels. Replaces the generic "about us" blurb with something falsifiable.</p>
+          <div class="meta">Pulls from: GMB API + service-area JSON. Fully templated.</div>
+        
+          <span class="mob-flag ok">Mobile ✓</span>
+          <div class="meta" style="margin-top:0.4rem;">Stays 4-col via clamp; 2x2 below 420px.</div>
+        </div>
+        <div class="kind sys">Systemizable</div>
+      </div>
+
+      <div class="row">
+        <div class="n">03</div>
+        <div>
+          <h3>Voice-tagged sections</h3>
+          <p class="meta">Sitewide</p>
+        </div>
+        <div class="desc">
+          <p>Every section carries an eyebrow declaring its voice (Closing Table / Front Porch / Saturday Morning). Enforces the "one section, one voice" rule and trains the reader to feel the shift.</p>
+          <div class="meta">Matches GRM_VOICE_SKILL.md. Voice assignment per section becomes part of site config.</div>
+        
+          <span class="mob-flag ok">Mobile ✓</span>
+          <div class="meta" style="margin-top:0.4rem;">No change. Eyebrow steps down one size.</div>
+        </div>
+        <div class="kind sys">Systemizable</div>
+      </div>
+
+      <div class="row">
+        <div class="n">04</div>
+        <div>
+          <h3>Dark "ledger" service-area table</h3>
+          <p class="meta">Home, Footer adjacent</p>
+        </div>
+        <div class="desc">
+          <p>Editorial table on stone background. Columns: town / county / specialty / drive time. Plumber variant: town / county / avg response time / emergency hours. HVAC variant: town / county / typical system / distance.</p>
+          <div class="meta">Columns are trade-config. Rows come from service-area JSON.</div>
+        
+          <span class="mob-flag ok">Mobile ✓</span>
+          <div class="meta" style="margin-top:0.4rem;">Stacks to single-column dark cards below 640px.</div>
+        </div>
+        <div class="kind sys">Systemizable</div>
+      </div>
+
+      <div class="row">
+        <div class="n">05</div>
+        <div>
+          <h3>Numbered horizontal service cards</h3>
+          <p class="meta">Services page</p>
+        </div>
+        <div class="desc">
+          <p>Large numeral block + title + description + right-column meta. Default is a process; degrades to a service list for broader-offering trades like Chad's Lawn (F3) or A Quality Pool (F5).</p>
+          <div class="meta">Zero per-client custom logic. Step count is a variable.</div>
+        
+          <span class="mob-flag ok">Mobile ✓</span>
+          <div class="meta" style="margin-top:0.4rem;">Meta column drops below description; numeral shrinks.</div>
+        </div>
+        <div class="kind sys">Systemizable</div>
+      </div>
+
+      <div class="row">
+        <div class="n">06</div>
+        <div>
+          <h3>Interactive process stepper</h3>
+          <p class="meta">Process page</p>
+        </div>
+        <div class="desc">
+          <p>Sticky left nav + animated right panel. Works for any sequenced trade process: HVAC install (site survey → duct → install → commission), septic pump-out, pool remodel, electrical service upgrade.</p>
+          <div class="meta">Step count + content per client, but structure is one component.</div>
+        
+          <span class="mob-flag gate">Mobile · gated</span>
+          <div class="meta" style="margin-top:0.4rem;">Sticky-left doesn't port. Needs horizontal chip bar + scroll-snap variant.</div>
+          <div class="path-note"><b>Bespoke → systemizable path</b>Systemizable at structure level. Mobile variant = one-time component build.</div>
+        </div>
+        <div class="kind sys">Systemizable</div>
+      </div>
+
+      <div class="row">
+        <div class="n">07</div>
+        <div>
+          <h3>Editorial timeline (ledger on dark)</h3>
+          <p class="meta">About page</p>
+        </div>
+        <div class="desc">
+          <p>Year / event / why-it-mattered table. Every contractor has a story; most current-gen sites don't tell one. Data entry at client-onboarding produces a real page.</p>
+          <div class="meta">One short voice interview at onboarding becomes this entire page.</div>
+        
+          <span class="mob-flag ok">Mobile ✓</span>
+          <div class="meta" style="margin-top:0.4rem;">Columns collapse to stacked year-label headers.</div>
+        </div>
+        <div class="kind sys">Systemizable</div>
+      </div>
+
+      <div class="row">
+        <div class="n">08</div>
+        <div>
+          <h3>Saturday Morning trust band marquee</h3>
+          <p class="meta">Home, below hero</p>
+        </div>
+        <div class="desc">
+          <p>Infinite-scroll trust phrases on lawn-colored band. Phrase list comes from voice config tagged to trade. Replaces generic logo bars that contractors don't have to fill.</p>
+          <div class="meta">Voice skill generates the phrases. Zero per-client effort.</div>
+        
+          <span class="mob-flag ok">Mobile ✓</span>
+          <div class="meta" style="margin-top:0.4rem;">Font steps down one size. Animation native to narrow.</div>
+        </div>
+        <div class="kind sys">Systemizable</div>
+      </div>
+
+      <div class="row">
+        <div class="n">09</div>
+        <div>
+          <h3>Counter-list · "what we don't do"</h3>
+          <p class="meta">Services page</p>
+        </div>
+        <div class="desc">
+          <p>Dark panel listing services declined on purpose. Differentiates single-service specialists like Oxford from broad offerings like F3. Reframes refusal as positioning.</p>
+          <div class="meta">Systemizable as a section. Content per client needs a 5-minute voice pass.</div>
+        
+          <span class="mob-flag ok">Mobile ✓</span>
+          <div class="meta" style="margin-top:0.4rem;">Two-column split stacks. Table keeps two columns.</div>
+        </div>
+        <div class="kind sys">Systemizable</div>
+      </div>
+
+      <div class="row">
+        <div class="n">10</div>
+        <div>
+          <h3>Masonry review wall with rhythm</h3>
+          <p class="meta">Home peek, Reviews page</p>
+        </div>
+        <div class="desc">
+          <p>Column-flow masonry with a 3-pattern rhythm (normal / feature / dark). Pulls directly from Google Places API. Handles any review count gracefully.</p>
+          <div class="meta">Pattern order is fixed, content is live.</div>
+        
+          <span class="mob-flag ok">Mobile ✓</span>
+          <div class="meta" style="margin-top:0.4rem;">Column count drops 3→2→1 at standard breakpoints.</div>
+        </div>
+        <div class="kind sys">Systemizable</div>
+      </div>
+
+      <div class="row">
+        <div class="n">11</div>
+        <div>
+          <h3>Before/after compare slider</h3>
+          <p class="meta">Gallery page</p>
+        </div>
+        <div class="desc">
+          <p>Drag-handle split. Strong fit for trades with visible transformation: lawn rehab, pool resurfacing, electrical panel upgrades, landscape installs. Weak fit for plumbing and HVAC — flag as trade-conditional.</p>
+          <div class="meta">One before/after photo pair per client, sourced from GMB or client submission.</div>
+        
+          <span class="mob-flag ok">Mobile ✓</span>
+          <div class="meta" style="margin-top:0.4rem;">Touch already wired. Handle grows to 48px on touch.</div>
+        </div>
+        <div class="kind sys">Systemizable</div>
+      </div>
+
+      <div class="row">
+        <div class="n">12</div>
+        <div>
+          <h3>Filterable gallery with trade tags</h3>
+          <p class="meta">Gallery page</p>
+        </div>
+        <div class="desc">
+          <p>Masonry grid with town + process-stage filters. Tag schema swaps per trade (septic: inspect / pump / repair; pool: remodel / service / leak; electrician: panel / rough / finish).</p>
+          <div class="meta">Zero per-client custom layout work.</div>
+        
+          <span class="mob-flag ok">Mobile ✓</span>
+          <div class="meta" style="margin-top:0.4rem;">Filter row becomes horizontal-scroll chip bar.</div>
+        </div>
+        <div class="kind sys">Systemizable</div>
+      </div>
+
+      <div class="row">
+        <div class="n">13</div>
+        <div>
+          <h3>Chip-selector assessment form</h3>
+          <p class="meta">Contact page</p>
+        </div>
+        <div class="desc">
+          <p>Chips for "what do you need" map to the services array. Form structure (name / phone / email / address / need / detail) is constant. Grass-type dropdown becomes fixture-type for electrician, system for HVAC.</p>
+          <div class="meta">One component, one trade-config JSON.</div>
+        
+          <span class="mob-flag ok">Mobile ✓</span>
+          <div class="meta" style="margin-top:0.4rem;">Built for touch. 44px targets. Single column below 900px.</div>
+        </div>
+        <div class="kind sys">Systemizable</div>
+      </div>
+
+      <div class="row">
+        <div class="n">14</div>
+        <div>
+          <h3>Dropcap + editorial prose treatment</h3>
+          <p class="meta">Home thesis, About feature</p>
+        </div>
+        <div class="desc">
+          <p>Italic serif dropcap, 68ch measure, prose class. Turns contractor "about us" copy into something that reads like a feature, not a form field.</p>
+          <div class="meta">Body copy is already per-client. Treatment is a CSS class.</div>
+        
+          <span class="mob-flag ok">Mobile ✓</span>
+          <div class="meta" style="margin-top:0.4rem;">Dropcap scales to 2.8em. Measure collapses.</div>
+        </div>
+        <div class="kind sys">Systemizable</div>
+      </div>
+
+      <!-- BESPOKE -->
+      <div class="row">
+        <div class="n">15</div>
+        <div>
+          <h3>Soil-strata motif</h3>
+          <p class="meta">Home hero column, Process page diagram</p>
+        </div>
+        <div class="desc">
+          <p>Stratified horizontal band representing thatch / grass / root zone / compost / subsoil. Acts as signature visual + divider + process diagram. <b>Only works for lawn rehab.</b> Not for the other 49.</p>
+          <div class="meta">Naming this bespoke up front so we don't promise it on the next electrician build.</div>
+        
+          <span class="mob-flag gate">Mobile · gated</span>
+          <div class="meta" style="margin-top:0.4rem;">Desktop-only at full height. Mobile = compact strata chip rail.</div>
+          <div class="path-note"><b>Bespoke → systemizable path</b>FIX: Vector asset library · stratified-band-motifs. Build ~10 trade variants (soil, water column, earth profile, structural assembly, panel assembly). Moves bespoke → systemizable for ~20 of 50 trades.</div>
+        </div>
+        <div class="kind bes">Bespoke</div>
+      </div>
+
+      <div class="row">
+        <div class="n">16</div>
+        <div>
+          <h3>Serif-display editorial headline system</h3>
+          <p class="meta">Sitewide</p>
+        </div>
+        <div class="desc">
+          <p>Newsreader with italic accent phrases. Reads as trade-journal editorial. Lands for a craft specialist with an origin story. <b>Lands wrong on 24-hour emergency plumbing</b> where urgency should dominate.</p>
+          <div class="meta">Offer as a trade-class variant: "editorial specialist" vs "operations-forward" vs "emergency-urgent."</div>
+        
+          <span class="mob-flag ok">Mobile ✓</span>
+          <div class="meta" style="margin-top:0.4rem;">Ports cleanly via clamp().</div>
+          <div class="path-note"><b>Bespoke → systemizable path</b>FIX: Trade-class variants. Ship 3 typographic classes — editorial-specialist, operations-forward, emergency-urgent. Tagged at onboarding. Moves bespoke → systemizable for all 50.</div>
+        </div>
+        <div class="kind bes">Bespoke</div>
+      </div>
+
+      <div class="row">
+        <div class="n">17</div>
+        <div>
+          <h3>Annotated soil cross-section</h3>
+          <p class="meta">Process page bottom</p>
+        </div>
+        <div class="desc">
+          <p>Tall strata panel + labeled "step 1 acts here / step 2 acts here" callouts. Only works where the work has a literal cross-section. Lawn, pool (water column), maybe electrical panel (voltage layers).</p>
+          <div class="meta">Flag as available for ~10 of 50 trades. The pattern (labeled diagram) is reusable; the subject is not.</div>
+        
+          <span class="mob-flag gate">Mobile · gated</span>
+          <div class="meta" style="margin-top:0.4rem;">'Acts here →' arrow metaphor breaks when stacked. Needs mobile diagram rework.</div>
+          <div class="path-note"><b>Bespoke → systemizable path</b>FIX: Commissioned illustration pack. Invest in ~15 annotated process diagrams, shared illustrator, shared style — one per trade. Moves bespoke → systemizable for ~25 of 50 trades.</div>
+        </div>
+        <div class="kind bes">Bespoke</div>
+      </div>
+
+      <div class="row">
+        <div class="n">18</div>
+        <div>
+          <h3>Pull-quote with founder attribution</h3>
+          <p class="meta">About page</p>
+        </div>
+        <div class="desc">
+          <p>Serif-italic pull quote with lawn-green left bar. Requires a founder who talks like their work. Tom does. Many contractors we book will not. <b>Offer only where the onboarding voice interview produces quotable material.</b></p>
+          <div class="meta">Systemizable as a component; per-client gate is whether content exists.</div>
+        
+          <span class="mob-flag ok">Mobile ✓</span>
+          <div class="meta" style="margin-top:0.4rem;">Left bar holds; quote reflows. Gate is content, not layout.</div>
+          <div class="path-note"><b>Bespoke → systemizable path</b>FIX: Voice-interview onboarding gate. 10-min founder interview at onboarding. If interview yields 3+ quotable lines, pattern enables. Systemizable for ~60% of clients.</div>
+        </div>
+        <div class="kind bes">Bespoke</div>
+      </div>
+
+      <div class="row">
+        <div class="n">19</div>
+        <div>
+          <h3>"Coordinates" and "Volume 18, Issue 1" chrome</h3>
+          <p class="meta">Hero kicker, rails</p>
+        </div>
+        <div class="desc">
+          <p>Magazine-issue metadata in the nav zone. Playful and editorial. Works for Oxford's single-service specialist tone. <b>May read as gimmicky</b> for fence installers or roofers with storm-response operations.</p>
+          <div class="meta">Keep as a per-client opt-in. Default off.</div>
+        
+          <span class="mob-flag ok">Mobile ✓</span>
+          <div class="meta" style="margin-top:0.4rem;">Kicker row wraps. Last pieces drop at <600px via .hide-mobile.</div>
+          <div class="path-note"><b>Bespoke → systemizable path</b>FIX: Paid-tier-only feature. Ships on Premium-tier builds only. Gives the ceiling a price point without dragging entry-tier.</div>
+        </div>
+        <div class="kind bes">Bespoke</div>
+      </div>
+
+      <!-- MIXED -->
+      <div class="row">
+        <div class="n">20</div>
+        <div>
+          <h3>Review-theme index</h3>
+          <p class="meta">Reviews page bottom</p>
+        </div>
+        <div class="desc">
+          <p>"47 reviews mention on time · 34 mention straight answer · 29 mention visible difference." Systemizable only if we add an NLP pass to the build pipeline — Claude-at-ingest can produce themes + counts per client. Once built, free for everyone.</p>
+          <div class="meta">One-time pipeline investment. Then systemizable across 50 clients.</div>
+        
+          <span class="mob-flag ok">Mobile ✓</span>
+          <div class="meta" style="margin-top:0.4rem;">3-column grid stacks cleanly.</div>
+        </div>
+        <div class="kind mix">Mixed</div>
+      </div>
+
+      <div class="row">
+        <div class="n">21</div>
+        <div>
+          <h3>Portrait / work-in-progress photography</h3>
+          <p class="meta">About page, hero</p>
+        </div>
+        <div class="desc">
+          <p>Tom + Tracy portraits. Ideal case. If unavailable (most clients), fall back to GMB truck-on-site shots, which are common. Photography sourcing is systemizable (GMB API + Instagram scrape), but fallback quality is bespoke per client.</p>
+          <div class="meta">Pattern: always lead with real work photos, degrade gracefully through GMB → IG → stock-free placeholder.</div>
+        
+          <span class="mob-flag ok">Mobile ✓</span>
+          <div class="meta" style="margin-top:0.4rem;">Photo slots maintain aspect; single-column stack.</div>
+        </div>
+        <div class="kind mix">Mixed</div>
+      </div>
+
+      <div class="row">
+        <div class="n">22</div>
+        <div>
+          <h3>Voice-tuned "what we don't do" list</h3>
+          <p class="meta">Services page</p>
+        </div>
+        <div class="desc">
+          <p>Section is systemizable. Content requires a client who can articulate what they decline and why. Some can (single-service specialists like Oxford). Many can't. Handle at voice-interview onboarding; skip the section if content doesn't materialize.</p>
+          <div class="meta">Section ships as optional in the template; populated only when onboarding answers are strong.</div>
+        
+          <span class="mob-flag ok">Mobile ✓</span>
+          <div class="meta" style="margin-top:0.4rem;">See pattern 09.</div>
+        </div>
+        <div class="kind mix">Mixed</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="section-lg" style="background:var(--stone);color:var(--cream);">
+  <div class="wrap">
+    <div class="eyebrow" style="color:var(--lawn-500);">A direct reading of the gap vs the current flagship</div>
+    <h2 class="h-display h2" style="margin:0.5rem 0 1.5rem;max-width:26ch;color:var(--cream);">
+      What the F6 flagship is missing, <em class="display-it" style="color:var(--lawn-500);">honestly.</em>
+    </h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;">
+      <div>
+        <div class="eyebrow" style="color:var(--lawn-500);">Voice</div>
+        <p style="opacity:0.88;">The flagship reads as a single voice throughout. The ceiling assigns a voice per section and tags it on the page, which is why the Closing Table-ness of the thesis feels different from the Front Porch-ness of About. This is free. We're already using the voice skill.</p>
+      </div>
+      <div>
+        <div class="eyebrow" style="color:var(--lawn-500);">Typography</div>
+        <p style="opacity:0.88;">Flagship uses Space Grotesk + Inter. Clean, generic, reads SaaS. Ceiling uses Newsreader + JetBrains Mono + Public Sans, which reads editorial. Offer as a trade-class variant: "editorial specialist" palette vs "operations-forward" palette.</p>
+      </div>
+      <div>
+        <div class="eyebrow" style="color:var(--lawn-500);">Structure</div>
+        <p style="opacity:0.88;">Flagship is section-stacked. Ceiling is asymmetric editorial grid with a sticky metadata rail. The rail is the single biggest systemizable gap. Once it's built, every future contractor site gets it for free.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:3rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,0.15);">
+      <div class="eyebrow" style="color:var(--lawn-500);">Honest caveats</div>
+      <ul style="list-style:none;padding:0;margin:1rem 0 0;display:grid;gap:0.75rem;max-width:70ch;">
+        <li>— The soil-strata motif is the most beautiful part of the ceiling. It will not save you on electrician #1. Budget for the rail and the stepper; enjoy the strata on Oxford only.</li>
+        <li>— Editorial tone lands for specialists with a story. For 24-hour emergency trades, we need a second typographic system. That's a separate ceiling exercise.</li>
+        <li>— Photography is the single lever that can break all of this. Even the cleanest layout needs real photos. Keep the GMB + Instagram ingestion pipeline healthy.</li>
+        <li>— The review-theme index requires a build-time NLP pass. If that pipeline isn't built, skip it. The rest of the site still works.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section-lg" style="text-align:center;">
+  <div class="wrap-tight">
+    <div class="eyebrow">Return</div>
+    <h2 class="h-display h2" style="margin:1rem 0 1.5rem;">Back to the ceiling.</h2>
+    <div style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;">
+      <a class="btn primary" href="index.html">Home</a>
+      <a class="btn ghost" href="process.html">Process</a>
+      <a class="btn ghost" href="about.html">About</a>
+    </div>
+  </div>
+</section>
+
+<div id="foot-host"></div>
+<script src="scripts/partials.js"></script>
+<script src="scripts/shared.js"></script>
+</body></html>

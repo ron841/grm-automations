@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Handoff Dossier — Design Round 1 · Oxford</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&family=JetBrains+Mono:wght@400;500;600&family=Public+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/base.css" />
+<style>
+  .tree {
+    font-family: var(--f-mono);
+    font-size: 0.85rem;
+    line-height: 1.7;
+    background: var(--ink);
+    color: var(--cream);
+    padding: 1.5rem 2rem;
+    border-radius: 2px;
+    white-space: pre;
+    overflow-x: auto;
+  }
+  .tree .dir { color: var(--lawn-500); font-weight: 600; }
+  .tree .file { color: var(--cream); }
+  .tree .muted { color: rgba(247,243,234,0.45); }
+
+  .card-md {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+  }
+  .card-md .head {
+    display: grid;
+    grid-template-columns: 60px 1fr auto;
+    gap: 1.25rem;
+    align-items: baseline;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--rule);
+    background: var(--cream-2);
+  }
+  .card-md .head .n {
+    font-family: var(--f-display); font-size: 1.6rem; color: var(--soil-2); line-height: 1;
+  }
+  .card-md .head h3 { font-family: var(--f-display); font-size: 1.25rem; font-weight: 500; margin: 0; letter-spacing: -0.02em; }
+  .card-md .head .slug { font-family: var(--f-mono); font-size: 0.65rem; letter-spacing: 0.1em; color: var(--soil-2); }
+  .card-md .body {
+    padding: 1.25rem 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  @media (max-width: 780px) { .card-md .body { grid-template-columns: 1fr; } }
+  .card-md .body b {
+    display: block;
+    font-family: var(--f-mono); font-size: 0.58rem; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--soil-2);
+    margin-bottom: 0.3rem; font-weight: 500;
+  }
+  .card-md .body p, .card-md .body div.v { font-family: var(--f-body); font-size: 0.88rem; line-height: 1.55; margin: 0 0 0.5rem; }
+  .card-md pre {
+    background: var(--ink); color: var(--cream);
+    font-family: var(--f-mono); font-size: 0.72rem; line-height: 1.5;
+    padding: 0.8rem 1rem; overflow-x: auto;
+    margin: 0.25rem 0 0;
+    border-radius: 2px;
+  }
+  .card-md .facts {
+    display: flex; gap: 0.5rem; flex-wrap: wrap; margin-left: 1rem;
+  }
+  .card-md .chip {
+    padding: 0.25rem 0.55rem; border-radius: 2px;
+    font-family: var(--f-mono); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase;
+    border: 1px solid;
+  }
+  .chip.sys { background: var(--lawn-500); color: var(--lawn-900); border-color: var(--lawn-900); }
+  .chip.bes { background: var(--thatch); color: var(--soil-2); border-color: var(--soil-2); }
+  .chip.mix { background: var(--cream-2); color: var(--ink); border-color: var(--ink); }
+  .chip.ok { color: var(--lawn-700); border-color: var(--lawn-700); }
+  .chip.gate { color: var(--soil-1); border-color: var(--soil-1); }
+  .path-block {
+    margin-top: 0.75rem;
+    background: var(--cream-2);
+    border-left: 3px solid var(--lawn-700);
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+    grid-column: 1 / -1;
+  }
+  .path-block b { color: var(--lawn-700); display: block; margin-bottom: 0.3rem; }
+
+  .step-row {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 1.5rem;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .step-row .sn {
+    font-family: var(--f-display); font-size: 1.8rem; color: var(--lawn-700); line-height: 1;
+  }
+  .step-row h4 { font-family: var(--f-display); font-size: 1.1rem; margin: 0 0 0.25rem; font-weight: 500; letter-spacing: -0.02em; }
+  .step-row p { font-family: var(--f-body); font-size: 0.9rem; margin: 0; color: var(--ink-2); max-width: 64ch; }
+
+  .dl-card {
+    background: var(--lawn-500);
+    border: 1px solid var(--lawn-900);
+    padding: 2rem;
+    border-radius: 2px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+    align-items: center;
+  }
+  @media (max-width: 780px) { .dl-card { grid-template-columns: 1fr; } }
+  .dl-card h3 { font-family: var(--f-display); font-size: 1.6rem; margin: 0 0 0.5rem; font-weight: 500; letter-spacing: -0.02em; color: var(--lawn-900); }
+  .dl-card p { margin: 0; font-size: 0.95rem; color: var(--lawn-900); max-width: 56ch; }
+  .dl-card .btn {
+    background: var(--ink); color: var(--cream);
+    padding: 1rem 1.5rem;
+    font-family: var(--f-mono); font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    min-height: 52px;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    border: none; cursor: pointer;
+  }
+</style>
+</head>
+<body data-screen-label="Handoff Dossier">
+
+<div id="nav-host"></div>
+
+<section class="section-lg">
+  <div class="wrap editorial">
+    <aside class="rail">
+      <div><b>DOSSIER</b>Round 01</div>
+      <div class="divot"></div>
+      <div><b>Route</b>Design → Code</div>
+      <div><b>Patterns</b>22</div>
+      <div><b>Form</b>Zip → Claude Code</div>
+    </aside>
+    <div>
+      <div class="eyebrow">Pattern dossier · handoff artifact for Code</div>
+      <h1 class="h-display h1" style="margin:0.5rem 0 1.5rem;max-width:22ch;">
+        The dossier. <em class="display-it" style="color:var(--lawn-700);">What Code gets.</em>
+      </h1>
+      <p class="lede" style="color:var(--ink-2);">
+        Per-pattern markdown spec cards, a parent index with priority + dependencies + open questions, and visuals per pattern. Bundled as a zipped folder, dropped into a Claude Code session with a paste-ready build prompt.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Tree preview -->
+<section class="section" style="background: var(--paper);">
+  <div class="wrap">
+    <div class="eyebrow">Delivery structure</div>
+    <h2 class="h-display h3" style="margin:0.5rem 0 1.25rem;">Folder shape.</h2>
+    <pre class="tree"><span class="dir">design-round-1-oxford/</span>
+  <span class="file">README.md</span>                           <span class="muted">— intro, usage, paste-ready build prompt</span>
+  <span class="file">index.md</span>                            <span class="muted">— parent pattern index (priority + dependencies + open Qs)</span>
+  <span class="dir">patterns/</span>                          <span class="muted">— one spec card per pattern</span>
+    <span class="file">editorial-metadata-rail.md</span>
+    <span class="file">stat-row-editorial.md</span>
+    <span class="file">voice-tagged-sections.md</span>
+    <span class="file">service-area-ledger-dark.md</span>
+    <span class="file">numbered-service-cards.md</span>
+    <span class="file">interactive-process-stepper.md</span>
+    <span class="file">timeline-ledger-dark.md</span>
+    <span class="file">trust-band-marquee.md</span>
+    <span class="file">counter-list-what-we-dont-do.md</span>
+    <span class="file">review-masonry-rhythm.md</span>
+    <span class="file">before-after-slider.md</span>
+    <span class="file">filterable-gallery-tagged.md</span>
+    <span class="file">chip-selector-form.md</span>
+    <span class="file">dropcap-editorial-prose.md</span>
+    <span class="file">soil-strata-hero.md</span>                <span class="muted">— bespoke + vector-library path attached</span>
+    <span class="file">serif-display-headline-system.md</span>   <span class="muted">— bespoke + trade-class variants path</span>
+    <span class="file">annotated-soil-cross-section.md</span>    <span class="muted">— bespoke + illustration-pack path</span>
+    <span class="file">pull-quote-founder.md</span>              <span class="muted">— bespoke + voice-interview gate path</span>
+    <span class="file">magazine-issue-chrome.md</span>           <span class="muted">— bespoke + premium-tier path</span>
+    <span class="file">review-theme-index.md</span>              <span class="muted">— mixed + NLP pipeline note</span>
+    <span class="file">photo-portraits-degrading.md</span>       <span class="muted">— mixed + ingestion pipeline note</span>
+    <span class="file">voice-tuned-counter-list.md</span>        <span class="muted">— mixed + voice-interview trigger</span>
+  <span class="dir">visuals/</span>                           <span class="muted">— screenshots per pattern (desktop + mobile)</span>
+    <span class="file">editorial-metadata-rail-desktop.png</span>
+    <span class="file">editorial-metadata-rail-mobile.png</span>
+    <span class="muted">... (one or more per pattern)</span></pre>
+  </div>
+</section>
+
+<!-- Parent index preview -->
+<section class="section">
+  <div class="wrap">
+    <div class="eyebrow">index.md · parent pattern index</div>
+    <h2 class="h-display h3" style="margin:0.5rem 0 1.5rem;">Priority ranking + build order.</h2>
+
+    <h3 style="font-family:var(--f-display);font-size:1.2rem;font-weight:500;margin:1.5rem 0 0.5rem;">Tier 1 · Land first in v0.8</h3>
+    <p style="font-size:0.9rem;color:var(--ink-2);max-width:60ch;">Systemizable, high-leverage. Ship unchanged across all 50 future contractor builds.</p>
+    <ol style="columns:2;column-gap:2rem;max-width:800px;line-height:1.8;">
+      <li>editorial-metadata-rail <span style="color:var(--lawn-700);">★ must land first</span></li>
+      <li>stat-row-editorial</li>
+      <li>voice-tagged-sections</li>
+      <li>service-area-ledger-dark</li>
+      <li>numbered-service-cards</li>
+      <li>interactive-process-stepper (desktop)</li>
+      <li>timeline-ledger-dark</li>
+      <li>trust-band-marquee</li>
+    </ol>
+
+    <h3 style="font-family:var(--f-display);font-size:1.2rem;font-weight:500;margin:1.5rem 0 0.5rem;">Tier 2 · Land second</h3>
+    <p style="font-size:0.9rem;color:var(--ink-2);max-width:60ch;">Systemizable, trade-conditional. Ship with the trade-config flags in place.</p>
+    <ol start="9" style="columns:2;column-gap:2rem;max-width:800px;line-height:1.8;">
+      <li>counter-list-what-we-dont-do</li>
+      <li>review-masonry-rhythm</li>
+      <li>before-after-slider</li>
+      <li>filterable-gallery-tagged</li>
+      <li>chip-selector-form</li>
+      <li>dropcap-editorial-prose</li>
+    </ol>
+
+    <h3 style="font-family:var(--f-display);font-size:1.2rem;font-weight:500;margin:1.5rem 0 0.5rem;">Tier 3 · Bespoke, ship with named path</h3>
+    <ol start="15" style="max-width:800px;line-height:1.8;">
+      <li>soil-strata-hero <span style="color:var(--lawn-700);">→ vector-library path</span></li>
+      <li>serif-display-headline-system <span style="color:var(--lawn-700);">→ trade-class variants path</span></li>
+      <li>annotated-soil-cross-section <span style="color:var(--lawn-700);">→ illustration-pack path</span></li>
+      <li>pull-quote-founder <span style="color:var(--lawn-700);">→ voice-interview gate</span></li>
+      <li>magazine-issue-chrome <span style="color:var(--lawn-700);">→ Premium-tier feature</span></li>
+    </ol>
+
+    <h3 style="font-family:var(--f-display);font-size:1.2rem;font-weight:500;margin:1.5rem 0 0.5rem;">Tier 4 · Mixed</h3>
+    <ol start="20" style="max-width:800px;line-height:1.8;">
+      <li>review-theme-index <span style="color:var(--ink);">(one-time NLP pipeline build, then systemizable)</span></li>
+      <li>photo-portraits-degrading <span style="color:var(--ink);">(ingestion pipeline — 6 patterns depend on this)</span></li>
+      <li>voice-tuned-counter-list <span style="color:var(--ink);">(content shipping with pattern 09)</span></li>
+    </ol>
+
+    <h3 style="font-family:var(--f-display);font-size:1.4rem;font-weight:500;margin:2.5rem 0 0.75rem;">Dependencies</h3>
+    <ul style="max-width:70ch;line-height:1.7;">
+      <li><b>editorial-metadata-rail</b> must land first. It's the structural spine of every page; 7 other patterns sit inside its grid.</li>
+      <li><b>voice-tagged-sections</b> must land before any bespoke-copy pattern.</li>
+      <li><b>interactive-process-stepper</b> desktop variant before the mobile variant (separate component).</li>
+      <li><b>review-masonry-rhythm</b> before <b>review-theme-index</b> (theme index lives under the masonry).</li>
+      <li><b>photo-portraits-degrading</b> ingestion pipeline early — 6 patterns rely on it.</li>
+    </ul>
+
+    <h3 style="font-family:var(--f-display);font-size:1.4rem;font-weight:500;margin:2.5rem 0 0.75rem;">Open questions — <em style="font-style:italic;color:var(--lawn-700);">answered.</em></h3>
+    <p style="max-width:70ch;color:var(--ink-2);margin:0 0 1rem;">All five Round 1 open questions resolved by founder review. Full log in <code style="font-family:var(--f-mono);">DECISIONS.md</code>. Two produced new design artifacts (Q1, Q2); three are logged decisions only (Q3, Q4, Q5).</p>
+    <ol style="max-width:72ch;line-height:1.7;">
+      <li><b>Q1 · Trade-class typographic system</b> → <b style="color:var(--lawn-700);">shipped.</b> Three classes built as sketches: Editorial (Oxford, live), Operations-forward (fleet archetype), Emergency-urgent (storm-response archetype). See <a href="typographic-classes.html"><code style="font-family:var(--f-mono);">typographic-classes.html</code></a>.</li>
+      <li><b>Q2 · Commissioned illustration pack</b> → <b style="color:var(--lawn-700);">no commission; ceiling references produced.</b> Three concept sketches (field manual, painterly plate, blueprint). Reference C — Wardian-case — killed during review (Oxford doesn't core-sample). See <a href="soil-cross-section-references.html"><code style="font-family:var(--f-mono);">soil-cross-section-references.html</code></a>.</li>
+      <li><b>Q3 · Review-theme NLP pipeline</b> → ships from Code side, post-sales-kickoff. No design action. Pattern 20 ships as-is.</li>
+      <li><b>Q4 · Voice-interview onboarding</b> → stays founder-led for first 5 clients. "Voice-interview UI concept" moved to Round 2/3 backlog.</li>
+      <li><b>Q5 · Premium-tier feature flag</b> → Pattern 19 ships as-designed, flagged <code style="font-family:var(--f-mono);">Premium-tier-concept</code>. SKU decision deferred until post-live review.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- Round 1 additions — new artifacts -->
+<section class="section" style="background: var(--cream-2); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);">
+  <div class="wrap">
+    <div class="eyebrow">Round 1 additions · post-review artifacts</div>
+    <h2 class="h-display h3" style="margin:0.5rem 0 0.5rem;">Two new files, shipped with the dossier.</h2>
+    <p style="max-width:64ch;color:var(--ink-2);margin-bottom:2rem;">Both added in response to founder review. Both ship inside the dossier zip and are wired into project nav.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:1.25rem;">
+      <a href="typographic-classes.html" style="text-decoration:none;color:inherit;display:block;background:var(--paper);border:1px solid var(--rule);padding:1.5rem;">
+        <div style="font-family:var(--f-mono);font-size:0.65rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--soil-2);margin-bottom:0.75rem;">Q1 · typographic-classes.html</div>
+        <h3 style="font-family:var(--f-display);font-size:1.35rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.5rem;">Three headline systems.<br>One voice engine.</h3>
+        <p style="margin:0 0 0.75rem;color:var(--ink-2);font-size:0.95rem;">Editorial (live) · Operations-forward (sketch) · Emergency-urgent (sketch). With 9-axis comparison matrix.</p>
+        <div style="font-family:var(--f-mono);font-size:0.7rem;letter-spacing:0.1em;color:var(--lawn-700);">Open →</div>
+      </a>
+      <a href="soil-cross-section-references.html" style="text-decoration:none;color:inherit;display:block;background:var(--paper);border:1px solid var(--rule);padding:1.5rem;">
+        <div style="font-family:var(--f-mono);font-size:0.65rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--soil-2);margin-bottom:0.75rem;">Q2 · soil-cross-section-references.html</div>
+        <h3 style="font-family:var(--f-display);font-size:1.35rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.5rem;">Three ceiling references<br>for the cross-section.</h3>
+        <p style="margin:0 0 0.75rem;color:var(--ink-2);font-size:0.95rem;">Field-manual · painterly plate · blueprint. Concept only, stamped not-production. Wardian reference killed in review.</p>
+        <div style="font-family:var(--f-mono);font-size:0.7rem;letter-spacing:0.1em;color:var(--lawn-700);">Open →</div>
+      </a>
+      <a href="dossier/design-round-1-oxford/DECISIONS.md" style="text-decoration:none;color:inherit;display:block;background:var(--ink);color:var(--cream);border:1px solid var(--ink);padding:1.5rem;">
+        <div style="font-family:var(--f-mono);font-size:0.65rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--lawn-400);margin-bottom:0.75rem;">Decisions log · DECISIONS.md</div>
+        <h3 style="font-family:var(--f-display);font-size:1.35rem;font-weight:400;letter-spacing:-0.02em;margin:0 0 0.5rem;color:var(--cream);">Q1–Q5 answers<br>+ Round 2 backlog.</h3>
+        <p style="margin:0 0 0.75rem;color:rgba(247,243,234,0.75);font-size:0.95rem;">Full log of founder-review decisions, what ships, what's deferred, what's killed.</p>
+        <div style="font-family:var(--f-mono);font-size:0.7rem;letter-spacing:0.1em;color:var(--lawn-400);">Open →</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Spec card preview -->
+<section class="section" style="background: var(--paper);">
+  <div class="wrap">
+    <div class="eyebrow">patterns/*.md · the 22 spec cards</div>
+    <h2 class="h-display h3" style="margin:0.5rem 0 0.5rem;">Every pattern, spec-sheeted.</h2>
+    <p style="max-width:64ch;color:var(--ink-2);margin-bottom:2rem;">Below: every spec card rendered into the page for review. In the dossier zip, each is a standalone <code style="font-family:var(--f-mono);">.md</code> file that Code can consume one-at-a-time or en bloc.</p>
+    <div id="spec-cards"></div>
+  </div>
+</section>
+
+<!-- Handoff flow -->
+<section class="section">
+  <div class="wrap">
+    <div class="eyebrow">The handoff loop</div>
+    <h2 class="h-display h3" style="margin:0.5rem 0 1.5rem;">How this zip becomes v0.8.</h2>
+    <div>
+      <div class="step-row">
+        <div class="sn">01</div>
+        <div>
+          <h4>Code exported asset dossier for Oxford</h4>
+          <p>Logos, photos, palette, facts, real copy samples. This already happened at the start of Round 1.</p>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="sn">02</div>
+        <div>
+          <h4>Design proposed ceiling + pattern library</h4>
+          <p>The 7-page applied site as evidence. The library view as implementation manifest. The gap catalog with scaling calls.</p>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="sn">03</div>
+        <div>
+          <h4>Ron reviewed → Round 1 adds</h4>
+          <p>Three additions (standalone library view, mobile compositions, bespoke-to-systemizable paths) + two flags (voice audit, font count check). All addressed.</p>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="sn">04</div>
+        <div>
+          <h4>Design ships pattern dossier to Code · <b style="color:var(--lawn-700);">you are here</b></h4>
+          <p>22 spec cards + parent index + visuals. Zipped. Matches the shape of the Oxford asset dossier Code sent us — protocol goes both ways.</p>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="sn">05</div>
+        <div>
+          <h4>Ron drops zip into Claude Code session</h4>
+          <p>Paste-ready build prompt in <code style="font-family:var(--f-mono);">README.md</code>. Tier 1 patterns land first in a v0.8 branch, isolated from production.</p>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="sn">06</div>
+        <div>
+          <h4>Code implements into v0.8 · Ron eyeballs live · iterates back</h4>
+          <p>Any regressions loop back to this project. Future rounds faster — protocol is now tested.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Download card -->
+<section class="section-lg">
+  <div class="wrap-tight">
+    <div class="dl-card">
+      <div>
+        <h3>Download the dossier</h3>
+        <p>Zipped folder — README.md, index.md, 22 pattern cards in <code style="font-family:var(--f-mono);">patterns/</code>, and <code style="font-family:var(--f-mono);">visuals/</code>. Drop into Claude Code. Paste-ready build prompt included.</p>
+      </div>
+      <a class="btn" href="dossier/design-round-1-oxford/" onclick="event.preventDefault(); document.getElementById('dl-trigger').click();">↓ design-round-1-oxford.zip</a>
+    </div>
+    <div style="margin-top:1.5rem;text-align:center;font-family:var(--f-mono);font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--soil-2);">
+      Or <a href="dossier/design-round-1-oxford/README.md" style="color:var(--soil-2);">preview README.md</a> · <a href="dossier/design-round-1-oxford/index.md" style="color:var(--soil-2);">preview index.md</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="text-align:center;">
+  <div class="wrap-tight">
+    <div style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;">
+      <a class="btn ghost" href="library.html">← Pattern library</a>
+      <a class="btn ghost" href="gap-catalog.html">Gap catalog</a>
+      <a class="btn ghost" href="mobile.html">Mobile compositions</a>
+      <a class="btn ghost" href="index.html">Applied site</a>
+    </div>
+  </div>
+</section>
+
+<div id="foot-host"></div>
+<script src="scripts/partials.js"></script>
+<script src="scripts/shared.js"></script>
+<script>
+  // Fetch enriched library + render spec cards
+  fetch('scripts/library-enriched.json').then(r => r.json()).then(library => {
+    const host = document.getElementById('spec-cards');
+    const esc = s => (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    library.forEach((p, i) => {
+      const n = String(i + 1).padStart(2, '0');
+      const cls = { systemizable: 'sys', bespoke: 'bes', mixed: 'mix' }[p.scale];
+      const lbl = { systemizable: 'Systemizable', bespoke: 'Bespoke', mixed: 'Mixed' }[p.scale];
+      const mc = p.mobileSafe ? 'ok' : 'gate';
+      const ml = p.mobileSafe ? 'Mobile ✓' : 'Mobile gated';
+      const pathHtml = (p.path && (p.path.includes('FIX:') || p.path.startsWith('**')))
+        ? `<div class="path-block"><b>Bespoke → systemizable path</b><div>${p.path.replace(/\*\*(.+?)\*\*/g, '<b style="display:inline;color:var(--ink);">$1</b>').replace(/\*\*/g, '')}</div></div>`
+        : '';
+      host.insertAdjacentHTML('beforeend', `
+        <div class="card-md">
+          <div class="head">
+            <div class="n">${n}</div>
+            <div>
+              <h3>${p.title}</h3>
+              <div class="slug">patterns/${p.slug}.md${p.voice ? ' · voice: ' + p.voice : ''}</div>
+            </div>
+            <div class="facts">
+              <span class="chip ${cls}">${lbl}</span>
+              <span class="chip ${mc}">${ml}</span>
+            </div>
+          </div>
+          <div class="body">
+            <div><b>Purpose</b><p>${p.purpose}</p></div>
+            <div><b>Replaces</b><p>${p.replaces}</p></div>
+            <div style="grid-column:1/-1;"><b>Structural outline</b><pre>${esc(p.structure)}</pre></div>
+            <div><b>Tokens</b><p>${p.tokens}</p></div>
+            <div><b>Behavior</b><p>${p.behavior}</p></div>
+            <div><b>Responsive</b><p>${p.responsive}</p></div>
+            <div><b>Constraints</b><p>${p.constraints}</p></div>
+            <div style="grid-column:1/-1;"><b>Code conversion notes</b><p>${p.codeNotes}</p></div>
+            ${pathHtml}
+          </div>
+        </div>
+      `);
+    });
+  });
+</script>
+<!-- hidden download trigger — wired by shared.js not needed; fall back to directory link -->
+<a id="dl-trigger" style="display:none;" href="dossier/design-round-1-oxford.zip" download>dl</a>
+</body></html>

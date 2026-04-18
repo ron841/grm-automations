@@ -1,0 +1,776 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Mobile compositions — Oxford ceiling</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&family=JetBrains+Mono:wght@400;500;600&family=Public+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/base.css" />
+<style>
+  body { background: #e8e4dc; }
+  .mob-page {
+    padding: 2rem clamp(1rem, 3vw, 2rem);
+  }
+  .mob-header {
+    max-width: 1400px; margin: 0 auto 3rem;
+  }
+  .phones {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1rem, 2vw, 2.5rem);
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  @media (max-width: 1100px) { .phones { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 720px) { .phones { grid-template-columns: 1fr; } }
+
+  .phone {
+    background: #111;
+    border-radius: 40px;
+    padding: 12px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.1);
+    position: relative;
+    max-width: 420px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .phone::before {
+    content: '';
+    position: absolute;
+    top: 22px; left: 50%; transform: translateX(-50%);
+    width: 110px; height: 28px; border-radius: 20px;
+    background: #111; z-index: 10;
+  }
+  .phone-screen {
+    background: var(--paper);
+    border-radius: 28px;
+    overflow: hidden;
+    height: 800px;
+    overflow-y: auto;
+    font-size: 14px;
+    position: relative;
+  }
+  .phone-screen::-webkit-scrollbar { width: 4px; }
+  .phone-screen::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 2px; }
+
+  .phone-label {
+    text-align: center;
+    margin-top: 1rem;
+    font-family: var(--f-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--soil-2);
+  }
+  .phone-label b { color: var(--ink); font-weight: 600; }
+
+  /* ========== Mobile-specific styles ========== */
+  .m { padding: 0 1.25rem; }
+
+  .m-statusbar {
+    height: 50px;
+    display: flex; align-items: flex-end;
+    justify-content: space-between;
+    padding: 0 1.5rem 0.5rem;
+    font-family: -apple-system, system-ui;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .m-statusbar .dots { display:flex; gap:4px; align-items:center; }
+  .m-statusbar .bar { display:inline-block; width:3px; background:var(--ink); border-radius:1px; }
+
+  .m-nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0.75rem 1.25rem;
+    border-bottom: 1px solid var(--rule);
+    background: var(--paper);
+    position: sticky; top: 0; z-index: 5;
+  }
+  .m-wordmark { font-family: var(--f-display); font-size: 1.1rem; font-weight: 500; }
+  .m-wordmark em { color: var(--lawn-700); font-style: italic; }
+  .m-menu-btn {
+    display: flex; flex-direction: column; gap: 3px;
+    width: 24px; height: 24px; justify-content: center; align-items: flex-end;
+  }
+  .m-menu-btn span {
+    display:block; height: 1.5px; background: var(--ink); width: 100%;
+  }
+  .m-menu-btn span:nth-child(2) { width: 70%; }
+
+  .m-meta-row {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    padding: 0.75rem 1.25rem;
+    background: var(--cream-2);
+    font-family: var(--f-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--soil-2);
+    border-bottom: 1px solid var(--rule);
+  }
+  .m-meta-row b { color: var(--ink); font-weight: 600; }
+
+  .m-eyebrow {
+    font-family: var(--f-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--soil-2);
+  }
+
+  .m-h1 {
+    font-family: var(--f-display);
+    font-weight: 500;
+    font-size: 2.4rem;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    margin: 0.5rem 0 1rem;
+  }
+  .m-h1 em { font-style: italic; color: var(--lawn-700); }
+  .m-h2 {
+    font-family: var(--f-display);
+    font-weight: 500;
+    font-size: 1.7rem;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin: 0.4rem 0 0.8rem;
+  }
+  .m-h2 em { font-style: italic; color: var(--lawn-700); }
+
+  .m-lede {
+    font-family: var(--f-display);
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--ink-2);
+  }
+  .m-body {
+    font-family: var(--f-body);
+    font-size: 0.88rem;
+    line-height: 1.55;
+    color: var(--ink);
+  }
+
+  /* Soil strata - mobile chip rail */
+  .m-strata-chips {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1px;
+    background: var(--rule);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    margin: 1rem 0;
+  }
+  .m-strata-chips > div {
+    padding: 0.7rem 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--f-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .m-strata-chips .s1 { background: #7a5a3a; color: #f7f3ea; }
+  .m-strata-chips .s2 { background: #95fb84; color: #1b1b16; }
+  .m-strata-chips .s3 { background: #b89770; color: #1b1b16; }
+  .m-strata-chips .s4 { background: #3d2e1f; color: #f7f3ea; }
+
+  .m-stats {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .m-stats > div {
+    background: var(--paper);
+    padding: 1rem 1.25rem;
+  }
+  .m-stats .n {
+    font-family: var(--f-display);
+    font-size: 2.2rem;
+    line-height: 1;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+  }
+  .m-stats .l {
+    font-family: var(--f-mono);
+    font-size: 0.55rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--soil-2);
+    margin-top: 0.35rem;
+  }
+
+  .m-cta {
+    display: inline-flex;
+    padding: 0.85rem 1.25rem;
+    background: var(--ink);
+    color: var(--cream);
+    font-family: var(--f-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    margin-top: 1rem;
+  }
+
+  .m-card {
+    border: 1px solid var(--rule);
+    padding: 1.25rem;
+    margin-bottom: 0.75rem;
+    background: var(--paper);
+  }
+  .m-card .num {
+    font-family: var(--f-display);
+    font-size: 2rem;
+    line-height: 1;
+    color: var(--lawn-700);
+    margin-bottom: 0.35rem;
+  }
+  .m-card h4 {
+    font-family: var(--f-display);
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.02em;
+  }
+
+  .m-ledger-row {
+    display: grid; grid-template-columns: 1fr;
+    gap: 0.3rem;
+    padding: 0.9rem 1.25rem;
+    border-bottom: 1px solid rgba(247, 243, 234, 0.1);
+    background: var(--ink);
+    color: var(--cream);
+  }
+  .m-ledger-row .t {
+    font-family: var(--f-display);
+    font-size: 1rem;
+  }
+  .m-ledger-row .d {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    font-family: var(--f-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(247, 243, 234, 0.65);
+  }
+
+  /* Trust band mobile */
+  .m-trust {
+    background: var(--lawn-500);
+    color: var(--lawn-900);
+    padding: 0.6rem 0;
+    overflow: hidden;
+    border-top: 1px solid var(--lawn-900);
+    border-bottom: 1px solid var(--lawn-900);
+  }
+  .m-trust .row {
+    display: flex; gap: 1.5rem;
+    font-family: var(--f-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    animation: trust-scroll-m 30s linear infinite;
+    width: max-content;
+  }
+  @keyframes trust-scroll-m {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* Services - package block */
+  .m-package {
+    background: var(--lawn-500);
+    color: var(--lawn-900);
+    padding: 1.5rem 1.25rem;
+    border-top: 1px solid var(--lawn-900);
+    border-bottom: 1px solid var(--lawn-900);
+  }
+  .m-package .eyebrow {
+    font-family: var(--f-mono); font-size: 0.55rem;
+    letter-spacing: 0.18em; text-transform: uppercase;
+  }
+  .m-package h3 {
+    font-family: var(--f-display);
+    font-size: 1.6rem;
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin: 0.5rem 0 0.75rem;
+  }
+  .m-package ul {
+    list-style: none; padding: 0; margin: 0;
+    font-family: var(--f-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .m-package li { padding: 0.4rem 0; border-bottom: 1px solid var(--lawn-900); }
+  .m-package li:last-child { border: none; }
+
+  .m-dont {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 1.5rem 1.25rem;
+  }
+  .m-dont .eyebrow {
+    font-family: var(--f-mono); font-size: 0.55rem;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--lawn-500);
+  }
+  .m-dont h3 {
+    font-family: var(--f-display); font-size: 1.4rem; font-weight: 500;
+    line-height: 1.1; margin: 0.5rem 0 1rem;
+  }
+  .m-dont-table .r {
+    display: grid; grid-template-columns: 1fr;
+    gap: 0.25rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid rgba(247, 243, 234, 0.15);
+  }
+  .m-dont-table .r .what {
+    font-family: var(--f-display); font-size: 0.95rem;
+  }
+  .m-dont-table .r .why {
+    font-family: var(--f-body); font-size: 0.8rem;
+    color: rgba(247, 243, 234, 0.7);
+  }
+
+  /* Contact form */
+  .m-form label {
+    display: block;
+    font-family: var(--f-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--soil-2);
+    margin: 0.75rem 0 0.35rem;
+  }
+  .m-form input[type=text], .m-form input[type=email], .m-form input[type=tel], .m-form textarea, .m-form select {
+    width: 100%;
+    padding: 0.7rem 0.85rem;
+    border: 1px solid var(--rule);
+    background: var(--paper);
+    font-family: var(--f-body);
+    font-size: 0.9rem;
+    color: var(--ink);
+    border-radius: 0;
+    box-sizing: border-box;
+  }
+  .m-form textarea { min-height: 80px; resize: vertical; }
+
+  .m-chips {
+    display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 0.25rem;
+  }
+  .m-chip {
+    padding: 0.5rem 0.8rem;
+    border: 1px solid var(--rule);
+    background: var(--paper);
+    font-family: var(--f-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    color: var(--ink);
+    cursor: pointer;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+  .m-chip.on {
+    background: var(--lawn-500);
+    border-color: var(--lawn-900);
+    color: var(--lawn-900);
+  }
+  .m-submit {
+    width: 100%;
+    padding: 1rem;
+    background: var(--ink);
+    color: var(--cream);
+    border: none;
+    font-family: var(--f-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-top: 1.25rem;
+    cursor: pointer;
+    min-height: 52px;
+  }
+
+  /* Component cards (services) */
+  .m-comp {
+    padding: 1.25rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .m-comp .step { font-family: var(--f-mono); font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--soil-2); }
+  .m-comp .big {
+    font-family: var(--f-display); font-size: 2.5rem; font-weight: 500;
+    line-height: 1; color: var(--lawn-700);
+    margin: 0.4rem 0;
+    letter-spacing: -0.03em;
+  }
+  .m-comp h4 { font-family: var(--f-display); font-size: 1.2rem; font-weight: 500; margin: 0.2rem 0 0.4rem; letter-spacing: -0.02em; }
+  .m-comp p { font-family: var(--f-body); font-size: 0.85rem; line-height: 1.5; margin: 0; color: var(--ink-2); }
+
+  .notes {
+    max-width: 1400px; margin: 3rem auto 0;
+    padding: 2rem 1.5rem;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+  }
+  .notes h3 { font-family: var(--f-display); font-size: 1.3rem; margin: 0 0 1rem; font-weight: 500; }
+  .notes ul { padding-left: 1.25rem; max-width: 70ch; }
+  .notes li { margin-bottom: 0.5rem; font-family: var(--f-body); }
+  .notes code {
+    font-family: var(--f-mono);
+    font-size: 0.8rem;
+    background: var(--cream-2);
+    padding: 0.1rem 0.35rem;
+    border-radius: 2px;
+  }
+</style>
+</head>
+<body data-screen-label="Mobile compositions">
+
+<div id="nav-host"></div>
+
+<section class="section-lg">
+  <div class="wrap editorial">
+    <aside class="rail">
+      <div><b>APPX</b>Mobile</div>
+      <div class="divot"></div>
+      <div><b>Round</b>01 · Oxford</div>
+      <div><b>Width</b>402px · iPhone</div>
+      <div><b>Pages</b>3 of 7</div>
+    </aside>
+    <div>
+      <div class="eyebrow">Round 1 addition · mobile-first verification</div>
+      <h1 class="h-display h1" style="margin:0.5rem 0 1.5rem;max-width:22ch;">
+        Mobile. <em class="display-it" style="color:var(--lawn-700);">Where contractor calls come from.</em>
+      </h1>
+      <p class="lede" style="color:var(--ink-2);">
+        Home, Services, and Contact at 402px. Each page rebuilt for narrow — not shrunk. The rail collapses to a meta bar. The three-column ledger goes to stacked dark cards. The soil-strata hero becomes a compact strata rail. The chip selector stays — it was built for touch.
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="mob-page">
+  <div class="phones">
+
+    <!-- HOME -->
+    <div>
+      <div class="phone">
+        <div class="phone-screen">
+          <div class="m-statusbar">
+            <span>9:41</span>
+            <span class="dots">
+              <i class="bar" style="height:4px"></i>
+              <i class="bar" style="height:6px"></i>
+              <i class="bar" style="height:8px"></i>
+              <i class="bar" style="height:10px"></i>
+            </span>
+          </div>
+          <div class="m-nav">
+            <div class="m-wordmark">Oxford <em>Lawn</em></div>
+            <div class="m-menu-btn"><span></span><span></span><span></span></div>
+          </div>
+
+          <div class="m-meta-row">
+            <div><b>FILE 01</b> · Home</div>
+            <div><b>Voice</b> · Closing Table</div>
+            <div><b>28.8647° N</b></div>
+          </div>
+
+          <div class="m" style="padding-top:1.25rem;">
+            <div class="m-eyebrow">Thesis · why most lawns fail</div>
+            <h1 class="m-h1">Weak lawns don't need more grass.<br/><em>They need better soil.</em></h1>
+            <p class="m-lede">Eighteen years restoring Central Florida's sandy, compacted, tired lawns the long way. Dethatch. Aerate. Top-dress with organic compost.</p>
+            <a class="m-cta" href="#">Book a free walk-through →</a>
+          </div>
+
+          <!-- Soil strata - mobile compact rail -->
+          <div class="m-strata-chips">
+            <div class="s1"><span>Thatch layer</span><span>~0.5"</span></div>
+            <div class="s2"><span>Living grass</span><span>active</span></div>
+            <div class="s3"><span>Root zone</span><span>compacted</span></div>
+            <div class="s4"><span>Subsoil / sand</span><span>native</span></div>
+          </div>
+
+          <div class="m-stats">
+            <div><div class="n">18</div><div class="l">Years</div></div>
+            <div><div class="n">132</div><div class="l">Reviews</div></div>
+            <div><div class="n">4.9</div><div class="l">Rating</div></div>
+            <div><div class="n">6</div><div class="l">Towns</div></div>
+          </div>
+
+          <div class="m" style="padding-top:1.5rem;padding-bottom:1.5rem;">
+            <div class="m-eyebrow">The process · three steps</div>
+            <h2 class="m-h2">One process. Three steps. <em>Organic throughout.</em></h2>
+            <div class="m-card">
+              <div class="num">01</div>
+              <h4>Dethatch</h4>
+              <p class="m-body" style="margin:0;color:var(--ink-2);">Strip the dead mat so water and air reach the soil.</p>
+            </div>
+            <div class="m-card">
+              <div class="num">02</div>
+              <h4>Core aerate</h4>
+              <p class="m-body" style="margin:0;color:var(--ink-2);">Pull plugs across the whole lawn. Roots breathe.</p>
+            </div>
+            <div class="m-card">
+              <div class="num">03</div>
+              <h4>Top-dress</h4>
+              <p class="m-body" style="margin:0;color:var(--ink-2);">Half-inch organic compost. Microbes move back in.</p>
+            </div>
+          </div>
+
+          <div class="m-trust">
+            <div class="row">
+              <span>On time, every time</span><span>·</span>
+              <span>No upsells</span><span>·</span>
+              <span>Organic, always</span><span>·</span>
+              <span>Owner on site</span><span>·</span>
+              <span>On time, every time</span><span>·</span>
+              <span>No upsells</span><span>·</span>
+              <span>Organic, always</span><span>·</span>
+              <span>Owner on site</span><span>·</span>
+            </div>
+          </div>
+
+          <div style="background:var(--ink);color:var(--cream);">
+            <div class="m" style="padding-top:1.5rem;padding-bottom:0.75rem;">
+              <div class="m-eyebrow" style="color:var(--lawn-500);">Service area · where we work</div>
+              <h2 class="m-h2" style="color:var(--cream);">Based in Wildwood.</h2>
+            </div>
+            <div class="m-ledger-row">
+              <div class="t">The Villages</div>
+              <div class="d"><span>Sumter</span><span>Zoysia/Bahia</span><span>20 min</span></div>
+            </div>
+            <div class="m-ledger-row">
+              <div class="t">Leesburg</div>
+              <div class="d"><span>Lake</span><span>St. Augustine</span><span>18 min</span></div>
+            </div>
+            <div class="m-ledger-row">
+              <div class="t">Wildwood</div>
+              <div class="d"><span>Sumter</span><span>Mixed</span><span>5 min</span></div>
+            </div>
+            <div class="m-ledger-row">
+              <div class="t">Summerfield</div>
+              <div class="d"><span>Marion</span><span>Bahia/St. Aug</span><span>22 min</span></div>
+            </div>
+            <div class="m" style="padding-top:1rem;padding-bottom:1.5rem;">
+              <a class="m-cta" href="#" style="background:var(--lawn-500);color:var(--lawn-900);">See full area →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="phone-label"><b>Home</b> — 402 × 874</div>
+    </div>
+
+    <!-- SERVICES -->
+    <div>
+      <div class="phone">
+        <div class="phone-screen">
+          <div class="m-statusbar">
+            <span>9:41</span>
+            <span class="dots">
+              <i class="bar" style="height:4px"></i>
+              <i class="bar" style="height:6px"></i>
+              <i class="bar" style="height:8px"></i>
+              <i class="bar" style="height:10px"></i>
+            </span>
+          </div>
+          <div class="m-nav">
+            <div class="m-wordmark">Oxford <em>Lawn</em></div>
+            <div class="m-menu-btn"><span></span><span></span><span></span></div>
+          </div>
+
+          <div class="m-meta-row">
+            <div><b>FILE 03</b> · Services</div>
+            <div><b>Voice</b> · Closing Table</div>
+          </div>
+
+          <div class="m" style="padding-top:1.25rem;padding-bottom:0.5rem;">
+            <div class="m-eyebrow">Services · one specialty</div>
+            <h1 class="m-h1">We do one service. <em>On purpose.</em></h1>
+            <p class="m-lede">Lawn rehabilitation. That's all we do and that's all we book.</p>
+          </div>
+
+          <div class="m-package">
+            <div class="eyebrow">The package</div>
+            <h3>Three-step rehab.<br/>Single visit. Organic end-to-end.</h3>
+            <ul>
+              <li>Dethatching · all grass types</li>
+              <li>Core aeration · 3" plugs</li>
+              <li>Organic compost top-dress · ½"</li>
+            </ul>
+          </div>
+
+          <div>
+            <div class="m-comp">
+              <div class="step">Component 01</div>
+              <div class="big">Dethatch</div>
+              <h4>Strip the thatch. Reach the soil.</h4>
+              <p>Mechanical dethatcher lifts the dead mat between the grass blades and the soil surface. Most Central Florida lawns have a thatch layer half an inch or more.</p>
+            </div>
+            <div class="m-comp">
+              <div class="step">Component 02</div>
+              <div class="big">Aerate</div>
+              <h4>Pull plugs. Let the root zone breathe.</h4>
+              <p>Three-inch plugs across the entire lawn. Florida soil compacts hard; roots need the airspace that compaction took away.</p>
+            </div>
+            <div class="m-comp">
+              <div class="step">Component 03</div>
+              <div class="big">Dress</div>
+              <h4>Top-dress. Rebuild the living layer.</h4>
+              <p>Half an inch of organic compost. Feeds the microbes that feed the grass. Only service a healthy lawn actually needs yearly.</p>
+            </div>
+          </div>
+
+          <div class="m-dont">
+            <div class="eyebrow">What we don't do</div>
+            <h3>Things we'll point you elsewhere for.</h3>
+            <div class="m-dont-table">
+              <div class="r">
+                <div class="what">Weekly mowing</div>
+                <div class="why">Healthy lawns need consistency. We're project-based.</div>
+              </div>
+              <div class="r">
+                <div class="what">Pest + weed spraying</div>
+                <div class="why">Not our model. Good soil is the long-term weed plan.</div>
+              </div>
+              <div class="r">
+                <div class="what">New sod installation</div>
+                <div class="why">If the soil's wrong, new sod fails. Rehab first.</div>
+              </div>
+              <div class="r">
+                <div class="what">Landscape design</div>
+                <div class="why">Grass is our lane. We stay in it.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="m" style="padding-top:1.5rem;padding-bottom:1.5rem;">
+            <a class="m-cta" href="#">Book a free walk-through →</a>
+          </div>
+        </div>
+      </div>
+      <div class="phone-label"><b>Services</b> — 402 × 874</div>
+    </div>
+
+    <!-- CONTACT -->
+    <div>
+      <div class="phone">
+        <div class="phone-screen">
+          <div class="m-statusbar">
+            <span>9:41</span>
+            <span class="dots">
+              <i class="bar" style="height:4px"></i>
+              <i class="bar" style="height:6px"></i>
+              <i class="bar" style="height:8px"></i>
+              <i class="bar" style="height:10px"></i>
+            </span>
+          </div>
+          <div class="m-nav">
+            <div class="m-wordmark">Oxford <em>Lawn</em></div>
+            <div class="m-menu-btn"><span></span><span></span><span></span></div>
+          </div>
+
+          <div class="m-meta-row">
+            <div><b>FILE 07</b> · Contact</div>
+            <div><b>Voice</b> · Saturday Morning</div>
+          </div>
+
+          <div class="m" style="padding-top:1.25rem;">
+            <div class="m-eyebrow">Contact · tell us about the lawn</div>
+            <h1 class="m-h1">Send a note. <em>Tom or Tracy</em> will call back the same day.</h1>
+            <p class="m-lede">Mondays through Fridays. No call centers, no contact-form auto-responders. Just Tom or Tracy on the phone.</p>
+          </div>
+
+          <form class="m-form m" style="padding-top:0.5rem;padding-bottom:1.5rem;">
+            <label>Your name</label>
+            <input type="text" value="Pat Donnelly" />
+
+            <label>Phone</label>
+            <input type="tel" placeholder="(352) 555-0100" />
+
+            <label>Town</label>
+            <select>
+              <option>The Villages</option>
+              <option>Leesburg</option>
+              <option>Wildwood</option>
+              <option>Summerfield</option>
+              <option>Other · tell us in the notes</option>
+            </select>
+
+            <label>What do you need?</label>
+            <div class="m-chips">
+              <div class="m-chip on">Full rehab</div>
+              <div class="m-chip">Top-dress only</div>
+              <div class="m-chip">Assessment visit</div>
+              <div class="m-chip">Not sure</div>
+            </div>
+
+            <label>Grass type (if you know)</label>
+            <div class="m-chips">
+              <div class="m-chip">St. Augustine</div>
+              <div class="m-chip on">Zoysia</div>
+              <div class="m-chip">Bahia</div>
+              <div class="m-chip">Mixed</div>
+              <div class="m-chip">Don't know</div>
+            </div>
+
+            <label>Approx lawn size</label>
+            <select>
+              <option>Under 5,000 sq ft</option>
+              <option selected>5,000 – 10,000 sq ft</option>
+              <option>10,000 – 20,000 sq ft</option>
+              <option>Over 20,000 sq ft</option>
+            </select>
+
+            <label>Tell us about the lawn</label>
+            <textarea>Zoysia, ~6,500 sq ft. Brown patches along the south fence, hasn't responded to the lawn guy spraying. Want to understand what's actually going on.</textarea>
+
+            <button type="button" class="m-submit">Send the note</button>
+
+            <div style="margin-top:1.25rem;font-family:var(--f-mono);font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--soil-2);text-align:center;">
+              Or call Tom directly · (352) 555-0100
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="phone-label"><b>Contact</b> — 402 × 874</div>
+    </div>
+
+  </div>
+
+  <div class="notes">
+    <h3>What changed for mobile</h3>
+    <ul>
+      <li><b>Metadata rail</b> collapses from sticky left column to a horizontal meta-row under the nav. File number, voice, and one data point — the rest is implicit.</li>
+      <li><b>Soil-strata hero</b> becomes a compact strata rail: four horizontal bands with layer name + depth/state. Preserves the signature without burning 800px of vertical space on an unscrollable diagram.</li>
+      <li><b>Service area ledger</b> goes from three-column dark table to stacked dark cards. Each card has title + data-row below. Same visual language, narrow-friendly.</li>
+      <li><b>Trust band marquee</b> ports unchanged — animation survives narrow widths natively.</li>
+      <li><b>Component cards</b> swap from horizontal "number · title · desc · meta" layout to vertical stack. Big numerals (<code>01/02/03</code>) anchor the card instead of sitting in a column.</li>
+      <li><b>Chip-selector form</b> stays as-is. It was built for touch — 44px min-height, wrap-flow, tap-to-toggle. Mobile is where it's best.</li>
+      <li><b>"What we don't do"</b> table stacks what / why vertically instead of two columns. Same dark panel, same positioning play.</li>
+    </ul>
+    <h3 style="margin-top:2rem;">Patterns that gate on mobile (see gap catalog)</h3>
+    <ul>
+      <li><code>soil-strata-hero</code> — desktop-only in its full strata form. Mobile uses the compact chip rail above.</li>
+      <li><code>interactive-process-stepper</code> — sticky-left-nav pattern doesn't port. Needs a horizontal chip bar + scroll-snap panels variant for mobile. One-time component work.</li>
+      <li><code>annotated-soil-cross-section</code> — the side-by-side "acts here →" arrow metaphor breaks when stacked. Needs a mobile diagram rework — likely a callout-stacked variant.</li>
+    </ul>
+  </div>
+
+</div>
+
+<div id="foot-host"></div>
+<script src="scripts/partials.js"></script>
+<script src="scripts/shared.js"></script>
+</body></html>

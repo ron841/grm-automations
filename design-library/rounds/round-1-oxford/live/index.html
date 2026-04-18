@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GRM Pattern Library v0.8 — Round 1 (Oxford)</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; color: #1a1a1a; background: #faf8f4; max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem 4rem; line-height: 1.55; }
+  h1 { font-size: 1.65rem; margin: 0 0 .5rem; letter-spacing: -0.01em; }
+  .sub { color: #555; margin: 0 0 1.25rem; }
+  .callout { background: #fff; border: 1px solid #ddd; padding: 1rem 1.25rem; margin: 1rem 0 1.5rem; font-size: .95rem; }
+  .callout strong { display: block; margin-bottom: .25rem; }
+  table { width: 100%; border-collapse: collapse; font-size: .92rem; }
+  th, td { text-align: left; padding: .55rem .6rem; border-bottom: 1px solid #e2e2e2; vertical-align: top; }
+  th { background: #f0ede5; font-weight: 600; text-transform: uppercase; font-size: .72rem; letter-spacing: .06em; color: #333; }
+  tr.tier-break td { background: #1a1a1a; color: #faf8f4; font-weight: 600; font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; padding: .45rem .6rem; }
+  td.num { font-variant-numeric: tabular-nums; color: #777; width: 2.5rem; }
+  td.pattern a { color: #1a1a1a; text-decoration: underline; text-decoration-color: #bbb; text-underline-offset: 3px; }
+  td.pattern a:hover { text-decoration-color: #1a1a1a; }
+  td.scale, td.status { color: #555; font-size: .85rem; }
+  .chip { display: inline-block; padding: 1px 7px; border: 1px solid #bbb; border-radius: 3px; font-size: .7rem; text-transform: uppercase; letter-spacing: .04em; color: #555; background: #fff; }
+  .chip.pending { color: #8a6d00; border-color: #d8c16a; background: #fff9e3; }
+  footer { margin-top: 2.5rem; padding-top: 1rem; border-top: 1px solid #e2e2e2; font-size: .82rem; color: #666; }
+  code { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; background: #f0ede5; padding: 1px 4px; border-radius: 2px; font-size: .86em; }
+</style>
+</head>
+<body>
+
+<h1>GRM Pattern Library v0.8 — Round 1 (Oxford)</h1>
+<p class="sub">Code implementation of patterns from Design Round 1. This page updates as patterns land. The frozen Design ceiling reference is at <a href="https://grm-design-r1-oxford.vercel.app">grm-design-r1-oxford.vercel.app</a>.</p>
+
+<div class="callout">
+  <strong>Status legend</strong>
+  <span class="chip pending">pending</span> not started &nbsp;·&nbsp;
+  <span class="chip" style="color:#1f5a2f;border-color:#9cc7a1;background:#eaf6ec;">in progress</span> under construction &nbsp;·&nbsp;
+  <span class="chip" style="color:#1a1a1a;border-color:#1a1a1a;background:#d8e6d8;">shipped</span> live on this subdomain
+</div>
+
+<table>
+<thead>
+<tr><th>#</th><th>Pattern</th><th>Scale</th><th>Status</th></tr>
+</thead>
+<tbody>
+
+<tr class="tier-break"><td colspan="4">Tier 1 — Land first (systemizable, high-leverage)</td></tr>
+<tr><td class="num">1</td><td class="pattern"><a href="patterns/editorial-metadata-rail.html">Editorial metadata rail</a> <br><code>editorial-metadata-rail</code></td><td class="scale">Systemizable</td><td class="status"><span class="chip pending">pending</span></td></tr>
+<tr><td class="num">2</td><td class="pattern"><a href="patterns/stat-row-editorial.html">Four-number editorial stat row</a> <br><code>stat-row-editorial</code></td><td class="scale">Systemizable</td><td class="status"><span class="chip pending">pending</span></td></tr>
+<tr><td class="num">3</td><td class="pattern"><a href="patterns/voice-tagged-sections.html">Voice-tagged sections (eyebrow system)</a> <br><code>voice-tagged-sections</code></td><td class="scale">Systemizable</td><td class="status"><span class="chip pending">pending</span></td></tr>
+<tr><td class="num">4</td><td class="pattern"><a href="patterns/service-area-ledger-dark.html">Service-area ledger table (dark)</a> <br><code>service-area-ledger-dark</code></td><td class="scale">Systemizable</td><td class="status"><span class="chip pending">pending</span></td></tr>
+<tr><td class="num">5</td><td class="pattern"><a href="patterns/numbered-service-cards.html">Numbered horizontal service cards</a> <br><code>numbered-service-cards</code></td><td class="scale">Systemizable</td><td class="status"><span class="chip pending">pending</span></td></tr>
+<tr><td class="num">6</td><td class="pattern"><a href="patterns/interactive-process-stepper.html">Interactive process stepper</a> <br><code>interactive-process-stepper</code></td><td class="scale">Systemizable</td><td class="status"><span class="chip pending">pending</span></td></tr>
+<tr><td class="num">7</td><td class="pattern"><a href="patterns/timeline-ledger-dark.html">Editorial timeline ledger (dark)</a> <br><code>timeline-ledger-dark</code></td><td class="scale">Systemizable</td><td class="status"><span class="chip pending">pending</span></td></tr>
+<tr><td class="num">8</td><td class="pattern"><a href="patterns/trust-band-marquee.html">Saturday Morning trust band marquee</a> <br><code>trust-band-marquee</code></td><td class="scale">Systemizable</td><td class="status"><span class="chip pending">pending</span></td></tr>
+
+<tr class="tier-break"><td colspan="4">Tier 2 — Land second (systemizable, trade-conditional)</td></tr>
+<tr><td class="num">9</td><td class="pattern"><a href="patterns/counter-list-what-we-dont-do.html">Counter-list · what we don't do</a> <br><code>counter-list-what-we-dont-do</code></td><td class="scale">Systemizable</td><td class="status"><span class="chip pending">pending</span></td></tr>
+<tr><td class="num">10</td><td class="pattern"><a href="patterns/review-masonry-rhythm.html">Masonry review wall with rhythm</a> <br><code>review-masonry-rhythm</code></td><td class="scale">Systemizable</td><td class="status"><span class="chip pending">pending</span></td></tr>
+<tr><td class="num">11</td><td class="pattern"><a href="patterns/before-after-slider.html">Before / after compare slider</a> <br><code>before-after-slider</code></td><td class="scale">Systemizable</td><td class="status"><span class="chip pending">pending</span></td></tr>
+<tr><td class="num">12</td><td class="pattern"><a href="patterns/filterable-gallery-tagged.html">Filterable gallery with trade tags</a> <br><code>filterable-gallery-tagged</code></td><td class="scale">Systemizable</td><td class="status"><span class="chip pending">pending</span></td></tr>
+<tr><td class="num">13</td><td class="pattern"><a href="patterns/chip-selector-form.html">Chip-selector assessment form</a> <br><code>chip-selector-form</code></td><td class="scale">Systemizable</td><td class="status"><span class="chip pending">pending</span></td></tr>
+<tr><td class="num">14</td><td class="pattern"><a href="patterns/dropcap-editorial-prose.html">Dropcap + editorial prose</a> <br><code>dropcap-editorial-prose</code></td><td class="scale">Systemizable</td><td class="status"><span class="chip pending">pending</span></td></tr>
+
+<tr class="tier-break"><td colspan="4">Tier 3 — Ship with their systemizable path (bespoke)</td></tr>
+<tr><td class="num">15</td><td class="pattern"><a href="patterns/soil-strata-hero.html">Soil-strata motif hero column</a> <br><code>soil-strata-hero</code></td><td class="scale">Bespoke</td><td class="status"><span class="chip pending">pending</span></td></tr>
+<tr><td class="num">16</td><td class="pattern"><a href="patterns/serif-display-headline-system.html">Serif-display editorial headline system</a> <br><code>serif-display-headline-system</code></td><td class="scale">Bespoke</td><td class="status"><span class="chip pending">pending</span></td></tr>
+<tr><td class="num">17</td><td class="pattern"><a href="patterns/annotated-soil-cross-section.html">Annotated soil cross-section</a> <br><code>annotated-soil-cross-section</code></td><td class="scale">Bespoke</td><td class="status"><span class="chip pending">pending</span></td></tr>
+<tr><td class="num">18</td><td class="pattern"><a href="patterns/pull-quote-founder.html">Pull-quote with founder attribution</a> <br><code>pull-quote-founder</code></td><td class="scale">Bespoke</td><td class="status"><span class="chip pending">pending</span></td></tr>
+<tr><td class="num">19</td><td class="pattern"><a href="patterns/magazine-issue-chrome.html">'Volume 18, Issue 1' editorial chrome</a> <br><code>magazine-issue-chrome</code></td><td class="scale">Bespoke</td><td class="status"><span class="chip pending">pending</span></td></tr>
+
+<tr class="tier-break"><td colspan="4">Tier 4 — Mixed (structure first, content pipeline second)</td></tr>
+<tr><td class="num">20</td><td class="pattern"><a href="patterns/review-theme-index.html">Review theme index (NLP-derived)</a> <br><code>review-theme-index</code></td><td class="scale">Mixed</td><td class="status"><span class="chip pending">pending</span></td></tr>
+<tr><td class="num">21</td><td class="pattern"><a href="patterns/photo-portraits-degrading.html">Portrait / work-in-progress photo (degrading)</a> <br><code>photo-portraits-degrading</code></td><td class="scale">Mixed</td><td class="status"><span class="chip pending">pending</span></td></tr>
+<tr><td class="num">22</td><td class="pattern"><a href="patterns/voice-tuned-counter-list.html">Voice-tuned 'what we don't do' content</a> <br><code>voice-tuned-counter-list</code></td><td class="scale">Mixed</td><td class="status"><span class="chip pending">pending</span></td></tr>
+
+</tbody>
+</table>
+
+<footer>
+  <p>Pattern links 404 until implementation lands. Expected state during Round 1 startup.</p>
+  <p>Source of truth: <code>ceiling/dossier/design-round-1-oxford/</code> in this repo. Ceiling reference: <a href="https://grm-design-r1-oxford.vercel.app">grm-design-r1-oxford.vercel.app</a>.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Contact — Free on-site assessment · Oxford Lawn</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&family=JetBrains+Mono:wght@400;500;600&family=Public+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/base.css" />
+<style>
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: clamp(2rem, 5vw, 4rem);
+  }
+  @media (max-width: 900px) { .form-grid { grid-template-columns: 1fr; } }
+
+  .field { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.25rem; }
+  .field label {
+    font-family: var(--f-mono); font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--soil-2);
+  }
+  .field input, .field select, .field textarea {
+    font-family: var(--f-body); font-size: 1rem;
+    padding: 0.75rem 0.9rem;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-bottom: 2px solid var(--ink);
+    border-radius: 2px;
+    color: var(--ink);
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus {
+    outline: none;
+    background: var(--cream);
+    border-bottom-color: var(--lawn-700);
+  }
+  .field textarea { min-height: 120px; resize: vertical; }
+  .field.err input, .field.err textarea, .field.err select { border-color: #c0392b; }
+  .err-msg { color: #c0392b; font-family: var(--f-mono); font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; }
+
+  .chip-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .chip {
+    padding: 0.45rem 0.8rem;
+    font-family: var(--f-mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+    border: 1px solid var(--ink); background: transparent; color: var(--ink);
+    border-radius: 2px; cursor: pointer;
+  }
+  .chip.active { background: var(--ink); color: var(--cream); }
+
+  .success {
+    background: var(--lawn-500);
+    border: 1px solid var(--lawn-900);
+    padding: 2rem;
+    color: var(--lawn-900);
+    display: none;
+  }
+  .success.show { display: block; animation: fadein 0.4s ease; }
+  @keyframes fadein { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+</style>
+</head>
+<body data-screen-label="07 Contact">
+
+<div id="nav-host"></div>
+
+<section class="section-lg">
+  <div class="wrap editorial">
+    <aside class="rail">
+      <div><b>FILE 07</b>Contact</div>
+      <div class="divot"></div>
+      <div><b>Voice</b>Saturday Morning</div>
+      <div><b>Response</b>Same-day · Mon–Fri</div>
+    </aside>
+    <div>
+      <div class="eyebrow">Free on-site assessment</div>
+      <h1 class="h-display h1" style="margin:0.5rem 0 1.5rem;max-width:22ch;">
+        Tell us about the <em class="display-it" style="color:var(--lawn-700);">lawn.</em>
+      </h1>
+      <p class="lede" style="color:var(--ink-2);">
+        Send a note. Tom or Tracy will call back the same day, Monday through Friday, and schedule a walk-through. No charge, no pressure. The assessment is the first real conversation, not the pitch.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="form-grid">
+      <div>
+        <form id="assessment" novalidate>
+          <div class="field">
+            <label for="name">Your name</label>
+            <input id="name" name="name" type="text" required />
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;">
+            <div class="field">
+              <label for="phone">Phone</label>
+              <input id="phone" name="phone" type="tel" required placeholder="(352) 000-0000" />
+            </div>
+            <div class="field">
+              <label for="email">Email (optional)</label>
+              <input id="email" name="email" type="email" />
+            </div>
+          </div>
+          <div class="field">
+            <label for="address">Property address or cross street</label>
+            <input id="address" name="address" type="text" required placeholder="Street, town, county" />
+          </div>
+
+          <div class="field">
+            <label>What do you think you need?</label>
+            <div class="chip-row" id="need-chips">
+              <button type="button" class="chip active" data-val="assessment">Free assessment</button>
+              <button type="button" class="chip" data-val="full">Full three-step rehab</button>
+              <button type="button" class="chip" data-val="dethatch">Dethatching only</button>
+              <button type="button" class="chip" data-val="aerate">Aeration only</button>
+              <button type="button" class="chip" data-val="compost">Compost only</button>
+              <button type="button" class="chip" data-val="unsure">Not sure yet</button>
+            </div>
+            <input type="hidden" id="need" name="need" value="assessment" />
+          </div>
+
+          <div class="field">
+            <label for="grass">Grass type (if you know)</label>
+            <select id="grass" name="grass">
+              <option value="">— not sure —</option>
+              <option>St. Augustine</option>
+              <option>Bahia</option>
+              <option>Zoysia</option>
+              <option>Bermuda</option>
+              <option>Mixed / other</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="details">What's going on with the lawn?</label>
+            <textarea id="details" name="details" placeholder="Thin patches? Brown spots? Dying in full sun? When did you first notice it?"></textarea>
+          </div>
+
+          <div style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap;margin-top:1.5rem;">
+            <button type="submit" class="btn primary">Request assessment →</button>
+            <span class="meta">or call <a href="tel:+13524463497" class="link-u" style="font-family:var(--f-body);font-weight:600;">(352) 446-3497</a></span>
+          </div>
+        </form>
+
+        <div class="success" id="success">
+          <div class="eyebrow" style="color:var(--lawn-900);">Received</div>
+          <h3 class="h-display h3" style="margin:0.75rem 0 1rem;">Thanks. Tracy will call you today.</h3>
+          <p>We'll confirm the address and find a time this week to come walk the property. If it's urgent, call the number on the right and Tom or Tracy will pick up.</p>
+        </div>
+
+        <span class="gap-tag systemizable" style="position:relative;display:inline-block;margin-top:2rem;">
+          <b>Systemizable · assessment form pattern</b>
+          Chip selector for service type, grass-type dropdown becomes "fixture type" (electrician) / "system" (HVAC). Address + description stays. Full port.
+        </span>
+      </div>
+
+      <aside style="background:var(--paper);padding:2rem;border:1px solid var(--rule);align-self:start;">
+        <div class="eyebrow">Direct channels</div>
+        <h3 class="h-display h4" style="margin:0.5rem 0 1.5rem;">Or reach us however's easier.</h3>
+
+        <table class="data">
+          <tbody>
+            <tr><th>Phone</th><td><a href="tel:+13524463497" class="link-u"><b style="font-family:var(--f-body);">(352) 446-3497</b></a></td></tr>
+            <tr><th>Text</th><td>Same number. Texts welcome.</td></tr>
+            <tr><th>Email</th><td><a href="mailto:Tom@oxfordlawn.com" class="link-u">Tom@oxfordlawn.com</a></td></tr>
+            <tr><th>Office</th><td>4656 County Road 502<br>Wildwood, FL 34785</td></tr>
+            <tr><th>Hours</th><td>Mon – Fri · 8am – 6pm<br>Closed weekends</td></tr>
+            <tr><th>Response</th><td>Same-day callback during business hours</td></tr>
+          </tbody>
+        </table>
+
+        <div style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--rule);">
+          <div class="eyebrow">Service area</div>
+          <p style="margin:0.5rem 0 0;font-size:0.92rem;">The Villages · Wildwood · Oxford · Summerfield · South Ocala · Leesburg · Fruitland Park · Lady Lake · Clermont</p>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- Map-like map placeholder -->
+<section class="section">
+  <div class="wrap">
+    <div class="photo-slot" style="aspect-ratio:21/9;">
+      <span class="slot-label">Service area map</span>
+      <span class="slot-meta"><span>Google Maps embed · HQ + service radius shaded in #acfc64</span><span>embed</span></span>
+    </div>
+  </div>
+</section>
+
+<div id="foot-host"></div>
+<script src="scripts/partials.js"></script>
+<script src="scripts/shared.js"></script>
+<script>
+  // Chip select
+  document.querySelectorAll('#need-chips .chip').forEach(c => {
+    c.addEventListener('click', () => {
+      document.querySelectorAll('#need-chips .chip').forEach(x => x.classList.toggle('active', x === c));
+      document.getElementById('need').value = c.dataset.val;
+    });
+  });
+
+  // Validation + submit
+  const form = document.getElementById('assessment');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    let ok = true;
+    form.querySelectorAll('.field').forEach(f => f.classList.remove('err'));
+    ['name', 'phone', 'address'].forEach(id => {
+      const el = document.getElementById(id);
+      if (!el.value.trim()) { el.closest('.field').classList.add('err'); ok = false; }
+    });
+    if (!ok) return;
+    form.style.display = 'none';
+    document.getElementById('success').classList.add('show');
+  });
+</script>
+</body></html>
