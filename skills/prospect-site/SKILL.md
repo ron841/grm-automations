@@ -23,10 +23,12 @@ This skill uses the progressive disclosure pattern. SKILL.md contains the workfl
 
 - `references/hero-patterns.md` — Hero spec (four modes, shared glass card with default and wide variants, video augmentation)
 - `references/section-patterns.md` — Every non-hero section (nav, promo bar, trust marquee, services grid, stats dark section, before/after gallery, testimonials, promo callout, FAQ, contact form, footer, mobile bottom CTA)
-- `references/css-framework.md` — Typography tokens, color system, breakpoints, vanilla JS animation toolkit
-- `references/content-rules.md` — GRM voice mapping (Closing Table / Saturday Morning / Front Porch), headline patterns, CTA templates, FAQ templates per vertical
+- `references/css-framework.md` — Typography tokens, color system, breakpoints, rhythm tokens, vanilla JS animation toolkit
+- `references/typography.md` — (v0.8) Typography rule set: scale relationships, italic discipline, mono eyebrow system, SectionOpener/StatRow primitives, body measure, mobile scaling, font loading with opsz discipline, ornament rule, structural HTML contracts, exceptions principle
+- `references/voiceMap.md` — (v0.8) Voice-register distribution: three registers (Closing Table / Saturday Morning / Front Porch), three-tier service composition, voice-pivot anchor strip, featured pullquote pattern, Front Porch footer, register coupling rules
+- `references/content-rules.md` — GRM voice mapping by section, headline patterns, CTA templates, FAQ templates per vertical. Defers to voiceMap.md for register surface identity
 - `references/seo-geo.md` — JSON-LD schema templates, llms.txt template, meta tags, OpenGraph, lighthouse-ci spec
-- `references/deployment.md` — Vercel naming convention, Static Forms wiring, migration playbook pointer
+- `references/deployment.md` — Vercel naming convention, Static Forms wiring, vercel.json cache-header template, migration playbook pointer
 - `references/image-handling.md` — Phase 3 photo sources, Unsplash tier-4 fallback, compression, lazy loading
 - `references/anti-slop-rules.md` — Negative design rules, banned fonts, banned layouts, banned phrases
 
@@ -82,7 +84,7 @@ For each check, verify the condition and report status. If any check fails, stop
    - Why this matters: Plan B is the active component source while Magic MCP is broken (per `LESSONS.md` integration entry). Without it, Phase 5 cannot generate components.
 
 4. **All skill files present at the install path.**
-   - Verify: `~/.claude/skills/prospect-site/SKILL.md` exists AND every file in `~/.claude/skills/prospect-site/references/` is present (10 reference files: hero-patterns.md, section-patterns.md, css-framework.md, content-rules.md, image-handling.md, seo-geo.md, deployment.md, anti-slop-rules.md, scale-architecture.md, LESSONS.md).
+   - Verify: `~/.claude/skills/prospect-site/SKILL.md` exists AND every file in `~/.claude/skills/prospect-site/references/` is present (12 reference files: hero-patterns.md, section-patterns.md, css-framework.md, content-rules.md, typography.md, voiceMap.md, image-handling.md, seo-geo.md, deployment.md, anti-slop-rules.md, scale-architecture.md, LESSONS.md).
    - On failure: report "Skill installation incomplete. Missing files: [list]. Re-install the skill from the grm-automations repo."
    - Why this matters: the skill files reference each other constantly. A missing file produces silent broken behavior in whichever phase tries to load it.
 

@@ -22,6 +22,21 @@ This file does not duplicate the voice skill. It does three things on top of it:
 2. **Documents the universal GRM rules and banned words list** as a synced excerpt so Phase 5 can enforce them without network access. This excerpt must stay in sync with the voice skill manually. When the voice skill updates, update this file too.
 3. **Provides contractor-specific patterns** that do not exist in the voice skill: headline patterns, CTA templates, service description templates, FAQ templates per trade vertical, and house formatting rules for phone numbers, hours, license numbers, and years in business.
 
+## Relationship to voiceMap.md (v0.8+)
+
+<!--
+Reconciliation framing (voiceMap.md owns register identity and surface rules;
+content-rules.md owns copy discipline, sample outputs, and DO/DO NOT patterns)
+is a Wave 1 authoring decision pending Design confirmation in v0.8 Wave 5 prose pass.
+If Design reads this division differently, reconcile before Wave 3 cites registers by name.
+-->
+
+`references/voiceMap.md` is the canonical source for **register identity** on contractor preview sites — which surfaces (type, borders, link treatment, focus rings, backgrounds, italic policy) belong to each register, how registers couple to backgrounds, when the voice-pivot anchor strip fires, and how the three-tier service composition (Signature / Operational / Distinctive) maps services to registers.
+
+This file is canonical for **copy discipline** inside each register on contractor sites — which section gets which register, approved headline patterns, CTA templates, sample outputs, DO/DO NOT lists, banned phrases.
+
+When a voiceMap.md rule and a content-rules.md rule appear to conflict, voiceMap.md wins for surface/visual identity and content-rules.md wins for copy voice. If they genuinely conflict on the same axis, flag it — that is drift and the rule needs synthesis, not silent resolution.
+
 ---
 
 ## THE critical clarification: "Plant Street voice" meant two different things
@@ -221,6 +236,8 @@ The grep pass in Phase 6 catches banned phrases mechanically. The four human-jud
 ## The three voices in brief (for Phase 5 reference)
 
 Full voice definitions live in GRM_VOICE_SKILL.md. These short summaries exist so Phase 5 can reference the key rules without fetching the full skill file every time.
+
+**Cross-reference.** The subsections below cover **copy discipline** — structure, DO/DO NOT, sample outputs. Surface-level register identity (type scale, italic policy, borders, link treatment, focus rings, backgrounds, mono register) lives in `voiceMap.md §2a/2b/2c`. When authoring a section, read both.
 
 ### Voice 4: The Closing Table (PRIMARY voice for v0.7 contractor sites)
 

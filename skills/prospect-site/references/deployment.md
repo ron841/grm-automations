@@ -217,17 +217,26 @@ If Phase 5 generated the site into a subdirectory for any reason, Phase 7 writes
 
 ### Static asset headers
 
-**[SKILL]** Optionally, the `vercel.json` can configure cache headers for static assets to improve Lighthouse scores and reduce repeat-visit bandwidth:
+**[SKILL]** The `vercel.json` configures cache headers for static assets. Three rules, not one, because CSS/JS and images have different iteration cadences and a single catch-all breaks on iterative builds:
 
 ```json
 {
   "headers": [
     {
+      "source": "/(.*)\\.(css|js)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=300, must-revalidate"
+        }
+      ]
+    },
+    {
       "source": "/assets/(.*)",
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
+          "value": "public, max-age=31536000"
         }
       ]
     },
@@ -244,7 +253,13 @@ If Phase 5 generated the site into a subdirectory for any reason, Phase 7 writes
 }
 ```
 
-This tells browsers to cache everything in `/assets/` (images, CSS, JS) for a year, and to always re-check HTML files for updates. It is not strictly required for v0.7 but improves repeat-visit performance measurably.
+**Why three rules, not one.**
+
+- **CSS and JS at the site root are non-content-hashed.** `style.css` and `script.js` keep the same filename across iterations, so `immutable` is broken-by-design — it tells browsers the URL never changes while the contents do. A 5-minute `max-age` with `must-revalidate` lets clients re-check on every session without nuking cache performance within a session. When v0.9 adds content-hashed filenames at build time, this rule moves back to long-lived immutable caching.
+- **Images in `/assets/` are long-lived.** Photos, logos, and icons rarely change within a build lifecycle, and they are the bandwidth-heavy assets. Keep the one-year `max-age`, but drop `immutable` so revalidation remains possible if a photo does change. Images are the assets where cache longevity actually matters.
+- **HTML always revalidates.** A homepage HTML edit must land immediately on the next load.
+
+**Why this rule exists.** F5 A Quality Pool (April 2026) surfaced a four-hour cache-trap diagnostic caused by the original single-rule `/assets/(.*)` pattern at `max-age=31536000, immutable` catching `style.css` and `script.js`. F1–F4 didn't hit it because each build landed on a different alias; F5 was the first build with a second deploy onto the same alias with the same non-hashed filename, which is exactly the pattern every iterative flagship update will follow. The fix above ships with every v0.8+ build so iteration-breaking cache behavior stops being a trap to rediscover.
 
 ---
 

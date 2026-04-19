@@ -211,6 +211,17 @@ Every design token lives as a CSS custom property on `:root`. Section CSS and he
   --space-section-generous: 140px; /* Stats dark section */
   --space-section-promo: 100px;    /* Featured promotion callout */
 
+  /* ===== Rhythm tokens (typography.md §7) ===== */
+  /* Role-named padding tokens that carry the three-level rhythm hierarchy:   */
+  /* section > tier > card. Values tokenized from typography.md §7 ranges     */
+  /* (desktop 72-88v, mobile 48-64v) by picking specific points on each       */
+  /* range. Use these inside sections/tiers/cards authored against the        */
+  /* typography rule set; keep the older --space-section tokens for           */
+  /* legacy layout sections that predate the rhythm system.                   */
+  --section-padding-v: 80px;       /* Section vertical padding (top of range) */
+  --tier-padding-v: 56px;          /* Gap between tiers inside a composition */
+  --card-padding-v: 32px;          /* Card inner vertical padding */
+
   /* ===== Container widths ===== */
   --container-narrow: 860px;       /* FAQ, single-column content */
   --container-default: 1100px;     /* Contact, before/after */
@@ -256,6 +267,11 @@ Every design token lives as a CSS custom property on `:root`. Section CSS and he
     --space-section-compact: 40px;
     --space-section-generous: 100px;
     --space-section-promo: 72px;
+
+    /* Rhythm tokens — mobile values from typography.md §7 (48-64v range) */
+    --section-padding-v: 56px;
+    --tier-padding-v: 40px;
+    --card-padding-v: 24px;
   }
 }
 ```
@@ -272,6 +288,8 @@ Every design token lives as a CSS custom property on `:root`. Section CSS and he
 - Shadow tokens always start with `--shadow-`
 - Transition tokens always start with `--transition-`
 - Z-index tokens always start with `--z-`
+
+**Intentional exception: rhythm tokens.** `--section-padding-v`, `--tier-padding-v`, and `--card-padding-v` use the role-named convention from typography.md §0 (role / alias / override) rather than the `--space-` prefix. They are design-layer role names, not general spacing tokens. The `--space-*` prefix remains the rule for every other spacing token on this page.
 
 Never introduce a new token without following this pattern. Never reference a token that doesn't exist yet — Phase 5 should fail the build if it does.
 
