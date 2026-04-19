@@ -101,6 +101,11 @@ For each check, verify the condition and report status. If any check fails, stop
    - On failure: report "Prospect URL not reachable. Verify the URL is correct and the site is online before starting Phase 1."
    - Why this matters: Phase 1 deep capture cannot proceed against an unreachable site. Catching this in Phase 0 saves several minutes of failed Phase 1 attempts.
 
+8. **Workspace git tracking initialized.** This is the final step of Phase 0, run after all other hard checks pass and before Phase 1 begins.
+   - Action: create the prospect folder at `~/grm-sites-prospects/[business-slug]/` if it does not already exist. Inside it, write `.gitignore` with entries `node_modules/`, `.DS_Store`, `*.log`, `.env`, `.env.local`. Run `git init -b main`. Stage the `.gitignore` and make an initial empty-working-tree commit titled `Workspace initialized for [business name]` (use `--allow-empty` since nothing else exists yet, or include the `.gitignore` in the initial commit — either is acceptable).
+   - On failure: report the exact git error. If `git` is not installed or the filesystem is read-only, Phase 1 cannot proceed — this is a hard stop.
+   - Why this matters: Prospect workspaces accumulate HTML, photos, and profile data across Phase 1-8. Without git tracking from the start, post-deploy hotfixes (F4 Grandview, F2 footer tap-targets) have zero rollback granularity. Initializing before Phase 1 means every phase boundary is a candidate commit point, and every hotfix after Phase 7 is tracked with file-level precision. Retrofitted on 2026-04-17 across all six pre-v0.7.4 flagships; from v0.7.3 hotfix #11 forward, every build is tracked from the first byte captured.
+
 ### Soft checks (warn but continue)
 
 These checks log a warning to the build report but do not block Phase 1. They are tracked for future v0.8 hardening when the underlying integration becomes mission-critical.
@@ -135,6 +140,7 @@ Hard checks:
   ✓ .env keys present
   ✓ Disk space: 4.2GB free
   ✓ Prospect URL reachable: 200
+  ✓ Workspace git initialized (initial commit <hash>)
 
 Soft checks:
   ⚠ HubSpot pipeline not configured (v0.7 technical debt)
@@ -702,6 +708,22 @@ Steps:
 2. If anything unusual happened during the build (unexpected data, soft warnings, recovery actions, novel photo assignment decisions), append an entry to the project-level `LESSONS.md` at `~/.claude/skills/prospect-site/LESSONS.md` in the format shown in that file.
 3. Output the done report (see Output Format section below).
 
+## Post-deploy hotfix workflow
+
+When making post-deploy hotfix edits to a deployed workspace, commit changes in the workspace repo before redeploying. One logical change per commit. This gives rollback granularity below the file level.
+
+Standard flow:
+
+1. Diagnose first, no writes. Report findings; wait for Ron to confirm the fix.
+2. Edit the minimum file set. Do not fold unrelated cleanup into a hotfix.
+3. Grep-verify the fix on disk.
+4. `git add <files>` (prefer naming files explicitly over `git add .` to avoid pulling in unrelated changes), then `git commit -m "Fx hotfix: <one-line summary>"` where `Fx` is the flagship number (F1 through F6 at v0.7.3, continuing forward).
+5. Redeploy under the existing `[slug]-grm.vercel.app` alias via `vercel --prod --yes`.
+6. Live smoke test: curl the affected URL, grep the response for the expected change.
+7. Report: commit hash, deployment ID, smoke-test result.
+
+If Phase 1 diagnostic reveals the scope is broader than the brief (e.g., fixing tap-target sizing on F2 surfaces a second a11y issue), pause and expand scope with Ron before committing. Scope creep inside a single commit loses the rollback granularity this workflow exists to create.
+
 ## GRM voice summary
 
 These are the rules at a glance. For the full voice spec with examples and headline patterns, see `references/content-rules.md`.
@@ -770,6 +792,14 @@ Ready for Ron to review on mobile. Next step: open the URL on your phone and run
 prospect-site v0.7.2, updated Wednesday April 16, 2026. Built on v0.5's foundation (heavily specified flagship 1 hero, Phase 2.5 SEO audit, Phase 5.5 GEO injection, Plant Street voice, CSS hygiene rules) plus Cowork's 21st.dev hero research (Glassmorphism Trust Hero as content layer, data-driven background modes), plus anthropics/skills progressive disclosure pattern, plus frontend-design anti-slop rules, plus Magic UI extracts for button and card enhancements, plus Aceternity pattern rebuilds in vanilla JS. Architectural antidote to v0.6's four-pattern collapse: one structural pattern, heavily specified, deterministic data-driven variation.
 
 ### Changelog
+
+### v0.7.3 hotfix #11 — 2026-04-17 evening — Phase 0 git tracking requirement
+
+Phase 0 gains an eighth hard check: every prospect workspace must be git-initialized before Phase 1 begins. Workspaces accumulate HTML, photos, and profile data across phases; post-deploy hotfixes need rollback granularity below the file level. Also adds a "Post-deploy hotfix workflow" section codifying the commit-before-redeploy pattern used on F4 Grandview's NAP hotfix tonight. All six pre-v0.7.4 flagships (F1-F6) were retrofitted with initial commits on 2026-04-17; from this hotfix forward, every new build is tracked from the first byte captured.
+
+### v0.7.3 hotfix #10 — 2026-04-17 afternoon — Skip-link 8px visible dash fix
+
+Skip-link visible 8px dash at top of viewport fixed. Corrected CSS in `references/css-framework.md`: `top: -48px; height: 40px; padding: 10px 20px;` so the skip-link sits fully off-screen until keyboard focus pulls it into view. Shipped before F6 Oxford Lawn kickoff and validated clean on that build's first generation. Commit `b4591c8`.
 
 ### v0.7.3 — 2026-04-16 evening — "Grandview Patch"
 

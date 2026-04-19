@@ -796,17 +796,24 @@ Every generated page gets a skip-to-content link as the first child of `<body>`.
 ```css
 .skip-link {
   position: absolute;
-  top: -40px;
+  top: -48px;
   left: 16px;
+  height: 40px;
   background: var(--color-primary);
   color: var(--color-white);
-  padding: 12px 20px;
+  padding: 10px 20px;
   border-radius: var(--radius-md);
   font-weight: var(--fw-semibold);
   text-decoration: none;
   z-index: 1000;
   transition: top var(--transition-fast);
 }
+
+/* v0.7.3 hotfix #10 (2026-04-17): top was -40px with no height declared, which
+   allowed the rendered element to expand to ~48px from font + padding and left
+   an 8px brand-colored strip visible above the viewport. Explicit height: 40px
+   plus top: -48px now guarantees the element sits fully above the fold until
+   keyboard-focused. Observed on F1 (red), F4 (green), F5 (blue). */
 
 .skip-link:focus {
   top: 16px;
