@@ -31,6 +31,7 @@ This skill uses the progressive disclosure pattern. SKILL.md contains the workfl
 - `references/deployment.md` — Vercel naming convention, Static Forms wiring, vercel.json cache-header template, migration playbook pointer
 - `references/image-handling.md` — Phase 3 photo sources, Unsplash tier-4 fallback, compression, lazy loading
 - `references/anti-slop-rules.md` — Negative design rules, banned fonts, banned layouts, banned phrases
+- `references/handoff-discipline.md` — (v0.8) Skill-file authoring protocol: three-lens pattern, foundation preservation, whitelist frame, canonical artifact pattern, handoff vocabulary, scope-gate rule. Governs future skill-file rounds; runtime Claude does not load
 
 Load a reference file when the phase that needs it begins. Do not load all of them upfront.
 
@@ -58,6 +59,10 @@ These rules exist because prior builds failed by ignoring them. Do not skip any 
 
 10. **No em dashes anywhere.** GRM house rule. Use commas or periods. The skill includes a pre-deploy grep check for em dashes in both UTF-8 and HTML-entity encodings.
 
+11. **Foundation preservation is non-negotiable across handoffs.** The deployed build is the source of truth. Any merge into a flagship build must preserve the full SEO/GEO/schema/a11y/script-driver foundation (the 13-item set enumerated in `references/handoff-discipline.md` §3). Modify only the explicit whitelist granted in the authoring prompt; every other element — HTML structure, `<head>` contents, scripts, ARIA, data attributes, schema, meta tags — passes through unchanged. Code's merge gate validates every foundation item before the commit that stages a deploy. Any missing item blocks the commit. See `references/handoff-discipline.md` §3 for detail.
+
+12. **Whitelist-the-changes frame on Design-authoring prompts.** Every Design-authoring prompt that touches a deployed build opens with the whitelist frame from `references/handoff-discipline.md` §4. Modify-surfaces named by explicit item; everything else passes through unchanged; propose-and-wait before expanding the whitelist. Green-field composition from an empty canvas does not need the frame. See `references/handoff-discipline.md` §4 for the full frame text and propose-and-wait clause.
+
 ## Phase 0 — Pre-flight integrity check
 
 Goal: fail fast before any Phase 1+ work begins. Better to spend 10 seconds verifying integrations than 30 minutes diagnosing why Phase 5 broke. Phase 0 runs before every prospect build, no exceptions.
@@ -84,7 +89,7 @@ For each check, verify the condition and report status. If any check fails, stop
    - Why this matters: Plan B is the active component source while Magic MCP is broken (per `LESSONS.md` integration entry). Without it, Phase 5 cannot generate components.
 
 4. **All skill files present at the install path.**
-   - Verify: `~/.claude/skills/prospect-site/SKILL.md` exists AND every file in `~/.claude/skills/prospect-site/references/` is present (12 reference files: hero-patterns.md, section-patterns.md, css-framework.md, content-rules.md, typography.md, voiceMap.md, image-handling.md, seo-geo.md, deployment.md, anti-slop-rules.md, scale-architecture.md, LESSONS.md).
+   - Verify: `~/.claude/skills/prospect-site/SKILL.md` exists AND every file in `~/.claude/skills/prospect-site/references/` is present (13 reference files: hero-patterns.md, section-patterns.md, css-framework.md, content-rules.md, typography.md, voiceMap.md, handoff-discipline.md, image-handling.md, seo-geo.md, deployment.md, anti-slop-rules.md, scale-architecture.md, LESSONS.md).
    - On failure: report "Skill installation incomplete. Missing files: [list]. Re-install the skill from the grm-automations repo."
    - Why this matters: the skill files reference each other constantly. A missing file produces silent broken behavior in whichever phase tries to load it.
 
