@@ -6,6 +6,30 @@
 
 ---
 
+## Changelog
+
+Authoritative v0.8 decisions recorded at each wave close and at any mid-wave arbitration event. Canonical entry format: `- [date]: [decision]. [reason]. [scope-doc change if applicable.] (primary SHA[; retrofits: SHA1, SHA2][; auth: source])`. Entries below are ordered by authorial significance within each date block.
+
+### 2026-04-20 — Wave 2 close
+
+- 2026-04-20: typography.md Appendix B — Fraunces + Inter + JetBrains Mono universal across all three tiers. Typography signature (ss01+ss02+opsz) is floor-level per Appendix B; Space Grotesk removed from Professional entirely; tier variation lives in palette, density, motion, imagery — not typeface selection. (`6ec0f6d`; auth: typography.md Appendix B, authored in `e1ca457`)
+- 2026-04-20: Tier-3 headline ceiling set at 144px (supersedes F5's pre-rule 128). Rule-compliant per typography.md §1 (1920 × 7vw = 134 minimum floor); preserves tier-3 < hero hierarchy (hero at 148). (`b0c04e9`; auth: typography.md §1)
+- 2026-04-20: typography.md §10.4 Marker classes codified. Structural HTML contracts generalize beyond `<br>` to a pattern: marker-class attached to a semantic element, content-visible or no-op depending on context, CSS consumes via `.marker-[name]` selector. Enables italic-placement axis in SectionOpener without structural drift. (`e1ca457`; auth: typography.md §10.4)
+- 2026-04-20: typography.md §4 Axis applicability codified. SectionOpener's four-axis parameterization (eyebrow-size, headline-scale, italic-placement, orientation) gated by orientation value: `orientation: tag-strip-inline` rejects eyebrow-size parameter; invalid axis combinations fail at primitive contract. (`e1ca457`; retrofits: `8654668`, `816f58a`; auth: typography.md §4)
+- 2026-04-20: StatRow column-count locked at 3-col through tablet stage, 1-col at ≤540px only. Supersedes earlier "3-col → 2-col → 1-col" framing (unauthored). Per Design Q1 verdict: rhythm-as-stanza reasoning — StatRow is a single rhythmic unit that either holds at 3-col or drops to vertical stack; no intermediate 2-col layout. Scope-doc Core #5 text corrected in this commit to match. (`d0affba`; auth: voiceMap.md §2a + typography.md §5)
+- 2026-04-20: StatRow numeral scale authored as canonical-plus-variant two-modifier model. Canonical 48px implicit via base `.statrow__num` rule (specificity 0,1,0); compressed 36px explicit via `.statrow--numeral-36` modifier (specificity 0,2,0; wins by specificity, not source order). Per-modifier mobile overrides: canonical 48→42 at ≤540px, compressed 36 holds. (`d0affba`; auth: typography.md §5 per Design Q2)
+- 2026-04-20: Modifier scheme precedent established for future primitives. Multi-peer axes (all values equal-status) use explicit modifiers per value (SectionOpener pattern). Canonical-plus-variant axes (one editorial default, sparse variants) use default-in-base + variant-modifier (StatRow pattern). Future primitives follow whichever pattern matches the axis structure. (`b0c04e9`, `14820f2`, `d0affba`; auth: Design Q2 + implementation precedent)
+- 2026-04-20: Voice-map HTML comment syntax pinned. Format: `<!-- voice-map: [register] -->`. Values: closing-table | saturday-morning | front-porch | voice-pivot (kebab-case, verbatim from voiceMap §2). Placement: one comment per section, emitted at top of every primitive container. Phase 5 emits; Wave 4 grep gate verifies. Reserves machine-legible register signal for v0.8.1 register-aware copy generation without locking in the architecture. (`6739aa5`; auth: voiceMap.md §2 + §8, SKILL.md Phase 5 integration point #7)
+- 2026-04-20: Phase 5 copy generation accepted as register-agnostic for v0.8 (Path A). Register enforcement lands at container level via Wave 2 primitives (SectionOpener + StatRow) and at copy-generation level in v0.8.1. Voice-map HTML comment pinned now reserves the signal; v0.8 does not read the comment for register-aware generation. (`6739aa5`; auth: voiceMap.md §8)
+- 2026-04-20: `--font-mono` promoted to CONFIG token. Hardcoded `'JetBrains Mono, ui-monospace, monospace'` references in `css-framework.md` replaced with `var(--font-mono)`; Phase 5 consumes `CONFIG.fonts.mono`. Parallels existing `--font-heading` / `--font-body` token architecture. (`076ffec`; auth: typography.md §3 mono tier)
+- 2026-04-20: Weight 300 added to tier `googleFontsPath` values (all three tiers). typography.md §2 italic-em pattern specifies weight 300 for italic phrase breaks; tier font-loading URL strings were missing weight 300 pre-`ae9617a`, causing italic-em to silently render at fallback weight in Phase 5 builds. (`ae9617a`; auth: typography.md §2)
+- 2026-04-20: Phase 5 emits three-link font-loading block (preconnect + preconnect-crossorigin + stylesheet) uniformly across all three tier `googleFontsPath` values after Fraunces universal landed. JetBrains Mono hygiene reconciliation. (`11415e6`; auth: typography.md §8 opsz discipline)
+- 2026-04-20: Mobile breakpoint reconciled from 899px to 980px; partner desktop-min from 900px to 981px. Aligns `css-framework.md` with typography.md §7's mobile scaling range (mobile ≤980px, desktop ≥981px). Prior 899/900 values were initial-draft inconsistencies. (`83d088a`, `bef19f2`; auth: typography.md §7)
+- 2026-04-20: Core #6 honest-placeholder primitive re-scoped from Wave 2 to Wave 3. Rationale: thematically fits composition-around-gaps work that defines Wave 3. Clean Wave 2 close on what shipped (SectionOpener + StatRow). Item #6 remains Tier 1 Core; only the wave assignment changed. Wave 2 and Wave 3 Sequencing lines edited in this commit. (`be032c7` state-doc reflection; scope-doc edit: this commit; auth: 2026-04-20 session pin)
+- 2026-04-20: Extended #23 reserved-frame CSS primitive lift re-scoped from Wave 2 to Wave 3. Rides with Core #6 per scope doc's own framing (§Tier 2 #23: "the visible implementation of Core #6"). Item #23 remains Tier 2; only the wave sequencing changed. Wave 2 and Wave 3 Sequencing lines edited in this commit. (scope-doc edit: this commit; auth: 2026-04-20 session pin + scope doc §Tier 2 #23 framing)
+
+---
+
 ## Framing
 
 v0.7.2 produces competent Professional-tier sites. The SEO-GEO foundation, a11y primitives, schema, and geographic-targeting carried across F1–F5 without intervention. What the skill cannot currently produce by default is editorial-grade output — the typography discipline, voice-register distribution, composition-around-gaps, and strategic service weighting that separates a flagship site from a good contractor site.
@@ -37,7 +61,7 @@ Design-authored, Code-classified, revised post-review. Three first-class registe
 Consolidates four current variants across services, equine, reviews, and signature sections into one named pattern. Four parameters: eyebrow size, headline scale, italic placement, orientation. 4-to-1 refactor of shipped F5 code — near-zero net authoring cost, high consolidation value.
 
 ### 5. StatRow primitive implementation
-Display numerals + mono labels with the 4×-ratio constraint enforced as an error, numeral weight ≤400 as a default, quiet-mono label register. Mobile responsive behavior baked in (3-col → 2-col → 1-col).
+Display numerals + mono labels with the 4×-ratio constraint enforced as an error, numeral weight ≤400 as a default, quiet-mono label register. Mobile responsive behavior baked in (3-col holds through tablet stage; 1-col at ≤540px only — no intermediate 2-col per Design Q1 2026-04-20).
 
 ### 6. Honest-placeholder pattern as CSS primitive
 Dashed striped frame with mono caption naming what's reserved and why. Silent blanks are forbidden. Already exists in F5's `.reserved-frame` class; lift to skill level. Tiny lift, guaranteed reuse.
@@ -154,9 +178,9 @@ Dependency-ordered, not time-ordered.
 
 **Wave 1 — Foundation.** typography.md (already drafted) + voiceMap.md (already drafted) + rhythm tokens + cache-header fix + foundation-preservation rule + whitelist-the-changes handoff frame. Load-bearing for everything downstream.
 
-**Wave 2 — Primitives.** SectionOpener + StatRow + honest-placeholder + reserved-frame lift. Consume Foundation.
+**Wave 2 — Primitives.** SectionOpener + StatRow. Consume Foundation. (Honest-placeholder + reserved-frame lift re-scoped to Wave 3 per 2026-04-20 changelog.)
 
-**Wave 3 — Composition.** Three-tier service composition implementation + featured-pullquote testimonials + hero-mode structure with fill protocol.
+**Wave 3 — Composition.** Three-tier service composition implementation + featured-pullquote testimonials + hero-mode structure with fill protocol + honest-placeholder primitive + reserved-frame CSS primitive lift (last two re-scoped from Wave 2 per 2026-04-20 changelog).
 
 **Wave 4 — Gates (parallel with Wave 2 or 3).** MD5 dedupe, per-photo classification requirement, comment-aware em-dash grep, slug reconciliation, font-link validator.
 
