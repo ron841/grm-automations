@@ -363,7 +363,7 @@ export default function WebPage() {
             <a className="side dark" href="https://cal.com/ron-kolb-cdlgsw/30min" data-cta="footer-book">
               <span className="eb">— Book online</span>
               <span className="num">15 minutes →</span>
-              <span className="sub">getrootedmedia.com/the-storefront</span>
+              <span className="sub">cal.com/ron-kolb-cdlgsw</span>
             </a>
           </div>
         </div>
