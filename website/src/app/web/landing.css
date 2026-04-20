@@ -1,0 +1,371 @@
+/* =========================================================================
+   Get Rooted Media — /web Landing Page
+   Ported from reference/landing-web/landing.css. Every selector below is
+   prefixed with .web-landing (the wrapper class on <main> in page.tsx) so
+   these styles only apply to this route and do not leak globally.
+
+   Deviations from the reference stylesheet:
+     - dropped global *, html, body resets (the app has its own)
+     - dropped .site-header / .sh-* and .site-footer / .sf-* rules
+       (Nav and Footer are global components, not in this page)
+     - .hero top padding bumped from 110px to 140px so the masthead
+       clears the fixed global Nav on first paint
+   Everything else is 1:1 with the reference.
+   ========================================================================= */
+
+.web-landing,
+.web-landing *,
+.web-landing *::before,
+.web-landing *::after { box-sizing: border-box; }
+
+.web-landing img { max-width: 100%; display: block; }
+.web-landing a { color: inherit; text-decoration: none; }
+
+.web-landing .container { max-width: 1160px; margin: 0 auto; padding: 0 40px; }
+@media (max-width: 720px) { .web-landing .container { padding: 0 24px; } }
+
+.web-landing .eb {
+  font-family: var(--font-eyebrow); font-weight: 700;
+  font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--grm-teal);
+}
+.web-landing .teal { color: var(--grm-teal); }
+.web-landing em { font-style: italic; }
+
+/* ============ Section wrappers =========================================== */
+.web-landing section { padding: 96px 0; position: relative; }
+@media (max-width: 720px) { .web-landing section { padding: 64px 0; } }
+
+.web-landing .sec--cream { background: var(--grm-cream); color: var(--grm-black); }
+.web-landing .sec--black { background: var(--grm-black); color: #fff; }
+.web-landing .sec--teal  { background: var(--grm-teal); color: #fff; }
+
+.web-landing .sec--black .eb { color: var(--grm-teal); }
+.web-landing .sec--teal  .eb { color: rgba(255,255,255,0.85); }
+
+/* ============ HERO ======================================================= */
+/* top padding bumped from 110px so the masthead clears the fixed global Nav */
+.web-landing .hero { padding: 140px 0 80px; }
+.web-landing .hero .pubmark { line-height: 0.9; margin-bottom: 24px; }
+.web-landing .hero .pubmark .the {
+  display:block; font-family: var(--font-script); font-size: clamp(52px, 7vw, 92px); color: var(--grm-teal); line-height: 1;
+}
+.web-landing .hero .pubmark .title {
+  display:block; font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(72px, 12vw, 150px); line-height: 0.9; letter-spacing: -0.03em; color: var(--grm-black); margin-top: -10px;
+}
+.web-landing .hero .dek {
+  font-family: var(--font-display); font-style: italic;
+  font-size: clamp(20px, 2.4vw, 28px); line-height: 1.35; color: rgb(26 26 26 / 0.72);
+  max-width: 720px; margin: 8px 0 28px;
+}
+.web-landing .hero .rule { width: 80px; height: 2px; background: var(--grm-teal); margin-bottom: 36px; }
+
+.web-landing .hero .opener { max-width: 720px; }
+.web-landing .hero .lede {
+  font-family: var(--font-body); font-size: 18px; line-height: 1.65; margin: 0 0 16px; color: rgb(26 26 26 / 0.92);
+}
+.web-landing .hero .drop {
+  float: left; font-family: var(--font-display); font-weight: 700;
+  font-size: 80px; line-height: 0.85; color: var(--grm-teal); padding: 6px 14px 0 0; margin-top: 4px;
+}
+
+/* Stats strip */
+.web-landing .stats {
+  margin-top: 56px;
+  display:grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+  border-top: 1px solid rgba(26,26,26,0.15); padding-top: 32px;
+}
+.web-landing .stat { padding: 0 16px 0 18px; border-left: 1px solid rgba(26,26,26,0.18); }
+.web-landing .stat:first-child { border-left: 2px solid var(--grm-teal); }
+.web-landing .stat .num {
+  font-family: var(--font-display); font-weight: 700; font-size: clamp(38px, 4vw, 52px);
+  line-height: 1; letter-spacing: -0.02em; color: var(--grm-black);
+}
+.web-landing .stat .dk {
+  font-family: var(--font-display); font-style: italic; font-size: 14px; line-height: 1.45;
+  color: rgb(26 26 26 / 0.75); margin-top: 12px;
+}
+.web-landing .stat .src {
+  font-family: var(--font-eyebrow); font-size: 9.5px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgb(26 26 26 / 0.5); margin-top: 14px; line-height: 1.5;
+}
+@media (max-width: 900px) { .web-landing .stats { grid-template-columns: 1fr 1fr; gap: 28px; } }
+@media (max-width: 480px) { .web-landing .stats { grid-template-columns: 1fr; gap: 24px; } .web-landing .stat { border-left: 2px solid var(--grm-teal); } }
+
+/* ============ THE SHIFT (black) ========================================= */
+.web-landing .shift .head {
+  display:grid; grid-template-columns: 1fr; gap: 0; margin-bottom: 40px;
+}
+.web-landing .shift h2 {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(34px, 4.8vw, 56px); line-height: 1.05; letter-spacing: -0.02em;
+  color: #fff; margin: 10px 0 0; max-width: 900px;
+}
+.web-landing .shift .body {
+  display:grid; grid-template-columns: 1fr 1fr; gap: 44px; max-width: 960px;
+}
+.web-landing .shift .body p {
+  font-family: var(--font-body); font-size: 16px; line-height: 1.7; color: rgba(255,255,255,0.82); margin: 0 0 14px;
+}
+@media (max-width: 720px) { .web-landing .shift .body { grid-template-columns: 1fr; gap: 0; } }
+
+.web-landing .shift .pull {
+  margin-top: 56px; padding: 32px 0 24px; border-top: 2px solid var(--grm-teal);
+  position: relative;
+}
+.web-landing .shift .pull .mark {
+  position:absolute; top: 0; left: -6px;
+  font-family: var(--font-display); font-style: italic; font-weight: 700;
+  font-size: 140px; line-height: 1; color: var(--grm-teal); opacity: 0.32;
+  pointer-events: none; transform: translateY(-30%);
+}
+.web-landing .shift .pull .body {
+  font-family: var(--font-display); font-style: italic; font-weight: 700;
+  font-size: clamp(28px, 4vw, 44px); line-height: 1.15; letter-spacing: -0.015em;
+  color: #fff; max-width: 940px; display:block; padding-left: 14px;
+}
+.web-landing .shift .pull .body em { color: var(--grm-teal); }
+.web-landing .shift .pull .tail {
+  margin-top: 14px; padding-left: 14px;
+  font-family: var(--font-display); font-style: italic; font-size: 16px; line-height: 1.5;
+  color: rgba(255,255,255,0.70); max-width: 720px;
+}
+
+/* ============ THE DIAGNOSIS (cream) ===================================== */
+.web-landing .diagnosis h2 {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(34px, 4.4vw, 52px); line-height: 1.1; letter-spacing: -0.02em;
+  color: var(--grm-black); margin: 10px 0 0; max-width: 880px;
+}
+.web-landing .holes {
+  list-style: none; padding: 0; margin: 48px 0 0;
+  display:grid; grid-template-columns: 1fr; gap: 0;
+}
+.web-landing .holes li {
+  display:grid; grid-template-columns: 96px 1fr; gap: 32px;
+  padding: 28px 0; border-top: 1px solid rgba(26,26,26,0.18); align-items: start;
+}
+.web-landing .holes li:last-child { border-bottom: 1px solid rgba(26,26,26,0.18); }
+.web-landing .holes .n {
+  font-family: var(--font-display); font-weight: 700; font-size: 56px; line-height: 1;
+  color: var(--grm-teal); letter-spacing: -0.02em;
+}
+.web-landing .holes .ft {
+  font-family: var(--font-display); font-weight: 700; font-size: clamp(20px, 2.4vw, 26px); line-height: 1.2;
+  color: var(--grm-black); margin: 6px 0 8px;
+}
+.web-landing .holes .dk {
+  font-family: var(--font-body); font-size: 16px; line-height: 1.65; color: rgb(26 26 26 / 0.82); max-width: 680px;
+}
+@media (max-width: 720px) {
+  .web-landing .holes li { grid-template-columns: 60px 1fr; gap: 18px; padding: 22px 0; }
+  .web-landing .holes .n { font-size: 40px; }
+}
+
+/* ============ THIRTY-SECOND TEST (teal) ================================= */
+.web-landing .test-sec { padding: 64px 0; }
+.web-landing .test {
+  display:grid; grid-template-columns: 1fr; gap: 18px; align-items: start; max-width: 1060px;
+}
+.web-landing .test .head {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(28px, 4vw, 44px); line-height: 1.15; letter-spacing: -0.015em;
+  color: #fff;
+}
+.web-landing .test .head em { font-style: italic; color: var(--grm-black); background: #fff; padding: 2px 12px; display: inline-block; }
+.web-landing .test .tail {
+  font-family: var(--font-display); font-style: italic; font-size: clamp(18px, 2vw, 22px); line-height: 1.4;
+  color: rgba(255,255,255,0.92); max-width: 820px;
+}
+.web-landing .test .cta-row { margin-top: 24px; display:flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+.web-landing .test .cta {
+  display:inline-block; background: var(--grm-black); color:#fff;
+  padding: 16px 28px; font-family: var(--font-eyebrow); font-weight: 700; font-size: 12px;
+  letter-spacing: 0.22em; text-transform: uppercase; border-radius: 2px;
+}
+.web-landing .test .cta:hover { background: #fff; color: var(--grm-black); }
+.web-landing .test .meta {
+  font-family: var(--font-body); font-size: 14px; color: rgba(255,255,255,0.75);
+}
+
+/* ============ WHAT WE SHIP (cream) ====================================== */
+.web-landing .ship h2 {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(36px, 5vw, 60px); line-height: 1; letter-spacing: -0.025em; color: var(--grm-black);
+  margin: 6px 0 0;
+}
+.web-landing .ship h2 .line { display:block; }
+.web-landing .ship .lede {
+  font-family: var(--font-display); font-style: italic; font-size: clamp(17px, 2vw, 20px); line-height: 1.5;
+  color: rgb(26 26 26 / 0.72); margin: 20px 0 0; max-width: 720px;
+}
+.web-landing .ships {
+  list-style: none; padding: 0; margin: 48px 0 0;
+  display:grid; grid-template-columns: 1fr 1fr; gap: 0 56px;
+}
+.web-landing .ships li {
+  display:grid; grid-template-columns: 64px 1fr; gap: 20px;
+  padding: 24px 0; border-top: 1px solid rgba(26,26,26,0.18); align-items: start;
+}
+.web-landing .ships .n {
+  font-family: var(--font-display); font-weight: 700; font-size: 32px; color: var(--grm-teal); line-height: 1; letter-spacing: -0.02em;
+}
+.web-landing .ships .ft {
+  font-family: var(--font-display); font-weight: 700; font-size: 18px; line-height: 1.25; color: var(--grm-black);
+}
+.web-landing .ships .dk {
+  font-family: var(--font-body); font-size: 14.5px; line-height: 1.55; color: rgb(26 26 26 / 0.78); margin-top: 4px;
+}
+@media (max-width: 720px) { .web-landing .ships { grid-template-columns: 1fr; gap: 0; } }
+
+/* ============ PRICING (black) =========================================== */
+.web-landing .pricing h2 {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(34px, 4.4vw, 52px); line-height: 1.1; letter-spacing: -0.02em; color: #fff;
+  margin: 6px 0 40px; max-width: 880px;
+}
+.web-landing .price-grid {
+  display:grid; grid-template-columns: 1fr 1fr; gap: 0;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+.web-landing .price-grid .p {
+  padding: 44px 40px 40px; border-right: 1px solid rgba(255,255,255,0.15);
+}
+.web-landing .price-grid .p:last-child { border-right: none; }
+.web-landing .price-grid .lbl {
+  font-family: var(--font-eyebrow); font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--grm-teal); margin-bottom: 14px;
+}
+.web-landing .price-grid .num {
+  font-family: var(--font-display); font-weight: 700; font-size: clamp(60px, 7vw, 92px); line-height: 0.9;
+  letter-spacing: -0.03em; color: #fff;
+}
+.web-landing .price-grid .num .mo {
+  font-size: 24px; color: rgba(255,255,255,0.55); letter-spacing: 0; font-weight: 400;
+}
+.web-landing .price-grid .sub {
+  font-family: var(--font-body); font-size: 15px; line-height: 1.55; color: rgba(255,255,255,0.72); margin-top: 14px; max-width: 380px;
+}
+@media (max-width: 720px) {
+  .web-landing .price-grid { grid-template-columns: 1fr; }
+  .web-landing .price-grid .p { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.15); padding: 32px 24px; }
+  .web-landing .price-grid .p:last-child { border-bottom: none; }
+}
+
+/* ============ THE PREVIEW (teal) + intake form ========================= */
+.web-landing .preview .head { margin-bottom: 24px; }
+.web-landing .preview .head .word {
+  display: block;
+  font-family: var(--font-display); font-weight: 700; font-size: clamp(44px, 6vw, 84px);
+  line-height: 1.05; letter-spacing: -0.025em; color: #fff;
+}
+.web-landing .preview .head .word + .word { margin-top: 6px; }
+.web-landing .preview .head .word em { font-style: italic; }
+.web-landing .preview .body {
+  font-family: var(--font-body); font-size: clamp(17px, 2vw, 20px); line-height: 1.55;
+  color: rgba(255,255,255,0.92); max-width: 820px; margin: 0;
+}
+
+.web-landing .intake {
+  margin-top: 48px;
+  background: var(--grm-cream); color: var(--grm-black);
+  padding: 40px; max-width: 720px;
+}
+.web-landing .intake h3 {
+  font-family: var(--font-display); font-weight: 700; font-size: 24px; line-height: 1.2; letter-spacing: -0.01em;
+  margin: 0 0 6px;
+}
+.web-landing .intake .note {
+  font-family: var(--font-display); font-style: italic; font-size: 15px; color: rgb(26 26 26 / 0.65);
+  margin: 0 0 24px;
+}
+.web-landing .intake form { display:grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.web-landing .intake .field { display:flex; flex-direction: column; gap: 6px; }
+.web-landing .intake .field.full { grid-column: 1 / -1; }
+.web-landing .intake label {
+  font-family: var(--font-eyebrow); font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase;
+  color: rgb(26 26 26 / 0.6);
+}
+.web-landing .intake input {
+  font-family: var(--font-body); font-size: 16px; padding: 12px 14px;
+  border: 1px solid rgba(26,26,26,0.25); background: #fff; border-radius: 2px;
+  color: var(--grm-black); width: 100%;
+}
+.web-landing .intake input:focus { outline: 2px solid var(--grm-teal); outline-offset: -1px; border-color: var(--grm-teal); }
+.web-landing .intake button {
+  grid-column: 1 / -1;
+  background: var(--grm-black); color: #fff; border: 0; padding: 16px 24px; margin-top: 8px;
+  font-family: var(--font-eyebrow); font-weight: 700; font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+  border-radius: 2px; cursor: pointer;
+}
+.web-landing .intake button:hover { background: var(--grm-teal); }
+.web-landing .intake .fine {
+  grid-column: 1 / -1; font-family: var(--font-body); font-size: 12px; color: rgb(26 26 26 / 0.55); margin-top: 2px;
+}
+@media (max-width: 600px) { .web-landing .intake form { grid-template-columns: 1fr; } .web-landing .intake { padding: 28px 24px; } }
+
+/* ============ SIGN-OFF + DUAL CTA (cream) ============================== */
+.web-landing .signoff .ron {
+  display:grid; grid-template-columns: 1fr; gap: 12px; max-width: 760px; margin-bottom: 48px;
+}
+.web-landing .signoff .ron h2 {
+  font-family: var(--font-display); font-weight: 700; font-size: clamp(28px, 3.4vw, 38px); line-height: 1.15;
+  letter-spacing: -0.01em; color: var(--grm-black); margin: 0;
+}
+.web-landing .signoff .ron p {
+  font-family: var(--font-body); font-size: 16px; line-height: 1.7; color: rgb(26 26 26 / 0.88); margin: 0;
+}
+.web-landing .signoff .ron .tag {
+  margin-top: 10px; font-family: var(--font-script); font-size: 32px; line-height: 1; color: var(--grm-teal);
+}
+
+.web-landing .dual-cta {
+  display:grid; grid-template-columns: 1fr 56px 1fr; align-items: stretch; gap: 0;
+  border: 1px solid var(--grm-black); max-width: 960px;
+}
+.web-landing .dual-cta .side {
+  display:flex; flex-direction: column; justify-content: center; padding: 28px 32px; color: var(--grm-black);
+}
+.web-landing .dual-cta .side.dark { background: var(--grm-black); color: #fff; }
+.web-landing .dual-cta .side .eb {
+  font-family: var(--font-eyebrow); font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--grm-teal); margin-bottom: 6px;
+}
+.web-landing .dual-cta .side .num {
+  font-family: var(--font-display); font-weight: 700; font-size: clamp(28px, 3.5vw, 40px); line-height: 1; letter-spacing: -0.015em;
+}
+.web-landing .dual-cta .side.dark .num { color: #fff; }
+.web-landing .dual-cta .side .sub {
+  font-family: var(--font-body); font-size: 13px; line-height: 1.45; margin-top: 6px; color: rgb(26 26 26 / 0.65);
+}
+.web-landing .dual-cta .side.dark .sub { color: rgba(255,255,255,0.65); }
+.web-landing .dual-cta .divider {
+  display:flex; align-items:center; justify-content:center;
+  font-family: var(--font-eyebrow); font-size: 10px; letter-spacing: 0.22em; color: rgb(26 26 26 / 0.4);
+  background: var(--grm-cream); border-left: 1px solid rgba(26,26,26,0.15); border-right: 1px solid rgba(26,26,26,0.15);
+}
+@media (max-width: 720px) {
+  .web-landing .dual-cta { grid-template-columns: 1fr; }
+  .web-landing .dual-cta .divider { padding: 10px 0; border: 0; border-top: 1px solid rgba(26,26,26,0.15); border-bottom: 1px solid rgba(26,26,26,0.15); }
+}
+
+/* ============ SOURCES STRIP (thin, above footer) ======================== */
+.web-landing .sources-strip { padding: 40px 0 56px; }
+.web-landing .sources-row {
+  display:grid; grid-template-columns: 180px 1fr; gap: 24px;
+  padding-top: 24px; border-top: 1px solid rgba(26,26,26,0.18);
+}
+.web-landing .sources-row .lbl {
+  font-family: var(--font-eyebrow); font-weight: 700; font-size: 11px;
+  letter-spacing: 0.28em; text-transform: uppercase; color: var(--grm-teal);
+}
+.web-landing .sources-row .body {
+  font-family: var(--font-body); font-size: 12.5px; line-height: 1.65; color: rgb(26 26 26 / 0.6);
+}
+@media (max-width: 720px) {
+  .web-landing .sources-row { grid-template-columns: 1fr; gap: 10px; }
+}
+
+/* ============ Anchor offset for sticky header =========================== */
+.web-landing section[id] { scroll-margin-top: 80px; }
