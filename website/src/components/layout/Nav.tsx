@@ -21,6 +21,7 @@ export default function Nav() {
   const isContactPage = pathname === "/contact";
   const alwaysDark = pathname === "/contact";
   const [scrolled, setScrolled] = useState(alwaysDark);
+  const lightNav = !scrolled && pathname === "/the-storefront";
 
   useEffect(() => {
     if (alwaysDark) {
@@ -56,10 +57,14 @@ export default function Nav() {
         }`}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
-          {/* Logo — always show reversed (white) version */}
+          {/* Logo — swaps to black on light-hero routes until scroll */}
           <Link href="/" className="relative shrink-0">
             <Image
-              src="/logos/Logo_Get Rooted Media-REV.svg"
+              src={
+                lightNav
+                  ? "/logos/Logo_Get Rooted Media.svg"
+                  : "/logos/Logo_Get Rooted Media-REV.svg"
+              }
               alt="Get Rooted Media"
               width={180}
               height={60}
@@ -68,13 +73,15 @@ export default function Nav() {
             />
           </Link>
 
-          {/* Desktop nav links — always white */}
+          {/* Desktop nav links */}
           <div className="hidden items-center gap-8 lg:flex">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="font-nunito text-[15px] text-white transition-opacity duration-300 hover:opacity-80"
+                className={`font-nunito text-[15px] transition-opacity duration-300 hover:opacity-80 ${
+                  lightNav ? "text-grm-black" : "text-white"
+                }`}
               >
                 {link.label}
               </Link>
@@ -101,19 +108,19 @@ export default function Nav() {
               className={`block h-0.5 w-6 transition-all duration-300 ${
                 mobileOpen
                   ? "translate-y-2 rotate-45 bg-white"
-                  : "bg-white"
+                  : lightNav ? "bg-grm-black" : "bg-white"
               }`}
             />
             <span
               className={`block h-0.5 w-6 transition-all duration-300 ${
-                mobileOpen ? "opacity-0" : "bg-white"
+                mobileOpen ? "opacity-0" : lightNav ? "bg-grm-black" : "bg-white"
               }`}
             />
             <span
               className={`block h-0.5 w-6 transition-all duration-300 ${
                 mobileOpen
                   ? "-translate-y-2 -rotate-45 bg-white"
-                  : "bg-white"
+                  : lightNav ? "bg-grm-black" : "bg-white"
               }`}
             />
           </button>
