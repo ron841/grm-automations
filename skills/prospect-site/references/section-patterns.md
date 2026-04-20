@@ -1,6 +1,6 @@
 # Section Patterns Reference
 
-Part of the prospect-site skill v0.7. Loaded by Phase 5 when the skill begins section generation, in tandem with `hero-patterns.md` (which covers the hero region).
+Part of the prospect-site skill v0.8. Loaded by Phase 5 when the skill begins section generation, in tandem with `hero-patterns.md` (which covers the hero region).
 
 This file contains the pixel-level spec for every non-hero section of the generated homepage: nav, promo bar, trust marquee, services grid, stats section (the mandatory dark section), before/after gallery, testimonials, featured promotion callout, FAQ, contact form, footer, and mobile bottom CTA bar. CSS variables (`--color-primary`, `--space-section`, etc.) come from `css-framework.md`. Animation primitives (marquee, glare hover, shimmer button, before/after drag) also live in `css-framework.md`.
 

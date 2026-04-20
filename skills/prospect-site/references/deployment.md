@@ -1,6 +1,6 @@
 # Deployment and Client Lifecycle Reference
 
-Part of the prospect-site skill v0.7. Loaded by Phase 7 during preview deployment. Also serves as the operational playbook for the client lifecycle that begins after a preview converts to a signed deal.
+Part of the prospect-site skill v0.8. Loaded by Phase 7 during preview deployment. Also serves as the operational playbook for the client lifecycle that begins after a preview converts to a signed deal.
 
 This file has two distinct parts with different audiences. Part 1 is the deployment logic Claude Code executes automatically when Phase 6 verification passes. Part 2 is the client lifecycle playbook Ron executes manually (or semi-manually via Claude Code) once a prospect signs a service agreement. The two parts share infrastructure (the same Vercel project, the same Static Forms account, the same folder structure) but different workflows. The file structure below makes the audience split explicit.
 
@@ -17,7 +17,7 @@ Do not blur the two. A procedure labeled OPS should not be automated by the skil
 
 1. Part 1: Preview deployment (Phase 7)
 2. Part 2: Client lifecycle playbook (post-sale operations)
-3. What is deliberately not in v0.7
+3. What is deliberately not in v0.8
 4. Common mistakes to avoid
 5. Self-check
 6. Version
@@ -386,7 +386,7 @@ If GRM's active site count approaches 100 and monthly submissions exceed 300, co
 - Splitting the account into multiple API keys for billing isolation
 - Moving heavy-volume clients to a dedicated backend (e.g., a client with 20+ submissions/month might warrant a custom form handler that tracks leads in a database)
 
-For v0.7 scale (target: 10-30 clients), the free tier is sufficient and this is not a concern.
+For v0.8 scale (target: 10-30 clients), the free tier is sufficient and this is not a concern.
 
 ---
 
@@ -559,7 +559,7 @@ This discipline prevents the classic small-business mistake of losing track of w
 1. Add a `client-status.json` file to the folder with the signing date, tier, deal type (monthly or buyout), and HubSpot deal ID
 2. Rename the folder OR leave it in place and rely on `client-status.json` as the marker
 
-For v0.7, leave the folder in place under `~/grm-sites-prospects/`. Do not create a separate `~/grm-sites-clients/` tree. The split adds complexity without benefit at current scale. At 20+ active clients, consider a naming convention or a split directory, but not yet.
+For v0.8, leave the folder in place under `~/grm-sites-prospects/`. Do not create a separate `~/grm-sites-clients/` tree. The split adds complexity without benefit at current scale. At 20+ active clients, consider a naming convention or a split directory, but not yet.
 
 The `client-status.json` structure:
 
@@ -822,7 +822,7 @@ Vercel has a feature called "Bot Protection" that can block crawlers. If Bot Pro
 - **Umami** (self-hostable, free) — if GRM wants to run its own analytics infrastructure
 - **Google Analytics 4** (free) — standard option, but requires cookie consent banners for European visitors
 
-For v0.7, recommend Plausible. It's cheap, clean, and doesn't require cookie banners. Install the tracking script in the `<head>` of every page.
+For v0.8, recommend Plausible. It's cheap, clean, and doesn't require cookie banners. Install the tracking script in the `<head>` of every page.
 
 Configure custom reporting for:
 - Total sessions
@@ -1292,7 +1292,7 @@ Architectural changes needed at or before 30 clients:
 
 ### The 100-client future (v0.9+)
 
-Not a v0.7 concern. But worth naming so the architecture doesn't paint itself into a corner.
+Not a v0.8 concern. But worth naming so the architecture doesn't paint itself into a corner.
 
 At 100 clients, GRM is a real agency, not a one-person operation. The infrastructure needs:
 
@@ -1304,7 +1304,7 @@ At 100 clients, GRM is a real agency, not a one-person operation. The infrastruc
 - A real support inbox with SLA tracking
 - A team of 3-5 people
 
-None of this is v0.7 work. It's roadmap context so the current decisions don't accidentally lock out the future. Documented in more detail in `scale-architecture.md`.
+None of this is v0.8 work. It's roadmap context so the current decisions don't accidentally lock out the future. Documented in more detail in `scale-architecture.md`.
 
 ### Credential storage and secrets management
 
@@ -1366,7 +1366,7 @@ Phase 8 does NOT perform any client lifecycle work. All Stage 1-6 operations in 
 
 ---
 
-## What is deliberately not in v0.7
+## What is deliberately not in v0.8
 
 Following the same pattern as `seo-geo.md`, naming what is deferred so nothing silently drops.
 
@@ -1374,7 +1374,7 @@ Following the same pattern as `seo-geo.md`, naming what is deferred so nothing s
 
 **What it is.** The dream-state workflow where a prospect signs via Stripe, a webhook fires, Claude Code auto-runs the domain migration, onboarding checklist, and monitoring setup without Ron's involvement.
 
-**Why v0.7 does not do this.** The onboarding checklist has 12 steps, most of which require human judgment (verifying DNS changes, confirming SSL, uploading Google Business Profile photos, running the orientation call). Automating it prematurely would produce broken handoffs. The better v0.7 play is to execute each step manually the first 10 times and document every gotcha, then automate the stable parts in v0.8.
+**Why v0.8 does not do this.** The onboarding checklist has 12 steps, most of which require human judgment (verifying DNS changes, confirming SSL, uploading Google Business Profile photos, running the orientation call). Automating it prematurely would produce broken handoffs. The better v0.8 play is to execute each step manually the first 10 times and document every gotcha, then automate the stable parts in v0.8.
 
 **Roadmap.** v0.8 or v0.9, once 10+ clients have been onboarded manually and the gotchas are catalogued.
 
@@ -1382,7 +1382,7 @@ Following the same pattern as `seo-geo.md`, naming what is deferred so nothing s
 
 **What it is.** A web portal where clients log in, see their own analytics, submit update requests, view their invoices, and manage their site without calling Ron.
 
-**Why v0.7 does not do this.** At 1-10 clients, the ratio of Ron-to-client is close enough that direct communication is faster than self-service. A dashboard adds complexity without matching ROI. Also, contractors (the target market) are not known for loving web portals. Text-to-Ron is the native interaction mode.
+**Why v0.8 does not do this.** At 1-10 clients, the ratio of Ron-to-client is close enough that direct communication is faster than self-service. A dashboard adds complexity without matching ROI. Also, contractors (the target market) are not known for loving web portals. Text-to-Ron is the native interaction mode.
 
 **Roadmap.** v0.9+, after 30+ active clients.
 
@@ -1390,7 +1390,7 @@ Following the same pattern as `seo-geo.md`, naming what is deferred so nothing s
 
 **What it is.** A workflow where GRM automatically asks a client's recent customers for Google reviews via SMS or email, tracking responses and conversions.
 
-**Why v0.7 does not do this.** Review acquisition at the contractor level requires integration with the client's own customer database, CRM, or POS system. Every client's system is different. Building a generic solution is a significant engineering effort. Instead, GRM walks clients through sending review requests manually during onboarding Stage 3 step 8.
+**Why v0.8 does not do this.** Review acquisition at the contractor level requires integration with the client's own customer database, CRM, or POS system. Every client's system is different. Building a generic solution is a significant engineering effort. Instead, GRM walks clients through sending review requests manually during onboarding Stage 3 step 8.
 
 **Roadmap.** v0.9+, and only if it becomes a differentiator clients are asking for.
 
@@ -1398,7 +1398,7 @@ Following the same pattern as `seo-geo.md`, naming what is deferred so nothing s
 
 **What it is.** Clients who want separate subdomains for different service areas (e.g., `ocala.tfelectric.com` and `dunnellon.tfelectric.com`) or separate domains for multiple business entities.
 
-**Why v0.7 does not do this.** Single-location, single-domain contractors are the v0.7 market. Multi-domain architectures need different schema (per-location LocalBusiness entries), different sitemap structure, and different update workflows.
+**Why v0.8 does not do this.** Single-location, single-domain contractors are the v0.8 market. Multi-domain architectures need different schema (per-location LocalBusiness entries), different sitemap structure, and different update workflows.
 
 **Roadmap.** v0.8+ extension for specific high-value clients if the use case arises.
 
@@ -1406,7 +1406,7 @@ Following the same pattern as `seo-geo.md`, naming what is deferred so nothing s
 
 **What it is.** A dedicated support ticket system (Linear, Freshdesk, Zendesk) with per-ticket SLA tracking, automated escalation, and client-visible ticket history.
 
-**Why v0.7 does not do this.** HubSpot tasks are sufficient at the 10-client level. A ticket system is a 30+ client problem.
+**Why v0.8 does not do this.** HubSpot tasks are sufficient at the 10-client level. A ticket system is a 30+ client problem.
 
 **Roadmap.** Evaluate at 20 active clients. Deploy at 30.
 
@@ -1414,7 +1414,7 @@ Following the same pattern as `seo-geo.md`, naming what is deferred so nothing s
 
 **What it is.** Tying the contact form into a client's email marketing list (Mailchimp, Klaviyo, Constant Contact) so new leads are automatically added to their marketing automation.
 
-**Why v0.7 does not do this.** Most Marion County contractors don't run email marketing. Adding integration to services they don't use is waste. If a client specifically asks, it can be a billable add-on.
+**Why v0.8 does not do this.** Most Marion County contractors don't run email marketing. Adding integration to services they don't use is waste. If a client specifically asks, it can be a billable add-on.
 
 **Roadmap.** On-demand add-on only.
 
@@ -1473,4 +1473,4 @@ Following the same pattern as `seo-geo.md`, naming what is deferred so nothing s
 
 ## Version
 
-deployment.md v0.7.0. Part 1 (Phase 7 preview deployment) is skill-automated and runs as part of every prospect-site build. Part 2 (client lifecycle playbook) is Ron-executed operations, not automated by the skill. The file deliberately separates the two audiences because blurring them would produce either broken automation (skill trying to run onboarding steps) or unscalable operations (Ron manually deploying preview sites). Every procedure is labeled [SKILL] or [OPS]. Last updated April 9, 2026. Next review when the first paying client goes live on a custom domain.
+deployment.md v0.8. Part 1 (Phase 7 preview deployment) is skill-automated and runs as part of every prospect-site build. Part 2 (client lifecycle playbook) is Ron-executed operations, not automated by the skill. The file deliberately separates the two audiences because blurring them would produce either broken automation (skill trying to run onboarding steps) or unscalable operations (Ron manually deploying preview sites). Every procedure is labeled [SKILL] or [OPS]. Last updated April 9, 2026. Next review when the first paying client goes live on a custom domain.

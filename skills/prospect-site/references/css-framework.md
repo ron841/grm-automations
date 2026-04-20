@@ -1,6 +1,6 @@
 # CSS Framework Reference
 
-Part of the prospect-site skill v0.7. Loaded by Phase 5 at the START of site generation, before any other CSS or HTML is written. Every other reference file depends on the tokens, variables, and primitives defined here.
+Part of the prospect-site skill v0.8. Loaded by Phase 5 at the START of site generation, before any other CSS or HTML is written. Every other reference file depends on the tokens, variables, and primitives defined here.
 
 This file owns:
 
@@ -48,6 +48,12 @@ Phase 5 reads these values during site generation and writes them into the final
 ### Tier font pairs
 
 ```
+// Per typography.md Appendix B: Fraunces + Inter + JetBrains Mono is
+// universal across tiers. Tier entries below are structurally identical
+// by design — the tier-indexed architecture is preserved for future
+// per-tier weight tuning, but font identity is not a tier-differentiation
+// dimension. --font-mono lives at :root (tier-invariant per 076ffec), so
+// only heading and body appear in these tier entries.
 CONFIG.fonts = {
   premium: {
     heading: "Fraunces",
@@ -55,32 +61,30 @@ CONFIG.fonts = {
     body: "Inter",
     bodyFallback: "system-ui, -apple-system, sans-serif",
     // Google Fonts URL path segment:
-    googleFontsPath: "Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600"
+    googleFontsPath: "Fraunces:opsz,wght@9..144,300..800&family=Inter:wght@300..800&family=JetBrains+Mono:wght@400;500"
   },
   professional: {
-    heading: "Space Grotesk",
-    headingFallback: "\"Inter\", system-ui, sans-serif",
+    heading: "Fraunces",
+    headingFallback: "\"Playfair Display\", Georgia, serif",
     body: "Inter",
     bodyFallback: "system-ui, -apple-system, sans-serif",
-    googleFontsPath: "Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600"
+    googleFontsPath: "Fraunces:opsz,wght@9..144,300..800&family=Inter:wght@300..800&family=JetBrains+Mono:wght@400;500"
   },
   standard: {
-    heading: "Inter",
-    headingFallback: "system-ui, -apple-system, sans-serif",
+    heading: "Fraunces",
+    headingFallback: "\"Playfair Display\", Georgia, serif",
     body: "Inter",
     bodyFallback: "system-ui, -apple-system, sans-serif",
-    googleFontsPath: "Inter:wght@400;500;600;700;800"
+    googleFontsPath: "Fraunces:opsz,wght@9..144,300..800&family=Inter:wght@300..800&family=JetBrains+Mono:wght@400;500"
   }
 }
 ```
 
 **When to change these:** after running a real calibration build (T&F Friday morning or any subsequent flagship) and deciding the tier font does not match the visual result on the screen. Edit the relevant `heading` value here, re-run the build, check the result. One-line change.
 
-**Alternate picks, pre-vetted for swap-in:**
+**On alternate font selections.** Per typography.md Appendix B, Fraunces is universal across tiers and cannot be swapped without losing the GRM typographic signature (ss01 + ss02 + opsz-pinned Fraunces). Historical alternate picks (Playfair Display, Merriweather, DM Sans, Manrope, etc.) are not tier fallbacks — they are wrong-stack substitutions that lose the signature even when they look close. A tier that drops Fraunces is not a GRM tier.
 
-- Premium: swap `"Fraunces"` to `"Playfair Display"` for a more classical editorial feel, or `"Merriweather"` for a warmer, less contrasty serif
-- Professional: swap `"Space Grotesk"` to `"DM Sans"` for a cleaner, more neutral geometric sans, or `"Manrope"` for something softer
-- Standard: Inter is the right baseline and should not be swapped unless there is a strong reason
+If a calibration build surfaces that Fraunces does not render well for a specific prospect, that is a visual-result concern worth raising with Design — not a per-tier config override. Tier calibration lives in palette complexity, section density, animation layer, and photographic treatment per Appendix B.
 
 The full approved list and banned list live in `anti-slop-rules.md`. Never pick a font outside the approved list without updating that file first.
 
@@ -122,10 +126,10 @@ Almost certainly never needs changing. Listed here so if it ever does need chang
 ### Breakpoint
 
 ```
-CONFIG.mobileBreakpoint = "899px"  // @media (max-width: 899px) for mobile overrides
+CONFIG.mobileBreakpoint = "980px"  // @media (max-width: 980px) for mobile overrides, per typography.md §7
 ```
 
-Single breakpoint for v0.7. Do not add a tablet breakpoint without updating every section pattern file at the same time.
+Single breakpoint for v0.8. Do not add a tablet breakpoint without updating every section pattern file at the same time.
 
 ### Animation durations
 
@@ -171,6 +175,7 @@ Every design token lives as a CSS custom property on `:root`. Section CSS and he
   /* ===== Typography ===== */
   --font-heading: "Inter", system-ui, -apple-system, sans-serif;
   --font-body: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
   /* Type scale (desktop) */
   --text-hero: 72px;               /* Hero headline, wide variant */
@@ -255,7 +260,7 @@ Every design token lives as a CSS custom property on `:root`. Section CSS and he
 }
 
 /* Mobile breakpoint overrides */
-@media (max-width: 899px) {
+@media (max-width: 980px) {
   :root {
     --text-hero: 44px;
     --text-hero-default: 40px;
@@ -400,33 +405,29 @@ If any ratio fails, Phase 6 flags the build and suggests either darkening the ov
 
 ### Font loading strategy
 
-Google Fonts is the only approved font source for v0.7. Self-hosting fonts is deferred to v0.8 because the flagship builds do not need the extra 30-40ms of first-paint improvement that self-hosting gives, and because Google Fonts handles font-display and variable font loading correctly out of the box.
+Google Fonts is the approved font source. Self-hosting is deferred — Google Fonts handles `font-display` and variable-font loading correctly.
 
-Add these to the `<head>` of every generated HTML file:
+Phase 5 reads `CONFIG.fonts.[tier].googleFontsPath` per the tier decision from Phase 4 and emits a three-link block in `<head>`:
 
 ```html
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=[HEADING_FONT]:wght@400;600;700;800&family=[BODY_FONT]:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=[HEADING_FONT]:wght@400;600;700;800&family=[BODY_FONT]:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=[googleFontsPath-value]&display=swap">
 ```
 
-- `preconnect` to both `fonts.googleapis.com` and `fonts.gstatic.com` (the gstatic one must include `crossorigin`)
-- `preload` the stylesheet so the font starts downloading earlier
-- `display=swap` so text renders in fallback immediately and swaps to the web font when loaded
+The path value is used verbatim (SKILL.md:580) — no placeholder substitution. The three-font stack (Fraunces, Inter, JetBrains Mono) is universal across tiers per typography.md Appendix B; all three tier `googleFontsPath` values resolve to the same path. Fraunces and Inter use continuous variable-axis ranges (`wght@300..800`); JetBrains Mono uses discrete stops (`wght@400;500`). Weight 300 at the low end is required per typography.md §2's italic-em rule. Don't load weights primitives don't use (typography.md §8).
 
-Phase 5 substitutes `[HEADING_FONT]` and `[BODY_FONT]` with URL-encoded font family names based on the tier decision from Phase 4.
+Fraunces variable paths include the opsz axis (`opsz,wght@9..144,300..800`). Primitives pin opsz per rendered size via `font-variation-settings: 'opsz' [N]` per §8's opsz discipline.
 
-### Approved heading fonts by tier
+`<link rel="preload">` is NOT emitted. Preconnect + stylesheet with `display=swap` is the pattern — matches Google Fonts' recommended minimum. F5 and every Phase 5 build emit this three-link shape.
 
-| Tier         | Primary heading font | Fallback | Rationale |
-|--------------|---------------------|----------|-----------|
-| Premium      | Fraunces            | Playfair Display | Modern serif with optical sizing and variable weights. Reads like a magazine. |
-| Premium (alt)| Playfair Display    | Merriweather | Classic high-contrast serif when Fraunces feels too editorial. |
-| Professional | Space Grotesk       | Inter    | Geometric sans with personality. Feels crafted, not generic. |
-| Standard     | Inter               | system-ui| Highly legible, boring in a good way. Loads fast. |
+### Approved heading font — universal
 
-The default for Professional is Space Grotesk. Ron can override at the approval gate.
+| Tier         | Primary heading font | Fallback                         | Rationale |
+|--------------|---------------------|----------------------------------|-----------|
+| All tiers    | Fraunces            | Playfair Display, Georgia, serif | Modern serif with optical sizing and variable weights. Universal per typography.md Appendix B — the typographic signature (ss01 + ss02 + opsz pinning) requires Fraunces across all tiers. |
+
+Per Appendix B, the font stack is universal and is not a tier-differentiation dimension. Tier variation lives in palette complexity, section density, animation layer, and photographic treatment.
 
 ### Approved body fonts by tier
 
@@ -434,7 +435,7 @@ The default for Professional is Space Grotesk. Ron can override at the approval 
 |--------------|-----------|----------|
 | All tiers    | Inter     | system-ui |
 
-Inter is the body font for every tier. The heading font changes to signal tier, but the body stays consistent so reading experience is consistent. Do not mix body fonts across tiers — Inter is the only body font in v0.7.
+Inter is the body font for every tier. The heading font changes to signal tier, but the body stays consistent so reading experience is consistent. Do not mix body fonts across tiers — Inter is the only body font in v0.8.
 
 ### Banned fonts
 
@@ -485,20 +486,540 @@ Section-specific hardcoded font sizes in `section-patterns.md` and `hero-pattern
 
 ---
 
+## SectionOpener primitive
+
+A skill-level typographic primitive that collapses four shipped F5 section-opener variants (services header, reviews header, equine band, signature) into one named pattern parameterized on four axes. Consolidation source: typography.md §4. Naming convention source: typography.md §0. Registered as part of the v0.8 Wave 2 primitive rollout.
+
+The primitive replaces instance-level CSS blocks for each F5 variant — Phase 5 emits one role-named container with the axis-modifier classes that select the instance, rather than authoring `.services-header`, `.reviews-head`, `.equine-eyebrow + .equine-headline`, and `.signature-tag + .signature-headline` as four separate primitives.
+
+### Role, alias, override — naming contract
+
+Per typography.md §0, every primitive in this skill is named in three layers:
+
+1. **Role name** — `section-opener`. Skill-level, stable across brands, never changes. The CSS class in the generated HTML.
+2. **Semantic alias** — `services-header`, `reviews-header`, `equine-opener`, `signature-opener`. Per-section and readable. These can survive as additional classes alongside the role name for HTML readability — `class="section-opener ... services-header"` — but the role name is the load-bearing selector.
+3. **Instance override** — per-build class modifiers, scoped CSS custom properties, or utility classes that tweak one specific instance without polluting the role name. Not authored at the primitive level; authored by Phase 5 when needed.
+
+Implementations MUST use the role name. Aliases are optional and decorative. Overrides are additive; they never replace role-layer rules.
+
+### Four parameters
+
+Per typography.md §4. Each axis has a fixed enumeration of values. Phase 5 selects one value per axis when emitting an instance.
+
+1. **Eyebrow size** (per typography.md §3 mono tier):
+   - `10px` — quieter mono register for reviews, equine, tag-strip
+   - `11px` — section-opener loud mono register for services
+
+2. **Headline scale tier** (per typography.md §1 display ladder + ceiling rule):
+   - `section` — `clamp(44px, 5vw, 56px)`, secondary display (5vw coefficient), used by services + reviews
+   - `equine` — `min(144px, max(56px, 7vw))`, primary display (7vw coefficient), tier-3 Distinctive showcase. Ceiling 144 is rule-compliant per §1 (1920 × 7vw = 134.4 minimum); supersedes F5's pre-rule 128 per the 2026-04-20 scope-doc changelog.
+   - `featured` — `clamp(38px, 4vw, 48px)`, tertiary display (4vw coefficient), tier-1 Signature ladder-capped
+
+3. **Italic placement** (per typography.md §2 + §10):
+   - `inline` — `<em>` inline inside headline flow
+   - `newline` — `<em>` preceded by a structural `<br>` per typography.md §10
+   - `none` — no `<em>` in this headline
+
+4. **Orientation** (per typography.md §4):
+   - `eyebrow-above` — mono eyebrow above display headline (services, reviews, equine)
+   - `tag-strip` — split-flex mono row atop a bordered content block, headline lives inside the content block (signature + operational, per §4 TagStrip subsection)
+
+Phase 5 never invents new axis values. If a new instance needs a value outside the enumeration above, the enumeration is extended in typography.md first; the primitive follows.
+
+### CSS implementation
+
+The CSS below gets written into `style.css` during Phase 5 whenever a build includes at least one section-opener instance. If a build contains zero instances, skip the block to keep output lean.
+
+```css
+/* =====================================================================
+   SectionOpener primitive (typography.md §4)
+
+   Four axes: eyebrow size | headline scale tier | italic placement |
+   orientation. Em-on-dark exception per typography.md §2 + Appendix A
+   is scoped to the .section-opener--on-dark modifier. Stylistic-set
+   signature (ss01 + ss02) applied at the role-base per §8; inherits
+   to display descendants. text-wrap: balance applied to the headline
+   per §10.
+   ===================================================================== */
+
+/* Role base */
+.section-opener {
+  font-feature-settings: "ss01" 1, "ss02" 1;
+}
+
+/* ----- Elements ----- */
+
+.section-opener__eyebrow {
+  font-family: var(--font-mono);
+  color: var(--color-primary);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1.45;
+  margin: 0 0 14px 0;
+}
+
+.section-opener__headline {
+  font-family: var(--font-heading);
+  color: var(--color-dark-primary);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  font-weight: 400;
+  margin: 0;
+  text-wrap: balance;
+}
+
+/* em inherits headline color by default (typography.md §2 rule codified).
+   Weight 300 per §2 — the italic is the shape move; color shift would be
+   a second, redundant move. Em-on-dark exception handled below. */
+.section-opener__headline em {
+  color: inherit;
+  font-style: italic;
+  font-weight: 300;
+}
+
+/* ----- Axis 1: Eyebrow size (§3 mono tier) -----
+   Gated by orientation per typography.md §4 Axis applicability: applies
+   only when orientation=eyebrow-above. The tag-strip-inline orientation
+   carries its mono register on the tag-strip component itself, not on
+   this axis. Phase 5 generation MUST reject eyebrow-size modifiers on
+   tag-strip-inline containers rather than silently emit them. CSS-level
+   gating via compound selector below is defense in depth; the
+   generation-time contract is the primary enforcement. */
+.section-opener--orientation-eyebrow-above.section-opener--eyebrow-11 .section-opener__eyebrow { font-size: 11px; }
+.section-opener--orientation-eyebrow-above.section-opener--eyebrow-10 .section-opener__eyebrow { font-size: 10px; }
+
+/* ----- Axis 2: Headline scale tier (§1 display ladder + ceiling rule) ----- */
+
+/* Section scale — services, reviews. Secondary display, 5vw coefficient,
+   ladder-capped at 56. Ladder-cap is intentional: section-openers are not
+   required to scale past their ladder peak. */
+.section-opener--headline-section .section-opener__headline {
+  font-size: clamp(44px, 5vw, 56px);
+  font-variation-settings: 'opsz' 56;
+}
+
+/* Equine scale — tier-3 Distinctive showcase. Primary display, 7vw.
+   Ceiling 144: 1920 × 7vw = 134.4 minimum per §1; 144 sits rule-compliant
+   and below hero's 148 ceiling for tier-3 < tier-1-primary hierarchy.
+   Supersedes F5's pre-rule 128 per 2026-04-20 scope-doc changelog. */
+.section-opener--headline-equine .section-opener__headline {
+  font-size: min(144px, max(56px, 7vw));
+  font-variation-settings: 'opsz' 88;
+}
+
+/* Featured scale — tier-1 Signature. Tertiary display, 4vw, ladder-cap 48.
+   Ladder-cap intentional per tier-1 Closing-Table-companion intent. */
+.section-opener--headline-featured .section-opener__headline {
+  font-size: clamp(38px, 4vw, 48px);
+  font-variation-settings: 'opsz' 48;
+}
+
+/* Marker modifiers — intentionally empty. Italic placement is HTML-authored
+   per typography.md §10 (structural HTML contracts). These classes exist for
+   generation-time selection and self-documentation. Do not add declarations. */
+.section-opener--italic-inline,
+.section-opener--italic-newline,
+.section-opener--italic-none { /* no-op */ }
+
+/* ----- Axis 4: Orientation ----- */
+
+/* Orientation 4a: eyebrow-above — mono eyebrow sibling to headline.
+   Services, reviews, equine. */
+.section-opener--orientation-eyebrow-above {
+  display: block;
+}
+
+/* Orientation 4b: tag-strip — split-flex mono row atop a bordered
+   content block. Signature, operational. The tag-strip itself lives
+   at the top of the container; the headline lives inside the content
+   block below (authored by the block-level primitive in Wave 3).
+   Per typography.md §4 TagStrip subsection. */
+.section-opener--orientation-tag-strip {
+  display: block;
+}
+
+.section-opener__tag-strip {
+  padding: 14px 36px;
+  background: var(--color-background);
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  line-height: 1.45;
+}
+
+.section-opener__tag-strip-label {
+  /* Default label — left side, loud mono register (--color-primary). */
+}
+
+.section-opener__tag-strip-label--mute {
+  /* Right-side muted label — quiet mono register (§3). */
+  color: var(--color-text-muted);
+}
+
+/* ----- Em-on-dark exception (typography.md §2 + Appendix A) -----
+   Bounded context: italic runs on navy/dark backgrounds where inherited
+   color produces insufficient contrast. Two canonical locations per §2:
+   Equine band (tier-3 Distinctive) and Front Porch footer. Front Porch
+   footer is not a SectionOpener; Equine is. Scoped via explicit modifier
+   .section-opener--on-dark rather than by parent context to keep the
+   exception legible and bounded. */
+
+.section-opener--on-dark .section-opener__headline {
+  color: var(--color-white);
+}
+
+.section-opener--on-dark .section-opener__headline em {
+  color: var(--color-accent);
+}
+
+.section-opener--on-dark .section-opener__eyebrow {
+  color: var(--color-accent);
+}
+
+/* ----- Mobile breakpoints (typography.md §7) -----
+   §7 authors 980 tablet and 540 phone. Primitive layout transitions land
+   at those breakpoints. Mobile-max (980) and desktop-min (981) reconciled
+   across css-framework.md per typography.md §7 (commits 83d088a, bef19f2). */
+
+@media (max-width: 980px) {
+  .section-opener--headline-section .section-opener__headline {
+    font-size: clamp(32px, 5vw, 44px);
+  }
+  .section-opener--headline-equine .section-opener__headline {
+    font-size: clamp(44px, 9vw, 64px);
+    font-variation-settings: 'opsz' 56;
+  }
+  .section-opener--headline-featured .section-opener__headline {
+    font-size: clamp(32px, 4vw, 40px);
+  }
+  .section-opener__tag-strip {
+    padding: 12px 24px;
+  }
+}
+
+@media (max-width: 540px) {
+  .section-opener--headline-section .section-opener__headline {
+    font-size: 36px;
+  }
+  .section-opener--headline-equine .section-opener__headline {
+    font-size: 56px;
+    font-variation-settings: 'opsz' 56;
+  }
+  .section-opener--headline-featured .section-opener__headline {
+    font-size: 32px;
+  }
+}
+```
+
+### TagStrip orientation variant — markup contract
+
+The tag-strip orientation has a specific markup shape. Per typography.md §4, the tag-strip sits atop a bordered content block that contains the headline inside — not above the strip. The block-level container (signature-body, operational-grid, etc.) is a Wave 3 composition primitive; this section specifies only the tag-strip itself.
+
+Markup contract for tag-strip orientation:
+
+```html
+<!-- voice-map: closing-table -->
+<section class="section-opener section-opener--headline-featured section-opener--italic-none section-opener--orientation-tag-strip">
+  <div class="section-opener__tag-strip">
+    <span class="section-opener__tag-strip-label">Signature build · 01</span>
+    <span class="section-opener__tag-strip-label section-opener__tag-strip-label--mute">Custom pool construction</span>
+  </div>
+  <!-- Headline renders inside the Wave 3 block-level composition below -->
+  <!-- <div class="tier-block"> <h3 class="section-opener__headline">Full design-build, inspected and signed.</h3> ... </div> -->
+</section>
+```
+
+The tag-strip is full-bleed across the top of the bordered block; the left label carries the section number in the loud mono register (`--color-primary`), the right label carries the section name in the quiet mono register (`--color-text-muted`). Per typography.md §4: "When in doubt about how to frame a content block, reach for the tag strip."
+
+### Voice-map HTML comment requirement
+
+Per voiceMap.md §8 and the 2026-04-20 scope-doc changelog entry pinning the syntax, every generated section-opener instance MUST be preceded by a voice-map HTML comment:
+
+```html
+<!-- voice-map: [register] -->
+<section class="section-opener ...">
+  ...
+</section>
+```
+
+Values: `closing-table` | `saturday-morning` | `front-porch` | `voice-pivot`. Kebab-case, verbatim from voiceMap §2. One comment per section, emitted at the top of every primitive container.
+
+The comment is mandatory at generation time. Phase 5 MUST emit it when rendering any section-opener instance. The comment is the machine-legible register marker that sets up v0.8.1 register-aware copy generation without locking in the architecture now. In v0.8, copy generation remains register-agnostic per the 2026-04-20 Path A decision; the comment reserves the signal.
+
+Phase 5 enforcement (grep verification that every `.section-opener` container is preceded by a `<!-- voice-map: -->` comment) is a Wave 4 gate concern, not a commit-time rule. This primitive spec defines the contract; the gate enforces it.
+
+### F5 instances as canonical examples
+
+Per typography.md §4's "F5 instances (canonical examples)" subsection: "These are reference implementations, not skill-level enumerations — future brands may produce different instance counts from the same parameter grid."
+
+The four F5 instances map onto the four-axis parameterization as follows. Documentation only — the primitive replaces these instance-level CSS blocks, not duplicates them.
+
+| F5 semantic alias | eyebrow | headline | italic    | orientation    | voice-map      |
+|-------------------|---------|----------|-----------|----------------|----------------|
+| services-header   | 11px    | section  | inline    | eyebrow-above  | closing-table  |
+| reviews-header    | 10px    | section  | newline   | eyebrow-above  | closing-table  |
+| equine-opener     | 10px    | equine   | newline   | eyebrow-above  | front-porch    |
+| signature         | n/a     | featured | none      | tag-strip      | closing-table  |
+
+The `signature` row marks eyebrow as `n/a` per typography.md §4 Axis applicability: tag-strip-inline orientation has no separate eyebrow element. The mono register that would otherwise be an eyebrow is carried by the tag-strip component itself — its font-size is a property of the tag-strip CSS rules, not this axis. Phase 5 generation MUST reject the eyebrow-size + tag-strip-inline combination rather than silently emit a no-op modifier.
+
+### Phase 5 generation note
+
+When Phase 5 emits a section-opener instance, it selects parameter values based on section purpose. For three-tier service composition (voiceMap.md §2d), the tier determines orientation and register:
+
+- **Signature tier** → `--orientation-tag-strip`, voice-map `closing-table`
+- **Operational tier** → `--orientation-tag-strip`, voice-map `saturday-morning`
+- **Distinctive tier** → `--orientation-eyebrow-above`, voice-map `front-porch` (if human-voice specialty) OR `saturday-morning` (if operational specialty), per voiceMap.md §2d decision tree
+
+For non-tier section openers (services header, reviews header, nav, promo callout, FAQ, contact), Phase 5 selects axes based on section role and per-section voice-map register declaration.
+
+Register-aware parameter selection happens at the container level per the 2026-04-20 Path A decision — the primitive picks orientation and emits the voice-map comment, but copy inside the container remains register-agnostic in v0.8. Register-aware copy generation is v0.8.1 scope; the voice-map comments this primitive emits are the signal that enables it.
+
+---
+
+## StatRow primitive
+
+A skill-level typographic primitive that renders a contrast pair of display numerals + mono labels — §5's "the contrast isn't decoration, it's the whole content of the stat row." Consolidation source: typography.md §5 plus Design's 2026-04-20 authorial pass. Register ownership: voiceMap.md §2a (Closing Table). Registered as part of the v0.8 Wave 2 primitive rollout alongside SectionOpener.
+
+F5's `.hero-stats` + `.hero-stat-num` + `.hero-stat-label` trio is the canonical reference implementation. The primitive replaces that instance-level pattern with one role-named container and one optional compressed-variant modifier.
+
+### Role, alias, override — naming contract
+
+Per typography.md §0, StatRow follows the role/alias/override layering established for SectionOpener:
+
+1. **Role name** — `statrow`. Skill-level, stable across brands, the load-bearing selector.
+2. **Semantic alias** — `hero-stats`, `service-stats`, etc. Per-section and readable. May survive as additional classes for HTML readability.
+3. **Instance override** — per-build class modifiers or scoped custom property overrides. Not authored at the primitive level.
+
+### Parameters
+
+Per typography.md §5 and Design's 2026-04-20 authorial pass, StatRow carries one canonical scale with a compressed variant. Not a multi-tier progression.
+
+- **Numeral scale** — canonical 48px (implicit on the base `.statrow`) with a compressed variant `.statrow--numeral-36` for composition-constrained contexts
+
+Per Design: *"StatRow has one scale (48px) with a compressed variant (36px). 48 is editorial default. 36 is the constrained variant — used when a composition can't hold the full cadence. There's no legitimate authorial reason to select [midrange]."* The primitive exposes one variant modifier, not a tier enumeration. Canonical is implicit on the base class; no `.statrow--numeral-48` is authored.
+
+Non-parameters (authorial fixed values):
+
+- **Label scale** — fixed at 9px per §5's "label is already at legibility floor." Not a modifier.
+- **Column count** — hardcoded 3-col through desktop and tablet, 1-col only at ≤540px. Per Design's 2026-04-20 rhythm reasoning: StatRow is a three-beat stanza read left-to-right; the 3-col grid holds from desktop through tablet. F5 precedent matches; earlier "3/2/1" scope-doc text was unauthored and is superseded.
+- **Register** — Closing Table per voiceMap.md §2a. StatRow always carries the Closing Table typographic signature; register is not parametrized.
+
+### CSS implementation
+
+The CSS below gets written into `style.css` during Phase 5 whenever a build includes at least one StatRow instance. Skip the block if a build contains zero instances.
+
+```css
+/* =====================================================================
+   StatRow primitive (typography.md §5 + Design 2026-04-20 authorial pass)
+
+   Display numerals + mono labels in a contrast pair. Two-scale model:
+   canonical (48px, implicit on base .statrow) and compressed (36px,
+   via .statrow--numeral-36 override). 4× ratio rule satisfied at both
+   scales against the 9px label floor: 48/9=5.33×, 36/9=4.00×. Mobile
+   values preserve the two-tier distinction: canonical → 42 at ≤540px,
+   compressed → 36 (holds). Numeral weight 400 default per §5.
+   Stylistic-set signature (ss01 + ss02) and opsz pinning inherited
+   from typography.md §8 + Appendix B (universal per 6ec0f6d).
+   ===================================================================== */
+
+/* Role base — Closing Table register owned (voiceMap.md §2a).
+   3-col grid holds through desktop and tablet per Design 2026-04-20.
+   Hairline top-border echoes the meta-grid rhythm per §5. */
+.statrow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  padding-top: 28px;
+  border-top: 1px solid var(--color-border);
+  font-feature-settings: "ss01" 1, "ss02" 1;
+}
+
+/* ----- Elements ----- */
+
+.statrow__item {
+  padding: 0 24px;
+  border-left: 1px solid var(--color-border);
+}
+
+.statrow__item:first-child {
+  border-left: 0;
+  padding-left: 0;
+}
+
+/* Numeral — canonical 48px scale applies to the base .statrow (implicit).
+   Compressed variant overrides via .statrow--numeral-36 below. */
+.statrow__num {
+  font-family: var(--font-heading);
+  font-size: 48px;                        /* canonical; compressed overrides */
+  font-weight: 400;                       /* §5: numeral weight 400 or lighter */
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--color-dark-primary);
+  font-variation-settings: 'opsz' 48;
+  margin: 0;
+}
+
+.statrow__label {
+  font-family: var(--font-mono);
+  font-size: 9px;                         /* §5: fixed at legibility floor */
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);         /* §5: quiet mono register */
+  line-height: 1.45;
+  margin-top: 10px;
+}
+
+/* ----- Numeral-scale variant: compressed -----
+   Used when composition constraints — narrow column, secondary section,
+   tight vertical rhythm — demand a tighter cadence than canonical 48px
+   allows. Per Design 2026-04-20: compressed is a variant of the canonical
+   scale, not a "small" tier. 36/9 = 4.00× exactly, at §5's 4× floor.
+   opsz pinned per §8. */
+
+.statrow--numeral-36 .statrow__num {
+  font-size: 36px;
+  font-variation-settings: 'opsz' 36;
+}
+
+/* ----- Mobile breakpoint (typography.md §7: 540 phone) -----
+   Column stack: 3-col → 1-col at ≤540px. Dividers flip from vertical
+   to horizontal. Numeral scales per-variant at the stack breakpoint:
+   canonical (48 desktop) → 42 phone per §5's mobile-range ceiling;
+   compressed (36 desktop) → 36 phone (already at §5's floor, holds).
+   Per-variant mobile preserves the two-tier intent at the breakpoint
+   where hierarchy signals work hardest (Design 2026-04-20).
+
+   Specificity resolves the cascade: .statrow__num = (0,1,0);
+   .statrow--numeral-36 .statrow__num = (0,2,0). Compressed wins by
+   specificity, not by source order, both inside and outside the
+   media query. */
+
+@media (max-width: 540px) {
+  .statrow {
+    grid-template-columns: 1fr;
+  }
+  .statrow__item {
+    border-left: 0;
+    border-top: 1px solid var(--color-border);
+    padding: 12px 0;
+  }
+  .statrow__item:first-child {
+    border-top: 0;
+    padding-top: 0;
+  }
+  /* Canonical mobile — 42px per §5's mobile-range ceiling (Design 2026-04-20) */
+  .statrow__num {
+    font-size: 42px;
+    font-variation-settings: 'opsz' 42;
+  }
+  /* Compressed mobile — holds at 36px (already at §5's floor) */
+  .statrow--numeral-36 .statrow__num {
+    font-size: 36px;
+    font-variation-settings: 'opsz' 36;
+  }
+}
+```
+
+### 4× ratio rule — enforcement layers
+
+Per typography.md §5: "Numeral scale must be ≥4× the label scale. At 48px / 9px, that's 5.3×. At 32px / 10px, 3.2× — not enough; the tier collapses."
+
+The rule is a contract between numeral scale and label scale. CSS cannot programmatically enforce a cross-class ratio, so enforcement is layered:
+
+1. **CSS level (defense in depth):** Both authored scales satisfy 4× against the 9px label — canonical 48/9=5.33×, compressed 36/9=4.00×. Mobile values likewise satisfy: canonical 42/9=4.67×, compressed 36/9=4.00×.
+2. **Generation-time contract (primary):** Phase 5 MUST reject any StatRow instance that would violate the ratio. Custom numeral scales outside the authored canonical/compressed pair require authorial extension in typography.md §5 before the CSS primitive accepts them.
+
+Same defense-in-depth pattern as SectionOpener's eyebrow-axis gating (816f58a): cascade-level enforcement where possible, generation-time contract primary.
+
+### Column-count behavior
+
+Hardcoded 3-col through desktop and tablet, 1-col at ≤540px. Per Design's 2026-04-20 authorial pass and F5 precedent. Not parametrized.
+
+Design's rhythm reasoning: *"StatRow at 3-col is a line — three beats, read left-to-right, scanned as a stanza. Break the line at tablet into 2+1 and you've invented a new layout — a broken stanza where the third beat hangs alone. 1+1+1 at phone is fine; the eye already expects vertical at phone. 2+1 at tablet is the worst of both — neither line nor stack. Tablet width has the horizontal room to hold three beats. Let it."*
+
+§5 authors the 3-col canonical pattern but does not enumerate alternate column counts. Adding a `--cols-N` modifier axis is deferred to future authorial extension. 4-col, 6-col, or other layouts would require authorial promotion in typography.md before the primitive accepts them.
+
+### F5 instance as canonical example
+
+Per typography.md §4's "F5 instances (canonical examples)" caveat (applies to all primitives): these are reference implementations, not skill-level enumerations. Future brands may produce different instance counts from the same parameter grid.
+
+| F5 semantic alias | numeral scale        | column behavior         | voice-map     |
+|-------------------|----------------------|-------------------------|---------------|
+| hero-stats        | canonical (implicit) | 3-col → 1-col at ≤540px | closing-table |
+
+F5 ships one StatRow instance (the hero stat row). Additional instances (service-tier stats, inline-band stats) are Wave 3 composition scope, not current F5 state.
+
+### Voice-map HTML comment requirement
+
+Per voiceMap.md §8 and voiceMap.md §2a (Closing Table register owns StatRow), every generated StatRow instance MUST be preceded by a voice-map HTML comment. Voice-map value is always `closing-table` for StatRow — StatRow is a canonical Closing Table instance per §2a, not register-parametrized.
+
+Markup contract (canonical, implicit scale):
+
+```html
+<!-- voice-map: closing-table -->
+<section class="statrow">
+  <div class="statrow__item">
+    <div class="statrow__num">36</div>
+    <div class="statrow__label">Label 1</div>
+  </div>
+  <div class="statrow__item">
+    <div class="statrow__num">4.2</div>
+    <div class="statrow__label">Label 2</div>
+  </div>
+  <div class="statrow__item">
+    <div class="statrow__num">2</div>
+    <div class="statrow__label">Label 3</div>
+  </div>
+</section>
+```
+
+Compressed variant — add `.statrow--numeral-36` to the container class list when composition constraints demand the tighter cadence:
+
+```html
+<!-- voice-map: closing-table -->
+<section class="statrow statrow--numeral-36">
+  ...
+</section>
+```
+
+The comment is mandatory at generation time. Phase 5 MUST emit it when rendering any StatRow instance. Phase 5 enforcement (grep verification that every `.statrow` container is preceded by a `<!-- voice-map: closing-table -->` comment) is a Wave 4 gate concern, not a commit-time rule.
+
+### Phase 5 generation note
+
+When Phase 5 emits a StatRow instance, it selects the scale by section context. The hero stat row uses the canonical scale (implicit — base `.statrow` alone, no variant modifier) per F5 precedent. Non-hero stat rows (service tier summaries, inline stat bands — Wave 3 composition scope) add `.statrow--numeral-36` when composition constraints demand compression. No `.statrow--numeral-48` class is emitted; canonical is implicit.
+
+Generation constraints Phase 5 MUST enforce:
+
+1. **4× ratio rule (§5):** both authored scales satisfy the ratio. Custom scales outside canonical/compressed require authorial extension in typography.md §5.
+2. **Column-count + content:** at 3-col, a StatRow with fewer than 3 stats produces empty columns. Generation should author exactly 3 stats per row until a future `--cols-N` axis lands.
+3. **Register invariance:** voice-map comment is always `closing-table`. StatRow is not a register-parametrized primitive.
+
+Register-aware copy generation remains v0.8.1 scope per the 2026-04-20 Path A decision; the voice-map comment reserves the signal.
+
+---
+
 ## Breakpoint system
 
-v0.7 uses a two-breakpoint mobile-first system:
+v0.8 uses a two-breakpoint mobile-first system:
 
 - **Mobile:** default styles, no media query needed
-- **Desktop:** `@media (min-width: 900px)` for any desktop-specific rule
+- **Desktop:** `@media (min-width: 981px)` for any desktop-specific rule
 
-Or equivalently, the pattern used throughout the skill files is mobile overrides via `@media (max-width: 899px)` after desktop defaults. Both patterns produce the same result. Pick one and stick with it per file.
+Or equivalently, the pattern used throughout the skill files is mobile overrides via `@media (max-width: 980px)` after desktop defaults. Both patterns produce the same result. Pick one and stick with it per file.
 
-There is no separate tablet breakpoint in v0.7. The 900px break handles iPad portrait (768px → mobile layout) and iPad landscape (1024px → desktop layout) correctly for every section pattern. If a specific section needs tablet-specific treatment in a later version, add it there, not globally.
+There is no separate tablet breakpoint in v0.8. The 981px break handles iPad portrait (768px → mobile layout) and iPad landscape (1024px → desktop layout) correctly for every section pattern. If a specific section needs tablet-specific treatment in a later version, add it there, not globally.
 
 ### Breakpoint rationale
 
-- **900px:** Chosen because it falls between iPad portrait (768px) and iPad landscape (1024px), so iPads flip layouts on rotation without an awkward in-between state. Also comfortably above the widest common phone (iPhone Pro Max at 430px) with room to spare.
+- **981px:** Chosen because it falls between iPad portrait (768px) and iPad landscape (1024px), so iPads flip layouts on rotation without an awkward in-between state. Also comfortably above the widest common phone (iPhone Pro Max at 430px) with room to spare.
 
 ### Container widths
 
@@ -521,7 +1042,7 @@ All containers are centered with `margin: 0 auto` and have side padding of `24px
 
 ## Global reset and base styles
 
-Minimal reset, not a full Normalize.css. Only the rules we actually need for v0.7.
+Minimal reset, not a full Normalize.css. Only the rules we actually need for v0.8.
 
 ```css
 *, *::before, *::after {
@@ -606,7 +1127,7 @@ ul, ol {
 
 ### Why this minimal reset
 
-Full resets like Normalize.css or Tailwind Preflight add dozens of rules we don't need and make the generated CSS harder to read when Ron or a future developer wants to understand what's happening. The rules above handle the cases v0.7 actually hits: box-sizing for layout predictability, margin reset for headings and paragraphs, image defaults, button and form element font inheritance, and a global respect for reduced-motion.
+Full resets like Normalize.css or Tailwind Preflight add dozens of rules we don't need and make the generated CSS harder to read when Ron or a future developer wants to understand what's happening. The rules above handle the cases v0.8 actually hits: box-sizing for layout predictability, margin reset for headings and paragraphs, image defaults, button and form element font inheritance, and a global respect for reduced-motion.
 
 ---
 
@@ -676,7 +1197,7 @@ After the base `:root` block, Phase 5 appends tier-specific overrides. Only the 
   --space-section-generous: 160px;
 }
 
-@media (max-width: 899px) {
+@media (max-width: 980px) {
   :root.tier-premium {
     --text-hero: 48px;
     --text-hero-default: 42px;
@@ -694,18 +1215,18 @@ The `.tier-premium` class is applied to the `<html>` element in Phase 5 when tie
 
 ```css
 :root.tier-professional {
-  --font-heading: "Space Grotesk", "Inter", system-ui, sans-serif;
+  --font-heading: "Fraunces", "Playfair Display", Georgia, serif;
   /* All other tokens use the base values */
 }
 ```
 
-Professional is the default baseline — most tokens are already correct for Professional in the base `:root` block. Only the heading font changes.
+Professional is the default baseline — most tokens are already correct for Professional in the base `:root` block. The heading font resolves to Fraunces per typography.md Appendix B (universal across tiers).
 
 ### Standard tier (0-39 score)
 
 ```css
 :root.tier-standard {
-  --font-heading: "Inter", system-ui, -apple-system, sans-serif;
+  --font-heading: "Fraunces", "Playfair Display", Georgia, serif;
   --text-hero: 56px;
   --text-hero-default: 44px;
   --text-section-title: 36px;
@@ -714,7 +1235,7 @@ Professional is the default baseline — most tokens are already correct for Pro
   --space-section-generous: 120px;
 }
 
-@media (max-width: 899px) {
+@media (max-width: 980px) {
   :root.tier-standard {
     --text-hero: 38px;
     --text-hero-default: 34px;
@@ -726,7 +1247,7 @@ Professional is the default baseline — most tokens are already correct for Pro
 }
 ```
 
-Standard uses Inter for both heading and body (same as fallback), smaller type scale for speed and hierarchy clarity, and compressed vertical rhythm.
+Standard uses Fraunces heading + Inter body per typography.md Appendix B (universal stack), with a smaller type scale for speed and hierarchy clarity and compressed vertical rhythm. Typography identity matches Premium and Professional; tier differentiation lives in palette, density, motion, and photographic treatment per Appendix B.
 
 ### Tier override application order
 
@@ -865,7 +1386,7 @@ These rules live in the JS primitives below.
 
 ## Vanilla JavaScript animation toolkit
 
-All animation and interactivity for v0.7 sites uses vanilla JavaScript. No React. No Vue. No jQuery. No animation libraries. The primitives below are everything the generated sites need.
+All animation and interactivity for v0.8 sites uses vanilla JavaScript. No React. No Vue. No jQuery. No animation libraries. The primitives below are everything the generated sites need.
 
 Each primitive is a named function that Phase 5 includes in `script.js` only if the build needs it. A build with no before/after gallery omits the `beforeAfterCompare` function entirely.
 
@@ -959,7 +1480,7 @@ function crossfadeSlideshow(containerSelector, interval = 6000) {
 - Default interval 6000ms matches the hero spec
 - Early returns if no container or fewer than 2 slides
 - Reduced motion shows first slide only (no cycling)
-- No unmount or cleanup logic because v0.7 sites are static HTML without SPA navigation
+- No unmount or cleanup logic because v0.8 sites are static HTML without SPA navigation
 
 ### Primitive 3: parallaxScroll
 
@@ -971,7 +1492,7 @@ function parallaxScroll(selector, speed) {
   if (!elements.length) return;
 
   // Disable on mobile (performance and feel)
-  if (window.innerWidth < 900) return;
+  if (window.innerWidth < 981) return;
 
   // Respect reduced motion
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -1003,7 +1524,7 @@ function parallaxScroll(selector, speed) {
 **Key points:**
 - Uses `requestAnimationFrame` throttling via the `ticking` flag to avoid running update on every scroll event
 - Passive scroll listener for performance
-- Disabled below 900px because parallax on small viewports feels janky and hurts performance
+- Disabled below 981px because parallax on small viewports feels janky and hurts performance
 - `translate3d` triggers GPU compositing for smooth motion
 - Two rows moving at opposite speeds (0.3 and -0.2) creates the depth illusion
 - Negative speed means the element moves against the scroll direction
@@ -1468,7 +1989,7 @@ Phase 5 generates this block dynamically based on what sections and hero mode th
 
 ## Reduced motion handling summary
 
-Every animation in v0.7 respects `prefers-reduced-motion: reduce`. The handling strategy varies by animation type:
+Every animation in v0.8 respects `prefers-reduced-motion: reduce`. The handling strategy varies by animation type:
 
 | Animation               | Reduced motion behavior |
 |-------------------------|------------------------|
@@ -1488,7 +2009,7 @@ The global CSS reset handles most CSS-based animations through the `animation-du
 
 ## Performance targets
 
-v0.7 sites must hit these Lighthouse mobile scores for Phase 6 to pass:
+v0.8 sites must hit these Lighthouse mobile scores for Phase 6 to pass:
 
 - **LCP (Largest Contentful Paint):** under 2.5 seconds
 - **Performance score:** 85 or higher
@@ -1518,7 +2039,7 @@ If a build fails the LCP target, the most likely cause is a hero background imag
 - Do not introduce a new CSS custom property without adding it to this file and following the naming pattern.
 - Do not include JS primitives for sections that aren't in the build (e.g., don't include `beforeAfterCompare` when there's no before/after gallery).
 - Do not skip reduced-motion handling on a new animation. Every animation needs a reduced-motion path.
-- Do not use a tablet breakpoint. v0.7 is mobile-first with a single 900px break.
+- Do not use a tablet breakpoint. v0.8 is mobile-first with a single 981px break.
 - Do not load multiple heading fonts. Pick one per tier.
 - Do not use `position: sticky` for the nav. Use `position: fixed`.
 - Do not hardcode `rgba(43, 76, 159, 0.15)`. Use `rgba(var(--color-primary-rgb), 0.15)`.
@@ -1527,4 +2048,4 @@ If a build fails the LCP target, the most likely cause is a hero background imag
 
 ## Version
 
-css-framework.md v0.7.0, foundation file for prospect-site skill v0.7. Every other reference file depends on this one.
+css-framework.md v0.8, foundation file for prospect-site skill v0.8. Every other reference file depends on this one.

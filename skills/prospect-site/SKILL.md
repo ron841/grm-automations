@@ -3,7 +3,7 @@ name: prospect-site
 description: "Generate a custom multi-page preview website for a local home services contractor prospect from their live URL. Deeply crawls the prospect's real site, captures their brand data (owners, services, testimonials, credentials, colors, photos, promotions), scores their current web presence, picks a hero background mode from a data-driven decision tree, builds a multi-page site using the GRM house style and the GRM voice mapping (Closing Table for hero/promos/cards/stats, Saturday Morning for marquees/section headers, Front Porch for footer/About), runs automated quality gates, and deploys to Vercel. Use this skill whenever the user types /prospect-site followed by a business name and URL, or asks to build a prospect preview site for a local business they want to sell to."
 ---
 
-# Prospect Site Generator (v0.7.3)
+# Prospect Site Generator (v0.8)
 
 ## What this skill does
 
@@ -23,7 +23,7 @@ This skill uses the progressive disclosure pattern. SKILL.md contains the workfl
 
 - `references/hero-patterns.md` — Hero spec (four modes, shared glass card with default and wide variants, video augmentation)
 - `references/section-patterns.md` — Every non-hero section (nav, promo bar, trust marquee, services grid, stats dark section, before/after gallery, testimonials, promo callout, FAQ, contact form, footer, mobile bottom CTA)
-- `references/css-framework.md` — Typography tokens, color system, breakpoints, rhythm tokens, vanilla JS animation toolkit
+- `references/css-framework.md` — Typography tokens, color system, breakpoints, rhythm tokens, vanilla JS animation toolkit, plus SectionOpener and StatRow primitive specs
 - `references/typography.md` — (v0.8) Typography rule set: scale relationships, italic discipline, mono eyebrow system, SectionOpener/StatRow primitives, body measure, mobile scaling, font loading with opsz discipline, ornament rule, structural HTML contracts, exceptions principle
 - `references/voiceMap.md` — (v0.8) Voice-register distribution: three registers (Closing Table / Saturday Morning / Front Porch), three-tier service composition, voice-pivot anchor strip, featured pullquote pattern, Front Porch footer, register coupling rules
 - `references/content-rules.md` — GRM voice mapping by section, headline patterns, CTA templates, FAQ templates per vertical. Defers to voiceMap.md for register surface identity
@@ -67,7 +67,7 @@ These rules exist because prior builds failed by ignoring them. Do not skip any 
 
 Goal: fail fast before any Phase 1+ work begins. Better to spend 10 seconds verifying integrations than 30 minutes diagnosing why Phase 5 broke. Phase 0 runs before every prospect build, no exceptions.
 
-Phase 0 has two check categories: hard checks (any failure blocks Phase 1 from starting) and soft checks (failures log a warning but the build continues). The split exists because some integrations are mission-critical (Vercel CLI auth, Node.js version) while others are deferred or optional in v0.7 (HubSpot pipeline configuration is on the v0.7 punch list but not yet complete; backup is a v0.8 target).
+Phase 0 has two check categories: hard checks (any failure blocks Phase 1 from starting) and soft checks (failures log a warning but the build continues). The split exists because some integrations are mission-critical (Vercel CLI auth, Node.js version) while others are deferred or optional in v0.8 (HubSpot pipeline configuration is on the v0.8 punch list but not yet complete; backup is a v0.8 target).
 
 ### Hard checks (must all pass before Phase 1 begins)
 
@@ -120,7 +120,7 @@ These checks log a warning to the build report but do not block Phase 1. They ar
 1. **HubSpot pipeline configured.**
    - Verify: HubSpot API token is present in environment variables AND the GRM web services pipeline exists with the expected stages.
    - On soft fail: warn "HubSpot pipeline not configured. The skill will not auto-create a deal record on Phase 8. Manual HubSpot entry required after deployment. HubSpot setup is tracked in the Technical debt inventory section of `scale-architecture.md`."
-   - Why soft: HubSpot setup is on the v0.7 punch list per `scale-architecture.md` but not yet complete. The skill should not block Phase 1 just because HubSpot isn't ready.
+   - Why soft: HubSpot setup is on the v0.8 punch list per `scale-architecture.md` but not yet complete. The skill should not block Phase 1 just because HubSpot isn't ready.
 
 2. **Automated backup running.**
    - Verify: a recent backup of `~/grm-sites-prospects/` exists (less than 24 hours old) at the backup destination.
@@ -150,7 +150,7 @@ Hard checks:
   ✓ Workspace git initialized (initial commit <hash>)
 
 Soft checks:
-  ⚠ HubSpot pipeline not configured (v0.7 technical debt)
+  ⚠ HubSpot pipeline not configured (v0.8 technical debt)
   ⚠ No recent backup found (v0.8 target)
   ✓ Google Places API test call succeeded
 
@@ -505,7 +505,7 @@ If all three conditions hit, generate the sub-page. If any fails, roll the servi
 
 **Sub-page structure:** simpler than the homepage. Nav, sub-hero (single section with headline, subheadline, photo, and CTAs), main content block (300-800 words from Phase 2 capture), service-specific testimonials if captured, service-specific FAQ (3-5 questions), contact CTA callout linking to `/contact.html`, footer. Full structural spec and voice mapping in `references/content-rules.md` under "Standalone pages and service sub-pages."
 
-**Pages explicitly out of scope for v0.7:** location sub-pages (Ocala Electrician, Dunnellon Electrician as separate pages), blog and news pages, financing pages as standalone (content rolls into homepage promo callout instead), warranty and insurance pages as standalone (content rolls into homepage FAQ and trust marquee), separate team pages (content rolls into about.html), project portfolio pages (use gallery.html). When Phase 2 captures these page types, Phase 5 either ignores them or rolls their content into existing homepage sections per the decision table in `references/content-rules.md`.
+**Pages explicitly out of scope for v0.8:** location sub-pages (Ocala Electrician, Dunnellon Electrician as separate pages), blog and news pages, financing pages as standalone (content rolls into homepage promo callout instead), warranty and insurance pages as standalone (content rolls into homepage FAQ and trust marquee), separate team pages (content rolls into about.html), project portfolio pages (use gallery.html). When Phase 2 captures these page types, Phase 5 either ignores them or rolls their content into existing homepage sections per the decision table in `references/content-rules.md`.
 
 ### Homepage section order (build in this order)
 
@@ -530,7 +530,7 @@ If all three conditions hit, generate the sub-page. If any fails, roll the servi
 - Every service description is 1 to 2 sentences, benefit-first.
 - Every number is real. Never invented.
 - Every photo is from `assets/photos/` subfolders. Never hotlinked.
-- The stats section ALWAYS uses the dark treatment. This is non-negotiable and gives every v0.7 flagship the mandatory visual rhythm reset.
+- The stats section ALWAYS uses the dark treatment. This is non-negotiable and gives every v0.8 flagship the mandatory visual rhythm reset.
 - Every section gets the Glare Hover, Shimmer Button, or other Magic UI enhancement specified in `references/css-framework.md` where appropriate.
 - Run the anti-slop rule check from `references/anti-slop-rules.md` on all generated copy and CSS before writing files.
 
@@ -585,6 +585,16 @@ Phase 5 writes `script.js` with ONLY the primitives the build actually needs. A 
 **6. Phase 4 color computation utilities.**
 Phase 4 runs the Node.js build-time utilities documented in `css-framework.md` under "Phase 4 build-time color utilities" to compute `--color-primary-rgb`, `--color-accent-rgb`, and `--color-dark-primary` values before Phase 5 writes `style.css`. If these values are not pre-computed, the `:root` block will be incomplete and several sections will render with broken hover states and focus rings.
 
+**7. Voice-map HTML comment on every primitive container.**
+Every primitive container (SectionOpener, StatRow, and future Wave 3 primitives) is preceded by a voice-map HTML comment that names the register the container carries:
+
+```html
+<!-- voice-map: closing-table -->
+<section class="section-opener ...">
+```
+
+Values: `closing-table` | `saturday-morning` | `front-porch` | `voice-pivot`. Kebab-case, verbatim from `references/voiceMap.md` §2. One comment per section, emitted at the top of every primitive container. Syntax pinned 2026-04-20. This comment is the machine-legible register marker that sets up v0.8.1 register-aware copy generation without locking in the architecture now — in v0.8, copy generation remains register-agnostic (the 2026-04-20 Path A decision), and the comment reserves the signal. Phase 5 MUST emit this comment. Wave 4 grep gate verifies every `.section-opener` and `.statrow` container is preceded by a matching comment.
+
 ## Phase 5.5 — SEO and GEO injection
 
 Goal: make the generated site findable by Google, Bing, and AI answer engines (ChatGPT, Claude, Perplexity, Gemini).
@@ -629,7 +639,7 @@ Phase 6 runs twenty checks organized into nine categories. All checks must pass 
 
 ### Structural integrity checks
 
-10. **Dark section count.** The generated homepage contains exactly one dark-background section (the mandatory stats section from Phase 5). Zero dark sections or two-plus dark sections fail the build. This enforces the v0.7 visual rhythm rule architecturally, not by convention.
+10. **Dark section count.** The generated homepage contains exactly one dark-background section (the mandatory stats section from Phase 5). Zero dark sections or two-plus dark sections fail the build. This enforces the v0.8 visual rhythm rule architecturally, not by convention.
 
 11. **llms.txt existence and format.** File exists at site root, follows the AnswerDotAI llms.txt spec, contains links to clean markdown versions of key pages. Missing file or invalid format fails the build.
 

@@ -196,6 +196,21 @@ The SectionOpener primitive is parameterized on four axes at the skill level:
 - **italic placement** — inline inside the headline, on its own line, or absent
 - **orientation** — eyebrow above headline, or tag strip inline (for numbered service patterns)
 
+### Axis applicability
+
+Axis applicability is gated by orientation. Not every axis applies on every orientation value.
+
+| Axis | `eyebrow-above` | `tag-strip-inline` |
+| --- | --- | --- |
+| eyebrow-size | applies (10px / 11px) | **n/a** |
+| headline-scale | applies | applies |
+| italic-placement | applies | applies |
+| orientation | — (gating axis) | — (gating axis) |
+
+The `tag-strip-inline` orientation has no separate eyebrow element. The tag strip itself carries the mono register, and its font-size is a property of the tag-strip component spec — not an eyebrow-axis value on SectionOpener. A SectionOpener primitive contract that accepts `eyebrow-size` when `orientation = tag-strip-inline` is overspecified; generation-time selection should reject the combination rather than silently accept a no-op value.
+
+This gating applies only to SectionOpener. Other primitives with orientation-style axes are not implicitly gated the same way — gating is an axis-relationship property, authored per primitive.
+
 When generating a new section opener, pick the parameters; don't invent a new pattern.
 
 ### F5 instances (canonical examples)
@@ -408,7 +423,7 @@ This is the meta-principle that produced the em-color inconsistency earlier in t
 
 When CSS wrap is insufficient to produce the intended line break, the HTML `<br>` becomes structural, not decorative.
 
-### The working example
+### §10.1 The working example
 
 ```html
 <p class="hero-sub">
@@ -419,13 +434,13 @@ When CSS wrap is insufficient to produce the intended line break, the HTML `<br>
 
 The `<br>` is structural. The rhetorical structure is two sentences: a services enumeration followed by a regional anchor. CSS measure alone can't produce that break reliably.
 
-### The rule
+### §10.2 The rule
 
 - `<br>` elements in voice-carrying display copy are **structural**. Code comments should mark them as such: `<!-- structural: rhetorical break, do not remove -->`.
 - `<br>` elements in body copy or address blocks are **formatting** — flexible, reflowable.
 - When generating new voice-carrying copy, identify rhetorical breaks and mark them as structural.
 
-### text-wrap: balance vs. structural <br>
+### §10.3 text-wrap: balance vs. structural <br>
 
 `text-wrap: balance` is the generalizable CSS rule for display copy that needs even line distribution. Apply it to all headlines and short display paragraphs.
 
@@ -451,6 +466,37 @@ Use balance for *comfort*, structural `<br>` for *intent*. When a headline both 
 </h2>
 ```
 
+### §10.4 Marker classes
+
+The structural-HTML-contracts principle established in §10.2 generalizes beyond `<br>`. The underlying rule is broader:
+
+> Semantic intent belongs in the layer that can express it correctly; marker classes document the intent for generation-time selection.
+
+`<br>` is §10's reference case because rhetorical breaks happen to live in markup, and CSS has no mechanism for "break here in voice." But plenty of other intent categories fall under the same rule — italic placement, label-scale selection, orientation variants. When the behavior genuinely lives in HTML, the CSS layer is free to carry an empty marker class that documents *which* HTML pattern is in use, without duplicating or contradicting the behavior.
+
+**Reference implementation.** SectionOpener's italic-placement modifiers are the canonical example:
+
+- `.section-opener--italic-inline` — italic counter-phrase sits inside the headline text
+- `.section-opener--italic-newline` — italic counter-phrase on its own line after a structural `<br>`
+- `.section-opener--italic-none` — no italic counter-phrase
+
+The modifiers carry zero CSS declarations. Italic placement is determined entirely by the `<em>` position in the authored HTML. The modifier exists so that Phase 5 generation can pattern-match on CSS class (deterministic, fast) rather than on HTML tree shape (fragile, slow). That's the whole job.
+
+**Required comment block.** Marker classes must be documented as no-ops in the CSS file at the site of declaration. Without the comment, the next person to read the file will "fix" the empty classes by adding rules — breaking the pattern in a way that's hard to diagnose after the fact. The canonical comment form:
+
+```css
+/* Marker modifiers — intentionally empty. Italic placement is HTML-authored
+   per typography.md §10 (structural HTML contracts). These classes exist for
+   generation-time selection and self-documentation. Do not add declarations. */
+.section-opener--italic-inline,
+.section-opener--italic-newline,
+.section-opener--italic-none { /* no-op */ }
+```
+
+The comment cites the typography.md section so the rule is discoverable from the CSS alone.
+
+**When to reach for a marker class.** Any primitive where structural intent is worth selecting on at generation time but the visual behavior already lives in HTML. Wave 2 will apply this to StatRow label-scale modifiers and to further primitives as they land. When in doubt, the test is: would giving this class a CSS declaration duplicate or contradict what the HTML already expresses? If yes, marker class. If no, it's a normal modifier — author the CSS.
+
 ---
 
 ## Appendix A: The exceptions principle
@@ -472,3 +518,28 @@ A third exception candidate that does NOT meet this bar: italic runs shifting to
 **Relationship to the ornament rule and "assumptions fail silently" (§9).** The exceptions principle is the enforcement mechanism for those two rules. The ornament rule says "ornament derives from the type system." Assumptions-fail-silently says "write it down or it drifts." The exceptions principle says "and when you write down an exception, it clears these four points or it doesn't exist."
 
 When authoring a new build and the urge to add an exception appears, apply the four points. If any of them fail, the exception isn't earned. Fix the rule or hold the line.
+
+---
+
+## Appendix B — Tier application
+
+The typography signature established in §8 — ss01 + ss02 Fraunces stylistic sets and opsz pinning to rendered size — is universal across every tier the skill ships. Premium, Professional, Standard: same signature. Any tier documentation elsewhere in the skill that qualifies this, hedges it, or scopes it to Premium is wrong and should be corrected to match this appendix.
+
+The reasoning is floor-level, not ceiling-level. The signature is not a Premium feature that Professional builds can survive without — it's the thing that makes a skill-generated build read as editorial instead of as competent SaaS. Shipping Professional without it means Professional builds don't read as GRM. They read as generic. That erodes the brand floor, not the Premium ceiling, and no tier strategy is worth that trade.
+
+### Where tier variation lives instead
+
+Tiers differentiate on four dimensions, none of them typographic signature:
+
+| Dimension | Premium | Professional | Standard |
+| --- | --- | --- | --- |
+| **Palette complexity** | Full 4-axis palette + FP secondary accents where applicable | 3-color reduction | 2-color |
+| **Section density** | 8–12 sections with SectionOpener variants | 5–7 sections | 3–5 sections |
+| **Animation / motion layer** | Parallax + counted stats + scroll-driven reveals | Fades only | None |
+| **Photographic treatment** | Two-axis gradient overlays, full-bleed | Flat crops | Solid-color stand-ins |
+
+The typography signature applies at every row. A Standard build on two colors, three sections, no motion, solid-color stand-ins still ships ss01 + ss02 + opsz-pinned Fraunces. That's the point.
+
+### Corollary
+
+Font stack is also universal across tiers: Fraunces display, Inter body, JetBrains Mono eyebrow. Alternate serifs (Source Serif Pro, etc.) are not tier fallbacks — they're wrong-stack substitutions that lose the signature even when they look close. A tier that drops Fraunces is not a GRM tier.

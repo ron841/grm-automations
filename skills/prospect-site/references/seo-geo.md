@@ -1,6 +1,6 @@
 # SEO and GEO Reference
 
-Part of the prospect-site skill v0.7. Loaded by Phase 5 during HTML generation and Phase 5.5 during structured data injection. Referenced by Phase 6 for verification.
+Part of the prospect-site skill v0.8. Loaded by Phase 5 during HTML generation and Phase 5.5 during structured data injection. Referenced by Phase 6 for verification.
 
 This file owns every decision about how a generated contractor site becomes visible and citable in the AI-era search landscape. Schema.org structured data templates, semantic HTML discipline, BLUF content structure, robots.txt crawler access, sitemap generation, llms.txt inclusion, platform-specific optimization notes, and the Phase 5 and Phase 6 integration points.
 
@@ -22,7 +22,7 @@ The 17 percent overlap finding is not just a statistic. It is the entire commerc
 
 **The old game that GRM cannot win.** Traditional SEO for local contractors is a slow compounding game. A plumber who set up a WordPress site in 2015 and earned 200 backlinks from HomeAdvisor, Angi, Yelp, BBB, a few local chambers of commerce, and a few newspaper mentions has a moat. That moat took ten years to build. A new contractor agency trying to outrank that plumber on Google organic would need to build a comparable backlink profile from scratch, wait for Google to age the new domain, and hope the incumbent does not notice and respond. Under the old game, a year-one Marion County web agency cannot reasonably compete with an entrenched incumbent on traditional search rankings. The math does not work.
 
-**The new game that GRM can win on day one.** Under the AI citation playbook, domain age does not matter. Backlink count does not matter. Google ranking position does not matter. What matters is: Schema.org markup completeness, fact density in the first 300 words of every page, FAQPage schema with specific local answers, semantic HTML discipline, and explicit AI crawler access. These are all technical implementation decisions that a well-built new site ships with on day one. A three-day-old contractor site built to GRM's v0.7 spec can outperform a ten-year-old incumbent site in AI citations starting the moment the crawlers index it. The incumbent's ten-year moat is worth nothing in this game. The incumbent's backlinks are worth nothing. The incumbent's domain age is worth nothing. The incumbent has no moat, because the incumbent is playing a different game and does not know it.
+**The new game that GRM can win on day one.** Under the AI citation playbook, domain age does not matter. Backlink count does not matter. Google ranking position does not matter. What matters is: Schema.org markup completeness, fact density in the first 300 words of every page, FAQPage schema with specific local answers, semantic HTML discipline, and explicit AI crawler access. These are all technical implementation decisions that a well-built new site ships with on day one. A three-day-old contractor site built to GRM's v0.8 spec can outperform a ten-year-old incumbent site in AI citations starting the moment the crawlers index it. The incumbent's ten-year moat is worth nothing in this game. The incumbent's backlinks are worth nothing. The incumbent's domain age is worth nothing. The incumbent has no moat, because the incumbent is playing a different game and does not know it.
 
 **The Marion County reality.** Of the contractor sites GRM has surveyed in Marion County so far (the batch list of 28 manually selected prospects plus the larger batch of 61 home services businesses), the overwhelming majority have: no Schema.org markup of any kind, no FAQPage schema, no semantic HTML beyond what WordPress themes produce by default, marketing filler in their first paragraphs instead of fact-dense content, WordPress security plugins that may be blocking AI crawlers, and no Bing Places for Business claim. Every single one of these is a gap GRM closes on day one of the client relationship. Every single one is a citation leak the incumbent does not even know they have.
 
@@ -43,11 +43,11 @@ Three specific research findings anchor every decision in this file:
 ### What this file does NOT try to do
 
 - **Link building and domain authority work.** These are traditional SEO concerns and are out of scope for the generator skill. Ongoing backlink work is a client services offering documented in `deployment.md`.
-- **Keyword research and content marketing strategy.** GRM may offer this as a paid add-on, but the v0.7 skill focuses on the markup and structural baseline, not on content strategy.
+- **Keyword research and content marketing strategy.** GRM may offer this as a paid add-on, but the v0.8 skill focuses on the markup and structural baseline, not on content strategy.
 - **Paid search and advertising.** Handled separately in GRM's social and paid offerings.
 - **Full site audits and technical SEO troubleshooting.** Those are manual consulting engagements.
 
-The v0.7 skill's job is to produce sites that start from a structurally strong AI-citation position on the day they ship. Ongoing optimization is a client relationship, not a generator task.
+The v0.8 skill's job is to produce sites that start from a structurally strong AI-citation position on the day they ship. Ongoing optimization is a client relationship, not a generator task.
 
 ---
 
@@ -861,7 +861,7 @@ If any of these return 403, 429, or other blocking responses, the build is flagg
 
 ### Never block these
 
-Do NOT add any `Disallow` rules to block directories or files on a generated contractor site. Contractor sites are marketing content and every page should be crawlable. The only legitimate reason to block a path would be a contact form submission URL or an admin panel, neither of which exist on v0.7 static sites.
+Do NOT add any `Disallow` rules to block directories or files on a generated contractor site. Contractor sites are marketing content and every page should be crawlable. The only legitimate reason to block a path would be a contact form submission URL or an admin panel, neither of which exist on v0.8 static sites.
 
 ---
 
@@ -930,7 +930,7 @@ Phase 5 writes the current build date as the `<lastmod>` for every page. On subs
 
 Industry research shows that 50 percent of content cited by AI assistants was published or updated within the previous 13 weeks. Freshness is treated as a credibility signal. A contractor site whose sitemap shows content last updated six months ago is less likely to be cited than one updated two weeks ago.
 
-**For v0.7 builds,** Phase 5 writes the build date as lastmod on every page. This is accurate on the day the site ships.
+**For v0.8 builds,** Phase 5 writes the build date as lastmod on every page. This is accurate on the day the site ships.
 
 **For ongoing client relationships (post-signing),** the quarterly content refresh protocol in `deployment.md` updates review counts, adds recent project photos, refreshes seasonal FAQ questions, and touches the lastmod dates. This is how GRM's hosting relationships deliver ongoing AI citation value.
 
@@ -1009,9 +1009,9 @@ Phase 5 generates the following `llms.txt` at the root of every site:
 - [Additional service sub-pages if generated]
 ```
 
-### No llms-full.txt in v0.7
+### No llms-full.txt in v0.8
 
-The spec also defines `llms-full.txt`, a comprehensive single-document version of the entire site content. v0.7 does NOT generate llms-full.txt because (a) AI systems rarely fetch it, (b) it duplicates content that already exists on the regular HTML pages, and (c) the marginal impact is not worth the build complexity. If adoption data shifts in v0.8 or later, the decision can be revisited.
+The spec also defines `llms-full.txt`, a comprehensive single-document version of the entire site content. v0.8 does NOT generate llms-full.txt because (a) AI systems rarely fetch it, (b) it duplicates content that already exists on the regular HTML pages, and (c) the marginal impact is not worth the build complexity. If adoption data shifts in v0.8 or later, the decision can be revisited.
 
 ### File location
 
@@ -1030,7 +1030,7 @@ Each AI assistant handles citation differently. These notes summarize current (e
 **Discovery layer:** ChatGPT primarily uses Bing's search index as its first-stage discovery, then retrieves and reads top-ranking pages for synthesis. This means Bing's ranking signals matter for ChatGPT citations.
 
 **What GRM controls:**
-- Allow all three crawler identities in robots.txt (default for v0.7)
+- Allow all three crawler identities in robots.txt (default for v0.8)
 - Comprehensive LocalBusiness and FAQPage schema (high-impact)
 - BLUF content structure on first 300 words (ChatGPT favors pages with clear answers at the top)
 - Clean semantic HTML (improves parsing accuracy)
@@ -1047,7 +1047,7 @@ Each AI assistant handles citation differently. These notes summarize current (e
 **Discovery layer:** Claude uses multiple search providers and its own retrieval. Notably, Claude is more likely than ChatGPT to cite primary sources (the contractor's own site) over aggregator listings, provided the primary source has sufficient depth and structure.
 
 **What GRM controls:**
-- Allow all four crawler identities in robots.txt (default for v0.7)
+- Allow all four crawler identities in robots.txt (default for v0.8)
 - Deep content on service sub-pages (Claude rewards depth)
 - Well-structured schema (FAQPage and Service are strongest for Claude)
 - Semantic HTML with clear hierarchy
@@ -1063,7 +1063,7 @@ Each AI assistant handles citation differently. These notes summarize current (e
 **Discovery layer:** Perplexity uses its own web crawler plus partnerships with search providers. Perplexity is the most citation-heavy of the five AI assistants, typically citing 5-15 sources per response.
 
 **What GRM controls:**
-- Allow PerplexityBot in robots.txt (default for v0.7)
+- Allow PerplexityBot in robots.txt (default for v0.8)
 - Fact density in content (Perplexity explicitly favors verifiable claims)
 - Specific numbers, license numbers, and credentials in BLUF content
 - FAQPage schema with specific answers
@@ -1081,7 +1081,7 @@ Each AI assistant handles citation differently. These notes summarize current (e
 **Discovery layer:** Tightly integrated with Bing's search index. Inherits Bing's crawling and ranking infrastructure, then layers AI synthesis on top.
 
 **What GRM controls:**
-- Bingbot access in robots.txt (default for v0.7)
+- Bingbot access in robots.txt (default for v0.8)
 - Schema markup (Bing treats schema similarly to Google)
 - **Bing Places for Business claim** — often-overlooked structural advantage since most contractors skip Bing entirely
 - Traditional on-page SEO basics (title tags, meta descriptions, H1 structure)
@@ -1099,7 +1099,7 @@ Each AI assistant handles citation differently. These notes summarize current (e
 **Discovery layer:** Google's search index and Knowledge Graph. Gemini's AI Overviews appear directly in Google search results, synthesizing from multiple sources.
 
 **What GRM controls:**
-- Google-Extended access in robots.txt (default for v0.7)
+- Google-Extended access in robots.txt (default for v0.8)
 - Schema.org LocalBusiness markup (heavily weighted by Google)
 - Google Business Profile optimization (primary signal for local queries)
 - Reviews on Google (AggregateRating matters for Gemini's recommendations)
@@ -1329,15 +1329,15 @@ Phase 6 verifies SEO and GEO implementation across multiple checks. These are ha
 
 ---
 
-## What is deliberately not in v0.7
+## What is deliberately not in v0.8
 
-The AI citation research surfaced several high-value tactics that v0.7 does not implement. This section names them explicitly so nothing gets silently dropped. Each one is either a v0.8+ roadmap item or a deliberate scope boundary. When these tactics appear in client conversations or sales pitches, GRM should be able to speak to them with confidence and explain the reasoning.
+The AI citation research surfaced several high-value tactics that v0.8 does not implement. This section names them explicitly so nothing gets silently dropped. Each one is either a v0.8+ roadmap item or a deliberate scope boundary. When these tactics appear in client conversations or sales pitches, GRM should be able to speak to them with confidence and explain the reasoning.
 
 ### Marion County [Trade] Guide content hub (Tier 3 GEO tactic)
 
 **What it is.** A long-form authoritative resource page (2,000+ words) about a specific trade in the local market, covering topics like: permit requirements in Marion County, typical cost ranges in 2026, seasonal considerations for Florida homes (lightning season, humidity, freeze events), how to choose a licensed contractor, warning signs of unlicensed operators, local code references. The Cowork research cites this as a Tier 3 implementation (high impact, higher effort) because content hubs of this depth are highly citable by AI assistants answering research queries like "how much does a whole house surge protector cost in Ocala" or "do I need a permit for water heater replacement in Marion County".
 
-**Why v0.7 does not build it.** A content hub of this depth requires a fundamentally different Phase 2 data capture. The prospect-site skill v0.7 captures what a contractor has on their existing site plus what Google Places returns. It does not capture permit requirements from Marion County government, it does not capture Florida building code references, and it does not capture seasonal considerations specific to Central Florida. Adding content hub generation to v0.7 would require either a separate data source (which does not exist yet) or a research sub-workflow (which would blow out the scope of a single-session build).
+**Why v0.8 does not build it.** A content hub of this depth requires a fundamentally different Phase 2 data capture. The prospect-site skill v0.8 captures what a contractor has on their existing site plus what Google Places returns. It does not capture permit requirements from Marion County government, it does not capture Florida building code references, and it does not capture seasonal considerations specific to Central Florida. Adding content hub generation to v0.8 would require either a separate data source (which does not exist yet) or a research sub-workflow (which would blow out the scope of a single-session build).
 
 **Roadmap.** This is a v0.8+ target. The v0.8 architecture may introduce a separate "content research" workflow that captures Marion County government, code, and seasonal data once, stores it centrally, and reuses it across every generated trade-specific content hub. That way the skill builds the hub in Phase 5 from a shared knowledge base rather than re-researching per prospect. Documented in more detail in `scale-architecture.md`.
 
@@ -1347,7 +1347,7 @@ The AI citation research surfaced several high-value tactics that v0.7 does not 
 
 **What it is.** The traditional SEO playbook: earning inbound links from business directories, local news sites, chamber of commerce listings, industry associations, and partner sites.
 
-**Why v0.7 does not do this.** Backlink work is an ongoing operational activity, not a skill output. It is also fundamentally contrary to the strategic thesis of this file: the 17 percent overlap finding means AI citations do not care about backlinks. GRM is building for the new game, not the old one.
+**Why v0.8 does not do this.** Backlink work is an ongoing operational activity, not a skill output. It is also fundamentally contrary to the strategic thesis of this file: the 17 percent overlap finding means AI citations do not care about backlinks. GRM is building for the new game, not the old one.
 
 **What GRM should say in sales conversations.** Traditional SEO is still worth doing at a basic level (Google Business Profile, Bing Places, consistent NAP across citations, responsive to Google reviews). But backlink campaigns and link-building services are explicitly not part of the GRM value prop. If a prospect asks about backlinks, the answer is: "We focus on the search landscape that actually matters for contractors in 2026. The old backlink game takes three years to pay off. AI citations pay off the day the crawlers index your site. Your time and budget are better spent on what we build."
 
@@ -1355,7 +1355,7 @@ The AI citation research surfaced several high-value tactics that v0.7 does not 
 
 **What it is.** Ongoing blog post production, long-tail keyword targeting, content calendars, and topical authority building.
 
-**Why v0.7 does not do this.** Content marketing is a separate recurring engagement, not a one-time site build. GRM may offer it as a paid add-on in the future, but it is not part of v0.7.
+**Why v0.8 does not do this.** Content marketing is a separate recurring engagement, not a one-time site build. GRM may offer it as a paid add-on in the future, but it is not part of v0.8.
 
 **Roadmap.** v0.8+ may introduce a quarterly content refresh workflow that ties into the 13-week freshness cycle (documented in `deployment.md`). That workflow would generate a small number of fresh pages per quarter per client based on seasonal topics and captured site data. Not a full content marketing service, but enough to maintain the freshness signal that AI crawlers reward.
 
@@ -1363,7 +1363,7 @@ The AI citation research surfaced several high-value tactics that v0.7 does not 
 
 **What it is.** Tracking which contractors get recommended by each AI assistant for target queries (e.g., "best plumber in Ocala") and building competitive intelligence reports.
 
-**Why v0.7 does not do this.** Monitoring is an ongoing client services activity, not a generator task. Full implementation is documented in `deployment.md` under the monitoring stack. The GEO tool landscape in this file gives GRM a starting point for tool selection.
+**Why v0.8 does not do this.** Monitoring is an ongoing client services activity, not a generator task. Full implementation is documented in `deployment.md` under the monitoring stack. The GEO tool landscape in this file gives GRM a starting point for tool selection.
 
 **Roadmap.** Once GRM has 5+ paying clients, the monitoring stack becomes worth automating. Until then, manual checks via Otterly or Gauge on a monthly basis are sufficient.
 
@@ -1371,17 +1371,17 @@ The AI citation research surfaced several high-value tactics that v0.7 does not 
 
 **What it is.** Contractor businesses with multiple locations or service territories requiring per-location landing pages with unique local optimization.
 
-**Why v0.7 does not do this.** Marion County contractors GRM is targeting are overwhelmingly single-location operators. Adding multi-location support would complicate the skill without matching the market reality.
+**Why v0.8 does not do this.** Marion County contractors GRM is targeting are overwhelmingly single-location operators. Adding multi-location support would complicate the skill without matching the market reality.
 
-**Roadmap.** If GRM wins a multi-location client (e.g., an HVAC chain with locations in Ocala, Gainesville, and The Villages), a v0.8+ extension can add per-location page generation. Not a v0.7 target.
+**Roadmap.** If GRM wins a multi-location client (e.g., an HVAC chain with locations in Ocala, Gainesville, and The Villages), a v0.8+ extension can add per-location page generation. Not a v0.8 target.
 
 ### llms-full.txt generation
 
 **What it is.** The extended version of the llms.txt spec that provides a comprehensive single-document version of the entire site's content, designed for LLM ingestion.
 
-**Why v0.7 does not do this.** llms.txt itself has limited measured impact (0.1 percent of AI crawler requests, approximately 10 percent adoption). llms-full.txt has even less measured impact. Both files are low-cost to generate but high-cost to maintain correctly, and the current evidence does not support spending the effort on the full version.
+**Why v0.8 does not do this.** llms.txt itself has limited measured impact (0.1 percent of AI crawler requests, approximately 10 percent adoption). llms-full.txt has even less measured impact. Both files are low-cost to generate but high-cost to maintain correctly, and the current evidence does not support spending the effort on the full version.
 
-**Roadmap.** If industry data shifts meaningfully (e.g., if llms.txt adoption crosses 30 percent and major AI platforms begin explicitly prioritizing it), revisit in a v0.8+ release. Until then, the minimal llms.txt in v0.7 is sufficient.
+**Roadmap.** If industry data shifts meaningfully (e.g., if llms.txt adoption crosses 30 percent and major AI platforms begin explicitly prioritizing it), revisit in a v0.8+ release. Until then, the minimal llms.txt in v0.8 is sufficient.
 
 ---
 
@@ -1432,4 +1432,4 @@ Before marking SEO and GEO injection complete, Phase 5.5 verifies:
 
 ## Version
 
-seo-geo.md v0.7.0. Foundation file for Phase 5.5 structured data injection and Phase 6 verification. Based on industry research current through April 2026 including adoption and impact data on llms.txt, schema.org structured data, AI crawler behavior, and platform-specific citation patterns for ChatGPT, Claude, Perplexity, Copilot, and Gemini. When industry research updates significantly, this file should be re-reviewed for accuracy. Last research refresh: April 9, 2026.
+seo-geo.md v0.8. Foundation file for Phase 5.5 structured data injection and Phase 6 verification. Based on industry research current through April 2026 including adoption and impact data on llms.txt, schema.org structured data, AI crawler behavior, and platform-specific citation patterns for ChatGPT, Claude, Perplexity, Copilot, and Gemini. When industry research updates significantly, this file should be re-reviewed for accuracy. Last research refresh: April 9, 2026.
