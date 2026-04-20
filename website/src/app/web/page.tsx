@@ -1,9 +1,121 @@
+import type { Metadata } from "next";
 import "./landing-tokens.css";
 import "./landing.css";
+
+export const metadata: Metadata = {
+  title: "The Storefront — Websites built to be recommended by AI | Get Rooted Media",
+  description:
+    "The Storefront: a website that the AI actually recommends. For Marion County contractors. $800 to build, $150 a month to keep sharp. Live in 14 days.",
+  alternates: {
+    canonical: "https://getrootedmedia.com/web",
+  },
+  openGraph: {
+    title: "The Storefront — Websites built to be recommended by AI",
+    description:
+      "For Marion County contractors. $800 to build, $150 a month. Live in 14 days.",
+    type: "website",
+    url: "https://getrootedmedia.com/web",
+    siteName: "Get Rooted Media",
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
+};
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": "https://getrootedmedia.com/web#service",
+      "name": "The Storefront",
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": "Get Rooted Media LLC",
+        "telephone": "+1-352-598-7289",
+        "email": "ron@getrootedmedia.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Ocala",
+          "addressRegion": "FL",
+          "addressCountry": "US",
+        },
+        "areaServed": "Marion County, FL",
+      },
+      "serviceType":
+        "Website design and development for home-services contractors",
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Setup",
+          "price": "800",
+          "priceCurrency": "USD",
+        },
+        {
+          "@type": "Offer",
+          "name": "Monthly",
+          "price": "150",
+          "priceCurrency": "USD",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "billingIncrement": 1,
+            "unitText": "MONTH",
+          },
+        },
+      ],
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is The Storefront?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text":
+              "A website built for Marion County contractors that is specifically optimized to be recommended by AI assistants like ChatGPT. Includes schema markup, fact-dense copy, and quarterly content refresh.",
+          },
+        },
+        {
+          "@type": "Question",
+          "name": "What does The Storefront cost?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text":
+              "$800 one-time setup fee, then $150 per month for hosting, updates, AI citation monitoring, and quarterly refresh.",
+          },
+        },
+        {
+          "@type": "Question",
+          "name": "How long does it take to build?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text":
+              "Your Storefront is live within 14 days of signing and receipt of the setup fee.",
+          },
+        },
+        {
+          "@type": "Question",
+          "name": "Do I get to see it before I sign?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text":
+              "Yes. We build a free preview of your homepage within 7 days. If you like it, we migrate. If you do not, nothing changes.",
+          },
+        },
+      ],
+    },
+  ],
+};
 
 export default function WebPage() {
   return (
     <main className="web-landing">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
+
       {/* ============ 1. HERO (cream) ============ */}
       <section className="hero sec--cream" data-screen-label="01 Hero">
         <div className="container">
