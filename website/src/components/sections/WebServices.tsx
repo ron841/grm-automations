@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function WebServices() {
   return (
     <section className="bg-grm-black text-white">
@@ -41,12 +43,12 @@ export default function WebServices() {
         </div>
 
         <div className="mt-10">
-          <a
-            href="https://cal.com/ron-kolb-cdlgsw/30min"
+          <Link
+            href="/the-storefront"
             className="font-comfortaa text-[13px] uppercase tracking-[0.18em] text-grm-teal hover:text-white transition-colors"
           >
             See a free preview built for your business &rarr;
-          </a>
+          </Link>
         </div>
       </div>
     </section>

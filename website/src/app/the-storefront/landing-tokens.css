@@ -1,5 +1,5 @@
 /* =========================================================================
-   Get Rooted Media — /web landing page token bridge
+   Get Rooted Media — /the-storefront landing page token bridge
    Maps the --grm-* / --font-* variable names that landing.css expects onto
    the canonical Tailwind v4 @theme tokens defined in src/app/globals.css.
    Scoped to .web-landing so these alias definitions never leak globally.

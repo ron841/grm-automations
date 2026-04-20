@@ -33,6 +33,13 @@ export default function Footer() {
             </h3>
             <nav className="flex flex-col gap-3">
               <Link
+                href="/the-storefront"
+                className="text-sm text-white transition-colors hover:text-grm-teal"
+              >
+                <span className="font-grand-hotel">The</span>{" "}
+                <span className="font-nunito">Storefront</span>
+              </Link>
+              <Link
                 href="/the-closing-table"
                 className="text-sm text-white transition-colors hover:text-grm-teal"
               >

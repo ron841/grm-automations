@@ -8,14 +8,14 @@ export const metadata: Metadata = {
   description:
     "The Storefront: a website that the AI actually recommends. For Marion County contractors. $800 to build, $150 a month to keep sharp. Live in 14 days.",
   alternates: {
-    canonical: "https://getrootedmedia.com/web",
+    canonical: "https://getrootedmedia.com/the-storefront",
   },
   openGraph: {
     title: "The Storefront — Websites built to be recommended by AI",
     description:
       "For Marion County contractors. $800 to build, $150 a month. Live in 14 days.",
     type: "website",
-    url: "https://getrootedmedia.com/web",
+    url: "https://getrootedmedia.com/the-storefront",
     siteName: "Get Rooted Media",
   },
   twitter: {
@@ -28,7 +28,7 @@ const schema = {
   "@graph": [
     {
       "@type": "Service",
-      "@id": "https://getrootedmedia.com/web#service",
+      "@id": "https://getrootedmedia.com/the-storefront#service",
       "name": "The Storefront",
       "provider": {
         "@type": "LocalBusiness",
@@ -363,7 +363,7 @@ export default function WebPage() {
             <a className="side dark" href="https://cal.com/ron-kolb-cdlgsw/30min" data-cta="footer-book">
               <span className="eb">— Book online</span>
               <span className="num">15 minutes →</span>
-              <span className="sub">getrootedmedia.com/web</span>
+              <span className="sub">getrootedmedia.com/the-storefront</span>
             </a>
           </div>
         </div>
