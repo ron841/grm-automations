@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import PreviewIntakeForm from "@/components/forms/PreviewIntakeForm";
 import "./landing-tokens.css";
 import "./landing.css";
 
@@ -337,32 +338,7 @@ export default function WebPage() {
           <div className="intake">
             <h3>Request your free preview.</h3>
             <p className="note">Three fields. No call required yet. We review every submission personally.</p>
-            {/* DEV: wire action to HubSpot / Formspree / your handler. Honeypot field is "company". */}
-            <form action="#" method="POST" data-form="preview-intake">
-              <div className="field">
-                <label htmlFor="name">Your name</label>
-                <input id="name" name="name" type="text" required autoComplete="name" />
-              </div>
-              <div className="field">
-                <label htmlFor="email">Email</label>
-                <input id="email" name="email" type="email" required autoComplete="email" />
-              </div>
-              <div className="field full">
-                <label htmlFor="url">Your current website URL</label>
-                <input id="url" name="url" type="url" placeholder="https://" required />
-              </div>
-              {/* honeypot */}
-              <input
-                type="text"
-                name="company"
-                autoComplete="off"
-                tabIndex={-1}
-                style={{ position: "absolute", left: "-9999px" }}
-                aria-hidden="true"
-              />
-              <button type="submit">Send me my preview →</button>
-              <div className="fine">We reply within one business day. We never sell your email. Marion County contractors only.</div>
-            </form>
+            <PreviewIntakeForm />
           </div>
         </div>
       </section>
