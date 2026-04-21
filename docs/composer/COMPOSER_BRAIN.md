@@ -185,7 +185,7 @@ Each stage ends when it ends. No timelines.
   - `references/LESSONS.md` (473 lines, accumulated build lessons)
   - `references/handoff-discipline.md` (283 lines, Hard Rules #11/#12 process doc)
 
-- **(b) Cherry-pick 11 Wave 1/Wave 2 commits** from production into design-skill:
+- **(b) Backport 11 Wave 1/Wave 2 commits** from production into design-skill via format-patch + git am:
   - `593173e` (Wave 1 core — rhythm tokens, vercel.json cache-header, content-rules reconciliation)
   - `b0c04e9` (SectionOpener primitive spec)
   - `8654668` + `816f58a` (SectionOpener retrofits — combine)
@@ -196,6 +196,8 @@ Each stage ends when it ends. No timelines.
   - `83d088a` (mobile breakpoint reconciliation)
   - `6739aa5` (SKILL.md voice-map integration point)
   - `1ca3bd5` (stale font-loading template rewrite — required because design-skill's css-framework.md is pre-Wave-2)
+
+  **Mechanism (required, not cherry-pick):** Production's repo (`~/.claude/skills/prospect-site/.git`) and grm-automations (`~/grm-automations/.git`) are independent git repos. Composer files live under a path prefix (`skills-experimental/prospect-site-composer/`) inside grm-automations, while production commits modify files at repo root. `git cherry-pick` does not path-rewrite and would land diffs at wrong paths. Instead, extract each commit as a patch from production (`git format-patch -1 <hash>`) and apply to grm-automations with directory prefix (`git am --directory=skills-experimental/prospect-site-composer`). `git am` preserves original author, date, and commit message; amend only to add composer-prefix + trailer (`Applied from production <hash> via format-patch + git am --directory`). Conflict detection still works — apply rejection surfaces the same semantic blocker as cherry-pick conflict would. Stop-surface-report-wait discipline applies identically.
 
 - **(c) Schemas authored:**
   - `profile-schema.md` (formalize current Phase 3 implicit output; include photo manifest with dimensions; declare `schemaVersion: 1.0`)
@@ -398,6 +400,7 @@ Newest session block at the top. Older blocks scroll down.
 **What changed:**
 - Log-entry convention locked: follow-up commit, not atomic with work commit. See §13.
 - Stratum 3 identity sweep across 10 reference files complete (commit 5b2d650). HANDOFF.md deleted as design-skill-era mechanism superseded by COMPOSER_BRAIN.md. Brain file §0 gained post-Composer roadmap vocabulary anchor. scale-architecture.md rewrite deferred (see composer-backlog.md for details).
+- Brain §8 Stage II (b) mechanism clarified: `format-patch` + `git am --directory` rather than raw cherry-pick. Surfaced during Stage II (b) pre-execution structural check — two independent git repos with path-prefix mismatch make cherry-pick unviable.
 
 **What's next:** Create prospect-site-composer target skill directory (original item #3 of Stage II kickoff). Chat-Claude drafting paste-ready prompt after this commit lands.
 
