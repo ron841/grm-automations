@@ -1,6 +1,6 @@
 # CSS Framework Reference
 
-Part of the prospect-site skill v0.7. Loaded by Phase 5 at the START of site generation, before any other CSS or HTML is written. Every other reference file depends on the tokens, variables, and primitives defined here.
+Part of the prospect-site-composer skill. Loaded by Phase 5 at the START of site generation, before any other CSS or HTML is written. Every other reference file depends on the tokens, variables, and primitives defined here.
 
 This file owns:
 
@@ -125,7 +125,7 @@ Almost certainly never needs changing. Listed here so if it ever does need chang
 CONFIG.mobileBreakpoint = "899px"  // @media (max-width: 899px) for mobile overrides
 ```
 
-Single breakpoint for v0.7. Do not add a tablet breakpoint without updating every section pattern file at the same time.
+Single breakpoint. Do not add a tablet breakpoint without updating every section pattern file at the same time.
 
 ### Animation durations
 
@@ -173,7 +173,7 @@ Every design token lives as a CSS custom property on `:root`. Section CSS and he
   --color-white: #FFFFFF;
   --color-black: #0A0A0A;
 
-  /* v0.7 additions — alternate background + dark-section siblings. */
+  /* Alternate background + dark-section siblings. */
   /* --color-background-alt: off-white used for thin-strip sections (trust marquee, */
   /* alternating section rhythm). Fixed value, not brand-derived. Chosen to sit */
   /* ~2% darker than --color-background in HSL lightness. */
@@ -453,7 +453,7 @@ If any ratio fails, Phase 6 flags the build and suggests either darkening the ov
 
 ### Font loading strategy
 
-Google Fonts is the only approved font source for v0.7. Self-hosting fonts is deferred to v0.8 because the flagship builds do not need the extra 30-40ms of first-paint improvement that self-hosting gives, and because Google Fonts handles font-display and variable font loading correctly out of the box.
+Google Fonts is the only approved font source. Self-hosting fonts is deferred to v0.8 Scale (deferred) because the flagship builds do not need the extra 30-40ms of first-paint improvement that self-hosting gives, and because Google Fonts handles font-display and variable font loading correctly out of the box.
 
 Add these to the `<head>` of every generated HTML file:
 
@@ -487,7 +487,7 @@ The default for Professional is Space Grotesk. Ron can override at the approval 
 |--------------|-----------|----------|
 | All tiers    | Inter     | system-ui |
 
-Inter is the body font for every tier. The heading font changes to signal tier, but the body stays consistent so reading experience is consistent. Do not mix body fonts across tiers — Inter is the only body font in v0.7.
+Inter is the body font for every tier. The heading font changes to signal tier, but the body stays consistent so reading experience is consistent. Do not mix body fonts across tiers — Inter is the only body font.
 
 ### Banned fonts
 
@@ -529,7 +529,7 @@ The hero glass card naturally produces a ratio of 5-6x (72px headline over 12px 
 
 ### Visible grid and editorial rules
 
-A grid system that the reader cannot perceive is not doing its job. Beyond the container widths defined above, v0.7 sites use visible hairline rules as a structural element — between stat cells, between service cards in the list-layout variant, between FAQ rows, and as optional section dividers.
+A grid system that the reader cannot perceive is not doing its job. Beyond the container widths defined above, Composer sites use visible hairline rules as a structural element — between stat cells, between service cards in the list-layout variant, between FAQ rows, and as optional section dividers.
 
 Add these tokens to the `:root` block:
 
@@ -601,20 +601,20 @@ The type scale tokens defined in `:root` map to specific section elements. Use t
 }
 ```
 
-Section-specific hardcoded font sizes in `section-patterns.md` and `hero-patterns.md` should be migrated to use these variables in the final polish pass. For v0.7 first build they can stay hardcoded for clarity, but the variables are defined and ready.
+Section-specific hardcoded font sizes in `section-patterns.md` and `hero-patterns.md` should be migrated to use these variables in the final polish pass. For the first build they can stay hardcoded for clarity, but the variables are defined and ready.
 
 ---
 
 ## Breakpoint system
 
-v0.7 uses a two-breakpoint mobile-first system:
+Composer uses a two-breakpoint mobile-first system:
 
 - **Mobile:** default styles, no media query needed
 - **Desktop:** `@media (min-width: 900px)` for any desktop-specific rule
 
 Or equivalently, the pattern used throughout the skill files is mobile overrides via `@media (max-width: 899px)` after desktop defaults. Both patterns produce the same result. Pick one and stick with it per file.
 
-There is no separate tablet breakpoint in v0.7. The 900px break handles iPad portrait (768px → mobile layout) and iPad landscape (1024px → desktop layout) correctly for every section pattern. If a specific section needs tablet-specific treatment in a later version, add it there, not globally.
+There is no separate tablet breakpoint. The 900px break handles iPad portrait (768px → mobile layout) and iPad landscape (1024px → desktop layout) correctly for every section pattern. If a specific section needs tablet-specific treatment in a later version, add it there, not globally.
 
 ### Breakpoint rationale
 
@@ -641,7 +641,7 @@ All containers are centered with `margin: 0 auto` and have side padding of `24px
 
 ## Global reset and base styles
 
-Minimal reset, not a full Normalize.css. Only the rules we actually need for v0.7.
+Minimal reset, not a full Normalize.css. Only the rules we actually need.
 
 ```css
 *, *::before, *::after {
@@ -726,7 +726,7 @@ ul, ol {
 
 ### Why this minimal reset
 
-Full resets like Normalize.css or Tailwind Preflight add dozens of rules we don't need and make the generated CSS harder to read when Ron or a future developer wants to understand what's happening. The rules above handle the cases v0.7 actually hits: box-sizing for layout predictability, margin reset for headings and paragraphs, image defaults, button and form element font inheritance, and a global respect for reduced-motion.
+Full resets like Normalize.css or Tailwind Preflight add dozens of rules we don't need and make the generated CSS harder to read when Ron or a future developer wants to understand what's happening. The rules above handle the cases we actually hit: box-sizing for layout predictability, margin reset for headings and paragraphs, image defaults, button and form element font inheritance, and a global respect for reduced-motion.
 
 ---
 
@@ -781,7 +781,7 @@ All keyframe animations respect `prefers-reduced-motion` through the global rese
 
 ## Motion restraint: what transitions and when
 
-Most contractor sites over-animate. Every card fades in on scroll. Every hover adds a bounce. Every section slides up from below. Cumulatively this reads as "template with motion library installed," and on a slow connection it reads as "site half-broken." The v0.7 rule is restraint.
+Most contractor sites over-animate. Every card fades in on scroll. Every hover adds a bounce. Every section slides up from below. Cumulatively this reads as "template with motion library installed," and on a slow connection it reads as "site half-broken." The rule is restraint.
 
 ### What never transitions
 
@@ -813,7 +813,7 @@ The signature is a deliberate visual gesture the reader notices without being ab
 4. **Eyebrow reveal on hero entry.** The hero eyebrow fades up 0.4s after page load while the headline is already visible. The eyebrow is the only thing that animates on entry; the rest of the hero is static.
 5. **Mono numeral hover-flip on stats.** In the stats section, hovering a stat card briefly swaps the digit glyphs to their tabular-lining variant and back. Single-property transition on `font-variant-numeric`.
 
-Phase 4 picks one option and records it in `profile.json` under `design.signatureMicroInteraction`. Phase 5 implements that one interaction and nothing else. Phase 6 check 17 (new in v0.7) verifies that no more than one of the approved signatures is present.
+Phase 4 picks one option and records it in `profile.json` under `design.signatureMicroInteraction`. Phase 5 implements that one interaction and nothing else. Phase 6 check 17 verifies that no more than one of the approved signatures is present.
 
 ### Durations and easing
 
@@ -1035,7 +1035,7 @@ These rules live in the JS primitives below.
 
 ## Vanilla JavaScript animation toolkit
 
-All animation and interactivity for v0.7 sites uses vanilla JavaScript. No React. No Vue. No jQuery. No animation libraries. The primitives below are everything the generated sites need.
+All animation and interactivity for Composer sites uses vanilla JavaScript. No React. No Vue. No jQuery. No animation libraries. The primitives below are everything the generated sites need.
 
 Each primitive is a named function that Phase 5 includes in `script.js` only if the build needs it. A build with no before/after gallery omits the `beforeAfterCompare` function entirely.
 
@@ -1129,7 +1129,7 @@ function crossfadeSlideshow(containerSelector, interval = 6000) {
 - Default interval 6000ms matches the hero spec
 - Early returns if no container or fewer than 2 slides
 - Reduced motion shows first slide only (no cycling)
-- No unmount or cleanup logic because v0.7 sites are static HTML without SPA navigation
+- No unmount or cleanup logic because Composer sites are static HTML without SPA navigation
 
 ### Primitive 3: parallaxScroll
 
@@ -1615,7 +1615,7 @@ Phase 5 generates this block dynamically based on what sections and hero mode th
 
 ## Reduced motion handling summary
 
-Every animation in v0.7 respects `prefers-reduced-motion: reduce`. The handling strategy varies by animation type:
+Every animation respects `prefers-reduced-motion: reduce`. The handling strategy varies by animation type:
 
 | Animation               | Reduced motion behavior |
 |-------------------------|------------------------|
@@ -1635,7 +1635,7 @@ The global CSS reset handles most CSS-based animations through the `animation-du
 
 ## Performance targets
 
-v0.7 sites must hit these Lighthouse mobile scores for Phase 6 to pass:
+Composer sites must hit these Lighthouse mobile scores for Phase 6 to pass:
 
 - **LCP (Largest Contentful Paint):** under 2.5 seconds
 - **Performance score:** 85 or higher
@@ -1665,7 +1665,7 @@ If a build fails the LCP target, the most likely cause is a hero background imag
 - Do not introduce a new CSS custom property without adding it to this file and following the naming pattern.
 - Do not include JS primitives for sections that aren't in the build (e.g., don't include `beforeAfterCompare` when there's no before/after gallery).
 - Do not skip reduced-motion handling on a new animation. Every animation needs a reduced-motion path.
-- Do not use a tablet breakpoint. v0.7 is mobile-first with a single 900px break.
+- Do not use a tablet breakpoint. Composer is mobile-first with a single 900px break.
 - Do not load multiple heading fonts. Pick one per tier.
 - Do not use `position: sticky` for the nav. Use `position: fixed`.
 - Do not hardcode `rgba(43, 76, 159, 0.15)`. Use `rgba(var(--color-primary-rgb), 0.15)`.
@@ -1674,4 +1674,4 @@ If a build fails the LCP target, the most likely cause is a hero background imag
 
 ## Version
 
-css-framework.md v0.7.0, foundation file for prospect-site skill v0.7. Every other reference file depends on this one.
+css-framework.md — part of prospect-site-composer. Foundation file for the skill. Every other reference file depends on this one.

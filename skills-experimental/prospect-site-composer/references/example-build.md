@@ -1,6 +1,6 @@
-# Example Build: Annotated v0.7 Reference Page
+# Example Build: Annotated Reference Page
 
-Part of the prospect-site skill v0.7. Loaded by Phase 5 at the start of site generation as a pattern-match reference. Every section of this document is a worked example of a v0.7 homepage section, annotated with which rules it satisfies and why it is composed the way it is. When Phase 5 is deciding how to render a section, pattern-match against the relevant example here before falling back to the literal rule text in `section-patterns.md` or `hero-patterns.md`.
+Part of the prospect-site-composer skill. Loaded by Phase 5 at the start of site generation as a pattern-match reference. Every section of this document is a worked example of a homepage section, annotated with which rules it satisfies and why it is composed the way it is. When Phase 5 is deciding how to render a section, pattern-match against the relevant example here before falling back to the literal rule text in `section-patterns.md` or `hero-patterns.md`.
 
 The LLM generating against this skill is better at composing-from-example than at composing-from-rules. This file is the example.
 
@@ -617,4 +617,4 @@ The point of this example is not "every build looks like this." The point is "ev
 
 ## Version
 
-example-build.md v0.7.1. Worked reference pages for the Tucci Electric synthetic composite — homepage, About page, and service sub-page (Panel Upgrades). Sub-page examples added April 21, 2026 per handoff feedback to give Phase 5 pattern-match coverage across page types. Loaded by Phase 5 at generation start as a pattern-match reference. Every annotation in this file maps to a specific rule in `css-framework.md`, `section-patterns.md`, `image-handling.md`, `hero-patterns.md`, or `anti-slop-rules.md`. When this example and those rule files disagree, the rule files win — this example exists to show the rules in composition, not to override them. Last updated April 9, 2026.
+example-build.md — part of prospect-site-composer. Worked reference pages for the Tucci Electric synthetic composite — homepage, About page, and service sub-page (Panel Upgrades). Sub-page examples added April 21, 2026 per handoff feedback to give Phase 5 pattern-match coverage across page types. Loaded by Phase 5 at generation start as a pattern-match reference. Every annotation in this file maps to a specific rule in `css-framework.md`, `section-patterns.md`, `image-handling.md`, `hero-patterns.md`, or `anti-slop-rules.md`. When this example and those rule files disagree, the rule files win — this example exists to show the rules in composition, not to override them. Last updated April 9, 2026.

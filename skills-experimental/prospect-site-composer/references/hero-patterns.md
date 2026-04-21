@@ -1,12 +1,12 @@
 # Hero Patterns Reference
 
-Part of the prospect-site skill v0.7. Loaded by Phase 5 when the skill begins hero generation, in tandem with `section-patterns.md` (which covers every other homepage section).
+Part of the prospect-site-composer skill. Loaded by Phase 5 when the skill begins hero generation, in tandem with `section-patterns.md` (which covers every other homepage section).
 
 This file contains the pixel-level spec for the hero region of every generated homepage: the shared Glassmorphism content layer (both size variants), the four background mode implementations, and the optional video augmentation section. CSS variables (`--color-primary`, `--font-heading`, `--space-section`, etc.) come from `css-framework.md`. Vanilla JS animation primitives (cross-fade, parallax scroll, mesh gradient, mousemove parallax) also live in `css-framework.md`.
 
 ## Architecture
 
-Every v0.7 hero has two layers:
+Every hero has two layers:
 
 1. **Content layer.** The Glassmorphism Trust Hero card. Same structural pattern in all four modes. Comes in two size variants (default and wide) selected by Phase 4.
 
@@ -781,6 +781,6 @@ Do NOT add `padding-top` or `margin-top` to the hero beyond the 100px allowance 
 - Do not use 5+ slides in cross-fade beyond what Phase 3 captured. Never pad with stock.
 - Do not omit the glass card. All four modes use the same glass card.
 - Do not use a photo with a watermark, logo, or baked-in text as hero background.
-- Do not use `box-shadow` offset blocks behind the glass card (that was v0.5's pattern, not v0.7's).
+- Do not use `box-shadow` offset blocks behind the glass card (that was v0.5's pattern, not Composer's).
 - Do not apply the wide variant to modes other than parallax unless Phase 4 selected it (character count or Premium tier).
 - Do not hardcode the headline font-size — use the shared glass card CSS which switches via the modifier class.

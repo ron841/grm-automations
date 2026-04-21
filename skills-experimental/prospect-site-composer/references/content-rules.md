@@ -1,6 +1,6 @@
 # Content Rules Reference
 
-Part of the prospect-site skill v0.7. Loaded by Phase 5 when the skill begins generating any copy. This file governs every word that ends up on a generated contractor preview site.
+Part of the prospect-site-composer skill. Loaded by Phase 5 when the skill begins generating any copy. This file governs every word that ends up on a generated contractor preview site.
 
 ## Critical distinction before you read any further
 
@@ -18,7 +18,7 @@ That skill defines six voices (The Front Porch, Plant Street, The Welcome Mat, T
 
 This file does not duplicate the voice skill. It does three things on top of it:
 
-1. **Maps specific voices to specific sections of a contractor preview site** (the v0.7 use case was not contemplated when the voice skill was written, so the mapping happens here).
+1. **Maps specific voices to specific sections of a contractor preview site** (the contractor-preview use case was not contemplated when the voice skill was written, so the mapping happens here).
 2. **Documents the universal GRM rules and banned words list** as a synced excerpt so Phase 5 can enforce them without network access. This excerpt must stay in sync with the voice skill manually. When the voice skill updates, update this file too.
 3. **Provides contractor-specific patterns** that do not exist in the voice skill: headline patterns, CTA templates, service description templates, FAQ templates per trade vertical, and house formatting rules for phone numbers, hours, license numbers, and years in business.
 
@@ -32,11 +32,11 @@ In earlier GRM planning documents (the State of Play, the Saturday Night Addendu
 
 **What the earlier documents were actually describing** are the GRM UNIVERSAL RULES that apply to all six voices (no em dashes, specific nouns, real numbers, banned phrases, no AI tells). Those universal rules are the GRM house style. Individual voices sit on top of them.
 
-**For v0.7 and forward:** when you see "Plant Street voice" in old planning documents, mentally translate it to "GRM universal rules." When you see "Plant Street voice" in content-rules.md or in GRM_VOICE_SKILL.md, it refers specifically to the first-person opinion voice, which is NOT used in contractor preview sites.
+**Going forward:** when you see "Plant Street voice" in old planning documents, mentally translate it to "GRM universal rules." When you see "Plant Street voice" in content-rules.md or in GRM_VOICE_SKILL.md, it refers specifically to the first-person opinion voice, which is NOT used in contractor preview sites.
 
 ---
 
-## Voice mapping for contractor preview sites (v0.7)
+## Voice mapping for contractor preview sites
 
 Phase 5 assigns voices by section according to this table. Every line of generated copy on a contractor site uses exactly one voice, determined by which section it belongs to. Phase 5 must state the voice out loud before generating copy for that section (the voice skill's Step 5 rule).
 
@@ -56,7 +56,7 @@ Phase 5 assigns voices by section according to this table. Every line of generat
 | Footer tagline | **Front Porch** | Warm, people-first, identity grounding. Creates a moment of warmth at the end of the page and echoes the About page voice. |
 | About page (full long-form) | **Front Porch** | Scene-driven, people-first, specific concrete nouns. The voice skill's sample output is under 200 words and works at that length for owner stories. |
 
-### Voices NOT used in v0.7
+### Voices NOT used in Composer
 
 Three voices from GRM_VOICE_SKILL.md are intentionally not used on contractor preview sites:
 
@@ -182,7 +182,7 @@ The grep pass in Phase 6 catches banned phrases mechanically. The four human-jud
 
 Full voice definitions live in GRM_VOICE_SKILL.md. These short summaries exist so Phase 5 can reference the key rules without fetching the full skill file every time.
 
-### Voice 4: The Closing Table (PRIMARY voice for v0.7 contractor sites)
+### Voice 4: The Closing Table (PRIMARY voice for contractor preview sites)
 
 **Description:** Sharp, clean, insight-driven. Assumes a reader who is making a hiring decision and wants the real answer fast. Warm in its precision, like a mentor who gives the real answer instead of the polite one.
 
@@ -207,7 +207,7 @@ Full voice definitions live in GRM_VOICE_SKILL.md. These short summaries exist s
 >
 > Residential, commercial, and industrial wiring across Marion County. Florida license EC13007855.
 
-### Voice 5: Saturday Morning (SECONDARY voice for v0.7 contractor sites)
+### Voice 5: Saturday Morning (SECONDARY voice for contractor preview sites)
 
 **Description:** Clear, upbeat, informational. Grounded civic-booster voice. Loves where they live and wants you to know what's happening. Like a well-written email from a friend who is on every committee in town but is not annoying about it.
 
@@ -229,7 +229,7 @@ Full voice definitions live in GRM_VOICE_SKILL.md. These short summaries exist s
 
 > Tell us about the job. We call back within one business hour during weekdays, and faster if it is an emergency.
 
-### Voice 1: The Front Porch (TERTIARY voice for v0.7 contractor sites)
+### Voice 1: The Front Porch (TERTIARY voice for contractor preview sites)
 
 **Description:** Warm, people-first, scene-driven. The writer shows up and notices the dog, the yard, the smell of the kitchen before asking a question. Sensory details do the heavy lifting. The subject is always a person first, a professional second.
 
@@ -546,7 +546,7 @@ Each section has specific content requirements beyond voice. Phase 5 enforces th
 
 ## Standalone pages and service sub-pages
 
-v0.7 contractor sites always generate the five required pages: `index.html`, `about.html`, `services.html`, `testimonials.html`, `contact.html`. Some prospects also have deeper site architectures with dedicated sub-pages per service, dedicated project galleries, or specific landing pages that do not fit into the five-page required set. This section defines how Phase 5 handles those.
+Composer contractor sites always generate the five required pages: `index.html`, `about.html`, `services.html`, `testimonials.html`, `contact.html`. Some prospects also have deeper site architectures with dedicated sub-pages per service, dedicated project galleries, or specific landing pages that do not fit into the five-page required set. This section defines how Phase 5 handles those.
 
 ### Required standalone pages (already in SKILL.md Phase 5)
 
@@ -564,7 +564,7 @@ These five exist on every build. They are essentially homepage sections broken o
 - `specials.html` — renders if a real featured promotion was captured with real pricing
 - `emergency.html` — renders if 24/7 emergency service is a major differentiator
 
-### Service sub-pages (NEW in v0.7, conditional generation)
+### Service sub-pages (conditional generation)
 
 Some prospects have dedicated sub-pages for specific services. T&F Electric has seven: Residential, Commercial, Industrial, Generators, Panel Upgrades, Surge Protection, and Landscape Lighting. A painter might have Interior Painting, Exterior Painting, and Cabinet Refinishing. Phase 5 must handle these intentionally.
 
@@ -608,12 +608,12 @@ If all three conditions hit, Phase 5 writes `services/[service-slug].html` (note
 - Primary photo is the best photo Phase 3 assigned to this specific service, or a neutral hero photo from the prospect's general library if no service-specific photo exists.
 - If the sub-page content includes a service-specific promotion or pricing, render it prominently in the main content block.
 
-### Pages explicitly OUT of scope for v0.7
+### Pages explicitly OUT of scope
 
-Phase 5 does NOT generate these page types in v0.7 regardless of what Phase 2 captured:
+Phase 5 does NOT generate these page types regardless of what Phase 2 captured:
 
-- **Location sub-pages.** "Ocala Electrician", "Dunnellon Electrician", "The Villages Electrician" as separate pages. These are SEO plays. The homepage and footer already name all service areas. Dedicated location pages are deferred to v0.8 as a paid client upsell.
-- **Blog pages, news pages, resource pages.** Most contractors do not have substantive blog content. When Phase 2 captures a blog link, Phase 5 ignores it. A dedicated blog becomes a v0.8 feature for clients who want ongoing content marketing.
+- **Location sub-pages.** "Ocala Electrician", "Dunnellon Electrician", "The Villages Electrician" as separate pages. These are SEO plays. The homepage and footer already name all service areas. Dedicated location pages are deferred to v0.8 Scale (deferred) as a paid client upsell.
+- **Blog pages, news pages, resource pages.** Most contractors do not have substantive blog content. When Phase 2 captures a blog link, Phase 5 ignores it. A dedicated blog becomes a v0.8 Scale (deferred) feature for clients who want ongoing content marketing.
 - **Financing pages, warranty pages, insurance pages.** These roll into homepage sections (promo callout, FAQ, trust marquee) rather than getting standalone pages. A financing offer goes in the featured promotion callout with the partner name and terms. A warranty commitment goes in the FAQ. Insurance goes in the trust marquee.
 - **Separate project portfolio pages.** If Phase 3 captured 6+ project images, they render in `gallery.html` and optionally in the homepage before/after section. No separate per-project portfolio pages.
 - **Team or staff pages.** Owner content goes on the About page. If a prospect has a dedicated team page with multiple staff bios, the content rolls into the About page team section. No separate `team.html`.
@@ -633,13 +633,13 @@ When Phase 5 evaluates Phase 2's captured pages against the standard site struct
 | Contact page | → `contact.html` |
 | Gallery or portfolio page | → `gallery.html` (if 6+ images) |
 | Specials or promotions page | → `specials.html` (if real pricing captured) |
-| Blog or news page | Ignored in v0.7 |
+| Blog or news page | Ignored |
 | Financing page | Content rolled into promo callout on homepage |
 | Warranty page | Content rolled into homepage FAQ |
 | Insurance page | Content rolled into trust marquee |
-| Location sub-pages | Ignored in v0.7 (deferred to v0.8) |
+| Location sub-pages | Ignored (deferred to v0.8 Scale) |
 | Team or staff page | Content rolled into about.html team section |
-| Employment or careers page | Ignored in v0.7 |
+| Employment or careers page | Ignored |
 | Coupons or discounts page | Rolled into promo callout if real pricing captured |
 
 When a prospect has a captured page type not listed above, Phase 5 asks: does this content fit into an existing homepage section? If yes, roll it in. If no, report to Ron at the Phase 4 approval gate and let him decide whether to generate a custom standalone page for that build.
@@ -1061,4 +1061,4 @@ Before marking any generated page content complete, verify:
 
 ## Version
 
-content-rules.md v0.7.0. Synced with GRM_VOICE_SKILL.md v1.0 (March 22, 2026). When GRM_VOICE_SKILL.md is updated, this file must be manually re-synced for the universal rules and banned words list excerpt.
+content-rules.md — part of prospect-site-composer. Synced with GRM_VOICE_SKILL.md v1.0 (March 22, 2026). When GRM_VOICE_SKILL.md is updated, this file must be manually re-synced for the universal rules and banned words list excerpt.

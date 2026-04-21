@@ -1,6 +1,6 @@
 # Emotional Arc Reference
 
-Part of the prospect-site skill v0.7. Loaded by Phase 4 during design proposal (to pick the emotional persona) and Phase 5 at section generation (to carry the persona through each section's copy, photo selection, and layout choice). NOT loaded by Phase 6 — feeling cannot be automatically verified, and trying to would produce fake metrics that ruin this document's purpose.
+Part of the prospect-site-composer skill. Loaded by Phase 4 during design proposal (to pick the emotional persona) and Phase 5 at section generation (to carry the persona through each section's copy, photo selection, and layout choice). NOT loaded by Phase 6 — feeling cannot be automatically verified, and trying to would produce fake metrics that ruin this document's purpose.
 
 This file exists because the other reference files answer *what* and *how*. They specify rules, tokens, thresholds, banned patterns. They prevent bad builds. They do not, on their own, produce emotionally resonant ones. A page that satisfies every rule in `anti-slop-rules.md` can still feel flat, timid, or generic — the rules prevent specific failures; they do not produce specific wins.
 
@@ -317,4 +317,4 @@ This is the last filter. It is the filter the rule files cannot provide. It is w
 
 ## Version
 
-emotional-arc.md v0.7.0. Page-level emotional pacing and persona. Loaded by Phase 4 (persona selection during design proposal) and Phase 5 (carrying the persona through each section's decisions). NOT loaded by Phase 6 — feeling is not automatically verifiable. This file gives Phase 4 and Phase 5 a directional sense that tunes the thousand small decisions the rule files do not cover. Every persona was derived from trades the skill actually serves; every arc pattern was derived from pages that have worked. Last updated April 9, 2026.
+emotional-arc.md — part of prospect-site-composer. Page-level emotional pacing and persona. Loaded by Phase 4 (persona selection during design proposal) and Phase 5 (carrying the persona through each section's decisions). NOT loaded by Phase 6 — feeling is not automatically verifiable. This file gives Phase 4 and Phase 5 a directional sense that tunes the thousand small decisions the rule files do not cover. Every persona was derived from trades the skill actually serves; every arc pattern was derived from pages that have worked. Last updated April 9, 2026.

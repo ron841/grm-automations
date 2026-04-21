@@ -1,6 +1,6 @@
 # Image Handling Reference
 
-Part of the prospect-site skill v0.7. Loaded by Phase 3 at the start of photo capture and referenced again by Phase 5 when generating HTML with image references.
+Part of the prospect-site-composer skill. Loaded by Phase 3 at the start of photo capture and referenced again by Phase 5 when generating HTML with image references.
 
 This file owns every decision about photography on a generated contractor site. Photo sourcing, quality scoring, content type tagging, before/after pair detection, the sharp-based compression pipeline, responsive size generation, attribution rules, and the photo manifest format in `profile.json`. If it involves a visual asset on a generated site, it is documented here.
 
@@ -212,7 +212,7 @@ Phase 3 pulls photos from up to five sources in priority order. Each tier has a 
 
 **How to fetch.** Multiple approaches in order of preference:
 
-1. **Official Instagram Graph API** — requires app registration and user-delegated auth. Only usable if the prospect has a Business or Creator account and GRM has been explicitly authorized. Not viable for cold-pipeline prospects. Defer to v0.8 when this becomes a paid client enablement feature.
+1. **Official Instagram Graph API** — requires app registration and user-delegated auth. Only usable if the prospect has a Business or Creator account and GRM has been explicitly authorized. Not viable for cold-pipeline prospects. Defer to v0.8 Scale (deferred) when this becomes a paid client enablement feature.
 2. **oEmbed endpoint for public posts** — Facebook's oEmbed endpoint returns post metadata including image URLs for public Instagram posts when provided with a specific post URL. Usable when Phase 2 captured direct post URLs (e.g., in the prospect's website footer social links).
 3. **Manual upload fallback** — when Instagram scraping is not viable, Phase 3 prompts Ron to manually save 6 to 12 best photos from the prospect's Instagram and drop them in `~/grm-sites-prospects/[slug]/raw-photos/instagram/`. Phase 3 picks them up from that folder automatically and processes them like any other tier 3 source.
 
@@ -565,9 +565,9 @@ No size above 1600w because the hero-patterns.md and section-patterns.md specs n
 
 ### Format choice: WebP plus AVIF plus single JPEG fallback
 
-v0.7 ships sites with three output formats: AVIF (modern, best compression), WebP (modern, broad support), and a single JPEG at 1200w (ultimate compatibility fallback).
+Composer ships sites with three output formats: AVIF (modern, best compression), WebP (modern, broad support), and a single JPEG at 1200w (ultimate compatibility fallback).
 
-**Why modern HTML needs a real fallback.** The `<picture>` element's format fallback chain requires an actual `<img>` src that every browser can render. If AVIF fails and WebP fails, the browser looks at the `<img>` src as the final fallback. If that src is itself a WebP (which is what v0.7 initially specified), a browser that failed on WebP sources will also fail on the WebP src, leaving a broken image. The fix is to point the `<img>` src at a format every browser has supported for 25 years: JPEG.
+**Why modern HTML needs a real fallback.** The `<picture>` element's format fallback chain requires an actual `<img>` src that every browser can render. If AVIF fails and WebP fails, the browser looks at the `<img>` src as the final fallback. If that src is itself a WebP (which is what the skill initially specified), a browser that failed on WebP sources will also fail on the WebP src, leaving a broken image. The fix is to point the `<img>` src at a format every browser has supported for 25 years: JPEG.
 
 **The coverage the JPEG buys us.** Browser support for WebP is above 97 percent and AVIF is above 94 percent globally as of early 2026. The ~1 to 3 percent of browsers that fall through to the `<img>` src are typically older Android browsers, enterprise IE11 installations, and niche embedded browsers in third-party apps. Those users exist. A contractor's prospective customer viewing the site on a 2017 tablet or through an email client's preview should not see a broken image.
 
@@ -603,7 +603,7 @@ Quality 80 is the standard sweet spot for both WebP and AVIF:
 - 81 to 90: diminishing returns, file size grows faster than quality
 - 90+: near-lossless, file sizes balloon
 
-v0.7 uses quality 80 for WebP and AVIF at every size. JPEG fallback uses quality 85 (see JPEG rationale above) because JPEG needs slightly higher quality to match the perceived output of modern formats at 80.
+The skill uses quality 80 for WebP and AVIF at every size. JPEG fallback uses quality 85 (see JPEG rationale above) because JPEG needs slightly higher quality to match the perceived output of modern formats at 80.
 
 ### File naming convention
 
@@ -879,7 +879,7 @@ Given the same raw source and the same compression parameters, Phase 3 produces 
 - **Do not skip attribution for Google Places, Unsplash, or Pexels photos.** Legal and Terms of Service requirement.
 - **Do not assume Instagram scraping will work.** Treat Instagram as opportunistic. Plan for zero Instagram photos as a normal case, not an exception.
 - **Do not skip the JPEG 1200w fallback.** Every photo must have the JPEG ultimate fallback so legacy browsers render something instead of broken images. Skipping this produces broken images for 1 to 3 percent of visitors.
-- **Do not use quality above 85 or below 75 for compression.** 80 is the right answer for v0.7.
+- **Do not use quality above 85 or below 75 for compression.** 80 is the right answer.
 - **Do not generate responsive sizes above 1600w.** Nothing in the section patterns renders wider than 1600 effective pixels.
 - **Do not strip EXIF before checking orientation.** Apply rotation first, then strip.
 - **Do not cache-invalidate aggressively.** Raw source cache is valuable and expensive to regenerate. Reprocess from cache whenever possible.
@@ -957,4 +957,4 @@ Phase 3 sets these flags during the content type tagging step. Phase 6 check 6 v
 
 ## Version
 
-image-handling.md v0.7.0. Foundation file for Phase 3 photo pipeline. Referenced by Phase 4 (hero mode decision), Phase 5 (HTML generation), and Phase 6 (verification gates).
+image-handling.md — part of prospect-site-composer. Foundation file for Phase 3 photo pipeline. Referenced by Phase 4 (hero mode decision), Phase 5 (HTML generation), and Phase 6 (verification gates).

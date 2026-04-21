@@ -1,6 +1,6 @@
 # Section Patterns Reference
 
-Part of the prospect-site skill v0.7. Loaded by Phase 5 when the skill begins section generation, in tandem with `hero-patterns.md` (which covers the hero region).
+Part of the prospect-site-composer skill. Loaded by Phase 5 when the skill begins section generation, in tandem with `hero-patterns.md` (which covers the hero region).
 
 This file contains the pixel-level spec for every non-hero section of the generated homepage: nav, promo bar, trust marquee, services grid, stats section (the mandatory dark section), before/after gallery, testimonials, featured promotion callout, FAQ, contact form, footer, and mobile bottom CTA bar. CSS variables (`--color-primary`, `--space-section`, etc.) come from `css-framework.md`. Animation primitives (marquee, glare hover, shimmer button, before/after drag) also live in `css-framework.md`.
 
@@ -24,7 +24,7 @@ This file contains the pixel-level spec for every non-hero section of the genera
 
 Symmetric, centered-and-stacked sections are the default failure mode of generated sites. They read as "assembled from a template" because every section has the same center axis, the same column ratio, and the same visual weight distribution. Magazine editorial layouts break this by varying column ratios, offsetting headlines into specific columns, and letting photographs break the container.
 
-v0.7 ships an **editorial layouts module** — a library of asymmetric compositions Phase 5 can apply to any section whose content supports them. This is the single strongest visual signal of "designed" vs "assembled."
+Composer ships an **editorial layouts module** — a library of asymmetric compositions Phase 5 can apply to any section whose content supports them. This is the single strongest visual signal of "designed" vs "assembled."
 
 ### The 12-column reference grid
 
@@ -582,7 +582,7 @@ Only render if Phase 2 captured real credentials (license numbers, BBB, insuranc
 
 ## 4. Services Grid (Asymmetric Bento)
 
-The asymmetric services grid is one of the main v0.7 wow-gap fixes. One featured service is larger and has a photo background. The rest are smaller cards in a Bento layout. Replaces the v0.6 uniform 4-column grid of identical cards.
+The asymmetric services grid is one of the main wow-gap fixes. One featured service is larger and has a photo background. The rest are smaller cards in a Bento layout. Replaces v0.6's uniform 4-column grid of identical cards.
 
 ### HTML
 
