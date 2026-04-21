@@ -350,6 +350,133 @@ LESSONS.md v0.7.0 seed file. Created April 9, 2026 at the end of the v0.7 build 
 
 ---
 
+## 2026-04-13 — Skill versioning, spec precision, and the iteration ceiling
+
+**Category:** Process / Skill engineering
+
+### What happened
+
+A six-hour skill engineering sprint attempted to produce v0.7.3 from a baseline of v0.7.1 (Friday floor) and v0.7.2 (Monday morning, regressed). The sprint produced a precise specification document, seven implemented rules across the skill and the site-review mission, and a deployed test build. The deployed build did not meaningfully improve on v0.7.1. All seven rules were reverted at 3:30 PM. The skill was restored to v0.7.1 from a desktop backup.
+
+### The lessons that hold beyond this specific sprint
+
+**1. The skill must be under git before any rule changes.**
+Before today, the skill was unversioned plain markdown. v0.7.1's source code was overwritten on Monday's v0.7.2 install and was unrecoverable from the skill folder. The recovery was only possible because Ron had a desktop backup. From now on, the skill lives in git at `~/.claude/skills/prospect-site/.git` and every change is committed. This is non-negotiable infrastructure.
+
+**2. Spec precision does not equal output quality.**
+The v0.7.3 spec was the most precise document the skill has ever had — six iterations on the OG composite recipe, exact pixel specs, locked vertical spacing, defined font fallback chain. The implementation matched the spec. The deployed site still missed the bar. Specs prevent ambiguity in execution; they do not prevent the spec itself from being wrong about what "good" looks like. The only true acceptance test is a full rebuild reviewed with real eyes on a real device.
+
+**3. Set a hard iteration ceiling per sprint.**
+Today's sprint had no ceiling. Six OG mockup iterations was the right call. Six rules was too many for one afternoon. By the time the rebuild surfaced the problems, the cumulative cost of seven commits made another iteration cycle the wrong investment. Future skill sprints should declare a maximum number of rules upfront and stop when that number is hit, regardless of how many candidate rules remain.
+
+**4. The audit-spec-implement-rebuild cycle is too long to run more than once per sprint.**
+Plan for one full cycle per sprint. If the rebuild reveals problems that need another spec revision and another implementation pass, the sprint is over and the work moves to the next sprint. Compressing two cycles into one day produces the failure mode where reverting becomes the only sane option.
+
+**5. Manual touch-up per build is a legitimate strategy.**
+Pursuing skill perfection while real prospects are waiting to be contacted is the wrong tradeoff. The skill produces a good first draft. Ron's eye is the final filter. A 15-30 minute manual edit pass per deployed site is acceptable, expected, and scales reasonably for the current prospect volume. This is documented in the post-build edit playbook at `~/grm-automations/docs/post-build-edit-playbook.md`.
+
+**6. The audit infrastructure (grm-browser + Playwright) earned its keep.**
+Even though today's sprint reverted, the 36-capture audit produced in 30 minutes was the right tool. Future sprints should use it. Real rendered output beats assumptions every time.
+
+### What this means for future skill changes
+
+- Any future skill rule change starts with a git commit of the current state, a stated iteration ceiling, and a defined acceptance test that includes a full rebuild on a real prospect.
+- Skill changes that make the deployed output worse get reverted, not patched. v0.7.2's regressions and v0.7.3's failure to improve on v0.7.1 are both examples — the right move in both cases would have been earlier reverts.
+- The post-build edit playbook is the active workflow. The skill is the first draft, not the final product.
+
+### Files affected
+
+None. This is a process lesson, not a code change. The skill at v0.7.1 (commit `0498ca3`) is the active code.
+
+### Reference
+
+- v0.7.3 spec preserved at git commit `7134045`
+- All seven v0.7.3 rule commits preserved at `e688101` through `47135d9`
+- Today's handoff doc at `~/grm-automations/docs/handoffs/HANDOFF_2026-04-13.md`
+- Audit captures at `~/grm-automations/audits/tandf-v07-vs-v072-2026-04-13/`
+- v0.7.2 snapshot at `~/grm-automations/flagship-snapshots/tandf-electric-v072-2026-04-13/`
+
+Magenta gradient cards (start #9c5494) — H3 contrast borderline AA at 4.29:1 in top-left corner. Revisit when expanding card pattern library. First occurrence: A-1 Payless Septic flagship, 2026-04-15.
+
+A-1 Payless Septic flagship — shipped 2026-04-15 with Ron-led polish pass. Key decisions that elevated the build: (1) sitewide secondary-CTA removal caught a skill bug that repeated on 5 pages; (2) alternating magenta/cream services grid with equal-size cards — stronger rhythm than default Bento asymmetry for this palette; (3) homepage hero swap to the prospect's own company truck photo after re-crawl caught a CSS background-image the original regex missed; (4) services.html slim image band with "pump truck hose-into-manhole" shot as editorial counterpoint to hero. Post-launch skill work: fix Phase 1 background-image crawl, audit CTA component for trailing-fragment pattern.
+
+Social preview metadata — og:image, twitter:image, and the full social preview block must be present on every page, not just index. The skill currently only generates a partial og: block on index and leaves secondary pages bare. Also: any hero swap post-build must update og:image / twitter:image sitewide. First caught: A-1 Payless Septic flagship, 2026-04-15 — Ron flagged missing iMessage thumbnail. Action item for post-launch skill work: add full social preview meta generation to every page template, and add a hero-swap verification step that checks og:image / twitter:image / og:image:width / height / alt across all pages.
+
+Phase 7 slug regeneration — the skill drafts URLs in Phase 1 using the full business slug, but Phase 7 shortens the slug to meet Vercel naming constraints. No Phase 7 step regenerates URL references after the slug change, leaving every slug-bearing artifact pointing at a URL that 404s. Affected artifacts in a default build: <link rel=canonical>, og:url meta tag, Static Forms redirectTo hidden input (BREAKS LEAD CAPTURE — every form submission redirects to a 404), LocalBusiness JSON-LD @id and url fields, sitemap.xml <loc> entries, llms.txt page links, robots.txt sitemap pointer. First caught: A-1 Payless Septic flagship, 2026-04-15 — 16 stale-slug references total across the build. Action item for post-launch skill work: add a Phase 7 step that takes the final deployed Vercel alias and regenerates every URL reference across HTML files, XML files, TXT files, and JSON-LD blocks. The form redirectTo is the most critical — do not ship a build without verifying successful form submission terminates at a live thank-you page.
+
+### 2026-04-16 — WORKFLOW — Progressive-enhancement guard on `[data-reveal]` sections
+
+**Source:** Grandview Inc (F4), v0.7.2 build, 2026-04-16 afternoon session
+**Severity:** critical
+
+**What happened.** Phase 5 wired `data-reveal` on five homepage sections (services, stats, testimonials, faq, contact). The CSS set their initial state to `opacity: 0; transform: translateY(30px)` unconditionally. A JS IntersectionObserver added `.revealed` to flip them back to opacity 1 on scroll. In the Phase 6 Playwright full-page screenshot at 375px, the observer did not fire reliably during the scroll-and-stitch capture — so the screenshot showed hero and footer with a giant blank expanse between them. If JS had failed entirely (legacy browser, bot crawl, reduced-JS environment), real visitors would see the same blank page. The bug was caught by a visual eye check on the mobile screenshot, not by any Phase 6 check.
+
+**Why it matters.** A sales-weapon preview must degrade gracefully. Bots crawling for SEO, reduced-JS users, and automated screenshot tools all exist. Content rendered conditionally on a JS observer is not a defensible default.
+
+**Fix applied (for this build).** Changed CSS selector from `[data-reveal]` to `.js [data-reveal]` for the hidden initial state, and added `document.documentElement.classList.add('js')` at the top of `script.js` before any DOMContentLoaded listeners. Progressive enhancement: no-JS clients see content by default; JS-enabled clients get the reveal animation. Same treatment applied to the reduced-motion override.
+
+**Fix applied (for the skill).** `css-framework.md` §Vanilla JS animation toolkit → `[data-reveal]` CSS pattern must be updated to use the `.js` prefix. `script.js` bootstrap section must include `document.documentElement.classList.add('js')` at the top of the IIFE. Add a Phase 6 check that catches this: after forcing no-JS rendering in a headless browser, verify every [data-reveal] section has `getComputedStyle().opacity === '1'`.
+
+**Cross-reference.** Same class of bug showed up in the stats `data-target` counters: HTML rendered `0` as baseline and relied on JS to tick up to real numbers. Fix: HTML now renders the final numbers; JS resets to 0 inside the observer callback before animating. No-JS users see correct stats; JS users see the animation. Documented here as a companion lesson.
+
+**RESOLUTION.** v0.7.3 commit #2 (`f302d49`). Skill now defaults `[data-reveal]` sections visible unless JS has added `class="js"` to `<html>`. Required inline script documented in `css-framework.md` "Required head-inline script for progressive-enhancement guard".
+
+### 2026-04-16 — COPY — Agent-invented "Licensed" in title + schema
+
+**Source:** Grandview Inc (F4), v0.7.2 build, 2026-04-16 afternoon session
+**Severity:** moderate
+
+**What happened.** Phase 5 was delegated to a build agent. The profile-draft.json explicitly documented "License number: NOT FOUND" and the build instructions said "Do NOT render a license number anywhere. Do NOT write 'Licensed' in CTAs or footer." The agent complied in body copy and CTAs but invented "Licensed Ocala Landscaping Since 1999" in the `<title>`, the og:title, the twitter:title, and the LocalBusiness JSON-LD `description` field. Caught by a post-deploy curl grep on the live URL that read the title and spotted "Licensed". Quick manual fix + redeploy.
+
+**Why it matters.** Title tags and JSON-LD are indexed by search engines. An invented "Licensed" claim in schema.org data is a fabrication that a diligent prospect could use to question our credibility. The instruction was explicit; the agent still regressed on page-metadata surfaces that aren't typically reviewed in the visual eye check.
+
+**Fix applied (for this build).** Removed "Licensed" from index.html title, og:title, twitter:title, and LocalBusiness JSON-LD description. Replaced with "Family Owned" / "Family-owned". Redeployed.
+
+**Fix applied (for the skill).** Add to Phase 6 check 3 (banned output check) a specific grep for "Licensed", "Licensure", and "License #" across title tags, meta tags (og, twitter), and all JSON-LD blocks — not just body copy. Build-agent prompts should move the "do not invent license" rule to the top of the section-header instructions (agents regress on later-mentioned constraints when the prompt is long). Consider a dedicated "fabrication check" step in Phase 6 that specifically diffs agent-written metadata against the profile.json `unknownFields` list and fails on any term that matches a known unsourced claim.
+
+**RESOLUTION.** v0.7.3 commits #3 (`13b4189`), #4 (`074e936`), #5 (`413ac25`). Banned credential list in `content-rules.md` blocks "Licensed"/"Insured"/"Certified"/etc. at Phase 6 check 3 unless `profile.json` captures supporting data. Phase 6 checks 19 and 20 add schema-to-profile cross-reference and unknown-field guard for defense in depth.
+
+### 2026-04-16 — INTEGRATION — Vercel bot mitigation blocks Static Forms curl test
+
+**Source:** Grandview Inc (F4), v0.7.2 build, 2026-04-16 afternoon session
+**Severity:** moderate
+
+**What happened.** Phase 6 check 14 (live form submission test) POSTs a test payload to `https://api.staticforms.xyz/submit` to verify accessKey validity and account health before deploy. The POST now receives a Vercel "Security Checkpoint" HTML challenge page (HTTP 429) regardless of user agent, content-type, or request origin headers. The challenge is a Vercel-side bot mitigation on the Static Forms edge, not a Static Forms rejection. The real accessKey is never tested.
+
+**Why it matters.** Check 14 was the automated guardrail against shipping a site with an expired Static Forms key. With the curl path blocked, we have no build-time signal, and the first time we'd learn the key was broken is when a prospect submits the form and nothing arrives in Ron's inbox.
+
+**Fix applied (for this build).** Marked check 14 as DEFERRED. Plan: verify form submission in a real browser on the deployed URL as part of the Six Checks (check 6, Ron's eye test). Not ideal, but the skill should not block deploy on an integration we can't reach.
+
+**Fix applied (for the skill).** Rewrite check 14 to run the submission through a headless browser that executes the Vercel challenge JS (Playwright with `page.goto` to the staticforms endpoint, then POST via `fetch` in the page context). Alternatively, switch to an accessKey-validation endpoint if Static Forms publishes one, or monitor for a test token delivery to Ron's inbox via Gmail MCP after a build-time submission. Until one of these lands, check 14 is DEFERRED with a visible warning in the Phase 6 report. Add a post-deploy sanity test: Ron taps "Submit" on the real form and confirms the thank-you page within 60 seconds of deploy.
+
+**RESOLUTION.** Not addressed in v0.7.3. Manual browser eye test is the authoritative form check going forward. `deployment.md` language reframe deferred to a future patch.
+
+### 2026-04-16 — TEMPLATE — Footer-logo flatten filter is wrong default
+
+The template's `.footer-logo` CSS applied `filter: brightness(0) invert(1)` to every footer logo. This flattens multi-color logos to white silhouettes. Grandview's multi-color logo (gold wordmark + green palm + banner) became an empty white rectangle in the footer. Compounded by the logo asset having no alpha channel (GIF→PNG conversion preserved white fill as opaque), the silhouette was indistinguishable from a white block.
+
+Fix: v0.7.3 commit #1 (`e40f19b`) removed the filter unconditionally. v0.7.3 commit #6 (`b90b57a`) added a Phase 1 chroma-key rebuild for no-alpha source logos. Logos now render in native brand colors on dark footers.
+
+Lesson: default template CSS choices that "work for most cases" (assuming single-color wordmarks) can fail silently and universally for the cases that do not fit. Template defaults must be defensible against the full range of real inputs, not just the clean-case subset.
+
+### 2026-04-16 — DETECTION — Secondary brand marks need explicit Phase 1 flagging
+
+Grandview had two logos in use: the horizontal wordmark (correctly identified as primary) and a round "Grandview Farms" badge tied to the sod farm / agriculture side of the business. The round badge was inventoried by the crawler as a generic inline image (`s28.avif`) but never recognized as a secondary brand mark. It had to be retrofitted post-build at significant agent-hours cost.
+
+Fix: v0.7.3 commit #7 (`6d60a9f`) added Phase 1 step 4b, which detects round-ratio images 150–600px in CMS upload directories as candidate secondary brand marks and surfaces them at the Phase 4 approval gate.
+
+Lesson: the Phase 1 crawler should not be a passive asset inventory. It must actively categorize images based on shape, size, and source path — these are strong semantic signals about what role the image plays in the prospect's brand system.
+
+### 2026-04-16 — PRESERVATION — Skill-repo durability depends on mirror pattern
+
+The `~/.claude/skills/prospect-site/` repo has no remote configured. Tonight's preservation work established a mirror in `~/grm-automations/skills/prospect-site/`, which has a GitHub remote. The mirror is currently the only off-host copy of the skill tree.
+
+Deferred decision: whether to add a dedicated remote to the skill repo itself (e.g., a GitHub repo specifically for the skill), or formalize the mirror-to-grm-automations pattern as the ongoing preservation mechanism (with periodic rsync + commit + push to the mirror).
+
+Both approaches work. A dedicated remote is cleaner; the mirror pattern is simpler. Decide post-v0.7.3 launch work.
+
+---
+
 ## 2026-04-21 — Luna Master Painting deploy: Vercel team scope + SSO gotchas (v0.7)
 
 **Two distinct Phase 7 frictions surfaced on the Luna build, both related to Vercel CLI defaults that have shifted since the SKILL.md Phase 0 spec was written.**
