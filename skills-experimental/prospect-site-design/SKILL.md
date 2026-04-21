@@ -644,7 +644,7 @@ Phase 5 reads the tier-appropriate `googleFontsPath` from the CONFIG block at th
 Phase 5 writes `script.js` with ONLY the primitives the build actually needs. A build with no before/after gallery does not include `beforeAfterCompare` in the generated JS. A build with hero mode `glass-pure-mesh` includes `meshGradient` and `mousemoveParallax`. The master init block at the bottom of `css-framework.md` shows the conditional pattern.
 
 **6. Phase 4 color computation utilities.**
-Phase 4 runs the Node.js build-time utilities documented in `css-framework.md` under "Phase 4 build-time color utilities" to compute `--color-primary-rgb`, `--color-accent-rgb`, and `--color-dark-primary` values before Phase 5 writes `style.css`. If these values are not pre-computed, the `:root` block will be incomplete and several sections will render with broken hover states and focus rings.
+Phase 4 runs the Node.js build-time utilities documented in `css-framework.md` under "Phase 4 build-time color utilities" to compute brand-derived token values and overwrite the sentinel defaults in the `:root` block before Phase 5 writes `style.css`. Required derivations: `--color-primary` (from node-vibrant), `--color-primary-rgb` (via `hexToRgbString()`), `--color-primary-hover` (via `derivePrimaryHover()`), `--color-accent` (from node-vibrant), `--color-accent-rgb` (via `hexToRgbString()`), `--color-dark-primary` (via `deriveDarkPrimary()`), and `--color-dark-primary-rgb` (via `hexToRgbString()`). If any of these values are not pre-computed, the magenta or neon-green sentinel defaults survive into the generated site and Phase 6 check 18 fails the build. Per `anti-slop-rules.md` Rule E6.
 
 ## Phase 5.5 — SEO and GEO injection
 
@@ -662,7 +662,7 @@ Run validation: JSON-LD passes Google Rich Results Test, sitemap validates again
 
 Goal: automated quality gates that fail the build if any check fails. No shipping broken sites. No relying on Ron's eye for things a script can verify.
 
-Phase 6 runs seventeen checks organized into six categories. All checks must pass before Phase 7 deploy. On any failure, log the specific failure and stop.
+Phase 6 runs eighteen checks organized into eight categories. All checks must pass before Phase 7 deploy. On any failure, log the specific failure and stop.
 
 ### Content integrity checks
 
@@ -715,6 +715,10 @@ Phase 6 runs seventeen checks organized into six categories. All checks must pas
     - Accessibility score ≥ 90
 
 17. **Mobile render verification at 375px.** Use headless Chrome at 375px viewport width (iPhone SE baseline) to render the homepage. Verify: no horizontal scroll, hero CTA is visible above the fold, mobile bottom CTA bar is sticky at the bottom, navigation collapses to hamburger, phone number is tappable. This is the automated backup to Ron's phone eye test (check 6 of the Six Checks done bar).
+
+### Token integrity checks
+
+18. **Brand-token sentinel grep.** Search the generated `style.css` for the sentinel hex values `#FF00FF` (magenta, primary-family sentinels) and `#00FF00` (neon green, accent-family sentinels). Any match indicates Phase 4 color derivation failed to overwrite the `:root` default for a brand-dependent token. Fail the build and report which token retained the sentinel. Per `anti-slop-rules.md` Rule E6.
 
 ### Helper scripts
 

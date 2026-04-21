@@ -155,16 +155,17 @@ Every design token lives as a CSS custom property on `:root`. Section CSS and he
   /* ===== Colors ===== */
   /* Primary and accent come from node-vibrant analysis of the logo in Phase 1. */
   /* Dark primary is derived automatically in Phase 4 (HSL lightness reduced by 25%). */
-  --color-primary: #2B4C9F;
-  --color-primary-rgb: 43, 76, 159;
+  --color-primary: #FF00FF;  /* Sentinel — overwritten in Phase 4 from node-vibrant */
+  --color-primary-rgb: 255, 0, 255;  /* Sentinel — overwritten in Phase 4 via hexToRgbString() */
   /* --color-primary-hover is the hover-state variant of --color-primary. */
-  /* Derived in Phase 4: HSL lightness shifted by -8% (darker) for light backgrounds, */
-  /* or +8% (lighter) for dark backgrounds. Used for button hover, link hover. */
-  --color-primary-hover: #23407E;
-  --color-accent: #F5A623;
-  --color-accent-rgb: 245, 166, 35;
-  --color-dark-primary: #0F1A35;
-  --color-dark-primary-rgb: 15, 26, 53;
+  /* Derived in Phase 4 via derivePrimaryHover(): HSL lightness shifted by -8 */
+  /* percentage points (darker). Used for button hover, link hover. Sentinel */
+  /* default — any magenta leak indicates Phase 4 derivation failed. */
+  --color-primary-hover: #FF00FF;
+  --color-accent: #00FF00;  /* Sentinel — overwritten in Phase 4 from node-vibrant */
+  --color-accent-rgb: 0, 255, 0;  /* Sentinel — overwritten in Phase 4 via hexToRgbString() */
+  --color-dark-primary: #FF00FF;  /* Sentinel — overwritten in Phase 4 via deriveDarkPrimary() */
+  --color-dark-primary-rgb: 255, 0, 255;  /* Sentinel — overwritten in Phase 4 via hexToRgbString() */
   --color-background: #FAFAF8;
   --color-text: #1A1A1A;
   --color-text-muted: #555555;
@@ -174,8 +175,8 @@ Every design token lives as a CSS custom property on `:root`. Section CSS and he
 
   /* v0.7 additions — alternate background + dark-section siblings. */
   /* --color-background-alt: off-white used for thin-strip sections (trust marquee, */
-  /* alternating section rhythm). Derived from --color-background by reducing */
-  /* lightness by ~2% in HSL. */
+  /* alternating section rhythm). Fixed value, not brand-derived. Chosen to sit */
+  /* ~2% darker than --color-background in HSL lightness. */
   --color-background-alt: #F4F4F0;
 
   /* Dark-section token siblings (used on the mandatory dark stats section, footer, */
@@ -378,7 +379,61 @@ function deriveDarkPrimary(hex) {
 }
 ```
 
-Phase 4 runs both conversions for every build and writes the results directly into the `:root` block.
+### Deriving primary-hover from primary
+
+Reduces the HSL lightness of the primary color by 8 percentage points to produce the hover-state variant. Used in button and link hover states. Mirrors the self-contained style of `deriveDarkPrimary()`.
+
+```javascript
+function derivePrimaryHover(hex) {
+  // Convert hex to HSL, shift lightness by -8 percentage points, convert back
+  const h = hex.replace('#', '');
+  let r = parseInt(h.substring(0, 2), 16) / 255;
+  let g = parseInt(h.substring(2, 4), 16) / 255;
+  let b = parseInt(h.substring(4, 6), 16) / 255;
+
+  const max = Math.max(r, g, b);
+  const min = Math.min(r, g, b);
+  let hVal, sVal, lVal = (max + min) / 2;
+
+  if (max === min) {
+    hVal = sVal = 0;
+  } else {
+    const d = max - min;
+    sVal = lVal > 0.5 ? d / (2 - max - min) : d / (max + min);
+    switch (max) {
+      case r: hVal = (g - b) / d + (g < b ? 6 : 0); break;
+      case g: hVal = (b - r) / d + 2; break;
+      case b: hVal = (r - g) / d + 4; break;
+    }
+    hVal /= 6;
+  }
+
+  // Reduce lightness by 8 percentage points, clamp between 0 and 1
+  lVal = Math.max(0, Math.min(1, lVal - 0.08));
+
+  // Convert back to RGB then hex
+  const hslToRgb = (h, s, l) => {
+    if (s === 0) return [l, l, l];
+    const hue2rgb = (p, q, t) => {
+      if (t < 0) t += 1;
+      if (t > 1) t -= 1;
+      if (t < 1/6) return p + (q - p) * 6 * t;
+      if (t < 1/2) return q;
+      if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+      return p;
+    };
+    const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+    const p = 2 * l - q;
+    return [hue2rgb(p, q, h + 1/3), hue2rgb(p, q, h), hue2rgb(p, q, h - 1/3)];
+  };
+
+  const [rOut, gOut, bOut] = hslToRgb(hVal, sVal, lVal);
+  const toHex = v => Math.round(v * 255).toString(16).padStart(2, '0');
+  return `#${toHex(rOut)}${toHex(gOut)}${toHex(bOut)}`;
+}
+```
+
+Phase 4 runs all three conversions for every build and writes the results directly into the `:root` block.
 
 ### Contrast guarantee rules
 

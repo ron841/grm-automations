@@ -736,6 +736,16 @@ Display elements (h1, h2, section titles, pull quotes, stat values) never use mi
 
 Every page must clear both scale-contrast thresholds defined in css-framework.md (at least one element ≥80px, at least one text element ≤14px in mono or uppercase). A page that has no display moment is a page that reads as assembled; a page that has no caption moment is a page with no lower-end contrast and no precision.
 
+### Rule E6: No hardcoded brand-dependent defaults
+
+Any CSS variable whose value should derive from the prospect's brand identity — primary color, accent color, logo-derived variants — gets a visibly-wrong sentinel default in the `:root` block, not a plausible fallback. Sentinels: magenta (`#FF00FF`) for primary-family tokens (`--color-primary`, `--color-primary-hover`, `--color-dark-primary`, and their `-rgb` siblings); neon green (`#00FF00`) for accent-family tokens (`--color-accent` and `-rgb` sibling).
+
+The rule exists because plausible defaults mask silent failure. A brand with red/black/white palette whose Phase 4 derivation silently fails renders hover states in whatever hex the CSS file happened to ship with — and a reviewer glancing at the site sees "blue hover on red button" as a design question ("is that intentional?") instead of a bug. Magenta and neon green look broken at a glance. The tripwire fires loud.
+
+Phase 4 is responsible for overwriting every sentinel with a derived value before `style.css` is written. Any sentinel that survives into the generated site is a Phase 4 derivation bug, not a design choice. Phase 6 check 18 greps the generated CSS for the sentinel hex values and fails the build on any match.
+
+Brand-agnostic neutrals (backgrounds, text, borders) do not need sentinels — their defaults are final values, not placeholders. The rule applies only to tokens whose correct value depends on prospect-specific input.
+
 ---
 
 ## Version
