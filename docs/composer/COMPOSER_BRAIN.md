@@ -414,12 +414,15 @@ Newest session block at the top. Older blocks scroll down.
 **What's in-flight:**
 - Nothing. Stage I complete.
 
-**What's next (first Stage II session, fresh Claude Code window):**
-1. **Extract Design's typography package.** Zip location: `/mnt/user-data/uploads/Get_Rooted_Media_Design_System_copy.zip`. Target directory: `~/grm-automations/docs/composer-stage-ii-typography-source/`. Confirm all three files (README.md, typography-patterns.md, voiceMap.md) extracted intact. Commit and push to grm-automations with message `composer: stage II prep — extract Design typography source package`.
-2. **Commit this brain file.** Path: `~/grm-automations/docs/composer/COMPOSER_BRAIN.md`. Commit message: `composer: stage I — lock scope and initialize brain file`. Push to grm-automations.
-3. **Create Composer target skill directory.** Path: `~/grm-automations/skills-experimental/prospect-site-composer/`. Copy design-skill as starting point (foundation). Symlink to `~/.claude/skills/prospect-site-composer/`. Register slash command if possible at this stage or document for later.
-4. **Stage II (a) file copies begin.** Four files from production into Composer target skill's `references/` directory.
-5. **Execution log initialized** at `~/grm-automations/docs/composer/execution-log.md`. First entry: "Stage II session 1 started [timestamp]."
+**Stage I close-out (completed in this session):**
+1. ✅ Extract Design's typography package. Source zip at `/mnt/user-data/uploads/Get_Rooted_Media_Design_System_copy.zip` extracted to `~/grm-automations/docs/composer-stage-ii-typography-source/`. All three files (README.md, typography-patterns.md, voiceMap.md) verified byte-identical to zip inventory and to README's stated inventory. Commit `463cac4`.
+2. ✅ Commit brain file. Path `~/grm-automations/docs/composer/COMPOSER_BRAIN.md`. Commit `0bc429b`.
+3. ✅ Initialize execution log at `~/grm-automations/docs/composer/execution-log.md`. Two Stage II-prep entries present. Commit `6c645a1`.
+
+**Stage II opening work (for fresh session):**
+1. Create Composer target skill directory at `~/grm-automations/skills-experimental/prospect-site-composer/`. Copy design-skill (`~/.claude/skills/prospect-site-design/`) as starting point. Symlink to `~/.claude/skills/prospect-site-composer/`. Register slash command if possible at this stage, or document for later.
+2. Stage II (a) file copies begin: four files from production `~/.claude/skills/prospect-site/references/` into Composer target skill's `references/` directory — typography.md, voiceMap.md, LESSONS.md, handoff-discipline.md.
+3. Continue with Stage II (b) cherry-picks, (c) schema authoring, (d) typography merge, (e) tier logic stripping, (f) P6.1 spec per COMPOSER_BRAIN.md §8.
 
 **Checkpoint 1 trigger:** When Stage II (a)-(c) wrap, Chat-Claude pings Design with composition-plan-schema.md for review before Stage II.5 fixtures begin.
 
