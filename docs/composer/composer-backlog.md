@@ -47,32 +47,55 @@ trigger for pickup.
   with a consolidated Stage II entry pointing at the stage-gate commit
   hashes.
 
-### LESSONS.md merge (root → references/)
-- **Surfaced:** Stage II (a) file copies, 2026-04-21 (commit c175551).
-- **Why deferred:** Composer has a LESSONS.md at root (385 lines,
-  inherited from design-skill install, includes Luna F8 build lessons:
-  Vercel SSO PATCH workaround, AI-slop stock imagery rejection,
-  DarkVibrant brand-token override insight). Production's
-  references/LESSONS.md (473 lines) is the canonical destination per
-  brain §8 Stage II (a) but contains its own accumulated tail (Grandview
-  brand-mark detection, skill-repo mirror pattern, v0.7.3 hotfix
-  lineage). First ~50 lines of both files are byte-identical (shared
-  lineage); tails diverged. A naive copy-and-replace would lose 3+
-  substantive Luna F8 lessons. Keeping both files creates dual-authority
-  confusion at Phase 8 append time.
-- **Target pickup:** Single dedicated commit. Walk both file tails
-  past the shared-lineage boundary, deduplicate any overlapping
-  entries, integrate production's unique tail entries into Composer's
-  existing LESSONS.md content, move merged result to
-  `references/LESSONS.md` per brain §8, delete root location. Result:
-  one canonical LESSONS.md at `references/LESSONS.md` containing both
-  design-skill-era and production-era institutional memory.
-- **Trigger:** Before Stage II.5 fixtures are authored (Phase 8 append
-  semantics need to be unambiguous before the first Composer build runs).
+### LESSONS.md entry format normalization
+- **Surfaced:** LESSONS.md merge, 2026-04-21 (commit 1ef0f16).
+- **Why deferred:** Appended entries across April 13–April 21 use three
+  different formats: (a) full template with Source/Severity/Assumption/
+  What happened/Lesson/Fix/Affected files, (b) loose paragraphs (April
+  15 A-1 Payless entries), (c) hybrid with Source+Severity headers but
+  different body sub-headings (April 16 Grandview entries), (d)
+  ## section with ### sub-entries (April 21 Luna). Normalization to the
+  11-seed-entry template would improve readability but is a distinct
+  logical change from the merge.
+- **Target pickup:** Opportunistic. Can be done any time post-Stage II.
+  Not blocking.
+
+### LESSONS.md v0.7/v0.8 identity language in Luna section
+- **Surfaced:** LESSONS.md merge, 2026-04-21 (commit 1ef0f16).
+- **Why deferred:** Luna section heading carries "(v0.7)" parenthetical
+  (line 480 in merged file); multiple Luna sub-entries say "Action for
+  v0.8: ..." (lines 492, 500, 514 in merged file). Both references
+  are factually accurate historical markers (Luna F8 was design-skill-era
+  v0.7-derived; "v0.8" in those entries referred to the original v0.8
+  scope that is now v0.8 Composer or v0.8 Scale (deferred)). Rewriting
+  during merge would bundle two logical changes.
+- **Target pickup:** Dedicated identity pass on LESSONS.md, after Stage
+  II close-out. Can bundle with the "Action for v0.8" clarification
+  (which items are now Composer-Stage commitments vs. v0.8 Scale
+  deferred vs. already-resolved in Component A patch inventory §6).
+
+### handoff-discipline.md identity-language sweep
+- **Surfaced:** Stage II (a) file copies, 2026-04-21 (commits c175551 /
+  d680a3d). Surprise #5 in Stage II (a) final report.
+- **Why deferred:** Production's handoff-discipline.md still says
+  "prospect-site" throughout (§1, §2, §6 references to "the skill").
+  Stratum 3 sweep touched 10 other reference files with identity
+  rewrites; handoff-discipline.md is asymmetric. Deferred from Stage II
+  (a) close-out per Chat-Claude sequencing (LESSONS.md merge first,
+  then handoff-discipline identity sweep as its own commit).
+- **Target pickup:** Immediately after LESSONS.md merge lands. Next
+  commit in the Stage II (a) close-out sequence.
 
 ## Resolved deferrals
 
-*(None yet. Items move here with resolution commit hash when picked up.)*
+### LESSONS.md merge (root → references/)
+- **Originally surfaced:** Stage II (a) file copies, 2026-04-21 (commit c175551).
+- **Resolved:** 2026-04-21 (commit 1ef0f16). Disjoint-tail chronological
+  concatenation: shared 349-line core + production's April 13–16 tail +
+  Composer root's April 21 Luna tail = 512-line merged file at
+  `references/LESSONS.md`. Root LESSONS.md deleted via git rename
+  (66% similarity detected). All institutional memory preserved; zero
+  dedupe required (tails were fully disjoint).
 
 ---
 
