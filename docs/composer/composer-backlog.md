@@ -74,18 +74,6 @@ trigger for pickup.
   (which items are now Composer-Stage commitments vs. v0.8 Scale
   deferred vs. already-resolved in Component A patch inventory §6).
 
-### handoff-discipline.md identity-language sweep
-- **Surfaced:** Stage II (a) file copies, 2026-04-21 (commits c175551 /
-  d680a3d). Surprise #5 in Stage II (a) final report.
-- **Why deferred:** Production's handoff-discipline.md still says
-  "prospect-site" throughout (§1, §2, §6 references to "the skill").
-  Stratum 3 sweep touched 10 other reference files with identity
-  rewrites; handoff-discipline.md is asymmetric. Deferred from Stage II
-  (a) close-out per Chat-Claude sequencing (LESSONS.md merge first,
-  then handoff-discipline identity sweep as its own commit).
-- **Target pickup:** Immediately after LESSONS.md merge lands. Next
-  commit in the Stage II (a) close-out sequence.
-
 ## Resolved deferrals
 
 ### LESSONS.md merge (root → references/)
@@ -96,6 +84,18 @@ trigger for pickup.
   `references/LESSONS.md`. Root LESSONS.md deleted via git rename
   (66% similarity detected). All institutional memory preserved; zero
   dedupe required (tails were fully disjoint).
+
+### handoff-discipline.md identity-language sweep
+- **Originally surfaced:** Stage II (a) file copies, 2026-04-21
+  (commits c175551 / d680a3d). Surprise #5 in Stage II (a) final report.
+- **Resolved:** 2026-04-21 (commit db7dc8d). Diagnostic surfaced just
+  one D-classification (load-bearing identity) hit at line 9
+  ("prospect-site build flow" → "prospect-site-composer build flow")
+  and 16 E-classification (historical narrative) references that were
+  preserved as factual production-evolution context. The file is
+  fundamentally a meta-document about how production's v0.8 foundation
+  round was conducted, so its v0.7/v0.8 references are HISTORICAL
+  rather than current-skill self-id.
 
 ---
 
