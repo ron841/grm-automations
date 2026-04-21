@@ -16,3 +16,4 @@ Newest entries at the bottom. Do not prune; archive to a dated file if this grow
 2026-04-21 15:14 EDT — Stage II prep — Extracted Design typography source package (3 files, 57571 bytes) to docs/composer-stage-ii-typography-source/ — commit 463cac4. Source zip at ~/Desktop/Get Rooted Media Design System copy.zip.
 2026-04-21 17:32 EDT — Stage II — Scaffolded prospect-site-composer target skill as copy of prospect-site-design; narrow self-identifier rewrite (name/slash-command/self-path/version tag); symlinked into ~/.claude/skills/ — commit 5d46654.
 2026-04-21 17:37 EDT — Stage II — Locked log-entry follow-up-commit convention in COMPOSER_BRAIN.md §13 — commit 2c14646.
+2026-04-21 17:49 EDT — Stage II — Rewrote SKILL.md description for Composer identity (successor-to-design-skill framing, handoff-contract summary, two-pillar hard gate) — commit e830ccb.
