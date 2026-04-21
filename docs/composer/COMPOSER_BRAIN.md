@@ -323,6 +323,7 @@ If criteria met: Composer becomes primary. Production either retires entirely or
 - Vocabulary discipline: "Composer" or "v0.8 Composer" only. Never bare "v0.8" (ambiguous with v0.8 Scale (deferred)). When referring to skills, say "design-skill," "production," or "Composer target skill" explicitly. Never "the skill."
 - Commit message convention: prefix `composer:` on all Stage II-VI commits. Examples: `composer: stage II.b — cherry-pick SectionOpener primitive from production 593173e`. Searchable later.
 - Branch convention in grm-automations: direct-to-main with `composer:` prefix on all Stage II-VI commits. No topic branches. Every Composer commit lands on `main` as an atomic stage-prefixed commit. Matches the repo's established convention — all Wave 1 / Wave 2 commits and all Stage I commits landed directly on main. Rationale: solo linear pipeline, low blast radius (Composer work lives in its own skill directory and docs/composer/), and the `composer:` prefix already provides searchable stage-scoped history. Stage II (d) typography three-way merge does not get a carve-out — Design review happens in chat against conflict lists, not via git diff.
+- Execution-log entries land as small follow-up commits immediately after the work commit they reference, not inside the work commit itself. Matches repo precedent (463cac4 / 6c645a1). Avoids the hash self-reference loop where amending a committed log to include its own commit hash produces a new hash, leaving the log pointing at a dangling pre-amend object. Convention locked 2026-04-21 Stage II session 1 after commit 5d46654 / 54c26f7 post-mortem.
 
 ## 14. SCHEMA VERSIONING APPROACH
 
@@ -392,6 +393,9 @@ Newest session block at the top. Older blocks scroll down.
 **Window type:** Claude Code executing per Chat-Claude relay. Chat-Claude (fresh window) directing; Ron routing.
 
 **Action:** Minor revision to §13 branch convention per §17. Dropped proposal for `composer/stage-ii` through `composer/stage-vi` topic branches in favor of direct-to-main + `composer:` prefix. Matches actual repo convention (verified: only branch in grm-automations is `main`; all prior Composer commits landed on main directly). "Deferred decisions" bullet in 2026-04-21 block updated to RESOLVED. Ron + Chat-Claude + Code signoff.
+
+**What changed:**
+- Log-entry convention locked: follow-up commit, not atomic with work commit. See §13.
 
 **What's next:** Create prospect-site-composer target skill directory (original item #3 of Stage II kickoff). Chat-Claude drafting paste-ready prompt after this commit lands.
 
