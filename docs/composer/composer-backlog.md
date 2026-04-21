@@ -47,6 +47,29 @@ trigger for pickup.
   with a consolidated Stage II entry pointing at the stage-gate commit
   hashes.
 
+### LESSONS.md merge (root → references/)
+- **Surfaced:** Stage II (a) file copies, 2026-04-21 (commit c175551).
+- **Why deferred:** Composer has a LESSONS.md at root (385 lines,
+  inherited from design-skill install, includes Luna F8 build lessons:
+  Vercel SSO PATCH workaround, AI-slop stock imagery rejection,
+  DarkVibrant brand-token override insight). Production's
+  references/LESSONS.md (473 lines) is the canonical destination per
+  brain §8 Stage II (a) but contains its own accumulated tail (Grandview
+  brand-mark detection, skill-repo mirror pattern, v0.7.3 hotfix
+  lineage). First ~50 lines of both files are byte-identical (shared
+  lineage); tails diverged. A naive copy-and-replace would lose 3+
+  substantive Luna F8 lessons. Keeping both files creates dual-authority
+  confusion at Phase 8 append time.
+- **Target pickup:** Single dedicated commit. Walk both file tails
+  past the shared-lineage boundary, deduplicate any overlapping
+  entries, integrate production's unique tail entries into Composer's
+  existing LESSONS.md content, move merged result to
+  `references/LESSONS.md` per brain §8, delete root location. Result:
+  one canonical LESSONS.md at `references/LESSONS.md` containing both
+  design-skill-era and production-era institutional memory.
+- **Trigger:** Before Stage II.5 fixtures are authored (Phase 8 append
+  semantics need to be unambiguous before the first Composer build runs).
+
 ## Resolved deferrals
 
 *(None yet. Items move here with resolution commit hash when picked up.)*
