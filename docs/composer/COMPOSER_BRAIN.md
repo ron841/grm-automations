@@ -322,7 +322,7 @@ If criteria met: Composer becomes primary. Production either retires entirely or
 - No rushing to close stages because a session is ending. Stage II taking two sessions is better than Stage II ending with half-tested output.
 - Vocabulary discipline: "Composer" or "v0.8 Composer" only. Never bare "v0.8" (ambiguous with v0.8 Scale (deferred)). When referring to skills, say "design-skill," "production," or "Composer target skill" explicitly. Never "the skill."
 - Commit message convention: prefix `composer:` on all Stage II-VI commits. Examples: `composer: stage II.b — cherry-pick SectionOpener primitive from production 593173e`. Searchable later.
-- Branch convention in grm-automations: `composer/stage-ii` through `composer/stage-vi`. Squash-merge to main at each stage gate.
+- Branch convention in grm-automations: direct-to-main with `composer:` prefix on all Stage II-VI commits. No topic branches. Every Composer commit lands on `main` as an atomic stage-prefixed commit. Matches the repo's established convention — all Wave 1 / Wave 2 commits and all Stage I commits landed directly on main. Rationale: solo linear pipeline, low blast radius (Composer work lives in its own skill directory and docs/composer/), and the `composer:` prefix already provides searchable stage-scoped history. Stage II (d) typography three-way merge does not get a carve-out — Design review happens in chat against conflict lists, not via git diff.
 
 ## 14. SCHEMA VERSIONING APPROACH
 
@@ -387,6 +387,16 @@ Newest session block at the top. Older blocks scroll down.
 
 ---
 
+## Session block — 2026-04-21 (morning)
+
+**Window type:** Claude Code executing per Chat-Claude relay. Chat-Claude (fresh window) directing; Ron routing.
+
+**Action:** Minor revision to §13 branch convention per §17. Dropped proposal for `composer/stage-ii` through `composer/stage-vi` topic branches in favor of direct-to-main + `composer:` prefix. Matches actual repo convention (verified: only branch in grm-automations is `main`; all prior Composer commits landed on main directly). "Deferred decisions" bullet in 2026-04-21 block updated to RESOLVED. Ron + Chat-Claude + Code signoff.
+
+**What's next:** Create prospect-site-composer target skill directory (original item #3 of Stage II kickoff). Chat-Claude drafting paste-ready prompt after this commit lands.
+
+---
+
 ## Session block — 2026-04-21 (late afternoon / evening)
 
 **Window type:** Chat-Claude (facing Ron). Author of this brain file.
@@ -430,7 +440,7 @@ Newest session block at the top. Older blocks scroll down.
 
 **Open questions / deferred decisions:**
 - Commit message for brain file initial commit: use convention above (`composer: stage I — lock scope and initialize brain file`).
-- Branch for Composer work in grm-automations: decision in first Stage II session. Proposal is `composer/stage-ii` branch off main, squash-merge at stage gates.
+- Branch for Composer work: RESOLVED 2026-04-21 Stage II session 1. Direct-to-main with `composer:` prefix, no topic branches. See §13.
 - Hard Rules #11/#12 from handoff-discipline.md: review for Composer applicability in Stage II (a).
 
 **Known traps:**
