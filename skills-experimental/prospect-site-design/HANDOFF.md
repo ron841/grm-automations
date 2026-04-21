@@ -20,12 +20,12 @@ Five structural additions plus one major new concept:
 
 4. **Editorial discipline rules E1-E5** in `references/anti-slop-rules.md` — single accent color discipline, rules-not-boxes defaults, every-photo-captioned, outlined watermark numerals, no middle-weight display type.
 
-5. **Phase 4 editorial proposal** in `SKILL.md` — signature micro-interaction, editorial-layout set, full-bleed photo assignment, watermark target, and emotional register are now declared at Phase 4 and shown in the approval gate for Ron to review before Phase 5 generates anything.
+5. **Phase 4 editorial proposal** in `SKILL.md` — signature micro-interaction, editorial-layout set, full-bleed photo assignment, watermark target, and emotional persona are now declared at Phase 4 and shown in the approval gate for Ron to review before Phase 5 generates anything.
 
 Plus two new reference files:
 
 - `references/example-build.md` — a fully annotated reference homepage (Tucci Electric synthetic composite) showing every rule in composition. Loaded by Phase 5 at generation start as a pattern-match reference.
-- `references/emotional-arc.md` — page-level emotional pacing via five registers (Quiet confidence, Earned pride, Neighborhood steady, Rescue-ready, Modern specialist) with a register-to-layout bias table. Loaded by Phase 4 for register selection and Phase 5 to carry the register through section decisions.
+- `references/emotional-arc.md` — page-level emotional pacing via five personas (Quiet confidence, Earned pride, Neighborhood steady, Rescue-ready, Modern specialist) with a persona-to-layout bias table. Loaded by Phase 4 for persona selection and Phase 5 to carry the persona through section decisions.
 
 ## Order of operations for tomorrow
 
@@ -33,13 +33,13 @@ Do not try to run a build before the repo is consistent. The sequence:
 
 1. **Unzip the v0.7 folder and diff it against Ron's live skill repo.** The edits are additive — nothing was deleted — but some existing sections in `css-framework.md`, `section-patterns.md`, `anti-slop-rules.md`, `image-handling.md`, and `SKILL.md` were extended in place. Review each diff before committing.
 
-2. **Commit the v0.7 edits in a single atomic commit.** Message suggestion: `v0.7 editorial upgrade: photo roles, editorial layouts, scale contrast, motion restraint, emotional register`. One commit makes rollback easy if something is wrong.
+2. **Commit the v0.7 edits in a single atomic commit.** Message suggestion: `v0.7 editorial upgrade: photo roles, editorial layouts, scale contrast, motion restraint, emotional persona`. One commit makes rollback easy if something is wrong.
 
 3. **Pipeline integrations listed below.** None of the v0.7 rules fire unless the pipeline is updated. Four changes are required; they are in priority order below.
 
 4. **Run a first real build** against a known prospect (Tucci Electric or equivalent) with the `--auto` flag off so you hit the approval gate and can see the new declared editorial choices. Do not deploy it. Capture the approval-gate output and the generated HTML; compare the output against `references/example-build.md` to see whether Phase 5 is pattern-matching correctly.
 
-5. **If the first build looks right, run two more** on different registers — a Rescue-ready trade (emergency plumber) and an Earned pride trade (pool builder). The register comparisons are where you see whether the emotional-arc document is actually tuning Phase 5's decisions or being ignored.
+5. **If the first build looks right, run two more** on different personas — a Rescue-ready trade (emergency plumber) and an Earned pride trade (pool builder). The persona comparisons are where you see whether the emotional-arc document is actually tuning Phase 5's decisions or being ignored.
 
 ## Pipeline integrations required (in priority order)
 
@@ -60,23 +60,23 @@ If Phase 3 currently does photo processing inline in `SKILL.md` rather than in a
 
 Five new fields under `profile-draft.json.design`:
 
-- `register` — string enum (one of five)
+- `persona` — string enum (one of five)
 - `signatureMicroInteraction` — string enum (one of five)
 - `editorialLayouts` — array of layout ids (A, B, C, D, E)
 - `fullBleedPhoto` — filename or null
 - `watermarkTarget` — string enum or null
 
-Phase 4 selection logic for each is in `SKILL.md` Phase 4 section. Emotional register selection specifically uses `emotional-arc.md` trade-mapping table.
+Phase 4 selection logic for each is in `SKILL.md` Phase 4 section. Emotional persona selection specifically uses `emotional-arc.md` trade-mapping table.
 
-### 3. Phase 5 reads register and example-build.md at generation start
+### 3. Phase 5 reads persona and example-build.md at generation start
 
 At the top of Phase 5, before any section renders:
 
-- Load `references/emotional-arc.md` and read the register-to-layout bias table
+- Load `references/emotional-arc.md` and read the persona-to-layout bias table
 - Load `references/example-build.md` as pattern-match reference
-- Carry the register value through every section decision (photo selection, copy tone within existing voice rules, layout tie-breaking)
+- Carry the persona value through every section decision (photo selection, copy tone within existing voice rules, layout tie-breaking)
 
-Phase 5 does not add new logic for every register-specific decision — the register biases existing decisions rather than branching into register-specific codepaths. The exception is the close composition (register-specific close feelings in `emotional-arc.md`), which Phase 5 should treat as a register-conditional branch for the Contact section framing.
+Phase 5 does not add new logic for every persona-specific decision — the persona biases existing decisions rather than branching into persona-specific codepaths. The exception is the close composition (persona-specific close feelings in `emotional-arc.md`), which Phase 5 should treat as a persona-conditional branch for the Contact section framing.
 
 ### 4. Phase 6 verification additions
 
@@ -93,7 +93,7 @@ Phase 6 gains the following automated checks. Add them to the existing check lis
 - Exactly one signature micro-interaction deployed site-wide (count distinct signature types, not deployments)
 - Standard tier builds must include Layout E OR have an explicit constraintRelaxation
 
-Phase 6 does NOT check emotional register or "feels like us" — those are human-only checks. Do not add fake verification for them; it will corrupt the point of the emotional-arc document.
+Phase 6 does NOT check emotional persona or "feels like us" — those are human-only checks. Do not add fake verification for them; it will corrupt the point of the emotional-arc document.
 
 ## Known issues I caught during the audit (already fixed in the zip)
 
@@ -109,9 +109,9 @@ These were in my first draft of the edits and I caught and fixed them before han
 
 These are real but lower-priority, and they need Ron's input before I make calls on them:
 
-- The approval gate now shows five editorial-design fields plus the existing score breakdown, hero mode, glass variant, headline candidate, and colors. That is a lot of information to absorb on one screen. If Ron finds it overwhelming in practice, consider a two-screen approval gate (first screen: score + hero + register; second screen: editorial choices). Do not split it preemptively — let Ron run a few real approvals and see.
-- The emotional-arc register selection has a priority-order preference (captured copy tone > tenure+trade > default mapping) but the "captured copy tone" heuristic is not fully specified because the existing Phase 1 capture does not extract a tone classification. If the default-mapping fallback produces wrong registers in practice, Phase 1 needs a tone-classification pass added. For now, the priority order simply skips rule 1 when tone classification is unavailable.
-- The `constraintRelaxations` field is written to `profile-draft.json` but the profile.json schema has not been formally updated. If Ron's schema is typed (TypeScript, Zod, Pydantic), add the new fields: `design.register`, `design.signatureMicroInteraction`, `design.editorialLayouts`, `design.fullBleedPhoto`, `design.watermarkTarget`, `design.constraintRelaxations`. Plus `photos[].role` from pipeline integration 1.
+- The approval gate now shows five editorial-design fields plus the existing score breakdown, hero mode, glass variant, headline candidate, and colors. That is a lot of information to absorb on one screen. If Ron finds it overwhelming in practice, consider a two-screen approval gate (first screen: score + hero + persona; second screen: editorial choices). Do not split it preemptively — let Ron run a few real approvals and see.
+- The emotional-arc persona selection has a priority-order preference (captured copy tone > tenure+trade > default mapping) but the "captured copy tone" heuristic is not fully specified because the existing Phase 1 capture does not extract a tone classification. If the default-mapping fallback produces wrong personas in practice, Phase 1 needs a tone-classification pass added. For now, the priority order simply skips rule 1 when tone classification is unavailable.
+- The `constraintRelaxations` field is written to `profile-draft.json` but the profile.json schema has not been formally updated. If Ron's schema is typed (TypeScript, Zod, Pydantic), add the new fields: `design.persona`, `design.signatureMicroInteraction`, `design.editorialLayouts`, `design.fullBleedPhoto`, `design.watermarkTarget`, `design.constraintRelaxations`. Plus `photos[].role` from pipeline integration 1.
 
 ## Context you should know
 
@@ -119,7 +119,7 @@ A few things worth carrying into your work that are not in the spec files:
 
 **Ron is the operator, Ben Tucci is an illustrative composite.** The example-build.md uses "Tucci Electric" as a synthetic reference. This is not a real prospect; it is a pedagogical composite. Do not treat the facts in example-build.md as a schema for Phase 1 capture — treat them as an illustration of what correct output looks like.
 
-**The v0.6 failure was homogeneity.** Four different trades produced four sites that looked identical. v0.7 is an anti-homogeneity update. The editorial layouts, photo roles, and emotional registers are all structured to differentiate builds from one another, not just to make any single build better. When you are evaluating whether v0.7 is working, compare builds *across* prospects, not just within one.
+**The v0.6 failure was homogeneity.** Four different trades produced four sites that looked identical. v0.7 is an anti-homogeneity update. The editorial layouts, photo roles, and emotional personas are all structured to differentiate builds from one another, not just to make any single build better. When you are evaluating whether v0.7 is working, compare builds *across* prospects, not just within one.
 
 **The escape hatch is load-bearing.** The "over-constraint escape hatch" in Phase 4 is not an edge case; it is the mechanism that keeps the rules from becoming brittle. Some prospects genuinely do not have enough photos, services, or content to satisfy every rule. The escape hatch lets Ron see the conflict explicitly and choose which rule to relax for that build. Encourage Ron to use it when appropriate; discourage him from treating it as a failure mode.
 
@@ -129,7 +129,7 @@ A few things worth carrying into your work that are not in the spec files:
 
 **The most likely failure mode of v0.7.** Builds will pass every Phase 6 check, Ron will run the "feels like us" test, and he will say "it feels more designed than v0.6 but it still doesn't feel like *this specific business*." If that happens, the fix is not in the rule files. The fix is in Phase 1 capture — getting more specific facts, more distinctive language, more real-person quotes that the copy rules can anchor to. Watch for this and flag it if you see it.
 
-**The least likely failure mode that would be worst if it happened.** Phase 4 declares a register and a set of editorial layouts, Ron approves, Phase 5 generates — and the output does not actually reflect the register because Phase 5 reads the register value but does not condition any decisions on it. This would be a silent failure that passes every check. To detect it: generate two builds with different registers against the same prospect data (e.g., one as Quiet confidence, one as Earned pride) and compare. If the two builds are substantially identical, Phase 5's register-conditional logic is not firing. Fix by explicitly routing register through the register-to-layout bias table lookups in `emotional-arc.md`.
+**The least likely failure mode that would be worst if it happened.** Phase 4 declares a persona and a set of editorial layouts, Ron approves, Phase 5 generates — and the output does not actually reflect the persona because Phase 5 reads the persona value but does not condition any decisions on it. This would be a silent failure that passes every check. To detect it: generate two builds with different personas against the same prospect data (e.g., one as Quiet confidence, one as Earned pride) and compare. If the two builds are substantially identical, Phase 5's persona-conditional logic is not firing. Fix by explicitly routing persona through the persona-to-layout bias table lookups in `emotional-arc.md`.
 
 ## Suggested first message to Ron when you start the chat
 
@@ -144,7 +144,7 @@ That gives Ron a clear yes-or-reroute moment before anything commits.
 - v0.7 edits committed to Ron's skill repo cleanly
 - All four pipeline integrations implemented (or explicitly deferred with Ron's agreement)
 - At least one real build run end-to-end, approval gate captured, output compared against example-build.md
-- If time permits: two more builds on different registers, compared for visible differentiation
+- If time permits: two more builds on different personas, compared for visible differentiation
 - A short note from Ron in chat at the end: "this feels like us" or "this feels like a nice design" on the first-build output. Either answer is useful. The first means ship v0.7 as-is. The second means we iterate.
 
 Good luck. Call Ron's attention to anything that feels off the moment you notice it. Small clarifications before committing are worth ten corrections after.

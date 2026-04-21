@@ -30,7 +30,7 @@ This skill uses the progressive disclosure pattern. SKILL.md contains the workfl
 - `references/image-handling.md` — Phase 3 photo sources, Unsplash tier-4 fallback, compression, lazy loading
 - `references/anti-slop-rules.md` — Negative design rules, banned fonts, banned layouts, banned phrases
 - `references/example-build.md` — Worked, annotated v0.7 reference page (Tucci Electric synthetic composite). Loaded by Phase 5 at generation start as a pattern-match reference showing every rule in composition.
-- `references/emotional-arc.md` — Page-level emotional pacing and five registers (Quiet confidence, Earned pride, Neighborhood steady, Rescue-ready, Modern specialist). Loaded by Phase 4 for register selection at approval, and Phase 5 to carry the register through photo, copy, and layout decisions. NOT loaded by Phase 6 — feeling is not automatically verifiable.
+- `references/emotional-arc.md` — Page-level emotional pacing and five personas (Quiet confidence, Earned pride, Neighborhood steady, Rescue-ready, Modern specialist). Loaded by Phase 4 for persona selection at approval, and Phase 5 to carry the persona through photo, copy, and layout decisions. NOT loaded by Phase 6 — feeling is not automatically verifiable.
 
 Load a reference file when the phase that needs it begins. Do not load all of them upfront.
 
@@ -392,22 +392,22 @@ If `--auto` was passed in the command, skip the gate and proceed automatically.
 
 ### Editorial choices (v0.7 addition — deterministic + declared at Phase 4)
 
-Five editorial decisions that were previously implicit inside Phase 5 are now explicit at Phase 4 so Ron can review them at the approval gate before generation runs. The register is selected first because it biases the other four.
+Five editorial decisions that were previously implicit inside Phase 5 are now explicit at Phase 4 so Ron can review them at the approval gate before generation runs. The persona is selected first because it biases the other four.
 
-**0. Emotional register (pick one; biases all subsequent choices).**
+**0. Emotional persona (pick one; biases all subsequent choices).**
 
-Load `references/emotional-arc.md`. Select the register using the three-input priority from that file:
+Load `references/emotional-arc.md`. Select the persona using the three-input priority from that file:
 
 ```
-1. Captured copy tone — if prospect's existing site copy reads distinctly as one register, use it.
+1. Captured copy tone — if prospect's existing site copy reads distinctly as one persona, use it.
 2. Tenure + trade — 20+ years biases Neighborhood steady; 10+ years + strong portfolio biases Earned pride.
 3. Trade-category default mapping — see emotional-arc.md for full table.
 Default when unclear: Quiet confidence.
 ```
 
-Write to `profile-draft.json.design.register` as one of: `quiet-confidence`, `earned-pride`, `neighborhood-steady`, `rescue-ready`, `modern-specialist`.
+Write to `profile-draft.json.design.persona` as one of: `quiet-confidence`, `earned-pride`, `neighborhood-steady`, `rescue-ready`, `modern-specialist`.
 
-The register biases the signature micro-interaction selection (via the tie-breaking column in emotional-arc.md) and the editorial-layouts weighting (heavy/medium/light priority per register). It does NOT change the hero mode (hero mode remains structural, data-driven from photo library).
+The persona biases the signature micro-interaction selection (via the tie-breaking column in emotional-arc.md) and the editorial-layouts weighting (heavy/medium/light priority per persona). It does NOT change the hero mode (hero mode remains structural, data-driven from photo library).
 
 **1. Signature micro-interaction (pick exactly one, site-wide).**
 
@@ -475,7 +475,7 @@ Write to `profile-draft.json.design.watermarkTarget`.
 The approval gate summary adds four lines under `Design plan:`:
 
 ```
-  Emotional register: [Quiet confidence | Earned pride | Neighborhood steady | Rescue-ready | Modern specialist]
+  Emotional persona: [Quiet confidence | Earned pride | Neighborhood steady | Rescue-ready | Modern specialist]
   Signature micro-interaction: [italic-color-shift | underline-bloom | shimmer-hero-cta | eyebrow-reveal | mono-numeral-flip]
   Editorial layouts (page): [A, C, E] (minimum 3)
   Full-bleed photo: [filename or "none"]
@@ -484,7 +484,7 @@ The approval gate summary adds four lines under `Design plan:`:
 
 And three new override instructions Ron can invoke:
 
-- `override register:[name]` — swap the emotional register (recomputes signature and layout weighting)
+- `override persona:[name]` — swap the emotional persona (recomputes signature and layout weighting)
 - `override signature:[name]` — swap the signature micro-interaction
 - `override layouts:[A,B,C]` — manually select the editorial layouts
 

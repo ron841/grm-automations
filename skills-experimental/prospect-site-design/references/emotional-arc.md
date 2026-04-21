@@ -1,6 +1,6 @@
 # Emotional Arc Reference
 
-Part of the prospect-site skill v0.7. Loaded by Phase 4 during design proposal (to pick the emotional register) and Phase 5 at section generation (to carry the register through each section's copy, photo selection, and layout choice). NOT loaded by Phase 6 — feeling cannot be automatically verified, and trying to would produce fake metrics that ruin this document's purpose.
+Part of the prospect-site skill v0.7. Loaded by Phase 4 during design proposal (to pick the emotional persona) and Phase 5 at section generation (to carry the persona through each section's copy, photo selection, and layout choice). NOT loaded by Phase 6 — feeling cannot be automatically verified, and trying to would produce fake metrics that ruin this document's purpose.
 
 This file exists because the other reference files answer *what* and *how*. They specify rules, tokens, thresholds, banned patterns. They prevent bad builds. They do not, on their own, produce emotionally resonant ones. A page that satisfies every rule in `anti-slop-rules.md` can still feel flat, timid, or generic — the rules prevent specific failures; they do not produce specific wins.
 
@@ -10,19 +10,19 @@ Read this file slowly. The rule files are reference material — you consult the
 
 ---
 
-## What an emotional register is
+## What an emotional persona is
 
-A register is the emotional key the whole page is tuned to. One per build. Every section inherits it. Every photo selection, copy choice, layout pick, and motion decision is made in service of it.
+A persona is the emotional key the whole page is tuned to. One per build. Every section inherits it. Every photo selection, copy choice, layout pick, and motion decision is made in service of it.
 
-Registers are not moods, and they are not brand personalities. A mood changes across a page; a register is constant. A brand personality is what the business says about itself; a register is what the page makes the reader feel. These are different. A contractor can describe themselves as "professional and reliable" and still benefit from a page tuned to *Quiet confidence*, or to *Neighborhood steady*, or to *Earned pride* — each of which produces a different feeling even though all three could be described with the same brand adjectives.
+Personas are not moods, and they are not brand personalities. A mood changes across a page; a persona is constant. A brand personality is what the business says about itself; a persona is what the page makes the reader feel. These are different. A contractor can describe themselves as "professional and reliable" and still benefit from a page tuned to *Quiet confidence*, or to *Neighborhood steady*, or to *Earned pride* — each of which produces a different feeling even though all three could be described with the same brand adjectives.
 
-The five registers below are not exhaustive. They are the five that map cleanly onto the home-services trades this skill serves, derived from the trades Ron has built sites for. If a future prospect genuinely does not fit any of them, the register is Quiet confidence by default — the safest, most broadly-applicable register, and the hardest to execute badly.
+The five personas below are not exhaustive. They are the five that map cleanly onto the home-services trades this skill serves, derived from the trades Ron has built sites for. If a future prospect genuinely does not fit any of them, the persona is Quiet confidence by default — the safest, most broadly-applicable persona, and the hardest to execute badly.
 
 ---
 
-## The five registers
+## The five personas
 
-### Register 1: Quiet confidence
+### Persona 1: Quiet confidence
 
 **The feeling.** The reader arrives at the page and feels calm. The business does not need to convince them of anything. The evidence is present, the tone is precise, and the overall effect is that of a professional who has done this work long enough to no longer need to prove it. The reader's shoulders drop two inches.
 
@@ -52,7 +52,7 @@ The five registers below are not exhaustive. They are the five that map cleanly 
 
 Both examples: short sentences, specific facts, no adjectives of self-praise, no "we care about quality" filler. The facts do the work.
 
-### Register 2: Earned pride
+### Persona 2: Earned pride
 
 **The feeling.** The reader arrives and sees craft. The business does beautiful work and is not shy about showing it. The pride is legitimate — earned through visible results, not asserted through marketing language. The reader wants to meet the person who made these things.
 
@@ -82,7 +82,7 @@ Both examples: short sentences, specific facts, no adjectives of self-praise, no
 
 Both examples: the work is the subject, the standards are specific, the refusals are part of the identity.
 
-### Register 3: Neighborhood steady
+### Persona 3: Neighborhood steady
 
 **The feeling.** The reader arrives and recognizes the business as *theirs*. Local. Familial. Long-tenured. The kind of business where the owner's kids are in the founding story and the trucks have been the same color for thirty years. The reader feels held.
 
@@ -91,7 +91,7 @@ Both examples: the work is the subject, the standards are specific, the refusals
 **Do.**
 
 - Hero headline uses first-person plural or a family name. 8-15 words. Warmth is the goal. Example: "We are the Tucci family, and we have been wiring Marion County since 1987."
-- Environmental portraits are the most important photography on the page. They get full captions with name, role, location, and years. A well-captured three-generation family portrait outperforms any hero plate this register could produce; if Phase 3 captured one, it lands as the Layout D full-bleed.
+- Environmental portraits are the most important photography on the page. They get full captions with name, role, location, and years. A well-captured three-generation family portrait outperforms any hero plate this persona could produce; if Phase 3 captured one, it lands as the Layout D full-bleed.
 - Stats section leans on tenure and relationship numbers: "38 years in business," "1,400+ homes wired," "96% of work is repeat or referral." Star ratings and review counts are secondary here.
 - Italic signature word is always a place or a name. "Since *1987*." "Wiring *Marion County* since 1987." The italic carries locality.
 - Copy voice leans heavily into Front Porch (from content-rules.md voice mapping). Saturday Morning is acceptable for section headers; Closing Table is minimized.
@@ -110,9 +110,9 @@ Both examples: the work is the subject, the standards are specific, the refusals
 
 2. "Landscape work on the Nature Coast for three generations. My grandfather started the business in 1961 with a pickup and a push-mower; these days we run four trucks and still show up when we say we will. If you have been in Citrus County a while, you probably know someone we work for."
 
-Both examples: family names are present, specific dates anchor the tenure, the phrase "we" is used naturally, and the register announces itself in the first sentence.
+Both examples: family names are present, specific dates anchor the tenure, the phrase "we" is used naturally, and the persona announces itself in the first sentence.
 
-### Register 4: Rescue-ready
+### Persona 4: Rescue-ready
 
 **The feeling.** The reader arrives, often mid-problem, and feels reassured that help is available and capable. The business is responsive, equipped, and unafraid of the situation. The reader feels like they have found the cavalry.
 
@@ -143,7 +143,7 @@ Both examples: family names are present, specific dates anchor the tenure, the p
 
 Both examples: response time is named, coverage area is specific, the phone is implicit as the next action, the voice is calm but present.
 
-### Register 5: Modern specialist
+### Persona 5: Modern specialist
 
 **The feeling.** The reader arrives and feels like they are dealing with someone who knows the new thing, not someone who learned the old thing and added the new thing later. The business is technical, credentialed, and forward. The reader feels like they found the right specialist rather than a generalist stretching into this area.
 
@@ -153,14 +153,14 @@ Both examples: response time is named, coverage area is specific, the phone is i
 
 - Hero headline names the technology explicitly and the credentialing authority. 8-14 words. Example: "Certified Level 2 EV charger installation, Tesla and ChargePoint authorized, Marion and Citrus counties."
 - Photography leans into equipment closeups, installation detail shots, and credential documentation (certification cards, manufacturer authorization plaques). Environmental portraits show the installer with the equipment, not in isolation.
-- Stats section often uses Layout E (watermark numerals) with technical specificity: "07 authorized brands," "150+ units installed," "Level 2 and Level 3 certified." The watermark treatment reinforces the technical register.
+- Stats section often uses Layout E (watermark numerals) with technical specificity: "07 authorized brands," "150+ units installed," "Level 2 and Level 3 certified." The watermark treatment reinforces the technical persona.
 - Italic signature word is a technical term: "Tesla *authorized*," "Level 2 *certified*," "bi-directional *capable*." The italic carries expertise.
 - Font pair can lean slightly newer (geometric sans for display, neo-grotesque for body) without triggering the banned-font rules. Within the Premium tier's font options, pick toward the more contemporary end.
 - Layout B (image-bleed with caption margin) lands well here — technical detail shots with mono-captioned specifications in the margin column read as documentation.
 
 **Don't.**
 
-- No folksy language. Modern specialist never uses "y'all" or "howdy" even if the service area is rural. The specialist register does not code-switch down for locality.
+- No folksy language. Modern specialist never uses "y'all" or "howdy" even if the service area is rural. The specialist persona does not code-switch down for locality.
 - No testimonials that are primarily about friendliness. Modern specialist testimonials should emphasize technical outcomes: "They figured out the load calc for our panel upgrade + charger install without adding a subpanel, saved us $1,800."
 - No generic "about" photography of the truck in a parking lot. Photography for Modern specialist is either on-site installation work or equipment-at-rest with credential context.
 - No neighborhood-steady warmth in the copy. The goal is competence, not coziness.
@@ -177,13 +177,13 @@ Both examples: credentials named, specific technologies listed, scope-of-work st
 
 ## The page arc
 
-A register is the key; the arc is the melody. Every page hits three moments in order, and the register shapes each moment differently.
+A persona is the key; the arc is the melody. Every page hits three moments in order, and the persona shapes each moment differently.
 
 ### Opening note (first 5 seconds, hero region)
 
-The hero is the opening note. Hero mode, glass card variant, and background treatment come from `hero-patterns.md`. The emotional register adds one layer on top: the *feeling* the hero should produce, which governs a handful of decisions the structural rules leave open.
+The hero is the opening note. Hero mode, glass card variant, and background treatment come from `hero-patterns.md`. The emotional persona adds one layer on top: the *feeling* the hero should produce, which governs a handful of decisions the structural rules leave open.
 
-| Register | Opening note feeling | Hero calibration |
+| Persona | Opening note feeling | Hero calibration |
 |---|---|---|
 | Quiet confidence | Shoulders drop. "I am in competent hands." | Crossfade photos are all environmental or detail. Headline is declarative and specific. Italic word is precise. Entry animation: eyebrow fade-up only. |
 | Earned pride | "Oh, *that's* beautiful." | Crossfade photos are finished-result-heavy. Headline names the craft. Full-bleed candidate exists for mid-page arc. Italic carries quality. |
@@ -193,11 +193,11 @@ The hero is the opening note. Hero mode, glass card variant, and background trea
 
 ### Build (middle 60% of the page, Services → Stats → Before/After → Testimonials → Promo → FAQ)
 
-The build is where evidence accumulates. The register governs pacing — which sections get visual weight, which sections get breathing room, where the heavy compositions land.
+The build is where evidence accumulates. The persona governs pacing — which sections get visual weight, which sections get breathing room, where the heavy compositions land.
 
 Pacing principle: a build has rhythm. Heavy composition, then breathing room, then a moment of visual precision, then release. Do not alphabet-soup the editorial layouts. Do not put three caption-dense sections back-to-back.
 
-| Register | Build emphasis | Pacing signature |
+| Persona | Build emphasis | Pacing signature |
 |---|---|---|
 | Quiet confidence | Services and Stats are the primary evidence. Before/after is understated. FAQ is large and substantive. | Heavy (Services) → Dark breathing (Stats with watermark) → Precise (before/after, if present) → Substantive close (FAQ with Layout A). |
 | Earned pride | Before/after is the peak. Services is a setup for it. Full-bleed lands between Before/After and Testimonials. | Intro (Services) → Peak (Before/After) → Full-bleed breath (Layout D) → Pull-quote testimonial → FAQ. |
@@ -205,13 +205,13 @@ Pacing principle: a build has rhythm. Heavy composition, then breathing room, th
 | Rescue-ready | Stats section leads with response metrics and lands earlier than usual (right after Services). Response-time callout (Layout C) replaces Promo callout. | Services → Response stats (early Layout E) → Before/After (urgent context) → Response callout (Layout C) → Truncated FAQ (3-5 rows only). |
 | Modern specialist | Stats uses Layout E watermark for technical counts. Before/After shows technical installations. Credentials section (can be part of Trust marquee or a dedicated mini-section) is expanded. | Services → Credential expansion → Technical stats (Layout E) → Installation detail (Layout B) → Pull quote → FAQ. |
 
-Rule of thumb across all registers: Layout D (full-bleed) lands around the 60-70% mark of the page, not in the first third. A full-bleed in the first third competes with the hero and weakens both. A full-bleed in the last third, just before the Contact and Footer, is the emotional peak of the build and the natural inflection point into the close.
+Rule of thumb across all personas: Layout D (full-bleed) lands around the 60-70% mark of the page, not in the first third. A full-bleed in the first third competes with the hero and weakens both. A full-bleed in the last third, just before the Contact and Footer, is the emotional peak of the build and the natural inflection point into the close.
 
 ### Close (last screen before footer)
 
 The close is almost always under-designed because engineers treat it as "whatever comes before the footer." It is not. The close is a deliberate moment: what does the reader feel in the last screen before the contact form or footer? That feeling determines whether they act.
 
-| Register | Close feeling | Close composition |
+| Persona | Close feeling | Close composition |
 |---|---|---|
 | Quiet confidence | Quiet invitation. "If you want to talk, we're here." | Contact section is simple, centered, no decoration. Phone number is the primary CTA. No fake urgency. |
 | Earned pride | Portfolio invitation. "Let's make something." | Contact section includes a small pull-quote or a final detail shot of craftsmanship. CTA reads "Start a project" or "See more work" (leading to portfolio) rather than "Get a quote." |
@@ -219,15 +219,15 @@ The close is almost always under-designed because engineers treat it as "whateve
 | Rescue-ready | Action invitation. "Call now, we'll dispatch." | Contact section is minimal; the phone number is oversized and the dispatch fact list is adjacent. The form is de-emphasized (small, below-the-fold). |
 | Modern specialist | Consultation invitation. "Book a site evaluation." | Contact form is primary and includes technical qualification fields (property type, panel size, vehicle model, etc.) rather than generic name/phone. |
 
-The close is rarely a section by itself; it is how the Contact section and its immediate neighbors are framed. Phase 5 reads the register and makes three decisions at the close: what the CTA copy says, what the section's surrounding photography or quote is, and how much form versus phone the close emphasizes.
+The close is rarely a section by itself; it is how the Contact section and its immediate neighbors are framed. Phase 5 reads the persona and makes three decisions at the close: what the CTA copy says, what the section's surrounding photography or quote is, and how much form versus phone the close emphasizes.
 
 ---
 
-## Register-to-layout bias table
+## Persona-to-layout bias table
 
-This table is the bridge between feeling and executable rules. Phase 4 uses it to break ties when selecting editorial layouts, signature micro-interaction, and photo role emphasis; Phase 5 uses it to resolve ambiguous section-level decisions. Every row is a register; every column is a decision the rule files leave open.
+This table is the bridge between feeling and executable rules. Phase 4 uses it to break ties when selecting editorial layouts, signature micro-interaction, and photo role emphasis; Phase 5 uses it to resolve ambiguous section-level decisions. Every row is a persona; every column is a decision the rule files leave open.
 
-| Register | Editorial layouts (weighted) | Signature | Photo role emphasis | Copy density | Italic signature word type | Motion budget |
+| Persona | Editorial layouts (weighted) | Signature | Photo role emphasis | Copy density | Italic signature word type | Motion budget |
 |---|---|---|---|---|---|---|
 | Quiet confidence | A (heavy), E (medium), B (light) | italic-color-shift | Environmental portrait + detail shot | Low-medium | Precision verb/adjective | Minimum (eyebrow only) |
 | Earned pride | D (heavy if photo exists), B (heavy), E (medium), A (medium) | eyebrow-reveal | Hero plate (finished result) + evidence + detail | Medium | Quality adjective | Medium (eyebrow + shimmer loop on CTA permitted) |
@@ -235,25 +235,25 @@ This table is the bridge between feeling and executable rules. Phase 4 uses it t
 | Rescue-ready | C (heavy, for response callout), E (early, for metrics), A (light) | eyebrow-reveal | Trucks + crews-in-motion + evidence | Low (skimmable) | Urgency adverb | Medium-fast (250ms eyebrow entry) |
 | Modern specialist | B (heavy, for technical detail), E (heavy, for stats), A (medium) | underline-bloom | Equipment + installation detail + credential documentation | Medium-high | Technical term | Medium (underline-bloom + eyebrow) |
 
-**Signature tie-breaking.** The Phase 4 signature selection tree (in SKILL.md Phase 4) picks based on tier, hero mode, and service count. When the tree produces an ambiguous result (e.g., two options are equally defensible), the register breaks the tie using the Signature column above.
+**Signature tie-breaking.** The Phase 4 signature selection tree (in SKILL.md Phase 4) picks based on tier, hero mode, and service count. When the tree produces an ambiguous result (e.g., two options are equally defensible), the persona breaks the tie using the Signature column above.
 
-**Layout tie-breaking.** The editorial-layouts module specifies minimum 3, maximum repeat 2, full-bleed max 1 per page. When a build has more valid layouts than it can use, the register's "weighted" column determines priority: *heavy* before *medium* before *light*.
+**Layout tie-breaking.** The editorial-layouts module specifies minimum 3, maximum repeat 2, full-bleed max 1 per page. When a build has more valid layouts than it can use, the persona's "weighted" column determines priority: *heavy* before *medium* before *light*.
 
-**Photo tie-breaking.** When two photos could fit the same slot and both are role-tagged correctly, the register's photo role emphasis breaks the tie: a Quiet confidence build prefers an environmental portrait over an evidence shot for a services grid featured card; an Earned pride build prefers a finished-result hero plate.
+**Photo tie-breaking.** When two photos could fit the same slot and both are role-tagged correctly, the persona's photo role emphasis breaks the tie: a Quiet confidence build prefers an environmental portrait over an evidence shot for a services grid featured card; an Earned pride build prefers a finished-result hero plate.
 
 ---
 
-## Register selection (Phase 4)
+## Persona selection (Phase 4)
 
-Phase 4 picks the register from three inputs, in this priority order:
+Phase 4 picks the persona from three inputs, in this priority order:
 
-1. **Captured copy tone.** If the prospect's existing site copy reads distinctly as one register (urgent-and-capable → Rescue-ready, craft-forward → Earned pride, family-story → Neighborhood steady, technology-forward → Modern specialist), use that register regardless of what the default mapping would pick. The prospect's own voice, when it is strong, is the most reliable signal.
+1. **Captured copy tone.** If the prospect's existing site copy reads distinctly as one persona (urgent-and-capable → Rescue-ready, craft-forward → Earned pride, family-story → Neighborhood steady, technology-forward → Modern specialist), use that persona regardless of what the default mapping would pick. The prospect's own voice, when it is strong, is the most reliable signal.
 
 2. **Tenure plus trade.** 20+ years in business biases toward Neighborhood steady regardless of trade. 10+ years plus strong portfolio evidence biases toward Earned pride. Otherwise, use the trade-category default mapping (see below).
 
 3. **Trade-category default mapping (fallback).**
 
-| Trade category | Default register |
+| Trade category | Default persona |
 |---|---|
 | Residential electrician | Quiet confidence |
 | Commercial electrician | Quiet confidence |
@@ -281,21 +281,21 @@ Phase 4 picks the register from three inputs, in this priority order:
 
 When the trade is not on this list, the default is Quiet confidence.
 
-**Write to `profile-draft.json.design.register`** (string value, one of: `quiet-confidence`, `earned-pride`, `neighborhood-steady`, `rescue-ready`, `modern-specialist`).
+**Write to `profile-draft.json.design.persona`** (string value, one of: `quiet-confidence`, `earned-pride`, `neighborhood-steady`, `rescue-ready`, `modern-specialist`).
 
 ### Approval gate addition
 
 The approval gate summary adds one line under `Design plan:`:
 
 ```
-  Emotional register: [Quiet confidence | Earned pride | Neighborhood steady | Rescue-ready | Modern specialist]
+  Emotional persona: [Quiet confidence | Earned pride | Neighborhood steady | Rescue-ready | Modern specialist]
 ```
 
 And one new override instruction:
 
-- `override register:[name]` — swap the emotional register
+- `override persona:[name]` — swap the emotional persona
 
-When Ron overrides the register, Phase 4 recomputes the signature micro-interaction selection and the editorial-layouts weighting to match the new register. The layout set may change; the hero mode does not (hero mode is structural, not emotional).
+When Ron overrides the persona, Phase 4 recomputes the signature micro-interaction selection and the editorial-layouts weighting to match the new persona. The layout set may change; the hero mode does not (hero mode is structural, not emotional).
 
 ---
 
@@ -305,9 +305,9 @@ At the end of every build, before Phase 7 deployment, Ron runs a final human che
 
 Look at the preview URL on a phone, in the environment where the prospect will first see it (a text message, a quick check during a lunch break, one-handed). Read the hero. Scroll to the close. Close the browser. Wait ten seconds. Ask yourself: what did that page make me feel?
 
-If the answer is some version of *"this feels like us"* — specific, emotional, identity-related — the register landed. Ship.
+If the answer is some version of *"this feels like us"* — specific, emotional, identity-related — the persona landed. Ship.
 
-If the answer is some version of *"this is a nice design"* — evaluative, aesthetic, compliment-shaped — the register did not land. The build is competent but generic. Return to Phase 4, re-examine the register selection, and regenerate. A build that earns an evaluative response is not a failure; it is an incomplete success. Do not ship it to the prospect. Slop's most dangerous form is the form that looks correct on inspection and generic on emotional impact, because it passes every automated check and fails the only check that actually sells the deal.
+If the answer is some version of *"this is a nice design"* — evaluative, aesthetic, compliment-shaped — the persona did not land. The build is competent but generic. Return to Phase 4, re-examine the persona selection, and regenerate. A build that earns an evaluative response is not a failure; it is an incomplete success. Do not ship it to the prospect. Slop's most dangerous form is the form that looks correct on inspection and generic on emotional impact, because it passes every automated check and fails the only check that actually sells the deal.
 
 The test is subjective by design. Feeling is not falsifiable, and trying to make it falsifiable would produce metrics that optimize for the metric instead of for the feeling. Trust the gut read. If the page makes you feel something specific about *this* business, it will make the prospect feel the same thing. If the page makes you feel something generic about home-services businesses in general, it will make the prospect feel nothing.
 
@@ -317,4 +317,4 @@ This is the last filter. It is the filter the rule files cannot provide. It is w
 
 ## Version
 
-emotional-arc.md v0.7.0. Page-level emotional pacing and register. Loaded by Phase 4 (register selection during design proposal) and Phase 5 (carrying the register through each section's decisions). NOT loaded by Phase 6 — feeling is not automatically verifiable. This file gives Phase 4 and Phase 5 a directional sense that tunes the thousand small decisions the rule files do not cover. Every register was derived from trades the skill actually serves; every arc pattern was derived from pages that have worked. Last updated April 9, 2026.
+emotional-arc.md v0.7.0. Page-level emotional pacing and persona. Loaded by Phase 4 (persona selection during design proposal) and Phase 5 (carrying the persona through each section's decisions). NOT loaded by Phase 6 — feeling is not automatically verifiable. This file gives Phase 4 and Phase 5 a directional sense that tunes the thousand small decisions the rule files do not cover. Every persona was derived from trades the skill actually serves; every arc pattern was derived from pages that have worked. Last updated April 9, 2026.

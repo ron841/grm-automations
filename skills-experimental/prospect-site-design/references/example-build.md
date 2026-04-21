@@ -271,15 +271,15 @@ After all 11 sections are generated, Phase 6 runs these checks against the full 
 
 # Sub-page example A: About page (Tucci Electric)
 
-Sub-pages compose differently from homepages. The arc compresses (4-6 sections instead of 11), the Layout D economics shift (the photo budget is separate, so full-bleed is often more available than on the homepage), and one register tends to dominate the page more heavily than on the homepage where the register has to modulate across a longer arc.
+Sub-pages compose differently from homepages. The arc compresses (4-6 sections instead of 11), the Layout D economics shift (the photo budget is separate, so full-bleed is often more available than on the homepage), and one persona tends to dominate the page more heavily than on the homepage where the persona has to modulate across a longer arc.
 
-The About page for Tucci Electric runs the same register as the homepage (Quiet confidence) but carries it differently. Where the homepage showed evidence of the craft, the About page shows evidence of the person. The photography budget shifts: environmental portraits (which were secondary on the homepage) become primary here, and the register's italic signature treatment appears on locality rather than on precision.
+The About page for Tucci Electric runs the same persona as the homepage (Quiet confidence) but carries it differently. Where the homepage showed evidence of the craft, the About page shows evidence of the person. The photography budget shifts: environmental portraits (which were secondary on the homepage) become primary here, and the persona's italic signature treatment appears on locality rather than on precision.
 
 ## About page design plan (Phase 4 output)
 
 ```
 Page type: About sub-page
-Register: quiet-confidence (inherited from homepage register)
+Persona: quiet-confidence (inherited from homepage persona)
 Editorial layouts (page): A (offset headline), D (full-bleed, if qualifying photo exists), E (watermark milestones)
 Full-bleed photo: tucci-vincent-ben-panel-job-2019.jpg (role: environmentalPortrait, secondary hero plate)
 Watermark numeral target: milestones (founding year, years in business, generations)
@@ -296,13 +296,13 @@ Hero mode: sub-page hero (simplified — single photo + glass card, no crossfade
 - Background: single environmental portrait of Ben Tucci at a panel in a Dunnellon home. Role-tagged `heroPlate` at Phase 3. Subtle darken overlay (rgba(0,0,0,0.45) flat, no gradient — the About page hero is more documentary than the homepage's gradient-overlay drama).
 - Glass card: default variant, 640px max-width, left-aligned (not centered — About page hero is off-axis to signal it is not the homepage).
   - Eyebrow: `ABOUT TUCCI ELECTRIC` in mono 12px accent.
-  - Headline: "Eighteen years of residential and commercial electric on the Nature Coast." 48px display. Italic on *Nature Coast* (Quiet confidence register, italic word carries locality on the About page rather than precision — the register modulates by section type).
+  - Headline: "Eighteen years of residential and commercial electric on the Nature Coast." 48px display. Italic on *Nature Coast* (Quiet confidence persona, italic word carries locality on the About page rather than precision — the persona modulates by section type).
   - Subhead: "Ben Tucci founded the company in Dunnellon in 2008 after nine years running commercial jobs for a Gainesville contractor. He answers the phone." 17px body.
 - No CTAs on the sub-page hero. About pages are read, not actioned. The phone number lives in the nav; the About page hero does not compete with it.
 
 **Rules satisfied.**
 
-- Register-conditional close inversion: the About page hero's italic signature word shifts to locality (*Nature Coast*) because on the About page the reader's question is "who and where" rather than "what and how well." Quiet confidence carries through but modulates.
+- Persona-conditional close inversion: the About page hero's italic signature word shifts to locality (*Nature Coast*) because on the About page the reader's question is "who and where" rather than "what and how well." Quiet confidence carries through but modulates.
 - Motion: eyebrow fade-up only, same as homepage hero. The signature micro-interaction budget is page-level, not site-level — it can appear in the same places as the homepage (3 times maximum on the About page as well).
 - Scale contrast: 48px headline + 12px eyebrow = 4x ratio. Below the 5x threshold. About page must compensate by including a display moment ≥80px elsewhere on the page — which it does in the milestones section (Layout E watermark numerals at 160px). See A3.
 
@@ -324,7 +324,7 @@ Hero mode: sub-page hero (simplified — single photo + glass card, no crossfade
 **Rules satisfied.**
 
 - Layout A applied.
-- Register (Quiet confidence): short declarative sentences, specific facts, one italic signature word, no self-praise. Paragraph 3 is the specific project story that Quiet confidence benefits from — the specificity is doing the work the register asks for.
+- Persona (Quiet confidence): short declarative sentences, specific facts, one italic signature word, no self-praise. Paragraph 3 is the specific project story that Quiet confidence benefits from — the specificity is doing the work the persona asks for.
 - Rule E3: no photos in this section, so no caption requirement fires.
 - One signature micro-interaction, used correctly: italic-color-shift appears in the hero headline + this section's headline + one more section's headline (see A5). Three deployments across the About page, same cadence as homepage.
 
@@ -342,7 +342,7 @@ Hero mode: sub-page hero (simplified — single photo + glass card, no crossfade
   - Cell 3: Watermark `2014`. "First commercial tenant build-out at Ocala Commons."
   - Cell 4: Watermark `2024`. "Second truck added; Ben's nephew joins as apprentice."
 - Hairline rules between cells (vertical on desktop, horizontal at tablet), same as homepage stats.
-- Background: `--color-background-alt` (off-white strip, not dark). About page milestones do not use the dark-section treatment — the documentary register benefits from staying in the light-background vocabulary.
+- Background: `--color-background-alt` (off-white strip, not dark). About page milestones do not use the dark-section treatment — the documentary persona benefits from staying in the light-background vocabulary.
 
 **Rules satisfied.**
 
@@ -368,7 +368,7 @@ Hero mode: sub-page hero (simplified — single photo + glass card, no crossfade
 
 - Layout D applied. One full-bleed per page, this is the one.
 - Rule E3 (caption): the pull quote + attribution IS the caption, in the editorial-variant form. This is how captions scale when the photo is the entire section.
-- Register (Quiet confidence): the quote is a specific biographical fact, the attribution is mono-precise, the tone is calm. Register carries through even at peak visual moments.
+- Persona (Quiet confidence): the quote is a specific biographical fact, the attribution is mono-precise, the tone is calm. Persona carries through even at peak visual moments.
 - One hero-weight photo per section: satisfied trivially — the section is one photo.
 - Page-arc note: Layout D lands at approximately 65% through the About page (after the hero, the story, and the milestones). This is the emotional peak of the About page and the natural inflection into the close.
 
@@ -388,11 +388,11 @@ Hero mode: sub-page hero (simplified — single photo + glass card, no crossfade
 
 - Layout A (second and final deployment on the About page).
 - Rule E2: service areas list uses hairline rules, not card wrappers.
-- Register: "how we work" is the Quiet confidence register's value statement — specific refusals ("no subcontractors"), specific requirements ("licensed journeyman on every service call"), no aspirational language.
+- Persona: "how we work" is the Quiet confidence persona's value statement — specific refusals ("no subcontractors"), specific requirements ("licensed journeyman on every service call"), no aspirational language.
 
-## Section A6: Contact invitation (centered-stacked, register-conditional close)
+## Section A6: Contact invitation (centered-stacked, persona-conditional close)
 
-**Role in rule system.** About page close. Quiet confidence register's close feeling is "quiet invitation — if you want to talk, we're here." The close composition reflects that.
+**Role in rule system.** About page close. Quiet confidence persona's close feeling is "quiet invitation — if you want to talk, we're here." The close composition reflects that.
 
 **Composition.**
 
@@ -404,7 +404,7 @@ Hero mode: sub-page hero (simplified — single photo + glass card, no crossfade
 
 **Rules satisfied.**
 
-- Register close pattern (Quiet confidence): "phone number is the primary CTA, no fake urgency." Delivered.
+- Persona close pattern (Quiet confidence): "phone number is the primary CTA, no fake urgency." Delivered.
 - Anti-slop: phone number is a real captured number, not (555) placeholder. Email is a real captured email.
 
 ## About page composition check (Phase 6 dry-run)
@@ -417,7 +417,7 @@ Hero mode: sub-page hero (simplified — single photo + glass card, no crossfade
 | At least 3 editorial layouts | Pass — Layout A (twice), Layout D (once), Layout E (once). 3 distinct. |
 | No layout repeats more than twice | Pass — A used twice, D once, E once |
 | Layout D at most once per page | Pass — used once |
-| Register carried through six load-bearing decisions | Pass — hero italic on locality, offset-headline italic on biographical specificity, milestone content biographical not craft, Layout D quote biographical not technical, service-areas list form (not cards), close is phone-primary no form |
+| Persona carried through six load-bearing decisions | Pass — hero italic on locality, offset-headline italic on biographical specificity, milestone content biographical not craft, Layout D quote biographical not technical, service-areas list form (not cards), close is phone-primary no form |
 | One signature micro-interaction, used site-wide | Pass — italic-color-shift three times, same signature as homepage |
 | Accent color appearances ≤12 | Pass — counted 6 (nav active, hero eyebrow, hero italic, milestones eyebrow, service areas h2 italic, philosophy italic) |
 | Every non-hero photo captioned | Pass — Layout D has pull-quote + attribution; no other photos |
@@ -426,7 +426,7 @@ Hero mode: sub-page hero (simplified — single photo + glass card, no crossfade
 
 # Sub-page example B: Service sub-page (Panel Upgrades)
 
-Service sub-pages have the tightest arc of any page type — 4 to 5 sections, a specific conversion goal (book this service), and a tighter scope (one trade capability rather than the full services grid). The register modulates most visibly here because the page is short enough that every decision matters.
+Service sub-pages have the tightest arc of any page type — 4 to 5 sections, a specific conversion goal (book this service), and a tighter scope (one trade capability rather than the full services grid). The persona modulates most visibly here because the page is short enough that every decision matters.
 
 The Panel Upgrades service sub-page for Tucci Electric retains Quiet confidence but compresses the arc. The page proves competence in this one capability, answers the specific objections prospects have about panel work, and invites the booking call. It does not retell the business's story — that's what the About page is for.
 
@@ -435,7 +435,7 @@ The Panel Upgrades service sub-page for Tucci Electric retains Quiet confidence 
 ```
 Page type: service sub-page
 Service: Panel upgrades and service rewiring
-Register: quiet-confidence (inherited from homepage; service sub-pages inherit unless overridden)
+Persona: quiet-confidence (inherited from homepage; service sub-pages inherit unless overridden)
 Editorial layouts (page): A (offset headline for FAQ), C (70/30 split for process), B (image-bleed for evidence divider)
 Full-bleed photo: none (Layout D omitted — sub-page hero already uses a hero plate; a second full-bleed would over-weight the page)
 Watermark numeral target: process (3-step)
@@ -451,7 +451,7 @@ Hero mode: sub-page hero (single photo + glass card, smaller scale)
 - Overlay: `linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.6) 100%)`.
 - Glass card: default variant, 640px max-width, left-aligned.
   - Eyebrow: `SERVICE · PANEL UPGRADES` mono 12px accent.
-  - Headline: "Panel upgrades and service rewiring, permitted and inspected." 36px display. Italic on *permitted and inspected* (Quiet confidence register — italic carries the proof, not the promise).
+  - Headline: "Panel upgrades and service rewiring, permitted and inspected." 36px display. Italic on *permitted and inspected* (Quiet confidence persona — italic carries the proof, not the promise).
   - Subhead: "Residential 100A to 200A upgrades. Commercial service entrance rebuilds. Every job pulled, inspected, and signed off by the county." 17px body.
   - Primary CTA: "Book a site evaluation" — button in `--color-primary` background at 18px. Leads to contact form with service pre-filled.
   - Secondary CTA: "Call (352) 555-0142" — ghost button with `--color-primary` border.
@@ -459,7 +459,7 @@ Hero mode: sub-page hero (single photo + glass card, smaller scale)
 **Rules satisfied.**
 
 - Service sub-page CTA convention: "Book a [specific action for this service]" as primary, call as secondary. More specific than the homepage's "Get a free quote" because the reader is already service-qualified.
-- Register: italic on proof language ("permitted and inspected") — Quiet confidence register privileges evidence over selling.
+- Persona: italic on proof language ("permitted and inspected") — Quiet confidence persona privileges evidence over selling.
 - Scale contrast: 36px + 12px = 3x. Below threshold. Compensation comes in Section B3 (process watermark at 160px). Service sub-page hero is intentionally smaller than homepage hero, so the display-moment budget shifts to a later section.
 
 ## Section B2: Process (Layout C 70/30 split)
@@ -487,7 +487,7 @@ Hero mode: sub-page hero (single photo + glass card, smaller scale)
 
 - Layout C applied.
 - Rule E1: accent on eyebrow + h2 italic + primary CTA (Section B1) only. Sidebar is dark-primary + text-muted, not accent.
-- Register: fact sidebar is documentary, not promotional. Numbered in scope ("4-6 HOURS," "20-YEAR") without superlatives.
+- Persona: fact sidebar is documentary, not promotional. Numbered in scope ("4-6 HOURS," "20-YEAR") without superlatives.
 
 ## Section B3: Process watermark (Layout E)
 
@@ -532,7 +532,7 @@ Hero mode: sub-page hero (single photo + glass card, smaller scale)
 
 - Layout B applied.
 - Rule E3: caption with location, date, equipment, material. Every photo captioned.
-- Register: caption is documentary (location/date/spec), not celebratory. Quiet confidence carries through.
+- Persona: caption is documentary (location/date/spec), not celebratory. Quiet confidence carries through.
 - Rule E2: caption uses hairline rules, not a boxed list.
 
 ## Section B5: Service-specific FAQ (Layout A)
@@ -555,7 +555,7 @@ Hero mode: sub-page hero (single photo + glass card, smaller scale)
 
 - Layout A (first and only deployment on this page).
 - Rule E2: rules between FAQ rows.
-- Register: answers are specific, short, and declarative. Quiet confidence form.
+- Persona: answers are specific, short, and declarative. Quiet confidence form.
 - Service sub-page FAQ differs from homepage FAQ: narrower scope (only this service), fewer rows (5 vs. 8), more specific answers.
 
 ## Section B6: Service-specific close (centered-stacked)
@@ -569,7 +569,7 @@ Hero mode: sub-page hero (single photo + glass card, smaller scale)
 
 **Rules satisfied.**
 
-- Register close (Quiet confidence): specific, calm, phone-available but booking-primary for a service-qualified reader. This is the one place a Quiet confidence service sub-page prefers form-primary over phone-primary: the reader has already made the decision to consider this service, and the form is the next concrete action rather than a call that re-opens the conversation.
+- Persona close (Quiet confidence): specific, calm, phone-available but booking-primary for a service-qualified reader. This is the one place a Quiet confidence service sub-page prefers form-primary over phone-primary: the reader has already made the decision to consider this service, and the form is the next concrete action rather than a call that re-opens the conversation.
 - Service sub-page conversion convention: primary CTA is service-specific action ("Book an evaluation"), not generic quote request.
 
 ## Service sub-page composition check (Phase 6 dry-run)
@@ -582,7 +582,7 @@ Hero mode: sub-page hero (single photo + glass card, smaller scale)
 | At least 3 editorial layouts | Pass — Layout A, Layout B, Layout C, Layout E — 4 distinct |
 | No layout repeats more than twice | Pass — each used once |
 | Layout D at most once per page | Pass — not used (intentionally omitted for short-page weight reasons) |
-| Register carried through load-bearing decisions | Pass — hero italic on proof, process italic on duration specificity, FAQ italic on service name, CTA copy service-specific, evidence caption documentary not celebratory, close is booking-primary (correct service sub-page modulation of Quiet confidence's default phone-primary) |
+| Persona carried through load-bearing decisions | Pass — hero italic on proof, process italic on duration specificity, FAQ italic on service name, CTA copy service-specific, evidence caption documentary not celebratory, close is booking-primary (correct service sub-page modulation of Quiet confidence's default phone-primary) |
 | One signature micro-interaction, used site-wide | Pass — italic-color-shift three times, same signature as homepage + About |
 | Accent color appearances ≤12 | Pass — counted 7 (nav active, hero eyebrow, hero italic, hero primary CTA, process h2 italic, FAQ headline italic, close CTA) |
 | Every non-hero photo captioned | Pass — Layout B detail shot has four-line mono caption |
@@ -593,7 +593,7 @@ Hero mode: sub-page hero (single photo + glass card, smaller scale)
 
 When Phase 5 generates a multi-page build (homepage + About + one or more service sub-pages), three cross-page rules apply:
 
-**1. Register inherits across pages unless explicitly overridden.** Phase 4 sets register once at the approval gate. Every sub-page uses the same register. Individual sub-pages can override at Phase 5 only if the prospect's data for that specific service materially conflicts with the homepage register — which is rare. In practice: the register is a site-level property, not a page-level property.
+**1. Persona inherits across pages unless explicitly overridden.** Phase 4 sets persona once at the approval gate. Every sub-page uses the same persona. Individual sub-pages can override at Phase 5 only if the prospect's data for that specific service materially conflicts with the homepage persona — which is rare. In practice: the persona is a site-level property, not a page-level property.
 
 **2. Signature micro-interaction is site-level, count is page-level.** The italic color-shift used on the homepage is the same signature used on the About and service sub-pages. But each page has its own 3-deployment budget; the homepage can use italic-color-shift 3 times, and the About page can use it 3 more, for 6 total across the site. The rule "one signature" is about consistency, not budget.
 
