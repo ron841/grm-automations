@@ -3,7 +3,7 @@ name: prospect-site-composer
 description: "Generate a custom multi-page preview website for a local home services contractor prospect from their live URL. Architectural successor to prospect-site-design, restructuring Phase 4 and Phase 5 against Claude Design's editorial framework (five personas driving layouts A–E, photo role hierarchy, three-voice typography, scale contrast, motion restraint, signature micro-interactions) and backporting production's Wave 1/Wave 2 infrastructure (rhythm tokens, SectionOpener and StatRow primitives, font system). Deeply crawls the prospect's real site, captures their brand data (owners, services, testimonials, credentials, colors, photos, promotions), scores their current web presence, and produces profile.json. Phase 4 produces composition-plan.json — the explicit editorial specification of every page — which Phase 5 emits as HTML with zero default-template inheritance. Phase 5.5 reads schema content from composition-plan.json, not the emitted DOM. Two-pillar hard gate: editorial (13-check Phase 6 suite) and SEO/GEO (schema validity, Lighthouse SEO ≥95). Runs isolated at ~/.claude/skills/prospect-site-composer/ — does not touch production prospect-site. Use this skill whenever the user types /prospect-site-composer followed by a business name and URL, or asks to build a prospect preview site using the Composer pipeline."
 ---
 
-# Prospect Site Composer (v0.8)
+# Prospect Site Composer
 
 ## What this skill does
 
@@ -29,7 +29,7 @@ This skill uses the progressive disclosure pattern. SKILL.md contains the workfl
 - `references/deployment.md` — Vercel naming convention, Static Forms wiring, migration playbook pointer
 - `references/image-handling.md` — Phase 3 photo sources, Unsplash tier-4 fallback, compression, lazy loading
 - `references/anti-slop-rules.md` — Negative design rules, banned fonts, banned layouts, banned phrases
-- `references/example-build.md` — Worked, annotated v0.7 reference page (Tucci Electric synthetic composite). Loaded by Phase 5 at generation start as a pattern-match reference showing every rule in composition.
+- `references/example-build.md` — Worked, annotated reference page (Tucci Electric synthetic composite). Loaded by Phase 5 at generation start as a pattern-match reference showing every rule in composition.
 - `references/emotional-arc.md` — Page-level emotional pacing and five personas (Quiet confidence, Earned pride, Neighborhood steady, Rescue-ready, Modern specialist). Loaded by Phase 4 for persona selection at approval, and Phase 5 to carry the persona through photo, copy, and layout decisions. NOT loaded by Phase 6 — feeling is not automatically verifiable.
 
 Load a reference file when the phase that needs it begins. Do not load all of them upfront.
@@ -62,7 +62,7 @@ These rules exist because prior builds failed by ignoring them. Do not skip any 
 
 Goal: fail fast before any Phase 1+ work begins. Better to spend 10 seconds verifying integrations than 30 minutes diagnosing why Phase 5 broke. Phase 0 runs before every prospect build, no exceptions.
 
-Phase 0 has two check categories: hard checks (any failure blocks Phase 1 from starting) and soft checks (failures log a warning but the build continues). The split exists because some integrations are mission-critical (Vercel CLI auth, Node.js version) while others are deferred or optional in v0.7 (HubSpot pipeline configuration is on the v0.7 punch list but not yet complete; backup is a v0.8 target).
+Phase 0 has two check categories: hard checks (any failure blocks Phase 1 from starting) and soft checks (failures log a warning but the build continues). The split exists because some integrations are mission-critical (Vercel CLI auth, Node.js version) while others are deferred or optional for Composer (HubSpot pipeline configuration is on the punch list but not yet complete; backup is a v0.8 Scale (deferred) target).
 
 ### Hard checks (must all pass before Phase 1 begins)
 
@@ -105,17 +105,17 @@ For each check, verify the condition and report status. If any check fails, stop
 
 ### Soft checks (warn but continue)
 
-These checks log a warning to the build report but do not block Phase 1. They are tracked for future v0.8 hardening when the underlying integration becomes mission-critical.
+These checks log a warning to the build report but do not block Phase 1. They are tracked for future v0.8 Scale (deferred) hardening when the underlying integration becomes mission-critical.
 
 1. **HubSpot pipeline configured.**
    - Verify: HubSpot API token is present in environment variables AND the GRM web services pipeline exists with the expected stages.
    - On soft fail: warn "HubSpot pipeline not configured. The skill will not auto-create a deal record on Phase 8. Manual HubSpot entry required after deployment. HubSpot setup is tracked in the Technical debt inventory section of `scale-architecture.md`."
-   - Why soft: HubSpot setup is on the v0.7 punch list per `scale-architecture.md` but not yet complete. The skill should not block Phase 1 just because HubSpot isn't ready.
+   - Why soft: HubSpot setup is on the punch list per `scale-architecture.md` but not yet complete. The skill should not block Phase 1 just because HubSpot isn't ready.
 
 2. **Automated backup running.**
    - Verify: a recent backup of `~/grm-sites-prospects/` exists (less than 24 hours old) at the backup destination.
-   - On soft fail: warn "No recent automated backup found. Per scale-architecture.md, profile.json files are the core institutional asset of GRM and backup must be running before active client count exceeds 5. This warning becomes a hard check at v0.8."
-   - Why soft: backup is a v0.8 target. Pre-v0.8 builds will not have backup running and the warning is informational, not blocking.
+   - On soft fail: warn "No recent automated backup found. Per scale-architecture.md, profile.json files are the core institutional asset of GRM and backup must be running before active client count exceeds 5. This warning becomes a hard check at v0.8 Scale (deferred)."
+   - Why soft: backup is a v0.8 Scale (deferred) target. Pre-Scale builds will not have backup running and the warning is informational, not blocking.
 
 3. **Google Places API lightweight test call.**
    - Verify: a single test call to Google Places API (e.g., a Text Search query for a known Ocala business) returns a 200 response with valid JSON.
@@ -139,8 +139,8 @@ Hard checks:
   ✓ Prospect URL reachable: 200
 
 Soft checks:
-  ⚠ HubSpot pipeline not configured (v0.7 technical debt)
-  ⚠ No recent backup found (v0.8 target)
+  ⚠ HubSpot pipeline not configured (technical debt)
+  ⚠ No recent backup found (v0.8 Scale deferred)
   ✓ Google Places API test call succeeded
 
 Phase 0 PASSED. Proceeding to Phase 1.
@@ -390,7 +390,7 @@ Wait for explicit `yes` or override instruction. Only proceed to Phase 5 after a
 
 If `--auto` was passed in the command, skip the gate and proceed automatically.
 
-### Editorial choices (v0.7 addition — deterministic + declared at Phase 4)
+### Editorial choices (deterministic + declared at Phase 4)
 
 Five editorial decisions that were previously implicit inside Phase 5 are now explicit at Phase 4 so Ron can review them at the approval gate before generation runs. The persona is selected first because it biases the other four.
 
@@ -411,7 +411,7 @@ The persona biases the signature micro-interaction selection (via the tie-breaki
 
 **1. Signature micro-interaction (pick exactly one, site-wide).**
 
-Selection uses only signals already captured by Phase 1-4 (tier, hero mode, service count). More nuanced signals (logo character, stats content type) were considered but rejected because they require pipeline extractions that don't currently exist; adding them is tracked as a future enhancement but the v0.7 tree deliberately stays within captured data.
+Selection uses only signals already captured by Phase 1-4 (tier, hero mode, service count). More nuanced signals (logo character, stats content type) were considered but rejected because they require pipeline extractions that don't currently exist; adding them is tracked as a future enhancement but the tree deliberately stays within captured data.
 
 ```
 IF tier == "Premium":
@@ -470,7 +470,7 @@ IF "E" in editorialLayouts:
 
 Write to `profile-draft.json.design.watermarkTarget`.
 
-### Updated approval gate output (v0.7)
+### Updated approval gate output
 
 The approval gate summary adds four lines under `Design plan:`:
 
@@ -490,7 +490,7 @@ And three new override instructions Ron can invoke:
 
 ### Over-constraint escape hatch
 
-The v0.7 editorial rules interlock: minimum 3 layouts, scale contrast ≥5x, ≤12 accent appearances, one signature used site-wide, every non-hero photo captioned, one hero-weight photo per section. For most builds these compose cleanly. For a small set of prospects (weak photo library, sparse content, very short service list) the rules may be jointly unsatisfiable.
+The editorial rules interlock: minimum 3 layouts, scale contrast ≥5x, ≤12 accent appearances, one signature used site-wide, every non-hero photo captioned, one hero-weight photo per section. For most builds these compose cleanly. For a small set of prospects (weak photo library, sparse content, very short service list) the rules may be jointly unsatisfiable.
 
 Phase 4 detects over-constraint BEFORE the approval gate renders:
 
@@ -566,7 +566,7 @@ If all three conditions hit, generate the sub-page. If any fails, roll the servi
 
 **Sub-page structure:** simpler than the homepage. Nav, sub-hero (single section with headline, subheadline, photo, and CTAs), main content block (300-800 words from Phase 2 capture), service-specific testimonials if captured, service-specific FAQ (3-5 questions), contact CTA callout linking to `/contact.html`, footer. Full structural spec and voice mapping in `references/content-rules.md` under "Standalone pages and service sub-pages."
 
-**Pages explicitly out of scope for v0.7:** location sub-pages (Ocala Electrician, Dunnellon Electrician as separate pages), blog and news pages, financing pages as standalone (content rolls into homepage promo callout instead), warranty and insurance pages as standalone (content rolls into homepage FAQ and trust marquee), separate team pages (content rolls into about.html), project portfolio pages (use gallery.html). When Phase 2 captures these page types, Phase 5 either ignores them or rolls their content into existing homepage sections per the decision table in `references/content-rules.md`.
+**Pages explicitly out of scope:** location sub-pages (Ocala Electrician, Dunnellon Electrician as separate pages), blog and news pages, financing pages as standalone (content rolls into homepage promo callout instead), warranty and insurance pages as standalone (content rolls into homepage FAQ and trust marquee), separate team pages (content rolls into about.html), project portfolio pages (use gallery.html). When Phase 2 captures these page types, Phase 5 either ignores them or rolls their content into existing homepage sections per the decision table in `references/content-rules.md`.
 
 ### Homepage section order (build in this order)
 
@@ -591,7 +591,7 @@ If all three conditions hit, generate the sub-page. If any fails, roll the servi
 - Every service description is 1 to 2 sentences, benefit-first.
 - Every number is real. Never invented.
 - Every photo is from `assets/photos/` subfolders. Never hotlinked.
-- The stats section ALWAYS uses the dark treatment. This is non-negotiable and gives every v0.7 flagship the mandatory visual rhythm reset.
+- The stats section ALWAYS uses the dark treatment. This is non-negotiable and gives every flagship the mandatory visual rhythm reset.
 - Every section gets the Glare Hover, Shimmer Button, or other Magic UI enhancement specified in `references/css-framework.md` where appropriate.
 - Run the anti-slop rule check from `references/anti-slop-rules.md` on all generated copy and CSS before writing files.
 
@@ -688,7 +688,7 @@ Phase 6 runs eighteen checks organized into eight categories. All checks must pa
 
 ### Structural integrity checks
 
-10. **Dark section count.** The generated homepage contains exactly one dark-background section (the mandatory stats section from Phase 5). Zero dark sections or two-plus dark sections fail the build. This enforces the v0.7 visual rhythm rule architecturally, not by convention.
+10. **Dark section count.** The generated homepage contains exactly one dark-background section (the mandatory stats section from Phase 5). Zero dark sections or two-plus dark sections fail the build. This enforces the visual rhythm rule architecturally, not by convention.
 
 11. **llms.txt existence and format.** File exists at site root, follows the AnswerDotAI llms.txt spec, contains links to clean markdown versions of key pages. Missing file or invalid format fails the build.
 
