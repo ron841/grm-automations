@@ -280,4 +280,12 @@ When authoring a new handoff-discipline rule and the urge to add an exception ap
 
 ---
 
+## Composer adaptation (Stage II)
+
+For Composer: Rule #11 applies to post-deploy hotfix preservation of emitted artifacts — where "foundation" under Composer means what Phase 5/5.5 emitted for a given build, captured in composition-plan.json plus schemas. Rule #12 applies only when .docx authoring prompts are used (e.g., for post-deploy hotfix work on a Composer-built site). Stages II–VI development handoffs go through COMPOSER_BRAIN.md rather than per-session .docx files and do not invoke either rule. The principles survive; the Composer-era mechanisms differ.
+
+Added 2026-04-21 during Stage II (a) file copies from production into Composer target skill.
+
+---
+
 *Authored April 19, 2026, as part of the v0.8 Wave 5 prose synthesis. Source material: the GRM session handoff of the same date, typography.md Appendix A, voiceMap.md §8, response-to-code-review.md, and the lived experience of the v0.8 foundation authoring round.*
