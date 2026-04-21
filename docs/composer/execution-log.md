@@ -18,3 +18,4 @@ Newest entries at the bottom. Do not prune; archive to a dated file if this grow
 2026-04-21 17:37 EDT — Stage II — Locked log-entry follow-up-commit convention in COMPOSER_BRAIN.md §13 — commit 2c14646.
 2026-04-21 17:49 EDT — Stage II — Rewrote SKILL.md description for Composer identity (successor-to-design-skill framing, handoff-contract summary, two-pillar hard gate) — commit e830ccb.
 2026-04-21 18:05 EDT — Stage II — Identity sweep on SKILL.md body — 16 line-level rewrites — commit 6c13f4f. DEFERRED to Stage III/IV: content enlargement on lines 473 (approval gate UI per brain §9) and 493 (editorial rules per brain §6 P6.2) — version-tag drop only in this pass.
+2026-04-21 18:06 EDT — Stage II — Rewrote Version section for Composer identity (paragraph-scale replacement at line 827) — commit 8ade263.
