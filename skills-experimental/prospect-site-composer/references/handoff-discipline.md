@@ -6,7 +6,7 @@ Protocol for skill-file authoring and Design ↔ Code collaboration rounds. Auth
 
 ## 0. What this file governs
 
-This file governs *how skill files get authored*, not *what the skill does at build time*. The prospect-site build flow (Phase 0 through deployment) never invokes the rules below — those rules govern future skill-file collaboration rounds, not the generation of a contractor site.
+This file governs *how skill files get authored*, not *what the skill does at build time*. The prospect-site-composer build flow (Phase 0 through deployment) never invokes the rules below — those rules govern future skill-file collaboration rounds, not the generation of a contractor site.
 
 Runtime Claude authoring a prospect site does not need to read this file. A Claude authoring the next skill-file round (composition patterns, new validators, the next design-layer rule set) does.
 
