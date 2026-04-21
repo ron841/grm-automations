@@ -35,6 +35,7 @@ Authorship: Code writes all updates via bash. Chat-Claude and Design provide con
 - **Three skills coexist during Composer development:** design-skill as foundation, production as backport source and fallback, prospect-site-composer as Composer's target
 - **Status:** Stage I scope locked 2026-04-21. Stages II-VI execute in fresh windows.
 - **Two-pillar foundational commitment (both hard gates):** Pillar 1 editorial (Design's framework delivering Luna F8 quality and beyond). Pillar 2 SEO/GEO (schema validity, AI-citation infrastructure, Lighthouse SEO ≥95). A Composer build failing either pillar does not ship. Neither is primary. Neither is secondary.
+- **Post-Composer roadmap vocabulary.** "Composer" or "v0.8 Composer" = the current skill under development (this document's scope). "v0.8 Scale (deferred)" = the renamed prior v0.8 scope — automation of pain, HubSpot pipeline hardening, backup hardening, sales infrastructure — items preserved in `project_v08_backlog.md` for post-Composer execution. Reference files (seo-geo.md, deployment.md, anti-slop-rules.md, content-rules.md, image-handling.md, etc.) may refer to "v0.8 Scale (deferred)" as a roadmap label; this is the canonical anchor for that term. Future version numbers (v0.9, v1.0) remain in `references/scale-architecture.md` pending that file's deferred rewrite (see Living section).
 
 ## 1. LOAD-BEARING PRINCIPLE
 
@@ -396,6 +397,7 @@ Newest session block at the top. Older blocks scroll down.
 
 **What changed:**
 - Log-entry convention locked: follow-up commit, not atomic with work commit. See §13.
+- Stratum 3 identity sweep across 10 reference files complete (commit 5b2d650). HANDOFF.md deleted as design-skill-era mechanism superseded by COMPOSER_BRAIN.md. Brain file §0 gained post-Composer roadmap vocabulary anchor. scale-architecture.md rewrite deferred (see composer-backlog.md for details).
 
 **What's next:** Create prospect-site-composer target skill directory (original item #3 of Stage II kickoff). Chat-Claude drafting paste-ready prompt after this commit lands.
 
