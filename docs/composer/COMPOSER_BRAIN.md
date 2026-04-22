@@ -393,6 +393,77 @@ Newest session block at the top. Older blocks scroll down.
 
 ---
 
+## Session block — 2026-04-22 (full day — Stage II.5 + Stage III Gates 1-4 + §14 + Phase 4-new architecture resolved)
+
+**Window type:** Chat-Claude (CTO seat), full three-party session with Design and Code. 10+ hours. Ron drove CTO-over-Chat across the full arc.
+
+**Session arc:**
+
+- Opened against Stage III handoff. Stage II closed that morning; Stage III ahead.
+- Authored six-fixture inventory (Design pre-reviewed, Chat-routed, Code-built): Hollister Pest Control (neighborhood-steady × Professional, sparse photos), Kingsley Pool & Spa (earned-pride × Premium, populated), Greenridge Solar (modern-specialist × Standard, over-constraint), Riley's 24/7 Plumbing (urgent-service × Professional, high-review), Riverside Landscaping (neighborhood-steady × Standard, low-content-depth), Summit Home Services (quiet-confidence × Professional, multi-vertical drift A/B anchor).
+- Stage III Gates 1-4 authored by Design and executed by Code as four atomic commits plus Gate 1 polish:
+  - Gate 1 411e30a: emotional-arc.md persona-signature 6-column Tier 1+Tier 2 bias table, tenure+trade convergence clause, layout/photo/copy tie-breaking
+  - Gate 1 polish 949de45: Flag A hero-calibration subsection hoist + Flag B paragraph promotion
+  - Gate 2 757e030: SKILL.md Phase 4 signature tree rewrite + output-path split at line 429
+  - Gate 3 6f8bcbb: css-framework.md Motion Restraint Tier 2 scope split
+  - Gate 4 ec8349f: composition-plan-schema.md §5.3 contracts for hero / servicesGrid / testimonialsSection / aboutStory
+- Three Design arbitration rounds on Gate 1 cascade concerns resolved cleanly. Design restored the 6-column bias table after Chat-Claude proposed a simpler 3-column frame that Design reshaped as architecturally insufficient.
+- Six fixture profile.json files authored by Code (a8f7bbd, 429d179, 6c11221, 9e25223, a6bcb59, 8b94e72). Fixture 1 Hollister license later retrofitted from 4-digit JB5678 to 5-digit JB12345 Florida pest standard (baef522).
+- Six expected composition-plan.json files authored: Design authored Fixtures 2/3/4 (earned-pride, modern-specialist, urgent-service — anchor set for Checkpoint 2). Chat-Claude authored Fixtures 1/5/6 (neighborhood-steady ×2, quiet-confidence) mirroring Design's authorship style.
+- Code's pre-commit verification on expected plans surfaced 17 divergences from locked §2/§4 schema envelope. Routed to Design. Design resolved Reading C (hybrid): 6 genuine editorial intent-spec simplifications kept (site.pathConvention, site.tier, site.microInteractionDurations, section.voiceZoneAssignments, page.scaleContrast, page.layoutSequence); 11 authoring divergences reshaped to full §2/§4 schema shape. §16 amendment authored by Design documenting intent-spec contract + two-pass validator architecture.
+- Nine-commit batch landed: §16 amendment (296150a); six expected composition-plans (8712a0d, 1ea2408, dee339c, d628b63, 270ccbc, f2a5ec0); Gate 1 polish (949de45); Hollister license retrofit (baef522).
+- §16 renumbered to §14 for contiguous numbering (7f73270) after Design sign-off — gap was stop-condition artifact, not intentional reservation.
+- Phase 4-new scoping diagnostic authored by Code: 5-part report covering 19-module decomposition, approval gate UI proposal per brain §9, two-pass validation interface, semantic-derivation rules per §14 field, Stage III gating backlog cleared.
+- Design signed off on approval gate UI with three reshapes: constraintsOK block renders ABOVE site-level header when false (omits when true); italic status nomenclature renamed (matches / class-expected-match / class-banned-for-persona); show-derivation command added to feedback loop for drift diagnosis.
+- Design signed off on semantic-derivation rules with reshape on Rule 3 + two clarifications on Rules 4 (emit both inline and page-level voice zones) and 5 (achievedRatio computed at Phase 4-new emission time from WCAG math).
+- Phase 4-new implementation prompt drafted as six gates (A validator, B site-level, C page structure + section emitters, D cross-page editorial, E photo + integrity + full orchestrator, F approval gate renderer) with explicit stop conditions.
+- Code Gate A pre-execution diagnostic caught two architectural concerns before any writes: Rule 3 persona-durations table drifts against Fixtures 3 and 6; editorial-authoring boundary unresolved for Gates B-F.
+- Routed to Design. Q1 resolved (b) — Rule 3 collapses to two-row (all personas except urgent-service at entry 400 / hover 180; urgent-service at entry 250 / hover 150). Fixtures 3 and 6 stay at current hashes. Q2 resolved (1) — LLM authoring inside Phase 4-new modules, editorial vs structural field boundary locked, validator contract shifts to persona-rule adherence on editorial fields.
+- Session closed at Phase 4-new implementation gate. Architecture resolved; implementation deferred to Session 4.
+
+**What changed:**
+
+- Six-fixture profile.json + expected composition-plan.json library on disk at ~/grm-automations/docs/composer/fixtures/.
+- emotional-arc.md rewritten with persona-signature frameworks (Gate 1).
+- SKILL.md Phase 4 signature tree rewritten (Gate 2).
+- css-framework.md Motion Restraint scoped to Tier 2 (Gate 3).
+- composition-plan-schema.md: §5.3 contracts for 4 section types (Gate 4), §14 intent-spec shape contract (renumbered from §16).
+- Phase 4-new architecture resolved: LLM authoring inside modules; editorial/structural field boundary locked; validator shifts to persona-rule adherence on editorial fields; Rule 3 collapsed to two-row.
+
+**What's in-flight:** Nothing on disk. Session 4 opens fresh against Desktop artifacts + on-disk brain + handoff.
+
+**What's next:**
+
+Session 4 target = finish the skill. Three bullets:
+
+1. Phase 4-new implementation — Code executes six-gate prompt. Gates A through F. Atomic commit per gate. Stop conditions per gate. Editorial fields LLM-authored inside modules; validator checks persona-rule adherence not exact-string equality. Rule 3 locked two-row.
+2. Checkpoint 2 — after Gate E, Design reviews Phase 4-new output on 2-3 fixtures (Fixtures 2/3/4 anchor set). Design signs off on editorial quality or reshapes. Pullquote retrofit decision surfaces.
+3. Phase 5-new implementation (Stage IV) — HTML/CSS/JS emission from composition-plan.json + profile.json. Scoping diagnostic first; then implementation prompt; then Code executes.
+
+Post-skill work (out of scope for Session 4): Stage V Luna validation build; Stage VI retirement decision.
+
+**Open questions / deferred decisions:**
+
+- Fixture 2 pullquote word-count retrofit-or-grandfather (Checkpoint 2).
+- §5.3 remainder contracts for 6 stub section types — fixture-observed shape used in Phase 4-new; formal contracts deferred until real-build demand.
+- Phase 5-new scoping — opens in Session 4 after Checkpoint 2 sign-off.
+
+**Known traps for Session 4:**
+
+- LLM-authored editorial fields make Phase 4-new output non-deterministic. Validator catches adherence; Checkpoint 2 catches quality.
+- Fixture 6 drift A/B is Phase 5 concern, not Phase 4-new. Structural emission should be clean for Fixture 6 at Gate E.
+- Phase 4-new is large. If gates surface substantive rework, split sessions — don't press through.
+- Chat-Claude drafting discipline lesson carried: verify prompts against fixtures-on-disk before sending; read scoping diagnostics for architectural holes before writing implementation on top; no placeholders in paste-ready artifacts.
+
+**Acknowledgments:**
+
+- Ron held CTO-over-Chat across 10+ hours, arbitrated architectural reframes cleanly (Reading C, Q1, Q2, session-close timing), surfaced process-overhead concerns honestly rather than absorbing.
+- Design delivered substantive architectural authorship: 6-column persona bias table (Gate 1), §14 two-pillar intent-spec contract (Reading C), editorial vs structural field boundary (Q2), approval gate UI reshapes, Rule 3 two-row collapse.
+- Code caught four framework-level concerns at pre-commit verification preventing architectural drift: Gate 1 tie-breaking cascade, Commit 4 truncation + Edit 4B missing spec, §2/§4 envelope vs fixture shape divergence, Rule 3 + editorial-authoring boundary at Gate A.
+- Chat-Claude drafting drift at context-pressure points cost round-trips. Improvement vector to Session 4: verify prompts against fixtures before sending; read scoping diagnostics for holes before writing implementation on top.
+
+---
+
 ## Session block — 2026-04-22 (Stage II close)
 
 **Window type:** Chat-Claude (facing Ron). CTO seat. Stage II execution through close.
