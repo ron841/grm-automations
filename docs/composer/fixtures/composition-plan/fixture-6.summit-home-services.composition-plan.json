@@ -1,0 +1,381 @@
+{
+  "$schemaVersion": "1.0",
+  "$schema": "composition-plan",
+  "businessSlug": "summit-home-services",
+  "site": {
+    "persona": "quiet-confidence",
+    "personaReason": "Multi-trade convergence: HVAC + residential electrician + general plumber all map to quiet-confidence per emotional-arc.md trade table. Three trade signals converging on one persona lock the call. Neighborhood-steady considered for 22-year tenure but multi-trade scope + Professional-tier positioning biases away from folksy; earned-pride considered for craft visibility but no single hero-trade claim. Quiet-confidence wins the three-input priority. Locked at this persona per Design Brief 1 Q-A directive as the quiet-confidence × Professional drift A/B fixture — Tier 1 pins at persona default for clean variable isolation against Luna F8 shipped.",
+    "tier": "Professional",
+    "signatureMicroInteraction": "italic-color-shift",
+    "signatureMicroInteractionReason": "Quiet-confidence persona default italic-color-shift. Gate 2 tree rule 1 fails (Professional tier fails Premium requirement for hero-glass-blur); rule 2 fails (persona not rescue-ready or earned-pride); rule 3 fails (persona not modern-specialist); rule 4 fires (persona has italic-color-shift in Tier 1 default AND italicPlacement-eligible strings present — 'one license', 'Twenty-two years', 'Marion County', 'three trades' all qualify). Persona default holds per variable-isolation requirement for the Stage II (e) CONFIG.spacing drift A/B against Luna F8 shipped.",
+    "microInteractions": [],
+    "microInteractionsReason": "Quiet-confidence Tier 2 default is [] (empty) per Gate 1 persona notes — restraint is the signature. No additive Tier 2 rules fire that override the empty default: no sectionOpener-on-hero trigger for this page, no statRow modern-specialist trigger, no Premium-tier earned-pride CTA-critical override. Clean empty array emission. Variable isolation for drift A/B is cleanest with empty Tier 2.",
+    "microInteractionDurations": { "entry": 400, "hover": 180 },
+    "pathConvention": "kebab-case",
+    "voicesInUse": ["front-porch", "kitchen-table", "closing-table"],
+    "constraintsOK": true,
+    "constraintRelaxations": [],
+    "colorScheme": {
+      "primary": "#0369A1",
+      "accent": "#F97316",
+      "darkPrimary": "#0C4A6E",
+      "primaryUsage": "balanced"
+    }
+  },
+  "pages": [
+    {
+      "path": "/",
+      "canonicalUrl": "https://summithomeservices.example/",
+      "pageKey": "home",
+      "voicesInUse": ["front-porch", "kitchen-table", "closing-table"],
+      "layoutSequence": ["hero", "sectionOpener", "servicesGrid", "statRow", "beforeAfter", "testimonialsSection", "trustSection", "faqSection", "contactForm", "footerSection"],
+      "headingHierarchy": {
+        "h1": "HVAC, electrical, and plumbing — all under one license",
+        "h2Sequence": [
+          { "id": "h2-services", "copy": "Three trades, one number" },
+          { "id": "h2-proof", "copy": "Twenty-two years, one-fifty-six reviews" },
+          { "id": "h2-transformations", "copy": "Recent work" },
+          { "id": "h2-voices", "copy": "From our customers" },
+          { "id": "h2-trust", "copy": "Licensed across three trades" },
+          { "id": "h2-faq", "copy": "Common questions" },
+          { "id": "h2-contact", "copy": "Schedule service" }
+        ]
+      },
+      "italicSelections": [
+        { "headingId": "h1", "italicWord": "one license", "personaWordClassAnnotation": "trade-term", "approvalState": "approved", "alternativeWord": "one roof" },
+        { "headingId": "h2-proof", "italicWord": "Twenty-two years", "personaWordClassAnnotation": "tenure", "approvalState": "approved", "alternativeWord": "Twenty-two years serving" }
+      ],
+      "sections": [
+        {
+          "type": "hero",
+          "id": "hero-home",
+          "heroMode": "glass-crossfade",
+          "heroGlassVariant": "narrow",
+          "heroLayout": "layout-a",
+          "headlineCopy": "HVAC, electrical, and plumbing — all under one license",
+          "subheadlineCopy": "Twenty-two years of licensed multi-trade service across Marion County.",
+          "primaryCTA": { "label": "Schedule service", "action": "#contact", "role": "primary-hero-cta" },
+          "secondaryCTA": { "label": "See our trades", "action": "#services" },
+          "heroBackgroundPhotoId": "photo-hero-bg-01",
+          "voiceZoneAssignments": {
+            "hero-eyebrow": "front-porch",
+            "hero-headline": "kitchen-table",
+            "hero-subheadline": "kitchen-table",
+            "hero-primary-cta": "closing-table"
+          },
+          "tier1CompositionalHook": "italic-color-shift"
+        },
+        {
+          "type": "sectionOpener",
+          "id": "opener-services",
+          "h2Id": "h2-services",
+          "eyebrowRoleClass": "role-data-eyebrow",
+          "h2RoleClass": "role-display-section",
+          "orientation": "eyebrow-above",
+          "supportingContent": { "lede": "Electrical, HVAC, and plumbing — staffed, licensed, and scheduled from one dispatch." }
+        },
+        {
+          "type": "servicesGrid",
+          "id": "services-grid",
+          "layout": "layout-c-category-grouped",
+          "cards": [
+            { "serviceId": "svc-electrical-panel", "photoId": "photo-evidence-01", "placeholderFlag": false, "copyVariant": "benefit-first" },
+            { "serviceId": "svc-electrical-lighting", "photoId": "photo-detail-01", "placeholderFlag": false, "copyVariant": "benefit-first" },
+            { "serviceId": "svc-electrical-generator", "photoId": "photo-evidence-02", "placeholderFlag": false, "copyVariant": "benefit-first" },
+            { "serviceId": "svc-hvac-maintenance", "photoId": "photo-detail-02", "placeholderFlag": false, "copyVariant": "benefit-first" },
+            { "serviceId": "svc-hvac-install", "photoId": "photo-evidence-03", "placeholderFlag": false, "copyVariant": "benefit-first" },
+            { "serviceId": "svc-hvac-emergency", "photoId": null, "placeholderFlag": true, "copyVariant": "benefit-first" },
+            { "serviceId": "svc-plumbing-drain", "photoId": null, "placeholderFlag": true, "copyVariant": "benefit-first" },
+            { "serviceId": "svc-plumbing-water-heater", "photoId": null, "placeholderFlag": true, "copyVariant": "benefit-first" },
+            { "serviceId": "svc-plumbing-repipe", "photoId": "photo-detail-03", "placeholderFlag": false, "copyVariant": "benefit-first" }
+          ],
+          "categoryGroupings": [
+            { "categoryId": "cat-electrical", "label": "Electrical", "cardIds": ["svc-electrical-panel", "svc-electrical-lighting", "svc-electrical-generator"] },
+            { "categoryId": "cat-hvac", "label": "HVAC", "cardIds": ["svc-hvac-maintenance", "svc-hvac-install", "svc-hvac-emergency"] },
+            { "categoryId": "cat-plumbing", "label": "Plumbing", "cardIds": ["svc-plumbing-drain", "svc-plumbing-water-heater", "svc-plumbing-repipe"] }
+          ],
+          "voiceZoneAssignments": {
+            "services-grid-heading": "kitchen-table",
+            "services-card-headline": "kitchen-table",
+            "services-card-body": "front-porch"
+          },
+          "sectionOpenerPrecedes": true
+        },
+        {
+          "type": "statRow",
+          "id": "stat-row-home",
+          "stats": [
+            { "id": "stat-years", "value": "22", "label": "years licensed" },
+            { "id": "stat-services", "value": "9", "label": "services across 3 trades" },
+            { "id": "stat-reviews", "value": "156", "label": "customer reviews" },
+            { "id": "stat-rating", "value": "4.8", "label": "rating" }
+          ]
+        },
+        {
+          "type": "beforeAfter",
+          "id": "before-after-home",
+          "pairs": [
+            { "beforePhotoId": "photo-evidence-before-01", "afterPhotoId": "photo-evidence-after-01" }
+          ]
+        },
+        {
+          "type": "testimonialsSection",
+          "id": "testimonials-home",
+          "layout": "layout-b-single-featured",
+          "testimonials": [
+            { "testimonialId": "t-01", "avatarTreatment": "initials-monogram", "roleClass": "role-display-pullquote" },
+            { "testimonialId": "t-04", "avatarTreatment": "initials-monogram", "roleClass": "role-body-paragraph" },
+            { "testimonialId": "t-09", "avatarTreatment": "initials-monogram", "roleClass": "role-body-paragraph" }
+          ],
+          "featuredTestimonialId": "t-01",
+          "reviewCountCallout": { "count": 156, "rating": 4.8, "source": "Google" },
+          "voiceZoneAssignments": {
+            "testimonials-heading": "kitchen-table",
+            "testimonial-body": "front-porch",
+            "testimonial-attribution": "front-porch"
+          }
+        },
+        { "type": "trustSection", "id": "trust-home" },
+        { "type": "faqSection", "id": "faq-home" },
+        { "type": "contactForm", "id": "contact-home" },
+        { "type": "footerSection", "id": "footer-home" }
+      ],
+      "photoAssignments": [
+        { "slot": "hero-home.heroBackground", "photoInventoryId": "photo-hero-bg-01", "placeholderFlag": false, "placeholderReason": null, "cropHint": "landscape-wide" },
+        { "slot": "services-grid.svc-electrical-panel", "photoInventoryId": "photo-evidence-01", "placeholderFlag": false, "placeholderReason": null, "cropHint": "square" },
+        { "slot": "services-grid.svc-electrical-lighting", "photoInventoryId": "photo-detail-01", "placeholderFlag": false, "placeholderReason": null, "cropHint": "square" },
+        { "slot": "services-grid.svc-electrical-generator", "photoInventoryId": "photo-evidence-02", "placeholderFlag": false, "placeholderReason": null, "cropHint": "square" },
+        { "slot": "services-grid.svc-hvac-maintenance", "photoInventoryId": "photo-detail-02", "placeholderFlag": false, "placeholderReason": null, "cropHint": "square" },
+        { "slot": "services-grid.svc-hvac-install", "photoInventoryId": "photo-evidence-03", "placeholderFlag": false, "placeholderReason": null, "cropHint": "square" },
+        { "slot": "services-grid.svc-hvac-emergency", "photoInventoryId": null, "placeholderFlag": true, "placeholderReason": "No content-matched evidenceShot-eligible photo for HVAC emergency service. Fallback-path-b.", "cropHint": "square" },
+        { "slot": "services-grid.svc-plumbing-drain", "photoInventoryId": null, "placeholderFlag": true, "placeholderReason": "No content-matched evidenceShot-eligible photo for drain service. Fallback-path-b.", "cropHint": "square" },
+        { "slot": "services-grid.svc-plumbing-water-heater", "photoInventoryId": null, "placeholderFlag": true, "placeholderReason": "No content-matched evidenceShot-eligible photo for water-heater service. Fallback-path-b.", "cropHint": "square" },
+        { "slot": "services-grid.svc-plumbing-repipe", "photoInventoryId": "photo-detail-03", "placeholderFlag": false, "placeholderReason": null, "cropHint": "square" },
+        { "slot": "before-after-home.pair-01-before", "photoInventoryId": "photo-evidence-before-01", "placeholderFlag": false, "placeholderReason": null, "cropHint": "landscape-matched" },
+        { "slot": "before-after-home.pair-01-after", "photoInventoryId": "photo-evidence-after-01", "placeholderFlag": false, "placeholderReason": null, "cropHint": "landscape-matched" }
+      ],
+      "pullQuotes": [
+        { "sourceTestimonialId": "t-01", "extractedText": "Same crew shows up whether it's the panel, the AC, or the water heater. One number, one bill, one relationship.", "placementAfterSectionId": "testimonials-home", "rhetoricalSlot": "multi-trade-anchor", "approvalState": "approved" },
+        { "sourceTestimonialId": "t-04", "extractedText": "Twenty-two years and they've never given us a reason to go anywhere else.", "placementAfterSectionId": "testimonials-home", "rhetoricalSlot": "tenure-reinforcement", "approvalState": "approved" }
+      ],
+      "eyebrowDeployments": [
+        { "sectionId": "opener-services", "text": "All three trades", "register": "kitchen-table" }
+      ],
+      "faq": [
+        { "question": "Is one company for all three trades really better?", "answerRef": "faq-multi-trade-rationale" },
+        { "question": "Do you charge a separate dispatch fee per trade?", "answerRef": "faq-dispatch-fee" },
+        { "question": "Which license covers which service?", "answerRef": "faq-license-coverage" },
+        { "question": "Do you handle permits?", "answerRef": "faq-permits" }
+      ],
+      "serviceDescriptions": [
+        { "serviceId": "svc-electrical-panel", "copyVariant": "benefit-first", "wordCountTarget": 80 },
+        { "serviceId": "svc-electrical-lighting", "copyVariant": "benefit-first", "wordCountTarget": 70 },
+        { "serviceId": "svc-electrical-generator", "copyVariant": "benefit-first", "wordCountTarget": 80 },
+        { "serviceId": "svc-hvac-maintenance", "copyVariant": "benefit-first", "wordCountTarget": 75 },
+        { "serviceId": "svc-hvac-install", "copyVariant": "benefit-first", "wordCountTarget": 85 },
+        { "serviceId": "svc-hvac-emergency", "copyVariant": "benefit-first", "wordCountTarget": 70 },
+        { "serviceId": "svc-plumbing-drain", "copyVariant": "benefit-first", "wordCountTarget": 65 },
+        { "serviceId": "svc-plumbing-water-heater", "copyVariant": "benefit-first", "wordCountTarget": 75 },
+        { "serviceId": "svc-plumbing-repipe", "copyVariant": "benefit-first", "wordCountTarget": 85 }
+      ],
+      "displayMoment": { "elementType": "hero-headline", "elementId": "hero-home", "targetDesktopPx": 88, "targetMobilePx": 64 },
+      "scaleContrast": "high"
+    },
+    {
+      "path": "/about",
+      "canonicalUrl": "https://summithomeservices.example/about",
+      "pageKey": "about",
+      "voicesInUse": ["front-porch", "kitchen-table", "closing-table"],
+      "layoutSequence": ["hero", "aboutStory", "statRow", "trustSection", "footerSection"],
+      "headingHierarchy": {
+        "h1": "Summit Home Services — three trades, same license",
+        "h2Sequence": [
+          { "id": "h2-about-story", "copy": "Why all three" },
+          { "id": "h2-about-stats", "copy": "Twenty-two years" },
+          { "id": "h2-about-trust", "copy": "Licensed across three trades" }
+        ]
+      },
+      "italicSelections": [
+        { "headingId": "h1", "italicWord": "same license", "personaWordClassAnnotation": "trade-term", "approvalState": "approved", "alternativeWord": "one shop" }
+      ],
+      "sections": [
+        {
+          "type": "hero",
+          "id": "hero-about",
+          "heroMode": "plate-offset",
+          "heroGlassVariant": "none",
+          "heroLayout": "layout-c-70-30",
+          "headlineCopy": "Summit Home Services — three trades, same license",
+          "subheadlineCopy": "Started as an electrical shop in 2003; added HVAC in 2012, plumbing in 2018.",
+          "primaryCTA": { "label": "Schedule service", "action": "/contact", "role": "primary-hero-cta" },
+          "heroBackgroundPhotoId": null,
+          "heroPlatePhotoId": "photo-owner-portrait-01",
+          "voiceZoneAssignments": {
+            "hero-eyebrow": "front-porch",
+            "hero-headline": "kitchen-table",
+            "hero-subheadline": "kitchen-table",
+            "hero-primary-cta": "closing-table"
+          }
+        },
+        {
+          "type": "aboutStory",
+          "id": "about-story",
+          "layout": "layout-a-offset-column",
+          "narrativeBlocks": [
+            { "id": "ab-01", "roleClass": "role-body-paragraph", "italicPlacements": [{ "phrase": "2003", "class": "tenure" }] },
+            { "id": "ab-02", "roleClass": "role-body-paragraph", "italicPlacements": [{ "phrase": "HVAC", "class": "trade-term" }, { "phrase": "plumbing", "class": "trade-term" }] }
+          ],
+          "featurePhotoId": "photo-environmental-01",
+          "voiceZoneAssignments": {
+            "about-page-heading": "kitchen-table",
+            "about-page-body": "kitchen-table"
+          },
+          "tier1CompositionalHook": "italic-color-shift"
+        },
+        {
+          "type": "statRow",
+          "id": "stat-row-about",
+          "stats": [
+            { "id": "stat-about-years", "value": "22", "label": "years licensed" },
+            { "id": "stat-about-services", "value": "9", "label": "services" },
+            { "id": "stat-about-reviews", "value": "156", "label": "reviews" }
+          ]
+        },
+        { "type": "trustSection", "id": "trust-about" },
+        { "type": "footerSection", "id": "footer-about" }
+      ],
+      "photoAssignments": [
+        { "slot": "hero-about.heroPlate", "photoInventoryId": "photo-owner-portrait-01", "placeholderFlag": false, "placeholderReason": null, "cropHint": "portrait-head-shoulders" },
+        { "slot": "about-story.featurePhoto", "photoInventoryId": "photo-environmental-01", "placeholderFlag": false, "placeholderReason": null, "cropHint": "landscape-crew" }
+      ],
+      "pullQuotes": [],
+      "eyebrowDeployments": [],
+      "faq": [],
+      "serviceDescriptions": [],
+      "displayMoment": { "elementType": "statRow-numeral", "elementId": "stat-about-years", "targetDesktopPx": 120, "targetMobilePx": 72 },
+      "scaleContrast": "medium"
+    },
+    {
+      "path": "/contact",
+      "canonicalUrl": "https://summithomeservices.example/contact",
+      "pageKey": "contact",
+      "voicesInUse": ["front-porch", "kitchen-table", "closing-table"],
+      "layoutSequence": ["hero", "contactForm", "trustSection", "footerSection"],
+      "headingHierarchy": {
+        "h1": "Schedule service",
+        "h2Sequence": [
+          { "id": "h2-contact-trust", "copy": "Licensed across three trades" }
+        ]
+      },
+      "italicSelections": [],
+      "sections": [
+        {
+          "type": "hero",
+          "id": "hero-contact",
+          "heroMode": "glass-single-mesh",
+          "heroGlassVariant": "narrow",
+          "heroLayout": "layout-a",
+          "headlineCopy": "Schedule service",
+          "subheadlineCopy": "One number for all three trades. We'll dispatch the right crew.",
+          "primaryCTA": { "label": "Request service", "action": "#form", "role": "primary-hero-cta" },
+          "secondaryCTA": { "label": "Call (555) 764-8800", "action": "tel:5557648800" },
+          "heroBackgroundPhotoId": "photo-hero-bg-02",
+          "voiceZoneAssignments": {
+            "hero-eyebrow": "front-porch",
+            "hero-headline": "closing-table",
+            "hero-subheadline": "kitchen-table",
+            "hero-primary-cta": "closing-table"
+          }
+        },
+        { "type": "contactForm", "id": "contact-form-main" },
+        { "type": "trustSection", "id": "trust-contact" },
+        { "type": "footerSection", "id": "footer-contact" }
+      ],
+      "photoAssignments": [
+        { "slot": "hero-contact.heroBackground", "photoInventoryId": "photo-hero-bg-02", "placeholderFlag": false, "placeholderReason": null, "cropHint": "landscape-wide" }
+      ],
+      "pullQuotes": [],
+      "eyebrowDeployments": [],
+      "faq": [],
+      "serviceDescriptions": [],
+      "displayMoment": null,
+      "scaleContrast": "low"
+    },
+    {
+      "path": "/services/electrical",
+      "canonicalUrl": "https://summithomeservices.example/services/electrical",
+      "pageKey": "service",
+      "voicesInUse": ["front-porch", "kitchen-table", "closing-table"],
+      "layoutSequence": ["hero", "sectionOpener", "servicesGrid", "aboutStory", "trustSection", "contactForm", "footerSection"],
+      "headingHierarchy": {
+        "h1": "Electrical services",
+        "h2Sequence": [
+          { "id": "h2-cat-services", "copy": "What we do in electrical" },
+          { "id": "h2-cat-story", "copy": "Where we started" },
+          { "id": "h2-cat-trust", "copy": "Licensed EC1234567" }
+        ]
+      },
+      "italicSelections": [
+        { "headingId": "h2-cat-story", "italicWord": "started", "personaWordClassAnnotation": "tenure", "approvalState": "approved", "alternativeWord": "began" }
+      ],
+      "sections": [
+        {
+          "type": "hero",
+          "id": "hero-cat-electrical",
+          "heroMode": "glass-single-mesh",
+          "heroGlassVariant": "narrow",
+          "heroLayout": "layout-a",
+          "headlineCopy": "Electrical services",
+          "subheadlineCopy": "Panel upgrades, lighting, and generators from a multi-trade shop.",
+          "primaryCTA": { "label": "Schedule service", "action": "/contact", "role": "primary-hero-cta" },
+          "heroBackgroundPhotoId": null,
+          "voiceZoneAssignments": {
+            "hero-eyebrow": "front-porch",
+            "hero-headline": "kitchen-table",
+            "hero-subheadline": "front-porch",
+            "hero-primary-cta": "closing-table"
+          }
+        },
+        { "type": "sectionOpener", "id": "opener-cat-services", "h2Id": "h2-cat-services", "eyebrowRoleClass": "role-data-eyebrow", "h2RoleClass": "role-display-section", "orientation": "eyebrow-above" },
+        {
+          "type": "servicesGrid",
+          "id": "cat-services-grid",
+          "layout": "layout-a-grid",
+          "cards": [
+            { "serviceId": "svc-electrical-panel", "photoId": "photo-evidence-01", "placeholderFlag": false, "copyVariant": "benefit-first" },
+            { "serviceId": "svc-electrical-lighting", "photoId": "photo-detail-01", "placeholderFlag": false, "copyVariant": "benefit-first" },
+            { "serviceId": "svc-electrical-generator", "photoId": "photo-evidence-02", "placeholderFlag": false, "copyVariant": "benefit-first" }
+          ],
+          "voiceZoneAssignments": {
+            "services-grid-heading": "kitchen-table",
+            "services-card-headline": "kitchen-table",
+            "services-card-body": "front-porch"
+          },
+          "sectionOpenerPrecedes": true
+        },
+        { "type": "aboutStory", "id": "cat-story", "layout": "layout-b-centered-column", "narrativeBlocks": [{ "id": "sb-01", "roleClass": "role-body-paragraph", "italicPlacements": [{ "phrase": "2003", "class": "tenure" }] }], "voiceZoneAssignments": { "about-page-heading": "kitchen-table", "about-page-body": "kitchen-table" } },
+        { "type": "trustSection", "id": "trust-cat" },
+        { "type": "contactForm", "id": "contact-cat" },
+        { "type": "footerSection", "id": "footer-cat" }
+      ],
+      "photoAssignments": [
+        { "slot": "cat-services-grid.svc-electrical-panel", "photoInventoryId": "photo-evidence-01", "placeholderFlag": false, "placeholderReason": null, "cropHint": "square" },
+        { "slot": "cat-services-grid.svc-electrical-lighting", "photoInventoryId": "photo-detail-01", "placeholderFlag": false, "placeholderReason": null, "cropHint": "square" },
+        { "slot": "cat-services-grid.svc-electrical-generator", "photoInventoryId": "photo-evidence-02", "placeholderFlag": false, "placeholderReason": null, "cropHint": "square" }
+      ],
+      "pullQuotes": [],
+      "eyebrowDeployments": [{ "sectionId": "opener-cat-services", "text": "Electrical work", "register": "kitchen-table" }],
+      "faq": [
+        { "question": "Do you handle permits for panel upgrades?", "answerRef": "faq-cat-electrical-permits" },
+        { "question": "Can you run service for new additions?", "answerRef": "faq-cat-electrical-new-service" }
+      ],
+      "serviceDescriptions": [
+        { "serviceId": "svc-electrical-panel", "copyVariant": "benefit-first", "wordCountTarget": 180 },
+        { "serviceId": "svc-electrical-lighting", "copyVariant": "benefit-first", "wordCountTarget": 160 },
+        { "serviceId": "svc-electrical-generator", "copyVariant": "benefit-first", "wordCountTarget": 180 }
+      ],
+      "displayMoment": null,
+      "scaleContrast": "medium"
+    }
+  ]
+}
