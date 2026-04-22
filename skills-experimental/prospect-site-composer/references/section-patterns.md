@@ -100,7 +100,7 @@ Photograph bleeds across columns 1-9 (9 columns). Caption, metadata, or short bo
 .layout-image-bleed .photo   { grid-column: 1 / 10; aspect-ratio: 16/9; object-fit: cover; }
 .layout-image-bleed .caption {
   grid-column: 10 / 13;
-  font-family: var(--font-mono);
+  font-family: var(--font-data);
   font-size: var(--text-xs);
   text-transform: uppercase;
   letter-spacing: 0.08em;

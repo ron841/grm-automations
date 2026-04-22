@@ -706,7 +706,7 @@ Anywhere not on either list: default to rules, not boxes.
 
 ### Rule E3: Every photograph gets a caption
 
-Every photograph that is not a hero background or a full-bleed layout element gets a caption. Captions are set in `--font-mono`, `--text-xs`, uppercase, letter-spacing 0.08em, `--color-text-muted`.
+Every photograph that is not a hero background or a full-bleed layout element gets a caption. Captions are set in `--font-data`, `--text-xs`, uppercase, letter-spacing 0.08em, `--color-text-muted`.
 
 Required caption contents by photo role:
 

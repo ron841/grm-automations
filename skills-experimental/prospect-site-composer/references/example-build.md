@@ -54,7 +54,7 @@ This design plan is the output of Phase 4 for the reference build. Every section
 - Background: six hero-candidate photos crossfading at 7s per photo, 1s dissolve. All six are role-tagged `heroPlate` by Phase 3. Two are Ben at a panel, two are completed panel installations with the cover off (evidence of work), two are the service truck in a Dunnellon driveway.
 - Overlay: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.55) 100%) for legibility.
 - Glass card (wide variant): centered, 880px max-width, `backdrop-filter: blur(24px) saturate(1.2)`.
-  - Eyebrow: `DUNNELLON FL · LICENSED EC13012345` in `--font-mono`, 12px, uppercase, tracked 0.08em, `--color-primary`.
+  - Eyebrow: `DUNNELLON FL · LICENSED EC13012345` in `--font-data`, 12px, uppercase, tracked 0.08em, `--color-primary`.
   - Headline: "Residential and commercial electric, done *right* the first time." Set in `--font-display` at 64px (Premium wide variant default). The word "right" is italicized in `--color-primary`. This is the site-wide signature micro-interaction.
   - Subhead: "Ben Tucci has run panel upgrades, service calls, and new-construction rough-ins across Marion County for 18 years." 18px `--font-body`, `--color-text`, max-width 60ch.
   - CTAs: "Get a free quote" (primary, `--color-primary` background, shimmer-loop banned here because signature is italic-color-shift not shimmer) and "Call (352) 555-0142" (secondary, ghost button with 1px `--color-primary` border).
@@ -77,7 +77,7 @@ This design plan is the output of Phase 4 for the reference build. Every section
 
 - Background: `--color-background-alt` (off-white, not accent — Rule E1).
 - Content: horizontally-scrolling marquee, 30s loop, `linear` easing (permitted for ambient loops).
-- Badges: "EC13012345 · Florida DBPR," "18 years in business," "4.9 ★ Google (147 reviews)," "BBB A+ rated," "Licensed, bonded, insured." Each badge is text-only, `--font-mono` 14px, separated by thin vertical hairlines (`--rule-hairline`).
+- Badges: "EC13012345 · Florida DBPR," "18 years in business," "4.9 ★ Google (147 reviews)," "BBB A+ rated," "Licensed, bonded, insured." Each badge is text-only, `--font-data` 14px, separated by thin vertical hairlines (`--rule-hairline`).
 - No logos, no SVG icons, no badge illustrations. Text + rules read as editorial documentation; logo salad reads as template.
 
 **Rules satisfied.**
