@@ -199,6 +199,8 @@ Each stage ends when it ends. No timelines.
 
   **Mechanism (required, not cherry-pick):** Production's repo (`~/.claude/skills/prospect-site/.git`) and grm-automations (`~/grm-automations/.git`) are independent git repos. Composer files live under a path prefix (`skills-experimental/prospect-site-composer/`) inside grm-automations, while production commits modify files at repo root. `git cherry-pick` does not path-rewrite and would land diffs at wrong paths. Instead, extract each commit as a patch from production (`git format-patch -1 <hash>`) and apply to grm-automations with directory prefix (`git am --directory=skills-experimental/prospect-site-composer`). `git am` preserves original author, date, and commit message; amend only to add composer-prefix + trailer (`Applied from production <hash> via format-patch + git am --directory`). Conflict detection still works — apply rejection surfaces the same semantic blocker as cherry-pick conflict would. Stop-surface-report-wait discipline applies identically.
 
+  **Execution note (2026-04-21):** Stage II (b) backports via format-patch + git am mechanism proved unviable due to a sequencing collision (Stage II (a) file copies pulled production HEAD state of typography.md/voiceMap.md already containing Wave 1/Wave 2 additions; Stratum 3 identity sweep modified css-framework.md/SKILL.md/content-rules.md/deployment.md in-place). Substantive goal achieved via Option C — six targeted surgical commits translating Wave 1/Wave 2 intent into Composer under editorial direction from Design's typography package + v0.7.2 persona tables. Features 3 (SectionOpener) and 4 (StatRow) deferred to Stage II (c) as composition-plan schema contracts rather than component primitive retrofits per Design's read; Feature 5 (Fraunces universal) rejected as superseded by persona-conditional font selection in CONFIG.fonts. Features 1, 6 (renamed --font-mono → --font-data), 7, 8, 9, 10 landed as targeted additions. See composer-backlog.md Resolved entries for full commit-hash trace.
+
 - **(c) Schemas authored:**
   - `profile-schema.md` (formalize current Phase 3 implicit output; include photo manifest with dimensions; declare `schemaVersion: 1.0`)
   - `composition-plan-schema.md` (Phase 4 → 5 contract; complete-by-design — no implicit fallbacks; include FAQ pairs, service descriptions, photo role assignments with fallback behavior, per-page canonical URL, heading hierarchy contract, italic-word selections, lede placements, pull-quote extractions, eyebrow deployments, voicesInUse field, site-level signature selection; declare `schemaVersion: 1.0`)
@@ -388,6 +390,30 @@ Revision log:
 # PART II — LIVING (session state)
 
 Newest session block at the top. Older blocks scroll down.
+
+---
+
+## Session block — 2026-04-21 (afternoon/evening)
+
+**Window type:** Chat-Claude + Code + Design three-way relay.
+
+**Session arc:**
+- Stage II (a) file copies complete (typography.md, voiceMap.md, handoff-discipline.md, LESSONS.md merge)
+- Stratum 3 identity sweep across 10 reference files
+- HANDOFF.md removal (superseded by COMPOSER_BRAIN.md per §13)
+- handoff-discipline.md Composer-adaptation note added
+- Brain file minor revisions (§13 branch convention, §13 log convention, §8 mechanism clarification, §0 post-Composer roadmap vocabulary anchor)
+- composer-backlog.md created as deferral-tracking artifact
+- Stage II (b) attempted via format-patch + git am, blocked by sequencing collision, resolved via 9-commit Option C sequence under Design editorial direction
+
+**What changed:**
+- Stage II (a) and Stage II (b) both closed
+- Composer now has three-voice typography system (--font-display / --font-body / --font-data) with persona-conditional CONFIG.fonts for all five personas
+- All Wave 1/Wave 2 infrastructure features landed or explicitly deferred per Design judgment
+- rescue-ready persona key renamed to urgent-service across Composer
+
+**What's next:**
+Stage II (c) — schemas authored (profile-schema.md, composition-plan-schema.md). Design Checkpoint 1 triggers after composition-plan-schema.md lands.
 
 ---
 
