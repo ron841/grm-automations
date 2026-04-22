@@ -131,6 +131,35 @@ trigger for pickup.
   both the reference file and the live prospect deliverable.
   Scope estimate: 800-1200 lines.
 
+### P6.1 implementation — execution filling pending
+- **Surfaced:** Stage II (f) P6.1 spec + stub commit, 2026-04-22
+  (commit 2650ac1).
+- **Why deferred:** Stage II (f) committed the specification and a
+  structured Python stub — full function signatures, docstrings, logic
+  skeletons, constant defaults, CLI arg wiring — so a follow-up
+  execution-filling session can complete the implementation without
+  rediscovering the design. Remaining work: Playwright reuse wiring
+  (launch session, navigate + capture per viewport, per-section DOM
+  query), Pillow/numpy pixel-analysis logic (per-section bounding-box
+  crop, RGB-distance comparison against computed background color),
+  computed-color edge-case handling (transparent ancestor walk,
+  background-image dominant-color sampling, ambiguous-multilayer
+  flag), static-blank vs scroll-dependent probe branch (scrollIntoView
+  + 800ms reveal wait + re-capture + re-analyze), JSON + human-summary
+  emission. Every `NotImplementedError` in `scripts/rendered_content_check.py`
+  marks a spot the execution fill needs to complete. The spec is
+  binding; implementation can deviate from proposed internals (Pillow
+  vs numpy, sync vs async Playwright context) as long as the JSON
+  emission contract, CLI signature, and threshold classification
+  match `references/phase-6-integration.md §3`.
+- **Target pickup:** Stage III Phase 4-new integration (P6.1 runs as
+  part of the Phase 6 gate that validates Phase 5-new's emission), or
+  a standalone pass if a build's P6.2 soft-fail count needs P6.1
+  integration sooner. Also viable: a dedicated P6.x implementation
+  sprint that fills P6.1, P6.2, P6.3, P6.4 together after Stage II
+  closure so the Phase 6 aggregator can be authored against four
+  complete implementations rather than four spec stubs.
+
 ### no-italic-on-data rule in typography.md
 - **Surfaced:** Design's Commit 5.b pre-review — "Worth adding as an
   implicit rule in typography.md §4 if not already there — 'data voice
