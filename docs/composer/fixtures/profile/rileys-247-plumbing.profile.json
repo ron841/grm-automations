@@ -1,0 +1,549 @@
+{
+  "$schemaVersion": "1.0",
+  "$schema": "profile",
+  "businessName": "Riley's 24/7 Plumbing",
+  "legalName": "Riley's Plumbing Services, LLC",
+  "slug": "rileys-247-plumbing",
+  "sourceUrl": "https://rileys247plumbing.com/",
+  "tagline": "Answered at 2am. Dispatched in 40 minutes.",
+  "phone": "(352) 629-8700",
+  "phoneDigitsOnly": "3526298700",
+  "email": "dispatch@rileys247plumbing.com",
+  "address": {
+    "street": "3901 SW 38th Avenue",
+    "city": "Ocala",
+    "state": "FL",
+    "zip": "34474",
+    "country": "United States",
+    "googleMapsUrl": "https://www.google.com/maps/place/?cid=11382746109384725104"
+  },
+  "hours": {
+    "monday": "Open 24 hours",
+    "tuesday": "Open 24 hours",
+    "wednesday": "Open 24 hours",
+    "thursday": "Open 24 hours",
+    "friday": "Open 24 hours",
+    "saturday": "Open 24 hours",
+    "sunday": "Open 24 hours",
+    "sourceNote": "24-hour availability on dispatch line; office-hours counter service Monday–Friday 8:00 AM – 5:00 PM."
+  },
+  "ownership": {
+    "structure": "family-owned",
+    "owners": ["Mike Riley"],
+    "ownerSource": "About page; founded 2007, named in 40+ testimonials."
+  },
+  "yearsInBusiness": {
+    "exact": 18,
+    "minimumEvidenced": 18,
+    "evidence": "Florida Secretary of State LLC registration 2007; plumbing contractor license issue 2007-09; About page cites founding year."
+  },
+  "licenseNumber": "CFC1425678",
+  "services": [
+    {
+      "name": "24/7 Emergency Plumbing",
+      "category": "emergency",
+      "description": "Around-the-clock emergency plumbing dispatch across Marion, Alachua, and Levy counties. Licensed journeyman on every call. Most calls answered in under two rings and on-site within 40 minutes of the initial call. No extra charge nights, weekends, or holidays."
+    },
+    {
+      "name": "Drain Cleaning and Clog Removal",
+      "category": "maintenance",
+      "description": "Mechanical augering, hydrojetting, and video camera inspection for residential and commercial drains. Most single-drain clogs cleared in one visit; stubborn mainline blockages handled with truck-mounted hydrojet equipment. Same-day availability standard."
+    },
+    {
+      "name": "Water Heater Repair and Replacement",
+      "category": "residential",
+      "description": "Tank and tankless water heater repair, replacement, and gas-to-electric conversions. Most residential water heater replacements complete in one day. We stock A.O. Smith and Rinnai units on the trucks for fastest turnaround."
+    },
+    {
+      "name": "Pipe Repair and Leak Detection",
+      "category": "residential",
+      "description": "Acoustic leak detection, pinhole repair, and slab-leak diagnosis without destructive exploratory demolition. We find the leak before we open the wall. Most residential repairs finish in under four hours."
+    },
+    {
+      "name": "Full Re-pipe Service",
+      "category": "residential",
+      "description": "Whole-home re-pipe in PEX or copper, including permit pulling, wall opening and patching coordination, and fixture protection. Typical single-family re-pipe completes in three to five days with water service restored nightly."
+    },
+    {
+      "name": "Backflow Prevention and Testing",
+      "category": "commercial",
+      "description": "Annual backflow preventer testing and certification for commercial accounts and irrigation systems per AWWA and Florida Department of Health requirements. Certified testers on staff; reports filed directly with the water authority on your behalf."
+    }
+  ],
+  "serviceAreas": ["Ocala", "Belleview", "Dunnellon", "Summerfield", "The Villages", "Gainesville", "Williston", "Inverness"],
+  "serviceAreaRegion": "Central Florida — Marion, Alachua, Levy, and northern Citrus counties. 24-hour emergency radius extends into Sumter County.",
+  "featuredPromotion": {
+    "text": "$0 after-hours trip charge — you pay the same at 3am as at 3pm.",
+    "price": "$0",
+    "type": "fixed-price"
+  },
+  "guarantees": [
+    {
+      "type": "licensed journeyman on every emergency call",
+      "source": "home page hero + About page + multiple Google reviews"
+    },
+    {
+      "type": "fully stocked trucks",
+      "source": "services page + owner-authored blog post"
+    },
+    {
+      "type": "one-year workmanship guarantee on repairs; manufacturer passthrough on fixtures",
+      "source": "services page terms"
+    }
+  ],
+  "partners": ["A.O. Smith", "Rinnai", "Moen"],
+  "googleBusinessProfile": {
+    "placeId": "ChIJrileys247_ocala_placeId",
+    "rating": 4.9,
+    "reviewCount": 847,
+    "businessStatus": "OPERATIONAL"
+  },
+  "testimonials": [
+    {
+      "name": "Karen T.",
+      "rating": 5,
+      "source": "Google",
+      "when": "2 weeks ago",
+      "quoteVerbatim": "Called at 11pm, truck was there at 11:45pm, fixed by 1am. Hot water restored before we went back to bed. Price was exactly what dispatch quoted.",
+      "quoteShort": "Called 11pm, truck there 11:45pm, fixed by 1am. Price exactly what dispatch quoted."
+    },
+    {
+      "name": "Daniel W.",
+      "rating": 5,
+      "source": "Google",
+      "when": "1 month ago",
+      "quoteVerbatim": "Slab leak in our master bathroom. Riley's acoustic detection found it in 20 minutes. Saved us from jackhammering the entire bathroom floor.",
+      "quoteShort": "Slab leak. Acoustic detection found it in 20 minutes. Saved us from jackhammering the floor."
+    },
+    {
+      "name": "Linda M.",
+      "rating": 5,
+      "source": "Google",
+      "when": "3 months ago",
+      "quoteVerbatim": "Water heater died on Christmas Eve. Riley's had a replacement installed by 4pm the same day. Nobody else in Marion County was even answering the phone.",
+      "quoteShort": "Water heater died Christmas Eve. Riley's replaced it by 4pm same day."
+    },
+    {
+      "name": "Roberto P.",
+      "rating": 5,
+      "source": "Google",
+      "when": "6 months ago",
+      "quoteVerbatim": "Full re-pipe in PEX. Four days start to finish, water back on every night. The walls they opened they patched.",
+      "quoteShort": "Full PEX re-pipe. Four days. Walls they opened they patched."
+    },
+    {
+      "name": "Susan H.",
+      "rating": 5,
+      "source": "Google",
+      "when": "4 months ago",
+      "quoteVerbatim": "Burst pipe at 6am on a Sunday. I was panicking. Dispatcher stayed on the phone while the truck was en route. Fixed before the kids woke up.",
+      "quoteShort": "Burst pipe 6am Sunday. Dispatcher stayed on the phone while the truck was en route. Fixed before the kids woke up."
+    },
+    {
+      "name": "Thomas R.",
+      "rating": 5,
+      "source": "Google",
+      "when": "2 years ago",
+      "quoteVerbatim": "Commercial restaurant main-line clog mid-service. Riley's hydrojet had us operating again in an hour. Saved our Saturday night.",
+      "quoteShort": "Restaurant main-line clog mid-service. Hydrojet had us operating again in an hour."
+    },
+    {
+      "name": "Jennifer L.",
+      "rating": 5,
+      "source": "Google",
+      "when": "1 year ago",
+      "quoteVerbatim": "Tankless water heater install, gas-to-electric conversion included. Mike walked me through every step before the work started. No surprises on the invoice.",
+      "quoteShort": "Tankless install, gas-to-electric conversion. Mike walked me through every step. No invoice surprises."
+    },
+    {
+      "name": "Andrew K.",
+      "rating": 5,
+      "source": "Google",
+      "when": "5 months ago",
+      "quoteVerbatim": "Hurricane damage, busted pipe in the crawl space. Riley's was first on-site of three plumbers I called. Fixed it in 90 minutes.",
+      "quoteShort": "Hurricane busted a pipe in the crawl. First on-site of three plumbers I called. Fixed in 90 minutes."
+    },
+    {
+      "name": "Patricia N.",
+      "rating": 4,
+      "source": "Google",
+      "when": "3 weeks ago",
+      "quoteVerbatim": "Backflow preventer testing for our HOA. Clean report filed directly with the water authority. Billing ran a day late, otherwise five stars.",
+      "quoteShort": "HOA backflow testing. Report filed directly with the water authority. Billing a day late, otherwise five stars."
+    },
+    {
+      "name": "Eric D.",
+      "rating": 5,
+      "source": "Google",
+      "when": "7 months ago",
+      "quoteVerbatim": "Kitchen sink clog my teenage kids created. Riley's tech was in and out in 30 minutes. Price was $99, which was the advertised service-call fee.",
+      "quoteShort": "Kitchen sink clog. In and out in 30 minutes. Price was $99, exactly advertised."
+    },
+    {
+      "name": "Maria G.",
+      "rating": 5,
+      "source": "Google",
+      "when": "9 months ago",
+      "quoteVerbatim": "Septic-to-sewer conversion permit work. Riley's handled the city paperwork, the excavation coordination, and the final inspection. Two-week job finished in ten days.",
+      "quoteShort": "Septic-to-sewer conversion. They handled permits, excavation, final inspection. Ten days."
+    },
+    {
+      "name": "John B.",
+      "rating": 5,
+      "source": "Google",
+      "when": "1 year ago",
+      "quoteVerbatim": "Woke up to standing water in the garage. Called Riley's at 4:30am. On-site by 5:10am. Main shutoff valve replaced by 7am, before I had to leave for work.",
+      "quoteShort": "Standing water in garage 4:30am. On-site by 5:10am. Shutoff valve replaced by 7am."
+    },
+    {
+      "name": "Amanda S.",
+      "rating": 5,
+      "source": "Google",
+      "when": "6 months ago",
+      "quoteVerbatim": "Riley's has been our plumbing company for eight years. Every tech who's ever come out has been licensed, in uniform, and respectful of the house.",
+      "quoteShort": "Our plumbing company for eight years. Every tech licensed, in uniform, respectful of the house."
+    },
+    {
+      "name": "Kevin M.",
+      "rating": 5,
+      "source": "Google",
+      "when": "2 years ago",
+      "quoteVerbatim": "Water softener install. Minor project, treated like a major one. Mike himself showed up for the commissioning.",
+      "quoteShort": "Water softener install. Mike himself showed up for the commissioning."
+    },
+    {
+      "name": "Deborah C.",
+      "rating": 5,
+      "source": "Google",
+      "when": "3 years ago",
+      "quoteVerbatim": "Flooded laundry room, Saturday evening. Riley's crew cut the water, cleared the clog, and set up fans to dry the subfloor. All inside two hours.",
+      "quoteShort": "Flooded laundry room Saturday evening. Cut water, cleared clog, set up drying fans. Two hours."
+    },
+    {
+      "name": "Brandon T.",
+      "rating": 5,
+      "source": "Google",
+      "when": "11 months ago",
+      "quoteVerbatim": "Pinhole leak in copper mainline inside the wall. Acoustic detection pinpointed it within four inches. Opened one small square of drywall, fixed it, patched, painted.",
+      "quoteShort": "Pinhole leak. Pinpointed within four inches. One small drywall square opened, fixed, patched, painted."
+    },
+    {
+      "name": "Rachel H.",
+      "rating": 5,
+      "source": "Google",
+      "when": "4 years ago",
+      "quoteVerbatim": "Riley's has been servicing our restaurant's grease-interceptor quarterly for five years. Never a missed appointment, never a failed health inspection.",
+      "quoteShort": "Grease-interceptor quarterly five years. Never a missed appointment, never a failed inspection."
+    },
+    {
+      "name": "Paul W.",
+      "rating": 5,
+      "source": "Google",
+      "when": "1 year ago",
+      "quoteVerbatim": "New-construction rough-in on our addition. Riley's crew stayed a half-day later than planned to finish the inspection before the weekend.",
+      "quoteShort": "New-construction rough-in. Stayed a half-day late to finish the inspection before the weekend."
+    },
+    {
+      "name": "Nancy F.",
+      "rating": 5,
+      "source": "Google",
+      "when": "2 months ago",
+      "quoteVerbatim": "Sewer line root intrusion. Camera inspection, hydrojet, spot repair. Problem solved without digging up the whole yard.",
+      "quoteShort": "Sewer root intrusion. Camera, hydrojet, spot repair. No yard dug up."
+    },
+    {
+      "name": "Gary L.",
+      "rating": 5,
+      "source": "Google",
+      "when": "8 months ago",
+      "quoteVerbatim": "Frozen pipe burst during the January cold snap. Riley's was fifth on my call list — first to actually answer. Fixed within the hour.",
+      "quoteShort": "Frozen pipe burst in January. Fifth on my list, first to answer. Fixed within the hour."
+    },
+    {
+      "name": "Olivia P.",
+      "rating": 5,
+      "source": "Google",
+      "when": "10 months ago",
+      "quoteVerbatim": "Moved from Orlando where we used three different plumbers. Riley's does in one visit what three companies couldn't between them.",
+      "quoteShort": "Moved from Orlando. Riley's does in one visit what three companies couldn't."
+    },
+    {
+      "name": "Frank J.",
+      "rating": 5,
+      "source": "Google",
+      "when": "5 years ago",
+      "quoteVerbatim": "Been using Riley's since they opened. Watched this company grow from one truck to a full fleet. Same quality, same people, same phone number.",
+      "quoteShort": "Using Riley's since they opened. Same quality, same people, same phone number."
+    },
+    {
+      "name": "Claire B.",
+      "rating": 5,
+      "source": "Google",
+      "when": "2 weeks ago",
+      "quoteVerbatim": "Hot water heater install: on-site at 9am, new unit installed and tested by 1pm. Tech hauled the old tank away and swept up.",
+      "quoteShort": "Water heater install 9am–1pm. Old tank hauled, shop swept up."
+    },
+    {
+      "name": "Gregory O.",
+      "rating": 5,
+      "source": "Google",
+      "when": "6 months ago",
+      "quoteVerbatim": "Emergency call for a toilet flood at 3am. The dispatcher didn't make me feel stupid for calling. That alone earned the five stars.",
+      "quoteShort": "Toilet flood 3am. Dispatcher didn't make me feel stupid for calling. That alone earned the five stars."
+    }
+  ],
+  "brandPalette": {
+    "primary": "#DC2626",
+    "primaryName": "Riley Red",
+    "darkPrimary": "#1F1B1B",
+    "darkPrimaryName": "Charcoal",
+    "accent": "#1E40AF",
+    "accentName": "Trust Blue",
+    "source": "node-vibrant against logo.png (1200x1200 PNG from site); DarkVibrant swatch populated at #1F1B1B, overrides derived dark-primary per Rule E6.",
+    "vibrantPopulation": 110,
+    "note": "Red-and-blue emergency-service palette; DarkVibrant preserved from logo."
+  },
+  "photos": {
+    "google": {
+      "count": 9,
+      "attributionString": "Photos: Google Maps Platform"
+    },
+    "site": {
+      "count": 7,
+      "rejected": 0
+    },
+    "instagram": {
+      "count": 0,
+      "note": "No Instagram handle captured; emergency-service prospects rarely maintain curated social accounts."
+    },
+    "unsplash": {
+      "count": 0
+    }
+  },
+  "photoInventory": [
+    {
+      "id": "g01",
+      "file": "assets/photos/google/g01.jpg",
+      "widthPx": 4000,
+      "heightPx": 3000,
+      "dim": "4000x3000",
+      "longEdgePx": 4000,
+      "orient": "landscape",
+      "content": "jobsite",
+      "note": "Branded Riley's truck at residential emergency scene, night call with headlights.",
+      "disqualifiers": [],
+      "score": 82,
+      "eligibleRoles": ["heroBackground", "heroPlate", "gallery"]
+    },
+    {
+      "id": "g02",
+      "file": "assets/photos/google/g02.jpg",
+      "widthPx": 3024,
+      "heightPx": 2016,
+      "dim": "3024x2016",
+      "longEdgePx": 3024,
+      "orient": "landscape",
+      "content": "jobsite",
+      "note": "Riley's truck parked outside commercial storefront, daytime.",
+      "disqualifiers": [],
+      "score": 74,
+      "eligibleRoles": ["heroBackground", "gallery"]
+    },
+    {
+      "id": "g03",
+      "file": "assets/photos/google/g03.jpg",
+      "widthPx": 3024,
+      "heightPx": 2016,
+      "dim": "3024x2016",
+      "longEdgePx": 3024,
+      "orient": "landscape",
+      "content": "jobsite",
+      "note": "Riley's fleet of three trucks in morning staging area.",
+      "disqualifiers": [],
+      "score": 76,
+      "eligibleRoles": ["heroBackground", "heroPlate", "gallery"]
+    },
+    {
+      "id": "g04",
+      "file": "assets/photos/google/g04.jpg",
+      "widthPx": 3024,
+      "heightPx": 2016,
+      "dim": "3024x2016",
+      "longEdgePx": 3024,
+      "orient": "landscape",
+      "content": "jobsite",
+      "note": "Truck at hurricane-damaged home, crew unloading equipment.",
+      "disqualifiers": [],
+      "score": 70,
+      "eligibleRoles": ["heroBackground", "gallery"]
+    },
+    {
+      "id": "g05",
+      "file": "assets/photos/google/g05.jpg",
+      "widthPx": 3024,
+      "heightPx": 2016,
+      "dim": "3024x2016",
+      "longEdgePx": 3024,
+      "orient": "landscape",
+      "content": "team",
+      "note": "Two-person crew at residential crawlspace entry, in-motion during leak repair.",
+      "disqualifiers": [],
+      "score": 68,
+      "eligibleRoles": ["heroBackground", "environmentalPortrait", "gallery"]
+    },
+    {
+      "id": "g06",
+      "file": "assets/photos/google/g06.jpg",
+      "widthPx": 3024,
+      "heightPx": 2016,
+      "dim": "3024x2016",
+      "longEdgePx": 3024,
+      "orient": "landscape",
+      "content": "finished_repair_before",
+      "note": "Before: cracked copper mainline with visible pinhole leak, wall opened.",
+      "disqualifiers": [],
+      "score": 65,
+      "eligibleRoles": ["evidenceShot", "gallery"]
+    },
+    {
+      "id": "g07",
+      "file": "assets/photos/google/g07.jpg",
+      "widthPx": 3024,
+      "heightPx": 2016,
+      "dim": "3024x2016",
+      "longEdgePx": 3024,
+      "orient": "landscape",
+      "content": "finished_repair_after",
+      "note": "After: cleaned repair with PEX transition and fresh patch — pair with g06.",
+      "disqualifiers": [],
+      "score": 72,
+      "eligibleRoles": ["heroBackground", "evidenceShot", "gallery"]
+    },
+    {
+      "id": "g08",
+      "file": "assets/photos/google/g08.jpg",
+      "widthPx": 3024,
+      "heightPx": 2016,
+      "dim": "3024x2016",
+      "longEdgePx": 3024,
+      "orient": "landscape",
+      "content": "detail_fitting",
+      "note": "Close-up of polished PEX fitting and manifold, post-install.",
+      "disqualifiers": [],
+      "score": 64,
+      "eligibleRoles": ["heroBackground", "detailShot", "gallery"]
+    },
+    {
+      "id": "g09",
+      "file": "assets/photos/google/g09.jpg",
+      "widthPx": 3024,
+      "heightPx": 4032,
+      "dim": "3024x4032",
+      "longEdgePx": 4032,
+      "orient": "portrait",
+      "content": "owner",
+      "note": "Mike Riley at dispatch desk, phone in hand, branded shirt.",
+      "disqualifiers": [],
+      "score": 78,
+      "eligibleRoles": ["heroPlate", "ownerPortrait", "gallery"]
+    },
+    {
+      "id": "s01",
+      "file": "assets/photos/site/s01.jpg",
+      "widthPx": 4000,
+      "heightPx": 3000,
+      "dim": "4000x3000",
+      "longEdgePx": 4000,
+      "orient": "landscape",
+      "content": "team",
+      "note": "Crew in matching uniforms at new-construction site, mid-rough-in.",
+      "disqualifiers": [],
+      "score": 76,
+      "eligibleRoles": ["heroBackground", "heroPlate", "environmentalPortrait", "gallery"]
+    },
+    {
+      "id": "s02",
+      "file": "assets/photos/site/s02.jpg",
+      "widthPx": 3024,
+      "heightPx": 2016,
+      "dim": "3024x2016",
+      "longEdgePx": 3024,
+      "orient": "landscape",
+      "content": "team",
+      "note": "Single technician troubleshooting water heater, crouched at work.",
+      "disqualifiers": [],
+      "score": 70,
+      "eligibleRoles": ["heroBackground", "environmentalPortrait", "gallery"]
+    },
+    {
+      "id": "s03",
+      "file": "assets/photos/site/s03.jpg",
+      "widthPx": 3024,
+      "heightPx": 2016,
+      "dim": "3024x2016",
+      "longEdgePx": 3024,
+      "orient": "landscape",
+      "content": "finished_repair_before",
+      "note": "Before: corroded water heater tank with visible rust and leaking drain valve.",
+      "disqualifiers": [],
+      "score": 62,
+      "eligibleRoles": ["evidenceShot", "gallery"]
+    },
+    {
+      "id": "s04",
+      "file": "assets/photos/site/s04.jpg",
+      "widthPx": 3024,
+      "heightPx": 2016,
+      "dim": "3024x2016",
+      "longEdgePx": 3024,
+      "orient": "landscape",
+      "content": "finished_repair_after",
+      "note": "After: new A.O. Smith tank water heater, commissioned — pair with s03.",
+      "disqualifiers": [],
+      "score": 74,
+      "eligibleRoles": ["heroBackground", "evidenceShot", "gallery"]
+    },
+    {
+      "id": "s05",
+      "file": "assets/photos/site/s05.jpg",
+      "widthPx": 3024,
+      "heightPx": 2016,
+      "dim": "3024x2016",
+      "longEdgePx": 3024,
+      "orient": "landscape",
+      "content": "finished_repair_before",
+      "note": "Before: sewer line mainline clog, camera view of root intrusion.",
+      "disqualifiers": [],
+      "score": 58,
+      "eligibleRoles": ["evidenceShot"]
+    },
+    {
+      "id": "s06",
+      "file": "assets/photos/site/s06.jpg",
+      "widthPx": 3024,
+      "heightPx": 2016,
+      "dim": "3024x2016",
+      "longEdgePx": 3024,
+      "orient": "landscape",
+      "content": "finished_repair_after",
+      "note": "After: cleared sewer mainline camera view — pair with s05.",
+      "disqualifiers": [],
+      "score": 66,
+      "eligibleRoles": ["heroBackground", "evidenceShot", "gallery"]
+    },
+    {
+      "id": "s07",
+      "file": "assets/photos/site/s07.jpg",
+      "widthPx": 3024,
+      "heightPx": 3024,
+      "dim": "3024x3024",
+      "longEdgePx": 3024,
+      "orient": "square",
+      "content": "detail_equipment",
+      "note": "Truck interior showing stocked parts inventory for fastest response.",
+      "disqualifiers": [],
+      "score": 72,
+      "eligibleRoles": ["heroPlate", "detailShot", "gallery"]
+    }
+  ]
+}
