@@ -1,0 +1,554 @@
+{
+  "$schemaVersion": "1.0",
+  "$schema": "profile",
+  "businessName": "Kingsley Pool & Spa",
+  "legalName": "Kingsley Pool & Spa Inc.",
+  "slug": "kingsley-pool-and-spa",
+  "sourceUrl": "https://kingsleypoolandspa.com/",
+  "tagline": "Custom gunite pools, built one at a time.",
+  "phone": "(352) 873-4110",
+  "phoneDigitsOnly": "3528734110",
+  "email": "projects@kingsleypoolandspa.com",
+  "address": {
+    "street": "2215 SW 27th Avenue",
+    "city": "Ocala",
+    "state": "FL",
+    "zip": "34474",
+    "country": "United States",
+    "googleMapsUrl": "https://www.google.com/maps/place/?cid=9847361284729304815"
+  },
+  "hours": {
+    "mondayToFriday": "8:00 AM - 5:00 PM",
+    "saturday": "By appointment",
+    "sunday": "Closed",
+    "sourceNote": "Hours from contact page; Saturday noted as appointment-only for design consultations."
+  },
+  "ownership": {
+    "structure": "family-owned",
+    "owners": ["Marcus Kingsley", "Eleanor Kingsley"],
+    "ownerSource": "About page — Marcus founded 2011, Eleanor joined as operations partner 2014. Named in multiple Google reviews."
+  },
+  "yearsInBusiness": {
+    "exact": 14,
+    "minimumEvidenced": 14,
+    "evidence": "Florida Secretary of State registration 2011; CBC license issue date 2011-06; About page cites founding year."
+  },
+  "licenseNumber": "CBC1253421",
+  "services": [
+    {
+      "name": "Custom Gunite Pool Construction",
+      "category": "custom",
+      "description": "Hand-drawn designs, structural shotcrete, and hand-troweled interior finishes on every new-construction pool. Every Kingsley pool is drawn on paper before a single stake goes in the ground; no prefab shapes, no stock plans. Most projects run ten to fourteen weeks dig to first swim."
+    },
+    {
+      "name": "Spa Installation and Integration",
+      "category": "custom",
+      "description": "Attached spas, raised spas, and standalone installations integrated with existing pool systems or new construction. All spas include jet configuration specified to household use — we don't sell stock jet packages. Conversion of older pool/spa combinations supported."
+    },
+    {
+      "name": "Pool Resurfacing and Refinishing",
+      "category": "residential",
+      "description": "PebbleSheen, Diamond Brite, and traditional plaster resurfacing for residential pools ten years or older. Coping and tile repair included where needed. Most resurfacing projects complete in three to five days with minimal disruption to landscaping."
+    },
+    {
+      "name": "Equipment Upgrades and Automation",
+      "category": "residential",
+      "description": "Variable-speed pump swaps, salt chlorination conversions, and Pentair IntelliCenter or Hayward OmniLogic automation installs. Labor and consultation are where we earn our fee — equipment costs pass through at actual pricing."
+    },
+    {
+      "name": "Ongoing Maintenance and Service",
+      "category": "maintenance",
+      "description": "Weekly and bi-weekly service for Kingsley-built pools and select customer-requested accounts. Water chemistry, equipment inspection, and filter maintenance on fixed schedules. Not our primary trade — we maintain to preserve the build, not as a standalone offering."
+    }
+  ],
+  "serviceAreas": ["Ocala", "The Villages", "Dunnellon", "Summerfield", "Belleview", "Gainesville", "Crystal River"],
+  "serviceAreaRegion": "Central Florida — Marion, Alachua, Lake, and Sumter counties.",
+  "featuredPromotion": null,
+  "guarantees": [
+    {
+      "type": "one-year workmanship guarantee on new construction",
+      "source": "contract terms noted on site and in multiple reviews"
+    },
+    {
+      "type": "structural warranty — lifetime to original owner",
+      "source": "home page hero + About page"
+    },
+    {
+      "type": "CBC licensed and fully insured",
+      "source": "site footer + credential scan on file"
+    }
+  ],
+  "partners": ["Pentair", "Hayward", "Sherwin-Williams Pool Paints", "PebbleTec"],
+  "googleBusinessProfile": {
+    "placeId": "ChIJkingsleyPool_ocala_placeId",
+    "rating": 4.9,
+    "reviewCount": 67,
+    "businessStatus": "OPERATIONAL"
+  },
+  "testimonials": [
+    {
+      "name": "Patricia L.",
+      "rating": 5,
+      "source": "Google",
+      "when": "4 months ago",
+      "quoteVerbatim": "Marcus drew three different pool shapes on my kitchen table before we settled on the one that actually fit the yard. Ten weeks later we were swimming in exactly what he drew. The travertine edge is hand-cut. The whole thing is hand-cut. You can't buy that kind of work at the chain builders.",
+      "quoteShort": "Marcus drew three different pool shapes on my kitchen table. Ten weeks later we were swimming in exactly what he drew. The whole thing is hand-cut."
+    },
+    {
+      "name": "Daniel F.",
+      "rating": 5,
+      "source": "Google",
+      "when": "1 year ago",
+      "quoteVerbatim": "We interviewed four pool builders. Kingsley was the only one who asked about how we'd use the pool before pricing it. Three years in, still the best decision of the build.",
+      "quoteShort": "The only builder who asked about how we'd use the pool before pricing it. Three years in, still the best decision."
+    },
+    {
+      "name": "Margaret H.",
+      "rating": 5,
+      "source": "Google",
+      "when": "7 months ago",
+      "quoteVerbatim": "Resurface project. In and out in four days, water chemistry sorted, deck tile repaired. Invoice matched the quote to the dollar. Would use again without a second thought.",
+      "quoteShort": "Resurface in four days, chemistry sorted, deck tile repaired. Invoice matched the quote to the dollar."
+    },
+    {
+      "name": "Robert T.",
+      "rating": 5,
+      "source": "Google",
+      "when": "2 years ago",
+      "quoteVerbatim": "Custom spa addition integrated with our existing pool. Eleanor handled every change order with a phone call first, paper second. No surprise charges. Five stars from me and the wife.",
+      "quoteShort": "Custom spa integrated with existing pool. Every change order a phone call first, paper second. No surprises."
+    },
+    {
+      "name": "Susan M.",
+      "rating": 5,
+      "source": "Google",
+      "when": "3 years ago",
+      "quoteVerbatim": "Our pool is six years old now. Kingsley still handles the annual service checks. The pool looks like it did on first-fill day. Whatever they put in the shotcrete, it works.",
+      "quoteShort": "Six years old. Kingsley still handles the annual service checks. Looks like first-fill day."
+    },
+    {
+      "name": "James D.",
+      "rating": 5,
+      "source": "Google",
+      "when": "1 year ago",
+      "quoteVerbatim": "Hand-drawn design process felt old-fashioned going in. By week three of construction I understood why they work that way — every detail had been thought through before the concrete truck arrived.",
+      "quoteShort": "Hand-drawn design felt old-fashioned going in. By week three I understood why — every detail thought through."
+    },
+    {
+      "name": "Angela W.",
+      "rating": 5,
+      "source": "Google",
+      "when": "6 months ago",
+      "quoteVerbatim": "Equipment upgrade, not a build — variable-speed pump and salt system conversion. Marcus talked us out of two upgrades we didn't need and into one we wouldn't have thought to ask for.",
+      "quoteShort": "Equipment upgrade. Marcus talked us out of two we didn't need and into one we wouldn't have thought to ask for."
+    },
+    {
+      "name": "Thomas R.",
+      "rating": 5,
+      "source": "Google",
+      "when": "5 months ago",
+      "quoteVerbatim": "Custom 24-foot travertine deck around a new pool build. The finish cuts are clean enough that the pool contractor down the road tried to hire their mason.",
+      "quoteShort": "24-foot travertine deck, finish cuts clean enough the pool contractor down the road tried to hire the mason."
+    },
+    {
+      "name": "Linda K.",
+      "rating": 4,
+      "source": "Google",
+      "when": "9 months ago",
+      "quoteVerbatim": "Project ran two weeks longer than estimated because of rain. Kingsley absorbed the schedule slip and stayed on price. Honest builders.",
+      "quoteShort": "Rain ran the project two weeks long. Kingsley absorbed the slip and stayed on price. Honest builders."
+    },
+    {
+      "name": "Michael P.",
+      "rating": 5,
+      "source": "Google",
+      "when": "2 years ago",
+      "quoteVerbatim": "PebbleSheen resurface. They drained, prepped, and refinished the pool in a way that makes our ten-year-old pool look brand new. Marcus's crew treats every job like their own backyard.",
+      "quoteShort": "PebbleSheen resurface. Ten-year-old pool looks brand new. Crew treats every job like their own backyard."
+    },
+    {
+      "name": "Jennifer A.",
+      "rating": 5,
+      "source": "Google",
+      "when": "3 months ago",
+      "quoteVerbatim": "Asked three builders what they'd do with the weird corner of our lot. Two offered a rectangular pool we didn't want. Kingsley offered a free-form build that treated the corner as an asset.",
+      "quoteShort": "Two builders offered a rectangular pool we didn't want. Kingsley treated our weird corner as an asset."
+    },
+    {
+      "name": "Steven B.",
+      "rating": 5,
+      "source": "Google",
+      "when": "1 year ago",
+      "quoteVerbatim": "Pentair IntelliCenter retrofit on a ten-year-old pool. Marcus did the site walkthrough, spec'd the install, and had his guys in and out in one day. App works on the first try.",
+      "quoteShort": "IntelliCenter retrofit. Site walkthrough, in and out in one day. App works on the first try."
+    }
+  ],
+  "brandPalette": {
+    "primary": "#0F4C5C",
+    "primaryName": "Kingsley Teal",
+    "darkPrimary": "#1A1A1A",
+    "darkPrimaryName": "Midnight",
+    "accent": "#E9B872",
+    "accentName": "Sandstone",
+    "neutral": "#F5F5F0",
+    "neutralName": "Linen",
+    "source": "node-vibrant against logo.png (1600x1600 PNG from site CDN); DarkVibrant swatch populated at #1A1A1A, overrides derived dark-primary per Rule E6.",
+    "vibrantPopulation": 120,
+    "note": "Three-color brand system consistent across site, business cards, truck decals, and signage visible in Google photos."
+  },
+  "photos": {
+    "google": {
+      "count": 8,
+      "attributionString": "Photos: Google Maps Platform"
+    },
+    "site": {
+      "count": 16,
+      "rejected": 0
+    },
+    "instagram": {
+      "count": 0,
+      "note": "Instagram handle @kingsleypoolandspa captured but portfolio overlap with site is ~90%; site photos preferred for resolution."
+    },
+    "unsplash": {
+      "count": 0
+    }
+  },
+  "photoInventory": [
+    {
+      "id": "g01",
+      "file": "assets/photos/google/g01.jpg",
+      "widthPx": 4000,
+      "heightPx": 3000,
+      "dim": "4000x3000",
+      "longEdgePx": 4000,
+      "orient": "landscape",
+      "content": "finished_exterior",
+      "note": "Finished gunite pool with travertine deck, golden-hour light, hero-quality.",
+      "disqualifiers": [],
+      "score": 92,
+      "eligibleRoles": ["heroBackground", "heroPlate", "gallery"]
+    },
+    {
+      "id": "g02",
+      "file": "assets/photos/google/g02.jpg",
+      "widthPx": 4000,
+      "heightPx": 3000,
+      "dim": "4000x3000",
+      "longEdgePx": 4000,
+      "orient": "landscape",
+      "content": "finished_exterior",
+      "note": "Free-form pool with attached spa, palm-shaded deck, midday.",
+      "disqualifiers": [],
+      "score": 88,
+      "eligibleRoles": ["heroBackground", "heroPlate", "gallery"]
+    },
+    {
+      "id": "g03",
+      "file": "assets/photos/google/g03.jpg",
+      "widthPx": 4000,
+      "heightPx": 3000,
+      "dim": "4000x3000",
+      "longEdgePx": 4000,
+      "orient": "landscape",
+      "content": "finished_exterior",
+      "note": "Geometric pool with sheer descent water feature, lakefront backdrop.",
+      "disqualifiers": [],
+      "score": 90,
+      "eligibleRoles": ["heroBackground", "heroPlate", "gallery"]
+    },
+    {
+      "id": "g04",
+      "file": "assets/photos/google/g04.jpg",
+      "widthPx": 4000,
+      "heightPx": 3000,
+      "dim": "4000x3000",
+      "longEdgePx": 4000,
+      "orient": "landscape",
+      "content": "owner",
+      "note": "Marcus Kingsley at job site, pool under construction in background, posed but natural.",
+      "disqualifiers": [],
+      "score": 82,
+      "eligibleRoles": ["heroPlate", "ownerPortrait", "gallery"]
+    },
+    {
+      "id": "g05",
+      "file": "assets/photos/google/g05.jpg",
+      "widthPx": 4000,
+      "heightPx": 3000,
+      "dim": "4000x3000",
+      "longEdgePx": 4000,
+      "orient": "landscape",
+      "content": "finished_exterior",
+      "note": "Elevated pool with infinity edge over landscape drop, sunset.",
+      "disqualifiers": [],
+      "score": 86,
+      "eligibleRoles": ["heroBackground", "heroPlate", "gallery"]
+    },
+    {
+      "id": "g06",
+      "file": "assets/photos/google/g06.jpg",
+      "widthPx": 4000,
+      "heightPx": 3000,
+      "dim": "4000x3000",
+      "longEdgePx": 4000,
+      "orient": "landscape",
+      "content": "finished_exterior",
+      "note": "Classic rectangular pool with integrated spa, clean modern look.",
+      "disqualifiers": [],
+      "score": 84,
+      "eligibleRoles": ["heroBackground", "heroPlate", "gallery"]
+    },
+    {
+      "id": "g07",
+      "file": "assets/photos/google/g07.jpg",
+      "widthPx": 4000,
+      "heightPx": 3000,
+      "dim": "4000x3000",
+      "longEdgePx": 4000,
+      "orient": "landscape",
+      "content": "finished_exterior",
+      "note": "Twilight shot of pool with lit water feature, moody blues.",
+      "disqualifiers": [],
+      "score": 85,
+      "eligibleRoles": ["heroBackground", "heroPlate", "gallery"]
+    },
+    {
+      "id": "g08",
+      "file": "assets/photos/google/g08.jpg",
+      "widthPx": 4000,
+      "heightPx": 3000,
+      "dim": "4000x3000",
+      "longEdgePx": 4000,
+      "orient": "landscape",
+      "content": "finished_exterior",
+      "note": "Pool deck from chaise-lounge perspective, tile detail foregrounded.",
+      "disqualifiers": [],
+      "score": 80,
+      "eligibleRoles": ["heroBackground", "heroPlate", "gallery"]
+    },
+    {
+      "id": "s01",
+      "file": "assets/photos/site/s01.jpg",
+      "widthPx": 4000,
+      "heightPx": 3000,
+      "dim": "4000x3000",
+      "longEdgePx": 4000,
+      "orient": "landscape",
+      "content": "finished_exterior",
+      "note": "Hand-drawn design becoming finished pool, composite hero.",
+      "disqualifiers": [],
+      "score": 94,
+      "eligibleRoles": ["heroBackground", "heroPlate", "gallery"]
+    },
+    {
+      "id": "s02",
+      "file": "assets/photos/site/s02.jpg",
+      "widthPx": 4000,
+      "heightPx": 3000,
+      "dim": "4000x3000",
+      "longEdgePx": 4000,
+      "orient": "landscape",
+      "content": "finished_exterior",
+      "note": "Signature Kingsley free-form pool with travertine coping.",
+      "disqualifiers": [],
+      "score": 93,
+      "eligibleRoles": ["heroBackground", "heroPlate", "gallery"]
+    },
+    {
+      "id": "s03",
+      "file": "assets/photos/site/s03.jpg",
+      "widthPx": 4000,
+      "heightPx": 3000,
+      "dim": "4000x3000",
+      "longEdgePx": 4000,
+      "orient": "landscape",
+      "content": "finished_exterior_renovation_before",
+      "note": "Before: aging plaster pool with tile damage.",
+      "disqualifiers": [],
+      "score": 72,
+      "eligibleRoles": ["evidenceShot", "gallery"]
+    },
+    {
+      "id": "s04",
+      "file": "assets/photos/site/s04.jpg",
+      "widthPx": 4000,
+      "heightPx": 3000,
+      "dim": "4000x3000",
+      "longEdgePx": 4000,
+      "orient": "landscape",
+      "content": "finished_exterior",
+      "note": "After: PebbleSheen resurface, tile replaced, deck cleaned — pair with s03.",
+      "disqualifiers": [],
+      "score": 89,
+      "eligibleRoles": ["heroBackground", "heroPlate", "evidenceShot", "gallery"]
+    },
+    {
+      "id": "s05",
+      "file": "assets/photos/site/s05.jpg",
+      "widthPx": 4000,
+      "heightPx": 3000,
+      "dim": "4000x3000",
+      "longEdgePx": 4000,
+      "orient": "landscape",
+      "content": "finished_exterior_renovation_before",
+      "note": "Before: empty concrete shell, prep stage.",
+      "disqualifiers": [],
+      "score": 65,
+      "eligibleRoles": ["evidenceShot", "gallery"]
+    },
+    {
+      "id": "s06",
+      "file": "assets/photos/site/s06.jpg",
+      "widthPx": 4000,
+      "heightPx": 3000,
+      "dim": "4000x3000",
+      "longEdgePx": 4000,
+      "orient": "landscape",
+      "content": "finished_exterior",
+      "note": "After: Diamond Brite finish, tile, and deck — pair with s05.",
+      "disqualifiers": [],
+      "score": 87,
+      "eligibleRoles": ["heroBackground", "heroPlate", "evidenceShot", "gallery"]
+    },
+    {
+      "id": "s07",
+      "file": "assets/photos/site/s07.jpg",
+      "widthPx": 4000,
+      "heightPx": 3000,
+      "dim": "4000x3000",
+      "longEdgePx": 4000,
+      "orient": "landscape",
+      "content": "finished_exterior_renovation_before",
+      "note": "Before: pool/spa combination with dated coping and plaster.",
+      "disqualifiers": [],
+      "score": 68,
+      "eligibleRoles": ["evidenceShot", "gallery"]
+    },
+    {
+      "id": "s08",
+      "file": "assets/photos/site/s08.jpg",
+      "widthPx": 4000,
+      "heightPx": 3000,
+      "dim": "4000x3000",
+      "longEdgePx": 4000,
+      "orient": "landscape",
+      "content": "finished_exterior",
+      "note": "After: modernized spa separation and new travertine coping — pair with s07.",
+      "disqualifiers": [],
+      "score": 88,
+      "eligibleRoles": ["heroBackground", "heroPlate", "evidenceShot", "gallery"]
+    },
+    {
+      "id": "s09",
+      "file": "assets/photos/site/s09.jpg",
+      "widthPx": 4000,
+      "heightPx": 3000,
+      "dim": "4000x3000",
+      "longEdgePx": 4000,
+      "orient": "landscape",
+      "content": "finished_exterior_renovation_before",
+      "note": "Before: commercial apartment pool with failed surface.",
+      "disqualifiers": [],
+      "score": 62,
+      "eligibleRoles": ["evidenceShot", "gallery"]
+    },
+    {
+      "id": "s10",
+      "file": "assets/photos/site/s10.jpg",
+      "widthPx": 4000,
+      "heightPx": 3000,
+      "dim": "4000x3000",
+      "longEdgePx": 4000,
+      "orient": "landscape",
+      "content": "finished_exterior",
+      "note": "After: resurface with matching Pentair pump upgrade — pair with s09.",
+      "disqualifiers": [],
+      "score": 85,
+      "eligibleRoles": ["heroBackground", "heroPlate", "evidenceShot", "gallery"]
+    },
+    {
+      "id": "s11",
+      "file": "assets/photos/site/s11.jpg",
+      "widthPx": 4000,
+      "heightPx": 3000,
+      "dim": "4000x3000",
+      "longEdgePx": 4000,
+      "orient": "landscape",
+      "content": "team",
+      "note": "Three-person Kingsley crew with truck, in-motion shot during shotcrete day.",
+      "disqualifiers": [],
+      "score": 78,
+      "eligibleRoles": ["heroPlate", "environmentalPortrait", "gallery"]
+    },
+    {
+      "id": "s12",
+      "file": "assets/photos/site/s12.jpg",
+      "widthPx": 4000,
+      "heightPx": 4000,
+      "dim": "4000x4000",
+      "longEdgePx": 4000,
+      "orient": "square",
+      "content": "detail_travertine",
+      "note": "Travertine edge detail, hand-cut seam close-up, hero-quality macro.",
+      "disqualifiers": [],
+      "score": 82,
+      "eligibleRoles": ["heroPlate", "detailShot", "gallery"]
+    },
+    {
+      "id": "s13",
+      "file": "assets/photos/site/s13.jpg",
+      "widthPx": 3200,
+      "heightPx": 3200,
+      "dim": "3200x3200",
+      "longEdgePx": 3200,
+      "orient": "square",
+      "content": "detail_tile",
+      "note": "Glass mosaic tile waterline detail, close-up macro.",
+      "disqualifiers": [],
+      "score": 80,
+      "eligibleRoles": ["heroPlate", "detailShot", "gallery"]
+    },
+    {
+      "id": "s14",
+      "file": "assets/photos/site/s14.jpg",
+      "widthPx": 3000,
+      "heightPx": 4000,
+      "dim": "3000x4000",
+      "longEdgePx": 4000,
+      "orient": "portrait",
+      "content": "detail_finish",
+      "note": "PebbleSheen finish surface close-up, textural macro.",
+      "disqualifiers": [],
+      "score": 76,
+      "eligibleRoles": ["heroPlate", "detailShot", "gallery"]
+    },
+    {
+      "id": "s15",
+      "file": "assets/photos/site/s15.jpg",
+      "widthPx": 4000,
+      "heightPx": 3000,
+      "dim": "4000x3000",
+      "longEdgePx": 4000,
+      "orient": "landscape",
+      "content": "finished_exterior",
+      "note": "Gallery shot — older project featured in testimonial.",
+      "disqualifiers": [],
+      "score": 81,
+      "eligibleRoles": ["heroBackground", "heroPlate", "gallery"]
+    },
+    {
+      "id": "s16",
+      "file": "assets/photos/site/s16.jpg",
+      "widthPx": 2550,
+      "heightPx": 3300,
+      "dim": "2550x3300",
+      "longEdgePx": 3300,
+      "orient": "portrait",
+      "content": "credential",
+      "note": "CBC1253421 Florida Certified Building Contractor license, portrait scan.",
+      "disqualifiers": [],
+      "score": 62,
+      "eligibleRoles": ["credential", "gallery"]
+    }
+  ]
+}
