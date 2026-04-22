@@ -281,7 +281,7 @@ Phase 4 picks the persona from three inputs, in this priority order:
 
 When the trade is not on this list, the default is Quiet confidence.
 
-**Write to `profile-draft.json.design.persona`** (string value, one of: `quiet-confidence`, `earned-pride`, `neighborhood-steady`, `rescue-ready`, `modern-specialist`).
+**Write to `profile-draft.json.design.persona`** (string value, one of: `quiet-confidence`, `earned-pride`, `neighborhood-steady`, `urgent-service`, `modern-specialist`).
 
 ### Approval gate addition
 

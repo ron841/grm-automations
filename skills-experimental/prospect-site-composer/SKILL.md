@@ -405,7 +405,7 @@ Load `references/emotional-arc.md`. Select the persona using the three-input pri
 Default when unclear: Quiet confidence.
 ```
 
-Write to `profile-draft.json.design.persona` as one of: `quiet-confidence`, `earned-pride`, `neighborhood-steady`, `rescue-ready`, `modern-specialist`.
+Write to `profile-draft.json.design.persona` as one of: `quiet-confidence`, `earned-pride`, `neighborhood-steady`, `urgent-service`, `modern-specialist`.
 
 The persona biases the signature micro-interaction selection (via the tie-breaking column in emotional-arc.md) and the editorial-layouts weighting (heavy/medium/light priority per persona). It does NOT change the hero mode (hero mode remains structural, data-driven from photo library).
 
