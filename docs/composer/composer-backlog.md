@@ -298,6 +298,28 @@ trigger for pickup.
 - **Target pickup:** First build where Phase 4 selects
   `shimmer-hero-cta` — Design review on deployed preview URL.
 
+### Phase 6 P6.2 implementation — Check 17 split
+- **Surfaced:** Stage III Gate 3 Motion Restraint scope split,
+  2026-04-22 (commit 6f8bcbb).
+- **Why deferred:** Legacy `css-framework.md` Motion Restraint
+  section carried a Phase 6 Check 17 assertion ("verifies that no
+  more than one of the approved signatures is present") keyed to
+  the retired five-value signature enum. Gate 3 replaced that
+  subsection with the Tier 2 motion micro-interactions rule;
+  Check 17 text disappeared alongside. Design recommends the
+  check split into two when P6.2 implementation is authored:
+  17a Tier 1 `site.signatureMicroInteraction` singular emission
+  (exactly one value from the six-value enum); 17b Tier 2
+  `site.microInteractions` array contains only approved values
+  (subset of the four-value enum) with no over-emission. Check
+  17 is not one of the 13 P6.2 editorial-suite hard-fail checks
+  in `composition-plan-schema.md §10`; the split is editorial
+  direction for future P6.2 implementation, not a schema field
+  change.
+- **Target pickup:** Phase 6 P6.2 implementation (currently stub
+  per Stage II (f)). Bundle with broader Check 17a/17b test-author
+  pass when P6.2 spec fills in.
+
 ## Resolved deferrals
 
 ### CONFIG.spacing tier-keyed residues + tier-class CSS overrides
