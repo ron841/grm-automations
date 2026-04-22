@@ -1,0 +1,268 @@
+{
+  "$schemaVersion": "1.0",
+  "$schema": "composition-plan",
+  "businessSlug": "rileys-247-plumbing",
+  "site": {
+    "persona": "urgent-service",
+    "personaReason": "Emergency plumbing trade + 24/7 dispatch + response-time-forward service vocabulary converge on rescue-ready (urgent-service). 847 reviews + 18 years tenure do not override to neighborhood-steady because trade signal is absolute urgency-framed; tenure+trade convergence rule requires both, and emergency-plumber trade disqualifies neighborhood-steady framing.",
+    "tier": "Professional",
+    "signatureMicroInteraction": "stat-row-ledger",
+    "signatureMicroInteractionReason": "Urgent-service (rescue-ready) persona default; page carries statRow with response-time callout. Gate 2 tree rule 2 fires (persona is rescue-ready AND page carries statRow).",
+    "microInteractions": ["eyebrow-reveal"],
+    "microInteractionsReason": "Rescue-ready Tier 2 default [eyebrow-reveal] at 250ms entry (accelerated from 400ms default per persona bias, recorded on microInteractionDurations.entry).",
+    "microInteractionDurations": { "entry": 250, "hover": 150 },
+    "pathConvention": "kebab-case",
+    "voicesInUse": ["saturday-morning", "closing-table", "front-porch"],
+    "constraintsOK": true,
+    "constraintRelaxations": [],
+    "colorScheme": {
+      "primary": "#DC2626",
+      "accent": "#1E40AF",
+      "darkPrimary": "#7F1D1D",
+      "primaryUsage": "primary-heavy"
+    }
+  },
+  "pages": [
+    {
+      "path": "/",
+      "canonicalUrl": "https://rileys247plumbing.example/",
+      "pageKey": "home",
+      "voicesInUse": ["saturday-morning", "closing-table", "front-porch"],
+      "layoutSequence": ["hero", "servicesGrid", "statRow", "beforeAfter", "testimonialsSection", "trustSection", "faqSection", "contactForm", "footerSection"],
+      "headingHierarchy": {
+        "h1": "24/7 emergency plumbing — on-scene in under an hour",
+        "h2Sequence": [
+          { "id": "h2-services", "copy": "What we fix" },
+          { "id": "h2-proof", "copy": "847 reviews, 18 years" },
+          { "id": "h2-transformations", "copy": "Before and after" },
+          { "id": "h2-voices", "copy": "From our customers" },
+          { "id": "h2-trust", "copy": "Licensed and insured" },
+          { "id": "h2-faq", "copy": "Questions we hear" },
+          { "id": "h2-contact", "copy": "Call now" }
+        ]
+      },
+      "italicSelections": [],
+      "sections": [
+        {
+          "type": "hero",
+          "id": "hero-home",
+          "heroMode": "full-bleed-photo",
+          "heroGlassVariant": "none",
+          "heroLayout": "layout-c-70-30",
+          "headlineCopy": "24/7 emergency plumbing — on-scene in under an hour",
+          "eyebrowCopy": "Rescue-ready",
+          "subheadlineCopy": "Licensed master plumbers answering every call. Call (555) 247-0247.",
+          "primaryCTA": { "label": "Call now", "action": "tel:5552470247", "role": "primary-hero-cta" },
+          "secondaryCTA": { "label": "Text dispatch", "action": "sms:5552470247" },
+          "heroBackgroundPhotoId": "photo-hero-bg-01",
+          "voiceZoneAssignments": {
+            "hero-eyebrow": "saturday-morning",
+            "hero-headline": "closing-table",
+            "hero-subheadline": "saturday-morning",
+            "hero-primary-cta": "closing-table"
+          },
+          "tier1CompositionalHook": "stat-row-ledger"
+        },
+        {
+          "type": "servicesGrid",
+          "id": "services-grid",
+          "layout": "layout-a-grid",
+          "cards": [
+            { "serviceId": "svc-emergency", "photoId": "photo-evidence-01", "placeholderFlag": false, "copyVariant": "response-time-forward" },
+            { "serviceId": "svc-drain", "photoId": "photo-evidence-02", "placeholderFlag": false, "copyVariant": "response-time-forward" },
+            { "serviceId": "svc-water-heater", "photoId": "photo-evidence-03", "placeholderFlag": false, "copyVariant": "response-time-forward" },
+            { "serviceId": "svc-pipe-repair", "photoId": "photo-evidence-04", "placeholderFlag": false, "copyVariant": "response-time-forward" },
+            { "serviceId": "svc-repipe", "photoId": "photo-detail-01", "placeholderFlag": false, "copyVariant": "response-time-forward" },
+            { "serviceId": "svc-backflow", "photoId": "photo-detail-02", "placeholderFlag": false, "copyVariant": "response-time-forward" }
+          ],
+          "voiceZoneAssignments": {
+            "services-grid-heading": "closing-table",
+            "services-card-headline": "closing-table",
+            "services-card-body": "saturday-morning"
+          },
+          "sectionOpenerPrecedes": false
+        },
+        {
+          "type": "statRow",
+          "id": "stat-row-home",
+          "stats": [
+            { "id": "stat-response", "value": "<1hr", "label": "average response" },
+            { "id": "stat-reviews", "value": "847", "label": "reviews" },
+            { "id": "stat-years", "value": "18", "label": "years on call" },
+            { "id": "stat-rating", "value": "4.9", "label": "rating" }
+          ]
+        },
+        {
+          "type": "beforeAfter",
+          "id": "before-after-home",
+          "pairs": [
+            { "beforePhotoId": "photo-evidence-before-01", "afterPhotoId": "photo-evidence-after-01" },
+            { "beforePhotoId": "photo-evidence-before-02", "afterPhotoId": "photo-evidence-after-02" }
+          ]
+        },
+        {
+          "type": "testimonialsSection",
+          "id": "testimonials-home",
+          "layout": "layout-a-card-row",
+          "testimonials": [
+            { "testimonialId": "t-01", "avatarTreatment": "initials-monogram", "roleClass": "role-body-paragraph" },
+            { "testimonialId": "t-04", "avatarTreatment": "initials-monogram", "roleClass": "role-body-paragraph" },
+            { "testimonialId": "t-09", "avatarTreatment": "initials-monogram", "roleClass": "role-body-paragraph" }
+          ],
+          "reviewCountCallout": { "count": 847, "rating": 4.9, "source": "Google" },
+          "voiceZoneAssignments": {
+            "testimonials-heading": "closing-table",
+            "testimonial-body": "saturday-morning",
+            "testimonial-attribution": "saturday-morning"
+          }
+        },
+        { "type": "trustSection", "id": "trust-home" },
+        { "type": "faqSection", "id": "faq-home" },
+        { "type": "contactForm", "id": "contact-home" },
+        { "type": "footerSection", "id": "footer-home" }
+      ],
+      "photoAssignments": [
+        { "slot": "hero-home.heroBackground", "photoInventoryId": "photo-hero-bg-01", "placeholderFlag": false, "placeholderReason": null, "cropHint": "landscape-wide" },
+        { "slot": "services-grid.svc-emergency", "photoInventoryId": "photo-evidence-01", "placeholderFlag": false, "placeholderReason": null, "cropHint": "square" },
+        { "slot": "services-grid.svc-drain", "photoInventoryId": "photo-evidence-02", "placeholderFlag": false, "placeholderReason": null, "cropHint": "square" },
+        { "slot": "services-grid.svc-water-heater", "photoInventoryId": "photo-evidence-03", "placeholderFlag": false, "placeholderReason": null, "cropHint": "square" },
+        { "slot": "services-grid.svc-pipe-repair", "photoInventoryId": "photo-evidence-04", "placeholderFlag": false, "placeholderReason": null, "cropHint": "square" },
+        { "slot": "services-grid.svc-repipe", "photoInventoryId": "photo-detail-01", "placeholderFlag": false, "placeholderReason": null, "cropHint": "square" },
+        { "slot": "services-grid.svc-backflow", "photoInventoryId": "photo-detail-02", "placeholderFlag": false, "placeholderReason": null, "cropHint": "square" },
+        { "slot": "before-after-home.pair-01-before", "photoInventoryId": "photo-evidence-before-01", "placeholderFlag": false, "placeholderReason": null, "cropHint": "landscape-matched" },
+        { "slot": "before-after-home.pair-01-after", "photoInventoryId": "photo-evidence-after-01", "placeholderFlag": false, "placeholderReason": null, "cropHint": "landscape-matched" },
+        { "slot": "before-after-home.pair-02-before", "photoInventoryId": "photo-evidence-before-02", "placeholderFlag": false, "placeholderReason": null, "cropHint": "landscape-matched" },
+        { "slot": "before-after-home.pair-02-after", "photoInventoryId": "photo-evidence-after-02", "placeholderFlag": false, "placeholderReason": null, "cropHint": "landscape-matched" }
+      ],
+      "pullQuotes": [
+        { "sourceTestimonialId": "t-01", "extractedText": "Called at 2am on a Sunday. Truck was in the driveway in forty minutes. Rileys is the reason we still have a kitchen floor.", "placementAfterSectionId": "testimonials-home", "rhetoricalSlot": "urgency-proof", "approvalState": "approved" },
+        { "sourceTestimonialId": "t-04", "extractedText": "Eighteen years and they still answer the phone themselves.", "placementAfterSectionId": "testimonials-home", "rhetoricalSlot": "tenure-reinforcement", "approvalState": "approved" }
+      ],
+      "eyebrowDeployments": [],
+      "faq": [
+        { "question": "Do you really answer 24/7?", "answerRef": "faq-24-7" },
+        { "question": "Is there a dispatch fee?", "answerRef": "faq-dispatch-fee" },
+        { "question": "How fast can you get here?", "answerRef": "faq-response-time" }
+      ],
+      "serviceDescriptions": [
+        { "serviceId": "svc-emergency", "copyVariant": "response-time-forward", "wordCountTarget": 60 },
+        { "serviceId": "svc-drain", "copyVariant": "response-time-forward", "wordCountTarget": 55 },
+        { "serviceId": "svc-water-heater", "copyVariant": "response-time-forward", "wordCountTarget": 55 },
+        { "serviceId": "svc-pipe-repair", "copyVariant": "response-time-forward", "wordCountTarget": 55 },
+        { "serviceId": "svc-repipe", "copyVariant": "response-time-forward", "wordCountTarget": 60 },
+        { "serviceId": "svc-backflow", "copyVariant": "response-time-forward", "wordCountTarget": 55 }
+      ],
+      "displayMoment": { "elementType": "statRow-numeral", "elementId": "stat-response", "targetDesktopPx": 140, "targetMobilePx": 84 },
+      "scaleContrast": "high"
+    },
+    {
+      "path": "/about",
+      "canonicalUrl": "https://rileys247plumbing.example/about",
+      "pageKey": "about",
+      "voicesInUse": ["saturday-morning", "closing-table"],
+      "layoutSequence": ["hero", "aboutStory", "trustSection", "contactForm", "footerSection"],
+      "headingHierarchy": {
+        "h1": "Eighteen years on call",
+        "h2Sequence": [
+          { "id": "h2-about-story", "copy": "Who we are" },
+          { "id": "h2-about-trust", "copy": "Licensed and insured" }
+        ]
+      },
+      "italicSelections": [],
+      "sections": [
+        {
+          "type": "hero",
+          "id": "hero-about",
+          "heroMode": "plate-offset",
+          "heroGlassVariant": "none",
+          "heroLayout": "layout-c-70-30",
+          "headlineCopy": "Eighteen years on call",
+          "subheadlineCopy": "Master plumbers, dispatchers, and a truck in every zip code.",
+          "primaryCTA": { "label": "Call (555) 247-0247", "action": "tel:5552470247", "role": "primary-hero-cta" },
+          "heroBackgroundPhotoId": null,
+          "heroPlatePhotoId": "photo-owner-portrait-01",
+          "voiceZoneAssignments": {
+            "hero-eyebrow": "saturday-morning",
+            "hero-headline": "closing-table",
+            "hero-subheadline": "saturday-morning",
+            "hero-primary-cta": "closing-table"
+          }
+        },
+        {
+          "type": "aboutStory",
+          "id": "about-story",
+          "layout": "layout-a-offset-column",
+          "narrativeBlocks": [
+            { "id": "ab-01", "roleClass": "role-body-paragraph" },
+            { "id": "ab-02", "roleClass": "role-body-paragraph" }
+          ],
+          "featurePhotoId": "photo-environmental-01",
+          "voiceZoneAssignments": {
+            "about-page-heading": "closing-table",
+            "about-page-body": "saturday-morning"
+          },
+          "tier1CompositionalHook": "none"
+        },
+        { "type": "trustSection", "id": "trust-about" },
+        { "type": "contactForm", "id": "contact-about" },
+        { "type": "footerSection", "id": "footer-about" }
+      ],
+      "photoAssignments": [
+        { "slot": "hero-about.heroPlate", "photoInventoryId": "photo-owner-portrait-01", "placeholderFlag": false, "placeholderReason": null, "cropHint": "portrait-head-shoulders" },
+        { "slot": "about-story.featurePhoto", "photoInventoryId": "photo-environmental-01", "placeholderFlag": false, "placeholderReason": null, "cropHint": "landscape-crew" }
+      ],
+      "pullQuotes": [],
+      "eyebrowDeployments": [],
+      "faq": [],
+      "serviceDescriptions": [],
+      "displayMoment": null,
+      "scaleContrast": "medium"
+    },
+    {
+      "path": "/contact",
+      "canonicalUrl": "https://rileys247plumbing.example/contact",
+      "pageKey": "contact",
+      "voicesInUse": ["saturday-morning", "closing-table"],
+      "layoutSequence": ["hero", "contactForm", "trustSection", "footerSection"],
+      "headingHierarchy": {
+        "h1": "Call now — we're dispatched",
+        "h2Sequence": [
+          { "id": "h2-contact-trust", "copy": "Licensed and insured" }
+        ]
+      },
+      "italicSelections": [],
+      "sections": [
+        {
+          "type": "hero",
+          "id": "hero-contact",
+          "heroMode": "glass-single-mesh",
+          "heroGlassVariant": "narrow",
+          "heroLayout": "layout-c-70-30",
+          "headlineCopy": "Call now — we're dispatched",
+          "subheadlineCopy": "Or text and we'll confirm ETA within minutes.",
+          "primaryCTA": { "label": "Call (555) 247-0247", "action": "tel:5552470247", "role": "primary-hero-cta" },
+          "secondaryCTA": { "label": "Text dispatch", "action": "sms:5552470247" },
+          "heroBackgroundPhotoId": "photo-hero-bg-02",
+          "voiceZoneAssignments": {
+            "hero-eyebrow": "saturday-morning",
+            "hero-headline": "closing-table",
+            "hero-subheadline": "saturday-morning",
+            "hero-primary-cta": "closing-table"
+          }
+        },
+        { "type": "contactForm", "id": "contact-form-main" },
+        { "type": "trustSection", "id": "trust-contact" },
+        { "type": "footerSection", "id": "footer-contact" }
+      ],
+      "photoAssignments": [
+        { "slot": "hero-contact.heroBackground", "photoInventoryId": "photo-hero-bg-02", "placeholderFlag": false, "placeholderReason": null, "cropHint": "landscape-wide" }
+      ],
+      "pullQuotes": [],
+      "eyebrowDeployments": [],
+      "faq": [],
+      "serviceDescriptions": [],
+      "displayMoment": null,
+      "scaleContrast": "medium"
+    }
+  ]
+}
