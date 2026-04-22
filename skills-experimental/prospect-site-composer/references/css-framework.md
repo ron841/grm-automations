@@ -61,7 +61,7 @@ CONFIG.fonts = {
   // job is to get out of the way; persona variety lives in the display +
   // data pairing. Candidate 1 only is loaded; Phase 4's conflict-pair walk
   // re-emits a different persona-ish entry if Candidate 1 triggers a named
-  // conflict (see typography-patterns.md Named conflict pairs section).
+  // conflict (see typography.md Named conflict pairs section).
   "quiet-confidence": {
     display: "Source Serif 4",
     displayFallback: "Georgia, 'Times New Roman', serif",
@@ -110,11 +110,11 @@ CONFIG.fonts = {
 }
 ```
 
-**When to change these:** after running a real calibration build under a specific persona and deciding the Candidate 1 font does not match the visual result. Each persona's entry can accept a Candidate 2 swap (see typography-patterns.md persona tables for the full candidate list per voice per persona). One-line change.
+**When to change these:** after running a real calibration build under a specific persona and deciding the Candidate 1 font does not match the visual result. Each persona's entry can accept a Candidate 2 swap (see typography.md persona tables for the full candidate list per voice per persona). One-line change.
 
-**Phase 4's conflict-pair walk:** if a persona's Candidate 1 display and Candidate 1 body trigger a named conflict (see typography-patterns.md Named conflict pairs), Phase 4 walks to the appropriate Candidate 2 font for the affected voice slot and re-emits a custom `googleFontsPath` for that build. The five entries above are the default triples.
+**Phase 4's conflict-pair walk:** if a persona's Candidate 1 display and Candidate 1 body trigger a named conflict (see typography.md Named conflict pairs), Phase 4 walks to the appropriate Candidate 2 font for the affected voice slot and re-emits a custom `googleFontsPath` for that build. The five entries above are the default triples.
 
-**Full persona reference:** `typography-patterns.md` defines the persona-conditional font selection logic, weight ranges per voice, italic deployment rules, and pull-quote detection heuristic. This block is the machine-readable config derived from those tables.
+**Full persona reference:** `typography.md` defines the persona-conditional font selection logic, weight ranges per voice, italic deployment rules, and pull-quote detection heuristic. This block is the machine-readable config derived from those tables.
 
 ### Tier section spacing multipliers
 
