@@ -42,7 +42,7 @@ The five personas below are not exhaustive. They are the five that map cleanly o
 - No starbursts, no promo bar color backgrounds, no exclamation marks anywhere on the page.
 - No stat cards with trophy icons or award icons. Numbers speak without decoration.
 - No testimonials that begin with "Amazing!" or "The best!" — if the captured testimonials are all like that, filter to the quieter ones even if there are fewer.
-- The signature micro-interaction for Quiet confidence is the Tier 1 italic-color-shift, compositional only. Tier 2 motion defaults to empty — restraint is the signature. If the Phase 4 tree produces a Tier 2 entry, it does so with rationale recorded on signatureMicroInteractionReason.
+The signature micro-interaction for Quiet confidence is the Tier 1 italic-color-shift, compositional only. Tier 2 motion defaults to empty — restraint is the signature. If the Phase 4 tree produces a Tier 2 entry, it does so with rationale recorded on signatureMicroInteractionReason.
 
 **Opening paragraph examples (the hero glass card subhead):**
 
@@ -65,7 +65,7 @@ Both examples: short sentences, specific facts, no adjectives of self-praise, no
 - Before/after galleries are the most important section on the page. They get the best photography budget, the most generous layout, and the most specific captions ("24-FT CUSTOM SHOTCRETE / TRAVERTINE DECK / DUNNELLON, NOV 2025").
 - Italic signature word is a quality adjective at a specific moment — "hand *poured*," "custom *cut*," "fully *tiled*." The italic carries craft, not emotion.
 - Layout D (full-bleed) almost always lands on this build if a qualifying photo exists. The full-bleed moment is the page's emotional peak.
-- Compositional: watermark-numeral-offset is the persona's Tier 1 signature — let numerals earn their space. Motion: underline-bloom on inline body links as the Tier 2 default. shimmer-hero-cta is reserved; Phase 4 may emit it with explicit override rationale.
+Compositional: watermark-numeral-offset is the persona's Tier 1 signature — let numerals earn their space. Motion: underline-bloom on inline body links as the Tier 2 default. shimmer-hero-cta is reserved; Phase 4 may emit it with explicit override rationale.
 
 **Don't.**
 
@@ -127,7 +127,7 @@ Both examples: family names are present, specific dates anchor the tenure, the p
 - Photography leans into trucks (branded, visible, in-motion), equipment on scene, and crews-in-motion. Environmental portraits show people working in active response, not posed. Before/after evidence is powerful here when the "before" is a genuine disaster scene.
 - Stats lean into response metrics: "Average dispatch time: 34 minutes," "Crews on call: 7 days a week," "Fully stocked trucks." Tenure stats are secondary.
 - Italic signature word is urgency-coded: "dispatched *fast*," "on site *within the hour*," "answering *around the clock*." The italic carries reassurance.
-- Compositional: stat-row-ledger is the persona's Tier 1 signature — response time and review count made legible at a glance. Motion: eyebrow-reveal as the Tier 2 default, but accelerated to 250ms (not the 400ms default) to match urgency pacing.
+Compositional: stat-row-ledger is the persona's Tier 1 signature — response time and review count made legible at a glance. Motion: eyebrow-reveal as the Tier 2 default, but accelerated to 250ms (not the 400ms default) to match urgency pacing.
 - Layout C (70/30 split) often lands on a response-time callout section: 70% column with "What happens when you call" explanation, 30% sidebar with a response-metrics fact list.
 
 **Don't.**
@@ -184,6 +184,8 @@ A persona is the key; the arc is the melody. Every page hits three moments in or
 ### Opening note (first 5 seconds, hero region)
 
 The hero is the opening note. Hero mode, glass card variant, and background treatment come from `hero-patterns.md`. The emotional persona adds one layer on top: the *feeling* the hero should produce, which governs a handful of decisions the structural rules leave open.
+
+### Hero calibration by persona
 
 | Persona | Tier 1 hero treatment | Tier 2 entry animation |
 |---|---|---|
