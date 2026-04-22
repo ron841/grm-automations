@@ -610,7 +610,7 @@ All eight Checkpoint 1 open questions resolved. One Stage II (d) merge flag carr
 
 ---
 
-## §16 Fixture intent-spec shape
+## §14 Fixture intent-spec shape
 
 Stage II.5 fixtures encode editorial intent for Phase 4-new
 validation, not emission structure. Six fields diverge from
