@@ -1,0 +1,168 @@
+{
+  "$schemaVersion": "1.0",
+  "$schema": "profile",
+  "businessName": "Greenridge Solar",
+  "slug": "greenridge-solar",
+  "sourceUrl": "https://greenridgesolar.co/",
+  "phone": "(352) 812-0944",
+  "phoneDigitsOnly": "3528120944",
+  "email": "hello@greenridgesolar.co",
+  "address": {
+    "street": "4807 SE 58th Avenue",
+    "city": "Ocala",
+    "state": "FL",
+    "zip": "34480",
+    "country": "United States"
+  },
+  "hours": {
+    "mondayToFriday": "9:00 AM - 5:00 PM",
+    "saturday": "Closed",
+    "sunday": "Closed"
+  },
+  "yearsInBusiness": {
+    "exact": null,
+    "minimumEvidenced": 2,
+    "evidence": "Oldest Google review dated 2 years ago; Florida Secretary of State registration not surfaced; About page undated."
+  },
+  "licenseNumber": "EC13012345",
+  "services": [
+    {
+      "name": "Residential Solar PV Installation",
+      "category": "residential",
+      "description": "Residential photovoltaic system design, permitting, and installation across Marion and Alachua counties. Load calculations and shade analysis performed in-house; systems sized to household consumption with optional battery-ready wiring. NABCEP-certified PV installer on every design."
+    },
+    {
+      "name": "Battery Backup Integration",
+      "category": "residential",
+      "description": "Tesla Powerwall, Enphase IQ Battery, and Generac PWRcell installations for new and existing solar systems. Whole-home backup or critical-loads panel configurations supported. Integration with utility net metering and AHJ interconnection handled end-to-end."
+    },
+    {
+      "name": "Bi-directional EV Charger Installation",
+      "category": "custom",
+      "description": "Level 2 and bi-directional EV charger installations for Tesla, Ford, and GM vehicles. Coordinates load calculations with household PV and battery systems. Vehicle-to-home and vehicle-to-grid configurations available where utility interconnection agreements permit."
+    }
+  ],
+  "serviceAreas": ["Ocala", "Belleview", "Dunnellon", "Gainesville"],
+  "serviceAreaRegion": "Marion and Alachua counties, Florida",
+  "featuredPromotion": null,
+  "guarantees": [
+    {
+      "type": "NABCEP-certified installer on every design",
+      "source": "site header and About page"
+    },
+    {
+      "type": "25-year panel manufacturer warranty passthrough; 10-year installation workmanship",
+      "source": "services page"
+    }
+  ],
+  "googleBusinessProfile": {
+    "placeId": "ChIJgreenridgeSolar_ocala_placeId",
+    "rating": 5.0,
+    "reviewCount": 6,
+    "businessStatus": "OPERATIONAL"
+  },
+  "testimonials": [
+    {
+      "name": "Evan R.",
+      "rating": 5,
+      "source": "Google",
+      "when": "1 year ago",
+      "quoteVerbatim": "Greenridge designed a 9.6kW system sized to our actual consumption, not a number that maxed out our roof. Permit approved first try. They worked out the interconnection with Duke Energy without a single delay on our end.",
+      "quoteShort": "9.6kW sized to actual consumption. Permit approved first try. Duke interconnection without a delay on our end."
+    },
+    {
+      "name": "Priya M.",
+      "rating": 5,
+      "source": "Google",
+      "when": "8 months ago",
+      "quoteVerbatim": "Battery backup addition to an existing system another company installed. Greenridge redid the load calculation, caught a subpanel issue the first installer missed, and fixed it before the Powerwall went in. Real engineering, not just marketing.",
+      "quoteShort": "Battery backup addition. Caught a subpanel issue the first installer missed and fixed it before the Powerwall went in."
+    }
+  ],
+  "brandPalette": {
+    "primary": "#059669",
+    "primaryName": "Greenridge Emerald",
+    "darkPrimary": "#02534A",
+    "darkPrimaryName": "Deep Pine",
+    "accent": "#0284C7",
+    "accentName": "Sky Blue",
+    "source": "node-vibrant against logo.svg (rendered 512x512, single-color wordmark); Vibrant population 18 flags low-confidence palette — Phase 4 approval gate should surface for Ron to confirm.",
+    "vibrantPopulation": 18,
+    "note": "Single-color tech logo; palette derivation has limited signal. darkPrimary derived via deriveDarkPrimary() from primary; accent inferred from wordmark outline fill."
+  },
+  "photos": {
+    "google": {
+      "count": 1,
+      "attributionString": "Photos: Google Maps Platform"
+    },
+    "site": {
+      "count": 3,
+      "rejected": 0
+    },
+    "instagram": {
+      "count": 0,
+      "note": "No Instagram handle on site; Google profile does not surface one."
+    },
+    "unsplash": {
+      "count": 0
+    }
+  },
+  "photoInventory": [
+    {
+      "id": "g01",
+      "file": "assets/photos/google/g01.jpg",
+      "widthPx": 3024,
+      "heightPx": 2016,
+      "dim": "3024x2016",
+      "longEdgePx": 3024,
+      "orient": "landscape",
+      "content": "jobsite",
+      "note": "Solar array installed on residential rooftop, midday wide shot — captured from street by installer, not professional.",
+      "disqualifiers": [],
+      "score": 65,
+      "eligibleRoles": ["heroBackground", "gallery"]
+    },
+    {
+      "id": "s01",
+      "file": "assets/photos/site/s01.jpg",
+      "widthPx": 2016,
+      "heightPx": 3024,
+      "dim": "2016x3024",
+      "longEdgePx": 3024,
+      "orient": "portrait",
+      "content": "detail_panel",
+      "note": "Close-up of PV panel corner with brand stamp visible, portrait orientation.",
+      "disqualifiers": [],
+      "score": 55,
+      "eligibleRoles": ["detailShot"]
+    },
+    {
+      "id": "s02",
+      "file": "assets/photos/site/s02.jpg",
+      "widthPx": 3024,
+      "heightPx": 2016,
+      "dim": "3024x2016",
+      "longEdgePx": 3024,
+      "orient": "landscape",
+      "content": "detail_inverter",
+      "note": "Inverter installation detail, conduit visible, technical documentation quality.",
+      "disqualifiers": [],
+      "score": 58,
+      "eligibleRoles": ["detailShot"]
+    },
+    {
+      "id": "s03",
+      "file": "assets/photos/site/s03.jpg",
+      "widthPx": 2550,
+      "heightPx": 3300,
+      "dim": "2550x3300",
+      "longEdgePx": 3300,
+      "orient": "portrait",
+      "content": "credential",
+      "note": "Florida EC13012345 electrical contractor license and NABCEP certification card, portrait composite scan.",
+      "disqualifiers": [],
+      "score": 48,
+      "eligibleRoles": ["credential"]
+    }
+  ]
+}
