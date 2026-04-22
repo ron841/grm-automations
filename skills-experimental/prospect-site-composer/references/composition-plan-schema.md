@@ -346,7 +346,90 @@ Per Design Checkpoint 1 q2 — role-class framing. The four-axis parameterizatio
 
 ### §5.3 Other section types
 
-Stubs deferred per Design Checkpoint 1 q6. Each section type's contract fields to be specified after Checkpoint 1 closes. Priority order for follow-up authoring: hero, servicesGrid, testimonialsSection, aboutStory, remainder in any order. Authority in each case is `section-patterns.md` + `hero-patterns.md` + Design's `typography-patterns.md`. Deferred work logged to composer-backlog.md.
+Four priority contracts authored below per Design Checkpoint 1 q6 priority order. Remaining section types (`faqSection`, `beforeAfter`, `anchorStrip`, `trustSection`, `contactForm`, `footerSection`) stay stubbed — authored when Phase 4-new implementation surfaces concrete need. Deferred work logged to `composer-backlog.md`.
+
+### §5.3.1 `hero` contract fields
+
+Authority: `hero-patterns.md` (mode tree + glass variant) + `profile-schema.md` §11 Luna migration table.
+
+| Field | Type | Required | Purpose |
+|---|---|---|---|
+| `type` | const `"hero"` | yes | Type discriminator. |
+| `id` | string | yes | Section ID. |
+| `heroMode` | enum (`glass-single-mesh` · `glass-crossfade` · `parallax` · `full-bleed-photo` · `plate-offset` · `video-augmented`) | yes | From `hero-patterns.md` decision tree against `profile.photoInventory` + tier. |
+| `heroGlassVariant` | enum (`none` · `narrow` · `wide`) | yes | `none` unless `heroMode` is a glass variant. `wide` requires Premium tier + parallax OR 5+ landscape heroBackground ≥1600px. Check: glass variant value without glass mode is schema error. |
+| `heroLayout` | enum (`layout-a` · `layout-b` · `layout-c-70-30` · `layout-c-50-50` · `layout-d-full-bleed`) | yes | Per-section-type allowed-layout enum subset. Layout D requires heroPlate-eligible photo present. |
+| `headlineCopy` | string | yes | Hero H1. References `profile.copy` only (no Phase 4 copy authorship). |
+| `eyebrowCopy` | string | optional | Present only if page carries sectionOpener pattern OR persona default includes eyebrow-reveal. |
+| `subheadlineCopy` | string | optional | Present for Layout C variants and full-bleed-photo. |
+| `primaryCTA` | { label, action, role } | yes | `role: "primary-hero-cta"` — the one button eligible for `shimmer-hero-cta` Tier 2. |
+| `secondaryCTA` | { label, action } | optional | Never shimmer-eligible. |
+| `heroBackgroundPhotoId` | string (ref `profile.photoInventory`) | conditional | Required for `glass-single-mesh`, `glass-crossfade`, `parallax`, `full-bleed-photo`. Must be heroBackground-eligible. |
+| `heroPlatePhotoId` | string (ref `profile.photoInventory`) | conditional | Required for `plate-offset` and `layout-d-full-bleed`. Must be heroPlate-eligible AND distinct from `heroBackgroundPhotoId`. |
+| `videoAugmentation` | { loopPhotoIds[], posterPhotoId } | optional | Present only if `heroMode` is `video-augmented`. |
+| `voiceZoneAssignments` | object | yes | Required keys: `hero-eyebrow`, `hero-headline`, `hero-subheadline`, `hero-primary-cta`. Each resolves to a `voiceMap.md` zone. Persona bias applies (rescue-ready shifts `hero-subheadline` to saturday-morning). |
+| `tier1CompositionalHook` | enum-subset (`italic-color-shift` · `watermark-numeral-offset` · `hero-glass-blur` · `none`) | optional | If present, records that the Tier 1 signature renders inside this hero; null means Tier 1 renders elsewhere on the page. |
+
+**Per-section editorial rules:** hero always first section in `page.sections` array. No sectionOpener precedes hero. Hero carries its own eyebrow when present, not a separate sectionOpener.
+
+### §5.3.2 `servicesGrid` contract fields
+
+Authority: `section-patterns.md` + `typography-patterns.md` + `profile-schema.md` §11 evidenceShot-eligibility prose.
+
+| Field | Type | Required | Purpose |
+|---|---|---|---|
+| `type` | const `"servicesGrid"` | yes | Type discriminator. |
+| `id` | string | yes | Section ID. |
+| `layout` | enum (`layout-a-grid` · `layout-b-asymmetric` · `layout-c-category-grouped`) | yes | Per-section allowed-layout. Layout C required when multi-vertical (≥ 2 service categories, ≥ 6 total services). Layout B requires evidenceShot pairs available. |
+| `cards` | array of `servicesGridCard` | yes | One entry per service from `profile.services`. Minimum 3, maximum from profile enum. |
+| `cards[].serviceId` | string (ref `profile.services`) | yes | Binds card to service entry. |
+| `cards[].photoId` | string (ref `profile.photoInventory`) | conditional | Required unless `placeholderFlag` true. Must be evidenceShot-eligible AND content-match the service per `profile-schema.md` §11. |
+| `cards[].placeholderFlag` | boolean | yes | `true` when no content-matched evidenceShot photo is available. Surfaces at approval gate. Fallback-path-b behavior. |
+| `cards[].copyVariant` | enum (`benefit-first` · `technical` · `response-time-forward`) | yes | Selected per persona: neighborhood-steady/earned-pride → `benefit-first`; modern-specialist → `technical`; rescue-ready → `response-time-forward`; quiet-confidence → `benefit-first` default. |
+| `categoryGroupings` | array of { categoryId, label, cardIds[] } | conditional | Required for `layout-c-category-grouped`. |
+| `voiceZoneAssignments` | object | yes | Required keys: `services-grid-heading`, `services-card-headline`, `services-card-body`. No eyebrow — servicesGrid carries no sectionOpener eyebrow per Check 4. |
+| `sectionOpenerPrecedes` | boolean | yes | True if a sectionOpener section precedes this one in `page.sections`. Redundant with page.sections traversal but explicit for Check 2 proximity validation. |
+
+**Per-section editorial rules:** no eyebrow inside servicesGrid itself (Check 4). If an eyebrow is needed above the grid, it belongs to a preceding sectionOpener. Tier 1 signature never renders inside servicesGrid cards (too distributed to carry singular gesture); Tier 2 `underline-bloom` renders on inline links within card body copy if present.
+
+### §5.3.3 `testimonialsSection` contract fields
+
+Authority: `section-patterns.md` (avatar-only, Decision 4) + `typography-patterns.md` + `voiceMap.md`.
+
+| Field | Type | Required | Purpose |
+|---|---|---|---|
+| `type` | const `"testimonialsSection"` | yes | Type discriminator. |
+| `id` | string | yes | Section ID. |
+| `layout` | enum (`layout-a-card-row` · `layout-b-single-featured` · `layout-d-full-bleed-pullquote`) | yes | Layout B required when one testimonial is promoted to featured pullquote. Layout D reserved for Premium tier + earned-pride or quiet-confidence persona. |
+| `testimonials` | array of `testimonialEntry` | yes | Minimum 2, maximum 6 visible per section. |
+| `testimonials[].testimonialId` | string (ref `profile.testimonials`) | yes | Binds to profile entry. |
+| `testimonials[].avatarTreatment` | const `"initials-monogram"` | yes | Avatar-only per Design rule — no photo avatars. Rendered as initials in circular monogram. |
+| `testimonials[].roleClass` | enum (`role-body-paragraph` · `role-display-pullquote`) | yes | `role-display-pullquote` only for the featured testimonial in layout-b or layout-d; otherwise `role-body-paragraph`. |
+| `featuredTestimonialId` | string (ref `testimonials[].testimonialId`) | conditional | Required for `layout-b` and `layout-d`. Must also appear in `page.pullQuotes` array with cross-reference. |
+| `reviewCountCallout` | { count, rating, source } | optional | Emit when `profile.reviews.reviewCount` ≥ 100 — rescue-ready and earned-pride both surface this; quiet-confidence elides unless count > 500. |
+| `voiceZoneAssignments` | object | yes | Required keys: `testimonials-heading`, `testimonial-body`, `testimonial-attribution`. `testimonial-body` voice defaults to front-porch; persona bias may shift to saturday-morning (rescue-ready) or kitchen-table (modern-specialist). |
+| `eyebrowRoleClass` | const `"role-data-eyebrow"` | optional | Present only if a sectionOpener precedes this section. testimonialsSection does not carry its own eyebrow — Check 4 applies. |
+
+**Per-section editorial rules:** avatar-only is absolute — no photos in testimonial cards regardless of photoInventory availability. Featured testimonial coordinates with `page.pullQuotes[]` count limits (§4.5) — promoting one here consumes one of the page's pullquote budget.
+
+### §5.3.4 `aboutStory` contract fields
+
+Authority: `section-patterns.md` + `typography-patterns.md` + `voiceMap.md` (front-porch voice dominance per persona).
+
+| Field | Type | Required | Purpose |
+|---|---|---|---|
+| `type` | const `"aboutStory"` | yes | Type discriminator. Only appears on about page. |
+| `id` | string | yes | Section ID. |
+| `layout` | enum (`layout-a-offset-column` · `layout-b-centered-column` · `layout-d-full-bleed-photo-above`) | yes | Layout D when about page carries a hero-quality owner/family/environmental portrait; requires heroPlate or environmentalPortrait-eligible photo. |
+| `narrativeBlocks` | array of `narrativeBlock` | yes | Minimum 2 blocks, maximum 6. Each block is a paragraph or paragraph cluster with a single role-class treatment. |
+| `narrativeBlocks[].roleClass` | enum (`role-body-paragraph` · `role-display-pullquote` · `role-display-section`) | yes | `role-display-pullquote` used sparingly — at most one per aboutStory unless persona is earned-pride (up to two). |
+| `narrativeBlocks[].italicPlacements` | array of { phrase, class } | optional | `class` one of: `place`, `name`, `tenure`, `trade-term`. Persona bias: neighborhood-steady favors place + tenure; earned-pride favors name + trade-term; quiet-confidence favors tenure + trade-term; modern-specialist uses trade-term only; rescue-ready uses none (italic-color-shift is not its Tier 1). |
+| `featurePhotoId` | string (ref `profile.photoInventory`) | conditional | Required for `layout-a-offset-column` and `layout-d-full-bleed-photo-above`. ownerPortrait preferred; environmentalPortrait acceptable; family/multi-generation photo preferred for neighborhood-steady. |
+| `pullQuoteId` | string (ref `page.pullQuotes`) | optional | Present when a narrativeBlock has roleClass `role-display-pullquote`. Coordinates with §4.5 page pullquote budget. |
+| `voiceZoneAssignments` | object | yes | Required keys: `about-page-heading`, `about-page-body`, `about-page-attribution` (if pullquote present). `about-page-body` defaults front-porch for neighborhood-steady/earned-pride, kitchen-table for modern-specialist/quiet-confidence, saturday-morning for rescue-ready. |
+| `tier1CompositionalHook` | enum-subset (`italic-color-shift` · `watermark-numeral-offset` · `none`) | optional | Records Tier 1 signature presence inside aboutStory. Often where italic-color-shift renders for neighborhood-steady and quiet-confidence. |
+
+**Per-section editorial rules:** aboutStory carries persona's strongest voice expression — voice bias rules apply more aggressively here than in hero or servicesGrid. Italic placements are the primary italic surface in the generated site; Phase 5 should render them via `.role-italic-{class}` styling per `typography-patterns.md`. aboutStory never carries a sectionOpener eyebrow inside itself; an external sectionOpener may precede.
 
 ---
 
