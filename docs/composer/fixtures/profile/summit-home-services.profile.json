@@ -1,0 +1,542 @@
+{
+  "$schemaVersion": "1.0",
+  "$schema": "profile",
+  "businessName": "Summit Home Services",
+  "legalName": "Summit Home Services of Florida, Inc.",
+  "slug": "summit-home-services",
+  "sourceUrl": "https://summithomeservicesfl.com/",
+  "tagline": "Plumbing, electrical, HVAC — three trades, one contractor.",
+  "phone": "(352) 454-7210",
+  "phoneDigitsOnly": "3524547210",
+  "email": "service@summithomeservicesfl.com",
+  "address": {
+    "street": "2040 NE 16th Street",
+    "city": "Ocala",
+    "state": "FL",
+    "zip": "34470",
+    "country": "United States",
+    "googleMapsUrl": "https://www.google.com/maps/place/?cid=8273610492847103825"
+  },
+  "hours": {
+    "mondayToFriday": "7:00 AM - 6:00 PM",
+    "saturday": "8:00 AM - 2:00 PM",
+    "sunday": "Closed",
+    "sourceNote": "Regular counter hours; emergency HVAC dispatch line covers nights and weekends at surcharge."
+  },
+  "ownership": {
+    "structure": "corporation",
+    "owners": ["Greg Summit", "Marissa Summit"],
+    "ownerSource": "About page; Greg founded 2003, Marissa joined as VP of operations 2010."
+  },
+  "yearsInBusiness": {
+    "exact": 22,
+    "minimumEvidenced": 22,
+    "evidence": "Florida Secretary of State corporation registration 2003; CFC plumbing license issue date 2003-05; About page cites founding year."
+  },
+  "licenseNumber": "CFC1432891 (plumbing), EC13022145 (electrical), CAC1817634 (HVAC)",
+  "services": [
+    {
+      "name": "Panel Upgrades and Replacements",
+      "category": "residential",
+      "description": "200-amp and 400-amp residential panel upgrades, meter main replacements, and subpanel additions. Permit pulling and utility coordination handled in-house. Most single-panel upgrades complete in one day."
+    },
+    {
+      "name": "Lighting Installation",
+      "category": "residential",
+      "description": "Interior and exterior lighting — recessed cans, landscape lighting, fixture swaps, and smart-switch retrofits. Dimmer compatibility and wireless controls specified to match existing load calculations."
+    },
+    {
+      "name": "Generator Installation and Service",
+      "category": "residential",
+      "description": "Generac and Kohler whole-home generator installation, gas-line coordination, and ongoing service agreements. Transfer-switch selection and load-shedding configuration per household priority."
+    },
+    {
+      "name": "AC Maintenance and Tune-ups",
+      "category": "maintenance",
+      "description": "Seasonal maintenance agreements for residential HVAC systems — spring AC tune-up and fall heat check, with priority dispatch during peak-demand weeks. Filter replacements tracked per unit."
+    },
+    {
+      "name": "HVAC System Installation",
+      "category": "residential",
+      "description": "Full system replacements, heat-pump conversions, and duct modifications for homes under 4,000 square feet. Manual-J load calculations performed in-house before equipment sizing — no stock recommendations."
+    },
+    {
+      "name": "Emergency HVAC Service",
+      "category": "emergency",
+      "description": "Same-day and after-hours emergency HVAC response across Marion County during peak summer and winter weeks. Most residential emergency calls reach the home within two hours of dispatch."
+    },
+    {
+      "name": "Drain Cleaning and Repair",
+      "category": "residential",
+      "description": "Mechanical drain clearing, hydrojetting, and camera-inspection diagnosis for residential mainlines and branch drains. Root-intrusion spot repairs available without full-yard excavation."
+    },
+    {
+      "name": "Water Heater Service and Replacement",
+      "category": "residential",
+      "description": "Tank and tankless unit repair, replacement, and efficiency upgrades. Most residential water heater replacements complete in a single visit. A.O. Smith and Rinnai stocked on the trucks."
+    },
+    {
+      "name": "Full Re-pipe Service",
+      "category": "residential",
+      "description": "Whole-home re-pipe in PEX for homes with aging copper or polybutylene plumbing. Three to five day turnaround with water service restored nightly. Wall-opening and patching coordinated in-house."
+    }
+  ],
+  "serviceAreas": ["Ocala", "Belleview", "Summerfield", "The Villages", "Dunnellon", "Silver Springs Shores", "Marion Oaks"],
+  "serviceAreaRegion": "Central Florida — Marion County + neighboring Sumter and Lake county service on request.",
+  "featuredPromotion": {
+    "text": "$49 diagnostic call across all three trades — applied to the repair if you proceed.",
+    "price": "$49",
+    "type": "fixed-price"
+  },
+  "guarantees": [
+    {
+      "type": "licensed in plumbing, electrical, and HVAC — three trades under one contractor",
+      "source": "home page hero + About page + credential display at counter"
+    },
+    {
+      "type": "one-year workmanship guarantee across all trades",
+      "source": "services page terms"
+    },
+    {
+      "type": "fully insured — general liability and workers comp",
+      "source": "site footer"
+    }
+  ],
+  "partners": ["Generac", "Kohler", "A.O. Smith", "Rinnai", "Carrier", "Pentair"],
+  "googleBusinessProfile": {
+    "placeId": "ChIJsummitHomeServices_ocala_placeId",
+    "rating": 4.8,
+    "reviewCount": 156,
+    "businessStatus": "OPERATIONAL"
+  },
+  "testimonials": [
+    {
+      "name": "Deborah R.",
+      "rating": 5,
+      "source": "Google",
+      "when": "3 months ago",
+      "quoteVerbatim": "Used Summit for a panel upgrade last spring. Used them again in the fall when the AC died. Same company, same quality, one phone number. Worth every dollar.",
+      "quoteShort": "Panel upgrade in spring, AC in fall. Same company, same quality, one phone number."
+    },
+    {
+      "name": "Marcus H.",
+      "rating": 5,
+      "source": "Google",
+      "when": "8 months ago",
+      "quoteVerbatim": "Generator install. Greg himself did the walkthrough. Gas coordination, transfer switch, load-shedding config all handled. First outage a week later proved it out.",
+      "quoteShort": "Generator install. Walkthrough, gas coordination, transfer switch, load-shedding. First outage proved it out."
+    },
+    {
+      "name": "Angela W.",
+      "rating": 4,
+      "source": "Google",
+      "when": "5 months ago",
+      "quoteVerbatim": "Water heater replacement. In and out in three hours. One small nick on the wall paint that they offered to patch; I declined. Honest work.",
+      "quoteShort": "Water heater replacement in three hours. Offered to patch one small wall nick. Honest work."
+    },
+    {
+      "name": "Thomas P.",
+      "rating": 5,
+      "source": "Google",
+      "when": "1 year ago",
+      "quoteVerbatim": "Full re-pipe in PEX. Five days, water back on each night. Summit coordinated the permit, the drywall patching, and the fixture reinstall. Single point of contact throughout.",
+      "quoteShort": "PEX re-pipe, five days. Summit coordinated permit, drywall, fixtures. Single point of contact."
+    },
+    {
+      "name": "Linda K.",
+      "rating": 5,
+      "source": "Google",
+      "when": "2 months ago",
+      "quoteVerbatim": "HVAC annual tune-up in June, emergency call in August when the unit iced over, full system replacement in September. Same tech every visit. That continuity matters.",
+      "quoteShort": "Tune-up in June, emergency in August, replacement in September. Same tech every visit."
+    },
+    {
+      "name": "Robert D.",
+      "rating": 5,
+      "source": "Google",
+      "when": "4 months ago",
+      "quoteVerbatim": "Lighting retrofit — kitchen, office, two bathrooms. Dimmer compatibility tested on each circuit before the final fixtures went in. No post-install surprises.",
+      "quoteShort": "Lighting retrofit, four rooms. Dimmers tested per circuit. No post-install surprises."
+    },
+    {
+      "name": "Maria C.",
+      "rating": 5,
+      "source": "Google",
+      "when": "6 months ago",
+      "quoteVerbatim": "Called Summit for drain cleaning. They diagnosed root intrusion with the camera, did a spot repair rather than recommending a full mainline replacement. Saved me six thousand dollars.",
+      "quoteShort": "Root intrusion found with camera, spot repair not full mainline replacement. Saved me six thousand dollars."
+    },
+    {
+      "name": "Kevin T.",
+      "rating": 5,
+      "source": "Google",
+      "when": "9 months ago",
+      "quoteVerbatim": "Emergency HVAC call on the hottest day of the year. Summit was there in ninety minutes. Capacitor replacement, system back online. Fair price for the urgency.",
+      "quoteShort": "Emergency HVAC on the hottest day. On-site in 90 minutes. Fair price for the urgency."
+    },
+    {
+      "name": "Jennifer L.",
+      "rating": 5,
+      "source": "Google",
+      "when": "1 year ago",
+      "quoteVerbatim": "Manual-J load calc before they specified the new AC. Summit explained why the previous contractor's recommendation was one ton oversized. Right-sized system, lower bills.",
+      "quoteShort": "Manual-J load calc before sizing. Previous contractor was a ton oversized. Right-sized, lower bills."
+    },
+    {
+      "name": "David W.",
+      "rating": 5,
+      "source": "Google",
+      "when": "2 months ago",
+      "quoteVerbatim": "Panel upgrade from 150 to 200 amps. Permit, utility coordination, and inspection all handled in one business day. Texts confirming each stage as it finished.",
+      "quoteShort": "150-to-200 amp panel upgrade. Permit, utility, inspection in one business day. Text updates per stage."
+    },
+    {
+      "name": "Rachel M.",
+      "rating": 5,
+      "source": "Google",
+      "when": "7 months ago",
+      "quoteVerbatim": "Kohler whole-home generator install. Summit's configuration walked through priority-circuit load-shedding for our specific household. Worked flawlessly in October outage.",
+      "quoteShort": "Kohler generator install with priority-circuit load-shedding configured per household. Worked in October outage."
+    },
+    {
+      "name": "Steven J.",
+      "rating": 4,
+      "source": "Google",
+      "when": "3 months ago",
+      "quoteVerbatim": "Tankless water heater install. Original quote did not include gas-line upsize that turned out to be required. Summit absorbed half the overage. Honest negotiation.",
+      "quoteShort": "Tankless install. Gas-line upsize not in quote. Summit absorbed half the overage."
+    },
+    {
+      "name": "Christina B.",
+      "rating": 5,
+      "source": "Google",
+      "when": "10 months ago",
+      "quoteVerbatim": "Our vacation rental had three failing systems at once — AC, water heater, and a tripped breaker. Summit sent three specialists one morning and cleared everything before check-in.",
+      "quoteShort": "Three failing systems. Three specialists one morning. All cleared before guest check-in."
+    },
+    {
+      "name": "Gregory N.",
+      "rating": 5,
+      "source": "Google",
+      "when": "11 months ago",
+      "quoteVerbatim": "Summit has maintained our AC for eight years. Twice when the compressor failed they honored replacement rather than repair because the unit was close to end-of-life and repair made no sense.",
+      "quoteShort": "Eight years of AC maintenance. Twice honored replacement over repair when repair made no sense."
+    },
+    {
+      "name": "Natalie F.",
+      "rating": 5,
+      "source": "Google",
+      "when": "5 months ago",
+      "quoteVerbatim": "Smart-switch retrofit across the house — ten rooms, two dimmer brands, one hub. Summit's electrician stayed until the app paired every single one. Thorough work.",
+      "quoteShort": "Smart-switch retrofit across ten rooms. Electrician stayed until the app paired every one."
+    },
+    {
+      "name": "Peter O.",
+      "rating": 5,
+      "source": "Google",
+      "when": "1 year ago",
+      "quoteVerbatim": "HVAC replacement plus duct rework for airflow. Summit's Manual-D duct calc caught a return-air sizing issue that would have kept the system underperforming. Fixed before install.",
+      "quoteShort": "HVAC plus duct rework. Manual-D caught a return-air sizing issue. Fixed before install."
+    },
+    {
+      "name": "Samuel K.",
+      "rating": 4,
+      "source": "Google",
+      "when": "4 months ago",
+      "quoteVerbatim": "Leak detection in a slab. Took two visits to isolate but Summit only charged one diagnostic call. Repair handled cleanly through a small slab cut.",
+      "quoteShort": "Slab leak detection took two visits. Charged one diagnostic. Repair through a small slab cut."
+    },
+    {
+      "name": "Beth V.",
+      "rating": 5,
+      "source": "Google",
+      "when": "2 years ago",
+      "quoteVerbatim": "We've used Summit for every trade over the last six years. Panel, HVAC, plumbing, generator. The billing is consistent, the work is consistent, the crew is consistent.",
+      "quoteShort": "Six years, every trade. Billing consistent, work consistent, crew consistent."
+    }
+  ],
+  "brandPalette": {
+    "primary": "#0369A1",
+    "primaryName": "Summit Blue",
+    "darkPrimary": "#0F1B2D",
+    "darkPrimaryName": "Navy Depth",
+    "accent": "#F97316",
+    "accentName": "Trade Orange",
+    "neutral": "#64748B",
+    "neutralName": "Summit Slate",
+    "source": "node-vibrant against logo.png (2000x2000 PNG from site CDN); DarkVibrant swatch populated at #0F1B2D, overrides derived dark-primary per Rule E6.",
+    "vibrantPopulation": 105,
+    "note": "Four-color brand system: primary blue + accent orange trade-tool color + slate neutral + DarkVibrant navy."
+  },
+  "photos": {
+    "google": {
+      "count": 8,
+      "attributionString": "Photos: Google Maps Platform"
+    },
+    "site": {
+      "count": 10,
+      "rejected": 0
+    },
+    "instagram": {
+      "count": 0,
+      "note": "Instagram handle listed but inactive since 2022; photos not pulled."
+    },
+    "unsplash": {
+      "count": 0
+    }
+  },
+  "photoInventory": [
+    {
+      "id": "g01",
+      "file": "assets/photos/google/g01.jpg",
+      "widthPx": 4000,
+      "heightPx": 3000,
+      "dim": "4000x3000",
+      "longEdgePx": 4000,
+      "orient": "landscape",
+      "content": "jobsite",
+      "note": "Summit electrical van at residential panel-upgrade job, branded and clean.",
+      "disqualifiers": [],
+      "score": 80,
+      "eligibleRoles": ["heroBackground", "heroPlate", "gallery"]
+    },
+    {
+      "id": "g02",
+      "file": "assets/photos/google/g02.jpg",
+      "widthPx": 3024,
+      "heightPx": 2016,
+      "dim": "3024x2016",
+      "longEdgePx": 3024,
+      "orient": "landscape",
+      "content": "jobsite",
+      "note": "HVAC system outdoor condenser installation, residential driveway staging.",
+      "disqualifiers": [],
+      "score": 74,
+      "eligibleRoles": ["heroBackground", "gallery"]
+    },
+    {
+      "id": "g03",
+      "file": "assets/photos/google/g03.jpg",
+      "widthPx": 3024,
+      "heightPx": 2016,
+      "dim": "3024x2016",
+      "longEdgePx": 3024,
+      "orient": "landscape",
+      "content": "jobsite",
+      "note": "Plumbing repair scene, truck and equipment staged outside residential garage.",
+      "disqualifiers": [],
+      "score": 72,
+      "eligibleRoles": ["heroBackground", "gallery"]
+    },
+    {
+      "id": "g04",
+      "file": "assets/photos/google/g04.jpg",
+      "widthPx": 4000,
+      "heightPx": 3000,
+      "dim": "4000x3000",
+      "longEdgePx": 4000,
+      "orient": "landscape",
+      "content": "jobsite",
+      "note": "Whole-home generator installation, transfer switch and gas line visible.",
+      "disqualifiers": [],
+      "score": 78,
+      "eligibleRoles": ["heroBackground", "heroPlate", "gallery"]
+    },
+    {
+      "id": "g05",
+      "file": "assets/photos/google/g05.jpg",
+      "widthPx": 3024,
+      "heightPx": 2016,
+      "dim": "3024x2016",
+      "longEdgePx": 3024,
+      "orient": "landscape",
+      "content": "jobsite",
+      "note": "Dual-HVAC-unit rooftop install on commercial single-story, wide view.",
+      "disqualifiers": [],
+      "score": 70,
+      "eligibleRoles": ["heroBackground", "gallery"]
+    },
+    {
+      "id": "g06",
+      "file": "assets/photos/google/g06.jpg",
+      "widthPx": 3024,
+      "heightPx": 2016,
+      "dim": "3024x2016",
+      "longEdgePx": 3024,
+      "orient": "landscape",
+      "content": "team",
+      "note": "Plumber mid-work on water heater install, in branded uniform.",
+      "disqualifiers": [],
+      "score": 66,
+      "eligibleRoles": ["heroBackground", "environmentalPortrait", "gallery"]
+    },
+    {
+      "id": "g07",
+      "file": "assets/photos/google/g07.jpg",
+      "widthPx": 3024,
+      "heightPx": 2016,
+      "dim": "3024x2016",
+      "longEdgePx": 3024,
+      "orient": "landscape",
+      "content": "team",
+      "note": "Full Summit team posed in front of shop, all three trade uniforms visible.",
+      "disqualifiers": [],
+      "score": 72,
+      "eligibleRoles": ["heroBackground", "environmentalPortrait", "gallery"]
+    },
+    {
+      "id": "g08",
+      "file": "assets/photos/google/g08.jpg",
+      "widthPx": 3024,
+      "heightPx": 2016,
+      "dim": "3024x2016",
+      "longEdgePx": 3024,
+      "orient": "landscape",
+      "content": "jobsite",
+      "note": "Summit fleet — four trucks, one panel van — staged at shop.",
+      "disqualifiers": [],
+      "score": 76,
+      "eligibleRoles": ["heroBackground", "heroPlate", "gallery"]
+    },
+    {
+      "id": "s01",
+      "file": "assets/photos/site/s01.jpg",
+      "widthPx": 3024,
+      "heightPx": 2016,
+      "dim": "3024x2016",
+      "longEdgePx": 3024,
+      "orient": "landscape",
+      "content": "finished_repair_before",
+      "note": "Before: aging 150-amp residential panel with overcrowded breakers.",
+      "disqualifiers": [],
+      "score": 64,
+      "eligibleRoles": ["evidenceShot", "gallery"]
+    },
+    {
+      "id": "s02",
+      "file": "assets/photos/site/s02.jpg",
+      "widthPx": 3024,
+      "heightPx": 2016,
+      "dim": "3024x2016",
+      "longEdgePx": 3024,
+      "orient": "landscape",
+      "content": "finished_repair_after",
+      "note": "After: 200-amp panel with neatly labeled circuits and whips — pair with s01.",
+      "disqualifiers": [],
+      "score": 76,
+      "eligibleRoles": ["heroBackground", "heroPlate", "evidenceShot", "gallery"]
+    },
+    {
+      "id": "s03",
+      "file": "assets/photos/site/s03.jpg",
+      "widthPx": 3024,
+      "heightPx": 2016,
+      "dim": "3024x2016",
+      "longEdgePx": 3024,
+      "orient": "landscape",
+      "content": "finished_repair_after",
+      "note": "HVAC coil replacement complete, refrigerant lines reconnected.",
+      "disqualifiers": [],
+      "score": 70,
+      "eligibleRoles": ["heroBackground", "evidenceShot", "gallery"]
+    },
+    {
+      "id": "s04",
+      "file": "assets/photos/site/s04.jpg",
+      "widthPx": 4000,
+      "heightPx": 3000,
+      "dim": "4000x3000",
+      "longEdgePx": 4000,
+      "orient": "landscape",
+      "content": "team",
+      "note": "Electrical crew pulling wire through attic during panel upgrade.",
+      "disqualifiers": [],
+      "score": 72,
+      "eligibleRoles": ["heroBackground", "environmentalPortrait", "gallery"]
+    },
+    {
+      "id": "s05",
+      "file": "assets/photos/site/s05.jpg",
+      "widthPx": 3024,
+      "heightPx": 4032,
+      "dim": "3024x4032",
+      "longEdgePx": 4032,
+      "orient": "portrait",
+      "content": "team",
+      "note": "HVAC tech at residential air handler, portrait orientation mid-repair.",
+      "disqualifiers": [],
+      "score": 68,
+      "eligibleRoles": ["heroPlate", "environmentalPortrait", "gallery"]
+    },
+    {
+      "id": "s06",
+      "file": "assets/photos/site/s06.jpg",
+      "widthPx": 3024,
+      "heightPx": 3024,
+      "dim": "3024x3024",
+      "longEdgePx": 3024,
+      "orient": "square",
+      "content": "detail_panel",
+      "note": "Close-up of neatly labeled 200-amp panel, all circuits identified.",
+      "disqualifiers": [],
+      "score": 74,
+      "eligibleRoles": ["heroPlate", "detailShot", "gallery"]
+    },
+    {
+      "id": "s07",
+      "file": "assets/photos/site/s07.jpg",
+      "widthPx": 3024,
+      "heightPx": 3024,
+      "dim": "3024x3024",
+      "longEdgePx": 3024,
+      "orient": "square",
+      "content": "detail_hvac",
+      "note": "HVAC evaporator coil close-up post-cleaning, visible rows.",
+      "disqualifiers": [],
+      "score": 70,
+      "eligibleRoles": ["heroPlate", "detailShot", "gallery"]
+    },
+    {
+      "id": "s08",
+      "file": "assets/photos/site/s08.jpg",
+      "widthPx": 2016,
+      "heightPx": 3024,
+      "dim": "2016x3024",
+      "longEdgePx": 3024,
+      "orient": "portrait",
+      "content": "detail_fitting",
+      "note": "Close-up of PEX manifold with labeled home-run lines.",
+      "disqualifiers": [],
+      "score": 68,
+      "eligibleRoles": ["heroPlate", "detailShot", "gallery"]
+    },
+    {
+      "id": "s09",
+      "file": "assets/photos/site/s09.jpg",
+      "widthPx": 2550,
+      "heightPx": 3300,
+      "dim": "2550x3300",
+      "longEdgePx": 3300,
+      "orient": "portrait",
+      "content": "credential",
+      "note": "Florida plumbing contractor license CFC1432891 + electrical contractor license EC13022145 composite scan.",
+      "disqualifiers": [],
+      "score": 58,
+      "eligibleRoles": ["credential"]
+    },
+    {
+      "id": "s10",
+      "file": "assets/photos/site/s10.jpg",
+      "widthPx": 2550,
+      "heightPx": 3300,
+      "dim": "2550x3300",
+      "longEdgePx": 3300,
+      "orient": "portrait",
+      "content": "credential",
+      "note": "Florida HVAC contractor license CAC1817634 + NATE certification card composite scan.",
+      "disqualifiers": [],
+      "score": 56,
+      "eligibleRoles": ["credential"]
+    }
+  ]
+}
