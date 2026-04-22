@@ -1,5 +1,7 @@
 # Example Build: Annotated Reference Page
 
+**Status note (2026-04-22).** This worked example predates Composer's Stage II restructure from tier-keyed to persona-conditional architecture. It accurately documents pre-Composer-era skill behavior; the underlying architecture has since shifted — font selection is now persona-conditional per `typography.md §11` and `CONFIG.fonts`; spacing is now persona-base × tier-multiplier per `css-framework.md CONFIG.spacing`; the `.tier-premium` / `.tier-professional` / `.tier-standard` CSS class cascade has retired (replaced by `class="persona-{kebab-key}"` as a dev-tools identifier). A Composer-era reference build through the restructured phases is logged to `composer-backlog.md` for authoring post-Stage-II. Treat this example as documenting prior state, not current state, when the file's illustrative content conflicts with current authority in `typography.md`, `voiceMap.md`, `css-framework.md`, or `anti-slop-rules.md`.
+
 Part of the prospect-site-composer skill. Loaded by Phase 5 at the start of site generation as a pattern-match reference. Every section of this document is a worked example of a homepage section, annotated with which rules it satisfies and why it is composed the way it is. When Phase 5 is deciding how to render a section, pattern-match against the relevant example here before falling back to the literal rule text in `section-patterns.md` or `hero-patterns.md`.
 
 The LLM generating against this skill is better at composing-from-example than at composing-from-rules. This file is the example.

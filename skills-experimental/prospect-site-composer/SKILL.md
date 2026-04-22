@@ -338,7 +338,7 @@ designChoices.heroGlassVariant = useWideVariant ? "wide" : "default"
 **Why these two conditions:**
 
 - **Parallax mode:** The rotated photo grid background can absorb the extra card weight. Other modes risk feeling top-heavy with the wide variant.
-- **Premium tier:** Higher-scoring brands get bigger type and more visual weight as a tier benefit.
+- **Premium tier:** Section density scales with tier per typography.md Appendix B. Wide-variant is the hero-end expression of that density — Premium tier carries it as part of the tier's density treatment (palette complexity + section density + motion layer + photographic treatment, per Appendix B). The selection stays tier-keyed because density differentiation lives on the tier axis.
 
 **Editorial override:** Character count intentionally does NOT trigger the wide variant automatically. Some editorial headlines are 50+ characters and read beautifully at 56px in the default card; some short headlines need the wide variant for tier reasons; the auto-rule would get this wrong both directions. The approval gate accepts `override glass-variant:wide` or `override glass-variant:default` so Ron picks per-prospect when the structural defaults don't match his eye.
 
@@ -504,7 +504,7 @@ IF editorialLayouts.length < 3 AND no fallback layouts can be added:
 
 IF tier == "Standard" AND "E" not in editorialLayouts AND no other ≥80px display moment possible:
     constraintsOK = false
-    reasons.push("Standard tier without Layout E fails scale-contrast threshold")
+    reasons.push("Computed hero size (persona × tier) falls below 80px scale-contrast threshold without Layout E")
 
 IF photoLibrary.accepted.length < 4:
     constraintsOK = false
@@ -601,14 +601,15 @@ If all three conditions hit, generate the sub-page. If any fails, roll the servi
 
 Phase 5 must wire up the following connections between the reference files. These are the "glue" that makes css-framework.md, hero-patterns.md, and section-patterns.md work together. Missing any of them will produce broken output.
 
-**1. Tier class on `<html>` element.**
-Phase 5 applies exactly one tier class to the `<html>` element based on the tier decision from Phase 4:
+**1. Persona class on `<html>` element.**
+Phase 5 applies exactly one persona class to the `<html>` element based on the persona decision from Phase 4:
 
 ```html
-<html lang="en" class="tier-premium">    <!-- or tier-professional / tier-standard -->
+<html lang="en" class="persona-quiet-confidence">
+<!-- or persona-earned-pride / persona-neighborhood-steady / persona-urgent-service / persona-modern-specialist -->
 ```
 
-This class drives the tier-specific token overrides in `css-framework.md` (different heading fonts, spacing multipliers, and hero headline sizes). If the class is missing, every build renders as Professional regardless of the Phase 4 decision.
+The class is an identifier hook — developer-tools visibility and a reserved extension point for any future persona-specific CSS rules that aren't expressible through custom properties. It does NOT drive cascade overrides; all persona-conditional values (fonts from `CONFIG.fonts`, spacing from `CONFIG.spacing` persona-base × tier-multiplier) are resolved at Phase 5 build time and written directly into the base `:root` block. The pre-Composer `.tier-premium` / `.tier-professional` / `.tier-standard` cascade-override class system retired in Stage II (e). If the persona class is missing, custom properties still render correctly (they're emitted inline); what's lost is the dev-tools-visible identifier.
 
 **2. `data-reveal` attribute on major sections.**
 Phase 5 adds `data-reveal` as an attribute on the top-level element of every major section:
@@ -823,6 +824,16 @@ LESSONS.md: [updated | no new lessons]
 
 Ready for Ron to review on mobile. Next step: open the URL on your phone and run the eye test (check 6).
 ```
+
+## Revision log
+
+### 2026-04-22 — Stage II (e) tier-logic strip
+
+- Rewrote glass-variant Phase 4 rationale (line ~341) from score-first framing ("higher-scoring brands get bigger type") to Appendix B section-density framing — wide-variant is the hero-end expression of tier's section-density treatment per `typography.md §Appendix B`. Logic stays `tier == "Premium"`; rationale cites the actual authority.
+- Rewrote constraint-conflict message (line ~507) from "Standard tier without Layout E fails scale-contrast threshold" to cite the actual condition: "Computed hero size (persona × tier) falls below 80px scale-contrast threshold without Layout E." Message now surfaces the computed-value check rather than tier-keyed naming.
+- Replaced `<html lang="en" class="tier-premium">` (and sibling tier classes) with `class="persona-{kebab-key}"` in the Phase 5 cross-file integration point. Persona class is an identifier hook for dev-tools visibility; all persona-conditional values resolve at build time via `CONFIG.fonts` and `CONFIG.spacing` and emit into base `:root` directly. The pre-Composer `.tier-*` cascade-override class system retired.
+
+---
 
 ## Version
 

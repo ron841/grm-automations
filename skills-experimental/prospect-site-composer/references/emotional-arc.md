@@ -155,7 +155,7 @@ Both examples: response time is named, coverage area is specific, the phone is i
 - Photography leans into equipment closeups, installation detail shots, and credential documentation (certification cards, manufacturer authorization plaques). Environmental portraits show the installer with the equipment, not in isolation.
 - Stats section often uses Layout E (watermark numerals) with technical specificity: "07 authorized brands," "150+ units installed," "Level 2 and Level 3 certified." The watermark treatment reinforces the technical persona.
 - Italic signature word is a technical term: "Tesla *authorized*," "Level 2 *certified*," "bi-directional *capable*." The italic carries expertise.
-- Font pair can lean slightly newer (geometric sans for display, neo-grotesque for body) without triggering the banned-font rules. Within the Premium tier's font options, pick toward the more contemporary end.
+- Font pair follows `typography.md §11` Persona 5 Modern specialist — Candidate 1 is Inter Tight (display) + Inter (body) + JetBrains Mono (data). Modern specialist is a sans-display persona (per `typography.md §11.Persona groupings for font discipline`) and the serif-heading rule does not apply. Within the persona's Candidate 1-3 triple, pick toward the more contemporary end (prefer Inter Tight at Candidate 1 over walk-up Söhne/Neue Haas Grotesk at Candidate 2/3) unless `CONFIG.fonts` override or a named-conflict-pair walk dictates otherwise.
 - Layout B (image-bleed with caption margin) lands well here — technical detail shots with mono-captioned specifications in the margin column read as documentation.
 
 **Don't.**
@@ -315,6 +315,14 @@ This is the last filter. It is the filter the rule files cannot provide. It is w
 
 ---
 
+## Revision log
+
+### 2026-04-22 — Stage II (e) tier-logic strip
+
+- Rewrote Modern specialist font-pair guidance (line ~158) from "Within the Premium tier's font options, pick toward the more contemporary end" to cite `typography.md §11` Persona 5 Modern specialist directly. Modern specialist is a sans-display persona per the §11 persona grouping; the serif-heading rule does not apply. "Pick toward the more contemporary end" editorial note preserved — it now maps to Candidate 1 (Inter Tight) preference over walk-up Candidates 2/3 (Söhne, Neue Haas Grotesk).
+
+---
+
 ## Version
 
-emotional-arc.md — part of prospect-site-composer. Page-level emotional pacing and persona. Loaded by Phase 4 (persona selection during design proposal) and Phase 5 (carrying the persona through each section's decisions). NOT loaded by Phase 6 — feeling is not automatically verifiable. This file gives Phase 4 and Phase 5 a directional sense that tunes the thousand small decisions the rule files do not cover. Every persona was derived from trades the skill actually serves; every arc pattern was derived from pages that have worked. Last updated April 9, 2026.
+emotional-arc.md — part of prospect-site-composer. Page-level emotional pacing and persona. Loaded by Phase 4 (persona selection during design proposal) and Phase 5 (carrying the persona through each section's decisions). NOT loaded by Phase 6 — feeling is not automatically verifiable. This file gives Phase 4 and Phase 5 a directional sense that tunes the thousand small decisions the rule files do not cover. Every persona was derived from trades the skill actually serves; every arc pattern was derived from pages that have worked. Last updated April 22, 2026.

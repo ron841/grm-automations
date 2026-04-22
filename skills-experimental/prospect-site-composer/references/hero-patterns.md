@@ -38,7 +38,7 @@ Save to `profile-draft.json` under `designChoices.heroGlassVariant`. Phase 5 rea
 **Why these two conditions:**
 
 - **Parallax mode** specifically benefits from the wider card because the rotated photo grid background can absorb the extra card weight without visual competition. Other modes (cross-fade, mesh) can feel top-heavy with the wide card.
-- **Premium tier** is a business judgment: higher-scoring brands deserve bigger type and more visual weight. Respects the tier work Phase 4 already does.
+- **Premium tier** is section-density expression per `typography.md §Appendix B`: Premium tier carries higher section density (8-12 sections, more visual weight, parallax motion layer, full-bleed photography). Wide-variant is the hero-end expression of that density treatment. The selection stays tier-keyed because density differentiation lives on the tier axis — not a business-judgment override.
 
 **Editorial override matters here.** Character count deliberately does NOT trigger the wide variant automatically. A 50-character headline like "Licensed plumbing in Ocala and Marion County since 2006" reads beautifully at 56px in the default card. A short 30-character headline on a Premium-tier brand might still deserve the wide variant. Auto-rules based on character count get it wrong in both directions. Instead, the Phase 4 approval gate accepts `override glass-variant:wide` or `override glass-variant:default` so Ron picks per-prospect when his editorial eye disagrees with the structural default.
 
@@ -782,5 +782,14 @@ Do NOT add `padding-top` or `margin-top` to the hero beyond the 100px allowance 
 - Do not omit the glass card. All four modes use the same glass card.
 - Do not use a photo with a watermark, logo, or baked-in text as hero background.
 - Do not use `box-shadow` offset blocks behind the glass card (that was v0.5's pattern, not Composer's).
-- Do not apply the wide variant to modes other than parallax unless Phase 4 selected it (character count or Premium tier).
+- Do not apply the wide variant to modes other than parallax unless Phase 4 selected it (character count or Premium tier per Appendix B section-density treatment).
 - Do not hardcode the headline font-size — use the shared glass card CSS which switches via the modifier class.
+
+---
+
+## Revision log
+
+### 2026-04-22 — Stage II (e) tier-logic strip
+
+- Rewrote wide-variant "Premium tier is a business judgment" rationale (line ~41) to cite `typography.md §Appendix B` section-density treatment as the authority: Premium tier carries higher section density (8-12 sections, parallax motion, full-bleed photography) and wide-variant is the hero-end expression of that density. Tier-keyed selection logic stays because density differentiation lives on the tier axis per Appendix B.
+- Added `per Appendix B section-density treatment` citation to the wide-variant guardrail in the "Do not" list (pre-strip line ~785). Guardrail wording otherwise preserved.

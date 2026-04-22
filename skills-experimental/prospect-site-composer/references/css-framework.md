@@ -8,7 +8,7 @@ This file owns:
 2. Font loading strategy and the typography scale
 3. Global reset and base styles
 4. Shared animation keyframes used across sections
-5. Tier-specific token overrides (Premium, Professional, Standard)
+5. Persona-base × tier-multiplier spacing architecture (CONFIG.spacing)
 6. Accessibility defaults including reduced-motion handling
 7. The vanilla JS animation toolkit (six animation primitives plus three supporting utilities)
 
@@ -116,32 +116,85 @@ CONFIG.fonts = {
 
 **Full persona reference:** `typography.md` defines the persona-conditional font selection logic, weight ranges per voice, italic deployment rules, and pull-quote detection heuristic. This block is the machine-readable config derived from those tables.
 
-### Tier section spacing multipliers
+### CONFIG.spacing — persona-base × tier-multiplier architecture
+
+Spacing decomposes into two axes: per-persona editorial rhythm (how much breath the persona wants between sections and how large the hero reads at its native scale) and per-tier behavior differentiation (how tier-level density treatment — per typography.md Appendix B — scales the persona base up or down). Phase 5 multiplies `persona base × tier multiplier` at computed-value time and writes the final `--text-hero` / `--space-section` / `--space-section-generous` tokens into `:root` directly.
+
+**Split of concerns.** Persona base values are editorial authorship (stable unless Design revises). Tier multipliers are behavior preservation (tunable if F1-F8 spot-checks reveal material drift against shipped builds).
 
 ```
 CONFIG.spacing = {
-  premium: {
-    sectionMultiplier: 1.17,     // 140px from 120px base
-    generousMultiplier: 1.14,    // 160px from 140px base
-    heroSize: 84,                // Wide variant headline size
-    heroSizeDefault: 64          // Default variant headline size
+  // Persona base values — Design-authored per persona (Professional-tier reference).
+  // sectionMultiplier and generousMultiplier apply to base 120px / 140px respectively.
+  // heroSize values are rem, resolving against the 16px root (5.5rem = 88px).
+  personaBase: {
+    "quiet-confidence": {
+      sectionMultiplier: 1.00,
+      generousMultiplier: 1.15,
+      heroSize: "5.5rem",
+      heroSizeDefault: "5.0rem"
+    },
+    "earned-pride": {
+      sectionMultiplier: 1.12,
+      generousMultiplier: 1.30,
+      heroSize: "6.0rem",
+      heroSizeDefault: "5.5rem"
+    },
+    "neighborhood-steady": {
+      sectionMultiplier: 1.02,
+      generousMultiplier: 1.20,
+      heroSize: "5.3rem",
+      heroSizeDefault: "4.8rem"
+    },
+    "urgent-service": {
+      sectionMultiplier: 0.88,
+      generousMultiplier: 1.05,
+      heroSize: "4.8rem",
+      heroSizeDefault: "4.3rem"
+    },
+    "modern-specialist": {
+      sectionMultiplier: 0.92,
+      generousMultiplier: 1.10,
+      heroSize: "5.0rem",
+      heroSizeDefault: "4.5rem"
+    }
   },
-  professional: {
-    sectionMultiplier: 1.0,      // Uses base 120px
-    generousMultiplier: 1.0,     // Uses base 140px
-    heroSize: 72,                // Wide variant headline size
-    heroSizeDefault: 56          // Default variant headline size
-  },
-  standard: {
-    sectionMultiplier: 0.83,     // 100px from 120px base
-    generousMultiplier: 0.86,    // 120px from 140px base
-    heroSize: 56,                // Wide variant headline size
-    heroSizeDefault: 44          // Default variant headline size
+
+  // Tier multipliers — applied in Phase 5 to the persona base values.
+  // Premium and Standard apply a distinct multiplier for sectionMultiplier vs.
+  // generousMultiplier+heroSize to preserve Appendix B section-density intent.
+  tierMultiplier: {
+    premium: {
+      sectionMultiplier: 1.17,
+      generousMultiplier: 1.13,
+      heroSize: 1.13
+    },
+    professional: {
+      sectionMultiplier: 1.00,
+      generousMultiplier: 1.00,
+      heroSize: 1.00
+    },
+    standard: {
+      sectionMultiplier: 0.83,
+      generousMultiplier: 0.87,
+      heroSize: 0.87
+    }
   }
 }
 ```
 
-**When to change these:** if Premium feels too roomy or Standard feels too cramped on a real build. Multipliers make global rhythm changes one-line edits.
+**Computed-value contract.** Phase 5 resolves final spacing values at build time as:
+
+```
+finalSectionMultiplier   = personaBase[persona].sectionMultiplier   × tierMultiplier[tier].sectionMultiplier
+finalGenerousMultiplier  = personaBase[persona].generousMultiplier  × tierMultiplier[tier].generousMultiplier
+finalHeroSize            = personaBase[persona].heroSize            × tierMultiplier[tier].heroSize
+finalHeroSizeDefault     = personaBase[persona].heroSizeDefault     × tierMultiplier[tier].heroSize
+```
+
+Phase 5 writes the resolved values into `:root` custom properties directly (no `.tier-*` or `.persona-*` class cascade override required for spacing — the computation happens before emission).
+
+**When to change these.** Persona base values change when Design revises a persona's editorial rhythm target (e.g., if Urgent service builds consistently feel too tight, Design bumps urgent-service's `sectionMultiplier` from 0.88 to 0.92). Tier multipliers change if F1-F8 spot-checks against shipped builds reveal that the new persona × tier math produces materially different section padding or hero sizes than what shipped cleanly. Persona base = editorial authorship. Tier multiplier = behavior preservation.
 
 ### Dark section color
 
@@ -522,24 +575,13 @@ The path value is used verbatim — no placeholder substitution. `[googleFontsPa
 
 `<link rel="preload">` is NOT emitted. Preconnect + stylesheet with `display=swap` is the pattern — matches Google Fonts' recommended minimum and avoids the double-fetch overhead a stale `<link rel="preload">` would introduce alongside the stylesheet link.
 
-### Approved heading fonts by tier
+### Approved fonts — authority
 
-| Tier         | Primary heading font | Fallback | Rationale |
-|--------------|---------------------|----------|-----------|
-| Premium      | Fraunces            | Playfair Display | Modern serif with optical sizing and variable weights. Reads like a magazine. |
-| Premium (alt)| Playfair Display    | Merriweather | Classic high-contrast serif when Fraunces feels too editorial. |
-| Professional | Space Grotesk       | Inter    | Geometric sans with personality. Feels crafted, not generic. |
-| Standard     | Inter               | system-ui| Highly legible, boring in a good way. Loads fast. |
+Per-persona allowed font lists live in `typography.md §11` as Candidate 1-3 triples for display / body / data voices across all five personas. `typography.md §11.Persona groupings for font discipline` groups the five personas into **serif-display personas** (quiet-confidence, earned-pride, neighborhood-steady) and **sans-display personas** (modern-specialist, urgent-service); that grouping drives the Inter-as-heading rules in `anti-slop-rules.md` and the Phase 6 font checks. Consult `typography.md §11` for authoritative font lists; do not duplicate the lists here.
 
-The default for Professional is Space Grotesk. Ron can override at the approval gate.
+`CONFIG.fonts` (the persona-conditional block elsewhere in this file) picks the first available Candidate per persona subject to the tier gate (paid families unlock at Premium) and named-conflict-pair walks. The tier gate is orthogonal to persona-conditional selection: tier controls which Candidate list is eligible for unlock, persona controls which face within the eligible list gets selected.
 
-### Approved body fonts by tier
-
-| Tier         | Body font | Fallback |
-|--------------|-----------|----------|
-| All tiers    | Inter     | system-ui |
-
-Inter is the body font for every tier. The heading font changes to signal tier, but the body stays consistent so reading experience is consistent. Do not mix body fonts across tiers — Inter is the only body font.
+**Body font convention.** Inter is the Candidate 1 body face for four of five personas (Quiet confidence, Earned pride, Neighborhood steady, Modern specialist) and is Candidate 2 for the fifth (Urgent service, whose Candidate 1 body is Archivo for same-family display+body economy). See `typography.md §11` per-persona tables.
 
 ### Banned fonts
 
@@ -559,7 +601,7 @@ Most template-feeling sites use three sizes (big, medium, small) in comfortable 
 
 Every generated page must hit both ends of its scale at least once:
 
-- **At least one "display moment" per page at 80px or larger.** This is `--text-hero` in the hero at Premium and Professional tiers. Standard tier's default hero tops out at 44px, which does NOT clear the threshold on its own — so **Standard tier builds must include Layout E (watermark numeral) on at least one section** (stats, a 3-step process, or numbered service tiers) to guarantee the display moment. Phase 4 enforces this: if tier is Standard and Layout E is not selected, Phase 4 either selects it automatically (if a numbered sequence exists on the page) or declares the display-moment shortfall at the approval gate and requires Ron to either authorize a centered-only build as an exception or relax a different constraint. For Premium and Professional tier, the hero clears the threshold and Layout E is optional.
+- **At least one "display moment" per page at 80px or larger.** This is typically `--text-hero` in the hero. Under the persona × tier spacing math, most persona + tier combinations produce a hero that clears the 80px threshold on its own. The combinations that do not — generally where a compact-rhythm persona (Urgent service, Modern specialist, Quiet confidence) runs at Standard tier and the computed `heroSize × tierMultiplier.heroSize` falls below 80px — **must include Layout E (watermark numeral) on at least one section** (stats, a 3-step process, or numbered service tiers) to guarantee the display moment. Phase 4 enforces this: if the computed `finalHeroSize` for the current persona × tier combination falls below 80px AND Layout E is not already selected, Phase 4 either selects Layout E automatically (if a numbered sequence exists on the page) or declares the display-moment shortfall at the approval gate and requires Ron to either authorize a centered-only build as an exception or relax a different constraint. Where the computed hero clears the threshold, Layout E is optional.
 - **At least one "caption moment" per page at 14px or smaller, set in mono or uppercase spaced type.** This is the `--text-xs` eyebrow on the hero, the mono photo caption under a detail shot, the category label in a services grid card. Without a caption moment the page has no lower-end contrast and the middle sizes have nothing to push against.
 
 **Middle sizes are for body only.** 20-24px subheads, 18px body text, 16px form inputs. Never use middle sizes for display elements "to play it safe." Playing it safe is what makes sites look generated.
@@ -890,86 +932,46 @@ Everything else is static until the user does something.
 
 ---
 
-## Tier-specific token overrides
+## Persona × tier spacing emission
 
-After the base `:root` block, Phase 5 appends tier-specific overrides. Only the tokens that differ from the base get redefined.
+Under Composer's persona-conditional architecture, spacing tokens are computed from `CONFIG.spacing` (persona base × tier multiplier, see above) at Phase 5 build time and written directly into the base `:root` block. The pre-Composer `.tier-premium` / `.tier-professional` / `.tier-standard` CSS override cascade has retired — no separate tier-keyed `:root.*` override blocks are emitted, because Phase 5 resolves final spacing values before any CSS is written.
 
-### Premium tier (70-100 score)
+### What Phase 5 emits
 
 ```css
-:root.tier-premium {
-  --font-display: "Fraunces", "Playfair Display", Georgia, serif;
-  --text-hero: 84px;
-  --text-hero-default: 64px;
-  --text-section-title: 56px;
-  --text-display: 112px;
-  --space-section: 140px;
-  --space-section-generous: 160px;
+:root {
+  /* ...other tokens... */
+  --text-hero: 84px;            /* = personaBase[persona].heroSize × tierMultiplier[tier].heroSize × 16 */
+  --text-hero-default: 64px;    /* = personaBase[persona].heroSizeDefault × tierMultiplier[tier].heroSize × 16 */
+  --space-section: 120px;       /* = 120 × personaBase[persona].sectionMultiplier × tierMultiplier[tier].sectionMultiplier */
+  --space-section-generous: 140px;  /* = 140 × personaBase[persona].generousMultiplier × tierMultiplier[tier].generousMultiplier */
 }
 
 @media (max-width: 980px) {
-  :root.tier-premium {
-    --text-hero: 48px;
-    --text-hero-default: 42px;
-    --text-section-title: 36px;
-    --text-display: 72px;
-    --space-section: 88px;
-    --space-section-generous: 108px;
+  :root {
+    /* Mobile overrides — persona × tier math applies at its mobile base values per typography.md §9 */
   }
 }
 ```
 
-The `.tier-premium` class is applied to the `<html>` element in Phase 5 when tier is Premium. Using a class on `<html>` instead of duplicating the whole `:root` block keeps the CSS smaller and lets developer tools show the tier visually.
+The font-family tokens (`--font-display`, `--font-body`, `--font-data`) come from the persona-conditional `CONFIG.fonts` block declared earlier in this file; they resolve to the selected persona's Candidate 1 (subject to tier gate for paid-family unlock and named-conflict-pair walks). Font selection does not depend on a `.tier-*` or `.persona-*` cascade class.
 
-### Professional tier (40-69 score)
+### Persona identifier on the html element
 
-```css
-:root.tier-professional {
-  --font-display: "Space Grotesk", "Inter", system-ui, sans-serif;
-  /* All other tokens use the base values */
-}
-```
-
-Professional is the default baseline — most tokens are already correct for Professional in the base `:root` block. Only the heading font changes.
-
-### Standard tier (0-39 score)
-
-```css
-:root.tier-standard {
-  --font-display: "Inter", system-ui, -apple-system, sans-serif;
-  --text-hero: 56px;
-  --text-hero-default: 44px;
-  --text-section-title: 36px;
-  --text-display: 72px;
-  --space-section: 100px;
-  --space-section-generous: 120px;
-}
-
-@media (max-width: 980px) {
-  :root.tier-standard {
-    --text-hero: 38px;
-    --text-hero-default: 34px;
-    --text-section-title: 28px;
-    --text-display: 54px;
-    --space-section: 72px;
-    --space-section-generous: 88px;
-  }
-}
-```
-
-Standard uses Inter for both heading and body (same as fallback), smaller type scale for speed and hierarchy clarity, and compressed vertical rhythm.
-
-### Tier override application order
-
-Phase 5 writes the tier override block IMMEDIATELY after the base `:root` block. Other CSS (section styles, hero styles) comes after. CSS cascade ensures the tier class wins over the base `:root` because of specificity — `:root.tier-premium` is higher specificity than `:root`.
-
-The `<html>` element gets the appropriate class written by Phase 5:
+Phase 5 applies a persona class to the `<html>` element for developer-tools visibility and to reserve a hook for any future persona-specific CSS rules that aren't expressible through custom properties:
 
 ```html
-<html lang="en" class="tier-premium">
+<html lang="en" class="persona-quiet-confidence">
+<!-- or persona-earned-pride / persona-neighborhood-steady / persona-urgent-service / persona-modern-specialist -->
 ```
 
-Only one tier class per build. Never apply two.
+The class has no required CSS consumer under the current architecture — all persona-conditional values live in custom-property form computed at build time. The class exists as an identifier hook (dev-tools visual confirmation, future extension points).
+
+Only one persona class per build. Never apply two.
+
+### Where the retired .tier-* class system used to live
+
+Historical note for anyone diffing against pre-Composer state: the `.tier-premium` / `.tier-professional` / `.tier-standard` cascade-override blocks that previously lived in this section retired during Stage II (e). Their two functions — font-family overrides and spacing-token overrides — migrated to `CONFIG.fonts` persona-conditional (Stage II (b) Option C.5.b, 2026-04-21) and `CONFIG.spacing` persona-base × tier-multiplier (Stage II (e), 2026-04-22) respectively. Emission now resolves all values at build time and writes directly into the base `:root`.
 
 ---
 
@@ -1723,6 +1725,19 @@ If a build fails the LCP target, the most likely cause is a hero background imag
 - Do not load multiple heading fonts. Pick one per tier.
 - Do not use `position: sticky` for the nav. Use `position: fixed`.
 - Do not hardcode `rgba(43, 76, 159, 0.15)`. Use `rgba(var(--color-primary-rgb), 0.15)`.
+
+---
+
+## Revision log
+
+### 2026-04-22 — Stage II (e) tier-logic strip
+
+- `CONFIG.spacing` refactored from tier-keyed three-triple (premium/professional/standard) to two-axis architecture: `personaBase` (Design-authored per-persona values for all five personas) × `tierMultiplier` (three-tier multipliers applied at Phase 5 build time). Split of concerns documented in CONFIG commentary: persona base = editorial authorship; tier multiplier = behavior preservation.
+- Retired `:root.tier-premium` / `:root.tier-professional` / `:root.tier-standard` cascade-override blocks (formerly at lines 893-1014 pre-strip). Their two functions — font-family overrides and spacing-token overrides — migrated to `CONFIG.fonts` persona-conditional (Stage II (b) Option C.5.b) and `CONFIG.spacing` persona-base × tier-multiplier (this commit) respectively. Phase 5 now resolves all values at build time and writes directly into base `:root`.
+- Retired "Approved heading fonts by tier" and "Approved body fonts by tier" prose tables (pre-strip lines 525-542). Cross-reference to `typography.md §11` persona-conditional tables as authority; no font lists duplicated here.
+- Updated Block A ToC entry ("Tier-specific token overrides" → "Persona-base × tier-multiplier spacing architecture").
+- Updated scale-contrast display-moment prose to cite the persona × tier computed `finalHeroSize` threshold without tier-specific naming; Layout E fallback now triggers on the computed value rather than on tier membership.
+- Replaced `<html lang="en" class="tier-*">` emission pattern with `class="persona-{kebab-key}"` (five-value persona enum matching `emotional-arc.md` machine keys).
 
 ---
 

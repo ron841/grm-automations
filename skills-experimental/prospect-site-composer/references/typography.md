@@ -460,6 +460,15 @@ Each of the five personas biases the selection of font families for display, bod
 
 Licensing flags: **GF** = Google Fonts (free, CDN-available, build-time usable). **paid** = requires commercial license.
 
+### Persona groupings for font discipline
+
+Two persona groups organize the font discipline rules in `anti-slop-rules.md` and Phase 6 font checks:
+
+- **Serif-display personas:** `quiet-confidence`, `earned-pride`, `neighborhood-steady`. Candidate 1 leads with a serif display face (Source Serif 4, Fraunces, Fraunces respectively). The serif-heading rule applies to this group.
+- **Sans-display personas:** `modern-specialist`, `urgent-service`. Candidate 1 leads with a sans display face (Inter Tight, Archivo respectively). The serif-heading rule does not apply to this group; sans-display is the editorial intent.
+
+Anti-slop rules and Phase 6 font checks reference these groups rather than enumerating per-persona. When a rule needs to distinguish "Inter-as-heading is banned here" from "Inter-as-heading is the editorial Candidate 1 here," the group axis carries the distinction cleanly.
+
 ### Persona 1: Quiet confidence
 
 Character: precise, undemonstrative, evidence-first. The page feels like a well-kept workbench.
@@ -944,6 +953,10 @@ Alternate serifs (Source Serif Pro, etc.) appearing in place of a persona's Cand
 **Design reviewer signoff.** Checkpoint 1 q1 follow-up, plus Stage II (d) arbitration on A1, B3, C3 — dated 2026-04-22. Design's signoff is the Stage II (d) arbitration response, not a separate file.
 
 **Sentinel check (brain §12 Risk 3).** Rule E6 (color-derivation hardening, `anti-slop-rules.md` line 739) and `derivePrimaryHover()` / `deriveDarkPrimary()` / `#FF00FF` magenta sentinel (`css-framework.md` lines 194, 200, 385, 439) intact in their home files. Stage II (d) merge touches only `typography.md` and `voiceMap.md`; both of those home files unchanged by this merge.
+
+### 2026-04-22 — Stage II (e) tier-logic strip
+
+Added `Persona groupings for font discipline` subsection at §11 per Design's group-naming sharpening. Declares **serif-display personas** (quiet-confidence, earned-pride, neighborhood-steady) and **sans-display personas** (modern-specialist, urgent-service). `anti-slop-rules.md` banned-fonts rules and Phase 6 font checks reference these groups rather than enumerating per-persona. No other content changes — persona-conditional font tables (§11) and Appendix B tier-application framing already expressed the persona-conditional architecture that Stage II (e) strips tier-keyed vocabulary against elsewhere in the skill.
 
 ---
 
