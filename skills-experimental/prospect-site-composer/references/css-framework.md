@@ -45,44 +45,76 @@ This is the single source of truth for tier-level design decisions that Ron (or 
 
 Phase 5 reads these values during site generation and writes them into the final `:root` block. Do NOT hardcode font family strings or tier-specific spacing values elsewhere in the file — always reference the config.
 
-### Tier font pairs
+### Persona-conditional font triples
+
+Phase 4 selects one of the five personas from profile.json analysis. Phase 5 reads the corresponding `CONFIG.fonts` entry and emits the three font-family declarations (display / body / data) plus the `googleFontsPath` into the `<link rel="stylesheet">` href.
 
 ```
+// Data voice is always roman across all five personas. googleFontsPath
+// entries intentionally omit italic variants for the data font. If a
+// future persona adds italic data-voice, revisit Check 5/7 first.
 CONFIG.fonts = {
-  premium: {
-    heading: "Fraunces",
-    headingFallback: "\"Playfair Display\", Georgia, serif",
+  // Five persona-conditional triples. Phase 4 selects the persona from
+  // profile.json; Phase 5 reads the corresponding entry and emits the
+  // googleFontsPath verbatim into the <link rel="stylesheet"> href.
+  // Inter is the body-universal default across all personas — body voice's
+  // job is to get out of the way; persona variety lives in the display +
+  // data pairing. Candidate 1 only is loaded; Phase 4's conflict-pair walk
+  // re-emits a different persona-ish entry if Candidate 1 triggers a named
+  // conflict (see typography-patterns.md Named conflict pairs section).
+  "quiet-confidence": {
+    display: "Source Serif 4",
+    displayFallback: "Georgia, 'Times New Roman', serif",
     body: "Inter",
     bodyFallback: "system-ui, -apple-system, sans-serif",
-    // Google Fonts URL path segment:
-    googleFontsPath: "Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600"
+    data: "IBM Plex Mono",
+    dataFallback: "ui-monospace, 'SF Mono', Menlo, monospace",
+    googleFontsPath: "Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@500;600"
   },
-  professional: {
-    heading: "Space Grotesk",
-    headingFallback: "\"Inter\", system-ui, sans-serif",
+  "earned-pride": {
+    display: "Fraunces",
+    displayFallback: "'Playfair Display', Georgia, serif",
     body: "Inter",
     bodyFallback: "system-ui, -apple-system, sans-serif",
-    googleFontsPath: "Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600"
+    data: "IBM Plex Mono",
+    dataFallback: "ui-monospace, 'SF Mono', Menlo, monospace",
+    googleFontsPath: "Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,400&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@500;600"
   },
-  standard: {
-    heading: "Inter",
-    headingFallback: "system-ui, -apple-system, sans-serif",
+  "neighborhood-steady": {
+    display: "Fraunces",
+    displayFallback: "'DM Serif Display', Georgia, serif",
     body: "Inter",
     bodyFallback: "system-ui, -apple-system, sans-serif",
-    googleFontsPath: "Inter:wght@400;500;600;700;800"
+    data: "Space Grotesk",
+    dataFallback: "'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace",
+    googleFontsPath: "Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,400&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@500;600"
+  },
+  "urgent-service": {
+    display: "Archivo",
+    displayFallback: "'Barlow Condensed', Impact, sans-serif",
+    body: "Inter",
+    bodyFallback: "system-ui, -apple-system, sans-serif",
+    data: "JetBrains Mono",
+    dataFallback: "ui-monospace, 'SF Mono', Menlo, monospace",
+    googleFontsPath: "Archivo:ital,wght@0,400;0,600;0,700;1,400&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@500;600"
+  },
+  "modern-specialist": {
+    display: "Inter Tight",
+    displayFallback: "'Söhne', 'Neue Haas Grotesk', Inter, system-ui, sans-serif",
+    body: "Inter",
+    bodyFallback: "system-ui, -apple-system, sans-serif",
+    data: "JetBrains Mono",
+    dataFallback: "ui-monospace, 'SF Mono', Menlo, monospace",
+    googleFontsPath: "Inter+Tight:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@500;600"
   }
 }
 ```
 
-**When to change these:** after running a real calibration build (T&F Friday morning or any subsequent flagship) and deciding the tier font does not match the visual result on the screen. Edit the relevant `heading` value here, re-run the build, check the result. One-line change.
+**When to change these:** after running a real calibration build under a specific persona and deciding the Candidate 1 font does not match the visual result. Each persona's entry can accept a Candidate 2 swap (see typography-patterns.md persona tables for the full candidate list per voice per persona). One-line change.
 
-**Alternate picks, pre-vetted for swap-in:**
+**Phase 4's conflict-pair walk:** if a persona's Candidate 1 display and Candidate 1 body trigger a named conflict (see typography-patterns.md Named conflict pairs), Phase 4 walks to the appropriate Candidate 2 font for the affected voice slot and re-emits a custom `googleFontsPath` for that build. The five entries above are the default triples.
 
-- Premium: swap `"Fraunces"` to `"Playfair Display"` for a more classical editorial feel, or `"Merriweather"` for a warmer, less contrasty serif
-- Professional: swap `"Space Grotesk"` to `"DM Sans"` for a cleaner, more neutral geometric sans, or `"Manrope"` for something softer
-- Standard: Inter is the right baseline and should not be swapped unless there is a strong reason
-
-The full approved list and banned list live in `anti-slop-rules.md`. Never pick a font outside the approved list without updating that file first.
+**Full persona reference:** `typography-patterns.md` defines the persona-conditional font selection logic, weight ranges per voice, italic deployment rules, and pull-quote detection heuristic. This block is the machine-readable config derived from those tables.
 
 ### Tier section spacing multipliers
 
