@@ -413,20 +413,42 @@ The persona biases the signature micro-interaction selection (via the tie-breaki
 
 Selection uses only signals already captured by Phase 1-4 (tier, hero mode, service count). More nuanced signals (logo character, stats content type) were considered but rejected because they require pipeline extractions that don't currently exist; adding them is tracked as a future enhancement but the tree deliberately stays within captured data.
 
-```
-IF tier == "Premium":
-    signatureMicroInteraction = "italic-color-shift"
-ELIF heroMode == "parallax":
-    signatureMicroInteraction = "eyebrow-reveal"
-ELIF services.length >= 6:
-    signatureMicroInteraction = "underline-bloom"
-ELSE:
-    signatureMicroInteraction = "shimmer-hero-cta"
-```
+Phase 4 emits two signature outputs on every composition plan:
 
-Note: the fifth option from `references/css-framework.md` (mono-numeral-flip) is valid but not reachable through the default selection tree — it is available only via `override signature:mono-numeral-flip` at the approval gate. This is intentional; mono-numeral-flip depends on the stats section having numeric values, and the tree cannot reliably detect that without a Phase 3/4 extraction that does not yet exist.
+- `site.signatureMicroInteraction`: singular, one of the six-value Tier 1 enum (`italic-color-shift`, `watermark-numeral-offset`, `anchor-strip-pivot`, `hero-glass-blur`, `stat-row-ledger`, `none`). Never null.
+- `site.microInteractions`: array, zero or more from the four-value Tier 2 enum (`eyebrow-reveal`, `underline-bloom`, `shimmer-hero-cta`, `mono-numeral-flip`). May be empty.
 
-Write to `profile-draft.json.design.signatureMicroInteraction`. Full definitions of the five options live in `references/css-framework.md` under the Motion Restraint section.
+**Tier 1 resolution** (always emits one value):
+
+1. If hero mode from `hero-patterns.md` decision tree is `parallax` or `glass-crossfade` AND tier is Premium AND heroBackground count ≥ 4 → `hero-glass-blur`.
+2. Else if page carries `statRow` AND persona is rescue-ready OR (persona is earned-pride AND stat values include tenure ≥ 10 years) → `stat-row-ledger` (rescue-ready) or `watermark-numeral-offset` (earned-pride).
+3. Else if persona is modern-specialist AND page has ≥ 5 sections → `anchor-strip-pivot`.
+4. Else if persona has `italic-color-shift` in its Tier 1 default (quiet-confidence, neighborhood-steady) AND at least one italicPlacement-eligible string exists in profile → `italic-color-shift`.
+5. Else fall to persona Tier 1 default from `emotional-arc.md` table.
+6. Else `none`.
+
+**Tier 2 resolution** (may emit empty array):
+
+Start from persona Tier 2 default. Then apply additive rules:
+
+- If hero carries sectionOpener pattern AND persona default does not already include `eyebrow-reveal` → append `eyebrow-reveal` (except quiet-confidence, which resists all Tier 2 additions without explicit override).
+- If page has ≥ 3 inline body links in long-form copy AND persona is modern-specialist or earned-pride → ensure `underline-bloom` present.
+- If `statRow` is present AND persona is modern-specialist → ensure `mono-numeral-flip` present.
+- If tier is Premium AND persona is earned-pride AND Phase 4 rationale includes "CTA prominence critical" → `shimmer-hero-cta` may be appended with `microInteractionsReason` recording the override. Otherwise `shimmer-hero-cta` is not emitted.
+- Rescue-ready Tier 2 entries all run at 250ms entry; record in `microInteractionDurations.entry: 250`.
+
+**Tie-breaking:** persona defaults from `emotional-arc.md` break any ambiguous resolution. If tree rules produce no Tier 1 value, emit persona default; if still none, emit `none`. Tier 2 array empty is valid output, not a missing-value error.
+
+**Output recording:** Phase 4 records `signatureMicroInteractionReason` (string) naming which rule fired. `microInteractionsReason` (string) names additive rationale when the array differs from persona default.
+
+Write Tier 1 output to `composition-plan.site.signatureMicroInteraction` (singular, from the six-value enum at composition-plan-schema.md §2.1). Write Tier 2 output to `composition-plan.site.microInteractions` (array, zero or more from the four-value enum at composition-plan-schema.md §2.2). The retired `profile-draft.json.design.signatureMicroInteraction` path is no longer emitted — Phase 4 produces composition-plan.json, not profile-draft.json.
+
+Authority for full definitions is split by tier:
+
+- Tier 1 compositional signatures (`italic-color-shift`, `watermark-numeral-offset`, `anchor-strip-pivot`, `hero-glass-blur`, `stat-row-ledger`, `none`) are typographic/compositional treatments — full definitions live in `references/typography-patterns.md` under role-class territory.
+- Tier 2 motion micro-interactions (`eyebrow-reveal`, `underline-bloom`, `shimmer-hero-cta`, `mono-numeral-flip`) are motion primitives — full definitions live in `references/css-framework.md` under the Motion Restraint section.
+
+Record Phase 4 rationale on `signatureMicroInteractionReason` (Tier 1) and `microInteractionsReason` (Tier 2 additive rationale when array differs from persona default).
 
 **2. Editorial layouts per page (minimum three, maximum five distinct layouts per page).**
 
