@@ -393,6 +393,71 @@ Newest session block at the top. Older blocks scroll down.
 
 ---
 
+## Session block — 2026-04-22 (Stage II close)
+
+**Window type:** Chat-Claude (facing Ron). CTO seat. Stage II execution through close.
+
+**Session arc:**
+- Opened with Stage I + Stage II (a)+(b) closed from 2026-04-21, handoff doc in chat context but never committed to disk. First task: commit handoff + run Code read-only diagnostic as Stage II (c) pre-work.
+- Code diagnostic surfaced state of SKILL.md Phase 3/4/5, typography.md + voiceMap.md (pre-merge Composer state), emotional-arc.md (five personas confirmed), Luna F8 profile.json (anchor instance), composer-backlog.md (schema-adjacent items). Also revealed `COMPOSER_STAGE_II_C_HANDOFF.md` missing on disk.
+- Handoff committed to disk (c0235af + 7903733 log). Design flagged "three-voice × three-persona" typo in handoff Part III — corrected in log commit referencing three-voice × five-persona.
+- Stage II (c) Phase 1 — profile-schema.md. Code under full authorship after six locked scope calls; draft surfaced six flags. Four editorial-reach items routed to Design: role vocabulary (image-handling.md surfaced richer taxonomy), `designChoices.heroBackground` routing, scraped `typography.headingFont/bodyFont` fields, testimonial-rule stability. Design decisive across all four — corrected Chat-Claude's conservative instinct on the typography fields drop ("field gravity is an editorial cost"). Code revised and committed (83b2c43 + 9f1a271 log). Two backlog items added.
+- Stage II (c) Phase 2 — composition-plan-schema.md. Chat-Claude drafted skeleton (v1) with seven locked pre-draft scope decisions from Design. Design Checkpoint 1 review verified pre-draft flags landed, confirmed §10 invariants classification, answered eight open questions. Chat-Claude revised (v2). Code's verification step at commit time surfaced framework-level mismatch on `signatureMicroInteraction` — Composer's Phase 4 tree implements five motion-based signatures; Design's six were compositional. Two different categories of thing, not naming substitution. Design resolved with two-tier architecture: Tier 1 `signatureMicroInteraction` (compositional, singular, six values); Tier 2 `microInteractions` (motion, plural, four values). Path 1 (Design's vocabulary wins) via Path 3 mechanism (schema ships with forward spec, cascade work logged to Stage III). Chat-Claude revised (v3). Code committed (06262f9 + e4720aa log). Six backlog items added.
+- Stage II (d) — typography three-way merge. Code diagnostic enumerated 12 conflicts: 9 auto-resolvable under README tie-breakers, 3 Design arbitration (A1 SectionOpener framing, B3 Fraunces-universal rewording, C3 pullquote trigger threshold). Design resolved all three decisively — preserve orientation-gating prose under role-class framing; rewrite Appendix B thesis citing "variety across prospects" principle; Option 1 on pullquote (8-20-word heuristic wins, ≥60-word rule + `promoted: true` override retire; testimonial-spotlight earns its own section type if ever needed, not a pullquote threshold switch). Code executed full merge. Commit fc0ebfa + ca902ad log (966/288, largest single commit of Stage II). Sentinel check confirmed Rule E6 + Check 18 intact in home files (anti-slop-rules.md + css-framework.md — neither lives in typography.md to be lost). Backlog item B transitioned Active → Resolved.
+- Stage II (e) — tier-logic strip. Code diagnostic opened with framing correction: tier isn't retiring from Composer. Appendix B preserves tier as differentiation axis for palette/section-density/motion/photo. What retires is tier-keyed tokens + font selection + `.tier-*` CSS class system. Four editorial-reach items: CONFIG.spacing design call, glass-variant wide-trigger rationale, example-build.md reframing scope, anti-slop Block A refactor. Chat-Claude made Item 3 scoping call (defer full reframe, add pre-Composer-era status-note header, log dedicated reference-build authoring pass to backlog). Ron's "tier has become less important" reframe redirected Chat-Claude away from over-engineering the Luna drift verification gate. Design arbitrated Items 1, 2, 4: glass-variant stays tier-keyed per Appendix B; anti-slop Block A refactored around serif-display/sans-display grouping with group-naming sharpening at typography.md §11; CONFIG.spacing refactored to base-plus-multiplier architecture (Design authored 20 persona-base values + 2 tier multipliers, splitting editorial authorship from engineering calibration). Code executed. Commit 4e70a0b + 9798579 log (7 files, 196/141). Luna F8 post-commit spot-check showed 3 of 4 values drifted >10% on quiet-confidence × Professional — logged to backlog for post-commit A/B on next real build. Three backlog items transitioned or added.
+- Stage II (f) — P6.1 implementation spec + stub. Mechanical. grm-browser Playwright install at `~/grm-automations/tools/grm-browser/` confirmed reusable per README line 171 ("Phase 6 skill integration is deferred"); no new dependency. Stub (530 lines at `scripts/rendered_content_check.py`) + integration spec (153 lines at `references/phase-6-integration.md`). Commit 2650ac1 + d9cc4ef log.
+- Stage II closed. All six sub-stages a-f complete. Architecture specification done.
+
+**What changed:**
+- `COMPOSER_STAGE_II_C_HANDOFF.md` committed to disk (c0235af + 7903733)
+- `references/profile-schema.md` authored — 389 lines, schemaVersion 1.0, eight-role closed eligibleRoles enum, Phase 3.5 alignment (83b2c43 + 9f1a271)
+- `references/composition-plan-schema.md` authored — 530 lines, schemaVersion 1.0, two-tier signature architecture, 15 closed voice zones, 17 locked scope decisions (06262f9 + e4720aa)
+- `references/typography.md` merged — 952 lines, three-voice system + Composer's technical content absorbed, Appendix B Fraunces-thesis rewritten to persona-conditional-universal, orientation-gating prose preserved under role-class framing (fc0ebfa)
+- `references/voiceMap.md` merged — 532 lines, Design's zone table + Composer's anchor-strip + three-tier service composition preserved, pullquote deployment split across files with cross-reference (fc0ebfa + ca902ad)
+- `references/css-framework.md` CONFIG.spacing refactored to persona-base (5) + tier-multiplier (2) architecture; `:root.tier-*` blocks retired; tier-keyed font tables removed with cross-reference to typography.md §11 (4e70a0b)
+- `references/anti-slop-rules.md` Block A refactored around persona + serif-display/sans-display grouping; Phase 6 auto-checks reference groups rather than enumerating personas (4e70a0b)
+- `SKILL.md` line 341 + `references/hero-patterns.md` line 41 rationale updated to cite Appendix B section-density dimension; line 608 `class="persona-{kebab}"` replaces `class="tier-premium"` emission (4e70a0b)
+- `references/emotional-arc.md` Modern specialist font guidance rewritten to cite typography.md §11 Persona 5 directly (4e70a0b)
+- `references/example-build.md` pre-Composer-era status-note header added (no other edits; full rewrite backlogged) (4e70a0b + 9798579)
+- `scripts/rendered_content_check.py` authored — 530-line Python stub, Playwright + Pillow, two-threshold model, static-blank/scroll-dependent branch (2650ac1)
+- `references/phase-6-integration.md` authored — 153-line integration spec, P6.1 full + P6.2/P6.3/P6.4 placeholder rows (2650ac1 + d9cc4ef)
+- `composer-backlog.md` — two items transitioned to Resolved (Stage II (d) SectionOpener merge conflict at ca902ad log commit; CONFIG.spacing tier-keyed residues at 9798579 log commit); ~10 new Active items added
+
+**What's in-flight:** Nothing. Stage II closed. All three parties (Ron, Code, Design) holding clean.
+
+**What's next (first Stage III session):**
+
+Per brain §8, Stage III is Phase 4-new implementation. But **Stage II.5 precedes Stage III** — hand-written profile.json fixtures covering sparse photo library (0-3 hero candidates), populated library (8+), over-constraint (insufficient photos for layout minimum), high-review-count, low-content-depth, multi-vertical. Each fixture pairs with an expected composition-plan.json outcome. Stage III consumes these fixtures to validate Phase 4-new before running against Luna F8's actual profile.json.
+
+Recommended first-session opening move: scope Stage II.5 fixture authoring. Likely Chat-Claude drafts fixtures with Design pre-review on the persona/vertical selection; Code implements. Design Checkpoint 2 is post-Phase-4-new-implementation, not pre-fixture.
+
+Alternative: back-to-back Stage II.5 + Stage III Phase 4-new as one continuous architectural push. Fixture authoring is lighter editorial-reach than Phase 4-new; may be manageable as Phase 1 of a combined session.
+
+**Checkpoint 2 trigger:** Design reviews Phase 4-new output on 2-3 fixtures before Stage IV begins (brain §8 Stage III gate).
+
+**Design's standby posture:** Ready for Checkpoint 2 whenever Phase 4-new produces output on fixtures. No rush.
+
+**Open questions / deferred decisions:**
+- Stage II.5 fixture authoring sequencing — Chat-Claude drafts with Design pre-review vs. Code authors under scoping guidance. First Stage III session scopes this.
+- Luna F8 drift signal from Stage II (e) — resolves on next quiet-confidence × Professional build via visual A/B against Luna F8 shipped. Not resolvable from numbers.
+- F1-F8 broader persona/tier spot-check — 4 other personas × various tiers pending. Target Stage II follow-up dedicated pass, or first Composer-era build.
+- Composer-era reference build authoring pass (replaces example-build.md header-noted state) — deferred post-Stage-II, possibly alongside first Composer-era sales build.
+- Backlog triage pass — ~10-12 Active items now accumulated. Worth a review at Stage III open to confirm which items gate Stage III vs. which are truly deferred.
+
+**Known traps:**
+- Luna F8 drift: any near-term quiet-confidence × Professional Composer build renders visibly differently from Luna F8 shipped (hero ~20% larger). Visual A/B should precede lock-in of Design's persona-base values.
+- example-build.md header note is a speed-bump, not a fix. File remains in `references/` and Phase 5 still loads it as pattern-match reference — header warns readers, doesn't prevent pre-Composer patterns from influencing emission. If emission regresses on a near-term build, escalate.
+- Stage III Phase 4-new is substantially larger scope than any single Stage II sub-stage. Natural session-splitting expected — Stage II.5 as Session 3a, Phase 4-new implementation as Session 3b, Checkpoint 2 mid-Session-3b or separating to Session 3c.
+- Three Stage III backlog items from Stage II (c) Phase 2 commit (emotional-arc persona-signature column rewrite, SKILL.md Phase 4 signature tree rewrite, css-framework.md Motion Restraint review) gate Phase 4-new implementation. Read backlog at Session 3 open.
+
+**Acknowledgments:**
+- Ron held the CTO-over-Chat position across the session. Called the small-check-ins-on-editorial-reach pattern explicitly ("anytime conflict pops up from Code on items that involved Design, small check-ins always get us the best result") — that rule eliminated iteration at multiple decision points. Trusted Chat-Claude's Item 3 scoping call and made the "tier has become less important" reframe that redirected away from over-engineering the Luna drift verification.
+- Design delivered real architectural innovation: the two-tier signature resolution on signatureMicroInteraction (Tier 1 compositional + Tier 2 motion) wasn't in Checkpoint 1 response — surfaced at Code's verification and resolved at Design's next pass as a framework-level reframe. Same pattern on CONFIG.spacing base-plus-multiplier architecture — Design didn't just author 20 values; he split editorial authorship from engineering calibration in a way that makes future tuning tractable. The serif-display/sans-display grouping sharpening on anti-slop Block A was a genuine improvement over Chat-Claude's draft.
+- Code's authority discipline before drafting — reading image-handling.md before profile-schema Flag 1 surfaced the role-vocabulary gap; reading SKILL.md Phase 4 before composition-plan-schema commit surfaced the signatureMicroInteraction framework mismatch. Full authorship on mechanical work earned additional trust across the session. Code also led Stage II (e) diagnostic with the framing correction ("tier isn't retiring from Composer") that reshaped how Chat-Claude and Design processed the inventory.
+- Three-party cadence held across six commits, four Design arbitration rounds, and ~20 editorial-reach routing decisions. No flattened conflicts. No silent resolutions on load-bearing calls.
+
+---
+
 ## Session block — 2026-04-21 (afternoon/evening)
 
 **Window type:** Chat-Claude + Code + Design three-way relay.
