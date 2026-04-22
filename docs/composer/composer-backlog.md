@@ -159,6 +159,101 @@ trigger for pickup.
   build post-Composer launch where the rule needs to be re-derived by
   Phase 5 code.
 
+### composition-plan-schema.md §5.3 per-section-type contracts deferred
+- **Surfaced:** Stage II (c) Phase 2 composition-plan-schema.md
+  authoring, 2026-04-22 (Checkpoint 1 q6 resolution).
+- **Why deferred:** Schema lands with `statRow` (§5.1) and
+  `sectionOpener` (§5.2) contract fields authored. The remaining
+  tagged section types enumerated in §5 (`hero`, `servicesGrid`,
+  `testimonialsSection`, `featuredPullQuote`, `faqSection`,
+  `beforeAfter`, `anchorStrip`, `trustSection`, `contactForm`,
+  `footerSection`, `aboutStory`) need their own per-type contract
+  field tables before Stage III Phase 4-new implementation begins.
+  Priority order per Design: hero first (Luna F8
+  profile.design.heroMode + heroGlassVariant + videoAugmentation
+  migrate here), servicesGrid second (photo assignment filtering
+  against evidenceShot eligibility), testimonialsSection third,
+  aboutStory fourth, remainder in any order. Authority per section:
+  `section-patterns.md` + `hero-patterns.md` + Design's
+  `typography-patterns.md`.
+- **Target pickup:** Stage II (c) follow-up pass after this commit
+  lands, or defer to Stage II (d) if scoping permits.
+
+### Stage II (d) typography.md three-way merge — SectionOpener framing conflict anticipated
+- **Surfaced:** Stage II (c) Phase 2 composition-plan-schema.md
+  authoring, 2026-04-22 (Checkpoint 1 q2 resolution).
+- **Why deferred:** Composer's current `references/typography.md` §4
+  SectionOpener primitive is four-axis parameterized (eyebrowSize,
+  headlineScale, italicPlacement, orientation). composition-plan-schema
+  §5.2 retires the four-axis framing under Design's role-class
+  assignment model (`.role-data-eyebrow` + `.role-display-section`
+  with ≤24px proximity contract, orientation preserved as single
+  enum). At Stage II (d) three-way merge between Composer's typography.md,
+  Design's `typography-patterns.md`, and the merged output target, the
+  framings will conflict — axis-parameterized primitive vs. role-class
+  assignment, same element, different design model. Design's explicit
+  instruction: don't flatten at merge. Surface to Design via
+  Chat-Claude per `voiceMap.md` README §"If you hit a merge conflict"
+  procedure.
+- **Target pickup:** Stage II (d) typography / voiceMap three-way merge.
+
+### Stage III — emotional-arc.md persona-signature column rewrite (two-tier)
+- **Surfaced:** Stage II (c) Phase 2 composition-plan-schema.md
+  q1-follow-up resolution, 2026-04-22.
+- **Why deferred:** `references/emotional-arc.md` persona table's
+  "Signature" column is keyed to Composer's legacy five motion-based
+  values (italic-color-shift, eyebrow-reveal, underline-bloom,
+  shimmer-hero-cta, mono-numeral-flip). composition-plan-schema §2.1
+  establishes a two-tier architecture — Tier 1 signature (six
+  compositional values) and Tier 2 micro-interactions (four motion
+  values). emotional-arc.md persona defaults need to reference the
+  Tier 1 compositional vocabulary, with a parallel Tier 2
+  micro-interactions column documenting per-persona motion defaults.
+  Schema ships with the forward spec; emotional-arc.md is a consuming
+  reference that catches up when Phase 4-new is authored.
+- **Target pickup:** Stage III Phase 4-new implementation.
+
+### Stage III — SKILL.md Phase 4 signature decision tree rewrite
+- **Surfaced:** Stage II (c) Phase 2 composition-plan-schema.md
+  q1-follow-up resolution, 2026-04-22.
+- **Why deferred:** SKILL.md Phase 4 signature selection tree (lines
+  417–427, five-value motion-based tree) is Composer's inherited
+  Phase 4-old. Stage III rewrites Phase 4 as Phase 4-new against
+  composition-plan-schema. The Tier 1 compositional vocabulary
+  replaces the five-value motion tree; a separate Tier 2
+  micro-interactions selection step is added with per-persona defaults
+  drawn from emotional-arc.md (which itself is being rewritten per
+  adjacent Stage III item above).
+- **Target pickup:** Stage III Phase 4-new implementation.
+
+### Stage III — css-framework.md Motion Restraint review
+- **Surfaced:** Stage II (c) Phase 2 composition-plan-schema.md
+  q1-follow-up resolution, 2026-04-22.
+- **Why deferred:** `references/css-framework.md` "Motion Restraint"
+  section defines the five motion-based values today. Under the
+  two-tier architecture, Motion Restraint should govern Tier 2
+  micro-interactions cleanly and not reference Tier 1 signatures
+  (which are compositional/typographic, not motion — they belong in
+  typography-patterns.md's role-class territory). Review the section
+  at Stage III to confirm scope and cut any Tier 1 references that
+  slipped in during the legacy five-value era.
+- **Target pickup:** Stage III Phase 4-new implementation.
+
+### First-real-build editorial review — shimmer-hero-cta retention
+- **Surfaced:** Stage II (c) Phase 2 composition-plan-schema.md
+  q1-follow-up resolution, 2026-04-22.
+- **Why deferred:** composition-plan-schema §2.1 Tier 2 enum includes
+  `shimmer-hero-cta` as one of four motion micro-interactions. Design's
+  editorial note: "shimmer" reads as SaaS, not editorial, and may not
+  survive an aesthetic pass regardless of the Tier 2 category. Flag at
+  approval gate on any build where Phase 4 selects shimmer-hero-cta;
+  Design reviews the effect on the live rendered site before locking
+  shimmer-hero-cta as a permanent Tier 2 value. Retention decision is
+  a live-site editorial judgment that can't be made from the schema
+  alone.
+- **Target pickup:** First build where Phase 4 selects
+  `shimmer-hero-cta` — Design review on deployed preview URL.
+
 ## Resolved deferrals
 
 ### LESSONS.md merge (root → references/)
