@@ -474,20 +474,20 @@ If any ratio fails, Phase 6 flags the build and suggests either darkening the ov
 
 Google Fonts is the only approved font source. Self-hosting fonts is deferred to v0.8 Scale (deferred) because the flagship builds do not need the extra 30-40ms of first-paint improvement that self-hosting gives, and because Google Fonts handles font-display and variable font loading correctly out of the box.
 
-Add these to the `<head>` of every generated HTML file:
+Phase 5 reads `CONFIG.fonts.[tier].googleFontsPath` per the tier decision from Phase 4 and emits a three-link block in `<head>` of every generated HTML file:
 
 ```html
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=[HEADING_FONT]:wght@400;600;700;800&family=[BODY_FONT]:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=[HEADING_FONT]:wght@400;600;700;800&family=[BODY_FONT]:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=[googleFontsPath-value]&display=swap">
 ```
 
 - `preconnect` to both `fonts.googleapis.com` and `fonts.gstatic.com` (the gstatic one must include `crossorigin`)
-- `preload` the stylesheet so the font starts downloading earlier
 - `display=swap` so text renders in fallback immediately and swaps to the web font when loaded
 
-Phase 5 substitutes `[HEADING_FONT]` and `[BODY_FONT]` with URL-encoded font family names based on the tier decision from Phase 4.
+The path value is used verbatim — no placeholder substitution. `[googleFontsPath-value]` is replaced with the resolved string from `CONFIG.fonts.[tier].googleFontsPath`. The path encodes which font families and weight ranges Google Fonts loads. Phase 5 reads CONFIG once per build and emits the resolved path directly into the `<link rel="stylesheet">` href.
+
+`<link rel="preload">` is NOT emitted. Preconnect + stylesheet with `display=swap` is the pattern — matches Google Fonts' recommended minimum and avoids the double-fetch overhead a stale `<link rel="preload">` would introduce alongside the stylesheet link.
 
 ### Approved heading fonts by tier
 
