@@ -540,6 +540,8 @@ Goal: build the multi-page website using the GRM house style and the selected he
 
 For the hero pixel-level CSS (all four modes, shared glass card, video augmentation), see `references/hero-patterns.md`. For every non-hero section (nav, promo bar, trust marquee, services grid, stats dark section, before/after gallery, testimonials, promo callout, FAQ, contact form, footer, mobile bottom CTA bar), see `references/section-patterns.md`. SKILL.md contains only the high-level section order and hard rules.
 
+For voice assignment per zone, load `references/voiceMap.md` BEFORE generating any copy in any zone. voiceMap.md is the authoritative source for zone-to-voice mapping under the three-voice contractor system (Closing Table / Saturday Morning / Front Porch), keyed by section and persona. Phase 4's selected persona feeds the voice mapping decision per zone. `references/content-rules.md` provides the headline patterns, CTA templates, FAQ templates per vertical, and banned phrases that fill in once voice is assigned. The two files compose: voiceMap.md decides which voice each section uses, content-rules.md provides the patterns that voice writes against.
+
 ### Required pages
 
 - `index.html` — Homepage
