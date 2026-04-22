@@ -179,24 +179,6 @@ trigger for pickup.
 - **Target pickup:** Stage II (c) follow-up pass after this commit
   lands, or defer to Stage II (d) if scoping permits.
 
-### Stage II (d) typography.md three-way merge — SectionOpener framing conflict anticipated
-- **Surfaced:** Stage II (c) Phase 2 composition-plan-schema.md
-  authoring, 2026-04-22 (Checkpoint 1 q2 resolution).
-- **Why deferred:** Composer's current `references/typography.md` §4
-  SectionOpener primitive is four-axis parameterized (eyebrowSize,
-  headlineScale, italicPlacement, orientation). composition-plan-schema
-  §5.2 retires the four-axis framing under Design's role-class
-  assignment model (`.role-data-eyebrow` + `.role-display-section`
-  with ≤24px proximity contract, orientation preserved as single
-  enum). At Stage II (d) three-way merge between Composer's typography.md,
-  Design's `typography-patterns.md`, and the merged output target, the
-  framings will conflict — axis-parameterized primitive vs. role-class
-  assignment, same element, different design model. Design's explicit
-  instruction: don't flatten at merge. Surface to Design via
-  Chat-Claude per `voiceMap.md` README §"If you hit a merge conflict"
-  procedure.
-- **Target pickup:** Stage II (d) typography / voiceMap three-way merge.
-
 ### Stage III — emotional-arc.md persona-signature column rewrite (two-tier)
 - **Surfaced:** Stage II (c) Phase 2 composition-plan-schema.md
   q1-follow-up resolution, 2026-04-22.
@@ -255,6 +237,24 @@ trigger for pickup.
   `shimmer-hero-cta` — Design review on deployed preview URL.
 
 ## Resolved deferrals
+
+### Stage II (d) typography.md three-way merge — SectionOpener framing conflict
+- **Originally surfaced:** Stage II (c) Phase 2 composition-plan-schema.md
+  authoring, 2026-04-22 (Checkpoint 1 q2 resolution).
+- **Resolved:** 2026-04-22 (commit fc0ebfa). Stage II (d) three-way
+  merge executed under full authorship with Design arbitration on
+  three conflicts (A1 SectionOpener framing, B3 Fraunces-universal
+  rewording, C3 pull-quote trigger). Axis-parameterized SectionOpener
+  primitive retired; role-class assignment (`.role-data-eyebrow` +
+  `.role-display-section` with ≤24px proximity contract) adopted in
+  merged typography.md §6. Composer's orientation-gating insight
+  preserved as prose. Marker-class canonical example in §17.4 updated
+  from `.section-opener--italic-*` to `.section-opener--orientation-*`.
+  Nine auto-resolvables (A2, B1, B2, C1, C2, C4, C5, C6, C7) applied
+  per README default tie-breakers. Sentinel check (Rule E6 + Check 18)
+  passed — home files untouched by merge. Merged typography.md: 952
+  lines; merged voiceMap.md: 532 lines. Stage II (a) file copies
+  retired as superseded by merge output.
 
 ### LESSONS.md merge (root → references/)
 - **Originally surfaced:** Stage II (a) file copies, 2026-04-21 (commit c175551).
