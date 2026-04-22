@@ -875,7 +875,7 @@ All keyframe animations respect `prefers-reduced-motion` through the global rese
 
 ---
 
-## Motion restraint: what transitions and when
+## Motion restraint: what transitions and when (Tier 2 micro-interactions)
 
 Most contractor sites over-animate. Every card fades in on scroll. Every hover adds a bounce. Every section slides up from below. Cumulatively this reads as "template with motion library installed," and on a slow connection it reads as "site half-broken." The rule is restraint.
 
@@ -897,23 +897,21 @@ Anything else does not transition. If a section pattern in `section-patterns.md`
 
 Transform rules: `translate`, `scale`, and `rotate` are allowed but only at subtle magnitudes (translate under 4px, scale between 0.97 and 1.03, rotate under 2 degrees). Large-magnitude transforms (scale 1.2, translate 20px, rotate 15deg) are animation-library territory and banned.
 
-### The "one signature micro-interaction" rule
+### The Tier 2 motion micro-interactions rule
 
-Every generated site gets **one** signature micro-interaction, chosen at Phase 4 design time. Not ten. Not "one per section." One, site-wide.
+Every generated site gets zero or more Tier 2 motion micro-interactions, chosen at Phase 4 design time and recorded on `site.microInteractions`. The array may be empty (quiet-confidence default) or carry up to all four approved values. Approved Tier 2 motion options:
 
-The signature is a deliberate visual gesture the reader notices without being able to name. It builds character without building distraction. Approved signature options:
+1. **Eyebrow reveal on hero entry.** The hero eyebrow fades up 0.4s after page load (or 0.25s for rescue-ready) while the headline is already visible. The eyebrow is the only thing that animates on entry; the rest of the hero is static.
+2. **Underline bloom on inline links.** Inline body links get a 2px underline animating from 0 to 100% width on hover via `transform: scaleX()`.
+3. **Shimmer sweep on the primary hero CTA only.** The button shimmer keyframe, applied to exactly one button on the page (the hero primary CTA), running at 3-second intervals. Emitted only with explicit Phase 4 override rationale.
+4. **Mono numeral hover-flip on stats.** In a stats section, hovering a stat card swaps the digit glyphs to their tabular-lining variant and back. Single-property transition on `font-variant-numeric`.
 
-1. **Italic color-shift on accent words.** Brand-color italics inside headlines gently shift from primary to dark-primary on hover (if they are links) or remain static (if they are not). The italic is the visible signature; the hover shift is the micro-animation.
-2. **Underline bloom on inline links.** Inline body links get a 2px underline that animates from 0 to 100% width on hover, transitioning only `transform: scaleX()`.
-3. **Shimmer sweep on the primary hero CTA only.** The button shimmer keyframe above, applied to exactly one button on the page (the hero primary CTA), running at 3-second intervals.
-4. **Eyebrow reveal on hero entry.** The hero eyebrow fades up 0.4s after page load while the headline is already visible. The eyebrow is the only thing that animates on entry; the rest of the hero is static.
-5. **Mono numeral hover-flip on stats.** In the stats section, hovering a stat card briefly swaps the digit glyphs to their tabular-lining variant and back. Single-property transition on `font-variant-numeric`.
-
-Phase 4 picks one option and records it in `profile.json` under `design.signatureMicroInteraction`. Phase 5 implements that one interaction and nothing else. Phase 6 check 17 verifies that no more than one of the approved signatures is present.
+Tier 1 compositional signatures (`italic-color-shift`, `watermark-numeral-offset`, `anchor-strip-pivot`, `hero-glass-blur`, `stat-row-ledger`) are typographic treatments governed by `typography-patterns.md` role classes, not motion primitives. They do not appear in this section.
 
 ### Durations and easing
 
 - Hover transitions: **150-200ms** with `ease-out`. Anything longer reads as laggy.
+- Rescue-ready persona accelerates entry animations to 250ms (from the 400ms default) per `emotional-arc.md` persona bias.
 - Entry animations (hero eyebrow, scroll-reveal): **400-600ms** with `ease-out` or `cubic-bezier(0.16, 1, 0.3, 1)`.
 - Marquee and shimmer loops: durations as specified in `CONFIG.animation` above.
 - Never use `linear` easing on discrete transitions. Linear is for loops (marquee, shimmer) only.
