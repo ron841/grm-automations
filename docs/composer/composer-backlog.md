@@ -241,48 +241,6 @@ trigger for pickup.
 - **Target pickup:** Stage II (c) follow-up pass after this commit
   lands, or defer to Stage II (d) if scoping permits.
 
-### Stage III — emotional-arc.md persona-signature column rewrite (two-tier)
-- **Surfaced:** Stage II (c) Phase 2 composition-plan-schema.md
-  q1-follow-up resolution, 2026-04-22.
-- **Why deferred:** `references/emotional-arc.md` persona table's
-  "Signature" column is keyed to Composer's legacy five motion-based
-  values (italic-color-shift, eyebrow-reveal, underline-bloom,
-  shimmer-hero-cta, mono-numeral-flip). composition-plan-schema §2.1
-  establishes a two-tier architecture — Tier 1 signature (six
-  compositional values) and Tier 2 micro-interactions (four motion
-  values). emotional-arc.md persona defaults need to reference the
-  Tier 1 compositional vocabulary, with a parallel Tier 2
-  micro-interactions column documenting per-persona motion defaults.
-  Schema ships with the forward spec; emotional-arc.md is a consuming
-  reference that catches up when Phase 4-new is authored.
-- **Target pickup:** Stage III Phase 4-new implementation.
-
-### Stage III — SKILL.md Phase 4 signature decision tree rewrite
-- **Surfaced:** Stage II (c) Phase 2 composition-plan-schema.md
-  q1-follow-up resolution, 2026-04-22.
-- **Why deferred:** SKILL.md Phase 4 signature selection tree (lines
-  417–427, five-value motion-based tree) is Composer's inherited
-  Phase 4-old. Stage III rewrites Phase 4 as Phase 4-new against
-  composition-plan-schema. The Tier 1 compositional vocabulary
-  replaces the five-value motion tree; a separate Tier 2
-  micro-interactions selection step is added with per-persona defaults
-  drawn from emotional-arc.md (which itself is being rewritten per
-  adjacent Stage III item above).
-- **Target pickup:** Stage III Phase 4-new implementation.
-
-### Stage III — css-framework.md Motion Restraint review
-- **Surfaced:** Stage II (c) Phase 2 composition-plan-schema.md
-  q1-follow-up resolution, 2026-04-22.
-- **Why deferred:** `references/css-framework.md` "Motion Restraint"
-  section defines the five motion-based values today. Under the
-  two-tier architecture, Motion Restraint should govern Tier 2
-  micro-interactions cleanly and not reference Tier 1 signatures
-  (which are compositional/typographic, not motion — they belong in
-  typography-patterns.md's role-class territory). Review the section
-  at Stage III to confirm scope and cut any Tier 1 references that
-  slipped in during the legacy five-value era.
-- **Target pickup:** Stage III Phase 4-new implementation.
-
 ### First-real-build editorial review — shimmer-hero-cta retention
 - **Surfaced:** Stage II (c) Phase 2 composition-plan-schema.md
   q1-follow-up resolution, 2026-04-22.
@@ -319,6 +277,19 @@ trigger for pickup.
 - **Target pickup:** Phase 6 P6.2 implementation (currently stub
   per Stage II (f)). Bundle with broader Check 17a/17b test-author
   pass when P6.2 spec fills in.
+
+- **Fixture 2 pullquote word-count retrofit-or-grandfather.**
+  Fixture 2 Kingsley composition-plan (commit 1ea2408)
+  home-page pullQuotes[0].extractedText is 32 words;
+  composition-plan-schema §4.5 / typography-patterns.md §6
+  heuristic specifies 8-20 word bound. Per Design's
+  Session 3 Q2 close: fixtures are authored intent; Phase
+  4-new LLM authoring honors 8-20 bound. Decision at
+  Checkpoint 2 when Design reviews Phase 4-new output
+  against fixtures: retrofit Fixture 2's pullquote within
+  bound, OR grandfather 32-word quote as fixture-authored
+  exception. Non-blocking for Phase 4-new implementation
+  start. (Added 2026-04-22, Session 3 close.)
 
 ## Resolved deferrals
 
@@ -415,6 +386,47 @@ trigger for pickup.
   as superseded by persona-conditional CONFIG.fonts (urgent-service
   uses Archivo, modern-specialist uses Inter Tight, etc.). Features 1,
   6 (renamed --font-mono → --font-data), 7, 8, 9, 10 landed.
+
+### Stage III — emotional-arc.md persona-signature column rewrite (two-tier)
+- **Originally surfaced:** Stage II (c) Phase 2
+  composition-plan-schema.md q1-follow-up resolution, 2026-04-22.
+- **Resolved:** 2026-04-22 Session 3. Gate 1 411e30a landed the
+  6-column Tier 1 + Tier 2 bias table, tenure+trade convergence
+  clause, and layout/photo/copy tie-breaking paragraphs. Gate 1
+  polish 949de45 hoisted the Hero calibration subsection and
+  promoted signature-rule bullets to standalone paragraphs per
+  Flag A + Flag B. Persona defaults now reference Tier 1
+  compositional vocabulary (italic-color-shift,
+  watermark-numeral-offset, anchor-strip-pivot, hero-glass-blur,
+  stat-row-ledger, none) with parallel Tier 2 motion defaults per
+  persona.
+
+### Stage III — SKILL.md Phase 4 signature decision tree rewrite
+- **Originally surfaced:** Stage II (c) Phase 2
+  composition-plan-schema.md q1-follow-up resolution, 2026-04-22.
+- **Resolved:** 2026-04-22 Session 3 (commit 757e030). Phase 4
+  signature selection tree rewritten as Tier 1 six-rule resolution
+  + Tier 2 persona-default-plus-additive resolution. Legacy
+  five-value motion-based tree retired. Line 429 output path split
+  to composition-plan.site.signatureMicroInteraction (singular,
+  six-value enum) + composition-plan.site.microInteractions
+  (array, four-value enum). Authority split: Tier 1 definitions
+  live in typography-patterns.md, Tier 2 in css-framework.md
+  Motion Restraint section.
+
+### Stage III — css-framework.md Motion Restraint review
+- **Originally surfaced:** Stage II (c) Phase 2
+  composition-plan-schema.md q1-follow-up resolution, 2026-04-22.
+- **Resolved:** 2026-04-22 Session 3 (commit 6f8bcbb). Motion
+  Restraint section heading gained "(Tier 2 micro-interactions)"
+  scope suffix. Legacy "one signature micro-interaction" rule
+  + 5-value list retired; replaced with "Tier 2 motion
+  micro-interactions rule" subsection documenting the four
+  approved Tier 2 values (eyebrow-reveal, underline-bloom,
+  shimmer-hero-cta, mono-numeral-flip). Closing paragraph notes
+  Tier 1 compositional signatures migrate to typography-patterns.md
+  role-class territory. Durations subsection gains rescue-ready
+  250ms entry bullet per emotional-arc.md persona bias.
 
 ## Informational notes (process learnings, not deferrals)
 
