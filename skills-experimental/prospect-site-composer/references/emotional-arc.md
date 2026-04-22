@@ -42,7 +42,7 @@ The five personas below are not exhaustive. They are the five that map cleanly o
 - No starbursts, no promo bar color backgrounds, no exclamation marks anywhere on the page.
 - No stat cards with trophy icons or award icons. Numbers speak without decoration.
 - No testimonials that begin with "Amazing!" or "The best!" — if the captured testimonials are all like that, filter to the quieter ones even if there are fewer.
-- No hero CTA button with shimmer-loop animation. The signature micro-interaction for Quiet confidence is italic-color-shift; shimmer reads as salesy.
+- The signature micro-interaction for Quiet confidence is the Tier 1 italic-color-shift, compositional only. Tier 2 motion defaults to empty — restraint is the signature. If the Phase 4 tree produces a Tier 2 entry, it does so with rationale recorded on signatureMicroInteractionReason.
 
 **Opening paragraph examples (the hero glass card subhead):**
 
@@ -65,7 +65,7 @@ Both examples: short sentences, specific facts, no adjectives of self-praise, no
 - Before/after galleries are the most important section on the page. They get the best photography budget, the most generous layout, and the most specific captions ("24-FT CUSTOM SHOTCRETE / TRAVERTINE DECK / DUNNELLON, NOV 2025").
 - Italic signature word is a quality adjective at a specific moment — "hand *poured*," "custom *cut*," "fully *tiled*." The italic carries craft, not emotion.
 - Layout D (full-bleed) almost always lands on this build if a qualifying photo exists. The full-bleed moment is the page's emotional peak.
-- Motion: eyebrow-reveal signature works well here because it gives the hero a ceremonial quality.
+- Compositional: watermark-numeral-offset is the persona's Tier 1 signature — let numerals earn their space. Motion: underline-bloom on inline body links as the Tier 2 default. shimmer-hero-cta is reserved; Phase 4 may emit it with explicit override rationale.
 
 **Don't.**
 
@@ -97,6 +97,8 @@ Both examples: the work is the subject, the standards are specific, the refusals
 - Copy voice leans heavily into Front Porch (from content-rules.md voice mapping). Saturday Morning is acceptable for section headers; Closing Table is minimized.
 - Layout A (offset headline) lands on the About section particularly well, with the offset column containing a family photograph or detail shot.
 
+Neighborhood steady's trade-default is landscape maintenance and allied outdoor trades, but tenure overrides trade bias: any trade with 15+ years of continuous local operation and documented multi-generational or long-tenured-customer signals (testimonials referencing decades, family succession, local-institution framing) biases toward neighborhood-steady regardless of trade category. Pest control, handyman, small-town electrician, septic, and HVAC with 20+ year tenure all qualify. The rule is: tenure signal + trade signal compound; either alone is insufficient, both together lock the persona.
+
 **Don't.**
 
 - No corporate language. No "we deliver solutions" or "we are committed to excellence." Neighborhood steady talks like the owner talks, which is to say, it talks to a neighbor.
@@ -125,7 +127,7 @@ Both examples: family names are present, specific dates anchor the tenure, the p
 - Photography leans into trucks (branded, visible, in-motion), equipment on scene, and crews-in-motion. Environmental portraits show people working in active response, not posed. Before/after evidence is powerful here when the "before" is a genuine disaster scene.
 - Stats lean into response metrics: "Average dispatch time: 34 minutes," "Crews on call: 7 days a week," "Fully stocked trucks." Tenure stats are secondary.
 - Italic signature word is urgency-coded: "dispatched *fast*," "on site *within the hour*," "answering *around the clock*." The italic carries reassurance.
-- Motion signature is eyebrow-reveal with a slightly earlier and faster entry (250ms instead of 400ms) — the page itself feels more awake.
+- Compositional: stat-row-ledger is the persona's Tier 1 signature — response time and review count made legible at a glance. Motion: eyebrow-reveal as the Tier 2 default, but accelerated to 250ms (not the 400ms default) to match urgency pacing.
 - Layout C (70/30 split) often lands on a response-time callout section: 70% column with "What happens when you call" explanation, 30% sidebar with a response-metrics fact list.
 
 **Don't.**
@@ -183,13 +185,15 @@ A persona is the key; the arc is the melody. Every page hits three moments in or
 
 The hero is the opening note. Hero mode, glass card variant, and background treatment come from `hero-patterns.md`. The emotional persona adds one layer on top: the *feeling* the hero should produce, which governs a handful of decisions the structural rules leave open.
 
-| Persona | Opening note feeling | Hero calibration |
+| Persona | Tier 1 hero treatment | Tier 2 entry animation |
 |---|---|---|
-| Quiet confidence | Shoulders drop. "I am in competent hands." | Crossfade photos are all environmental or detail. Headline is declarative and specific. Italic word is precise. Entry animation: eyebrow fade-up only. |
-| Earned pride | "Oh, *that's* beautiful." | Crossfade photos are finished-result-heavy. Headline names the craft. Full-bleed candidate exists for mid-page arc. Italic carries quality. |
-| Neighborhood steady | "That's *our* people." | Crossfade includes family or crew photos prominently. Headline uses first-person plural or family name. Italic carries locality. |
-| Rescue-ready | "I just found the cavalry." | Crossfade photos are trucks and crews-in-motion. Phone number is the second-largest element on the hero after the headline. Headline leads with response time. |
-| Modern specialist | "This person knows the new thing." | Crossfade photos are equipment and technical detail. Headline names the technology. Italic carries expertise. |
+| Quiet confidence | italic-color-shift (headline italic accent) | [] |
+| Earned pride | watermark-numeral-offset (when hero carries stat or tenure) OR hero-glass-blur (when hero carries photo depth) | [underline-bloom] |
+| Neighborhood steady | italic-color-shift (place/name italic) | [eyebrow-reveal] at 400ms |
+| Rescue-ready | stat-row-ledger (response-time callout) | [eyebrow-reveal] at 250ms |
+| Modern specialist | anchor-strip-pivot (between hero and body) | [underline-bloom, mono-numeral-flip] |
+
+Default resolution order: hero-patterns.md mode tree produces a candidate Tier 1 treatment → persona default above breaks ties → fallback to `none` if neither path yields a valid value under the composition-plan-schema §2.1 signatureMicroInteraction enum.
 
 ### Build (middle 60% of the page, Services → Stats → Before/After → Testimonials → Promo → FAQ)
 
@@ -227,19 +231,33 @@ The close is rarely a section by itself; it is how the Contact section and its i
 
 This table is the bridge between feeling and executable rules. Phase 4 uses it to break ties when selecting editorial layouts, signature micro-interaction, and photo role emphasis; Phase 5 uses it to resolve ambiguous section-level decisions. Every row is a persona; every column is a decision the rule files leave open.
 
-| Persona | Editorial layouts (weighted) | Signature | Photo role emphasis | Copy density | Italic signature word type | Motion budget |
-|---|---|---|---|---|---|---|
-| Quiet confidence | A (heavy), E (medium), B (light) | italic-color-shift | Environmental portrait + detail shot | Low-medium | Precision verb/adjective | Minimum (eyebrow only) |
-| Earned pride | D (heavy if photo exists), B (heavy), E (medium), A (medium) | eyebrow-reveal | Hero plate (finished result) + evidence + detail | Medium | Quality adjective | Medium (eyebrow + shimmer loop on CTA permitted) |
-| Neighborhood steady | A (heavy), D (if family photo exists), C (light) | italic-color-shift | Environmental portrait (fully-captioned) | Medium-high | Place or name | Minimum (eyebrow only) |
-| Rescue-ready | C (heavy, for response callout), E (early, for metrics), A (light) | eyebrow-reveal | Trucks + crews-in-motion + evidence | Low (skimmable) | Urgency adverb | Medium-fast (250ms eyebrow entry) |
-| Modern specialist | B (heavy, for technical detail), E (heavy, for stats), A (medium) | underline-bloom | Equipment + installation detail + credential documentation | Medium-high | Technical term | Medium (underline-bloom + eyebrow) |
+| Persona | Tier 1 compositional default | Tier 2 motion defaults | Editorial layouts (weighted) | Photo role emphasis | Copy density |
+|---|---|---|---|---|---|
+| Quiet confidence | italic-color-shift | [] (max 1 if override) | heavy: A, C-50-50 · medium: C-70-30 · light: B, D | environmental > owner > detail > evidence | medium (2–4 sentence paragraphs, selective lede) |
+| Earned pride | watermark-numeral-offset | [underline-bloom] (max 3) | heavy: D, C-70-30 · medium: A · light: B | hero-quality heroPlate > environmental > evidence pairs > detail | heavy (long-form testimonials, 3–5 sentence paragraphs, lede always) |
+| Neighborhood steady | italic-color-shift | [eyebrow-reveal] (max 2) | heavy: A, A-offset · medium: D (about only) · light: B, C | environmental > owner (family/multi-gen preferred) > detail > evidence | medium-light (2–3 sentence paragraphs, warmth over completeness) |
+| Rescue-ready | stat-row-ledger | [eyebrow-reveal at 250ms] (max 2) | heavy: C-70-30, E · medium: A · light: D (suppress) | evidence (before/after) > environmental (in-motion) > detail > owner | light (1–2 sentence paragraphs, scannable, response-time forward) |
+| Modern specialist | anchor-strip-pivot | [underline-bloom, mono-numeral-flip] (max 3) | heavy: B, E · medium: A, C-50-50 · light: D | detail > evidence > environmental > owner | medium-heavy (technical precision, 2–4 sentences, specs-forward) |
 
-**Signature tie-breaking.** The Phase 4 signature selection tree (in SKILL.md Phase 4) picks based on tier, hero mode, and service count. When the tree produces an ambiguous result (e.g., two options are equally defensible), the persona breaks the tie using the Signature column above.
+### Notes on the assignments
 
-**Layout tie-breaking.** The editorial-layouts module specifies minimum 3, maximum repeat 2, full-bleed max 1 per page. When a build has more valid layouts than it can use, the persona's "weighted" column determines priority: *heavy* before *medium* before *light*.
+**Quiet confidence → italic-color-shift, no Tier 2.** The persona's discipline is compositional gesture over motion. A static italic accent inside an otherwise restrained headline is the signature. Adding a Tier 2 motion reads as over-insurance. If the Phase 4 tree produces a compelling reason to add one Tier 2 entry (e.g. mono-numeral-flip on a stats section that's already the page's statistical anchor), the tree may do so, but the default is empty.
 
-**Photo tie-breaking.** When two photos could fit the same slot and both are role-tagged correctly, the persona's photo role emphasis breaks the tie: a Quiet confidence build prefers an environmental portrait over an evidence shot for a services grid featured card; an Earned pride build prefers a finished-result hero plate.
+**Earned pride → watermark-numeral-offset + underline-bloom.** Earned pride builds character through numerals that earn their space (years, jobs completed, certifications) — watermark-numeral-offset is how the persona communicates pride compositionally. Underline-bloom on inline body links is the quiet reward for reading further; it pairs cleanly with long-form testimonial prose the persona favors. Shimmer-hero-cta is flagged for this persona (appears in Fixture 2 expected shape) but not default — reserved for tiers where CTA prominence is doing work, and requires Phase 4 override rationale to emit.
+
+**Neighborhood steady → italic-color-shift + eyebrow-reveal.** The italic-on-place-or-name (*since 1987*, *Marion County*, *third-generation*) is the persona's compositional fingerprint and the only signature it actually needs. Eyebrow-reveal as the single Tier 2 entry because section-openers in neighborhood-steady carry warmth the reveal amplifies without distraction.
+
+**Rescue-ready → stat-row-ledger + eyebrow-reveal (accelerated).** The Tier 1 call is deliberate: rescue-ready's compositional job is making response time and review count legible at a glance, and stat-row-ledger (the compositional treatment, not the motion) is that gesture. Eyebrow-reveal runs at 250ms to match the persona's urgency pacing — 400ms reads as ceremonial where the persona needs briskness. This overrides the default entry-animation duration in the Page arc table below.
+
+**Modern specialist → anchor-strip-pivot + underline-bloom + mono-numeral-flip.** Anchor-strip-pivot is the compositional pivot between hero and body that modern-specialist's information-dense pages use to establish rhythm. Two Tier 2 entries is the only persona with a plural default: underline-bloom for inline links (frequent in technical copy), mono-numeral-flip for the stat cards that do typographic work in every modern-specialist site. The persona carries higher motion tolerance because the baseline aesthetic is precision, not warmth.
+
+**Signature tie-breaking.** The Phase 4 signature selection tree produces two outputs: `signatureMicroInteraction` (Tier 1, singular, from the six-value compositional enum at composition-plan-schema.md §2.1) and `microInteractions` (Tier 2, array, from the four-value motion enum at composition-plan-schema.md §2.2, may be empty). The tree picks based on tier, hero mode, service count, and evidence density. When the tree produces an ambiguous result on either tier, the persona defaults in the table above break the tie. Tier 1 must always resolve to a singular value (never null — use `none` if no compositional signature applies). Tier 2 may resolve to an empty array; quiet-confidence does so by default.
+
+**Layout tie-breaking.** When multiple layouts satisfy the per-section-type allowed-layout enum in composition-plan-schema.md §5.3, the persona's Editorial layouts weighted column above determines priority: heavy-weighted layouts selected before medium before light. Phase 4 records the weighted class in layoutSelectionReason.
+
+**Photo tie-breaking.** When multiple photo roles are eligible for the same section slot (e.g. aboutStory featurePhotoId accepts both ownerPortrait and environmentalPortrait per §5.3.4), the persona's Photo role emphasis column breaks the tie. A Quiet confidence build prefers an environmental portrait over an owner portrait when both are eligible; an Earned pride build prefers a hero-quality heroPlate over an environmental portrait in the same situation.
+
+**Copy density tie-breaking.** The Copy density column governs Phase 4's section-count and paragraph-target decisions. Light-density personas (Rescue-ready, Neighborhood steady at Standard tier) suppress faqSection when profile.faq is thin; heavy-density personas (Earned pride) emit full-length narrativeBlocks in aboutStory even at Standard tier. This surfaces at approval gate as 'content-density mismatch' if profile content is insufficient for the persona's density expectation.
 
 ---
 
