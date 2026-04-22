@@ -1,0 +1,272 @@
+{
+  "$schemaVersion": "1.0",
+  "$schema": "profile",
+  "businessName": "Hollister Pest Control",
+  "legalName": "Hollister Pest Control LLC",
+  "slug": "hollister-pest-control",
+  "sourceUrl": "https://hollisterpestcontrol.com/",
+  "tagline": "Keeping Marion County homes pest-free since 2006.",
+  "phone": "(352) 489-7200",
+  "phoneDigitsOnly": "3524897200",
+  "email": "office@hollisterpestcontrol.com",
+  "address": {
+    "street": "18450 NW 150th Street",
+    "city": "Dunnellon",
+    "state": "FL",
+    "zip": "34432",
+    "country": "United States",
+    "googleMapsUrl": "https://www.google.com/maps/place/?cid=14821739203847561028"
+  },
+  "hours": {
+    "mondayToFriday": "8:00 AM - 5:00 PM",
+    "saturday": "9:00 AM - 12:00 PM",
+    "sunday": "Closed",
+    "sourceNote": "Hours from Google Business Profile; site lists same hours."
+  },
+  "ownership": {
+    "structure": "family-owned",
+    "owners": ["Tom Hollister", "Nate Hollister"],
+    "ownerSource": "About page — three-paragraph family history with named father-son pair; shop sign visible in Google Street View shows both names."
+  },
+  "yearsInBusiness": {
+    "exact": 20,
+    "minimumEvidenced": 20,
+    "evidence": "About page states 'Family-owned and operated since 2006'; state pest-control license issue date April 2006 corroborates."
+  },
+  "licenseNumber": "JB5678",
+  "services": [
+    {
+      "name": "General Pest Control",
+      "category": "residential",
+      "description": "Monthly and quarterly residential pest service throughout Marion County — ants, roaches, silverfish, and other common invaders treated with products safe around kids and pets. Homes stay on a 30-day or 90-day cycle with text reminders before each visit."
+    },
+    {
+      "name": "Termite Treatment and Prevention",
+      "category": "residential",
+      "description": "Liquid termiticide perimeter treatments and annual inspections for active infestations or preventive coverage. Subterranean and drywood termites both handled; treatments carry a renewable service agreement."
+    },
+    {
+      "name": "Rodent Removal",
+      "category": "residential",
+      "description": "Exclusion work to seal entry points, trapping for active rats or mice, and ongoing bait-station monitoring. Most residential rodent cases resolved within two to three service calls."
+    },
+    {
+      "name": "Mosquito and Outdoor Pest Control",
+      "category": "residential",
+      "description": "Seasonal mosquito fogging and standing-water surveys for yards, pool decks, and outdoor living spaces. Most commonly requested April through October in Central Florida's humid season."
+    }
+  ],
+  "serviceAreas": ["Dunnellon", "Ocala", "Belleview", "Summerfield", "Marion Oaks", "Rainbow Lakes Estates"],
+  "serviceAreaRegion": "Marion County, Florida + neighboring Citrus County communities",
+  "featuredPromotion": null,
+  "guarantees": [
+    {
+      "type": "state-licensed applicators",
+      "source": "site footer + credential displayed on service vehicles"
+    },
+    {
+      "type": "same-day service on most residential calls",
+      "source": "home page hero"
+    }
+  ],
+  "googleBusinessProfile": {
+    "placeId": "ChIJabcdef_hollister_dunnellon_placeId",
+    "rating": 4.7,
+    "reviewCount": 52,
+    "businessStatus": "OPERATIONAL"
+  },
+  "testimonials": [
+    {
+      "name": "Susan W.",
+      "rating": 5,
+      "source": "Google",
+      "when": "1 year ago",
+      "quoteVerbatim": "Tom and the Hollister team have been handling our place for 17 years. Same crew, same family, always on time. Never a bug in the house.",
+      "quoteShort": "Tom and the Hollister team have been handling our place for 17 years. Same crew, same family, always on time."
+    },
+    {
+      "name": "David M.",
+      "rating": 5,
+      "source": "Google",
+      "when": "2 years ago",
+      "quoteVerbatim": "Started with Hollister when my wife and I moved to Dunnellon in 2010. Fifteen years later still the best pest control around.",
+      "quoteShort": "Started with Hollister when we moved to Dunnellon in 2010. Fifteen years later still the best."
+    },
+    {
+      "name": "Margaret T.",
+      "rating": 5,
+      "source": "Google",
+      "when": "6 months ago",
+      "quoteVerbatim": "Hollister's been doing our termite bond for going on twelve years. They show up when they say they will and they charge a fair price.",
+      "quoteShort": "Twelve years of termite bonds. They show up when they say they will and they charge a fair price."
+    },
+    {
+      "name": "Robert S.",
+      "rating": 5,
+      "source": "Google",
+      "when": "3 months ago",
+      "quoteVerbatim": "Called with a rat problem in the garage, Tom's son Nate came out same day and had the problem solved in two weeks. Third generation knowing what they're doing.",
+      "quoteShort": "Called with a rat problem, Nate came out same day. Solved in two weeks."
+    },
+    {
+      "name": "Linda B.",
+      "rating": 5,
+      "source": "Google",
+      "when": "1 year ago",
+      "quoteVerbatim": "Quarterly service with Hollister for nine years now. My wife doesn't have to think about pests and neither do I.",
+      "quoteShort": "Quarterly service with Hollister for nine years. Don't have to think about pests."
+    },
+    {
+      "name": "Kevin P.",
+      "rating": 4,
+      "source": "Google",
+      "when": "8 months ago",
+      "quoteVerbatim": "Good local company. Mosquito service in the summer has made a real difference on our lanai. Been using them four seasons now.",
+      "quoteShort": "Good local company. Mosquito service has made a real difference on our lanai."
+    },
+    {
+      "name": "Diana M.",
+      "rating": 5,
+      "source": "Google",
+      "when": "2 years ago",
+      "quoteVerbatim": "Switched from the national chain to Hollister three years ago, not going back. They actually know their customers.",
+      "quoteShort": "Switched from the national chain three years ago. They actually know their customers."
+    },
+    {
+      "name": "James H.",
+      "rating": 5,
+      "source": "Google",
+      "when": "4 years ago",
+      "quoteVerbatim": "Been a customer since Tom started the business out of his truck in 2006. Watched him build something real. Good people.",
+      "quoteShort": "Customer since 2006. Watched Tom build something real. Good people."
+    }
+  ],
+  "brandPalette": {
+    "primary": "#3D6645",
+    "primaryName": "Forest Green",
+    "darkPrimary": "#1F3B24",
+    "darkPrimaryName": "Deep Pine",
+    "accent": "#B8860B",
+    "accentName": "Dark Yellow",
+    "source": "node-vibrant against logo.png (800x800 PNG from site); DarkVibrant not populated, darkPrimary derived via deriveDarkPrimary() from primary.",
+    "vibrantPopulation": 85,
+    "note": "Two-color brand palette consistent across site header, truck decals, and business-card stock visible in Google photos."
+  },
+  "photos": {
+    "google": {
+      "count": 4,
+      "attributionString": "Photos: Google Maps Platform"
+    },
+    "site": {
+      "count": 3,
+      "rejected": 0
+    },
+    "instagram": {
+      "count": 0,
+      "note": "No Instagram handle provided and none captured on site or Google profile."
+    },
+    "unsplash": {
+      "count": 0
+    }
+  },
+  "photoInventory": [
+    {
+      "id": "g01",
+      "file": "assets/photos/google/g01.jpg",
+      "widthPx": 3024,
+      "heightPx": 2016,
+      "dim": "3024x2016",
+      "longEdgePx": 3024,
+      "orient": "landscape",
+      "content": "jobsite",
+      "note": "Hollister branded truck on rural Marion County road, morning light.",
+      "disqualifiers": [],
+      "score": 72,
+      "eligibleRoles": ["heroBackground", "gallery"]
+    },
+    {
+      "id": "g02",
+      "file": "assets/photos/google/g02.jpg",
+      "widthPx": 3024,
+      "heightPx": 2016,
+      "dim": "3024x2016",
+      "longEdgePx": 3024,
+      "orient": "landscape",
+      "content": "jobsite",
+      "note": "Truck parked at residential service call, driveway setting.",
+      "disqualifiers": [],
+      "score": 68,
+      "eligibleRoles": ["heroBackground", "gallery"]
+    },
+    {
+      "id": "g03",
+      "file": "assets/photos/google/g03.jpg",
+      "widthPx": 3024,
+      "heightPx": 4032,
+      "dim": "3024x4032",
+      "longEdgePx": 4032,
+      "orient": "portrait",
+      "content": "owner",
+      "note": "Tom Hollister (father) and Nate Hollister (son) outside shop, phone portrait.",
+      "disqualifiers": [],
+      "score": 78,
+      "eligibleRoles": ["heroPlate", "ownerPortrait", "gallery"]
+    },
+    {
+      "id": "g04",
+      "file": "assets/photos/google/g04.jpg",
+      "widthPx": 3024,
+      "heightPx": 2016,
+      "dim": "3024x2016",
+      "longEdgePx": 3024,
+      "orient": "landscape",
+      "content": "team",
+      "note": "Two-person crew at residential jobsite, in uniform, mid-service.",
+      "disqualifiers": [],
+      "score": 65,
+      "eligibleRoles": ["heroBackground", "environmentalPortrait", "gallery"]
+    },
+    {
+      "id": "s01",
+      "file": "assets/photos/site/s01.jpg",
+      "widthPx": 3024,
+      "heightPx": 2016,
+      "dim": "3024x2016",
+      "longEdgePx": 3024,
+      "orient": "landscape",
+      "content": "treatment_detail",
+      "note": "Close-up of termite bait station installation at perimeter.",
+      "disqualifiers": [],
+      "score": 62,
+      "eligibleRoles": ["heroBackground", "detailShot", "gallery"]
+    },
+    {
+      "id": "s02",
+      "file": "assets/photos/site/s02.jpg",
+      "widthPx": 2016,
+      "heightPx": 2016,
+      "dim": "2016x2016",
+      "longEdgePx": 2016,
+      "orient": "square",
+      "content": "treatment_detail",
+      "note": "Treatment product container staged on truck shelf.",
+      "disqualifiers": [],
+      "score": 58,
+      "eligibleRoles": ["detailShot"]
+    },
+    {
+      "id": "s03",
+      "file": "assets/photos/site/s03.jpg",
+      "widthPx": 2550,
+      "heightPx": 3300,
+      "dim": "2550x3300",
+      "longEdgePx": 3300,
+      "orient": "portrait",
+      "content": "credential",
+      "note": "State of Florida pest control license certificate, portrait scan.",
+      "disqualifiers": [],
+      "score": 55,
+      "eligibleRoles": ["credential"]
+    }
+  ]
+}
