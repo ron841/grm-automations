@@ -74,6 +74,53 @@ trigger for pickup.
   (which items are now Composer-Stage commitments vs. v0.8 Scale
   deferred vs. already-resolved in Component A patch inventory §6).
 
+### Editorial nickname asymmetry for urgent-service persona
+- **Surfaced:** Commit 5.0 rescue-ready → urgent-service rename, 2026-04-21
+  (commit e6b27d7).
+- **Why deferred:** "Rescue-ready" (display name) ↔ `urgent-service`
+  (machine key) is now the only persona where display name ≠
+  kebab-of-display-name. Other 4 personas have direct mapping
+  (quiet-confidence, earned-pride, neighborhood-steady,
+  modern-specialist). Stage II.5 fixtures and Stage III approval-gate
+  UI will need to handle the asymmetric mapping.
+- **Target pickup:** Stage II.5 (profile.json fixtures) and Stage III
+  (Phase 4-new approval gate UI).
+
+### CONFIG.spacing tier-keyed residues + tier-class CSS overrides
+- **Surfaced:** Commit 5.b CONFIG.fonts persona-conditional restructure,
+  2026-04-21 (commit 6cfd6df).
+- **Why deferred:** Grep showed premium/professional/standard still
+  tier-keyed in CONFIG.spacing (css-framework.md lines 123/129/135) and
+  three `:root.tier-*` CSS override blocks (lines 869/896/907 +
+  900/911/922/927/938/949/964/969) with tier-class naming throughout
+  Phase-5 documentation. Stage II (e) tier-logic strip scope per
+  brain §8. Whether to strip CONFIG.spacing or refactor to
+  persona-conditional spacing is a Stage II (e) design call.
+- **Target pickup:** Stage II (e).
+
+### no-italic-on-data rule in typography.md
+- **Surfaced:** Design's Commit 5.b pre-review — "Worth adding as an
+  implicit rule in typography.md §4 if not already there — 'data voice
+  is always roman' as a one-liner."
+- **Why deferred:** typography.md is the Stage II (d) three-way merge
+  output. Adding to Composer's current typography.md now would be
+  edited away in the merge. Add to Design's typography-patterns.md
+  section on data voice before Stage II (d), or add as a merge-time
+  addition to the output file.
+- **Target pickup:** Stage II (d) three-way merge preparation or
+  execution.
+
+### P6.5 undefined-custom-property Phase 6 check
+- **Surfaced:** Design's Commit 5.b pre-review (E.5 recommendation).
+  Secondary recommendation for a Phase 6 check catching any CSS custom
+  property referenced in emitted output but undefined in
+  css-framework.md. Would catch the class-of-bug that --font-mono,
+  --font-display, and --font-data all fell into during Composer's
+  pre-Option-C state.
+- **Why deferred:** Stage II (f) spec batch per brain §8 Stage II (f)
+  "P6.1 implementation spec." Batch additional P6.x specs alongside.
+- **Target pickup:** Stage II (f).
+
 ## Resolved deferrals
 
 ### LESSONS.md merge (root → references/)
@@ -96,6 +143,55 @@ trigger for pickup.
   fundamentally a meta-document about how production's v0.8 foundation
   round was conducted, so its v0.7/v0.8 references are HISTORICAL
   rather than current-skill self-id.
+
+### Stage II (b) — Wave 1/Wave 2 backports via cherry-pick mechanism
+- **Originally surfaced:** Brain file §8 Stage II (b) enumeration
+  (12 source commits; 10 backport operations).
+- **Resolved:** 2026-04-21 via 9-commit Option C sequence under Design
+  editorial direction:
+  - `6ae7d89` / `ac6ec6b` (C.1 --font-mono → --font-data rename)
+  - `c7bedaf` / `d78846e` (C.2 rhythm-tier tokens)
+  - `3987637` / `137bf46` (C.3 mobile breakpoint reconciliation 900 → 980 + 540 secondary)
+  - `9694f05` / `f9d5075` (C.4 font-loading template rewrite)
+  - `e6b27d7` / `dd1d151` (C.5.0 rescue-ready → urgent-service rename)
+  - `64f0129` / `f453afa` (C.5.a token migration --font-heading → --font-display + --font-data declaration)
+  - `6cfd6df` / `12fdcf8` (C.5.b CONFIG.fonts tier-keyed → persona-conditional restructure)
+  - `3a57ac6` / `fd47500` (C.5.c typography-patterns.md → typography.md cross-reference fix)
+  - `c6b48ff` / `51fe68e` (C.6 voiceMap.md integration point in SKILL.md Phase 5)
+
+  Note: original format-patch + git am mechanism (clarified in commit
+  16b7cab as the correct backport mechanism per brain §8 mechanism
+  revision) proved unviable in execution due to a sequencing collision
+  — Stage II (a) Phase 2 file copies pulled production HEAD state of
+  typography.md and voiceMap.md (already containing all Wave 1/Wave 2
+  additions), and Stratum 3 identity sweep modified css-framework.md /
+  SKILL.md / content-rules.md / deployment.md in-place. The Wave 1
+  patches could not apply onto a baseline that didn't match what they
+  expected (file-already-exists for typography/voiceMap; patch-no-apply
+  for the Stratum-3-modified files). Option C substantive additions
+  under Design editorial direction replaced the mechanical backport;
+  features 3 (SectionOpener) and 4 (StatRow) deferred to Stage II (c)
+  as composition-plan schema contracts rather than component primitive
+  retrofits per Design's read; feature 5 (Fraunces universal) rejected
+  as superseded by persona-conditional CONFIG.fonts (urgent-service
+  uses Archivo, modern-specialist uses Inter Tight, etc.). Features 1,
+  6 (renamed --font-mono → --font-data), 7, 8, 9, 10 landed.
+
+## Informational notes (process learnings, not deferrals)
+
+### Design artifact names ≠ Composer filenames
+- **Surfaced:** Commit 5.c surgical fix, 2026-04-21 (commit 3a57ac6).
+- **Lesson:** Chat-Claude drafted CONFIG.fonts narrative using
+  "typography-patterns.md" (Design's package filename at
+  `~/grm-automations/docs/composer-stage-ii-typography-source/`) when
+  the correct Composer reference is "typography.md" (the file Stage
+  II (a) Phase 2 copied from production into `references/`, and Stage
+  II (d) three-way merge output will land at the same path).
+  Design's package filenames are authorship sources, not destination
+  names. Chat-Claude should cross-check every reference to
+  Design-authored artifact names against Composer's actual file
+  layout before including in commit drafts.
+- **No action item.** Process discipline note for future Commit drafts.
 
 ---
 
