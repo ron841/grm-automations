@@ -2,7 +2,7 @@
 
 Part of the prospect-site-composer skill. Loaded by Phase 5 when the skill begins hero generation, in tandem with `section-patterns.md` (which covers every other homepage section).
 
-This file contains the pixel-level spec for the hero region of every generated homepage: the shared Glassmorphism content layer (both size variants), the four background mode implementations, and the optional video augmentation section. CSS variables (`--color-primary`, `--font-heading`, `--space-section`, etc.) come from `css-framework.md`. Vanilla JS animation primitives (cross-fade, parallax scroll, mesh gradient, mousemove parallax) also live in `css-framework.md`.
+This file contains the pixel-level spec for the hero region of every generated homepage: the shared Glassmorphism content layer (both size variants), the four background mode implementations, and the optional video augmentation section. CSS variables (`--color-primary`, `--font-display`, `--space-section`, etc.) come from `css-framework.md`. Vanilla JS animation primitives (cross-fade, parallax scroll, mesh gradient, mousemove parallax) also live in `css-framework.md`.
 
 ## Architecture
 
@@ -130,7 +130,7 @@ The `hero-glass-card--wide` modifier class is applied when `designChoices.heroGl
 }
 
 .hero-headline {
-  font-family: var(--font-heading);
+  font-family: var(--font-display);
   font-size: 56px;                     /* Default variant headline size */
   font-weight: 700;
   line-height: 1.04;
@@ -169,7 +169,7 @@ The `hero-glass-card--wide` modifier class is applied when `designChoices.heroGl
 }
 
 .hero-stat-value {
-  font-family: var(--font-heading);
+  font-family: var(--font-display);
   font-size: 28px;
   font-weight: 700;
   color: #ffffff;
@@ -703,7 +703,7 @@ When Phase 3 captured a video URL (any mode), append a Hero Video Dialog section
 }
 
 .hero-video-title {
-  font-family: var(--font-heading);
+  font-family: var(--font-display);
   font-size: 44px;
   font-weight: 700;
   line-height: 1.1;

@@ -187,8 +187,9 @@ Every design token lives as a CSS custom property on `:root`. Section CSS and he
   --color-text-muted-on-dark: rgba(255, 255, 255, 0.65);  /* muted variant */
 
   /* ===== Typography ===== */
-  --font-heading: "Inter", system-ui, -apple-system, sans-serif;
+  --font-display: Georgia, 'Times New Roman', serif;
   --font-body: "Inter", system-ui, -apple-system, sans-serif;
+  --font-data: ui-monospace, 'SF Mono', Menlo, monospace;
 
   /* Type scale (desktop) */
   --text-hero: 72px;               /* Hero headline, wide variant */
@@ -594,7 +595,7 @@ The type scale tokens defined in `:root` map to specific section elements. Use t
 ```css
 .hero-headline {
   font-size: var(--text-hero-default);  /* 56px desktop, 40px mobile */
-  font-family: var(--font-heading);
+  font-family: var(--font-display);
   font-weight: var(--fw-bold);
   line-height: var(--lh-tight);
   letter-spacing: var(--ls-tight);
@@ -606,7 +607,7 @@ The type scale tokens defined in `:root` map to specific section elements. Use t
 
 .services-title {
   font-size: var(--text-section-title);  /* 48px desktop, 32px mobile */
-  font-family: var(--font-heading);
+  font-family: var(--font-display);
   font-weight: var(--fw-bold);
   line-height: var(--lh-snug);
   letter-spacing: var(--ls-snug);
@@ -687,7 +688,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
-  font-family: var(--font-heading);
+  font-family: var(--font-display);
   font-weight: var(--fw-bold);
   line-height: var(--lh-snug);
   color: var(--color-dark-primary);
@@ -865,7 +866,7 @@ After the base `:root` block, Phase 5 appends tier-specific overrides. Only the 
 
 ```css
 :root.tier-premium {
-  --font-heading: "Fraunces", "Playfair Display", Georgia, serif;
+  --font-display: "Fraunces", "Playfair Display", Georgia, serif;
   --text-hero: 84px;
   --text-hero-default: 64px;
   --text-section-title: 56px;
@@ -892,7 +893,7 @@ The `.tier-premium` class is applied to the `<html>` element in Phase 5 when tie
 
 ```css
 :root.tier-professional {
-  --font-heading: "Space Grotesk", "Inter", system-ui, sans-serif;
+  --font-display: "Space Grotesk", "Inter", system-ui, sans-serif;
   /* All other tokens use the base values */
 }
 ```
@@ -903,7 +904,7 @@ Professional is the default baseline — most tokens are already correct for Pro
 
 ```css
 :root.tier-standard {
-  --font-heading: "Inter", system-ui, -apple-system, sans-serif;
+  --font-display: "Inter", system-ui, -apple-system, sans-serif;
   --text-hero: 56px;
   --text-hero-default: 44px;
   --text-section-title: 36px;

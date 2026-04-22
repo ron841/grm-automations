@@ -650,7 +650,7 @@ The asymmetric services grid is one of the main wow-gap fixes. One featured serv
 }
 
 .services-title {
-  font-family: var(--font-heading);
+  font-family: var(--font-display);
   font-size: 48px;
   font-weight: 700;
   line-height: 1.1;
@@ -740,7 +740,7 @@ The asymmetric services grid is one of the main wow-gap fixes. One featured serv
 }
 
 .service-card-title {
-  font-family: var(--font-heading);
+  font-family: var(--font-display);
   font-size: 32px;
   font-weight: 700;
   line-height: 1.1;
@@ -778,7 +778,7 @@ The asymmetric services grid is one of the main wow-gap fixes. One featured serv
 }
 
 .service-card-title-sm {
-  font-family: var(--font-heading);
+  font-family: var(--font-display);
   font-size: 20px;
   font-weight: 700;
   color: var(--color-dark-primary);
@@ -902,7 +902,7 @@ This is the mandatory dark section for the page. Placed between services and tes
 }
 
 .stats-title {
-  font-family: var(--font-heading);
+  font-family: var(--font-display);
   font-size: 56px;
   font-weight: 700;
   line-height: 1.05;
@@ -924,7 +924,7 @@ This is the mandatory dark section for the page. Placed between services and tes
 
 .stats-number,
 .stats-number-static {
-  font-family: var(--font-heading);
+  font-family: var(--font-display);
   font-size: 96px;
   font-weight: 800;
   line-height: 1;
@@ -1036,7 +1036,7 @@ Only render if Phase 3 captured at least one before/after image pair. Drag slide
 }
 
 .beforeafter-title {
-  font-family: var(--font-heading);
+  font-family: var(--font-display);
   font-size: 48px;
   font-weight: 700;
   line-height: 1.1;
@@ -1263,7 +1263,7 @@ Real first names, real cities, verbatim quotes. Minimum 4, target 6-8.
 }
 
 .testimonials-title {
-  font-family: var(--font-heading);
+  font-family: var(--font-display);
   font-size: 48px;
   font-weight: 700;
   line-height: 1.1;
@@ -1430,7 +1430,7 @@ Only render if Phase 2 captured a real promotion with real pricing.
 }
 
 .promo-callout-title {
-  font-family: var(--font-heading);
+  font-family: var(--font-display);
   font-size: 56px;
   font-weight: 800;
   line-height: 1.05;
@@ -1531,7 +1531,7 @@ Only render if Phase 2 captured a real promotion with real pricing.
 }
 
 .faq-title {
-  font-family: var(--font-heading);
+  font-family: var(--font-display);
   font-size: 48px;
   font-weight: 700;
   line-height: 1.1;
@@ -1634,7 +1634,7 @@ For the full form HTML with Static Forms wiring, see `deployment.md`. CSS goes h
 }
 
 .contact-form-wrap h2 {
-  font-family: var(--font-heading);
+  font-family: var(--font-display);
   font-size: 40px;
   font-weight: 700;
   margin: 0 0 12px 0;
@@ -1703,7 +1703,7 @@ For the full form HTML with Static Forms wiring, see `deployment.md`. CSS goes h
 }
 
 .contact-sidebar h3 {
-  font-family: var(--font-heading);
+  font-family: var(--font-display);
   font-size: 22px;
   margin: 0 0 24px 0;
   color: var(--color-dark-primary);
