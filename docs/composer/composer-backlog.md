@@ -121,6 +121,44 @@ trigger for pickup.
   "P6.1 implementation spec." Batch additional P6.x specs alongside.
 - **Target pickup:** Stage II (f).
 
+### image-handling.md role-hierarchy language needs eligibility/assignment split
+- **Surfaced:** Stage II (c) profile-schema.md authoring, 2026-04-22.
+- **Why deferred:** `image-handling.md` line 123 says "A single photo can
+  hold at most one role. Multi-role tagging is not allowed because role
+  assignment is about editorial hierarchy, not content category." Under
+  Composer's architecture that statement is true for *assignment*
+  (composition-plan.json, singular) but not for *eligibility*
+  (profile.json `eligibleRoles`, plural per profile-schema.md §10.1). The
+  prose needs updating to name the distinction — eligibility plural on
+  Phase 3's side, assignment singular on Phase 4's side, with the
+  "at most one role" rule applying to the assigned output rather than
+  the per-photo capability record. Without the update, the next reader
+  of image-handling.md will read a contradiction against profile-schema.md
+  and guess which is authoritative.
+- **Target pickup:** Stage II (d) typography merge pass (image-handling.md
+  sits adjacent to the merge targets) or Stage II (e) tier-logic strip.
+
+### Hero background hue-warmth derivation rule needs authoritative cited source
+- **Surfaced:** Stage II (c) profile-schema.md authoring, 2026-04-22
+  (Design-flagged during Flag 3a review).
+- **Why deferred:** Phase 5 computes the hero page background color from
+  `brandPalette.primary` hue warmth — Luna F8 example: primary `#db542c`
+  at HSL hue 14° → warm off-white `#faf7f2`. The mapping from hue band
+  to off-white value is an editorial derivation rule that isn't written
+  down anywhere authoritative today (Luna F8's `designChoices.heroBackground`
+  carried the output but not the rule). profile-schema.md §9 and §15
+  state that the derivation computes inline at Phase 5 per scope call #5
+  — but "computes inline" without a cited rule means each implementor
+  re-derives and drift accumulates across builds. Write down the
+  hue-band → off-white-value mapping (cool / warm / neutral bands,
+  fallback for greyscale brands, behavior on high-chroma brands) in
+  `image-handling.md`, a new `references/color-derivations.md`, or the
+  Stage II (d) typography merge output — wherever derivation rules
+  naturally live post-merge.
+- **Target pickup:** Stage II (d) typography merge, or the first site
+  build post-Composer launch where the rule needs to be re-derived by
+  Phase 5 code.
+
 ## Resolved deferrals
 
 ### LESSONS.md merge (root → references/)
