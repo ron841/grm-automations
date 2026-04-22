@@ -122,10 +122,11 @@ Almost certainly never needs changing. Listed here so if it ever does need chang
 ### Breakpoint
 
 ```
-CONFIG.mobileBreakpoint = "899px"  // @media (max-width: 899px) for mobile overrides
+CONFIG.mobileBreakpoint = "980px"  // @media (max-width: 980px) for mobile overrides, per typography.md §7
+CONFIG.phoneBreakpoint  = "540px"  // @media (max-width: 540px) — secondary breakpoint for primitive layout transitions (StatRow stack-vertically, SectionOpener per-variant typography) per typography.md §7
 ```
 
-Single breakpoint. Do not add a tablet breakpoint without updating every section pattern file at the same time.
+Two breakpoints: 980px (mobile/tablet) and 540px (phone). Do not add a tablet breakpoint between them without updating every section pattern file at the same time.
 
 ### Animation durations
 
@@ -272,7 +273,7 @@ Every design token lives as a CSS custom property on `:root`. Section CSS and he
 }
 
 /* Mobile breakpoint overrides */
-@media (max-width: 899px) {
+@media (max-width: 980px) {
   :root {
     --text-hero: 44px;
     --text-hero-default: 40px;
@@ -559,7 +560,7 @@ Add these tokens to the `:root` block:
   --column-gutter-mobile: 16px;                         /* Mobile gutter */
 }
 
-@media (max-width: 899px) {
+@media (max-width: 980px) {
   :root {
     --column-gutter: var(--column-gutter-mobile);
   }
@@ -628,15 +629,17 @@ Section-specific hardcoded font sizes in `section-patterns.md` and `hero-pattern
 Composer uses a two-breakpoint mobile-first system:
 
 - **Mobile:** default styles, no media query needed
-- **Desktop:** `@media (min-width: 900px)` for any desktop-specific rule
+- **Desktop:** `@media (min-width: 981px)` for any desktop-specific rule
+- **Phone (secondary):** `@media (max-width: 540px)` for primitive layout transitions (StatRow stack-vertically, SectionOpener per-variant typography)
 
-Or equivalently, the pattern used throughout the skill files is mobile overrides via `@media (max-width: 899px)` after desktop defaults. Both patterns produce the same result. Pick one and stick with it per file.
+Or equivalently, the pattern used throughout the skill files is mobile overrides via `@media (max-width: 980px)` after desktop defaults, with `@media (max-width: 540px)` as the nested phone-tier override where primitive layouts collapse. Both mobile-first and desktop-first patterns produce the same result for the 980 boundary. Pick one and stick with it per file.
 
-There is no separate tablet breakpoint. The 900px break handles iPad portrait (768px → mobile layout) and iPad landscape (1024px → desktop layout) correctly for every section pattern. If a specific section needs tablet-specific treatment in a later version, add it there, not globally.
+There is no separate tablet breakpoint between 540 and 980. The 981px break handles iPad portrait (768px → mobile layout) and iPad landscape (1024px → desktop layout) correctly for every section pattern. The 540 secondary applies narrowly to primitive-specific collapse (stat-row three-column → one-column, SectionOpener scale overrides) per typography.md §7 authority.
 
 ### Breakpoint rationale
 
-- **900px:** Chosen because it falls between iPad portrait (768px) and iPad landscape (1024px), so iPads flip layouts on rotation without an awkward in-between state. Also comfortably above the widest common phone (iPhone Pro Max at 430px) with room to spare.
+- **981px (desktop-min) / 980px (mobile-max):** Chosen because it falls between iPad portrait (768px) and iPad landscape (1024px), so iPads flip layouts on rotation without an awkward in-between state. Also comfortably above the widest common phone (iPhone Pro Max at 430px) with room to spare. Authored in typography.md §7 as the mobile-primary breakpoint.
+- **540px (phone-max):** Secondary breakpoint for primitive layout transitions per typography.md §7. Stat rows collapse three-column → one-column at 540. SectionOpener per-variant typography overrides land at 540. Not a general tablet/phone boundary — narrowly scoped to primitives where compressed-width rendering requires structural layout changes.
 
 ### Container widths
 
@@ -871,7 +874,7 @@ After the base `:root` block, Phase 5 appends tier-specific overrides. Only the 
   --space-section-generous: 160px;
 }
 
-@media (max-width: 899px) {
+@media (max-width: 980px) {
   :root.tier-premium {
     --text-hero: 48px;
     --text-hero-default: 42px;
@@ -909,7 +912,7 @@ Professional is the default baseline — most tokens are already correct for Pro
   --space-section-generous: 120px;
 }
 
-@media (max-width: 899px) {
+@media (max-width: 980px) {
   :root.tier-standard {
     --text-hero: 38px;
     --text-hero-default: 34px;
@@ -1159,7 +1162,7 @@ function parallaxScroll(selector, speed) {
   if (!elements.length) return;
 
   // Disable on mobile (performance and feel)
-  if (window.innerWidth < 900) return;
+  if (window.innerWidth < 981) return;
 
   // Respect reduced motion
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -1683,7 +1686,7 @@ If a build fails the LCP target, the most likely cause is a hero background imag
 - Do not introduce a new CSS custom property without adding it to this file and following the naming pattern.
 - Do not include JS primitives for sections that aren't in the build (e.g., don't include `beforeAfterCompare` when there's no before/after gallery).
 - Do not skip reduced-motion handling on a new animation. Every animation needs a reduced-motion path.
-- Do not use a tablet breakpoint. Composer is mobile-first with a single 900px break.
+- Do not use a tablet breakpoint between 540 and 980. Composer is mobile-first with 980px (mobile/tablet) and 540px (phone) breaks per typography.md §7.
 - Do not load multiple heading fonts. Pick one per tier.
 - Do not use `position: sticky` for the nav. Use `position: fixed`.
 - Do not hardcode `rgba(43, 76, 159, 0.15)`. Use `rgba(var(--color-primary-rgb), 0.15)`.

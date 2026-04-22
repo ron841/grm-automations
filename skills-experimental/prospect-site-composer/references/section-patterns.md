@@ -28,7 +28,7 @@ Composer ships an **editorial layouts module** — a library of asymmetric compo
 
 ### The 12-column reference grid
 
-All editorial layouts resolve against a 12-column grid on desktop (≥900px), a 6-column grid on tablet (600-899px), and a single column on mobile (<600px). Columns are equal-width with `--column-gutter` between them.
+All editorial layouts resolve against a 12-column grid on desktop (≥981px), a 6-column grid on tablet (541–980px), and a single column on phone (≤540px). Columns are equal-width with `--column-gutter` between them.
 
 ```css
 .editorial-grid {
@@ -37,7 +37,7 @@ All editorial layouts resolve against a 12-column grid on desktop (≥900px), a 
   gap: 0 var(--column-gutter);
 }
 
-@media (max-width: 899px) {
+@media (max-width: 980px) {
   .editorial-grid { grid-template-columns: repeat(6, 1fr); }
 }
 
@@ -84,7 +84,7 @@ Section headline spans columns 2-6 (5 columns). Body content spans columns 7-12 
 .layout-offset-headline .section-header { grid-column: 2 / 7; }
 .layout-offset-headline .section-body   { grid-column: 7 / 13; }
 
-@media (max-width: 899px) {
+@media (max-width: 980px) {
   .layout-offset-headline .section-header,
   .layout-offset-headline .section-body { grid-column: 1 / -1; }
 }
@@ -110,7 +110,7 @@ Photograph bleeds across columns 1-9 (9 columns). Caption, metadata, or short bo
   align-self: start;
 }
 
-@media (max-width: 899px) {
+@media (max-width: 980px) {
   .layout-image-bleed .photo   { grid-column: 1 / -1; }
   .layout-image-bleed .caption { grid-column: 1 / -1; padding-top: var(--space-xs); }
 }
@@ -182,7 +182,7 @@ A large outlined serif numeral (01, 02, 03…) sits in columns 1-3 as a watermar
 }
 .layout-watermark .content { grid-column: 4 / 13; }
 
-@media (max-width: 899px) {
+@media (max-width: 980px) {
   .layout-watermark .numeral {
     grid-column: 1 / -1;
     font-size: clamp(80px, 22vw, 160px);
@@ -248,7 +248,7 @@ Vertical rhythm is controlled by CSS custom properties defined in `css-framework
   --space-section-promo: 100px;        /* Featured promotion callout */
 }
 
-@media (max-width: 899px) {
+@media (max-width: 980px) {
   :root {
     --space-section: 80px;
     --space-section-compact: 40px;
@@ -395,7 +395,7 @@ Primary navigation with logo, page links, and a persistent click-to-call phone b
   padding: 8px;
 }
 
-@media (max-width: 899px) {
+@media (max-width: 980px) {
   .nav-links { display: none; }
   .nav-hamburger { display: block; }
   .nav-phone-text { display: none; }
@@ -793,7 +793,7 @@ The asymmetric services grid is one of the main wow-gap fixes. One featured serv
   margin: 0;
 }
 
-@media (max-width: 899px) {
+@media (max-width: 980px) {
   .services-bento {
     grid-template-columns: repeat(2, 1fr);
     grid-auto-rows: 200px;
@@ -945,7 +945,7 @@ This is the mandatory dark section for the page. Placed between services and tes
   color: rgba(255, 255, 255, 0.7);
 }
 
-@media (max-width: 899px) {
+@media (max-width: 980px) {
   .stats-title { font-size: 36px; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
   .stats-number, .stats-number-static { font-size: 64px; }
@@ -1165,7 +1165,7 @@ Only render if Phase 3 captured at least one before/after image pair. Drag slide
   display: block;
 }
 
-@media (max-width: 899px) {
+@media (max-width: 980px) {
   .beforeafter-title { font-size: 32px; }
   .beforeafter-compare { aspect-ratio: 4 / 3; }
   .beforeafter-handle::before { width: 48px; height: 48px; }
@@ -1357,7 +1357,7 @@ Real first names, real cities, verbatim quotes. Minimum 4, target 6-8.
   margin-top: 2px;
 }
 
-@media (max-width: 899px) {
+@media (max-width: 980px) {
   .testimonials-title { font-size: 32px; }
   .testimonials-grid { grid-template-columns: 1fr; gap: 20px; }
 }
@@ -1464,7 +1464,7 @@ Only render if Phase 2 captured a real promotion with real pricing.
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
 }
 
-@media (max-width: 899px) {
+@media (max-width: 980px) {
   .promo-callout-title { font-size: 36px; }
   .promo-callout-sub { font-size: 16px; }
 }
@@ -1594,7 +1594,7 @@ Only render if Phase 2 captured a real promotion with real pricing.
   color: #555;
 }
 
-@media (max-width: 899px) {
+@media (max-width: 980px) {
   .faq-title { font-size: 32px; }
   .faq-question { font-size: 16px; padding: 20px 24px; padding-right: 48px; }
 }
@@ -1733,7 +1733,7 @@ For the full form HTML with Static Forms wiring, see `deployment.md`. CSS goes h
 
 .contact-sidebar dd a { color: var(--color-primary); text-decoration: none; }
 
-@media (max-width: 899px) {
+@media (max-width: 980px) {
   .contact-container {
     grid-template-columns: 1fr;
     padding: 32px 24px;
@@ -1870,7 +1870,7 @@ For the full form HTML with Static Forms wiring, see `deployment.md`. CSS goes h
   color: rgba(255, 255, 255, 0.5);
 }
 
-@media (max-width: 899px) {
+@media (max-width: 980px) {
   .footer-container {
     grid-template-columns: 1fr 1fr;
     gap: 32px;
@@ -1912,7 +1912,7 @@ Sticky at bottom of mobile viewport. Always visible while scrolling.
   display: none;
 }
 
-@media (max-width: 899px) {
+@media (max-width: 980px) {
   .mobile-cta-bar {
     display: flex;
     position: fixed;

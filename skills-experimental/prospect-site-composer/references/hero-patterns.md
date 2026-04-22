@@ -259,7 +259,7 @@ The `hero-glass-card--wide` modifier class is applied when `designChoices.heroGl
 }
 
 /* Mobile: both variants use the same mobile treatment */
-@media (max-width: 899px) {
+@media (max-width: 980px) {
   .hero-glass-card,
   .hero-glass-card--wide {
     max-width: 100%;
@@ -369,7 +369,7 @@ When Phase 3 captured 8+ strong landscape photos with zero disqualifiers, the he
   min-height: calc(100vh - 100px);
 }
 
-@media (max-width: 899px) {
+@media (max-width: 980px) {
   .hero-parallax-grid { transform: rotate(-4deg) scale(1.6); }
   .hero-parallax-row img { width: 260px; height: 180px; }
 }
@@ -748,7 +748,7 @@ When Phase 3 captured a video URL (any mode), append a Hero Video Dialog section
   transform: translate(-50%, -50%) scale(1.1);
 }
 
-@media (max-width: 899px) {
+@media (max-width: 980px) {
   .hero-video-title { font-size: 28px; }
 }
 ```
