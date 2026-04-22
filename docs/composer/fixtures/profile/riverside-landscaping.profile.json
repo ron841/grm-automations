@@ -1,0 +1,239 @@
+{
+  "$schemaVersion": "1.0",
+  "$schema": "profile",
+  "businessName": "Riverside Landscaping",
+  "slug": "riverside-landscaping",
+  "sourceUrl": "https://riversidelandscaping.net/",
+  "tagline": "Three generations on the same route.",
+  "phone": "(352) 245-3318",
+  "phoneDigitsOnly": "3522453318",
+  "email": "office@riversidelandscaping.net",
+  "address": {
+    "street": "10732 SE 56th Lane",
+    "city": "Belleview",
+    "state": "FL",
+    "zip": "34420",
+    "country": "United States",
+    "googleMapsUrl": "https://www.google.com/maps/place/?cid=5284019374629185210"
+  },
+  "hours": {
+    "mondayToFriday": "7:00 AM - 5:00 PM",
+    "saturday": "8:00 AM - 12:00 PM",
+    "sunday": "Closed"
+  },
+  "ownership": {
+    "structure": "family-owned",
+    "owners": ["Earl Whitfield (founder)", "Danny Whitfield", "Cole Whitfield"],
+    "ownerSource": "About page lists three generations; local newspaper profile from 2016 names all three principals."
+  },
+  "yearsInBusiness": {
+    "exact": 38,
+    "minimumEvidenced": 38,
+    "evidence": "About page states 'Serving Marion County since 1987'; Earl Whitfield's signature on county business license records 1987."
+  },
+  "licenseNumber": null,
+  "services": [
+    {
+      "name": "Lawn Maintenance",
+      "category": "maintenance",
+      "description": "Weekly and bi-weekly lawn service across Marion County. Same crew week after week."
+    },
+    {
+      "name": "Tree Trimming and Removal",
+      "category": "residential",
+      "description": "Careful trim work and full removals. Neighborly cleanup after."
+    },
+    {
+      "name": "Irrigation Installation and Repair",
+      "category": "residential",
+      "description": "System installs, zone repairs, controller replacements. We fix what we installed."
+    }
+  ],
+  "serviceAreas": ["Belleview", "Summerfield", "Ocala", "Silver Springs Shores", "Marion Oaks"],
+  "serviceAreaRegion": "Southeast Marion County, Florida",
+  "featuredPromotion": null,
+  "guarantees": [
+    {
+      "type": "same-crew service — you see the same faces week after week",
+      "source": "About page + multiple testimonials"
+    }
+  ],
+  "googleBusinessProfile": {
+    "placeId": "ChIJriverside_belleview_placeId",
+    "rating": 4.9,
+    "reviewCount": 38,
+    "businessStatus": "OPERATIONAL"
+  },
+  "testimonials": [
+    {
+      "name": "Dorothy K.",
+      "rating": 5,
+      "source": "Google",
+      "when": "1 year ago",
+      "quoteVerbatim": "Earl started cutting my parents' grass in 1989. Danny took over when Earl's back gave out in the 2000s. Now Cole's out there doing it too. Thirty-six years of the same family on the same lot.",
+      "quoteShort": "Earl started cutting my parents' grass in 1989. Danny took over. Now Cole's out there too. Thirty-six years."
+    },
+    {
+      "name": "Willie P.",
+      "rating": 5,
+      "source": "Google",
+      "when": "2 years ago",
+      "quoteVerbatim": "Had a dead oak I wasn't sure what to do with. Danny came out and handled it in one afternoon. Wouldn't trust anyone else with a tree that big near the house.",
+      "quoteShort": "Dead oak handled in one afternoon. Wouldn't trust anyone else with a tree that big near the house."
+    },
+    {
+      "name": "Norma J.",
+      "rating": 5,
+      "source": "Google",
+      "when": "3 years ago",
+      "quoteVerbatim": "My irrigation has been running on Riverside's install since 1998. Cole came out last spring and replaced the controller and two zone valves. Works like it did the day it was put in.",
+      "quoteShort": "Irrigation from 1998. Cole replaced the controller and two zones last spring. Works like the day it was put in."
+    },
+    {
+      "name": "Raymond H.",
+      "rating": 5,
+      "source": "Google",
+      "when": "5 months ago",
+      "quoteVerbatim": "Danny and Cole cut the grass, trim the hedges, and clean up after the storms. Same crew, same truck, same reliable work for twenty years. You don't find this anymore.",
+      "quoteShort": "Same crew, same truck, same reliable work for twenty years. You don't find this anymore."
+    },
+    {
+      "name": "Ruth M.",
+      "rating": 5,
+      "source": "Google",
+      "when": "4 years ago",
+      "quoteVerbatim": "Three generations of Whitfields have kept my yard looking like a yard. Earl is retired but still waves from the porch when the truck comes through.",
+      "quoteShort": "Three generations of Whitfields. Earl is retired but still waves from the porch when the truck comes through."
+    }
+  ],
+  "brandPalette": {
+    "primary": "#166534",
+    "primaryName": "Riverside Green",
+    "darkPrimary": "#0B3320",
+    "darkPrimaryName": "Deep Forest",
+    "accent": "#92400E",
+    "accentName": "Wood Brown",
+    "neutral": "#F5F5DC",
+    "neutralName": "Warm Beige",
+    "source": "node-vibrant against logo.jpg (600x600 JPG from site, hand-drawn wordmark-and-tree mark); DarkVibrant not populated, darkPrimary derived via deriveDarkPrimary() from primary.",
+    "vibrantPopulation": 75,
+    "note": "Three-color homespun brand palette consistent across hand-painted truck lettering and site header."
+  },
+  "photos": {
+    "google": {
+      "count": 3,
+      "attributionString": "Photos: Google Maps Platform"
+    },
+    "site": {
+      "count": 4,
+      "rejected": 0
+    },
+    "instagram": {
+      "count": 0,
+      "note": "No Instagram handle. Owner prefers phone."
+    },
+    "unsplash": {
+      "count": 0
+    }
+  },
+  "photoInventory": [
+    {
+      "id": "g01",
+      "file": "assets/photos/google/g01.jpg",
+      "widthPx": 3024,
+      "heightPx": 2016,
+      "dim": "3024x2016",
+      "longEdgePx": 3024,
+      "orient": "landscape",
+      "content": "finished_landscape",
+      "note": "Freshly cut Bahia lawn with clean edges, morning sun. Phone photo, slightly soft but authentic.",
+      "disqualifiers": [],
+      "score": 68,
+      "eligibleRoles": ["heroBackground", "evidenceShot", "gallery"]
+    },
+    {
+      "id": "g02",
+      "file": "assets/photos/google/g02.jpg",
+      "widthPx": 3024,
+      "heightPx": 2016,
+      "dim": "3024x2016",
+      "longEdgePx": 3024,
+      "orient": "landscape",
+      "content": "finished_landscape",
+      "note": "Hedge-trimmed front yard of single-family home, post-service.",
+      "disqualifiers": [],
+      "score": 64,
+      "eligibleRoles": ["heroBackground", "evidenceShot", "gallery"]
+    },
+    {
+      "id": "g03",
+      "file": "assets/photos/google/g03.jpg",
+      "widthPx": 3024,
+      "heightPx": 2016,
+      "dim": "3024x2016",
+      "longEdgePx": 3024,
+      "orient": "landscape",
+      "content": "finished_landscape",
+      "note": "Oak clearing, post-trimming. Yard debris already bagged.",
+      "disqualifiers": [],
+      "score": 62,
+      "eligibleRoles": ["heroBackground", "evidenceShot", "gallery"]
+    },
+    {
+      "id": "s01",
+      "file": "assets/photos/site/s01.jpg",
+      "widthPx": 3024,
+      "heightPx": 4032,
+      "dim": "3024x4032",
+      "longEdgePx": 4032,
+      "orient": "portrait",
+      "content": "owner",
+      "note": "Three generations: Earl (seated), Danny (middle), Cole (right) in front of shop. Family portrait.",
+      "disqualifiers": [],
+      "score": 80,
+      "eligibleRoles": ["heroPlate", "ownerPortrait", "gallery"]
+    },
+    {
+      "id": "s02",
+      "file": "assets/photos/site/s02.jpg",
+      "widthPx": 3024,
+      "heightPx": 2016,
+      "dim": "3024x2016",
+      "longEdgePx": 3024,
+      "orient": "landscape",
+      "content": "team",
+      "note": "Four-person crew loading equipment on truck, mid-morning staging.",
+      "disqualifiers": [],
+      "score": 66,
+      "eligibleRoles": ["heroBackground", "environmentalPortrait", "gallery"]
+    },
+    {
+      "id": "s03",
+      "file": "assets/photos/site/s03.jpg",
+      "widthPx": 3024,
+      "heightPx": 2016,
+      "dim": "3024x2016",
+      "longEdgePx": 3024,
+      "orient": "landscape",
+      "content": "detail_landscape",
+      "note": "Close-up of cleanly edged walkway meeting manicured lawn.",
+      "disqualifiers": [],
+      "score": 58,
+      "eligibleRoles": ["detailShot"]
+    },
+    {
+      "id": "s04",
+      "file": "assets/photos/site/s04.jpg",
+      "widthPx": 2016,
+      "heightPx": 3024,
+      "dim": "2016x3024",
+      "longEdgePx": 3024,
+      "orient": "portrait",
+      "content": "detail_irrigation",
+      "note": "Close-up of irrigation head mid-rotation with small rainbow catch.",
+      "disqualifiers": [],
+      "score": 55,
+      "eligibleRoles": ["detailShot"]
+    }
+  ]
+}
