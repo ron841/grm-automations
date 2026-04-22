@@ -86,17 +86,50 @@ trigger for pickup.
 - **Target pickup:** Stage II.5 (profile.json fixtures) and Stage III
   (Phase 4-new approval gate UI).
 
-### CONFIG.spacing tier-keyed residues + tier-class CSS overrides
-- **Surfaced:** Commit 5.b CONFIG.fonts persona-conditional restructure,
-  2026-04-21 (commit 6cfd6df).
-- **Why deferred:** Grep showed premium/professional/standard still
-  tier-keyed in CONFIG.spacing (css-framework.md lines 123/129/135) and
-  three `:root.tier-*` CSS override blocks (lines 869/896/907 +
-  900/911/922/927/938/949/964/969) with tier-class naming throughout
-  Phase-5 documentation. Stage II (e) tier-logic strip scope per
-  brain §8. Whether to strip CONFIG.spacing or refactor to
-  persona-conditional spacing is a Stage II (e) design call.
-- **Target pickup:** Stage II (e).
+### Post-Stage-II-(e) F1-F8 spot-check on persona-base × tier-multiplier math
+- **Surfaced:** Stage II (e) tier-logic strip, 2026-04-22 (commit 4e70a0b).
+- **Why deferred:** Luna F8 spot-check (quiet-confidence persona ×
+  Professional tier) against shipped `style.css` values reveals
+  material drift on three of four spacing values under the new
+  persona-base × tier-multiplier architecture: `--space-section`
+  holds steady at 120px (0% drift); `--space-section-generous` at
+  161px vs shipped 140px (+15%); `--text-hero` at 88px vs shipped
+  72px (+22%); `--text-hero-default` at 80px vs shipped 56px (+43%).
+  Three values exceed the 10% tolerance threshold, triggering this
+  tuning backlog item per Ron's Stage II (e) instruction. Editorial
+  question: does Quiet confidence's persona base (heroSize 5.5rem,
+  heroSizeDefault 5.0rem) produce an editorially desirable result
+  at 88/80px, or did the shipped 72/56px represent the actual target
+  and the new persona base needs Design re-tuning? A Luna F8 rebuild
+  through the new CONFIG.spacing values would answer the aesthetic
+  question on a real page. Until that rebuild happens, the new
+  values ship as Design-authored and render differently from Luna
+  F8's historical output on every future quiet-confidence +
+  Professional build.
+- **Target pickup:** Stage II (e) follow-up, Stage II (f), or the
+  first Composer-era build that selects quiet-confidence persona.
+  Alternative: include F1-F7 checks (A Quality Pool, Chad's Lawn,
+  T&F Electric, Grandview, Oxford Lawn, A-1 Payless, Prime Pool)
+  for broader persona × tier coverage before tuning decisions land.
+
+### Composer-era reference build authoring pass
+- **Surfaced:** Stage II (e) tier-logic strip, 2026-04-22 (commit 4e70a0b).
+- **Why deferred:** `references/example-build.md` currently documents
+  pre-Composer-era skill behavior via the status-note header added in
+  this commit. The file's illustrative content (Tucci Electric as
+  Premium-tier reference, tier-keyed CSS examples, pre-Composer Phase
+  4 output shapes) accurately records prior state but is now
+  inconsistent with current authority in `typography.md §11`,
+  `voiceMap.md`, `css-framework.md` CONFIG.fonts + CONFIG.spacing, and
+  `anti-slop-rules.md` persona-group framing. Author a Composer-era
+  worked example through the restructured phases with explicit
+  persona selection, `composition-plan.json` excerpts, and current
+  Phase 5 emission patterns. Candidate source: one of F1-F8
+  flagships with real Phase 3 → Phase 4 → Phase 5 excerpts.
+- **Target pickup:** Post-Stage-II, possibly alongside first
+  Composer-era sales build where the authoring effort produces
+  both the reference file and the live prospect deliverable.
+  Scope estimate: 800-1200 lines.
 
 ### no-italic-on-data rule in typography.md
 - **Surfaced:** Design's Commit 5.b pre-review — "Worth adding as an
@@ -237,6 +270,28 @@ trigger for pickup.
   `shimmer-hero-cta` — Design review on deployed preview URL.
 
 ## Resolved deferrals
+
+### CONFIG.spacing tier-keyed residues + tier-class CSS overrides
+- **Originally surfaced:** Commit 5.b CONFIG.fonts persona-conditional
+  restructure, 2026-04-21 (commit 6cfd6df).
+- **Resolved:** 2026-04-22 (commit 4e70a0b). Stage II (e) tier-logic
+  strip executed under full authorship with Design arbitration on
+  three editorial-reach items (CONFIG.spacing refactor, glass-variant
+  rationale, anti-slop Block A persona-group refactor). Design
+  authored per-persona base values for all five personas;
+  `CONFIG.spacing` refactored to two-axis architecture (persona base
+  × tier multiplier). Phase 5 computes final values at build time
+  and emits directly into base `:root`. Three `:root.tier-*`
+  cascade-override blocks retired. Glass-variant selection stays
+  tier-keyed per `typography.md §Appendix B` section-density
+  treatment. `anti-slop-rules.md` banned-fonts section reframed from
+  tier-keyed to persona-group-keyed (serif-display vs. sans-display)
+  per new `typography.md §11.Persona groupings for font discipline`
+  subsection. `<html class="tier-*">` emission replaced with
+  `class="persona-{kebab-key}"`. Luna F8 spot-check flags three of
+  four values drift >10% (new Active backlog item for tuning).
+  Composer-era example-build.md rewrite deferred (new Active backlog
+  item).
 
 ### Stage II (d) typography.md three-way merge — SectionOpener framing conflict
 - **Originally surfaced:** Stage II (c) Phase 2 composition-plan-schema.md
