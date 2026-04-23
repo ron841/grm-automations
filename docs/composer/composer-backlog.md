@@ -327,6 +327,26 @@ trigger for pickup.
   and should be preserved across future gates. (Added
   2026-04-23, Session 4 close.)
 
+- **Rule 1-6 derivation mechanics migration to §14
+  deferred (Path A).** Session 4 Concern 4 reshape
+  evaluated two paths for where detailed Rule 1-6
+  mechanics live — schema §14 as single source of truth
+  (Path A) vs. implementation prompt carrying mechanics
+  with §14 naming the contract (Path B). Session 4 took
+  Path B to unblock Phase 4-new execution. Design's
+  amended Rule 4 text from Concern 4 reshape stands as
+  the template shape (input / emission / validator
+  behavior / derivation step / error class) for the
+  future migration. When Path A is picked up in a later
+  session, Rule 4's authored template applies to the
+  other five rules; migration content comes from the
+  implementation prompt's existing Rule 1-6 block, NOT
+  from re-authoring. Cross-check required at migration
+  time: on-disk §2.2 pathConvention shape, SKILL.md
+  tier enums (Premium / Professional / Standard), §4.10
+  scaleContrast emission shape. (Added 2026-04-23,
+  Session 4 Concern 4 close, Option B path.)
+
 ## Resolved deferrals
 
 ### CONFIG.spacing tier-keyed residues + tier-class CSS overrides
