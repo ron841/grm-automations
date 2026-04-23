@@ -469,29 +469,84 @@ Implementation via JSON Schema `oneOf` discriminated on `sections[].type`, allow
 
 ---
 
-## §7 Voice zone vocabulary
+## §7 Voice-zone vocabulary
 
-Closed enum of 15 zones per Design Checkpoint 1 q4. `voiceMap.md`'s zone table groups paired zones for documentation readability (e.g., "Hero headline + subheadline" as one row; "FAQ questions and answers" as one row), but schema splits them because Phase 4 resolves voice per-zone and persona bias operates per-zone. The closed enum mirrors the resolution unit, not the documentation unit.
+Two levels of voice-zone vocabulary, both canonical:
 
-| Zone machine key | Default voice | Persona bias allowed |
-|---|---|---|
-| `hero-headline` | closing-table | no (conversion-critical — headline stays closing-table across all personas) |
-| `hero-subheadline` | closing-table | yes (neighborhood-steady, urgent-service soften toward saturday-morning for subheadline only) |
-| `promo-bar` | closing-table | no (conversion-critical) |
-| `trust-marquee` | saturday-morning | yes (modern-specialist → dry closing-table variant) |
-| `services-grid-header` | saturday-morning | yes (quiet-confidence → closing-table) |
-| `service-card-description` | closing-table | no (conversion-critical) |
-| `stats-section` | closing-table | no (conversion-critical) |
-| `before-after-header` | closing-table | no |
-| `testimonials-header` | saturday-morning | yes (earned-pride → closing-table proof-forward) |
-| `featured-promotion` | closing-table | no (conversion-critical) |
-| `faq-question` | closing-table | yes (neighborhood-steady opens FAQ section with saturday-morning lead) |
-| `faq-answer` | closing-table | no (conversion-critical — answers stay closing-table across all personas) |
-| `contact-form-header` | saturday-morning | yes (urgent-service → closing-table response-time claim) |
-| `footer-tagline` | front-porch | no |
-| `about-page-body` | front-porch | yes (earned-pride → claim-first opening; neighborhood-steady → front-porch heavy) |
+- **Section-level zones** — one voice per section type.
+  Consumed by §4.2 `voiceZones[]` page aggregation, by
+  voiceMap.md §6 persona-bias metadata, and by any
+  page-grain reader asking "what voices does this page
+  carry?"
+- **Section-subpart zones** — voices decomposed within a
+  section. Consumed by inline `voiceZoneAssignments` in
+  fixtures and in Phase 4-new output, where editorial
+  reach distinguishes eyebrow from headline from CTA
+  within a single section.
 
-**Note on Stage II (d) merge.** `voiceMap.md`'s zone table presentation groups `hero-headline`/`hero-subheadline` into one row and `faq-question`/`faq-answer` into one row for documentation readability. Schema splits both because differential persona-bias behavior lives on the subheadline (not headline) and on the question (not answer). The documentation grouping and schema split coexist — no edit to `voiceMap.md` needed, but the merged `voiceMap.md` reference file should note "Zone table groups paired zones for readability; schema enum splits them; Phase 4 resolves per split zone."
+Both levels are closed enums. Rule 4 (see below) flattens
+subpart keys to section-level keys at validator time so
+page-grain and subpart-grain readers stay reconciled.
+
+### Section-level zones (15 keys)
+
+hero-headline, hero-subheadline, promo-bar,
+trust-marquee, services-grid-header,
+service-card-description, stats-section,
+before-after-header, testimonials-header,
+featured-promotion, faq-question, faq-answer,
+contact-form-header, footer-tagline, about-page-body
+
+### Section-subpart zones (13 keys)
+
+about-page-attribution, about-page-body-slot,
+about-page-heading, hero-eyebrow, hero-headline-slot,
+hero-primary-cta, hero-subheadline-slot,
+services-card-body, services-card-headline,
+services-grid-heading, testimonial-attribution,
+testimonial-body, testimonials-heading
+
+Note on naming: where a subpart key would collide with a
+section-level key at the same string (hero-headline,
+hero-subheadline, about-page-body), the subpart key
+carries a `-slot` suffix to keep Rule 4 lookup
+unambiguous. Fixture authoring uses the `-slot` form for
+inline assignments.
+
+### Subpart → section flatten mapping
+
+| Subpart key | Section-level key |
+|---|---|
+| hero-eyebrow | hero-headline |
+| hero-headline-slot | hero-headline |
+| hero-subheadline-slot | hero-subheadline |
+| hero-primary-cta | hero-headline |
+| services-grid-heading | services-grid-header |
+| services-card-headline | service-card-description |
+| services-card-body | service-card-description |
+| testimonials-heading | testimonials-header |
+| testimonial-body | testimonials-header |
+| testimonial-attribution | testimonials-header |
+| about-page-heading | about-page-body |
+| about-page-body-slot | about-page-body |
+| about-page-attribution | about-page-body |
+
+Mapping is authored, not algorithmic. Prefix-match rules
+would mis-flatten services-grid-* and services-card-* to
+a single §7 key; the table disambiguates.
+
+### Grain selection
+
+- Fixture `voiceZoneAssignments` (inline, section-subpart
+  grain): use subpart keys
+- Page-level `voiceZones[]` in §4.2 (page-aggregation
+  grain): use section-level keys
+- voiceMap.md §6 persona-bias metadata: use section-level
+  keys
+- Phase 4-new Rule 4 validator: consumes subpart keys
+  from fixture output, flattens through the mapping
+  above, compares at section-level grain for
+  page-aggregation fields
 
 ---
 
