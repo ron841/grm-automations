@@ -291,6 +291,20 @@ trigger for pickup.
   exception. Non-blocking for Phase 4-new implementation
   start. (Added 2026-04-22, Session 3 close.)
 
+- **Fixture-side authoring slots as a named §2 concept
+  (deferred).** Design surfaced in Session 4 Concern 1
+  reshape that fixture-side intent authoring slots
+  (personaIntent, voiceZoneIntent[], italicIntent[],
+  pullQuoteIntent, eyebrowIntent[], microInteractionIntent)
+  could land as a canonical named concept in
+  composition-plan-schema.md §2, where fixture shape
+  specification lives. Distinct from the six intent-spec
+  fields in §14, which are the structural-derivation
+  output set. Not authored now — flagged so if Phase 4-new
+  execution surfaces a need to reference these slots by
+  canonical name, the reshape has a known home. (Added
+  2026-04-23, Session 4.)
+
 ## Resolved deferrals
 
 ### CONFIG.spacing tier-keyed residues + tier-class CSS overrides
