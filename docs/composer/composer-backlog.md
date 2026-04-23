@@ -305,6 +305,28 @@ trigger for pickup.
   canonical name, the reshape has a known home. (Added
   2026-04-23, Session 4.)
 
+- **LESSONS — cross-grain reconciliation + summary-vs-disk
+  working-style (process observations).** Session 4
+  surfaced three spec-vs-spec drifts at Gate A pre-
+  execution. Pattern 1 — when two load-bearing artifacts
+  encode the same domain at different grains,
+  reconciliation needs a dedicated checkpoint beat rather
+  than inference from later gates (§7 section-level vs
+  fixture subpart-level was the exercised case; §14
+  two-pass vs Q2 three-pass was the earlier case this
+  session). Pattern 2 — when a reshape touches field
+  shapes, enum values, or rule mechanics, Design asks for
+  on-disk text before authoring; Chat-Claude routes with
+  diagnostic-first disk state rather than summary;
+  neither party authors mechanics from summary. Summary
+  routing is fine for architectural questions (grain,
+  partition, pass count); it is not fine for field names
+  and enum values. Pattern 3 — Code's pre-execution
+  verification pattern caught all three drifts cleanly;
+  the halt-don't-press-through discipline is load-bearing
+  and should be preserved across future gates. (Added
+  2026-04-23, Session 4 close.)
+
 ## Resolved deferrals
 
 ### CONFIG.spacing tier-keyed residues + tier-class CSS overrides
