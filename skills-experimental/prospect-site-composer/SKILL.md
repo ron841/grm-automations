@@ -435,7 +435,7 @@ Start from persona Tier 2 default. Then apply additive rules:
 - If page has ≥ 3 inline body links in long-form copy AND persona is modern-specialist or earned-pride → ensure `underline-bloom` present.
 - If `statRow` is present AND persona is modern-specialist → ensure `mono-numeral-flip` present.
 - If tier is Premium AND persona is earned-pride AND Phase 4 rationale includes "CTA prominence critical" → `shimmer-hero-cta` may be appended with `microInteractionsReason` recording the override. Otherwise `shimmer-hero-cta` is not emitted.
-- Rescue-ready Tier 2 entries all run at 250ms entry; record in `microInteractionDurations.entry: 250`.
+- Rescue-ready Tier 2 entries all run at 250ms entry; record in `microInteractionDurations.entry: 250`. See emotional-arc.md "Micro-interaction duration lock (persona-indexed)" for the full two-row table.
 
 **Tie-breaking:** persona defaults from `emotional-arc.md` break any ambiguous resolution. If tree rules produce no Tier 1 value, emit persona default; if still none, emit `none`. Tier 2 array empty is valid output, not a missing-value error.
 

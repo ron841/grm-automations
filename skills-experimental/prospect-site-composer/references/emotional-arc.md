@@ -271,6 +271,34 @@ against the persona's favored-class list as a soft fail.
 Human review at Phase 4 approval gate is authoritative
 on disputes.
 
+### Micro-interaction duration lock (persona-indexed)
+
+Entry and hover animation durations are locked per persona.
+Two-row lock: four personas share a standard row; urgent-
+service accelerates both entry and hover. Values are
+fixture-required — Phase 4-new Rule 3 validates exact
+equality against this table.
+
+| Persona | entry (ms) | hover (ms) |
+|---|---|---|
+| quiet-confidence | 400 | 180 |
+| earned-pride | 400 | 180 |
+| neighborhood-steady | 400 | 180 |
+| modern-specialist | 400 | 180 |
+| urgent-service (Rescue-ready) | 250 | 150 |
+
+css-framework.md §Durations and easing carries
+implementation-side guidance with wider acceptable ranges
+(150-200ms hover, 400-600ms entry). Those ranges describe
+what reads well in a browser; this table names what
+fixtures must emit. Where the two differ, this table is
+authoritative for composition-plan.json; the ranges are
+interpretation notes for downstream CSS authoring.
+
+Per-persona hover differentiation beyond this two-row lock
+is optional commentary in css-framework.md, not a hard
+rule. The lock is two rows, not five.
+
 ### Notes on the assignments
 
 **Quiet confidence → italic-color-shift, no Tier 2.** The persona's discipline is compositional gesture over motion. A static italic accent inside an otherwise restrained headline is the signature. Adding a Tier 2 motion reads as over-insurance. If the Phase 4 tree produces a compelling reason to add one Tier 2 entry (e.g. mono-numeral-flip on a stats section that's already the page's statistical anchor), the tree may do so, but the default is empty.

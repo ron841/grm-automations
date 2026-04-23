@@ -911,8 +911,8 @@ Tier 1 compositional signatures (`italic-color-shift`, `watermark-numeral-offset
 ### Durations and easing
 
 - Hover transitions: **150-200ms** with `ease-out`. Anything longer reads as laggy.
-- Rescue-ready persona accelerates entry animations to 250ms (from the 400ms default) per `emotional-arc.md` persona bias.
 - Entry animations (hero eyebrow, scroll-reveal): **400-600ms** with `ease-out` or `cubic-bezier(0.16, 1, 0.3, 1)`.
+- Exact per-persona values are locked in emotional-arc.md "Micro-interaction duration lock (persona-indexed)." Fixtures emit those exact values; the ranges above are implementation commentary for CSS authoring where the lock does not apply.
 - Marquee and shimmer loops: durations as specified in `CONFIG.animation` above.
 - Never use `linear` easing on discrete transitions. Linear is for loops (marquee, shimmer) only.
 - Never use `ease-in` alone — elements should accelerate into stillness, not into motion. `ease-in-out` is allowed where both start and end are at rest.
