@@ -610,31 +610,66 @@ All eight Checkpoint 1 open questions resolved. One Stage II (d) merge flag carr
 
 ---
 
-## §14 Fixture intent-spec shape
+## §14 Fixture intent-spec shape and validator contract
 
-Stage II.5 fixtures encode editorial intent for Phase 4-new
-validation, not emission structure. Six fields diverge from
-§2/§4 emission shape by design. Phase 4-new validation runs
-two passes: structural equality on all fields outside this
-list, semantic-derivation on the six fields below.
+### Two-pillar architecture (unchanged from Session 3 authoring)
 
-| Intent-spec field | Fixture shape | Emission shape (§ref) | Derivation rule |
-|---|---|---|---|
-| site.pathConvention | string enum "kebab-case" | object { homePath, aboutPath, servicePathPattern, contactPath, trailingSlash } per §2.2 | "kebab-case" derives to { homePath: "/", aboutPath: "/about", servicePathPattern: "/services/{slug}", contactPath: "/contact", trailingSlash: false }. Validation compares derived object to emitted object. |
-| site.tier | string enum (Standard · Professional · Premium) | (not in §2 envelope — read from profile.json) | Fixture records expected tier for editorial clarity. Validation asserts Phase 4-new tier decision matches fixture string. |
-| site.microInteractionDurations | object { entry, hover } in ms | (not in §2 envelope — derived from persona bias rules) | Records persona-bias-driven duration overrides (rescue-ready entry 250ms vs 400ms default). Validation asserts Phase 4-new emits matching duration values in rendered CSS. |
-| section.voiceZoneAssignments (inline) | key→voice map on each section | page-level voiceZones[] array per §4.2 | Fixture inline shape flattens to page-level array at validation time: each section's map contributes entries to the array, with defaultVoice derived from voiceMap.md zone table and personaBiasApplied derived from persona bias rules. |
-| page.scaleContrast | string enum (high · medium · low) | object { minimumRatio, achievedRatio, achievedBy } per §4.10 | "high" derives to minimumRatio ≥ 7:1, "medium" to ≥ 4.5:1, "low" to ≥ 3:1. Validation asserts emitted achievedRatio meets the intent threshold. |
-| page.layoutSequence | ordered array of section type strings | (not in §4 — redundant with sections[] traversal) | Fixture convenience for editorial review. Validation asserts sections[].map(s => s.type) equals layoutSequence exactly. |
+Fixtures carry **editorial intent**. Phase 4-new modules
+emit **structural output**. The validator bridges the two.
 
-Every other field in §2 and §4 is structural-equality-compared
-between fixture and emission. Phase 4-new bugs surface as
-structural divergence; fixture authoring bugs surface as
-derivation-rule mismatch — the two pass types keep diagnostics
-cleanly separated.
+The six intent-spec fields are the structural fields whose
+values derive from fixture intent at named Phase 4-new
+editorial steps, rather than being exact-equality compared:
 
-Intent-spec fields do not appear in Phase 4-new emission.
-Emission conforms strictly to §2/§4/§5 envelope.
+1. site.pathConvention
+2. site.tier
+3. site.microInteractionDurations
+4. section.voiceZoneAssignments
+5. page.scaleContrast
+6. page.layoutSequence
+
+Phase 4-new modules resolve these through Rules 1-6 at
+named editorial steps via LLM calls, emitting the full
+structural composition-plan.json.
+
+### Three-pass validator contract (amended from Q2 close)
+
+The validator runs three passes over Phase 4-new output
+against the fixture expected-plan:
+
+**Pass 1 — Structural equality.** Exact-equality compare
+on every field in the structural partition (see table
+below). Any mismatch fails the gate.
+
+**Pass 2 — Semantic derivation.** The six intent-spec
+fields resolve through their derivation rules (Rules 1-6).
+Validator confirms Phase 4-new output is a valid
+derivation from fixture intent, not exact-string match.
+
+**Pass 3 — Editorial adherence.** Editorial fields (see
+table below) validate on persona-rule adherence: does the
+authored copy honor the fixture's persona bias, voiceZone
+constraints, and typography-pattern rules? Validator does
+not demand exact-string match — two acceptable authorings
+of the same intent both pass.
+
+### Editorial vs structural field partition
+
+| Partition | Validator pass | Fields |
+|---|---|---|
+| **Intent-spec** | Pass 2 (semantic derivation) | site.pathConvention; site.tier; site.microInteractionDurations; section.voiceZoneAssignments; page.scaleContrast; page.layoutSequence |
+| **Editorial** | Pass 3 (persona-rule adherence) | All `*Copy` fields; `headingHierarchy.h1`; `headingHierarchy.h2Sequence[].copy`; `italicSelections[].italicWord` and `.alternativeWord`; `pullQuotes[].extractedText` and `.rhetoricalSlot`; `eyebrowDeployments[].text`; `aboutStory.narrativeBlocks[].italicPlacements[].phrase`; rationale prose (`personaReason`, `signatureMicroInteractionReason`, `microInteractionsReason`); `serviceDescriptions[]` text; `constraintRelaxations[].detail` prose |
+| **Structural** | Pass 1 (exact equality) | All remaining fields in §2 and §4: enums, photo IDs, pixel values, boolean flags, layout contract fields, Gate 4 per-section-type contract fields not enumerated above |
+
+### Precedence note
+
+Where an earlier draft of §14 read "every other field in
+§2 and §4 is structural-equality-compared," that language
+predates the Q2 close that moved editorial authoring
+inside Phase 4-new. The partition table above supersedes
+it. Structural equality governs the structural partition;
+intent-spec fields route to Pass 2; editorial fields route
+to Pass 3.
 
 ---
 
