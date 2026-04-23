@@ -715,7 +715,7 @@ Every page has at least one element with computed `font-size ≥80px` on desktop
 
 ### Check 9: Italic word selection (soft fail — structural + human-auth)
 
-For each italic span inside an H1 or H2, the italicized word is flagged against the persona's approved word-class list (precision / claim / identity / speed / method). Soft fail with a warning listing the italicized word and the expected word class. Human review during Phase 4 approval gate is authoritative.
+For each italic span inside an H1 or H2, the italicized word is flagged against the persona's favored word-class list per emotional-arc.md "Italic word-class vocabulary (persona-indexed)" — closed 4-value enum {place, name, tenure, trade-term}. Soft fail with a warning listing the italicized word and the expected word class. Human review during Phase 4 approval gate is authoritative.
 
 ### Check 10: Pull-quote deployment count (hard fail — structural)
 

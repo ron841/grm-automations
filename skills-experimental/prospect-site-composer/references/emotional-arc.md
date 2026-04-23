@@ -241,6 +241,36 @@ This table is the bridge between feeling and executable rules. Phase 4 uses it t
 | Rescue-ready (urgent-service) | stat-row-ledger | [eyebrow-reveal at 250ms] (max 2) | heavy: C-70-30, E · medium: A · light: D (suppress) | evidence (before/after) > environmental (in-motion) > detail > owner | light (1–2 sentence paragraphs, scannable, response-time forward) |
 | Modern specialist | anchor-strip-pivot | [underline-bloom, mono-numeral-flip] (max 3) | heavy: B, E · medium: A, C-50-50 · light: D | detail > evidence > environmental > owner | medium-heavy (technical precision, 2–4 sentences, specs-forward) |
 
+### Italic word-class vocabulary (persona-indexed)
+
+Italic spans inside H1 or H2 headings carry a word-class
+attribute naming what the italicized word refers to. Four
+classes, closed enum:
+
+- **place** — a proper-noun geographic reference
+  (neighborhood, city, region name)
+- **name** — a proper-noun person or business reference
+  (owner name, brand name, credentialed individual)
+- **tenure** — a length-of-experience reference
+  (years, decades, "since 19XX" constructions)
+- **trade-term** — a specialist vocabulary word from the
+  trade (technique, material, diagnostic term)
+
+Persona bias on word-class selection:
+
+| Persona | Favored classes |
+|---|---|
+| neighborhood-steady | place, tenure |
+| earned-pride | name, trade-term |
+| quiet-confidence | tenure, trade-term |
+| modern-specialist | trade-term |
+| urgent-service (Rescue-ready) | none — italic-color-shift is not a Tier 1 signature for this persona |
+
+Phase 6 Check 9 validates the italicized word's class
+against the persona's favored-class list as a soft fail.
+Human review at Phase 4 approval gate is authoritative
+on disputes.
+
 ### Notes on the assignments
 
 **Quiet confidence → italic-color-shift, no Tier 2.** The persona's discipline is compositional gesture over motion. A static italic accent inside an otherwise restrained headline is the signature. Adding a Tier 2 motion reads as over-insurance. If the Phase 4 tree produces a compelling reason to add one Tier 2 entry (e.g. mono-numeral-flip on a stats section that's already the page's statistical anchor), the tree may do so, but the default is empty.
