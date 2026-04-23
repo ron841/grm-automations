@@ -906,7 +906,7 @@ Every generated site gets zero or more Tier 2 motion micro-interactions, chosen 
 3. **Shimmer sweep on the primary hero CTA only.** The button shimmer keyframe, applied to exactly one button on the page (the hero primary CTA), running at 3-second intervals. Emitted only with explicit Phase 4 override rationale.
 4. **Mono numeral hover-flip on stats.** In a stats section, hovering a stat card swaps the digit glyphs to their tabular-lining variant and back. Single-property transition on `font-variant-numeric`.
 
-Tier 1 compositional signatures (`italic-color-shift`, `watermark-numeral-offset`, `anchor-strip-pivot`, `hero-glass-blur`, `stat-row-ledger`) are typographic treatments governed by `typography-patterns.md` role classes, not motion primitives. They do not appear in this section.
+Tier 1 compositional signatures (`italic-color-shift`, `watermark-numeral-offset`, `anchor-strip-pivot`, `hero-glass-blur`, `stat-row-ledger`) are typographic treatments governed by `typography.md §5 Italic discipline` (italic-color-shift provenance) and §3 Role classes, not motion primitives. They do not appear in this section.
 
 ### Durations and easing
 

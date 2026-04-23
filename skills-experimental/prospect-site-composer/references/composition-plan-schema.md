@@ -11,7 +11,7 @@ Schema definition for `composition-plan.json`, the artifact Phase 4-new produces
 **Relationship to other artifacts.** Phase 3 produces `profile.json` (facts, schema at `profile-schema.md`). Phase 4-new reads `profile.json`, makes all editorial decisions (persona, layouts, photo assignments, italic selections, voice zone assignments, pull-quote deployments, display-moment placements), and produces `composition-plan.json`. Phase 5-new reads `composition-plan.json` + `profile.json` and emits HTML/CSS/JS implementing only what the plan declares. Phase 5.5 reads both JSONs (never the DOM) to emit schemas, meta tags, and `llms.txt`. No editorial decisions happen in Phase 5; no facts are invented in Phase 4.
 
 **Authority sources referenced throughout:**
-- `typography-patterns.md` (Design's editorial framework — three voices, role classes, pull-quote heuristic §6, scale and breakpoints §7, 13 Phase 6 checks, persona-conditional tables, five personas × three voices)
+- `typography.md` (Design's editorial framework — three voices, role classes, pull-quote heuristic §13, scale relationships §2, 13 Phase 6 checks §15, persona-conditional font selection §11, five personas × three voices)
 - `voiceMap.md` (Design's zone-to-voice assignment — closed zone enum, three-voice × five-persona resolution)
 - `emotional-arc.md` (five personas with machine keys, italic word classes per persona)
 - `hero-patterns.md` (hero mode decision tree, hero background modes)
@@ -55,7 +55,7 @@ Fields that apply to the whole site, not per-page. Migrated from Luna F8's `prof
 
 Per Design Checkpoint 1 q1 follow-up: two-tier architecture. **Signature** is compositional, site-wide, and singular — the moment a reader remembers after closing the tab. **Micro-interactions** are motion, element-scoped, and plural — animation behaviors applied to specific elements or states. Neither displaces the other; they run alongside.
 
-**Why two tiers.** A reader can notice many motion cues across a page without any of them being the thing they remember. The signature is singular by design — pick one compositional moment and commit. Motion runs alongside, enriching but not competing. `css-framework.md` Motion Restraint governs Tier 2; typography-patterns.md role classes define Tier 1 treatments.
+**Why two tiers.** A reader can notice many motion cues across a page without any of them being the thing they remember. The signature is singular by design — pick one compositional moment and commit. Motion runs alongside, enriching but not competing. `css-framework.md` Motion Restraint governs Tier 2; typography.md §3 Role classes defines Tier 1 treatments.
 
 #### Tier 1 — `signatureMicroInteraction` enum (compositional, singular)
 
@@ -63,11 +63,11 @@ Closed set of six values. Each Composer build declares exactly one site-wide sig
 
 | Value | Concept |
 |---|---|
-| `italic-color-shift` | Italicized accent-color-shifted span inside H1/H2 per `typography-patterns.md` Rule 1/Rule 2 and `.role-italic-signature` class. Typographic treatment, not an animation. Default signature for `quiet-confidence`, `earned-pride`, `modern-specialist` at three deployments; `neighborhood-steady` and `urgent-service` at two deployments minimum per Rule 1. |
-| `watermark-numeral-offset` | Watermark numeral offset behind a filled numeral per `typography-patterns.md` Rule 4 — static positioning treatment. |
+| `italic-color-shift` | Italicized accent-color-shifted span inside H1/H2 per `typography.md §5 Italic discipline` ("One italic run per headline" and "em inherits color (the rule, codified)" subsections) and `.role-italic-signature` class. Typographic treatment, not an animation. Default signature for `quiet-confidence`, `earned-pride`, `modern-specialist` at three deployments; `neighborhood-steady` and `urgent-service` at two deployments minimum per `typography.md §5`. |
+| `watermark-numeral-offset` | Watermark numeral offset behind a filled numeral per `typography.md §7 StatRow Rule 4` (stacked/offset-overlapping composition per line 335) — static positioning treatment. |
 | `anchor-strip-pivot` | Voice-pivot anchor strip per `voiceMap.md` §3 — italic Fraunces pullquote + mono credit between hero and services. |
 | `hero-glass-blur` | Glass-blur treatment on hero-heavy compositions. |
-| `stat-row-ledger` | Stat-row ledger treatment — StatRow composed as a "signed" editorial moment per `typography-patterns.md` §5. |
+| `stat-row-ledger` | Stat-row ledger treatment — StatRow composed as a "signed" editorial moment per `typography.md §7 StatRow — contrast pair`. |
 | `none` | No signature. Reserved for editorial registers (typically Quiet Confidence at some build shapes) where a loud signature reads dishonest. |
 
 #### Tier 2 — `microInteractions` array of enum (motion, plural)
@@ -105,7 +105,7 @@ Phase 4 decides how the raw palette from `profile.json.brandPalette` is applied 
 | `darkVibrantAsDarkPrimary` | boolean | yes | True when DarkVibrant override applies per brain §6 PA.4 (populated `brandPalette.darkPrimary` taking precedence over derived hover). |
 | `heroBackgroundDerivation` | const `"phase-5-inline-from-primary-hue"` | yes | Documentation field naming that hero page background is not a plan-level decision. Present so the schema is explicit about what Phase 4 does NOT decide here. Phase 5 computes from `profile.brandPalette.primary` hue warmth at render. |
 
-**`primaryUsage` provenance note.** Derived from per-persona color-density bias. Not cited to a specific `typography-patterns.md` section — Chat-Claude inference, confirmed at Checkpoint 1 q7.
+**`primaryUsage` provenance note.** Derived from per-persona color-density bias. Not cited to a specific `typography.md` section — Chat-Claude inference, confirmed at Checkpoint 1 q7.
 
 **Persona default-bias reference table.** Not schema-encoded (Phase 4 decides per build); documented here so Phase 4 has a starting point per persona and so the approval gate can surface deviations.
 
@@ -236,7 +236,7 @@ Invariants (structural):
 |---|---|---|---|
 | `sectionId` | string | yes | References a `sectionOpener`-type section via its ID. |
 | `text` | string | yes | Eyebrow text (ALL CAPS rendering is Phase 5's concern, not stored upper-case here). |
-| `register` | enum (`primary` · `mute`) | yes | Per typography-patterns.md §3 — `primary` = loud `--accent` color, `mute` = quiet `--font-data` with tracked caps. |
+| `register` | enum (`primary` · `mute`) | yes | Per `typography.md §4 Mono eyebrow system — two registers` — `primary` = loud `--accent` color, `mute` = quiet `--font-data` with tracked caps. |
 
 Invariants (structural):
 - Array max length = 3 per page (Check 3 structural enforcement).
@@ -268,7 +268,7 @@ Service descriptions as they appear in the page's rendered copy.
 
 ### §4.9 `displayMoment`
 
-Per-page invariant declaration — every page must name which element carries the minimum display-scale moment per typography-patterns.md Check 8 (≥80px desktop, ≥56px mobile).
+Per-page invariant declaration — every page must name which element carries the minimum display-scale moment per `typography.md §15 Check 8` (≥80px desktop, ≥56px mobile).
 
 | Field | Type | Required | Purpose |
 |---|---|---|---|
@@ -284,11 +284,11 @@ Invariants:
 
 ### §4.10 `scaleContrast`
 
-Scale contrast targets per typography-patterns.md §7. References role-class assignments, not pixel values.
+Scale contrast targets per `typography.md §2 Scale relationships`. References role-class assignments, not pixel values.
 
 | Field | Type | Required | Purpose |
 |---|---|---|---|
-| `minimumRatio` | number | yes | Per-persona minimum contrast between display-voice and body-voice on the page. Persona-conditional from typography-patterns.md §7. Documentation points to authority; schema stores the resolved minimum Phase 4 picked. |
+| `minimumRatio` | number | yes | Per-persona minimum contrast between display-voice and body-voice on the page. Persona-conditional from `typography.md §2 Scale relationships` with cross-reference to §11 Persona-conditional font selection. Documentation points to authority; schema stores the resolved minimum Phase 4 picked. |
 | `achievedRatio` | number | yes | Computed ratio Phase 4 reports given the role-class assignments declared in this page's sections. |
 | `achievedBy` | string | yes | Narrative: which elements produce the ratio (e.g., "hero H1 `.role-display-hero` at 72px vs. body `.role-body-paragraph` at 16px = 4.5×"). |
 
@@ -374,7 +374,7 @@ Authority: `hero-patterns.md` (mode tree + glass variant) + `profile-schema.md` 
 
 ### §5.3.2 `servicesGrid` contract fields
 
-Authority: `section-patterns.md` + `typography-patterns.md` + `profile-schema.md` §11 evidenceShot-eligibility prose.
+Authority: `section-patterns.md` + `typography.md` + `profile-schema.md` §11 evidenceShot-eligibility prose.
 
 | Field | Type | Required | Purpose |
 |---|---|---|---|
@@ -394,7 +394,7 @@ Authority: `section-patterns.md` + `typography-patterns.md` + `profile-schema.md
 
 ### §5.3.3 `testimonialsSection` contract fields
 
-Authority: `section-patterns.md` (avatar-only, Decision 4) + `typography-patterns.md` + `voiceMap.md`.
+Authority: `section-patterns.md` (avatar-only, Decision 4) + `typography.md` + `voiceMap.md`.
 
 | Field | Type | Required | Purpose |
 |---|---|---|---|
@@ -414,7 +414,7 @@ Authority: `section-patterns.md` (avatar-only, Decision 4) + `typography-pattern
 
 ### §5.3.4 `aboutStory` contract fields
 
-Authority: `section-patterns.md` + `typography-patterns.md` + `voiceMap.md` (front-porch voice dominance per persona).
+Authority: `section-patterns.md` + `typography.md` + `voiceMap.md` (front-porch voice dominance per persona).
 
 | Field | Type | Required | Purpose |
 |---|---|---|---|
@@ -429,7 +429,7 @@ Authority: `section-patterns.md` + `typography-patterns.md` + `voiceMap.md` (fro
 | `voiceZoneAssignments` | object | yes | Required keys: `about-page-heading`, `about-page-body`, `about-page-attribution` (if pullquote present). `about-page-body` defaults front-porch for neighborhood-steady/earned-pride, closing-table for modern-specialist/quiet-confidence, saturday-morning for rescue-ready. Voice values drawn from schema §4.2's closed three-value enum {closing-table, saturday-morning, front-porch} per voiceMap.md §3-4. |
 | `tier1CompositionalHook` | enum-subset (`italic-color-shift` · `watermark-numeral-offset` · `none`) | optional | Records Tier 1 signature presence inside aboutStory. Often where italic-color-shift renders for neighborhood-steady and quiet-confidence. |
 
-**Per-section editorial rules:** aboutStory carries persona's strongest voice expression — voice bias rules apply more aggressively here than in hero or servicesGrid. Italic placements are the primary italic surface in the generated site; Phase 5 should render them via `.role-italic-{class}` styling per `typography-patterns.md`. aboutStory never carries a sectionOpener eyebrow inside itself; an external sectionOpener may precede.
+**Per-section editorial rules:** aboutStory carries persona's strongest voice expression — voice bias rules apply more aggressively here than in hero or servicesGrid. Italic placements are the primary italic surface in the generated site; Phase 5 should render them via `.role-italic-{class}` styling per `typography.md §3 Role classes` and `§5 Italic discipline`. aboutStory never carries a sectionOpener eyebrow inside itself; an external sectionOpener may precede.
 
 ---
 
@@ -455,7 +455,7 @@ Implementation via JSON Schema `oneOf` discriminated on `sections[].type`, allow
 | `footerSection` | `A` | `A` |
 | `aboutStory` | `A`, `B`, `D` | — |
 
-**Layout descriptions** (authority: Design's `typography-patterns.md` + `emotional-arc.md` per-persona layout bias):
+**Layout descriptions** (authority: Design's `typography.md` + `emotional-arc.md` per-persona layout bias):
 
 | Layout | Description |
 |---|---|

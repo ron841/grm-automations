@@ -445,7 +445,7 @@ Write Tier 1 output to `composition-plan.site.signatureMicroInteraction` (singul
 
 Authority for full definitions is split by tier:
 
-- Tier 1 compositional signatures (`italic-color-shift`, `watermark-numeral-offset`, `anchor-strip-pivot`, `hero-glass-blur`, `stat-row-ledger`, `none`) are typographic/compositional treatments — full definitions live in `references/typography-patterns.md` under role-class territory.
+- Tier 1 compositional signatures (`italic-color-shift`, `watermark-numeral-offset`, `anchor-strip-pivot`, `hero-glass-blur`, `stat-row-ledger`, `none`) are typographic/compositional treatments — full definitions live in `references/typography.md §3 Role classes`.
 - Tier 2 motion micro-interactions (`eyebrow-reveal`, `underline-bloom`, `shimmer-hero-cta`, `mono-numeral-flip`) are motion primitives — full definitions live in `references/css-framework.md` under the Motion Restraint section.
 
 Record Phase 4 rationale on `signatureMicroInteractionReason` (Tier 1) and `microInteractionsReason` (Tier 2 additive rationale when array differs from persona default).
