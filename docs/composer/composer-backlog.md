@@ -324,8 +324,21 @@ trigger for pickup.
   and enum values. Pattern 3 — Code's pre-execution
   verification pattern caught all three drifts cleanly;
   the halt-don't-press-through discipline is load-bearing
-  and should be preserved across future gates. (Added
-  2026-04-23, Session 4 close.)
+  and should be preserved across future gates. Pattern 4 —
+  **Partial-surface reads do not license whole-file
+  generalizations.** Session 4 surfaced this pattern
+  twice after the original entry landed. When authoring
+  against a spec file from a partial paste, confirm the
+  specific surface being authored against, not the
+  adjacent surface used to infer structure. Applies
+  symmetrically to Design and Chat-Claude. The
+  "typography.md §5 dissolved its numbering" read was
+  true for §5 specifically but false as generalization
+  to the whole file (§7 and §9 preserved numbering);
+  the Rule 1-6 migration from Chat-Claude's summary
+  introduced drift on three rules; both errors came
+  from partial-surface reads generalized to whole-file
+  assumptions. (Added 2026-04-23, Session 4 close.)
 
 - **Rule 1-6 derivation mechanics migration to §14
   deferred (Path A).** Session 4 Concern 4 reshape
@@ -348,6 +361,33 @@ trigger for pickup.
   Session 4 Concern 4 close, Option B path.)
 
 ## Resolved deferrals
+
+- **Session 4 Concern 5 Item 1 — italic word-class
+  canonical home.** Resolved via composer: Item 1
+  italic word-class resolution commit 03ca705. 4-value
+  enum {place, name, tenure, trade-term} canonical in
+  emotional-arc.md's "Italic word-class vocabulary
+  (persona-indexed)" subsection; schema §5.3.4 and
+  typography.md §15 Check 9 cross-reference.
+
+- **Session 4 Concern 5 Item 2 — typography-patterns.md
+  → typography.md global rename.** Resolved via composer:
+  Item 2 citation rename commit 94c6acf. 17 live
+  citations renamed; 3 merge-log references in typography
+  .md itself retained pointing at Stage II archive.
+
+- **Session 4 Concern 5 Item 3 — micro-interaction
+  duration canonical lock.** Resolved via composer: Item
+  3 duration lock commit 35343c7. Two-row lock canonical
+  in emotional-arc.md "Micro-interaction duration lock
+  (persona-indexed)" subsection; css-framework.md and
+  SKILL.md cross-reference.
+
+- **Session 4 Concern 5 Item 4 — kitchen-table voice
+  enum drift.** Resolved via composer: Item 4 voice
+  correction commit 288946a. Schema §5.3.4 line 429
+  kitchen-table → closing-table; optional inline
+  citation nit applied.
 
 ### CONFIG.spacing tier-keyed residues + tier-class CSS overrides
 - **Originally surfaced:** Commit 5.b CONFIG.fonts persona-conditional
