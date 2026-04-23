@@ -59,8 +59,8 @@
           "heroBackgroundPhotoId": "photo-hero-bg-01",
           "voiceZoneAssignments": {
             "hero-eyebrow": "kitchen-table",
-            "hero-headline": "kitchen-table",
-            "hero-subheadline": "kitchen-table",
+            "hero-headline-slot": "kitchen-table",
+            "hero-subheadline-slot": "kitchen-table",
             "hero-primary-cta": "closing-table"
           },
           "tier1CompositionalHook": "none"
@@ -143,8 +143,8 @@
           "heroBackgroundPhotoId": null,
           "voiceZoneAssignments": {
             "hero-eyebrow": "kitchen-table",
-            "hero-headline": "kitchen-table",
-            "hero-subheadline": "kitchen-table",
+            "hero-headline-slot": "kitchen-table",
+            "hero-subheadline-slot": "kitchen-table",
             "hero-primary-cta": "closing-table"
           }
         },
@@ -159,7 +159,7 @@
           "featurePhotoId": null,
           "voiceZoneAssignments": {
             "about-page-heading": "kitchen-table",
-            "about-page-body": "kitchen-table"
+            "about-page-body-slot": "kitchen-table"
           },
           "tier1CompositionalHook": "none"
         },
@@ -198,8 +198,8 @@
           "heroBackgroundPhotoId": null,
           "voiceZoneAssignments": {
             "hero-eyebrow": "kitchen-table",
-            "hero-headline": "closing-table",
-            "hero-subheadline": "kitchen-table",
+            "hero-headline-slot": "closing-table",
+            "hero-subheadline-slot": "kitchen-table",
             "hero-primary-cta": "closing-table"
           }
         },

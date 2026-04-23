@@ -59,8 +59,8 @@
           "heroBackgroundPhotoId": "photo-hero-bg-01",
           "voiceZoneAssignments": {
             "hero-eyebrow": "front-porch",
-            "hero-headline": "kitchen-table",
-            "hero-subheadline": "kitchen-table",
+            "hero-headline-slot": "kitchen-table",
+            "hero-subheadline-slot": "kitchen-table",
             "hero-primary-cta": "closing-table"
           },
           "tier1CompositionalHook": "italic-color-shift"
@@ -212,8 +212,8 @@
           "heroPlatePhotoId": "photo-owner-portrait-01",
           "voiceZoneAssignments": {
             "hero-eyebrow": "front-porch",
-            "hero-headline": "kitchen-table",
-            "hero-subheadline": "kitchen-table",
+            "hero-headline-slot": "kitchen-table",
+            "hero-subheadline-slot": "kitchen-table",
             "hero-primary-cta": "closing-table"
           }
         },
@@ -228,7 +228,7 @@
           "featurePhotoId": "photo-environmental-01",
           "voiceZoneAssignments": {
             "about-page-heading": "kitchen-table",
-            "about-page-body": "kitchen-table"
+            "about-page-body-slot": "kitchen-table"
           },
           "tier1CompositionalHook": "italic-color-shift"
         },
@@ -282,8 +282,8 @@
           "heroBackgroundPhotoId": "photo-hero-bg-02",
           "voiceZoneAssignments": {
             "hero-eyebrow": "front-porch",
-            "hero-headline": "closing-table",
-            "hero-subheadline": "kitchen-table",
+            "hero-headline-slot": "closing-table",
+            "hero-subheadline-slot": "kitchen-table",
             "hero-primary-cta": "closing-table"
           }
         },
@@ -331,8 +331,8 @@
           "heroBackgroundPhotoId": null,
           "voiceZoneAssignments": {
             "hero-eyebrow": "front-porch",
-            "hero-headline": "kitchen-table",
-            "hero-subheadline": "front-porch",
+            "hero-headline-slot": "kitchen-table",
+            "hero-subheadline-slot": "front-porch",
             "hero-primary-cta": "closing-table"
           }
         },
@@ -353,7 +353,7 @@
           },
           "sectionOpenerPrecedes": true
         },
-        { "type": "aboutStory", "id": "cat-story", "layout": "layout-b-centered-column", "narrativeBlocks": [{ "id": "sb-01", "roleClass": "role-body-paragraph", "italicPlacements": [{ "phrase": "2003", "class": "tenure" }] }], "voiceZoneAssignments": { "about-page-heading": "kitchen-table", "about-page-body": "kitchen-table" } },
+        { "type": "aboutStory", "id": "cat-story", "layout": "layout-b-centered-column", "narrativeBlocks": [{ "id": "sb-01", "roleClass": "role-body-paragraph", "italicPlacements": [{ "phrase": "2003", "class": "tenure" }] }], "voiceZoneAssignments": { "about-page-heading": "kitchen-table", "about-page-body-slot": "kitchen-table" } },
         { "type": "trustSection", "id": "trust-cat" },
         { "type": "contactForm", "id": "contact-cat" },
         { "type": "footerSection", "id": "footer-cat" }

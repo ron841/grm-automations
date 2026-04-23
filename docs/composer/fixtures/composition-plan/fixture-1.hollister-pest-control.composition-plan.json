@@ -58,8 +58,8 @@
           "heroBackgroundPhotoId": "photo-hero-bg-01",
           "voiceZoneAssignments": {
             "hero-eyebrow": "front-porch",
-            "hero-headline": "front-porch",
-            "hero-subheadline": "front-porch",
+            "hero-headline-slot": "front-porch",
+            "hero-subheadline-slot": "front-porch",
             "hero-primary-cta": "closing-table"
           },
           "tier1CompositionalHook": "italic-color-shift"
@@ -178,8 +178,8 @@
           "heroPlatePhotoId": "photo-owner-portrait-01",
           "voiceZoneAssignments": {
             "hero-eyebrow": "front-porch",
-            "hero-headline": "front-porch",
-            "hero-subheadline": "front-porch",
+            "hero-headline-slot": "front-porch",
+            "hero-subheadline-slot": "front-porch",
             "hero-primary-cta": "closing-table"
           }
         },
@@ -196,7 +196,7 @@
           "pullQuoteId": "pq-about-01",
           "voiceZoneAssignments": {
             "about-page-heading": "kitchen-table",
-            "about-page-body": "front-porch",
+            "about-page-body-slot": "front-porch",
             "about-page-attribution": "front-porch"
           },
           "tier1CompositionalHook": "italic-color-shift"
@@ -268,8 +268,8 @@
           "heroBackgroundPhotoId": "photo-hero-bg-02",
           "voiceZoneAssignments": {
             "hero-eyebrow": "front-porch",
-            "hero-headline": "closing-table",
-            "hero-subheadline": "saturday-morning",
+            "hero-headline-slot": "closing-table",
+            "hero-subheadline-slot": "saturday-morning",
             "hero-primary-cta": "closing-table"
           }
         },
@@ -316,13 +316,13 @@
           "heroBackgroundPhotoId": null,
           "voiceZoneAssignments": {
             "hero-eyebrow": "front-porch",
-            "hero-headline": "kitchen-table",
-            "hero-subheadline": "front-porch",
+            "hero-headline-slot": "kitchen-table",
+            "hero-subheadline-slot": "front-porch",
             "hero-primary-cta": "closing-table"
           }
         },
         { "type": "sectionOpener", "id": "opener-svc-how", "h2Id": "h2-svc-how", "eyebrowRoleClass": "role-data-eyebrow", "h2RoleClass": "role-display-section", "orientation": "eyebrow-above" },
-        { "type": "aboutStory", "id": "svc-story", "layout": "layout-b-centered-column", "narrativeBlocks": [{ "id": "sb-01", "roleClass": "role-body-paragraph" }, { "id": "sb-02", "roleClass": "role-body-paragraph" }], "voiceZoneAssignments": { "about-page-heading": "kitchen-table", "about-page-body": "front-porch" } },
+        { "type": "aboutStory", "id": "svc-story", "layout": "layout-b-centered-column", "narrativeBlocks": [{ "id": "sb-01", "roleClass": "role-body-paragraph" }, { "id": "sb-02", "roleClass": "role-body-paragraph" }], "voiceZoneAssignments": { "about-page-heading": "kitchen-table", "about-page-body-slot": "front-porch" } },
         { "type": "faqSection", "id": "faq-svc" },
         { "type": "contactForm", "id": "contact-svc" },
         { "type": "footerSection", "id": "footer-svc" }

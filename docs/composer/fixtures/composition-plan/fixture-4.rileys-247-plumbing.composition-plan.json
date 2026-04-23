@@ -57,8 +57,8 @@
           "heroBackgroundPhotoId": "photo-hero-bg-01",
           "voiceZoneAssignments": {
             "hero-eyebrow": "saturday-morning",
-            "hero-headline": "closing-table",
-            "hero-subheadline": "saturday-morning",
+            "hero-headline-slot": "closing-table",
+            "hero-subheadline-slot": "saturday-morning",
             "hero-primary-cta": "closing-table"
           },
           "tier1CompositionalHook": "stat-row-ledger"
@@ -183,8 +183,8 @@
           "heroPlatePhotoId": "photo-owner-portrait-01",
           "voiceZoneAssignments": {
             "hero-eyebrow": "saturday-morning",
-            "hero-headline": "closing-table",
-            "hero-subheadline": "saturday-morning",
+            "hero-headline-slot": "closing-table",
+            "hero-subheadline-slot": "saturday-morning",
             "hero-primary-cta": "closing-table"
           }
         },
@@ -199,7 +199,7 @@
           "featurePhotoId": "photo-environmental-01",
           "voiceZoneAssignments": {
             "about-page-heading": "closing-table",
-            "about-page-body": "saturday-morning"
+            "about-page-body-slot": "saturday-morning"
           },
           "tier1CompositionalHook": "none"
         },
@@ -245,8 +245,8 @@
           "heroBackgroundPhotoId": "photo-hero-bg-02",
           "voiceZoneAssignments": {
             "hero-eyebrow": "saturday-morning",
-            "hero-headline": "closing-table",
-            "hero-subheadline": "saturday-morning",
+            "hero-headline-slot": "closing-table",
+            "hero-subheadline-slot": "saturday-morning",
             "hero-primary-cta": "closing-table"
           }
         },

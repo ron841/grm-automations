@@ -58,8 +58,8 @@
           "heroBackgroundPhotoId": "photo-hero-bg-01",
           "voiceZoneAssignments": {
             "hero-eyebrow": "front-porch",
-            "hero-headline": "front-porch",
-            "hero-subheadline": "front-porch",
+            "hero-headline-slot": "front-porch",
+            "hero-subheadline-slot": "front-porch",
             "hero-primary-cta": "closing-table"
           },
           "tier1CompositionalHook": "italic-color-shift"
@@ -169,8 +169,8 @@
           "heroPlatePhotoId": "photo-environmental-01",
           "voiceZoneAssignments": {
             "hero-eyebrow": "front-porch",
-            "hero-headline": "front-porch",
-            "hero-subheadline": "front-porch",
+            "hero-headline-slot": "front-porch",
+            "hero-subheadline-slot": "front-porch",
             "hero-primary-cta": "closing-table"
           }
         },
@@ -187,7 +187,7 @@
           "pullQuoteId": "pq-about-01",
           "voiceZoneAssignments": {
             "about-page-heading": "front-porch",
-            "about-page-body": "front-porch",
+            "about-page-body-slot": "front-porch",
             "about-page-attribution": "front-porch"
           },
           "tier1CompositionalHook": "italic-color-shift"
@@ -255,8 +255,8 @@
           "heroBackgroundPhotoId": null,
           "voiceZoneAssignments": {
             "hero-eyebrow": "front-porch",
-            "hero-headline": "front-porch",
-            "hero-subheadline": "saturday-morning",
+            "hero-headline-slot": "front-porch",
+            "hero-subheadline-slot": "saturday-morning",
             "hero-primary-cta": "closing-table"
           }
         },
@@ -297,12 +297,12 @@
           "heroBackgroundPhotoId": null,
           "voiceZoneAssignments": {
             "hero-eyebrow": "front-porch",
-            "hero-headline": "kitchen-table",
-            "hero-subheadline": "front-porch",
+            "hero-headline-slot": "kitchen-table",
+            "hero-subheadline-slot": "front-porch",
             "hero-primary-cta": "closing-table"
           }
         },
-        { "type": "aboutStory", "id": "svc-story", "layout": "layout-b-centered-column", "narrativeBlocks": [{ "id": "sb-01", "roleClass": "role-body-paragraph" }], "voiceZoneAssignments": { "about-page-heading": "kitchen-table", "about-page-body": "front-porch" } },
+        { "type": "aboutStory", "id": "svc-story", "layout": "layout-b-centered-column", "narrativeBlocks": [{ "id": "sb-01", "roleClass": "role-body-paragraph" }], "voiceZoneAssignments": { "about-page-heading": "kitchen-table", "about-page-body-slot": "front-porch" } },
         { "type": "contactForm", "id": "contact-svc" },
         { "type": "footerSection", "id": "footer-svc" }
       ],
