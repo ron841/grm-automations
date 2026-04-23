@@ -285,9 +285,20 @@ Current git state at Session 5 open:
 
 Session 5 scope (Shape B per Code's own Session 4 audit):
 
-1. Land Session 4 close-out commits: brain session block prepend,
-   LESSONS Patterns 5+6+7 append, authority map Concept 43 atomic
-   update. Two or three atomic commits.
+1. Land Session 4 close-out commits:
+   - Brain session block prepend to COMPOSER_BRAIN.md
+     PART II — one atomic commit
+   - LESSONS Patterns 5+6+7 append to composer-
+     backlog.md AND authority map Concept 43 pattern
+     count update from "four patterns" to "seven
+     patterns" — ONE atomic commit touching both
+     files per authority map maintenance contract.
+     This is the first enforcement test of the
+     contract written at Session 4 close. Do NOT
+     split across two commits. If you're tempted to
+     split because the files live in different
+     directories, that temptation is exactly what
+     the maintenance contract exists to resist.
 2. Kitchen-table retrofit per Design's Path call — Chat-Claude drafts
    retrofit prompt once Design authors. Likely Path 4 per Code's
    audit lean; execute mechanical 58-occurrence regex + schema §5.3.4:
