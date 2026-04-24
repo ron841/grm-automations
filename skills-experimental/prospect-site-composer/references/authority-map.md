@@ -518,8 +518,8 @@ A drifted authority map is worse than no authority map.
 - This authority map, the institutional instrument the LESSONS entries point toward
 
 **Status:** clean
-**Last touched:** Session 5 (Commit 5 LESSONS Patterns 5+6+7 added — surface-level fix scope, triad lens discipline, narrow scope enforcement; first enforcement test of authority map atomic maintenance contract)
-**History:** Session 4 commits 2bb6a0b (Patterns 1-3 LESSONS entry initial landing) + 4696af0 (Pattern 4 added)
+**Last touched:** Session 5 Commit 7 (watch-surface 1 added to composer-backlog.md LESSONS + Pattern 4 path-check sub-discipline sub-bullet atomic; Vocabulary unchanged since watch-surface 1 is candidate not pattern)
+**History:** Session 4 commits 2bb6a0b (Patterns 1-3 LESSONS entry initial landing) + 4696af0 (Pattern 4 added); Session 5 Commit 5 (Patterns 5+6+7 added — surface-level fix scope, triad lens discipline, narrow scope enforcement; first enforcement test of authority map atomic maintenance contract); Session 5 close-out added watch-surface 1 (self-flag-ship) to composer-backlog.md pending recurrence, Concept 43 Vocabulary unchanged; Session 5 close-out added path-check sub-bullet under Pattern 4
 
 ---
 

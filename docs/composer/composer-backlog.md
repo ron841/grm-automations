@@ -340,6 +340,19 @@ trigger for pickup.
   from partial-surface reads generalized to whole-file
   assumptions. (Added 2026-04-23, Session 4 close.)
 
+  - **Pattern 4 path-check sub-discipline (Session 5 close-out).**
+    When Chat-Claude authors any Code-facing prompt or editorial
+    routing referencing file paths, explicitly ls or grep the
+    paths against disk before the reference lands in text.
+    Note 3 posture (on-disk text before authoring mechanics)
+    covers the general case; path-check is the mechanical form
+    at the file-reference surface. Session 5 logged three
+    Pattern 4 catches (kitchen-table surface-fix, Call 1
+    profile-schema field shapes, Call 3 §14 partition + Rule 4
+    citation); path-check would have caught the citation-class
+    catches at pre-authoring. (Added 2026-04-24, Session 5
+    close-out.)
+
   - **Surface-level fixes do not license assuming drift is
     localized.** When a drift surfaces in prose or spec,
     audit the underlying data surfaces (fixtures, CSS,
@@ -401,6 +414,29 @@ trigger for pickup.
     Narrower scope surfaces halts inside the session while
     they are still cheap; aggressive scope pushes halts
     past close where they become cross-session debt.
+
+- **Watch-surfaces (pattern candidates, pending recurrence).**
+  Observed behaviors that may be drift classes worth pattern-
+  naming. Candidates land here on first observation; promote
+  to ratified LESSONS patterns on Session-to-Session recurrence.
+
+  - **Watch-surface 1 (Session 5 close-out).** Self-flagged
+    uncertainty is a halt trigger, not a ship caveat. Observed
+    in v1 Implementation Prompt close-out drafting: Chat-Claude
+    correctly self-flagged reconstructed-template status and
+    path uncertainty but shipped v1 with the self-flag embedded
+    rather than halting to resolve. The close-loop discipline:
+    when self-flagging during close-out drafting, halt and
+    resolve before save rather than shipping with the flag
+    attached. Adjacent to Pattern 3 (halt-don't-press-through)
+    at Code's verification surface, but operating on a different
+    surface (close-out drafting) with a different halt-trigger
+    (self-observed uncertainty, not external catch). Promotion
+    condition: if Session 6 or later Chat-Claude encounters
+    similar reconstructed/uncertain content during close-out
+    drafting and self-flag-ships again, promote to Pattern 8
+    with name honoring the surface distinction. (Added
+    2026-04-24, Session 5 close-out.)
 
 - **Rule 1-6 derivation mechanics migration to §14
   deferred (Path A).** Session 4 Concern 4 reshape
