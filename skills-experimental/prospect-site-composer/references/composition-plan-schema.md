@@ -426,10 +426,16 @@ Authority: `section-patterns.md` + `typography.md` + `voiceMap.md` (front-porch 
 | `narrativeBlocks[].italicPlacements` | array of { phrase, class } | optional | `class` drawn from emotional-arc.md's "Italic word-class vocabulary (persona-indexed)" subsection. Persona bias per that subsection's table. |
 | `featurePhotoId` | string (ref `profile.photoInventory`) | conditional | Required for `layout-a-offset-column` and `layout-d-full-bleed-photo-above`. ownerPortrait preferred; environmentalPortrait acceptable; family/multi-generation photo preferred for neighborhood-steady. |
 | `pullQuoteId` | string (ref `page.pullQuotes`) | optional | Present when a narrativeBlock has roleClass `role-display-pullquote`. Coordinates with §4.5 page pullquote budget. |
-| `voiceZoneAssignments` | object | yes | Required keys: `about-page-heading`, `about-page-body`, `about-page-attribution` (if pullquote present). `about-page-body` defaults front-porch for neighborhood-steady/earned-pride, closing-table for modern-specialist/quiet-confidence, saturday-morning for rescue-ready. Voice values drawn from schema §4.2's closed three-value enum {closing-table, saturday-morning, front-porch} per voiceMap.md §3-4. |
+| `voiceZoneAssignments` | object | yes | Required keys: `about-page-heading`, `about-page-body`, `about-page-attribution` (if pullquote present). `about-page-body` resolves to saturday-morning for all personas per the §5.3.4 about-page-body-slot voice assignment note below. Voice values drawn from schema §4.2's closed three-value enum {closing-table, saturday-morning, front-porch} per voiceMap.md §3-4. |
 | `tier1CompositionalHook` | enum-subset (`italic-color-shift` · `watermark-numeral-offset` · `none`) | optional | Records Tier 1 signature presence inside aboutStory. Often where italic-color-shift renders for neighborhood-steady and quiet-confidence. |
 
 **Per-section editorial rules:** aboutStory carries persona's strongest voice expression — voice bias rules apply more aggressively here than in hero or servicesGrid. Italic placements are the primary italic surface in the generated site; Phase 5 should render them via `.role-italic-{class}` styling per `typography.md §3 Role classes` and `§5 Italic discipline`. aboutStory never carries a sectionOpener eyebrow inside itself; an external sectionOpener may precede.
+
+**§5.3.4 about-page-body-slot voice assignment**
+
+For all personas, about-page-body-slot resolves to saturday-morning. This is the body-zone rule from the kitchen-table resolution table (Session 5, Commit 1): body-family zones carry Voice 5 (informational register), independent of persona.
+
+Modern-specialist and quiet-confidence personas do not take closing-table at this zone. The Session 4 Item 4 assignment (closing-table for modern-specialist/quiet-confidence about-page-body) is superseded by the kitchen-table resolution rule table.
 
 ---
 

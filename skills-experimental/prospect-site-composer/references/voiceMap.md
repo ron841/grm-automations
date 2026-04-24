@@ -52,6 +52,18 @@ Three voices remain in the GRM library for their intended use cases but are not 
 - **The Welcome Mat** — newcomer-oriented voice for homeowner guides. Wrong reader (contractor site readers are homeowners with a problem, not new arrivals).
 - **The Deep Roots** — literary long-form voice for magazine cover features. Wrong length (contractor About pages are typically under 500 words, not 1,500+).
 
+**Historical note — kitchen-table (Stage II.5-era artifact).**
+
+Fixtures authored during Stage II.5 carry voiceZoneAssignment entries tagged 'kitchen-table'. This was an authoring placeholder meaning "the persona-appropriate non-front-porch voice for this zone type" — effectively a wildcard deferred to resolution time rather than a distinct register.
+
+The Stage II (d) merge locked three canonical voices (closing-table, saturday-morning, front-porch). Kitchen-table was not promoted to a fourth voice at that merge; its resolution rule was authored but not mechanically applied to the five fixtures that carried residue.
+
+Session 5 Commit 1 retrofitted all 84 kitchen-table occurrences across F1/F2/F3/F5/F6 per the per-zone resolution rule table (derived from F4 Riley's, the fixture where the wildcard had been hand-resolved). The rule: heading-family zones → closing-table; body/attribution/eyebrow/subheadline zones → saturday-morning.
+
+The partition is surface-grammar-bound, not zone-key-bound. Any surface carrying heading grammar (including future-introduced zones or deployment-instance fields naming a heading surface) resolves to closing-table. Any surface carrying body/eyebrow/attribution/subheadline grammar resolves to saturday-morning. Zone keys and deployment-instance .register fields are two surfaces the rule applies to in Session 5 Commit 1; the rule is not limited to those two surfaces.
+
+Kitchen-table is not a canonical voice. Readers encountering 'kitchen-table' in pre-Session-5 commit history should read it as a placeholder pending the resolution rule, not as a fourth register.
+
 ---
 
 ## 4. Voice definitions (Phase 5 quick reference)

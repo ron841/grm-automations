@@ -153,13 +153,14 @@ A drifted authority map is worse than no authority map.
 **Canonical:** composition-plan-schema.md §4.2:179,181 (defaultVoice and resolvedVoice enum columns)
 **Vocabulary:** closed three-value enum {closing-table, saturday-morning, front-porch}
 **Cross-references:**
-- voiceMap.md §3 — in-scope/out-of-scope voice framing with narrative at lines 37-53
-- voiceMap.md §4 — full voice-by-voice tonality definitions (lines 57-191)
+- voiceMap.md §3 — in-scope/out-of-scope voice framing + kitchen-table historical note with surface-grammar-bound partition (end of §3, post-Session-5)
+- voiceMap.md §4 — full voice-by-voice tonality definitions
 - GRM_VOICE_SKILL.md (external — github) — canonical six-voice library source per voiceMap.md §2:29-33
-- composition-plan-schema.md §5.3.4:429 — per-persona voice defaults for about-page-body (post-Session-4 kitchen-table correction)
+- composition-plan-schema.md §5.3.4:429 + about-page-body-slot voice assignment note — about-page-body saturday-morning-all-personas rule (post-Session-5 kitchen-table resolution)
 
 **Status:** clean
-**Last touched:** Session 4, commit 288946a (§5.3.4 kitchen-table → closing-table + inline §4.2 citation nit)
+**Last touched:** Session 5 (Commit 2 kitchen-table resolution: §5.3.4 about-page-body saturday-morning-all-personas supersession + voiceMap §3 historical note with surface-grammar-bound partition)
+**History:** pre-Session-1 (enum authoring); Session 4 commit 288946a (§5.3.4 kitchen-table → closing-table for modern-specialist/quiet-confidence + inline §4.2 citation nit)
 
 ### Concept 11. Role-class vocabulary
 **Canonical:** typography.md §3 Role classes lines 119-154
@@ -308,7 +309,8 @@ A drifted authority map is worse than no authority map.
 - composer-backlog.md — §5.3 remainder contracts deferred
 
 **Status:** deferred (6 stub section types)
-**Last touched:** Session 3 commit ec8349f (Gate 4 four contracts)
+**Last touched:** Session 5 (Commit 2 §5.3.4 about-page-body saturday-morning-all-personas supersession + about-page-body-slot voice assignment note)
+**History:** pre-Session-1 (§5/§5.1/§5.2 authoring); Session 3 commit ec8349f (Gate 4 §5.3.1-§5.3.4 four contracts)
 **Flag note:** 6 stub section types use fixture-observed shape in Phase 4-new; formal §5.3 contracts deferred until real-build demand per brain session block.
 
 ### Concept 24. Heading hierarchy contract
