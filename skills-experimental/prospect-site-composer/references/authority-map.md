@@ -386,9 +386,11 @@ A drifted authority map is worse than no authority map.
 **Cross-references:**
 - Phase 4-new implementation prompt Rules 1-6 (mechanics per Concept 31)
 - Phase 4-new implementation prompt encodes ValidationResult + three mismatch classes
+- scripts/fixture_validator.py — on-disk implementation (552 lines, self-check mode runs against F1-F6 fixtures per §14 three-pass contract; editorial-adherence pass skipped in self-check per Session 3 Q2 close)
 
 **Status:** clean
-**Last touched:** Session 4, commit 4c117cb (§14 amendment from Q2 close two-pass → three-pass)
+**Last touched:** Session 5 (Commit 3 Gate A: fixture_validator.py landed on disk, self-check green on all 6 fixtures)
+**History:** Session 4 commit 4c117cb (§14 amendment from Q2 close two-pass → three-pass)
 
 ### Concept 31. Rule 1-6 derivation mechanics
 **Canonical:** Phase 4-new implementation prompt (paste artifact, not on disk) — contains detailed mechanics per Session 4 Option B
