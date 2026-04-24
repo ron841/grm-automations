@@ -340,6 +340,68 @@ trigger for pickup.
   from partial-surface reads generalized to whole-file
   assumptions. (Added 2026-04-23, Session 4 close.)
 
+  - **Surface-level fixes do not license assuming drift is
+    localized.** When a drift surfaces in prose or spec,
+    audit the underlying data surfaces (fixtures, CSS,
+    generated output) before declaring the fix complete.
+    Session 4 Item 4 fixed a `kitchen-table` reference at
+    schema §5.3.4:429 prose (commit `288946a`) on the
+    assumption the drift was localized to that line. It
+    wasn't — 58 occurrences lived in fixture data across
+    5 of 6 fixtures, discovered at Gate A validator self-
+    check (halt before commit `9ebeced+1`). Pattern 4
+    (partial-surface reads do not license whole-file
+    generalizations) named the error class two commits
+    before the Gate A halt validated it at scale. The
+    working-style correction: when spec prose is fixed for
+    a specific concept drift, immediately audit the data
+    surfaces that reference that concept (fixtures,
+    downstream specs, generated artifacts) before closing
+    the fix as resolved. Applies to Design, Chat-Claude,
+    and Code symmetrically.
+
+  - **Architectural reshapes need three lenses, not two.**
+    Every major Session 4 drift surfaced at the third lens.
+    §7 vocabulary reshape was authored Design+Chat-Claude;
+    the grain mismatch only surfaced when Code looked at
+    fixtures. Rule 1/2/5 migration was authored
+    Chat-Claude-summary+Design; the enum drift only
+    surfaced when Code looked at schema. Kitchen-table
+    Item 4 surface-fix was authored Chat-Claude+Design;
+    the 58-occurrence drift only surfaced when Code ran
+    the validator. Pairs produce drift; triads catch it.
+    The working-style correction: any reshape touching
+    structural authority (schema fields, enum values, rule
+    mechanics, fixture shape) routes through all three
+    parties before close — Design authors editorially,
+    Chat-Claude drafts with on-disk text, Code verifies at
+    pre-commit. Skipping one lens because a pair thinks
+    they have the concept covered is the mechanism by
+    which Session 4's seven architectural reframes all
+    reached pre-execution. Third lens isn't insurance; it
+    is the catch surface the first two cannot provide.
+
+  - **Narrow scope surfaces halts earlier when halts are
+    cheaper.** Ron applies right-over-fast discipline at
+    decision points (authority map pause, kitchen-table
+    audit pause) cleanly. Sessions 3, 4, and Session 5's
+    v1 handoff scoping got aggressive at the *session* level.
+    Session 3 closed Stage II.5 + Gates 1-4 + §14 in one
+    day. Session 4 attempted Gate A-F + Checkpoint 2.
+    Session 5 v1 framed "finish the skill" scope. Kitchen-
+    table drift would have been cheaper to catch if Session
+    4 had closed at "Concern 4 reshape + fixtures parse-
+    checked" and opened Session 5 for Gate A. The working-
+    style correction: scope contracts at session open. Ron
+    and Chat-Claude explicitly agree what "successful
+    session close" looks like at session open — not "finish
+    the skill," but a specific set of commits the session
+    lands. Scope contracts make right-over-fast enforceable
+    at the session level, not just decision-point level.
+    Narrower scope surfaces halts inside the session while
+    they are still cheap; aggressive scope pushes halts
+    past close where they become cross-session debt.
+
 - **Rule 1-6 derivation mechanics migration to §14
   deferred (Path A).** Session 4 Concern 4 reshape
   evaluated two paths for where detailed Rule 1-6

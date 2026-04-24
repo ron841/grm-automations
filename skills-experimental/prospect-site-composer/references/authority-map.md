@@ -513,12 +513,13 @@ A drifted authority map is worse than no authority map.
 
 ### Concept 43. LESSONS — accumulated session observations
 **Canonical:** composer-backlog.md LESSONS section (Active list)
-**Vocabulary:** four patterns accumulated across Sessions 3 and 4 — (1) cross-grain reconciliation needs dedicated checkpoint beat; (2) Design asks for on-disk text before authoring mechanics / Chat-Claude routes with disk state not summary; (3) Code's halt-don't-press-through discipline preserved across gates; (4) partial-surface reads do not license whole-file generalizations
+**Vocabulary:** seven patterns accumulated across Sessions 3 and 4 — (1) cross-grain reconciliation needs dedicated checkpoint beat; (2) Design asks for on-disk text before authoring mechanics / Chat-Claude routes with disk state not summary; (3) Code's halt-don't-press-through discipline preserved across gates; (4) partial-surface reads do not license whole-file generalizations; (5) surface-level fixes do not license assuming drift is localized; (6) architectural reshapes need three lenses not two; (7) narrow scope surfaces halts earlier when halts are cheaper
 **Cross-references:**
 - This authority map, the institutional instrument the LESSONS entries point toward
 
 **Status:** clean
-**Last touched:** Session 4, commit 4696af0 (Pattern 4 added)
+**Last touched:** Session 5 (Commit 5 LESSONS Patterns 5+6+7 added — surface-level fix scope, triad lens discipline, narrow scope enforcement; first enforcement test of authority map atomic maintenance contract)
+**History:** Session 4 commits 2bb6a0b (Patterns 1-3 LESSONS entry initial landing) + 4696af0 (Pattern 4 added)
 
 ---
 
