@@ -8,18 +8,46 @@
     "tier": "Standard",
     "signatureMicroInteraction": "none",
     "signatureMicroInteractionReason": "Persona default is anchor-strip-pivot but requires >=5 page sections (Gate 2 tree rule 3). Standard tier + 3 services + thin content yields 4-section home page; tree rules 1/2/3/4/5 all fall through. Falls to 'none' per Gate 2 tree rule 6. Recorded as compound-weakness byproduct.",
-    "microInteractions": ["underline-bloom"],
+    "microInteractions": [
+      "underline-bloom"
+    ],
     "microInteractionsReason": "Modern-specialist Tier 2 default is [underline-bloom, mono-numeral-flip]. mono-numeral-flip suppressed — no statRow present. underline-bloom retained for technical body copy inline links. Budget ceiling 3; using 1.",
-    "microInteractionDurations": { "entry": 400, "hover": 180 },
+    "microInteractionDurations": {
+      "entry": 400,
+      "hover": 180
+    },
     "pathConvention": "kebab-case",
-    "voicesInUse": ["kitchen-table", "closing-table"],
+    "voicesInUse": [
+      "closing-table",
+      "saturday-morning"
+    ],
     "constraintsOK": false,
     "constraintRelaxations": [
-      { "rule": "photoLibrary.accepted <= 4", "detail": "Site over-constraint threshold tripped at 4 accepted photos. Phase 4-new over-constraint rule: photoLibrary.accepted <= 4 trips site-level constraintsOK=false.", "severity": "warning" },
-      { "rule": "servicesGrid photo-content-match", "detail": "Zero evidenceShot-eligible photos content-matched to 3 services. All 3 cards emit placeholderFlag: true. Fallback-path-b.", "severity": "warning" },
-      { "rule": "brandPalette.vibrantPopulation low-confidence", "detail": "vibrantPopulation: 18 below typical confidence threshold. Palette derived from single-color tech logo.", "severity": "info" },
-      { "rule": "reviewCount below threshold", "detail": "reviewCount: 6 below typical threshold; reviewCountCallout suppressed.", "severity": "info" },
-      { "rule": "yearsInBusiness null", "detail": "yearsInBusiness: null with minimumEvidenced: 2. Tenure signals suppressed; statRow elided.", "severity": "info" }
+      {
+        "rule": "photoLibrary.accepted <= 4",
+        "detail": "Site over-constraint threshold tripped at 4 accepted photos. Phase 4-new over-constraint rule: photoLibrary.accepted <= 4 trips site-level constraintsOK=false.",
+        "severity": "warning"
+      },
+      {
+        "rule": "servicesGrid photo-content-match",
+        "detail": "Zero evidenceShot-eligible photos content-matched to 3 services. All 3 cards emit placeholderFlag: true. Fallback-path-b.",
+        "severity": "warning"
+      },
+      {
+        "rule": "brandPalette.vibrantPopulation low-confidence",
+        "detail": "vibrantPopulation: 18 below typical confidence threshold. Palette derived from single-color tech logo.",
+        "severity": "info"
+      },
+      {
+        "rule": "reviewCount below threshold",
+        "detail": "reviewCount: 6 below typical threshold; reviewCountCallout suppressed.",
+        "severity": "info"
+      },
+      {
+        "rule": "yearsInBusiness null",
+        "detail": "yearsInBusiness: null with minimumEvidenced: 2. Tenure signals suppressed; statRow elided.",
+        "severity": "info"
+      }
     ],
     "colorScheme": {
       "primary": "#059669",
@@ -33,18 +61,43 @@
       "path": "/",
       "canonicalUrl": "https://greenridgesolar.example/",
       "pageKey": "home",
-      "voicesInUse": ["kitchen-table", "closing-table"],
-      "layoutSequence": ["hero", "servicesGrid", "testimonialsSection", "trustSection", "contactForm", "footerSection"],
+      "voicesInUse": [
+        "closing-table",
+        "saturday-morning"
+      ],
+      "layoutSequence": [
+        "hero",
+        "servicesGrid",
+        "testimonialsSection",
+        "trustSection",
+        "contactForm",
+        "footerSection"
+      ],
       "headingHierarchy": {
         "h1": "Residential solar, battery, and bi-directional charging",
         "h2Sequence": [
-          { "id": "h2-services", "copy": "What we install" },
-          { "id": "h2-voices", "copy": "Early customers" },
-          { "id": "h2-trust", "copy": "Licensed EC13012345" }
+          {
+            "id": "h2-services",
+            "copy": "What we install"
+          },
+          {
+            "id": "h2-voices",
+            "copy": "Early customers"
+          },
+          {
+            "id": "h2-trust",
+            "copy": "Licensed EC13012345"
+          }
         ]
       },
       "italicSelections": [
-        { "headingId": "h1", "italicWord": "bi-directional charging", "personaWordClassAnnotation": "trade-term", "approvalState": "approved", "alternativeWord": "V2H charging" }
+        {
+          "headingId": "h1",
+          "italicWord": "bi-directional charging",
+          "personaWordClassAnnotation": "trade-term",
+          "approvalState": "approved",
+          "alternativeWord": "V2H charging"
+        }
       ],
       "sections": [
         {
@@ -55,12 +108,16 @@
           "heroLayout": "layout-a",
           "headlineCopy": "Residential solar, battery, and bi-directional charging",
           "subheadlineCopy": "Licensed installer for rooftop PV, battery backup, and vehicle-to-home charging.",
-          "primaryCTA": { "label": "Get a quote", "action": "#contact", "role": "primary-hero-cta" },
+          "primaryCTA": {
+            "label": "Get a quote",
+            "action": "#contact",
+            "role": "primary-hero-cta"
+          },
           "heroBackgroundPhotoId": "photo-hero-bg-01",
           "voiceZoneAssignments": {
-            "hero-eyebrow": "kitchen-table",
-            "hero-headline-slot": "kitchen-table",
-            "hero-subheadline-slot": "kitchen-table",
+            "hero-eyebrow": "saturday-morning",
+            "hero-headline-slot": "closing-table",
+            "hero-subheadline-slot": "saturday-morning",
             "hero-primary-cta": "closing-table"
           },
           "tier1CompositionalHook": "none"
@@ -70,14 +127,29 @@
           "id": "services-grid",
           "layout": "layout-a-grid",
           "cards": [
-            { "serviceId": "svc-residential-solar", "photoId": null, "placeholderFlag": true, "copyVariant": "technical" },
-            { "serviceId": "svc-battery-backup", "photoId": null, "placeholderFlag": true, "copyVariant": "technical" },
-            { "serviceId": "svc-bidirectional-charging", "photoId": null, "placeholderFlag": true, "copyVariant": "technical" }
+            {
+              "serviceId": "svc-residential-solar",
+              "photoId": null,
+              "placeholderFlag": true,
+              "copyVariant": "technical"
+            },
+            {
+              "serviceId": "svc-battery-backup",
+              "photoId": null,
+              "placeholderFlag": true,
+              "copyVariant": "technical"
+            },
+            {
+              "serviceId": "svc-bidirectional-charging",
+              "photoId": null,
+              "placeholderFlag": true,
+              "copyVariant": "technical"
+            }
           ],
           "voiceZoneAssignments": {
-            "services-grid-heading": "kitchen-table",
-            "services-card-headline": "kitchen-table",
-            "services-card-body": "kitchen-table"
+            "services-grid-heading": "closing-table",
+            "services-card-headline": "closing-table",
+            "services-card-body": "saturday-morning"
           },
           "sectionOpenerPrecedes": false
         },
@@ -86,32 +158,88 @@
           "id": "testimonials-home",
           "layout": "layout-a-card-row",
           "testimonials": [
-            { "testimonialId": "t-01", "avatarTreatment": "initials-monogram", "roleClass": "role-body-paragraph" },
-            { "testimonialId": "t-02", "avatarTreatment": "initials-monogram", "roleClass": "role-body-paragraph" }
+            {
+              "testimonialId": "t-01",
+              "avatarTreatment": "initials-monogram",
+              "roleClass": "role-body-paragraph"
+            },
+            {
+              "testimonialId": "t-02",
+              "avatarTreatment": "initials-monogram",
+              "roleClass": "role-body-paragraph"
+            }
           ],
           "voiceZoneAssignments": {
-            "testimonials-heading": "kitchen-table",
-            "testimonial-body": "kitchen-table",
-            "testimonial-attribution": "kitchen-table"
+            "testimonials-heading": "closing-table",
+            "testimonial-body": "saturday-morning",
+            "testimonial-attribution": "saturday-morning"
           }
         },
-        { "type": "trustSection", "id": "trust-home" },
-        { "type": "contactForm", "id": "contact-home" },
-        { "type": "footerSection", "id": "footer-home" }
+        {
+          "type": "trustSection",
+          "id": "trust-home",
+          "voiceZoneAssignments": null
+        },
+        {
+          "type": "contactForm",
+          "id": "contact-home",
+          "voiceZoneAssignments": null
+        },
+        {
+          "type": "footerSection",
+          "id": "footer-home",
+          "voiceZoneAssignments": null
+        }
       ],
       "photoAssignments": [
-        { "slot": "hero-home.heroBackground", "photoInventoryId": "photo-hero-bg-01", "placeholderFlag": false, "placeholderReason": null, "cropHint": "landscape-wide" },
-        { "slot": "services-grid.svc-residential-solar", "photoInventoryId": null, "placeholderFlag": true, "placeholderReason": "No evidenceShot-eligible photo content-matched to residential-solar service. Fallback-path-b.", "cropHint": "square" },
-        { "slot": "services-grid.svc-battery-backup", "photoInventoryId": null, "placeholderFlag": true, "placeholderReason": "No evidenceShot-eligible photo content-matched to battery-backup service. Fallback-path-b.", "cropHint": "square" },
-        { "slot": "services-grid.svc-bidirectional-charging", "photoInventoryId": null, "placeholderFlag": true, "placeholderReason": "No evidenceShot-eligible photo content-matched to bidirectional-charging service. Fallback-path-b.", "cropHint": "square" }
+        {
+          "slot": "hero-home.heroBackground",
+          "photoInventoryId": "photo-hero-bg-01",
+          "placeholderFlag": false,
+          "placeholderReason": null,
+          "cropHint": "landscape-wide"
+        },
+        {
+          "slot": "services-grid.svc-residential-solar",
+          "photoInventoryId": null,
+          "placeholderFlag": true,
+          "placeholderReason": "No evidenceShot-eligible photo content-matched to residential-solar service. Fallback-path-b.",
+          "cropHint": "square"
+        },
+        {
+          "slot": "services-grid.svc-battery-backup",
+          "photoInventoryId": null,
+          "placeholderFlag": true,
+          "placeholderReason": "No evidenceShot-eligible photo content-matched to battery-backup service. Fallback-path-b.",
+          "cropHint": "square"
+        },
+        {
+          "slot": "services-grid.svc-bidirectional-charging",
+          "photoInventoryId": null,
+          "placeholderFlag": true,
+          "placeholderReason": "No evidenceShot-eligible photo content-matched to bidirectional-charging service. Fallback-path-b.",
+          "cropHint": "square"
+        }
       ],
       "pullQuotes": [],
       "eyebrowDeployments": [],
       "faq": [],
       "serviceDescriptions": [
-        { "serviceId": "svc-residential-solar", "copyVariant": "technical", "wordCountTarget": 85 },
-        { "serviceId": "svc-battery-backup", "copyVariant": "technical", "wordCountTarget": 75 },
-        { "serviceId": "svc-bidirectional-charging", "copyVariant": "technical", "wordCountTarget": 80 }
+        {
+          "serviceId": "svc-residential-solar",
+          "copyVariant": "technical",
+          "wordCountTarget": 85
+        },
+        {
+          "serviceId": "svc-battery-backup",
+          "copyVariant": "technical",
+          "wordCountTarget": 75
+        },
+        {
+          "serviceId": "svc-bidirectional-charging",
+          "copyVariant": "technical",
+          "wordCountTarget": 80
+        }
       ],
       "displayMoment": null,
       "scaleContrast": "low"
@@ -120,13 +248,27 @@
       "path": "/about",
       "canonicalUrl": "https://greenridgesolar.example/about",
       "pageKey": "about",
-      "voicesInUse": ["kitchen-table", "closing-table"],
-      "layoutSequence": ["hero", "aboutStory", "trustSection", "footerSection"],
+      "voicesInUse": [
+        "closing-table",
+        "saturday-morning"
+      ],
+      "layoutSequence": [
+        "hero",
+        "aboutStory",
+        "trustSection",
+        "footerSection"
+      ],
       "headingHierarchy": {
         "h1": "Greenridge Solar",
         "h2Sequence": [
-          { "id": "h2-about-story", "copy": "How we got started" },
-          { "id": "h2-about-trust", "copy": "License and insurance" }
+          {
+            "id": "h2-about-story",
+            "copy": "How we got started"
+          },
+          {
+            "id": "h2-about-trust",
+            "copy": "License and insurance"
+          }
         ]
       },
       "italicSelections": [],
@@ -139,12 +281,16 @@
           "heroLayout": "layout-a",
           "headlineCopy": "Greenridge Solar",
           "subheadlineCopy": "Licensed residential solar installer, operating since 2024.",
-          "primaryCTA": { "label": "Get a quote", "action": "/contact", "role": "primary-hero-cta" },
+          "primaryCTA": {
+            "label": "Get a quote",
+            "action": "/contact",
+            "role": "primary-hero-cta"
+          },
           "heroBackgroundPhotoId": null,
           "voiceZoneAssignments": {
-            "hero-eyebrow": "kitchen-table",
-            "hero-headline-slot": "kitchen-table",
-            "hero-subheadline-slot": "kitchen-table",
+            "hero-eyebrow": "saturday-morning",
+            "hero-headline-slot": "closing-table",
+            "hero-subheadline-slot": "saturday-morning",
             "hero-primary-cta": "closing-table"
           }
         },
@@ -153,18 +299,38 @@
           "id": "about-story",
           "layout": "layout-b-centered-column",
           "narrativeBlocks": [
-            { "id": "ab-01", "roleClass": "role-body-paragraph" },
-            { "id": "ab-02", "roleClass": "role-body-paragraph", "italicPlacements": [{ "phrase": "residential PV", "class": "trade-term" }] }
+            {
+              "id": "ab-01",
+              "roleClass": "role-body-paragraph"
+            },
+            {
+              "id": "ab-02",
+              "roleClass": "role-body-paragraph",
+              "italicPlacements": [
+                {
+                  "phrase": "residential PV",
+                  "class": "trade-term"
+                }
+              ]
+            }
           ],
           "featurePhotoId": null,
           "voiceZoneAssignments": {
-            "about-page-heading": "kitchen-table",
-            "about-page-body-slot": "kitchen-table"
+            "about-page-heading": "closing-table",
+            "about-page-body-slot": "saturday-morning"
           },
           "tier1CompositionalHook": "none"
         },
-        { "type": "trustSection", "id": "trust-about" },
-        { "type": "footerSection", "id": "footer-about" }
+        {
+          "type": "trustSection",
+          "id": "trust-about",
+          "voiceZoneAssignments": null
+        },
+        {
+          "type": "footerSection",
+          "id": "footer-about",
+          "voiceZoneAssignments": null
+        }
       ],
       "photoAssignments": [],
       "pullQuotes": [],
@@ -178,8 +344,15 @@
       "path": "/contact",
       "canonicalUrl": "https://greenridgesolar.example/contact",
       "pageKey": "contact",
-      "voicesInUse": ["kitchen-table", "closing-table"],
-      "layoutSequence": ["hero", "contactForm", "footerSection"],
+      "voicesInUse": [
+        "closing-table",
+        "saturday-morning"
+      ],
+      "layoutSequence": [
+        "hero",
+        "contactForm",
+        "footerSection"
+      ],
       "headingHierarchy": {
         "h1": "Request a quote",
         "h2Sequence": []
@@ -194,17 +367,29 @@
           "heroLayout": "layout-a",
           "headlineCopy": "Request a quote",
           "subheadlineCopy": "Site assessment and written proposal within a week.",
-          "primaryCTA": { "label": "Request quote", "action": "#form", "role": "primary-hero-cta" },
+          "primaryCTA": {
+            "label": "Request quote",
+            "action": "#form",
+            "role": "primary-hero-cta"
+          },
           "heroBackgroundPhotoId": null,
           "voiceZoneAssignments": {
-            "hero-eyebrow": "kitchen-table",
+            "hero-eyebrow": "saturday-morning",
             "hero-headline-slot": "closing-table",
-            "hero-subheadline-slot": "kitchen-table",
+            "hero-subheadline-slot": "saturday-morning",
             "hero-primary-cta": "closing-table"
           }
         },
-        { "type": "contactForm", "id": "contact-form-main" },
-        { "type": "footerSection", "id": "footer-contact" }
+        {
+          "type": "contactForm",
+          "id": "contact-form-main",
+          "voiceZoneAssignments": null
+        },
+        {
+          "type": "footerSection",
+          "id": "footer-contact",
+          "voiceZoneAssignments": null
+        }
       ],
       "photoAssignments": [],
       "pullQuotes": [],

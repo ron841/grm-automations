@@ -8,11 +8,20 @@
     "tier": "Professional",
     "signatureMicroInteraction": "italic-color-shift",
     "signatureMicroInteractionReason": "Neighborhood-steady persona default italic-color-shift. Gate 2 tree rule 4 fires (persona has italic-color-shift in Tier 1 default AND italicPlacement-eligible strings present — 'since 2006' tenure + 'Marion County' place + 'father-and-son' name all qualify as editorial italic targets).",
-    "microInteractions": ["eyebrow-reveal"],
+    "microInteractions": [
+      "eyebrow-reveal"
+    ],
     "microInteractionsReason": "Neighborhood-steady Tier 2 default [eyebrow-reveal] at 400ms entry. Budget ceiling 2; using 1. Section-opener on home page is the primary lift surface; eyebrow-reveal amplifies warmth without distraction per Gate 1 persona notes.",
-    "microInteractionDurations": { "entry": 400, "hover": 180 },
+    "microInteractionDurations": {
+      "entry": 400,
+      "hover": 180
+    },
     "pathConvention": "kebab-case",
-    "voicesInUse": ["front-porch", "kitchen-table", "closing-table", "saturday-morning"],
+    "voicesInUse": [
+      "closing-table",
+      "saturday-morning",
+      "front-porch"
+    ],
     "constraintsOK": true,
     "constraintRelaxations": [],
     "colorScheme": {
@@ -27,22 +36,65 @@
       "path": "/",
       "canonicalUrl": "https://hollisterpestcontrol.example/",
       "pageKey": "home",
-      "voicesInUse": ["front-porch", "kitchen-table", "closing-table"],
-      "layoutSequence": ["hero", "sectionOpener", "servicesGrid", "statRow", "testimonialsSection", "trustSection", "faqSection", "contactForm", "footerSection"],
+      "voicesInUse": [
+        "closing-table",
+        "front-porch"
+      ],
+      "layoutSequence": [
+        "hero",
+        "sectionOpener",
+        "servicesGrid",
+        "statRow",
+        "testimonialsSection",
+        "trustSection",
+        "faqSection",
+        "contactForm",
+        "footerSection"
+      ],
       "headingHierarchy": {
         "h1": "Keeping Marion County homes pest-free since 2006",
         "h2Sequence": [
-          { "id": "h2-services", "copy": "What we treat" },
-          { "id": "h2-proof", "copy": "Twenty years, fifty-two reviews" },
-          { "id": "h2-voices", "copy": "From our neighbors" },
-          { "id": "h2-trust", "copy": "Licensed JB12345" },
-          { "id": "h2-faq", "copy": "Common questions" },
-          { "id": "h2-contact", "copy": "Schedule a treatment" }
+          {
+            "id": "h2-services",
+            "copy": "What we treat"
+          },
+          {
+            "id": "h2-proof",
+            "copy": "Twenty years, fifty-two reviews"
+          },
+          {
+            "id": "h2-voices",
+            "copy": "From our neighbors"
+          },
+          {
+            "id": "h2-trust",
+            "copy": "Licensed JB12345"
+          },
+          {
+            "id": "h2-faq",
+            "copy": "Common questions"
+          },
+          {
+            "id": "h2-contact",
+            "copy": "Schedule a treatment"
+          }
         ]
       },
       "italicSelections": [
-        { "headingId": "h1", "italicWord": "Marion County", "personaWordClassAnnotation": "place", "approvalState": "approved", "alternativeWord": "local" },
-        { "headingId": "h1", "italicWord": "since 2006", "personaWordClassAnnotation": "tenure", "approvalState": "approved", "alternativeWord": "for twenty years" }
+        {
+          "headingId": "h1",
+          "italicWord": "Marion County",
+          "personaWordClassAnnotation": "place",
+          "approvalState": "approved",
+          "alternativeWord": "local"
+        },
+        {
+          "headingId": "h1",
+          "italicWord": "since 2006",
+          "personaWordClassAnnotation": "tenure",
+          "approvalState": "approved",
+          "alternativeWord": "for twenty years"
+        }
       ],
       "sections": [
         {
@@ -53,8 +105,15 @@
           "heroLayout": "layout-a",
           "headlineCopy": "Keeping Marion County homes pest-free since 2006",
           "subheadlineCopy": "Family-run pest control for Marion County and neighboring communities. Twenty years of knowing your yard.",
-          "primaryCTA": { "label": "Schedule a treatment", "action": "#contact", "role": "primary-hero-cta" },
-          "secondaryCTA": { "label": "Call (555) 362-4466", "action": "tel:5553624466" },
+          "primaryCTA": {
+            "label": "Schedule a treatment",
+            "action": "#contact",
+            "role": "primary-hero-cta"
+          },
+          "secondaryCTA": {
+            "label": "Call (555) 362-4466",
+            "action": "tel:5553624466"
+          },
           "heroBackgroundPhotoId": "photo-hero-bg-01",
           "voiceZoneAssignments": {
             "hero-eyebrow": "front-porch",
@@ -71,21 +130,44 @@
           "eyebrowRoleClass": "role-data-eyebrow",
           "h2RoleClass": "role-display-section",
           "orientation": "eyebrow-above",
-          "supportingContent": { "lede": "Four treatment programs, scheduled on your rhythm." }
+          "supportingContent": {
+            "lede": "Four treatment programs, scheduled on your rhythm."
+          },
+          "voiceZoneAssignments": null
         },
         {
           "type": "servicesGrid",
           "id": "services-grid",
           "layout": "layout-a-grid",
           "cards": [
-            { "serviceId": "svc-general-pest", "photoId": "photo-detail-01", "placeholderFlag": false, "copyVariant": "benefit-first" },
-            { "serviceId": "svc-termite", "photoId": "photo-detail-02", "placeholderFlag": false, "copyVariant": "benefit-first" },
-            { "serviceId": "svc-rodent", "photoId": null, "placeholderFlag": true, "copyVariant": "benefit-first" },
-            { "serviceId": "svc-mosquito", "photoId": null, "placeholderFlag": true, "copyVariant": "benefit-first" }
+            {
+              "serviceId": "svc-general-pest",
+              "photoId": "photo-detail-01",
+              "placeholderFlag": false,
+              "copyVariant": "benefit-first"
+            },
+            {
+              "serviceId": "svc-termite",
+              "photoId": "photo-detail-02",
+              "placeholderFlag": false,
+              "copyVariant": "benefit-first"
+            },
+            {
+              "serviceId": "svc-rodent",
+              "photoId": null,
+              "placeholderFlag": true,
+              "copyVariant": "benefit-first"
+            },
+            {
+              "serviceId": "svc-mosquito",
+              "photoId": null,
+              "placeholderFlag": true,
+              "copyVariant": "benefit-first"
+            }
           ],
           "voiceZoneAssignments": {
-            "services-grid-heading": "kitchen-table",
-            "services-card-headline": "kitchen-table",
+            "services-grid-heading": "closing-table",
+            "services-card-headline": "closing-table",
             "services-card-body": "front-porch"
           },
           "sectionOpenerPrecedes": true
@@ -94,75 +176,214 @@
           "type": "statRow",
           "id": "stat-row-home",
           "stats": [
-            { "id": "stat-years", "value": "20", "label": "years serving Marion County" },
-            { "id": "stat-reviews", "value": "52", "label": "neighbor reviews" },
-            { "id": "stat-rating", "value": "4.7", "label": "average rating" }
-          ]
+            {
+              "id": "stat-years",
+              "value": "20",
+              "label": "years serving Marion County"
+            },
+            {
+              "id": "stat-reviews",
+              "value": "52",
+              "label": "neighbor reviews"
+            },
+            {
+              "id": "stat-rating",
+              "value": "4.7",
+              "label": "average rating"
+            }
+          ],
+          "voiceZoneAssignments": null
         },
         {
           "type": "testimonialsSection",
           "id": "testimonials-home",
           "layout": "layout-a-card-row",
           "testimonials": [
-            { "testimonialId": "t-01", "avatarTreatment": "initials-monogram", "roleClass": "role-body-paragraph" },
-            { "testimonialId": "t-03", "avatarTreatment": "initials-monogram", "roleClass": "role-body-paragraph" },
-            { "testimonialId": "t-06", "avatarTreatment": "initials-monogram", "roleClass": "role-body-paragraph" }
+            {
+              "testimonialId": "t-01",
+              "avatarTreatment": "initials-monogram",
+              "roleClass": "role-body-paragraph"
+            },
+            {
+              "testimonialId": "t-03",
+              "avatarTreatment": "initials-monogram",
+              "roleClass": "role-body-paragraph"
+            },
+            {
+              "testimonialId": "t-06",
+              "avatarTreatment": "initials-monogram",
+              "roleClass": "role-body-paragraph"
+            }
           ],
           "voiceZoneAssignments": {
-            "testimonials-heading": "kitchen-table",
+            "testimonials-heading": "closing-table",
             "testimonial-body": "front-porch",
             "testimonial-attribution": "front-porch"
           }
         },
-        { "type": "trustSection", "id": "trust-home" },
-        { "type": "faqSection", "id": "faq-home" },
-        { "type": "contactForm", "id": "contact-home" },
-        { "type": "footerSection", "id": "footer-home" }
+        {
+          "type": "trustSection",
+          "id": "trust-home",
+          "voiceZoneAssignments": null
+        },
+        {
+          "type": "faqSection",
+          "id": "faq-home",
+          "voiceZoneAssignments": null
+        },
+        {
+          "type": "contactForm",
+          "id": "contact-home",
+          "voiceZoneAssignments": null
+        },
+        {
+          "type": "footerSection",
+          "id": "footer-home",
+          "voiceZoneAssignments": null
+        }
       ],
       "photoAssignments": [
-        { "slot": "hero-home.heroBackground", "photoInventoryId": "photo-hero-bg-01", "placeholderFlag": false, "placeholderReason": null, "cropHint": "landscape-wide" },
-        { "slot": "services-grid.svc-general-pest", "photoInventoryId": "photo-detail-01", "placeholderFlag": false, "placeholderReason": null, "cropHint": "square" },
-        { "slot": "services-grid.svc-termite", "photoInventoryId": "photo-detail-02", "placeholderFlag": false, "placeholderReason": null, "cropHint": "square" },
-        { "slot": "services-grid.svc-rodent", "photoInventoryId": null, "placeholderFlag": true, "placeholderReason": "No content-matched evidenceShot-eligible photo for rodent service. Fallback-path-b.", "cropHint": "square" },
-        { "slot": "services-grid.svc-mosquito", "photoInventoryId": null, "placeholderFlag": true, "placeholderReason": "No content-matched evidenceShot-eligible photo for mosquito/outdoor service. Fallback-path-b.", "cropHint": "square" }
+        {
+          "slot": "hero-home.heroBackground",
+          "photoInventoryId": "photo-hero-bg-01",
+          "placeholderFlag": false,
+          "placeholderReason": null,
+          "cropHint": "landscape-wide"
+        },
+        {
+          "slot": "services-grid.svc-general-pest",
+          "photoInventoryId": "photo-detail-01",
+          "placeholderFlag": false,
+          "placeholderReason": null,
+          "cropHint": "square"
+        },
+        {
+          "slot": "services-grid.svc-termite",
+          "photoInventoryId": "photo-detail-02",
+          "placeholderFlag": false,
+          "placeholderReason": null,
+          "cropHint": "square"
+        },
+        {
+          "slot": "services-grid.svc-rodent",
+          "photoInventoryId": null,
+          "placeholderFlag": true,
+          "placeholderReason": "No content-matched evidenceShot-eligible photo for rodent service. Fallback-path-b.",
+          "cropHint": "square"
+        },
+        {
+          "slot": "services-grid.svc-mosquito",
+          "photoInventoryId": null,
+          "placeholderFlag": true,
+          "placeholderReason": "No content-matched evidenceShot-eligible photo for mosquito/outdoor service. Fallback-path-b.",
+          "cropHint": "square"
+        }
       ],
       "pullQuotes": [
-        { "sourceTestimonialId": "t-01", "extractedText": "Same family, same trucks, same care for twenty years. Frank treats our yard like it's his mother's.", "placementAfterSectionId": "testimonials-home", "rhetoricalSlot": "tenure-reinforcement", "approvalState": "approved" }
+        {
+          "sourceTestimonialId": "t-01",
+          "extractedText": "Same family, same trucks, same care for twenty years. Frank treats our yard like it's his mother's.",
+          "placementAfterSectionId": "testimonials-home",
+          "rhetoricalSlot": "tenure-reinforcement",
+          "approvalState": "approved"
+        }
       ],
       "eyebrowDeployments": [
-        { "sectionId": "opener-services", "text": "Services", "register": "front-porch" }
+        {
+          "sectionId": "opener-services",
+          "text": "Services",
+          "register": "front-porch"
+        }
       ],
       "faq": [
-        { "question": "Do you treat for termites and general pests on the same visit?", "answerRef": "faq-combined-visits" },
-        { "question": "Are the treatments safe for kids and pets?", "answerRef": "faq-safety" },
-        { "question": "How often should we schedule treatment?", "answerRef": "faq-cadence" }
+        {
+          "question": "Do you treat for termites and general pests on the same visit?",
+          "answerRef": "faq-combined-visits"
+        },
+        {
+          "question": "Are the treatments safe for kids and pets?",
+          "answerRef": "faq-safety"
+        },
+        {
+          "question": "How often should we schedule treatment?",
+          "answerRef": "faq-cadence"
+        }
       ],
       "serviceDescriptions": [
-        { "serviceId": "svc-general-pest", "copyVariant": "benefit-first", "wordCountTarget": 55 },
-        { "serviceId": "svc-termite", "copyVariant": "benefit-first", "wordCountTarget": 60 },
-        { "serviceId": "svc-rodent", "copyVariant": "benefit-first", "wordCountTarget": 50 },
-        { "serviceId": "svc-mosquito", "copyVariant": "benefit-first", "wordCountTarget": 50 }
+        {
+          "serviceId": "svc-general-pest",
+          "copyVariant": "benefit-first",
+          "wordCountTarget": 55
+        },
+        {
+          "serviceId": "svc-termite",
+          "copyVariant": "benefit-first",
+          "wordCountTarget": 60
+        },
+        {
+          "serviceId": "svc-rodent",
+          "copyVariant": "benefit-first",
+          "wordCountTarget": 50
+        },
+        {
+          "serviceId": "svc-mosquito",
+          "copyVariant": "benefit-first",
+          "wordCountTarget": 50
+        }
       ],
-      "displayMoment": { "elementType": "hero-headline", "elementId": "hero-home", "targetDesktopPx": 88, "targetMobilePx": 64 },
+      "displayMoment": {
+        "elementType": "hero-headline",
+        "elementId": "hero-home",
+        "targetDesktopPx": 88,
+        "targetMobilePx": 64
+      },
       "scaleContrast": "medium"
     },
     {
       "path": "/about",
       "canonicalUrl": "https://hollisterpestcontrol.example/about",
       "pageKey": "about",
-      "voicesInUse": ["front-porch", "kitchen-table", "closing-table"],
-      "layoutSequence": ["hero", "aboutStory", "statRow", "testimonialsSection", "trustSection", "footerSection"],
+      "voicesInUse": [
+        "closing-table",
+        "front-porch"
+      ],
+      "layoutSequence": [
+        "hero",
+        "aboutStory",
+        "statRow",
+        "testimonialsSection",
+        "trustSection",
+        "footerSection"
+      ],
       "headingHierarchy": {
         "h1": "Hollister Pest Control — a father-and-son operation",
         "h2Sequence": [
-          { "id": "h2-about-story", "copy": "How we started" },
-          { "id": "h2-about-stats", "copy": "Twenty years in" },
-          { "id": "h2-about-voices", "copy": "From our neighbors" },
-          { "id": "h2-about-trust", "copy": "Licensed JB12345" }
+          {
+            "id": "h2-about-story",
+            "copy": "How we started"
+          },
+          {
+            "id": "h2-about-stats",
+            "copy": "Twenty years in"
+          },
+          {
+            "id": "h2-about-voices",
+            "copy": "From our neighbors"
+          },
+          {
+            "id": "h2-about-trust",
+            "copy": "Licensed JB12345"
+          }
         ]
       },
       "italicSelections": [
-        { "headingId": "h1", "italicWord": "father-and-son", "personaWordClassAnnotation": "name", "approvalState": "approved", "alternativeWord": "family-run" }
+        {
+          "headingId": "h1",
+          "italicWord": "father-and-son",
+          "personaWordClassAnnotation": "name",
+          "approvalState": "approved",
+          "alternativeWord": "family-run"
+        }
       ],
       "sections": [
         {
@@ -173,7 +394,11 @@
           "heroLayout": "layout-c-70-30",
           "headlineCopy": "Hollister Pest Control — a father-and-son operation",
           "subheadlineCopy": "Frank and Frank Jr., running the same trucks they trained on.",
-          "primaryCTA": { "label": "Schedule a treatment", "action": "/contact", "role": "primary-hero-cta" },
+          "primaryCTA": {
+            "label": "Schedule a treatment",
+            "action": "/contact",
+            "role": "primary-hero-cta"
+          },
           "heroBackgroundPhotoId": null,
           "heroPlatePhotoId": "photo-owner-portrait-01",
           "voiceZoneAssignments": {
@@ -188,14 +413,39 @@
           "id": "about-story",
           "layout": "layout-a-offset-column",
           "narrativeBlocks": [
-            { "id": "ab-01", "roleClass": "role-body-paragraph", "italicPlacements": [{ "phrase": "2006", "class": "tenure" }, { "phrase": "Marion County", "class": "place" }] },
-            { "id": "ab-02", "roleClass": "role-display-pullquote" },
-            { "id": "ab-03", "roleClass": "role-body-paragraph", "italicPlacements": [{ "phrase": "same neighborhoods", "class": "place" }] }
+            {
+              "id": "ab-01",
+              "roleClass": "role-body-paragraph",
+              "italicPlacements": [
+                {
+                  "phrase": "2006",
+                  "class": "tenure"
+                },
+                {
+                  "phrase": "Marion County",
+                  "class": "place"
+                }
+              ]
+            },
+            {
+              "id": "ab-02",
+              "roleClass": "role-display-pullquote"
+            },
+            {
+              "id": "ab-03",
+              "roleClass": "role-body-paragraph",
+              "italicPlacements": [
+                {
+                  "phrase": "same neighborhoods",
+                  "class": "place"
+                }
+              ]
+            }
           ],
           "featurePhotoId": "photo-environmental-01",
           "pullQuoteId": "pq-about-01",
           "voiceZoneAssignments": {
-            "about-page-heading": "kitchen-table",
+            "about-page-heading": "closing-table",
             "about-page-body-slot": "front-porch",
             "about-page-attribution": "front-porch"
           },
@@ -205,52 +455,120 @@
           "type": "statRow",
           "id": "stat-row-about",
           "stats": [
-            { "id": "stat-about-years", "value": "20", "label": "years in Marion County" },
-            { "id": "stat-about-families", "value": "1,400+", "label": "homes served" },
-            { "id": "stat-about-rating", "value": "4.7", "label": "neighbor rating" }
-          ]
+            {
+              "id": "stat-about-years",
+              "value": "20",
+              "label": "years in Marion County"
+            },
+            {
+              "id": "stat-about-families",
+              "value": "1,400+",
+              "label": "homes served"
+            },
+            {
+              "id": "stat-about-rating",
+              "value": "4.7",
+              "label": "neighbor rating"
+            }
+          ],
+          "voiceZoneAssignments": null
         },
         {
           "type": "testimonialsSection",
           "id": "testimonials-about",
           "layout": "layout-a-card-row",
           "testimonials": [
-            { "testimonialId": "t-02", "avatarTreatment": "initials-monogram", "roleClass": "role-body-paragraph" },
-            { "testimonialId": "t-04", "avatarTreatment": "initials-monogram", "roleClass": "role-body-paragraph" },
-            { "testimonialId": "t-08", "avatarTreatment": "initials-monogram", "roleClass": "role-body-paragraph" }
+            {
+              "testimonialId": "t-02",
+              "avatarTreatment": "initials-monogram",
+              "roleClass": "role-body-paragraph"
+            },
+            {
+              "testimonialId": "t-04",
+              "avatarTreatment": "initials-monogram",
+              "roleClass": "role-body-paragraph"
+            },
+            {
+              "testimonialId": "t-08",
+              "avatarTreatment": "initials-monogram",
+              "roleClass": "role-body-paragraph"
+            }
           ],
           "voiceZoneAssignments": {
-            "testimonials-heading": "kitchen-table",
+            "testimonials-heading": "closing-table",
             "testimonial-body": "front-porch",
             "testimonial-attribution": "front-porch"
           }
         },
-        { "type": "trustSection", "id": "trust-about" },
-        { "type": "footerSection", "id": "footer-about" }
+        {
+          "type": "trustSection",
+          "id": "trust-about",
+          "voiceZoneAssignments": null
+        },
+        {
+          "type": "footerSection",
+          "id": "footer-about",
+          "voiceZoneAssignments": null
+        }
       ],
       "photoAssignments": [
-        { "slot": "hero-about.heroPlate", "photoInventoryId": "photo-owner-portrait-01", "placeholderFlag": false, "placeholderReason": null, "cropHint": "portrait-head-shoulders" },
-        { "slot": "about-story.featurePhoto", "photoInventoryId": "photo-environmental-01", "placeholderFlag": false, "placeholderReason": null, "cropHint": "landscape-crew" }
+        {
+          "slot": "hero-about.heroPlate",
+          "photoInventoryId": "photo-owner-portrait-01",
+          "placeholderFlag": false,
+          "placeholderReason": null,
+          "cropHint": "portrait-head-shoulders"
+        },
+        {
+          "slot": "about-story.featurePhoto",
+          "photoInventoryId": "photo-environmental-01",
+          "placeholderFlag": false,
+          "placeholderReason": null,
+          "cropHint": "landscape-crew"
+        }
       ],
       "pullQuotes": [
-        { "sourceTestimonialId": "t-02", "extractedText": "When Frank Jr. took over, nothing changed except he learned our kids' names faster than his dad had.", "placementAfterSectionId": "about-story", "rhetoricalSlot": "succession-vignette", "approvalState": "approved" }
+        {
+          "sourceTestimonialId": "t-02",
+          "extractedText": "When Frank Jr. took over, nothing changed except he learned our kids' names faster than his dad had.",
+          "placementAfterSectionId": "about-story",
+          "rhetoricalSlot": "succession-vignette",
+          "approvalState": "approved"
+        }
       ],
       "eyebrowDeployments": [],
       "faq": [],
       "serviceDescriptions": [],
-      "displayMoment": { "elementType": "statRow-numeral", "elementId": "stat-about-years", "targetDesktopPx": 120, "targetMobilePx": 72 },
+      "displayMoment": {
+        "elementType": "statRow-numeral",
+        "elementId": "stat-about-years",
+        "targetDesktopPx": 120,
+        "targetMobilePx": 72
+      },
       "scaleContrast": "medium"
     },
     {
       "path": "/contact",
       "canonicalUrl": "https://hollisterpestcontrol.example/contact",
       "pageKey": "contact",
-      "voicesInUse": ["front-porch", "closing-table", "saturday-morning"],
-      "layoutSequence": ["hero", "contactForm", "trustSection", "footerSection"],
+      "voicesInUse": [
+        "closing-table",
+        "saturday-morning",
+        "front-porch"
+      ],
+      "layoutSequence": [
+        "hero",
+        "contactForm",
+        "trustSection",
+        "footerSection"
+      ],
       "headingHierarchy": {
         "h1": "Schedule a treatment",
         "h2Sequence": [
-          { "id": "h2-contact-trust", "copy": "Licensed JB12345" }
+          {
+            "id": "h2-contact-trust",
+            "copy": "Licensed JB12345"
+          }
         ]
       },
       "italicSelections": [],
@@ -263,8 +581,15 @@
           "heroLayout": "layout-a",
           "headlineCopy": "Schedule a treatment",
           "subheadlineCopy": "Call, text, or fill out the form — we'll get back to you same day.",
-          "primaryCTA": { "label": "Call (555) 362-4466", "action": "tel:5553624466", "role": "primary-hero-cta" },
-          "secondaryCTA": { "label": "Fill out form", "action": "#form" },
+          "primaryCTA": {
+            "label": "Call (555) 362-4466",
+            "action": "tel:5553624466",
+            "role": "primary-hero-cta"
+          },
+          "secondaryCTA": {
+            "label": "Fill out form",
+            "action": "#form"
+          },
           "heroBackgroundPhotoId": "photo-hero-bg-02",
           "voiceZoneAssignments": {
             "hero-eyebrow": "front-porch",
@@ -273,12 +598,30 @@
             "hero-primary-cta": "closing-table"
           }
         },
-        { "type": "contactForm", "id": "contact-form-main" },
-        { "type": "trustSection", "id": "trust-contact" },
-        { "type": "footerSection", "id": "footer-contact" }
+        {
+          "type": "contactForm",
+          "id": "contact-form-main",
+          "voiceZoneAssignments": null
+        },
+        {
+          "type": "trustSection",
+          "id": "trust-contact",
+          "voiceZoneAssignments": null
+        },
+        {
+          "type": "footerSection",
+          "id": "footer-contact",
+          "voiceZoneAssignments": null
+        }
       ],
       "photoAssignments": [
-        { "slot": "hero-contact.heroBackground", "photoInventoryId": "photo-hero-bg-02", "placeholderFlag": false, "placeholderReason": null, "cropHint": "landscape-wide" }
+        {
+          "slot": "hero-contact.heroBackground",
+          "photoInventoryId": "photo-hero-bg-02",
+          "placeholderFlag": false,
+          "placeholderReason": null,
+          "cropHint": "landscape-wide"
+        }
       ],
       "pullQuotes": [],
       "eyebrowDeployments": [],
@@ -291,17 +634,39 @@
       "path": "/services/general-pest-control",
       "canonicalUrl": "https://hollisterpestcontrol.example/services/general-pest-control",
       "pageKey": "service",
-      "voicesInUse": ["front-porch", "kitchen-table", "closing-table"],
-      "layoutSequence": ["hero", "sectionOpener", "aboutStory", "faqSection", "contactForm", "footerSection"],
+      "voicesInUse": [
+        "closing-table",
+        "front-porch"
+      ],
+      "layoutSequence": [
+        "hero",
+        "sectionOpener",
+        "aboutStory",
+        "faqSection",
+        "contactForm",
+        "footerSection"
+      ],
       "headingHierarchy": {
         "h1": "General pest control",
         "h2Sequence": [
-          { "id": "h2-svc-how", "copy": "How our program works" },
-          { "id": "h2-svc-faq", "copy": "Common questions" }
+          {
+            "id": "h2-svc-how",
+            "copy": "How our program works"
+          },
+          {
+            "id": "h2-svc-faq",
+            "copy": "Common questions"
+          }
         ]
       },
       "italicSelections": [
-        { "headingId": "h2-svc-how", "italicWord": "our program", "personaWordClassAnnotation": "trade-term", "approvalState": "approved", "alternativeWord": "our treatment" }
+        {
+          "headingId": "h2-svc-how",
+          "italicWord": "our program",
+          "personaWordClassAnnotation": "trade-term",
+          "approvalState": "approved",
+          "alternativeWord": "our treatment"
+        }
       ],
       "sections": [
         {
@@ -312,30 +677,88 @@
           "heroLayout": "layout-a",
           "headlineCopy": "General pest control",
           "subheadlineCopy": "Quarterly and monthly programs for Marion County homes.",
-          "primaryCTA": { "label": "Schedule a visit", "action": "/contact", "role": "primary-hero-cta" },
+          "primaryCTA": {
+            "label": "Schedule a visit",
+            "action": "/contact",
+            "role": "primary-hero-cta"
+          },
           "heroBackgroundPhotoId": null,
           "voiceZoneAssignments": {
             "hero-eyebrow": "front-porch",
-            "hero-headline-slot": "kitchen-table",
+            "hero-headline-slot": "closing-table",
             "hero-subheadline-slot": "front-porch",
             "hero-primary-cta": "closing-table"
           }
         },
-        { "type": "sectionOpener", "id": "opener-svc-how", "h2Id": "h2-svc-how", "eyebrowRoleClass": "role-data-eyebrow", "h2RoleClass": "role-display-section", "orientation": "eyebrow-above" },
-        { "type": "aboutStory", "id": "svc-story", "layout": "layout-b-centered-column", "narrativeBlocks": [{ "id": "sb-01", "roleClass": "role-body-paragraph" }, { "id": "sb-02", "roleClass": "role-body-paragraph" }], "voiceZoneAssignments": { "about-page-heading": "kitchen-table", "about-page-body-slot": "front-porch" } },
-        { "type": "faqSection", "id": "faq-svc" },
-        { "type": "contactForm", "id": "contact-svc" },
-        { "type": "footerSection", "id": "footer-svc" }
+        {
+          "type": "sectionOpener",
+          "id": "opener-svc-how",
+          "h2Id": "h2-svc-how",
+          "eyebrowRoleClass": "role-data-eyebrow",
+          "h2RoleClass": "role-display-section",
+          "orientation": "eyebrow-above",
+          "voiceZoneAssignments": null
+        },
+        {
+          "type": "aboutStory",
+          "id": "svc-story",
+          "layout": "layout-b-centered-column",
+          "narrativeBlocks": [
+            {
+              "id": "sb-01",
+              "roleClass": "role-body-paragraph"
+            },
+            {
+              "id": "sb-02",
+              "roleClass": "role-body-paragraph"
+            }
+          ],
+          "voiceZoneAssignments": {
+            "about-page-heading": "closing-table",
+            "about-page-body-slot": "front-porch"
+          }
+        },
+        {
+          "type": "faqSection",
+          "id": "faq-svc",
+          "voiceZoneAssignments": null
+        },
+        {
+          "type": "contactForm",
+          "id": "contact-svc",
+          "voiceZoneAssignments": null
+        },
+        {
+          "type": "footerSection",
+          "id": "footer-svc",
+          "voiceZoneAssignments": null
+        }
       ],
       "photoAssignments": [],
       "pullQuotes": [],
-      "eyebrowDeployments": [{ "sectionId": "opener-svc-how", "text": "Program", "register": "kitchen-table" }],
+      "eyebrowDeployments": [
+        {
+          "sectionId": "opener-svc-how",
+          "text": "Program",
+          "register": "saturday-morning"
+        }
+      ],
       "faq": [
-        { "question": "What pests does general pest control cover?", "answerRef": "faq-gen-pest-coverage" },
-        { "question": "How often do you come out?", "answerRef": "faq-gen-pest-cadence" }
+        {
+          "question": "What pests does general pest control cover?",
+          "answerRef": "faq-gen-pest-coverage"
+        },
+        {
+          "question": "How often do you come out?",
+          "answerRef": "faq-gen-pest-cadence"
+        }
       ],
       "serviceDescriptions": [
-        { "serviceId": "svc-general-pest", "copyVariant": "benefit-first", "wordCountTarget": 180 }
+        {
+          "serviceId": "svc-general-pest",
+          "copyVariant": "benefit-first",
+          "wordCountTarget": 180
+        }
       ],
       "displayMoment": null,
       "scaleContrast": "medium"

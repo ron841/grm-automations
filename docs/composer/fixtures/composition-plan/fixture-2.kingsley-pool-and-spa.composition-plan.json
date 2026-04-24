@@ -8,11 +8,21 @@
     "tier": "Premium",
     "signatureMicroInteraction": "watermark-numeral-offset",
     "signatureMicroInteractionReason": "Earned-pride persona default; 14 years tenure + 67 reviews support numeral-forward compositional signature per Gate 2 tree rule 2 (persona is earned-pride AND stat values include tenure >= 10 years).",
-    "microInteractions": ["underline-bloom", "shimmer-hero-cta"],
+    "microInteractions": [
+      "underline-bloom",
+      "shimmer-hero-cta"
+    ],
     "microInteractionsReason": "underline-bloom is earned-pride Tier 2 default. shimmer-hero-cta override emitted per Gate 2 tree rule (Premium tier + earned-pride + CTA prominence critical for pool-builder consideration-stage conversion). Budget ceiling 3; using 2 of 3.",
-    "microInteractionDurations": { "entry": 400, "hover": 180 },
+    "microInteractionDurations": {
+      "entry": 400,
+      "hover": 180
+    },
     "pathConvention": "kebab-case",
-    "voicesInUse": ["front-porch", "kitchen-table", "closing-table"],
+    "voicesInUse": [
+      "closing-table",
+      "saturday-morning",
+      "front-porch"
+    ],
     "constraintsOK": true,
     "constraintRelaxations": [],
     "colorScheme": {
@@ -27,22 +37,67 @@
       "path": "/",
       "canonicalUrl": "https://kingsleypoolspa.example/",
       "pageKey": "home",
-      "voicesInUse": ["front-porch", "kitchen-table", "closing-table"],
-      "layoutSequence": ["hero", "sectionOpener", "servicesGrid", "statRow", "beforeAfter", "testimonialsSection", "featuredPullQuote", "trustSection", "contactForm", "footerSection"],
+      "voicesInUse": [
+        "closing-table",
+        "saturday-morning",
+        "front-porch"
+      ],
+      "layoutSequence": [
+        "hero",
+        "sectionOpener",
+        "servicesGrid",
+        "statRow",
+        "beforeAfter",
+        "testimonialsSection",
+        "featuredPullQuote",
+        "trustSection",
+        "contactForm",
+        "footerSection"
+      ],
       "headingHierarchy": {
         "h1": "Custom gunite pools, built to last a generation",
         "h2Sequence": [
-          { "id": "h2-services", "copy": "What we build" },
-          { "id": "h2-proof", "copy": "Fourteen years, sixty-seven stories" },
-          { "id": "h2-transformations", "copy": "Before and after" },
-          { "id": "h2-testimonials", "copy": "From our owners" },
-          { "id": "h2-trust", "copy": "Licensed, insured, local" },
-          { "id": "h2-contact", "copy": "Start your build" }
+          {
+            "id": "h2-services",
+            "copy": "What we build"
+          },
+          {
+            "id": "h2-proof",
+            "copy": "Fourteen years, sixty-seven stories"
+          },
+          {
+            "id": "h2-transformations",
+            "copy": "Before and after"
+          },
+          {
+            "id": "h2-testimonials",
+            "copy": "From our owners"
+          },
+          {
+            "id": "h2-trust",
+            "copy": "Licensed, insured, local"
+          },
+          {
+            "id": "h2-contact",
+            "copy": "Start your build"
+          }
         ]
       },
       "italicSelections": [
-        { "headingId": "h1", "italicWord": "built to last a generation", "personaWordClassAnnotation": "trade-term", "approvalState": "approved", "alternativeWord": "made to last" },
-        { "headingId": "h2-proof", "italicWord": "sixty-seven stories", "personaWordClassAnnotation": "name", "approvalState": "approved", "alternativeWord": "sixty-seven builds" }
+        {
+          "headingId": "h1",
+          "italicWord": "built to last a generation",
+          "personaWordClassAnnotation": "trade-term",
+          "approvalState": "approved",
+          "alternativeWord": "made to last"
+        },
+        {
+          "headingId": "h2-proof",
+          "italicWord": "sixty-seven stories",
+          "personaWordClassAnnotation": "name",
+          "approvalState": "approved",
+          "alternativeWord": "sixty-seven builds"
+        }
       ],
       "sections": [
         {
@@ -53,14 +108,21 @@
           "heroLayout": "layout-d-full-bleed",
           "headlineCopy": "Custom gunite pools, built to last a generation",
           "subheadlineCopy": "Fourteen years of design, build, and finish work across the region — from travertine coping to spa integration.",
-          "primaryCTA": { "label": "Start your build", "action": "#contact", "role": "primary-hero-cta" },
-          "secondaryCTA": { "label": "See recent builds", "action": "#gallery" },
+          "primaryCTA": {
+            "label": "Start your build",
+            "action": "#contact",
+            "role": "primary-hero-cta"
+          },
+          "secondaryCTA": {
+            "label": "See recent builds",
+            "action": "#gallery"
+          },
           "heroBackgroundPhotoId": "photo-hero-bg-01",
           "heroPlatePhotoId": "photo-hero-plate-01",
           "voiceZoneAssignments": {
             "hero-eyebrow": "front-porch",
-            "hero-headline-slot": "kitchen-table",
-            "hero-subheadline-slot": "kitchen-table",
+            "hero-headline-slot": "closing-table",
+            "hero-subheadline-slot": "saturday-morning",
             "hero-primary-cta": "closing-table"
           },
           "tier1CompositionalHook": "hero-glass-blur"
@@ -72,22 +134,50 @@
           "eyebrowRoleClass": "role-data-eyebrow",
           "h2RoleClass": "role-display-section",
           "orientation": "eyebrow-above",
-          "supportingContent": { "lede": "Gunite construction, custom spa work, and finish restoration under one license." }
+          "supportingContent": {
+            "lede": "Gunite construction, custom spa work, and finish restoration under one license."
+          },
+          "voiceZoneAssignments": null
         },
         {
           "type": "servicesGrid",
           "id": "services-grid",
           "layout": "layout-b-asymmetric",
           "cards": [
-            { "serviceId": "svc-custom-gunite", "photoId": "photo-evidence-01", "placeholderFlag": false, "copyVariant": "benefit-first" },
-            { "serviceId": "svc-spa-installation", "photoId": "photo-evidence-02", "placeholderFlag": false, "copyVariant": "benefit-first" },
-            { "serviceId": "svc-resurfacing", "photoId": "photo-evidence-03", "placeholderFlag": false, "copyVariant": "benefit-first" },
-            { "serviceId": "svc-equipment-upgrades", "photoId": "photo-detail-01", "placeholderFlag": false, "copyVariant": "benefit-first" },
-            { "serviceId": "svc-maintenance", "photoId": "photo-detail-02", "placeholderFlag": false, "copyVariant": "benefit-first" }
+            {
+              "serviceId": "svc-custom-gunite",
+              "photoId": "photo-evidence-01",
+              "placeholderFlag": false,
+              "copyVariant": "benefit-first"
+            },
+            {
+              "serviceId": "svc-spa-installation",
+              "photoId": "photo-evidence-02",
+              "placeholderFlag": false,
+              "copyVariant": "benefit-first"
+            },
+            {
+              "serviceId": "svc-resurfacing",
+              "photoId": "photo-evidence-03",
+              "placeholderFlag": false,
+              "copyVariant": "benefit-first"
+            },
+            {
+              "serviceId": "svc-equipment-upgrades",
+              "photoId": "photo-detail-01",
+              "placeholderFlag": false,
+              "copyVariant": "benefit-first"
+            },
+            {
+              "serviceId": "svc-maintenance",
+              "photoId": "photo-detail-02",
+              "placeholderFlag": false,
+              "copyVariant": "benefit-first"
+            }
           ],
           "voiceZoneAssignments": {
-            "services-grid-heading": "kitchen-table",
-            "services-card-headline": "kitchen-table",
+            "services-grid-heading": "closing-table",
+            "services-card-headline": "closing-table",
             "services-card-body": "front-porch"
           },
           "sectionOpenerPrecedes": true
@@ -96,85 +186,249 @@
           "type": "statRow",
           "id": "stat-row-home",
           "stats": [
-            { "id": "stat-years", "value": "14", "label": "years building" },
-            { "id": "stat-reviews", "value": "67", "label": "owner reviews" },
-            { "id": "stat-rating", "value": "4.9", "label": "average rating" }
-          ]
+            {
+              "id": "stat-years",
+              "value": "14",
+              "label": "years building"
+            },
+            {
+              "id": "stat-reviews",
+              "value": "67",
+              "label": "owner reviews"
+            },
+            {
+              "id": "stat-rating",
+              "value": "4.9",
+              "label": "average rating"
+            }
+          ],
+          "voiceZoneAssignments": null
         },
         {
           "type": "beforeAfter",
           "id": "before-after-home",
           "pairs": [
-            { "beforePhotoId": "photo-evidence-before-01", "afterPhotoId": "photo-evidence-after-01" },
-            { "beforePhotoId": "photo-evidence-before-02", "afterPhotoId": "photo-evidence-after-02" }
-          ]
+            {
+              "beforePhotoId": "photo-evidence-before-01",
+              "afterPhotoId": "photo-evidence-after-01"
+            },
+            {
+              "beforePhotoId": "photo-evidence-before-02",
+              "afterPhotoId": "photo-evidence-after-02"
+            }
+          ],
+          "voiceZoneAssignments": null
         },
         {
           "type": "testimonialsSection",
           "id": "testimonials-home",
           "layout": "layout-b-single-featured",
           "testimonials": [
-            { "testimonialId": "t-01", "avatarTreatment": "initials-monogram", "roleClass": "role-display-pullquote" },
-            { "testimonialId": "t-03", "avatarTreatment": "initials-monogram", "roleClass": "role-body-paragraph" },
-            { "testimonialId": "t-07", "avatarTreatment": "initials-monogram", "roleClass": "role-body-paragraph" }
+            {
+              "testimonialId": "t-01",
+              "avatarTreatment": "initials-monogram",
+              "roleClass": "role-display-pullquote"
+            },
+            {
+              "testimonialId": "t-03",
+              "avatarTreatment": "initials-monogram",
+              "roleClass": "role-body-paragraph"
+            },
+            {
+              "testimonialId": "t-07",
+              "avatarTreatment": "initials-monogram",
+              "roleClass": "role-body-paragraph"
+            }
           ],
           "featuredTestimonialId": "t-01",
-          "reviewCountCallout": { "count": 67, "rating": 4.9, "source": "Google" },
+          "reviewCountCallout": {
+            "count": 67,
+            "rating": 4.9,
+            "source": "Google"
+          },
           "voiceZoneAssignments": {
-            "testimonials-heading": "kitchen-table",
+            "testimonials-heading": "closing-table",
             "testimonial-body": "front-porch",
             "testimonial-attribution": "front-porch"
           }
         },
-        { "type": "featuredPullQuote", "id": "pullquote-home-01", "pullQuoteRef": "pq-01" },
-        { "type": "trustSection", "id": "trust-home" },
-        { "type": "contactForm", "id": "contact-home" },
-        { "type": "footerSection", "id": "footer-home" }
+        {
+          "type": "featuredPullQuote",
+          "id": "pullquote-home-01",
+          "pullQuoteRef": "pq-01",
+          "voiceZoneAssignments": null
+        },
+        {
+          "type": "trustSection",
+          "id": "trust-home",
+          "voiceZoneAssignments": null
+        },
+        {
+          "type": "contactForm",
+          "id": "contact-home",
+          "voiceZoneAssignments": null
+        },
+        {
+          "type": "footerSection",
+          "id": "footer-home",
+          "voiceZoneAssignments": null
+        }
       ],
       "photoAssignments": [
-        { "slot": "hero-home.heroBackground", "photoInventoryId": "photo-hero-bg-01", "placeholderFlag": false, "placeholderReason": null, "cropHint": "landscape-wide" },
-        { "slot": "hero-home.heroPlate", "photoInventoryId": "photo-hero-plate-01", "placeholderFlag": false, "placeholderReason": null, "cropHint": "portrait-centered" },
-        { "slot": "services-grid.svc-custom-gunite", "photoInventoryId": "photo-evidence-01", "placeholderFlag": false, "placeholderReason": null, "cropHint": "square" },
-        { "slot": "services-grid.svc-spa-installation", "photoInventoryId": "photo-evidence-02", "placeholderFlag": false, "placeholderReason": null, "cropHint": "square" },
-        { "slot": "services-grid.svc-resurfacing", "photoInventoryId": "photo-evidence-03", "placeholderFlag": false, "placeholderReason": null, "cropHint": "square" },
-        { "slot": "services-grid.svc-equipment-upgrades", "photoInventoryId": "photo-detail-01", "placeholderFlag": false, "placeholderReason": null, "cropHint": "square" },
-        { "slot": "services-grid.svc-maintenance", "photoInventoryId": "photo-detail-02", "placeholderFlag": false, "placeholderReason": null, "cropHint": "square" }
+        {
+          "slot": "hero-home.heroBackground",
+          "photoInventoryId": "photo-hero-bg-01",
+          "placeholderFlag": false,
+          "placeholderReason": null,
+          "cropHint": "landscape-wide"
+        },
+        {
+          "slot": "hero-home.heroPlate",
+          "photoInventoryId": "photo-hero-plate-01",
+          "placeholderFlag": false,
+          "placeholderReason": null,
+          "cropHint": "portrait-centered"
+        },
+        {
+          "slot": "services-grid.svc-custom-gunite",
+          "photoInventoryId": "photo-evidence-01",
+          "placeholderFlag": false,
+          "placeholderReason": null,
+          "cropHint": "square"
+        },
+        {
+          "slot": "services-grid.svc-spa-installation",
+          "photoInventoryId": "photo-evidence-02",
+          "placeholderFlag": false,
+          "placeholderReason": null,
+          "cropHint": "square"
+        },
+        {
+          "slot": "services-grid.svc-resurfacing",
+          "photoInventoryId": "photo-evidence-03",
+          "placeholderFlag": false,
+          "placeholderReason": null,
+          "cropHint": "square"
+        },
+        {
+          "slot": "services-grid.svc-equipment-upgrades",
+          "photoInventoryId": "photo-detail-01",
+          "placeholderFlag": false,
+          "placeholderReason": null,
+          "cropHint": "square"
+        },
+        {
+          "slot": "services-grid.svc-maintenance",
+          "photoInventoryId": "photo-detail-02",
+          "placeholderFlag": false,
+          "placeholderReason": null,
+          "cropHint": "square"
+        }
       ],
       "pullQuotes": [
-        { "sourceTestimonialId": "t-01", "extractedText": "They built the pool we'd pictured for fifteen years. Every finish call was ours; every structural call was theirs. Fourteen summers in and still flawless.", "placementAfterSectionId": "testimonials-home", "rhetoricalSlot": "consideration-anchor", "approvalState": "approved" },
-        { "sourceTestimonialId": "t-03", "extractedText": "The crew that poured our shell was the same crew that set the tile. That continuity is rare.", "placementAfterSectionId": "testimonials-home", "rhetoricalSlot": "trust-reinforcement", "approvalState": "approved" }
+        {
+          "sourceTestimonialId": "t-01",
+          "extractedText": "They built the pool we'd pictured for fifteen years. Every finish call was ours; every structural call was theirs. Fourteen summers in and still flawless.",
+          "placementAfterSectionId": "testimonials-home",
+          "rhetoricalSlot": "consideration-anchor",
+          "approvalState": "approved"
+        },
+        {
+          "sourceTestimonialId": "t-03",
+          "extractedText": "The crew that poured our shell was the same crew that set the tile. That continuity is rare.",
+          "placementAfterSectionId": "testimonials-home",
+          "rhetoricalSlot": "trust-reinforcement",
+          "approvalState": "approved"
+        }
       ],
       "eyebrowDeployments": [
-        { "sectionId": "opener-services", "text": "Services", "register": "front-porch" }
+        {
+          "sectionId": "opener-services",
+          "text": "Services",
+          "register": "front-porch"
+        }
       ],
       "faq": [],
       "serviceDescriptions": [
-        { "serviceId": "svc-custom-gunite", "copyVariant": "benefit-first", "wordCountTarget": 90 },
-        { "serviceId": "svc-spa-installation", "copyVariant": "benefit-first", "wordCountTarget": 75 },
-        { "serviceId": "svc-resurfacing", "copyVariant": "benefit-first", "wordCountTarget": 70 },
-        { "serviceId": "svc-equipment-upgrades", "copyVariant": "benefit-first", "wordCountTarget": 65 },
-        { "serviceId": "svc-maintenance", "copyVariant": "benefit-first", "wordCountTarget": 65 }
+        {
+          "serviceId": "svc-custom-gunite",
+          "copyVariant": "benefit-first",
+          "wordCountTarget": 90
+        },
+        {
+          "serviceId": "svc-spa-installation",
+          "copyVariant": "benefit-first",
+          "wordCountTarget": 75
+        },
+        {
+          "serviceId": "svc-resurfacing",
+          "copyVariant": "benefit-first",
+          "wordCountTarget": 70
+        },
+        {
+          "serviceId": "svc-equipment-upgrades",
+          "copyVariant": "benefit-first",
+          "wordCountTarget": 65
+        },
+        {
+          "serviceId": "svc-maintenance",
+          "copyVariant": "benefit-first",
+          "wordCountTarget": 65
+        }
       ],
-      "displayMoment": { "elementType": "statRow-numeral", "elementId": "stat-years", "targetDesktopPx": 120, "targetMobilePx": 72 },
+      "displayMoment": {
+        "elementType": "statRow-numeral",
+        "elementId": "stat-years",
+        "targetDesktopPx": 120,
+        "targetMobilePx": 72
+      },
       "scaleContrast": "high"
     },
     {
       "path": "/about",
       "canonicalUrl": "https://kingsleypoolspa.example/about",
       "pageKey": "about",
-      "voicesInUse": ["front-porch", "kitchen-table", "closing-table"],
-      "layoutSequence": ["hero", "aboutStory", "statRow", "testimonialsSection", "trustSection", "footerSection"],
+      "voicesInUse": [
+        "closing-table",
+        "front-porch"
+      ],
+      "layoutSequence": [
+        "hero",
+        "aboutStory",
+        "statRow",
+        "testimonialsSection",
+        "trustSection",
+        "footerSection"
+      ],
       "headingHierarchy": {
         "h1": "Fourteen years building pools people keep",
         "h2Sequence": [
-          { "id": "h2-about-story", "copy": "How Kingsley got started" },
-          { "id": "h2-about-stats", "copy": "By the numbers" },
-          { "id": "h2-about-voices", "copy": "From our owners" },
-          { "id": "h2-about-trust", "copy": "Licensed, insured, local" }
+          {
+            "id": "h2-about-story",
+            "copy": "How Kingsley got started"
+          },
+          {
+            "id": "h2-about-stats",
+            "copy": "By the numbers"
+          },
+          {
+            "id": "h2-about-voices",
+            "copy": "From our owners"
+          },
+          {
+            "id": "h2-about-trust",
+            "copy": "Licensed, insured, local"
+          }
         ]
       },
       "italicSelections": [
-        { "headingId": "h1", "italicWord": "people keep", "personaWordClassAnnotation": "trade-term", "approvalState": "approved", "alternativeWord": "built to last" }
+        {
+          "headingId": "h1",
+          "italicWord": "people keep",
+          "personaWordClassAnnotation": "trade-term",
+          "approvalState": "approved",
+          "alternativeWord": "built to last"
+        }
       ],
       "sections": [
         {
@@ -185,12 +439,16 @@
           "heroLayout": "layout-c-70-30",
           "headlineCopy": "Fourteen years building pools people keep",
           "subheadlineCopy": "Founder-led since 2012, with a crew that's been with us through every finish.",
-          "primaryCTA": { "label": "Talk to Nathan", "action": "#contact", "role": "primary-hero-cta" },
+          "primaryCTA": {
+            "label": "Talk to Nathan",
+            "action": "#contact",
+            "role": "primary-hero-cta"
+          },
           "heroBackgroundPhotoId": null,
           "heroPlatePhotoId": "photo-owner-portrait-01",
           "voiceZoneAssignments": {
             "hero-eyebrow": "front-porch",
-            "hero-headline-slot": "kitchen-table",
+            "hero-headline-slot": "closing-table",
             "hero-subheadline-slot": "front-porch",
             "hero-primary-cta": "closing-table"
           }
@@ -200,14 +458,35 @@
           "id": "about-story",
           "layout": "layout-a-offset-column",
           "narrativeBlocks": [
-            { "id": "ab-01", "roleClass": "role-body-paragraph", "italicPlacements": [{ "phrase": "2012", "class": "tenure" }] },
-            { "id": "ab-02", "roleClass": "role-display-pullquote" },
-            { "id": "ab-03", "roleClass": "role-body-paragraph", "italicPlacements": [{ "phrase": "gunite and spa work", "class": "trade-term" }] }
+            {
+              "id": "ab-01",
+              "roleClass": "role-body-paragraph",
+              "italicPlacements": [
+                {
+                  "phrase": "2012",
+                  "class": "tenure"
+                }
+              ]
+            },
+            {
+              "id": "ab-02",
+              "roleClass": "role-display-pullquote"
+            },
+            {
+              "id": "ab-03",
+              "roleClass": "role-body-paragraph",
+              "italicPlacements": [
+                {
+                  "phrase": "gunite and spa work",
+                  "class": "trade-term"
+                }
+              ]
+            }
           ],
           "featurePhotoId": "photo-environmental-01",
           "pullQuoteId": "pq-about-01",
           "voiceZoneAssignments": {
-            "about-page-heading": "kitchen-table",
+            "about-page-heading": "closing-table",
             "about-page-body-slot": "front-porch",
             "about-page-attribution": "front-porch"
           },
@@ -217,52 +496,120 @@
           "type": "statRow",
           "id": "stat-row-about",
           "stats": [
-            { "id": "stat-about-years", "value": "14", "label": "years in business" },
-            { "id": "stat-about-pools", "value": "240+", "label": "pools delivered" },
-            { "id": "stat-about-rating", "value": "4.9", "label": "owner rating" }
-          ]
+            {
+              "id": "stat-about-years",
+              "value": "14",
+              "label": "years in business"
+            },
+            {
+              "id": "stat-about-pools",
+              "value": "240+",
+              "label": "pools delivered"
+            },
+            {
+              "id": "stat-about-rating",
+              "value": "4.9",
+              "label": "owner rating"
+            }
+          ],
+          "voiceZoneAssignments": null
         },
         {
           "type": "testimonialsSection",
           "id": "testimonials-about",
           "layout": "layout-a-card-row",
           "testimonials": [
-            { "testimonialId": "t-02", "avatarTreatment": "initials-monogram", "roleClass": "role-body-paragraph" },
-            { "testimonialId": "t-05", "avatarTreatment": "initials-monogram", "roleClass": "role-body-paragraph" },
-            { "testimonialId": "t-09", "avatarTreatment": "initials-monogram", "roleClass": "role-body-paragraph" }
+            {
+              "testimonialId": "t-02",
+              "avatarTreatment": "initials-monogram",
+              "roleClass": "role-body-paragraph"
+            },
+            {
+              "testimonialId": "t-05",
+              "avatarTreatment": "initials-monogram",
+              "roleClass": "role-body-paragraph"
+            },
+            {
+              "testimonialId": "t-09",
+              "avatarTreatment": "initials-monogram",
+              "roleClass": "role-body-paragraph"
+            }
           ],
           "voiceZoneAssignments": {
-            "testimonials-heading": "kitchen-table",
+            "testimonials-heading": "closing-table",
             "testimonial-body": "front-porch",
             "testimonial-attribution": "front-porch"
           }
         },
-        { "type": "trustSection", "id": "trust-about" },
-        { "type": "footerSection", "id": "footer-about" }
+        {
+          "type": "trustSection",
+          "id": "trust-about",
+          "voiceZoneAssignments": null
+        },
+        {
+          "type": "footerSection",
+          "id": "footer-about",
+          "voiceZoneAssignments": null
+        }
       ],
       "photoAssignments": [
-        { "slot": "hero-about.heroPlate", "photoInventoryId": "photo-owner-portrait-01", "placeholderFlag": false, "placeholderReason": null, "cropHint": "portrait-head-shoulders" },
-        { "slot": "about-story.featurePhoto", "photoInventoryId": "photo-environmental-01", "placeholderFlag": false, "placeholderReason": null, "cropHint": "landscape-crew" }
+        {
+          "slot": "hero-about.heroPlate",
+          "photoInventoryId": "photo-owner-portrait-01",
+          "placeholderFlag": false,
+          "placeholderReason": null,
+          "cropHint": "portrait-head-shoulders"
+        },
+        {
+          "slot": "about-story.featurePhoto",
+          "photoInventoryId": "photo-environmental-01",
+          "placeholderFlag": false,
+          "placeholderReason": null,
+          "cropHint": "landscape-crew"
+        }
       ],
       "pullQuotes": [
-        { "sourceTestimonialId": "t-02", "extractedText": "Nathan walked our site in the rain. That was when we knew.", "placementAfterSectionId": "about-story", "rhetoricalSlot": "founder-vignette", "approvalState": "approved" }
+        {
+          "sourceTestimonialId": "t-02",
+          "extractedText": "Nathan walked our site in the rain. That was when we knew.",
+          "placementAfterSectionId": "about-story",
+          "rhetoricalSlot": "founder-vignette",
+          "approvalState": "approved"
+        }
       ],
       "eyebrowDeployments": [],
       "faq": [],
       "serviceDescriptions": [],
-      "displayMoment": { "elementType": "statRow-numeral", "elementId": "stat-about-years", "targetDesktopPx": 120, "targetMobilePx": 72 },
+      "displayMoment": {
+        "elementType": "statRow-numeral",
+        "elementId": "stat-about-years",
+        "targetDesktopPx": 120,
+        "targetMobilePx": 72
+      },
       "scaleContrast": "medium"
     },
     {
       "path": "/contact",
       "canonicalUrl": "https://kingsleypoolspa.example/contact",
       "pageKey": "contact",
-      "voicesInUse": ["front-porch", "kitchen-table", "closing-table"],
-      "layoutSequence": ["hero", "contactForm", "trustSection", "footerSection"],
+      "voicesInUse": [
+        "closing-table",
+        "saturday-morning",
+        "front-porch"
+      ],
+      "layoutSequence": [
+        "hero",
+        "contactForm",
+        "trustSection",
+        "footerSection"
+      ],
       "headingHierarchy": {
         "h1": "Start your pool build",
         "h2Sequence": [
-          { "id": "h2-contact-trust", "copy": "Licensed, insured, local" }
+          {
+            "id": "h2-contact-trust",
+            "copy": "Licensed, insured, local"
+          }
         ]
       },
       "italicSelections": [],
@@ -275,21 +622,43 @@
           "heroLayout": "layout-a",
           "headlineCopy": "Start your pool build",
           "subheadlineCopy": "Consultation, site walk, and written estimate — typically within the week.",
-          "primaryCTA": { "label": "Request consultation", "action": "#form", "role": "primary-hero-cta" },
+          "primaryCTA": {
+            "label": "Request consultation",
+            "action": "#form",
+            "role": "primary-hero-cta"
+          },
           "heroBackgroundPhotoId": "photo-hero-bg-02",
           "voiceZoneAssignments": {
             "hero-eyebrow": "front-porch",
             "hero-headline-slot": "closing-table",
-            "hero-subheadline-slot": "kitchen-table",
+            "hero-subheadline-slot": "saturday-morning",
             "hero-primary-cta": "closing-table"
           }
         },
-        { "type": "contactForm", "id": "contact-form-main" },
-        { "type": "trustSection", "id": "trust-contact" },
-        { "type": "footerSection", "id": "footer-contact" }
+        {
+          "type": "contactForm",
+          "id": "contact-form-main",
+          "voiceZoneAssignments": null
+        },
+        {
+          "type": "trustSection",
+          "id": "trust-contact",
+          "voiceZoneAssignments": null
+        },
+        {
+          "type": "footerSection",
+          "id": "footer-contact",
+          "voiceZoneAssignments": null
+        }
       ],
       "photoAssignments": [
-        { "slot": "hero-contact.heroBackground", "photoInventoryId": "photo-hero-bg-02", "placeholderFlag": false, "placeholderReason": null, "cropHint": "landscape-wide" }
+        {
+          "slot": "hero-contact.heroBackground",
+          "photoInventoryId": "photo-hero-bg-02",
+          "placeholderFlag": false,
+          "placeholderReason": null,
+          "cropHint": "landscape-wide"
+        }
       ],
       "pullQuotes": [],
       "eyebrowDeployments": [],
@@ -302,19 +671,50 @@
       "path": "/services/custom-gunite",
       "canonicalUrl": "https://kingsleypoolspa.example/services/custom-gunite",
       "pageKey": "service",
-      "voicesInUse": ["front-porch", "kitchen-table", "closing-table"],
-      "layoutSequence": ["hero", "sectionOpener", "aboutStory", "beforeAfter", "testimonialsSection", "faqSection", "contactForm", "footerSection"],
+      "voicesInUse": [
+        "closing-table",
+        "saturday-morning",
+        "front-porch"
+      ],
+      "layoutSequence": [
+        "hero",
+        "sectionOpener",
+        "aboutStory",
+        "beforeAfter",
+        "testimonialsSection",
+        "faqSection",
+        "contactForm",
+        "footerSection"
+      ],
       "headingHierarchy": {
         "h1": "Custom gunite pools",
         "h2Sequence": [
-          { "id": "h2-svc-how", "copy": "How we build" },
-          { "id": "h2-svc-transformations", "copy": "Recent builds" },
-          { "id": "h2-svc-voices", "copy": "From our owners" },
-          { "id": "h2-svc-faq", "copy": "Common questions" }
+          {
+            "id": "h2-svc-how",
+            "copy": "How we build"
+          },
+          {
+            "id": "h2-svc-transformations",
+            "copy": "Recent builds"
+          },
+          {
+            "id": "h2-svc-voices",
+            "copy": "From our owners"
+          },
+          {
+            "id": "h2-svc-faq",
+            "copy": "Common questions"
+          }
         ]
       },
       "italicSelections": [
-        { "headingId": "h2-svc-how", "italicWord": "how we build", "personaWordClassAnnotation": "trade-term", "approvalState": "approved", "alternativeWord": "our method" }
+        {
+          "headingId": "h2-svc-how",
+          "italicWord": "how we build",
+          "personaWordClassAnnotation": "trade-term",
+          "approvalState": "approved",
+          "alternativeWord": "our method"
+        }
       ],
       "sections": [
         {
@@ -325,38 +725,151 @@
           "heroLayout": "layout-d-full-bleed",
           "headlineCopy": "Custom gunite pools",
           "subheadlineCopy": "Shotcrete shell, engineered rebar cage, and the finish your site deserves.",
-          "primaryCTA": { "label": "Start a build", "action": "/contact", "role": "primary-hero-cta" },
+          "primaryCTA": {
+            "label": "Start a build",
+            "action": "/contact",
+            "role": "primary-hero-cta"
+          },
           "heroBackgroundPhotoId": "photo-hero-bg-03",
           "heroPlatePhotoId": "photo-hero-plate-02",
           "voiceZoneAssignments": {
             "hero-eyebrow": "front-porch",
-            "hero-headline-slot": "kitchen-table",
-            "hero-subheadline-slot": "kitchen-table",
+            "hero-headline-slot": "closing-table",
+            "hero-subheadline-slot": "saturday-morning",
             "hero-primary-cta": "closing-table"
           }
         },
-        { "type": "sectionOpener", "id": "opener-svc-how", "h2Id": "h2-svc-how", "eyebrowRoleClass": "role-data-eyebrow", "h2RoleClass": "role-display-section", "orientation": "eyebrow-above" },
-        { "type": "aboutStory", "id": "svc-story", "layout": "layout-b-centered-column", "narrativeBlocks": [{ "id": "sb-01", "roleClass": "role-body-paragraph" }, { "id": "sb-02", "roleClass": "role-body-paragraph" }], "voiceZoneAssignments": { "about-page-heading": "kitchen-table", "about-page-body-slot": "kitchen-table" } },
-        { "type": "beforeAfter", "id": "before-after-svc", "pairs": [{ "beforePhotoId": "photo-evidence-before-03", "afterPhotoId": "photo-evidence-after-03" }] },
-        { "type": "testimonialsSection", "id": "testimonials-svc", "layout": "layout-a-card-row", "testimonials": [{ "testimonialId": "t-04", "avatarTreatment": "initials-monogram", "roleClass": "role-body-paragraph" }, { "testimonialId": "t-11", "avatarTreatment": "initials-monogram", "roleClass": "role-body-paragraph" }], "voiceZoneAssignments": { "testimonials-heading": "kitchen-table", "testimonial-body": "front-porch", "testimonial-attribution": "front-porch" } },
-        { "type": "faqSection", "id": "faq-svc" },
-        { "type": "contactForm", "id": "contact-svc" },
-        { "type": "footerSection", "id": "footer-svc" }
+        {
+          "type": "sectionOpener",
+          "id": "opener-svc-how",
+          "h2Id": "h2-svc-how",
+          "eyebrowRoleClass": "role-data-eyebrow",
+          "h2RoleClass": "role-display-section",
+          "orientation": "eyebrow-above",
+          "voiceZoneAssignments": null
+        },
+        {
+          "type": "aboutStory",
+          "id": "svc-story",
+          "layout": "layout-b-centered-column",
+          "narrativeBlocks": [
+            {
+              "id": "sb-01",
+              "roleClass": "role-body-paragraph"
+            },
+            {
+              "id": "sb-02",
+              "roleClass": "role-body-paragraph"
+            }
+          ],
+          "voiceZoneAssignments": {
+            "about-page-heading": "closing-table",
+            "about-page-body-slot": "saturday-morning"
+          }
+        },
+        {
+          "type": "beforeAfter",
+          "id": "before-after-svc",
+          "pairs": [
+            {
+              "beforePhotoId": "photo-evidence-before-03",
+              "afterPhotoId": "photo-evidence-after-03"
+            }
+          ],
+          "voiceZoneAssignments": null
+        },
+        {
+          "type": "testimonialsSection",
+          "id": "testimonials-svc",
+          "layout": "layout-a-card-row",
+          "testimonials": [
+            {
+              "testimonialId": "t-04",
+              "avatarTreatment": "initials-monogram",
+              "roleClass": "role-body-paragraph"
+            },
+            {
+              "testimonialId": "t-11",
+              "avatarTreatment": "initials-monogram",
+              "roleClass": "role-body-paragraph"
+            }
+          ],
+          "voiceZoneAssignments": {
+            "testimonials-heading": "closing-table",
+            "testimonial-body": "front-porch",
+            "testimonial-attribution": "front-porch"
+          }
+        },
+        {
+          "type": "faqSection",
+          "id": "faq-svc",
+          "voiceZoneAssignments": null
+        },
+        {
+          "type": "contactForm",
+          "id": "contact-svc",
+          "voiceZoneAssignments": null
+        },
+        {
+          "type": "footerSection",
+          "id": "footer-svc",
+          "voiceZoneAssignments": null
+        }
       ],
       "photoAssignments": [
-        { "slot": "hero-svc-gunite.heroBackground", "photoInventoryId": "photo-hero-bg-03", "placeholderFlag": false, "placeholderReason": null, "cropHint": "landscape-wide" },
-        { "slot": "hero-svc-gunite.heroPlate", "photoInventoryId": "photo-hero-plate-02", "placeholderFlag": false, "placeholderReason": null, "cropHint": "portrait-centered" },
-        { "slot": "before-after-svc.pair-01-before", "photoInventoryId": "photo-evidence-before-03", "placeholderFlag": false, "placeholderReason": null, "cropHint": "landscape-matched" },
-        { "slot": "before-after-svc.pair-01-after", "photoInventoryId": "photo-evidence-after-03", "placeholderFlag": false, "placeholderReason": null, "cropHint": "landscape-matched" }
+        {
+          "slot": "hero-svc-gunite.heroBackground",
+          "photoInventoryId": "photo-hero-bg-03",
+          "placeholderFlag": false,
+          "placeholderReason": null,
+          "cropHint": "landscape-wide"
+        },
+        {
+          "slot": "hero-svc-gunite.heroPlate",
+          "photoInventoryId": "photo-hero-plate-02",
+          "placeholderFlag": false,
+          "placeholderReason": null,
+          "cropHint": "portrait-centered"
+        },
+        {
+          "slot": "before-after-svc.pair-01-before",
+          "photoInventoryId": "photo-evidence-before-03",
+          "placeholderFlag": false,
+          "placeholderReason": null,
+          "cropHint": "landscape-matched"
+        },
+        {
+          "slot": "before-after-svc.pair-01-after",
+          "photoInventoryId": "photo-evidence-after-03",
+          "placeholderFlag": false,
+          "placeholderReason": null,
+          "cropHint": "landscape-matched"
+        }
       ],
       "pullQuotes": [],
-      "eyebrowDeployments": [{ "sectionId": "opener-svc-how", "text": "Method", "register": "kitchen-table" }],
+      "eyebrowDeployments": [
+        {
+          "sectionId": "opener-svc-how",
+          "text": "Method",
+          "register": "saturday-morning"
+        }
+      ],
       "faq": [
-        { "question": "How long does a gunite build take?", "answerRef": "faq-gunite-timeline" },
-        { "question": "What's the warranty on the shell?", "answerRef": "faq-gunite-warranty" }
+        {
+          "question": "How long does a gunite build take?",
+          "answerRef": "faq-gunite-timeline"
+        },
+        {
+          "question": "What's the warranty on the shell?",
+          "answerRef": "faq-gunite-warranty"
+        }
       ],
       "serviceDescriptions": [
-        { "serviceId": "svc-custom-gunite", "copyVariant": "benefit-first", "wordCountTarget": 220 }
+        {
+          "serviceId": "svc-custom-gunite",
+          "copyVariant": "benefit-first",
+          "wordCountTarget": 220
+        }
       ],
       "displayMoment": null,
       "scaleContrast": "medium"

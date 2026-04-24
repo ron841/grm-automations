@@ -8,14 +8,27 @@
     "tier": "Standard",
     "signatureMicroInteraction": "italic-color-shift",
     "signatureMicroInteractionReason": "Neighborhood-steady persona default italic-color-shift. Gate 2 tree rule 4 fires (persona has italic-color-shift in Tier 1 default AND italicPlacement-eligible strings present — 'since 1987', 'third-generation', 'Marion County', 'Ernie Riverside' all qualify). Copy density column marks Standard-tier neighborhood-steady as medium-light; italic-color-shift is the only Tier 1 signature that pairs with thin content without demanding structural weight.",
-    "microInteractions": ["eyebrow-reveal"],
+    "microInteractions": [
+      "eyebrow-reveal"
+    ],
     "microInteractionsReason": "Neighborhood-steady Tier 2 default [eyebrow-reveal] at 400ms. Budget ceiling 2 per persona; using 1. Single sectionOpener on home page is the only eyebrow surface; Tier 2 lift concentrated there.",
-    "microInteractionDurations": { "entry": 400, "hover": 180 },
+    "microInteractionDurations": {
+      "entry": 400,
+      "hover": 180
+    },
     "pathConvention": "kebab-case",
-    "voicesInUse": ["front-porch", "kitchen-table", "closing-table", "saturday-morning"],
+    "voicesInUse": [
+      "closing-table",
+      "saturday-morning",
+      "front-porch"
+    ],
     "constraintsOK": true,
     "constraintRelaxations": [
-      { "rule": "copy-density-faq-suppression", "detail": "Copy density tie-breaking (emotional-arc.md line 243): Standard-tier neighborhood-steady with thin profile.faq suppresses faqSection on home + service pages. profile.faq has no entries; faqSection elided per persona rule, not missed.", "severity": "info" }
+      {
+        "rule": "copy-density-faq-suppression",
+        "detail": "Copy density tie-breaking (emotional-arc.md line 243): Standard-tier neighborhood-steady with thin profile.faq suppresses faqSection on home + service pages. profile.faq has no entries; faqSection elided per persona rule, not missed.",
+        "severity": "info"
+      }
     ],
     "colorScheme": {
       "primary": "#166534",
@@ -29,20 +42,55 @@
       "path": "/",
       "canonicalUrl": "https://riversidelandscaping.example/",
       "pageKey": "home",
-      "voicesInUse": ["front-porch", "kitchen-table", "closing-table"],
-      "layoutSequence": ["hero", "sectionOpener", "servicesGrid", "statRow", "testimonialsSection", "contactForm", "footerSection"],
+      "voicesInUse": [
+        "closing-table",
+        "front-porch"
+      ],
+      "layoutSequence": [
+        "hero",
+        "sectionOpener",
+        "servicesGrid",
+        "statRow",
+        "testimonialsSection",
+        "contactForm",
+        "footerSection"
+      ],
       "headingHierarchy": {
         "h1": "Three generations caring for Marion County lawns",
         "h2Sequence": [
-          { "id": "h2-services", "copy": "What we do" },
-          { "id": "h2-proof", "copy": "Thirty-eight years, same family" },
-          { "id": "h2-voices", "copy": "From our long-timers" },
-          { "id": "h2-contact", "copy": "Get in touch" }
+          {
+            "id": "h2-services",
+            "copy": "What we do"
+          },
+          {
+            "id": "h2-proof",
+            "copy": "Thirty-eight years, same family"
+          },
+          {
+            "id": "h2-voices",
+            "copy": "From our long-timers"
+          },
+          {
+            "id": "h2-contact",
+            "copy": "Get in touch"
+          }
         ]
       },
       "italicSelections": [
-        { "headingId": "h1", "italicWord": "Marion County", "personaWordClassAnnotation": "place", "approvalState": "approved", "alternativeWord": "local" },
-        { "headingId": "h2-proof", "italicWord": "same family", "personaWordClassAnnotation": "tenure", "approvalState": "approved", "alternativeWord": "one family" }
+        {
+          "headingId": "h1",
+          "italicWord": "Marion County",
+          "personaWordClassAnnotation": "place",
+          "approvalState": "approved",
+          "alternativeWord": "local"
+        },
+        {
+          "headingId": "h2-proof",
+          "italicWord": "same family",
+          "personaWordClassAnnotation": "tenure",
+          "approvalState": "approved",
+          "alternativeWord": "one family"
+        }
       ],
       "sections": [
         {
@@ -53,8 +101,15 @@
           "heroLayout": "layout-a",
           "headlineCopy": "Three generations caring for Marion County lawns",
           "subheadlineCopy": "Lawn, trees, and irrigation — since 1987.",
-          "primaryCTA": { "label": "Request a quote", "action": "#contact", "role": "primary-hero-cta" },
-          "secondaryCTA": { "label": "Call (555) 487-2138", "action": "tel:5554872138" },
+          "primaryCTA": {
+            "label": "Request a quote",
+            "action": "#contact",
+            "role": "primary-hero-cta"
+          },
+          "secondaryCTA": {
+            "label": "Call (555) 487-2138",
+            "action": "tel:5554872138"
+          },
           "heroBackgroundPhotoId": "photo-hero-bg-01",
           "voiceZoneAssignments": {
             "hero-eyebrow": "front-porch",
@@ -71,20 +126,38 @@
           "eyebrowRoleClass": "role-data-eyebrow",
           "h2RoleClass": "role-display-section",
           "orientation": "eyebrow-above",
-          "supportingContent": { "lede": "Three services we've been doing right since 1987." }
+          "supportingContent": {
+            "lede": "Three services we've been doing right since 1987."
+          },
+          "voiceZoneAssignments": null
         },
         {
           "type": "servicesGrid",
           "id": "services-grid",
           "layout": "layout-a-grid",
           "cards": [
-            { "serviceId": "svc-lawn-maintenance", "photoId": "photo-detail-01", "placeholderFlag": false, "copyVariant": "benefit-first" },
-            { "serviceId": "svc-tree-trimming", "photoId": "photo-detail-02", "placeholderFlag": false, "copyVariant": "benefit-first" },
-            { "serviceId": "svc-irrigation", "photoId": null, "placeholderFlag": true, "copyVariant": "benefit-first" }
+            {
+              "serviceId": "svc-lawn-maintenance",
+              "photoId": "photo-detail-01",
+              "placeholderFlag": false,
+              "copyVariant": "benefit-first"
+            },
+            {
+              "serviceId": "svc-tree-trimming",
+              "photoId": "photo-detail-02",
+              "placeholderFlag": false,
+              "copyVariant": "benefit-first"
+            },
+            {
+              "serviceId": "svc-irrigation",
+              "photoId": null,
+              "placeholderFlag": true,
+              "copyVariant": "benefit-first"
+            }
           ],
           "voiceZoneAssignments": {
-            "services-grid-heading": "kitchen-table",
-            "services-card-headline": "kitchen-table",
+            "services-grid-heading": "closing-table",
+            "services-card-headline": "closing-table",
             "services-card-body": "front-porch"
           },
           "sectionOpenerPrecedes": true
@@ -93,67 +166,175 @@
           "type": "statRow",
           "id": "stat-row-home",
           "stats": [
-            { "id": "stat-years", "value": "38", "label": "years in Marion County" },
-            { "id": "stat-generations", "value": "3", "label": "generations" },
-            { "id": "stat-rating", "value": "4.9", "label": "neighbor rating" }
-          ]
+            {
+              "id": "stat-years",
+              "value": "38",
+              "label": "years in Marion County"
+            },
+            {
+              "id": "stat-generations",
+              "value": "3",
+              "label": "generations"
+            },
+            {
+              "id": "stat-rating",
+              "value": "4.9",
+              "label": "neighbor rating"
+            }
+          ],
+          "voiceZoneAssignments": null
         },
         {
           "type": "testimonialsSection",
           "id": "testimonials-home",
           "layout": "layout-b-single-featured",
           "testimonials": [
-            { "testimonialId": "t-01", "avatarTreatment": "initials-monogram", "roleClass": "role-display-pullquote" },
-            { "testimonialId": "t-03", "avatarTreatment": "initials-monogram", "roleClass": "role-body-paragraph" },
-            { "testimonialId": "t-05", "avatarTreatment": "initials-monogram", "roleClass": "role-body-paragraph" }
+            {
+              "testimonialId": "t-01",
+              "avatarTreatment": "initials-monogram",
+              "roleClass": "role-display-pullquote"
+            },
+            {
+              "testimonialId": "t-03",
+              "avatarTreatment": "initials-monogram",
+              "roleClass": "role-body-paragraph"
+            },
+            {
+              "testimonialId": "t-05",
+              "avatarTreatment": "initials-monogram",
+              "roleClass": "role-body-paragraph"
+            }
           ],
           "featuredTestimonialId": "t-01",
           "voiceZoneAssignments": {
-            "testimonials-heading": "kitchen-table",
+            "testimonials-heading": "closing-table",
             "testimonial-body": "front-porch",
             "testimonial-attribution": "front-porch"
           }
         },
-        { "type": "contactForm", "id": "contact-home" },
-        { "type": "footerSection", "id": "footer-home" }
+        {
+          "type": "contactForm",
+          "id": "contact-home",
+          "voiceZoneAssignments": null
+        },
+        {
+          "type": "footerSection",
+          "id": "footer-home",
+          "voiceZoneAssignments": null
+        }
       ],
       "photoAssignments": [
-        { "slot": "hero-home.heroBackground", "photoInventoryId": "photo-hero-bg-01", "placeholderFlag": false, "placeholderReason": null, "cropHint": "landscape-wide" },
-        { "slot": "services-grid.svc-lawn-maintenance", "photoInventoryId": "photo-detail-01", "placeholderFlag": false, "placeholderReason": null, "cropHint": "square" },
-        { "slot": "services-grid.svc-tree-trimming", "photoInventoryId": "photo-detail-02", "placeholderFlag": false, "placeholderReason": null, "cropHint": "square" },
-        { "slot": "services-grid.svc-irrigation", "photoInventoryId": null, "placeholderFlag": true, "placeholderReason": "No content-matched evidenceShot-eligible photo for irrigation service. Fallback-path-b.", "cropHint": "square" }
+        {
+          "slot": "hero-home.heroBackground",
+          "photoInventoryId": "photo-hero-bg-01",
+          "placeholderFlag": false,
+          "placeholderReason": null,
+          "cropHint": "landscape-wide"
+        },
+        {
+          "slot": "services-grid.svc-lawn-maintenance",
+          "photoInventoryId": "photo-detail-01",
+          "placeholderFlag": false,
+          "placeholderReason": null,
+          "cropHint": "square"
+        },
+        {
+          "slot": "services-grid.svc-tree-trimming",
+          "photoInventoryId": "photo-detail-02",
+          "placeholderFlag": false,
+          "placeholderReason": null,
+          "cropHint": "square"
+        },
+        {
+          "slot": "services-grid.svc-irrigation",
+          "photoInventoryId": null,
+          "placeholderFlag": true,
+          "placeholderReason": "No content-matched evidenceShot-eligible photo for irrigation service. Fallback-path-b.",
+          "cropHint": "square"
+        }
       ],
       "pullQuotes": [
-        { "sourceTestimonialId": "t-01", "extractedText": "Ernie cut our grass. Then his son. Now his grandson. Four decades, one family — that's Riverside.", "placementAfterSectionId": "testimonials-home", "rhetoricalSlot": "succession-anchor", "approvalState": "approved" }
+        {
+          "sourceTestimonialId": "t-01",
+          "extractedText": "Ernie cut our grass. Then his son. Now his grandson. Four decades, one family — that's Riverside.",
+          "placementAfterSectionId": "testimonials-home",
+          "rhetoricalSlot": "succession-anchor",
+          "approvalState": "approved"
+        }
       ],
       "eyebrowDeployments": [
-        { "sectionId": "opener-services", "text": "Services", "register": "front-porch" }
+        {
+          "sectionId": "opener-services",
+          "text": "Services",
+          "register": "front-porch"
+        }
       ],
       "faq": [],
       "serviceDescriptions": [
-        { "serviceId": "svc-lawn-maintenance", "copyVariant": "benefit-first", "wordCountTarget": 45 },
-        { "serviceId": "svc-tree-trimming", "copyVariant": "benefit-first", "wordCountTarget": 40 },
-        { "serviceId": "svc-irrigation", "copyVariant": "benefit-first", "wordCountTarget": 40 }
+        {
+          "serviceId": "svc-lawn-maintenance",
+          "copyVariant": "benefit-first",
+          "wordCountTarget": 45
+        },
+        {
+          "serviceId": "svc-tree-trimming",
+          "copyVariant": "benefit-first",
+          "wordCountTarget": 40
+        },
+        {
+          "serviceId": "svc-irrigation",
+          "copyVariant": "benefit-first",
+          "wordCountTarget": 40
+        }
       ],
-      "displayMoment": { "elementType": "statRow-numeral", "elementId": "stat-years", "targetDesktopPx": 120, "targetMobilePx": 72 },
+      "displayMoment": {
+        "elementType": "statRow-numeral",
+        "elementId": "stat-years",
+        "targetDesktopPx": 120,
+        "targetMobilePx": 72
+      },
       "scaleContrast": "medium"
     },
     {
       "path": "/about",
       "canonicalUrl": "https://riversidelandscaping.example/about",
       "pageKey": "about",
-      "voicesInUse": ["front-porch", "kitchen-table", "closing-table"],
-      "layoutSequence": ["hero", "aboutStory", "statRow", "testimonialsSection", "footerSection"],
+      "voicesInUse": [
+        "closing-table",
+        "front-porch"
+      ],
+      "layoutSequence": [
+        "hero",
+        "aboutStory",
+        "statRow",
+        "testimonialsSection",
+        "footerSection"
+      ],
       "headingHierarchy": {
         "h1": "Riverside Landscaping — thirty-eight years, same family",
         "h2Sequence": [
-          { "id": "h2-about-story", "copy": "How we started" },
-          { "id": "h2-about-stats", "copy": "Three generations in" },
-          { "id": "h2-about-voices", "copy": "From our long-timers" }
+          {
+            "id": "h2-about-story",
+            "copy": "How we started"
+          },
+          {
+            "id": "h2-about-stats",
+            "copy": "Three generations in"
+          },
+          {
+            "id": "h2-about-voices",
+            "copy": "From our long-timers"
+          }
         ]
       },
       "italicSelections": [
-        { "headingId": "h1", "italicWord": "thirty-eight years", "personaWordClassAnnotation": "tenure", "approvalState": "approved", "alternativeWord": "four decades" }
+        {
+          "headingId": "h1",
+          "italicWord": "thirty-eight years",
+          "personaWordClassAnnotation": "tenure",
+          "approvalState": "approved",
+          "alternativeWord": "four decades"
+        }
       ],
       "sections": [
         {
@@ -164,7 +345,11 @@
           "heroLayout": "layout-d-full-bleed",
           "headlineCopy": "Riverside Landscaping — thirty-eight years, same family",
           "subheadlineCopy": "Started by Ernie Riverside in 1987, run today by his grandson James.",
-          "primaryCTA": { "label": "Request a quote", "action": "/contact", "role": "primary-hero-cta" },
+          "primaryCTA": {
+            "label": "Request a quote",
+            "action": "/contact",
+            "role": "primary-hero-cta"
+          },
           "heroBackgroundPhotoId": null,
           "heroPlatePhotoId": "photo-environmental-01",
           "voiceZoneAssignments": {
@@ -179,9 +364,38 @@
           "id": "about-story",
           "layout": "layout-d-full-bleed-photo-above",
           "narrativeBlocks": [
-            { "id": "ab-01", "roleClass": "role-body-paragraph", "italicPlacements": [{ "phrase": "1987", "class": "tenure" }, { "phrase": "Ernie", "class": "name" }] },
-            { "id": "ab-02", "roleClass": "role-display-pullquote" },
-            { "id": "ab-03", "roleClass": "role-body-paragraph", "italicPlacements": [{ "phrase": "third generation", "class": "tenure" }, { "phrase": "Marion County", "class": "place" }] }
+            {
+              "id": "ab-01",
+              "roleClass": "role-body-paragraph",
+              "italicPlacements": [
+                {
+                  "phrase": "1987",
+                  "class": "tenure"
+                },
+                {
+                  "phrase": "Ernie",
+                  "class": "name"
+                }
+              ]
+            },
+            {
+              "id": "ab-02",
+              "roleClass": "role-display-pullquote"
+            },
+            {
+              "id": "ab-03",
+              "roleClass": "role-body-paragraph",
+              "italicPlacements": [
+                {
+                  "phrase": "third generation",
+                  "class": "tenure"
+                },
+                {
+                  "phrase": "Marion County",
+                  "class": "place"
+                }
+              ]
+            }
           ],
           "featurePhotoId": "photo-environmental-02",
           "pullQuoteId": "pq-about-01",
@@ -196,46 +410,102 @@
           "type": "statRow",
           "id": "stat-row-about",
           "stats": [
-            { "id": "stat-about-years", "value": "38", "label": "years family-run" },
-            { "id": "stat-about-generations", "value": "3", "label": "generations" },
-            { "id": "stat-about-retention", "value": "96%", "label": "customer retention" }
-          ]
+            {
+              "id": "stat-about-years",
+              "value": "38",
+              "label": "years family-run"
+            },
+            {
+              "id": "stat-about-generations",
+              "value": "3",
+              "label": "generations"
+            },
+            {
+              "id": "stat-about-retention",
+              "value": "96%",
+              "label": "customer retention"
+            }
+          ],
+          "voiceZoneAssignments": null
         },
         {
           "type": "testimonialsSection",
           "id": "testimonials-about",
           "layout": "layout-a-card-row",
           "testimonials": [
-            { "testimonialId": "t-02", "avatarTreatment": "initials-monogram", "roleClass": "role-body-paragraph" },
-            { "testimonialId": "t-04", "avatarTreatment": "initials-monogram", "roleClass": "role-body-paragraph" }
+            {
+              "testimonialId": "t-02",
+              "avatarTreatment": "initials-monogram",
+              "roleClass": "role-body-paragraph"
+            },
+            {
+              "testimonialId": "t-04",
+              "avatarTreatment": "initials-monogram",
+              "roleClass": "role-body-paragraph"
+            }
           ],
           "voiceZoneAssignments": {
-            "testimonials-heading": "kitchen-table",
+            "testimonials-heading": "closing-table",
             "testimonial-body": "front-porch",
             "testimonial-attribution": "front-porch"
           }
         },
-        { "type": "footerSection", "id": "footer-about" }
+        {
+          "type": "footerSection",
+          "id": "footer-about",
+          "voiceZoneAssignments": null
+        }
       ],
       "photoAssignments": [
-        { "slot": "hero-about.heroPlate", "photoInventoryId": "photo-environmental-01", "placeholderFlag": false, "placeholderReason": null, "cropHint": "landscape-family" },
-        { "slot": "about-story.featurePhoto", "photoInventoryId": "photo-environmental-02", "placeholderFlag": false, "placeholderReason": null, "cropHint": "landscape-three-generation" }
+        {
+          "slot": "hero-about.heroPlate",
+          "photoInventoryId": "photo-environmental-01",
+          "placeholderFlag": false,
+          "placeholderReason": null,
+          "cropHint": "landscape-family"
+        },
+        {
+          "slot": "about-story.featurePhoto",
+          "photoInventoryId": "photo-environmental-02",
+          "placeholderFlag": false,
+          "placeholderReason": null,
+          "cropHint": "landscape-three-generation"
+        }
       ],
       "pullQuotes": [
-        { "sourceTestimonialId": "t-02", "extractedText": "James learned every yard on his father's shoulders. Now our kids climb into his truck the same way.", "placementAfterSectionId": "about-story", "rhetoricalSlot": "succession-vignette", "approvalState": "approved" }
+        {
+          "sourceTestimonialId": "t-02",
+          "extractedText": "James learned every yard on his father's shoulders. Now our kids climb into his truck the same way.",
+          "placementAfterSectionId": "about-story",
+          "rhetoricalSlot": "succession-vignette",
+          "approvalState": "approved"
+        }
       ],
       "eyebrowDeployments": [],
       "faq": [],
       "serviceDescriptions": [],
-      "displayMoment": { "elementType": "hero-headline", "elementId": "hero-about", "targetDesktopPx": 88, "targetMobilePx": 64 },
+      "displayMoment": {
+        "elementType": "hero-headline",
+        "elementId": "hero-about",
+        "targetDesktopPx": 88,
+        "targetMobilePx": 64
+      },
       "scaleContrast": "high"
     },
     {
       "path": "/contact",
       "canonicalUrl": "https://riversidelandscaping.example/contact",
       "pageKey": "contact",
-      "voicesInUse": ["front-porch", "closing-table", "saturday-morning"],
-      "layoutSequence": ["hero", "contactForm", "footerSection"],
+      "voicesInUse": [
+        "closing-table",
+        "saturday-morning",
+        "front-porch"
+      ],
+      "layoutSequence": [
+        "hero",
+        "contactForm",
+        "footerSection"
+      ],
       "headingHierarchy": {
         "h1": "Get in touch",
         "h2Sequence": []
@@ -250,8 +520,15 @@
           "heroLayout": "layout-a",
           "headlineCopy": "Get in touch",
           "subheadlineCopy": "Phone works best — we're usually in the yard.",
-          "primaryCTA": { "label": "Call (555) 487-2138", "action": "tel:5554872138", "role": "primary-hero-cta" },
-          "secondaryCTA": { "label": "Fill out form", "action": "#form" },
+          "primaryCTA": {
+            "label": "Call (555) 487-2138",
+            "action": "tel:5554872138",
+            "role": "primary-hero-cta"
+          },
+          "secondaryCTA": {
+            "label": "Fill out form",
+            "action": "#form"
+          },
           "heroBackgroundPhotoId": null,
           "voiceZoneAssignments": {
             "hero-eyebrow": "front-porch",
@@ -260,8 +537,16 @@
             "hero-primary-cta": "closing-table"
           }
         },
-        { "type": "contactForm", "id": "contact-form-main" },
-        { "type": "footerSection", "id": "footer-contact" }
+        {
+          "type": "contactForm",
+          "id": "contact-form-main",
+          "voiceZoneAssignments": null
+        },
+        {
+          "type": "footerSection",
+          "id": "footer-contact",
+          "voiceZoneAssignments": null
+        }
       ],
       "photoAssignments": [],
       "pullQuotes": [],
@@ -275,12 +560,23 @@
       "path": "/services/lawn-maintenance",
       "canonicalUrl": "https://riversidelandscaping.example/services/lawn-maintenance",
       "pageKey": "service",
-      "voicesInUse": ["front-porch", "kitchen-table", "closing-table"],
-      "layoutSequence": ["hero", "aboutStory", "contactForm", "footerSection"],
+      "voicesInUse": [
+        "closing-table",
+        "front-porch"
+      ],
+      "layoutSequence": [
+        "hero",
+        "aboutStory",
+        "contactForm",
+        "footerSection"
+      ],
       "headingHierarchy": {
         "h1": "Lawn maintenance",
         "h2Sequence": [
-          { "id": "h2-svc-how", "copy": "What's in our weekly service" }
+          {
+            "id": "h2-svc-how",
+            "copy": "What's in our weekly service"
+          }
         ]
       },
       "italicSelections": [],
@@ -293,25 +589,55 @@
           "heroLayout": "layout-a",
           "headlineCopy": "Lawn maintenance",
           "subheadlineCopy": "Weekly mowing, edging, and seasonal cleanup for Marion County homes.",
-          "primaryCTA": { "label": "Request a quote", "action": "/contact", "role": "primary-hero-cta" },
+          "primaryCTA": {
+            "label": "Request a quote",
+            "action": "/contact",
+            "role": "primary-hero-cta"
+          },
           "heroBackgroundPhotoId": null,
           "voiceZoneAssignments": {
             "hero-eyebrow": "front-porch",
-            "hero-headline-slot": "kitchen-table",
+            "hero-headline-slot": "closing-table",
             "hero-subheadline-slot": "front-porch",
             "hero-primary-cta": "closing-table"
           }
         },
-        { "type": "aboutStory", "id": "svc-story", "layout": "layout-b-centered-column", "narrativeBlocks": [{ "id": "sb-01", "roleClass": "role-body-paragraph" }], "voiceZoneAssignments": { "about-page-heading": "kitchen-table", "about-page-body-slot": "front-porch" } },
-        { "type": "contactForm", "id": "contact-svc" },
-        { "type": "footerSection", "id": "footer-svc" }
+        {
+          "type": "aboutStory",
+          "id": "svc-story",
+          "layout": "layout-b-centered-column",
+          "narrativeBlocks": [
+            {
+              "id": "sb-01",
+              "roleClass": "role-body-paragraph"
+            }
+          ],
+          "voiceZoneAssignments": {
+            "about-page-heading": "closing-table",
+            "about-page-body-slot": "front-porch"
+          }
+        },
+        {
+          "type": "contactForm",
+          "id": "contact-svc",
+          "voiceZoneAssignments": null
+        },
+        {
+          "type": "footerSection",
+          "id": "footer-svc",
+          "voiceZoneAssignments": null
+        }
       ],
       "photoAssignments": [],
       "pullQuotes": [],
       "eyebrowDeployments": [],
       "faq": [],
       "serviceDescriptions": [
-        { "serviceId": "svc-lawn-maintenance", "copyVariant": "benefit-first", "wordCountTarget": 150 }
+        {
+          "serviceId": "svc-lawn-maintenance",
+          "copyVariant": "benefit-first",
+          "wordCountTarget": 150
+        }
       ],
       "displayMoment": null,
       "scaleContrast": "medium"
