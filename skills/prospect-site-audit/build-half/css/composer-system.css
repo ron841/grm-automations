@@ -1,0 +1,2040 @@
+/* composer-system.css
+ * Layer 1 (editorial vocabulary): lifted verbatim from jsl-handoff/Homepage.html.
+ * Layer 2 (operational chassis, §1–§11 below): lifted from Design's Volthom
+ *   inner-pages.css bundle on 2026-04-25 as part of Phase 2.
+ * §12 (.sitenav) and §13 (page resets) from the bundle were lifted in Phase
+ *   3a (2026-04-25) under body.is-inner scope at the bottom of this file.
+ *   Homepage <body> stays unscoped so its existing fixed-overlay .sitenav
+ *   keeps working; inner pages emit <body class="is-inner"> and pick up the
+ *   sticky-translucent variant plus the bundle's reset rules.
+ */
+
+/* ============================================================
+   TOKENS — derived from css-framework.md conventions
+   Brand palette refined from proposed defaults (deeper moss,
+   warmer rust, cream paper).
+============================================================ */
+:root{
+  --color-primary:#3d5a2a;
+  --color-primary-deep:#233514;
+  --color-dark-primary:#162110;
+  --color-accent:#c67b3c;
+  --color-accent-deep:#8f4217;
+  --color-neutral:#8a8570;
+  --color-background:#f5efe3;
+  --color-paper-warm:#ece4d2;
+  --color-cream:#faf5e9;
+  --color-ink:#1a1f14;
+  --color-ink-2:#2f3526;
+  --color-line:rgba(26,31,20,.14);
+  --color-line-soft:rgba(26,31,20,.08);
+
+  /* Phase 2 lift (2026-04-25): rgb tuples consumed by the bundle vocabulary
+     for rgba() composition (e.g. rgba(var(--color-primary-rgb), 0.10)).
+     Default values match the JSL palette above; per-prospect render.py
+     overrides re-emit the rgb tuples alongside the hex colors in Phase 3. */
+  --color-primary-rgb:61, 90, 42;
+  --color-accent-rgb:198, 123, 60;
+
+  --font-heading:"Cormorant Garamond","EB Garamond",Georgia,serif;
+  --font-body:"Figtree","Inter",system-ui,sans-serif;
+  --fw-bold:700;
+  --fw-semibold:600;
+
+  --space-section:120px;
+  --space-section-compact:80px;
+  --space-section-generous:160px;
+  --container-default:980px;
+  --container-wide:1200px;
+  --radius-pill:999px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--color-background);color:var(--color-ink);font-family:var(--font-body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+p{text-wrap:pretty}
+.wrap{max-width:1320px;margin:0 auto;padding:0 48px}
+
+h1,h2,h3,h4{font-family:var(--font-heading);font-weight:500;color:var(--color-ink);letter-spacing:-.01em}
+
+/* ============================================================
+   NAV — fixed, overlays hero
+============================================================ */
+.sitenav{position:fixed;top:0;left:0;right:0;z-index:50;padding:22px 48px;display:flex;align-items:center;justify-content:space-between;color:#fff;transition:background .3s, backdrop-filter .3s}
+.sitenav.scrolled{background:var(--color-dark-primary);backdrop-filter:blur(14px);opacity:.95}
+/* Round-4 P11 (Session 3 close, 2026-04-29): inner-page sitenav must always
+   carry a brand-coherent dark band so the white-on-transparent logo + white
+   nav text remain visible. Inner pages don't have a navy hero behind the
+   sitenav (their page-hero is warm cream), so the homepage scroll-conditional
+   navy doesn't help — the sitenav reads as white-on-cream = invisible at
+   top-of-page on inner pages. Override forces navy at all scroll states. */
+body.is-inner .sitenav{background:var(--color-dark-primary)}
+body.is-inner .sitenav.scrolled{background:var(--color-dark-primary);backdrop-filter:blur(14px);opacity:.95}
+.wordmark{display:flex;align-items:center;gap:14px}
+.wm-mark{height:48px;width:auto;flex:none;color:var(--color-accent);display:inline-flex;align-items:center}
+.wm-mark img{height:48px;width:auto;display:block}
+.wm-stack{display:flex;flex-direction:column}
+.wm-title{font-family:var(--font-heading);font-weight:500;font-size:20px;letter-spacing:.01em;line-height:1}
+.wm-title em{font-style:italic;opacity:.9}
+.wm-sub{font-family:var(--font-body);font-size:10px;letter-spacing:.28em;text-transform:uppercase;opacity:.78;margin-top:4px}
+.navlinks{display:flex;gap:30px;font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
+.navlinks a{opacity:.88;transition:opacity .2s}
+.navlinks a:hover{opacity:1}
+.nav-cta{display:inline-flex;align-items:center;gap:10px;padding:11px 20px;border:1px solid rgba(255,255,255,.5);border-radius:999px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;backdrop-filter:blur(6px);background:rgba(255,255,255,.06);transition:all .2s;white-space:nowrap}
+.nav-cta:hover{background:rgba(255,255,255,.14);border-color:#fff}
+
+/* ============================================================
+   HERO — single full-bleed image, wide glass card variant
+============================================================ */
+.hero{position:relative}
+.hero-single{position:relative;min-height:100vh;overflow:hidden;background:#0a0a0a;padding-top:100px}
+
+/* F6 hero crossfade slideshow port from T&F flagship (Round-3 Session 3
+   close, 2026-04-29). Layered above .hero rules. .hero-crossfade-slide.active
+   gets opacity:1; sibling slides fade out via CSS transition. JS toggles
+   .active. ≥3 slides expected per render_hero gate. */
+.hero-crossfade{position:relative;min-height:100vh;overflow:hidden;padding-top:100px;background:#0a0a0a}
+.hero-crossfade-slideshow{position:absolute;inset:0;z-index:0}
+.hero-crossfade-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.4s ease-in-out;will-change:opacity}
+.hero-crossfade-slide.active{opacity:1}
+.hero-crossfade-overlay{position:absolute;inset:0;background:linear-gradient(110deg,rgba(15,22,10,.78) 0%,rgba(15,22,10,.55) 45%,rgba(15,22,10,.25) 75%,rgba(15,22,10,.42) 100%);z-index:1;pointer-events:none}
+.hero-crossfade-overlay::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,transparent 30%,rgba(15,22,10,.55) 90%)}
+.hero-crossfade-content{position:relative;z-index:2;max-width:1320px;margin:0 auto;padding:80px 48px 100px;display:flex;align-items:center;min-height:calc(100vh - 100px)}
+@media (prefers-reduced-motion: reduce){
+  .hero-crossfade-slide:not(:first-child){display:none}
+}
+@media (max-width:899px){
+  .hero-crossfade-content{padding:60px 24px 80px}
+}
+
+.hero-single-bg{position:absolute;inset:0;background:url("photos/pergola-pool.jpg") center/cover no-repeat;transform:scale(1.04);will-change:transform;animation:kenburns 24s ease-in-out infinite alternate}
+@keyframes kenburns{0%{transform:scale(1.04) translate(0,0)}100%{transform:scale(1.12) translate(-2%,-1%)}}
+.hero-single-grade{position:absolute;inset:0;z-index:1;background:linear-gradient(135deg,rgba(61,90,42,.28) 0%,transparent 40%,rgba(198,123,60,.22) 100%);mix-blend-mode:multiply;pointer-events:none}
+.hero-single-overlay{position:absolute;inset:0;background:linear-gradient(110deg,rgba(15,22,10,.78) 0%,rgba(15,22,10,.55) 45%,rgba(15,22,10,.25) 75%,rgba(15,22,10,.42) 100%);z-index:2}
+.hero-single-overlay::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,transparent 30%,rgba(15,22,10,.55) 90%)}
+.hero-single-content{position:relative;z-index:3;max-width:1320px;margin:0 auto;padding:80px 48px 100px;display:flex;align-items:center;min-height:calc(100vh - 100px)}
+
+/* Shared glass card (wide variant per Phase 4 logic) */
+.hero-glass-card{position:relative;z-index:2;width:100%;max-width:580px;padding:48px 44px 52px;background:rgba(255,255,255,.14);backdrop-filter:blur(24px) saturate(1.4);-webkit-backdrop-filter:blur(24px) saturate(1.4);border:1px solid rgba(255,255,255,.28);border-radius:24px;box-shadow:0 24px 60px rgba(0,0,0,.25),0 0 0 1px rgba(255,255,255,.08) inset;color:#fff}
+.hero-glass-card--wide{max-width:680px;padding:56px 52px 60px}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:14px;font-size:11px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--color-accent);margin-bottom:28px;font-family:var(--font-body)}
+.hero-eyebrow::before{content:"";width:32px;height:1px;background:var(--color-accent);opacity:.7}
+.hero-headline{font-family:var(--font-heading);font-weight:300;line-height:.92;letter-spacing:-.025em;margin:0 0 28px 0;color:#fff}
+.hero-glass-card--wide .hero-headline{font-size:clamp(56px,7vw,108px);margin-bottom:32px}
+.hero-headline .line{display:block;overflow:hidden}
+.hero-headline .line span{display:inline-block;animation:rise .9s cubic-bezier(.2,.8,.2,1) both}
+.hero-headline .line-1 span{animation-delay:.05s}
+.hero-headline .line-2 span{animation-delay:.18s}
+.hero-headline .word-roman{font-weight:500;letter-spacing:-.03em}
+.hero-headline em{font-style:italic;color:#f4c79a;font-weight:300;position:relative;letter-spacing:0}
+.hero-headline .accent-word{position:relative;display:inline-block;font-style:italic;font-weight:300;color:#f4c79a}
+.hero-headline .accent-word::after{content:"";position:absolute;left:8%;right:8%;bottom:6%;height:3px;background:linear-gradient(90deg,transparent,var(--color-accent) 20%,var(--color-accent) 80%,transparent);transform:scaleX(0);transform-origin:left;animation:underline 1s cubic-bezier(.2,.8,.2,1) .9s forwards}
+@keyframes rise{from{transform:translateY(110%);opacity:0}to{transform:translateY(0);opacity:1}}
+@keyframes underline{to{transform:scaleX(1)}}
+.hero-kicker{display:flex;align-items:center;gap:16px;margin-bottom:14px;animation:fadeIn .8s .3s both}
+.hero-kicker .dot{width:5px;height:5px;border-radius:50%;background:var(--color-accent)}
+.hero-kicker .txt{font-family:var(--font-heading);font-style:italic;font-size:18px;color:#f4c79a;font-weight:400;letter-spacing:.01em}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.hero-sub{font-family:var(--font-heading);font-size:22px;line-height:1.45;color:rgba(255,255,255,.92);margin:0 0 36px 0;max-width:520px;font-weight:400;letter-spacing:.005em;animation:fadeIn .8s .55s both}
+.hero-glass-card--wide .hero-sub{font-size:24px;max-width:560px}
+.hero-sub .em-word{font-style:italic;color:#f4c79a}
+.hero-stats-mini{display:flex;gap:28px;padding:20px 0;margin-bottom:32px;border-top:1px solid rgba(255,255,255,.2);border-bottom:1px solid rgba(255,255,255,.2);align-items:flex-end}
+.hero-stat-value{font-family:var(--font-heading);font-size:28px;font-weight:700;color:#fff;line-height:1}
+.hero-glass-card--wide .hero-stat-value{font-size:32px}
+.hero-stat-value em{font-style:italic;color:#f4c79a}
+.hero-stat-label{font-size:12px;color:rgba(255,255,255,.78);margin-top:4px;letter-spacing:.3px;font-family:var(--font-body)}
+/* Patch 3 (2026-04-24): stat hierarchy — slot 1 is the lead stat (the strongest proof number), slots 2 and 3 are secondary. Gives the hero chip a clear pyramid: big number first, supporting facts after. Fix 1 (2026-04-24 pm): lead number reduced ~15% (56→48 / 68→58) and line-height opened from .92 to 1 so the number doesn't clip the chip border under the existing 20px padding. */
+.hero-stat--lead .hero-stat-value{font-size:48px;font-weight:600;line-height:1;letter-spacing:-.02em}
+.hero-glass-card--wide .hero-stat--lead .hero-stat-value{font-size:58px}
+.hero-stat--lead{flex:0 0 auto;padding-right:24px;margin-right:10px;border-right:1px solid rgba(255,255,255,.22)}
+.hero-stat--lead .hero-stat-label{margin-top:8px;font-size:12px;line-height:1.35}
+.hero-stat--sec .hero-stat-value{font-size:20px;font-weight:500;opacity:.92}
+.hero-glass-card--wide .hero-stat--sec .hero-stat-value{font-size:22px}
+.hero-stat--sec .hero-stat-label{opacity:.72}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
+.hero-btn-primary,.hero-btn-secondary{display:inline-flex;align-items:center;padding:16px 30px;border-radius:999px;font-weight:600;font-size:14px;letter-spacing:.04em;text-decoration:none;transition:transform .2s ease,box-shadow .2s ease;font-family:var(--font-body)}
+.hero-btn-primary{background:var(--color-accent);color:#fff;position:relative;overflow:hidden}
+.hero-btn-primary::before{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.35) 50%,transparent 70%);transform:translateX(-100%);animation:shimmer 3s infinite}
+@keyframes shimmer{0%{transform:translateX(-100%)}60%,100%{transform:translateX(100%)}}
+.hero-btn-secondary{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.4)}
+.hero-btn-primary:hover,.hero-btn-secondary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.hero-badge{position:absolute;top:20px;right:20px;display:flex;flex-direction:column;align-items:flex-end;padding:10px 14px;background:rgba(255,255,255,.96);border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,.2)}
+.hero-badge-stars{color:#f5a623;font-weight:700;font-size:14px;font-family:var(--font-body)}
+.hero-badge-count{color:#333;font-size:11px;margin-top:2px;font-family:var(--font-body)}
+
+@media (max-width:899px){
+  .hero-single-content{padding:60px 24px 80px}
+  .hero-glass-card,.hero-glass-card--wide{max-width:100%;padding:36px 28px 40px;border-radius:20px}
+  .hero-glass-card .hero-headline,.hero-glass-card--wide .hero-headline{font-size:clamp(44px,9vw,64px)}
+  .hero-sub,.hero-glass-card--wide .hero-sub{font-size:18px}
+  .hero-stats-mini{gap:18px;flex-wrap:wrap}
+  .hero-stat-value{font-size:22px}
+  .hero-glass-card--wide .hero-stat-value{font-size:24px}
+  .hero-stat--lead .hero-stat-value,.hero-glass-card--wide .hero-stat--lead .hero-stat-value{font-size:40px}
+  .hero-stat--lead{padding-right:14px;margin-right:6px}
+  .hero-stat--sec .hero-stat-value,.hero-glass-card--wide .hero-stat--sec .hero-stat-value{font-size:18px}
+}
+
+/* ============================================================
+   ANCHOR STRIP
+============================================================ */
+.anchor-strip{background:var(--color-dark-primary);color:var(--color-cream);padding:30px 48px;position:relative;z-index:3}
+.as-inner{max-width:1320px;margin:0 auto}
+/* Fix 2 (2026-04-24 pm): anchor strip restructured — three equal columns all on the stacked-eyebrow-above-value pattern (SERVING / STUDIO HOURS / DIRECT LINE). The brand signature "Rooted in {city}" pulled out of the grid into its own row above the triad, left-aligned in italic script treatment. DIRECT LINE column gets 1.4x value weight so it reads as the CTA without breaking column symmetry. Supersedes the earlier two-row as-row-top / as-row-phone attempt. */
+.as-mark-row{margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid rgba(244,199,154,.16)}
+.as-mark{display:inline-flex;align-items:center;gap:12px;font-family:var(--font-heading);font-style:italic;font-size:18px;color:#f4c79a}
+.as-triad{display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px;align-items:start}
+.as-item{display:flex;flex-direction:column;gap:6px}
+.as-item .l{font-size:10px;letter-spacing:.28em;text-transform:uppercase;opacity:.62;font-weight:600;font-family:var(--font-body)}
+.as-item .v{font-family:var(--font-heading);font-size:17px;font-weight:500;line-height:1.3}
+.as-item--cta{text-align:center}
+.as-item--cta .v{font-size:24px;font-weight:600;color:#f4c79a;letter-spacing:.01em}
+.as-item--cta .v a{color:inherit;text-decoration:none}
+.as-item--cta .v a:hover{opacity:.88}
+.as-divider{width:1px;height:36px;background:rgba(244,199,154,.22)}
+
+/* ============================================================
+   SECTION DECORATION — labels + display headlines
+   (Layer-1 .services Heritage container, .services-grid +
+   .svc* Heritage tile cluster removed; render.py emits the
+   Layer-2 .services-section / .services-bento / .service-card
+   chassis universally.)
+============================================================ */
+.section-head{display:grid;grid-template-columns:auto 1fr;gap:60px;align-items:end;margin-bottom:72px}
+.section-label{display:flex;align-items:center;gap:14px;color:var(--color-accent-deep)}
+.section-label .num{font-family:var(--font-heading);font-style:italic;font-size:15px}
+.section-label .rule{width:44px;height:1px;background:var(--color-accent-deep);opacity:.5}
+.section-label .lab{font-size:11px;letter-spacing:.28em;text-transform:uppercase;font-weight:600}
+h2.display{font-size:clamp(42px,5.2vw,76px);line-height:.98;font-weight:500;letter-spacing:-.025em}
+h2.display em{font-style:italic;font-weight:300;color:var(--color-accent-deep)}
+h2.display .accent-uline{position:relative;display:inline-block;font-style:italic;font-weight:300;color:var(--color-accent-deep)}
+h2.display .accent-uline::after{content:"";position:absolute;left:6%;right:6%;bottom:4%;height:2px;background:var(--color-accent);opacity:.85}
+.section-head h2{max-width:760px}
+.pullquote h2.display em,.footer h2.display em{color:#f4c79a}
+.pullquote h2.display .accent-uline,.footer h2.display .accent-uline{color:#f4c79a}
+
+/* ============================================================
+   FEATURED PULLQUOTE
+============================================================ */
+.pullquote{position:relative;padding:150px 48px;background:var(--color-dark-primary);background-image:radial-gradient(ellipse at top,rgba(255,255,255,.04) 0%,transparent 60%),linear-gradient(180deg,var(--color-dark-primary) 0%,var(--color-primary-deep) 100%);color:var(--color-cream);overflow:hidden}
+.pq-inner{position:relative;z-index:1;max-width:1020px;margin:0 auto;text-align:center}
+.pq-glyph{font-family:var(--font-heading);font-style:italic;font-size:140px;line-height:.6;color:#f4c79a;margin-bottom:24px;height:80px;display:flex;justify-content:center;align-items:flex-start;font-weight:500}
+.pq-quote{font-family:var(--font-heading);font-size:clamp(32px,4vw,54px);line-height:1.18;font-weight:400;font-style:italic;margin-bottom:40px}
+.pq-attr{font-size:11px;letter-spacing:.28em;text-transform:uppercase;opacity:.75;font-family:var(--font-body)}
+.pq-attr strong{color:#f4c79a;font-weight:600;font-style:normal;letter-spacing:.2em;display:block;font-size:13px;margin-bottom:6px}
+
+/* ============================================================
+   MANIFESTO STRIP
+============================================================ */
+.manifesto{padding:140px 0;background:var(--manifesto-band-bg,#f7f2e8);position:relative;overflow:hidden}
+.manifesto::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:var(--color-line-soft)}
+.manifesto::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--color-line-soft)}
+.man-inner{max-width:1100px;margin:0 auto;text-align:center;display:flex;flex-direction:column;align-items:center;gap:36px}
+.man-mark{color:var(--color-accent-deep);opacity:.7}
+.man-copy{font-family:var(--font-heading);font-size:clamp(40px,5.6vw,84px);line-height:1.04;font-weight:400;color:var(--color-ink);letter-spacing:-.02em}
+.man-copy em{font-style:italic;font-weight:300;color:var(--color-accent-deep)}
+.man-copy .accent-uline{position:relative;display:inline-block;font-style:italic;font-weight:300;color:var(--color-accent-deep)}
+.man-copy .accent-uline::after{content:"";position:absolute;left:6%;right:6%;bottom:4%;height:2px;background:var(--color-accent);opacity:.85}
+
+/* (Layer-1 .testimonials + .tst* Heritage testimonial cluster removed;
+    render.py emits the Layer-2 .testimonials-section / .testimonials-grid
+    / .testimonial-card chassis universally. Layer-1 .trust + .trust-cell*
+    cluster removed; the editorial trust band is superseded by
+    .trust-marquee at homepage band 02.) */
+
+/* ============================================================
+   ABOUT / STORY
+============================================================ */
+.story{padding:var(--space-section) 0;background:var(--color-paper-warm)}
+.story-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:90px;align-items:center}
+.story-grid--text-only{grid-template-columns:minmax(0,820px);justify-content:center;gap:0}
+.story-img{position:relative;aspect-ratio:4/5;overflow:hidden}
+.story-img img{width:100%;height:100%;object-fit:cover}
+.story-img::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(26,31,20,.1)}
+.story-caption{position:absolute;bottom:24px;left:24px;right:24px;background:rgba(250,245,233,.94);padding:16px 20px;backdrop-filter:blur(4px)}
+.story-caption .l{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--color-accent-deep);font-weight:600;margin-bottom:4px}
+.story-caption .v{font-family:var(--font-heading);font-style:italic;font-size:16px}
+.story-body h2{margin-bottom:32px;max-width:540px}
+.story-body .lede{font-family:var(--font-heading);font-size:22px;line-height:1.45;font-style:italic;color:var(--color-ink);margin-bottom:28px;padding-left:20px;border-left:2px solid var(--color-accent)}
+.story-body p{font-size:16px;line-height:1.7;color:var(--color-ink-2);margin-bottom:18px;max-width:520px}
+.story-owners{margin-top:40px;padding-top:32px;border-top:1px solid var(--color-line)}
+.story-owners .sig{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:28px;color:var(--color-primary-deep);line-height:1}
+.story-owners .role{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--color-ink-2);margin-top:6px;opacity:.7}
+
+/* ============================================================
+   FOOTER
+============================================================ */
+.footer{background:var(--color-dark-primary);color:var(--color-cream);padding:100px 0 40px}
+.footer-top{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:60px;padding-bottom:64px;border-bottom:1px solid rgba(244,199,154,.18)}
+.footer-brand .wm-title{font-size:26px;color:var(--color-cream)}
+.footer-brand .wm-sub{opacity:.68}
+.footer-brand .tag{font-family:var(--font-heading);font-style:italic;font-size:22px;color:#f4c79a;margin-top:28px;line-height:1.4;max-width:320px}
+.footer-col h4{font-size:11px;letter-spacing:.26em;text-transform:uppercase;font-weight:600;color:#f4c79a;margin-bottom:22px;font-family:var(--font-body)}
+.footer-col ul{list-style:none}
+.footer-col li{margin-bottom:12px;font-size:15px;font-family:var(--font-heading);opacity:.9}
+.footer-col a:hover{color:#f4c79a}
+.footer-contact .line{font-size:15px;font-family:var(--font-heading);margin-bottom:10px;opacity:.9}
+.footer-contact .phone{font-size:22px;font-family:var(--font-heading);color:#f4c79a;margin-bottom:14px}
+.footer-bot{display:flex;justify-content:space-between;align-items:center;padding-top:32px;font-size:12px;opacity:.65;letter-spacing:.04em}
+.footer-bot .social{display:flex;gap:14px}
+.footer-bot .social a{width:32px;height:32px;border:1px solid rgba(244,199,154,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all .2s;font-size:14px}
+.footer-bot .social a:hover{border-color:#f4c79a;color:#f4c79a}
+
+/* Responsive */
+@media (max-width:960px){
+  .wrap{padding:0 24px}
+  .sitenav{padding:18px 24px}
+  .navlinks{display:none}
+  .services-grid,.tst-grid{grid-template-columns:1fr}
+  .trust-inner{grid-template-columns:1fr 1fr}
+  .trust-cell:nth-child(2){border-right:none}
+  .trust-cell:nth-child(1),.trust-cell:nth-child(2){border-bottom:1px solid var(--color-line)}
+  .story-grid{grid-template-columns:1fr;gap:48px}
+  .footer-top{grid-template-columns:1fr;gap:40px}
+  .as-mark-row{text-align:center;margin-bottom:18px;padding-bottom:16px}
+  .as-triad{grid-template-columns:1fr;gap:22px;text-align:center}
+  .as-item--cta .v{font-size:26px}
+  .as-divider{display:none}
+  .section-head{grid-template-columns:1fr;gap:24px}
+  .pullquote{padding:100px 24px}
+  .anchor-strip{padding:26px 24px}
+}
+
+
+/* ============================================================
+   PHASE 2 LIFT (2026-04-25) — Volthom inner-pages.css §1–§11
+   --------------------------------------------------------------
+   Lifted verbatim from handoff/Volthom Inner Pages/inner-pages.css.
+   Source-of-truth class names: f1-tandf-electric/style.css.
+   §12 (.sitenav) and §13 (page resets) are intentionally NOT lifted —
+   composer already owns those selectors with different rules. Inner-
+   page sticky-nav semantics land in Phase 3a via a page-context
+   selector (e.g. body.is-inner .sitenav).
+   ============================================================ */
+
+/* ==========================================================================
+   §1. Subpage hero (inner pages: about, services, testimonials, contact)
+   --------------------------------------------------------------------------
+   F1's canonical text-only inner hero. 3 of 8 flagships skip inner heroes
+   entirely (F5/F6/F7); 5 ship variants. F1's pattern is the one this
+   deliverable adopts. See dropped-sections.md for opt-out variant note.
+   ========================================================================== */
+.subpage-hero {
+  padding: 160px 24px 80px;
+  background: linear-gradient(135deg, var(--color-dark-primary) 0%, var(--color-primary) 50%, var(--color-dark-primary) 100%);
+  color: #ffffff;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.subpage-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 30% 20%, rgba(var(--color-accent-rgb), 0.18) 0%, transparent 50%),
+    radial-gradient(circle at 70% 80%, rgba(var(--color-primary-rgb), 0.22) 0%, transparent 55%);
+  pointer-events: none;
+}
+.subpage-hero-container {
+  max-width: var(--container-default, 980px);
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.subpage-hero-eyebrow {
+  font-family: var(--font-body, "Figtree", system-ui, sans-serif);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2.2px;
+  text-transform: uppercase;
+  color: rgba(245, 158, 11, 0.92); /* warmed accent on dark */
+  margin-bottom: 18px;
+}
+.subpage-hero-title {
+  font-family: var(--font-heading);
+  font-size: 56px;
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -1.2px;
+  color: #ffffff;
+  margin: 0 0 20px 0;
+}
+.subpage-hero-title em {
+  font-style: italic;
+  color: rgba(245, 158, 11, 0.95);
+}
+.subpage-hero-sub {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.88);
+  max-width: 640px;
+  margin: 0 auto;
+}
+@media (max-width: 899px) {
+  .subpage-hero { padding: 120px 20px 60px; }
+  .subpage-hero-title { font-size: 36px; letter-spacing: -0.6px; }
+  .subpage-hero-sub { font-size: 17px; }
+}
+
+
+/* ==========================================================================
+   §2. Trust marquee (homepage, just below hero)
+   ========================================================================== */
+.trust-marquee {
+  background: var(--color-background);
+  padding: 28px 0;
+  overflow: hidden;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+.trust-marquee-track {
+  display: flex;
+  gap: 64px;
+  animation: marquee-scroll 40s linear infinite;
+  width: max-content;
+}
+.trust-marquee-track:hover { animation-play-state: paused; }
+.trust-item {
+  font-family: var(--font-body, "Figtree", sans-serif);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-dark-primary);
+  white-space: nowrap;
+  letter-spacing: 0.4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+}
+.trust-item::after {
+  content: "·";
+  color: var(--color-accent);
+  font-weight: 700;
+}
+.trust-item:last-child::after { content: ""; }
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+
+/* ==========================================================================
+   §3. Services section + bento grid (homepage version)
+   --------------------------------------------------------------------------
+   Featured card spans 2x2 with bg image; 5 small cards in remaining cells.
+   On services.html, .services-bento is followed by per-service detail blocks
+   (.service-detail) for the deeper page treatment.
+   ========================================================================== */
+.services-section {
+  padding: var(--space-section, 120px) 24px;
+  background: var(--color-background);
+}
+.services-container {
+  max-width: var(--container-wide, 1200px);
+  margin: 0 auto;
+}
+.services-header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+.services-eyebrow {
+  font-family: var(--font-body, "Figtree", sans-serif);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2.2px;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: 18px;
+}
+.services-title {
+  font-family: var(--font-heading);
+  font-size: 52px;
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -1px;
+  color: var(--color-dark-primary);
+  margin: 0 auto 18px auto;
+  max-width: 18ch;
+  text-wrap: balance;
+}
+.services-title em { font-style: italic; color: var(--color-primary); }
+.services-subtitle {
+  font-family: var(--font-heading);
+  font-size: 19px;
+  line-height: 1.55;
+  color: #555;
+  max-width: 620px;
+  margin: 0 auto;
+}
+.services-bento {
+  display: grid;
+  /* Phase 5.0b.2 (2026-04-26): 3-col grid (was 4-col). Featured card spans
+     cols 1-2 rows 1-2 = 4 cells; 5 small cards fill the remaining 5 cells
+     exactly (col 3 rows 1+2 + full row 3 cols 1-2-3). No trailing empty
+     space. Small cards become 1/3 width (was 1/4), giving them more presence
+     and breathing room for headline + body. */
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 220px;
+  gap: 20px;
+}
+.service-card {
+  padding: 32px 28px;
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.service-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 36px rgba(11, 26, 74, 0.10);
+}
+.service-card-featured {
+  grid-column: span 2;
+  grid-row: span 2;
+  background-color: var(--color-dark-primary);
+  background-image: linear-gradient(135deg, var(--color-dark-primary) 0%, var(--color-primary) 60%, var(--color-primary-deep) 100%);
+  background-size: cover;
+  background-position: center;
+  padding: 0;
+  display: flex;
+  align-items: flex-end;
+  min-height: 460px;
+  border: none;
+  /* Round-4 F4 defensive containment (Session 3 close, 2026-04-29):
+     ensure the bg-image + content stay inside the card boundary. The
+     parent .service-card already has overflow:hidden and position:relative
+     but explicit box-sizing on the featured slot prevents content
+     overflow when the photo is portrait-aspect AND the grid slot is
+     wider-than-tall. */
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+}
+.service-card-featured .service-card-content {
+  box-sizing: border-box;
+  max-width: 100%;
+  width: 100%;
+  word-wrap: break-word;
+}
+.service-card-featured .service-card-desc {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+.service-card-overlay {
+  position: absolute;
+  inset: 0;
+  /* Phase 0.5 fix 2026-04-29 — uniform-floor opacity bump to guarantee
+     readability on bright photo backdrops. Floor 0.45 retained as the
+     var() default below so prospects without luminance metadata still
+     render at the Phase 0.5 baseline.
+
+     v1.1 Session 2 Patch 2 (2026-04-30) — luminosity-aware adaptive
+     overlay landed. The engine emits `--overlay-top-opacity` on the
+     featured card based on the photo's mean luminance: bright photos
+     (>0.65) get 0.55 to keep headline contrast; dark photos (<0.30) get
+     0.35 to avoid over-darkening; mid-range photos sit at the 0.45
+     baseline. When the engine emits no variable (no Pillow / no photo /
+     compute failure), this var() default fires and behavior matches
+     the Phase 0.5 fixed floor. */
+  background: linear-gradient(180deg, rgba(11, 26, 74, var(--overlay-top-opacity, 0.45)) 0%, rgba(11, 26, 74, 0.92) 100%);
+}
+.service-card-content {
+  position: relative;
+  z-index: 1;
+  padding: 36px 32px;
+  color: #ffffff;
+  width: 100%;
+}
+.service-card-tag {
+  display: inline-block;
+  padding: 6px 12px;
+  background: var(--color-accent);
+  color: var(--color-dark-primary);
+  border-radius: var(--radius-pill, 999px);
+  font-family: var(--font-body, "Figtree", sans-serif);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  margin-bottom: 16px;
+}
+.service-card-title {
+  font-family: var(--font-heading);
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 1.08;
+  margin: 0 0 12px 0;
+  color: #ffffff;
+  letter-spacing: -0.4px;
+}
+.service-card-desc {
+  font-family: var(--font-heading);
+  font-size: 16px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.92);
+  margin: 0 0 20px 0;
+  max-width: 460px;
+}
+.service-card-cta {
+  color: #ffffff;
+  text-decoration: none;
+  font-family: var(--font-body, "Figtree", sans-serif);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.4px;
+  border-bottom: 2px solid var(--color-accent);
+  padding-bottom: 3px;
+}
+.service-card-icon-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(var(--color-primary-rgb), 0.10);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+  color: var(--color-primary);
+}
+.service-card-icon-wrap svg { width: 26px; height: 26px; }
+.service-card-title-sm {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--color-dark-primary);
+  margin: 0 0 8px 0;
+  line-height: 1.18;
+  letter-spacing: -0.3px;
+}
+.service-card-desc-sm {
+  font-family: var(--font-heading);
+  font-size: 15px;
+  line-height: 1.55;
+  color: #555;
+  margin: 0;
+}
+/* Phase 5.0b (2026-04-26): non-featured bento cards with Unsplash photos.
+   Same visual register as .service-card-featured (full-bleed bg + overlay)
+   at smaller scale. Text-only fallback (.service-card without .service-card-photo)
+   stays for prospects without service-mapped photos. */
+.service-card-photo {
+  background-color: var(--color-dark-primary);
+  background-size: cover;
+  background-position: center;
+  padding: 0;
+  display: flex;
+  align-items: flex-end;
+  /* Phase 5.0b.2 (2026-04-26): min-height MUST match `.services-bento`
+     grid-auto-rows (220px). Earlier 280px caused photo cards to overflow
+     their grid row by 60px, visually stacking middle/right column cards on
+     top of each other (Ron caught it on live walk pre-deploy). The featured
+     card's 460px is correct because it spans 2 rows: 220+220+20gap. */
+  min-height: 220px;
+  border: none;
+  overflow: hidden;
+}
+.service-card-content-sm {
+  position: relative;
+  z-index: 1;
+  padding: 22px 22px;
+  width: 100%;
+}
+.service-card-photo .service-card-title-sm {
+  color: #ffffff;
+  margin: 0 0 6px 0;
+}
+.service-card-photo .service-card-desc-sm {
+  color: rgba(255, 255, 255, 0.92);
+}
+/* Phase 5.0b.2 (2026-04-26): heavier overlay on small photo cards. The
+   featured card's overlay (transparent->0.92 over 460px) reads cleanly
+   because the gradient has room to develop. On 280px-min-height cards the
+   same gradient leaves the upper portion too transparent — bright photos
+   (yellow vest, lightning sky, light wall) cause headline contrast to fail.
+   This rule applies a darker, earlier-developing gradient just to small
+   photo cards; the featured card's overlay rule still wins via specificity. */
+.service-card-photo .service-card-overlay {
+  /* Phase 0.5 fix 2026-04-29 — uniform-floor opacity bump on small photo
+     cards. Top floor raised 0.35 → 0.55, mid raised 0.85 → 0.92. Guarantees
+     headline + body readability on the brightest photo in any card position
+     (sky-heavy, light-siding, pool-water). Trade-off: darker photos pick up
+     extra overlay weight, accepted as cost of universal readability. v1.1
+     backlog: luminosity-aware per-card overlay. */
+  background: linear-gradient(180deg,
+    rgba(11, 26, 74, 0.55) 0%,
+    rgba(11, 26, 74, 0.92) 50%,
+    rgba(11, 26, 74, 0.97) 100%);
+}
+/* Phase 5.0b.2 (2026-04-26): CTA arrow on small photo cards mirrors the
+   featured-card CTA pattern at smaller scale. Yellow accent underline gives
+   every card the same design pop the featured has — bento now reads as one
+   designed system rather than featured-plus-thumbnails. */
+.service-card-cta-sm {
+  display: inline-block;
+  margin-top: 14px;
+  color: #ffffff;
+  text-decoration: none;
+  font-family: var(--font-body, "Figtree", sans-serif);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.3px;
+  border-bottom: 2px solid var(--color-accent);
+  padding-bottom: 2px;
+}
+@media (max-width: 899px) {
+  .services-bento {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 200px;
+  }
+  .service-card-featured {
+    grid-column: span 2;
+    grid-row: span 2;
+    min-height: 380px;
+  }
+  .service-card-photo {
+    /* Mobile grid-auto-rows is 200px — match it (same bug as desktop). */
+    min-height: 200px;
+  }
+  .services-title { font-size: 34px; }
+  .service-card-title { font-size: 26px; }
+}
+
+
+/* ==========================================================================
+   §4. Stats section (homepage, dark band)
+   ========================================================================== */
+.stats-section {
+  padding: 120px 24px;
+  background: var(--color-dark-primary);
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+.stats-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 18% 28%, rgba(var(--color-primary-rgb), 0.28) 0%, transparent 52%),
+    radial-gradient(circle at 82% 72%, rgba(var(--color-accent-rgb), 0.16) 0%, transparent 52%);
+  pointer-events: none;
+}
+.stats-container {
+  max-width: var(--container-wide, 1200px);
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.stats-header { text-align: center; margin-bottom: 72px; }
+.stats-eyebrow {
+  font-family: var(--font-body, "Figtree", sans-serif);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2.2px;
+  text-transform: uppercase;
+  color: rgba(245, 158, 11, 0.95);
+  margin-bottom: 18px;
+}
+.stats-title {
+  font-family: var(--font-heading);
+  font-size: 52px;
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -1px;
+  color: #ffffff;
+  margin: 0;
+  text-wrap: balance;
+}
+.stats-title em { font-style: italic; color: var(--color-accent); }
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+.stats-item { text-align: center; }
+.stats-number,
+.stats-number-static {
+  font-family: var(--font-heading);
+  font-size: 72px;
+  font-weight: 500;
+  line-height: 1;
+  color: #ffffff;
+  margin-bottom: 12px;
+  letter-spacing: -1.5px;
+}
+.stats-label {
+  font-family: var(--font-body, "Figtree", sans-serif);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  color: rgba(255, 255, 255, 0.78);
+}
+@media (max-width: 899px) {
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 28px; }
+  .stats-title { font-size: 34px; }
+  .stats-number, .stats-number-static { font-size: 52px; }
+}
+
+
+/* ==========================================================================
+   §5. Testimonials section (homepage + standalone testimonials.html)
+   ========================================================================== */
+.testimonials-section {
+  padding: var(--space-section, 120px) 24px;
+  background: var(--color-cream, #f4f6fb);
+}
+.testimonials-container {
+  max-width: var(--container-wide, 1200px);
+  margin: 0 auto;
+}
+.testimonials-header { text-align: center; margin-bottom: 64px; }
+.testimonials-eyebrow {
+  font-family: var(--font-body, "Figtree", sans-serif);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2.2px;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: 18px;
+}
+.testimonials-title {
+  font-family: var(--font-heading);
+  font-size: 52px;
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -1px;
+  color: var(--color-dark-primary);
+  margin: 0 0 18px 0;
+  text-wrap: balance;
+}
+.testimonials-title em { font-style: italic; color: var(--color-primary); }
+.testimonials-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-body, "Figtree", sans-serif);
+  font-size: 15px;
+  color: #555;
+}
+.testimonials-stars { color: var(--color-accent); letter-spacing: 1px; font-size: 18px; }
+.testimonials-rating-text { font-weight: 600; }
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+.testimonial-card {
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+}
+.testimonial-stars {
+  color: var(--color-accent);
+  letter-spacing: 2px;
+  margin-bottom: 18px;
+  font-size: 16px;
+}
+.testimonial-quote {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--color-dark-primary);
+  margin: 0 0 22px 0;
+  flex: 1;
+}
+.testimonial-author { border-top: 1px solid rgba(0, 0, 0, 0.07); padding-top: 16px; }
+.testimonial-name {
+  font-family: var(--font-body, "Figtree", sans-serif);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-dark-primary);
+  margin-bottom: 2px;
+}
+.testimonial-location {
+  font-family: var(--font-body, "Figtree", sans-serif);
+  font-size: 13px;
+  color: #777;
+  letter-spacing: 0.2px;
+}
+.testimonial-role {
+  font-family: var(--font-body, "Figtree", sans-serif);
+  font-size: 13px;
+  color: var(--color-primary);
+  font-weight: 600;
+  margin-top: 4px;
+}
+@media (max-width: 899px) {
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .testimonials-title { font-size: 34px; }
+}
+
+
+/* ==========================================================================
+   §6. Promo callout (homepage band — DROPS on Volthom; rules ship for system)
+   ========================================================================== */
+.promo-callout {
+  padding: 80px 24px;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-dark-primary) 100%);
+  color: #ffffff;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.promo-callout-container { max-width: var(--container-default, 880px); margin: 0 auto; position: relative; z-index: 1; }
+.promo-callout-eyebrow {
+  font-family: var(--font-body, "Figtree", sans-serif);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2.4px;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 18px;
+}
+.promo-callout-title {
+  font-family: var(--font-heading);
+  font-size: 44px;
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.8px;
+  color: #ffffff;
+  margin: 0 0 18px 0;
+}
+.promo-callout-sub {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.88);
+  margin: 0 0 32px 0;
+  max-width: 620px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.promo-callout-cta {
+  display: inline-block;
+  padding: 16px 32px;
+  background: var(--color-accent);
+  color: var(--color-dark-primary);
+  text-decoration: none;
+  border-radius: var(--radius-pill, 999px);
+  font-family: var(--font-body, "Figtree", sans-serif);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+
+/* ==========================================================================
+   §7. FAQ section (homepage + drop-in for any page)
+   ========================================================================== */
+.faq-section {
+  padding: var(--space-section, 120px) 24px;
+  background: var(--color-background);
+}
+.faq-container { max-width: 820px; margin: 0 auto; }
+.faq-header { text-align: center; margin-bottom: 56px; }
+.faq-eyebrow {
+  font-family: var(--font-body, "Figtree", sans-serif);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2.2px;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: 18px;
+}
+.faq-title {
+  font-family: var(--font-heading);
+  font-size: 52px;
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -1px;
+  color: var(--color-dark-primary);
+  margin: 0;
+  text-wrap: balance;
+}
+.faq-list { display: flex; flex-direction: column; gap: 4px; }
+.faq-item {
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  overflow: hidden;
+  transition: border-color 0.2s ease;
+}
+.faq-item[open] { border-color: rgba(var(--color-primary-rgb), 0.30); }
+.faq-question {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--color-dark-primary);
+  padding: 22px 28px;
+  cursor: pointer;
+  list-style: none;
+  position: relative;
+  padding-right: 60px;
+  letter-spacing: -0.2px;
+}
+.faq-question::-webkit-details-marker { display: none; }
+.faq-question::after {
+  content: "+";
+  position: absolute;
+  right: 28px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-heading);
+  font-size: 28px;
+  color: var(--color-primary);
+  transition: transform 0.2s ease;
+  font-weight: 400;
+  line-height: 1;
+}
+.faq-item[open] .faq-question::after { content: "−"; }
+.faq-answer {
+  padding: 0 28px 24px 28px;
+  font-family: var(--font-heading);
+  font-size: 17px;
+  line-height: 1.6;
+  color: #444;
+}
+@media (max-width: 899px) {
+  .faq-title { font-size: 34px; }
+  .faq-question { font-size: 18px; padding: 20px 24px; padding-right: 52px; }
+  .faq-answer { padding: 0 24px 22px 24px; font-size: 16px; }
+}
+
+
+/* ==========================================================================
+   §8. Contact section (homepage + standalone contact.html)
+   --------------------------------------------------------------------------
+   Two-column form + sidebar. On contact.html it's the page's only band
+   (after .subpage-hero); on index.html it's section 9.
+   ========================================================================== */
+.contact-section {
+  padding: var(--space-section, 120px) 24px;
+  background: var(--color-paper-warm, #e7e9ee);
+}
+.contact-container {
+  max-width: var(--container-wide, 1200px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 56px;
+  align-items: start;
+}
+.contact-form-wrap h2 {
+  font-family: var(--font-heading);
+  font-size: 44px;
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -0.8px;
+  color: var(--color-dark-primary);
+  margin: 0 0 14px 0;
+}
+.contact-form-wrap h2 em { font-style: italic; color: var(--color-primary); }
+.contact-form-wrap > p {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  line-height: 1.55;
+  color: #555;
+  margin: 0 0 32px 0;
+  max-width: 56ch;
+}
+.contact-form { display: flex; flex-direction: column; gap: 14px; }
+.contact-form label {
+  font-family: var(--font-body, "Figtree", sans-serif);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-dark-primary);
+  letter-spacing: 0.3px;
+  margin-top: 6px;
+}
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+  font-family: var(--font-body, "Figtree", sans-serif);
+  font-size: 16px;
+  padding: 13px 16px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  background: #ffffff;
+  color: var(--color-dark-primary);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb), 0.18);
+}
+.contact-form textarea { resize: vertical; min-height: 110px; }
+.contact-form button {
+  margin-top: 12px;
+  padding: 14px 28px;
+  background: var(--color-primary);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-pill, 999px);
+  font-family: var(--font-body, "Figtree", sans-serif);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: background 0.2s ease;
+}
+.contact-form button:hover { background: var(--color-dark-primary); }
+.contact-honeypot { position: absolute; left: -9999px; height: 0; width: 0; overflow: hidden; }
+.contact-sidebar {
+  background: var(--color-dark-primary);
+  color: #ffffff;
+  padding: 40px 36px;
+  border-radius: 18px;
+  position: sticky;
+  top: 32px;
+}
+.contact-sidebar h3 {
+  font-family: var(--font-heading);
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: -0.4px;
+  color: #ffffff;
+  margin: 0 0 24px 0;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+}
+.contact-sidebar dl { margin: 0; display: flex; flex-direction: column; gap: 18px; }
+.contact-sidebar dt {
+  font-family: var(--font-body, "Figtree", sans-serif);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: rgba(245, 158, 11, 0.95);
+  margin-bottom: 4px;
+}
+.contact-sidebar dd {
+  font-family: var(--font-heading);
+  font-size: 17px;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.94);
+  margin: 0;
+}
+.contact-sidebar a {
+  color: #ffffff;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(245, 158, 11, 0.55);
+}
+.contact-sidebar a:hover { border-bottom-color: var(--color-accent); }
+@media (max-width: 899px) {
+  .contact-container { grid-template-columns: 1fr; gap: 36px; }
+  .contact-form-wrap h2 { font-size: 32px; }
+  .contact-sidebar { position: static; padding: 32px 28px; }
+}
+
+
+
+/* ==========================================================================
+   §10. Content section — REMOVED (Phase 6, 2026-04-26)
+   --------------------------------------------------------------------------
+   `.content-section` and 11 `.content-*` descendants
+   (`.content-block`, `.content-block-title`, `.content-block-lede`,
+   `.content-credentials`, `.content-credential-label`,
+   `.content-credential-value`, `.content-figure`, `.content-img`,
+   `.content-caption`, `.content-quote`, `.content-quote-attr`) are dead
+   vocabulary as of Phase 5.0a: about.html now uses `.page-hero` +
+   `.story-grid` + `.cred-grid` (§15) instead. All grep-verified zero refs
+   in the rendered HTML before removal. Restore from git history if a
+   future about-page persona variant needs the long-form-prose register.
+   ========================================================================== */
+
+
+/* ==========================================================================
+   §11. Service detail (services.html — per-service expanded block)
+   --------------------------------------------------------------------------
+   Below the .services-bento on services.html, each of the 6 services gets
+   its own .service-detail block: alternating image / text columns, longer
+   description, "what's included" list, and inline CTA. F1 doesn't ship
+   per-service sub-pages; this is the flagship convention for services.html
+   itself carrying the full detail.
+   ========================================================================== */
+.service-detail-section { padding: var(--space-section, 120px) 24px; background: var(--color-cream, #f4f6fb); }
+.service-detail-container { max-width: var(--container-wide, 1200px); margin: 0 auto; }
+.service-detail-section-header { text-align: center; margin-bottom: 72px; }
+.service-detail-section-eyebrow {
+  font-family: var(--font-body, "Figtree", sans-serif);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2.2px;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: 18px;
+}
+.service-detail-section-title {
+  /* Phase 6.0b (2026-04-26): voice/typography mismatch fix per Design audit
+     Q4-D. The default copy "Each service, in plain language." rendered in
+     italic-serif read as fancy language — directly contradicting the prose.
+     Sans-serif (Figtree 600) lets the prose mean what it says. The italic-
+     serif heading shape stays available for prose that earns it (e.g. a
+     prospect that authors a more lyrical detail-section title). */
+  font-family: var(--font-body, "Figtree", sans-serif);
+  font-size: 38px;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.4px;
+  color: var(--color-dark-primary);
+  margin: 0;
+  text-wrap: balance;
+}
+.service-detail {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: center;
+  padding: 64px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.07);
+}
+.service-detail:first-of-type { border-top: none; padding-top: 0; }
+.service-detail--reverse .service-detail-text { order: 2; }
+.service-detail-eyebrow {
+  font-family: var(--font-body, "Figtree", sans-serif);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.4px;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: 12px;
+}
+.service-detail-title {
+  font-family: var(--font-heading);
+  font-size: 36px;
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.6px;
+  color: var(--color-dark-primary);
+  margin: 0 0 18px 0;
+}
+.service-detail-desc {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  line-height: 1.6;
+  color: #444;
+  margin: 0 0 22px 0;
+}
+.service-detail-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px 0;
+}
+.service-detail-list li {
+  font-family: var(--font-heading);
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--color-dark-primary);
+  padding-left: 24px;
+  margin-bottom: 8px;
+  position: relative;
+}
+.service-detail-list li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--color-accent);
+  font-weight: 600;
+}
+.service-detail-tag {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 8px 16px;
+  background: rgba(var(--color-primary-rgb), 0.08);
+  color: var(--color-primary);
+  border-radius: var(--radius-pill, 999px);
+  font-family: var(--font-body, "Figtree", sans-serif);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+.service-detail-image {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 56px;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  aspect-ratio: 4/3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+}
+.service-detail-image svg { width: 100%; height: 100%; max-width: 220px; }
+@media (max-width: 899px) {
+  .service-detail { grid-template-columns: 1fr; gap: 32px; padding: 48px 0; }
+  .service-detail--reverse .service-detail-text { order: 0; }
+  .service-detail-title { font-size: 28px; }
+  .service-detail-image { padding: 36px; aspect-ratio: 16/10; }
+  .service-detail-section-title { font-size: 32px; }
+}
+
+/* ==========================================================================
+   §12 + §13 lift (Phase 3a, 2026-04-25)
+   --------------------------------------------------------------------------
+   Bundle's inner-pages.css §12 (sitenav) and §13 (page resets) lifted under
+   body.is-inner scope. Homepage <body> stays unscoped, so its existing
+   .sitenav (fixed-overlay, dark) keeps working. Inner pages emit
+   <body class="is-inner"> and pick up the bundle's sticky-translucent nav
+   plus the bundle's body / a / img / skip-link resets.
+   Voice migrates verbatim — class names .sitenav, .navlinks, .nav-cta,
+   .skip-link are unchanged from the bundle.
+   ========================================================================== */
+
+/* §12 — Sitenav (inner pages: sticky-translucent variant) */
+body.is-inner .sitenav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(244, 246, 251, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  color: inherit;
+}
+body.is-inner .sitenav.scrolled { background: rgba(244, 246, 251, 0.94); backdrop-filter: blur(12px); }
+body.is-inner .sitenav .wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--color-dark-primary);
+}
+body.is-inner .sitenav .wm-stack { display: flex; flex-direction: column; line-height: 1; }
+body.is-inner .sitenav .wm-title {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.2px;
+  color: var(--color-dark-primary);
+}
+body.is-inner .sitenav .wm-title em { font-style: italic; color: var(--color-primary); font-weight: 500; opacity: 1; }
+body.is-inner .sitenav .wm-sub {
+  font-family: var(--font-body, "Figtree", sans-serif);
+  font-size: 11px;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: #666;
+  margin-top: 4px;
+  opacity: 1;
+}
+body.is-inner .sitenav .navlinks { display: flex; gap: 28px; font-size: 14px; font-weight: 500; letter-spacing: 0.2px; text-transform: none; }
+body.is-inner .sitenav .navlinks a {
+  font-family: var(--font-body, "Figtree", sans-serif);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-dark-primary);
+  text-decoration: none;
+  letter-spacing: 0.2px;
+  transition: color 0.2s ease;
+  opacity: 1;
+}
+body.is-inner .sitenav .navlinks a:hover,
+body.is-inner .sitenav .navlinks a[aria-current="page"] { color: var(--color-primary); }
+body.is-inner .sitenav .navlinks a[aria-current="page"] { font-weight: 700; }
+body.is-inner .sitenav .nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: var(--color-primary);
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: var(--radius-pill, 999px);
+  font-family: var(--font-body, "Figtree", sans-serif);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  text-transform: none;
+  border: none;
+  backdrop-filter: none;
+}
+body.is-inner .sitenav .nav-cta:hover { background: var(--color-primary-deep); border-color: transparent; }
+@media (max-width: 899px) {
+  body.is-inner .sitenav { padding: 14px 18px; gap: 16px; }
+  body.is-inner .sitenav .navlinks { display: none; }
+  body.is-inner .sitenav .wm-title { font-size: 18px; }
+  body.is-inner .sitenav .nav-cta { padding: 8px 14px; font-size: 12px; }
+}
+
+/* §13 — Page-level resets / shared (inner pages only) */
+body.is-inner {
+  margin: 0;
+  font-family: var(--font-body, "Figtree", system-ui, -apple-system, sans-serif);
+  color: var(--color-dark-primary);
+  background: var(--color-background);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+body.is-inner a { color: var(--color-primary); }
+body.is-inner .skip-link { position: absolute; left: -9999px; }
+body.is-inner .skip-link:focus { left: 24px; top: 24px; background: var(--color-dark-primary); color: #fff; padding: 12px 18px; border-radius: 8px; z-index: 200; }
+
+
+/* §14 — Mobile CTA bar (Phase 3b, 2026-04-25)
+   Sticky bottom-of-viewport bar for mobile (< 900px). Hidden on desktop.
+   Markup: <aside class="mobile-cta-bar"> with one or two anchor children.
+   Soft-gate: phone half drops in render.py when contact.phone is null.
+   Modeled on prospect-site §11 (production deployment) so the deployed
+   composer matches what F1–F8 already ship. Body padding-bottom prevents
+   content from sliding under the bar on small screens. ========================= */
+.mobile-cta-bar { display: none; }
+
+@media (max-width: 899px) {
+  .mobile-cta-bar {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    background: #ffffff;
+    padding: 12px 16px;
+    padding-bottom: calc(12px + env(safe-area-inset-bottom));
+    gap: 10px;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.10);
+  }
+
+  .mobile-cta-primary,
+  .mobile-cta-secondary {
+    flex: 1;
+    text-align: center;
+    padding: 14px 16px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-family: var(--font-body, "Figtree", system-ui, -apple-system, sans-serif);
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 1.2;
+  }
+
+  .mobile-cta-primary {
+    background: var(--color-primary);
+    color: #ffffff;
+  }
+
+  .mobile-cta-secondary {
+    background: transparent;
+    color: var(--color-dark-primary);
+    border: 1.5px solid var(--color-dark-primary);
+  }
+
+  /* Body padding so content scrolls clear of the sticky bar. */
+  body { padding-bottom: 80px; }
+  body.is-inner { padding-bottom: 80px; }
+}
+
+
+/* ==========================================================================
+   §15 — Inner-page flagship vocabulary (Phase 5.0a, 2026-04-26)
+   --------------------------------------------------------------------------
+   New inner-page vocabulary that supersedes .subpage-hero / .content-section /
+   .testimonials-section / .contact-section / .footer for Phase 5.0a depth
+   restoration. Old vocabulary stays alive for backward compatibility with
+   any prior renders; new render emits use these classes instead.
+
+   Inner pages keep <body class="is-inner"> for inner-nav scoping (see §13)
+   but adopt this section's vocab for their content bands. Container width
+   narrows to 1080px for inner-page editorial pacing (homepage stays 1320px
+   via §1 default .wrap rule — these inner-band scoped overrides do not
+   leak out).
+   ========================================================================== */
+
+.page-hero {
+  padding: 140px 0 72px;
+  background: var(--color-paper-warm);
+}
+.page-hero .wrap { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+.page-hero .eyebrow {
+  font-family: var(--font-body, "Figtree", sans-serif);
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: 16px;
+}
+.page-hero h1 {
+  font-family: var(--font-heading);
+  font-size: 56px;
+  line-height: 1.1;
+  color: var(--color-dark-primary);
+  margin: 0 0 18px;
+  font-weight: 500;
+}
+.page-hero h1 em { font-style: italic; color: var(--color-accent); }
+.page-hero .lede {
+  font-family: var(--font-body, "Figtree", sans-serif);
+  font-size: 18px;
+  line-height: 1.6;
+  font-weight: 500;
+  color: var(--color-dark-primary);
+  max-width: 640px;
+  margin: 0;
+}
+/* Phase 6.0c (2026-04-26): page-hero credential caption — license / cert
+   number gets its own register below the lede so it stops reading as
+   filler in the body sentence. Per Design audit tightening note. */
+.page-hero .page-hero-caption {
+  font-family: var(--font-body, "Figtree", sans-serif);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--color-dark-primary);
+  margin: 14px 0 0 0;
+  opacity: 0.72;
+}
+
+.page-section { padding: 72px 0; }
+.page-section .wrap { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+.page-section h2 {
+  font-family: var(--font-heading);
+  font-size: 36px;
+  line-height: 1.2;
+  color: var(--color-dark-primary);
+  margin: 0 0 24px;
+  font-weight: 500;
+}
+.page-section h2 em { font-style: italic; color: var(--color-accent); }
+.page-section .lead {
+  font-family: var(--font-body, "Figtree", sans-serif);
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--color-dark-primary);
+}
+
+/* About-page credentials grid (heavier than .content-credentials — boxed cells) */
+.cred-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 32px;
+}
+.cred-cell {
+  padding: 24px;
+  background: var(--color-cream);
+  border: 1px solid rgba(11, 26, 74, 0.08);
+  border-radius: 8px;
+}
+.cred-cell .l {
+  font-family: var(--font-body, "Figtree", sans-serif);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: 8px;
+}
+.cred-cell .v {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  line-height: 1.3;
+  color: var(--color-dark-primary);
+  font-weight: 500;
+}
+.cred-cell .v em { font-style: italic; color: var(--color-accent); }
+
+/* About-page brand-band (full-bleed dark band that hosts the wordmark+tagline asset) */
+.brand-band {
+  background: #000;
+  padding: 72px 0;
+  text-align: center;
+}
+.brand-band img {
+  max-width: 720px;
+  width: 90%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Contact page — split grid (info column + form column) */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  padding: 72px 0;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+.contact-grid > div { padding: 0 32px; }
+.contact-info h2 {
+  font-family: var(--font-heading);
+  font-size: 32px;
+  line-height: 1.2;
+  color: var(--color-dark-primary);
+  margin: 0 0 24px;
+  font-weight: 500;
+}
+.contact-info h2 em { font-style: italic; color: var(--color-accent); }
+.contact-row {
+  padding: 16px 0;
+  border-top: 1px solid rgba(11, 26, 74, 0.1);
+  font-family: var(--font-body, "Figtree", sans-serif);
+}
+.contact-row:first-of-type { border-top: 0; padding-top: 0; }
+.contact-row .l {
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+.contact-row .v {
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--color-dark-primary);
+}
+.contact-row .v a {
+  color: var(--color-dark-primary);
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-accent);
+}
+.contact-row .v.phone {
+  /* Phase 6.0b (2026-04-26): phone-as-page-anchor per Design audit. The
+     phone number is the conversion on this page; treating it at body weight
+     makes it disappear. clamp(36-48px) Cormorant 500 navy lets the number
+     dominate the info column the way it should. */
+  font-family: var(--font-heading);
+  font-size: clamp(36px, 4vw, 48px);
+  line-height: 1.05;
+  font-weight: 500;
+  color: var(--color-dark-primary);
+  letter-spacing: -0.005em;
+}
+.contact-row .v.phone a {
+  color: inherit;
+  border-bottom: 2px solid var(--color-accent);
+}
+
+/* Contact page — area-band (service-area surface below grid) */
+.area-band {
+  padding: 64px 0;
+  background: var(--color-cream);
+}
+/* Phase 6.0b (2026-04-26): area-band--summary modifier for Contact, per
+   Design audit. About carries the deep cities-grid + counties-grid
+   treatment; Contact gets the abbreviated single-line summary so it
+   visibly the abbreviated cousin, not the same-treatment-at-lower-density.
+   Also drops the "Where we work" headline (and its italic-amber accent),
+   keeping Contact under the 2-per-page accent budget. */
+.area-band--summary {
+  padding: 36px 0;
+  background: var(--color-paper-warm);
+}
+.area-summary {
+  font-family: var(--font-body, "Figtree", sans-serif);
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--color-dark-primary);
+  margin: 0;
+  letter-spacing: 0.01em;
+  max-width: 1080px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 32px;
+  text-align: center;
+}
+.area-summary-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-right: 14px;
+}
+.area-band .wrap { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+.area-band h2 {
+  font-family: var(--font-heading);
+  font-size: 32px;
+  line-height: 1.2;
+  color: var(--color-dark-primary);
+  margin: 0 0 24px;
+  font-weight: 500;
+}
+.area-band h2 em { font-style: italic; color: var(--color-accent); }
+.area-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  font-family: var(--font-body, "Figtree", sans-serif);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--color-dark-primary);
+}
+.area-list .l {
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+/* Testimonials page — page-hero metrics trio */
+.metrics {
+  /* Phase 6.0b (2026-04-26): switched grid → flex so the row balances when
+     the third tile drops (perfect-rating prospects). With grid 3-col, the
+     two remaining tiles floated left and the row read off-center. Flex
+     with gap 64px lets two metrics sit naturally left-aligned (matching
+     the page-hero h1 + lede above) and three metrics take their natural
+     widths with the same gap. */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 64px;
+  margin-top: 40px;
+  padding-top: 40px;
+  border-top: 1px solid rgba(11, 26, 74, 0.12);
+  max-width: 640px;
+}
+.metric .v {
+  font-family: var(--font-heading);
+  font-size: 56px;
+  line-height: 1.05;
+  color: var(--color-accent);
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+.metric .l {
+  font-family: var(--font-body, "Figtree", sans-serif);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+/* Testimonials page — t-grid 2-up cards (lighter than .testimonials-grid) */
+.t-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+}
+.t-card {
+  padding: 28px;
+  background: var(--color-cream);
+  border: 1px solid rgba(11, 26, 74, 0.08);
+  border-radius: 6px;
+}
+.t-card .stars {
+  color: var(--color-accent);
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  margin-bottom: 14px;
+}
+.t-card blockquote {
+  margin: 0 0 16px;
+  font-family: var(--font-heading);
+  font-size: 19px;
+  line-height: 1.45;
+  color: var(--color-dark-primary);
+  font-style: italic;
+}
+.t-card .who {
+  font-family: var(--font-body, "Figtree", sans-serif);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-dark-primary);
+}
+.t-card .who strong { color: var(--color-primary); }
+.t-card .who .src {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-top: 4px;
+  opacity: 0.7;
+}
+
+/* Testimonials page — pq-band (full-width dark pullquote between t-grids) */
+.pq-band {
+  padding: 88px 0;
+  background: var(--color-dark-primary);
+  color: var(--color-cream);
+}
+.pq-band .wrap { max-width: 840px; margin: 0 auto; padding: 0 32px; text-align: center; }
+.pq-band blockquote {
+  font-family: var(--font-heading);
+  font-size: 30px;
+  line-height: 1.35;
+  font-style: italic;
+  color: var(--color-cream);
+  margin: 0 0 24px;
+}
+.pq-band cite {
+  font-family: var(--font-body, "Figtree", sans-serif);
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  font-style: normal;
+}
+
+/* Inner-page nav: bring the .wm-mark element into body.is-inner sitenav so
+   the brand mark renders alongside the wm-stack (matches homepage shape). */
+body.is-inner .sitenav .wm-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+body.is-inner .sitenav .wm-mark img,
+body.is-inner .sitenav .wm-mark svg {
+  width: 34px;
+  height: 34px;
+  display: block;
+}
+
+/* §15 mobile collapse */
+@media (max-width: 760px) {
+  .page-hero { padding: 110px 0 56px; }
+  .page-hero h1 { font-size: 40px; }
+  .page-section h2, .contact-info h2, .area-band h2 { font-size: 28px; }
+  .cred-grid, .area-list { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; gap: 32px; }
+  .metrics { grid-template-columns: 1fr 1fr; }
+  .t-grid { grid-template-columns: 1fr; }
+  .pq-band blockquote { font-size: 22px; }
+  .brand-band { padding: 48px 0; }
+  .brand-band img { max-width: 92%; }
+}
+
+/* Phase 5.0a (2026-04-26): inner-page footer link contrast fix.
+   `body.is-inner a` defaults to var(--color-primary) (navy) for general
+   inner-page link styling, but that cascades into the .footer where
+   the background is also navy — invisible text. This override re-applies
+   the footer's intended cream-on-navy link treatment under .is-inner scope. */
+body.is-inner .footer a { color: rgba(244, 246, 251, 0.9); }
+body.is-inner .footer a:hover { color: #f4c79a; }
+body.is-inner .footer .footer-bot a { color: rgba(244, 246, 251, 0.65); }
+body.is-inner .footer .footer-attr a { color: rgba(244, 246, 251, 0.55); }
+
+/* Phase 5.0a (2026-04-26): footer attribution rows. Google contributor row
+   and Unsplash photographer row both ride .footer-attr. Without this CSS the
+   rows render as unstyled walls of body-text links — visible defect on
+   services.html (6 Unsplash photos = 6 photographer credits). The prospects/
+   hand-roll target had inline styles; hoisting into composer-system.css. */
+.footer-attr {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(244, 199, 154, 0.10);
+  font-family: var(--font-body, 'Figtree', sans-serif);
+  font-size: 11px;
+  line-height: 1.65;
+  letter-spacing: 0.04em;
+  color: rgba(244, 246, 251, 0.55);
+}
+.footer-attr a {
+  color: rgba(244, 246, 251, 0.7);
+  text-decoration: underline;
+  text-decoration-color: rgba(244, 246, 251, 0.18);
+  text-underline-offset: 2px;
+}
+.footer-attr a:hover {
+  color: #f4c79a;
+  text-decoration-color: #f4c79a;
+}
+.footer-attr-unsplash {
+  margin-top: 8px;  /* tighter than google row above it */
+}
+
+/* ==========================================================================
+   Phase 5.0c (2026-04-26) — manifesto-band declarative restyle
+   --------------------------------------------------------------------------
+   Replaces the heritage `.manifesto` band's italic-serif-centered shape with
+   a declarative brand-pillar register: sans-serif headline, optional serif
+   body, left-aligned within a centered container, navy on cream, optional
+   4px navy accent rule above headline. Differentiates from the navy
+   `.pullquote` band (italic serif, voice-of-customer) directly above it.
+   The heritage `.manifesto` rules at §3 stay alive for backward compat;
+   render path now emits `.manifesto-band` instead.
+   ========================================================================== */
+.manifesto-band {
+  padding: 96px 24px;
+  background: var(--manifesto-band-bg, #f7f2e8);
+  color: var(--color-dark-primary);
+  display: flex;
+  align-items: center;
+  min-height: 360px;
+}
+.manifesto-inner {
+  max-width: 768px;
+  margin: 0 auto;
+  width: 100%;
+}
+/* Phase 6.0b (2026-04-26): per Design audit, the heritage 4px naked rule
+   reads as a placeholder. Pair it with an eyebrow ("THE PROMISE" by default,
+   prose-overridable) so the rule has structural intent. The eyebrow uses the
+   page-hero amber-eyebrow grammar (Figtree 600, 11px, 0.18em, amber). */
+.manifesto-eyebrow {
+  font-family: var(--font-body, "Figtree", sans-serif);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin: 0 0 20px 0;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.manifesto-eyebrow::before {
+  content: "";
+  width: 32px;
+  height: 2px;
+  background: var(--color-dark-primary);
+  flex: none;
+}
+.manifesto-headline {
+  font-family: var(--font-body, "Figtree", sans-serif);
+  font-weight: 700;
+  font-size: clamp(34px, 4vw, 44px);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--color-dark-primary);
+  max-width: 24ch;
+  margin: 0 0 22px 0;
+}
+.manifesto-body {
+  font-family: var(--font-body, "Figtree", sans-serif);
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.45;
+  color: var(--color-dark-primary);
+  max-width: 44ch;
+  margin: 0;
+}
+@media (max-width: 760px) {
+  .manifesto-band { padding: 72px 20px; min-height: 0; }
+  .manifesto-eyebrow { margin-bottom: 16px; }
+  .manifesto-headline { margin-bottom: 18px; }
+}
+
+/* =========================================================================
+   Phase 6.0d (2026-04-26) — homepage CTA band
+   --------------------------------------------------------------------------
+   Conversion-ladder rung that replaces the embedded contact form on the
+   homepage (per Design audit). Same width-rhythm + paper-warm bg as the
+   manifesto-band so it reads as a peer editorial object. Headline uses
+   serif (Cormorant 500) with one italic-amber accent — different register
+   from manifesto's declarative sans, signalling "talk to us" vs "the promise."
+   Two buttons land side-by-side: navy fill primary (call), navy outline
+   secondary (link to /contact for the actual form).
+   ========================================================================== */
+.cta-band {
+  padding: 96px 24px;
+  background: var(--manifesto-band-bg, #f7f2e8);
+  color: var(--color-dark-primary);
+  display: flex;
+  align-items: center;
+  min-height: 360px;
+}
+.cta-band-inner {
+  max-width: 768px;
+  margin: 0 auto;
+  width: 100%;
+}
+.cta-band-eyebrow {
+  font-family: var(--font-body, "Figtree", sans-serif);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin: 0 0 20px 0;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.cta-band-eyebrow::before {
+  content: "";
+  width: 32px;
+  height: 2px;
+  background: var(--color-dark-primary);
+  flex: none;
+}
+.cta-band-headline {
+  font-family: var(--font-heading, "Cormorant Garamond", serif);
+  font-weight: 500;
+  font-size: clamp(34px, 4.2vw, 48px);
+  line-height: 1.15;
+  letter-spacing: -0.005em;
+  color: var(--color-dark-primary);
+  max-width: 24ch;
+  margin: 0 0 22px 0;
+}
+.cta-band-headline em {
+  font-style: italic;
+  color: var(--color-accent);
+}
+.cta-band-body {
+  font-family: var(--font-body, "Figtree", sans-serif);
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.45;
+  color: var(--color-dark-primary);
+  max-width: 44ch;
+  margin: 0 0 28px 0;
+}
+.cta-band-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+}
+.cta-band-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 14px 26px;
+  border-radius: 999px;
+  font-family: var(--font-body, "Figtree", sans-serif);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease, color .2s ease;
+}
+.cta-band-button--primary {
+  background: var(--color-dark-primary);
+  color: var(--color-cream, #f7f2e8);
+  border: 1.5px solid var(--color-dark-primary);
+}
+.cta-band-button--primary:hover {
+  background: var(--color-primary-deep, #1a2942);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,.18);
+}
+.cta-band-button--secondary {
+  background: transparent;
+  color: var(--color-dark-primary);
+  border: 1.5px solid var(--color-dark-primary);
+}
+.cta-band-button--secondary:hover {
+  background: var(--color-dark-primary);
+  color: var(--color-cream, #f7f2e8);
+  transform: translateY(-2px);
+}
+@media (max-width: 760px) {
+  .cta-band { padding: 72px 20px; min-height: 0; }
+  .cta-band-eyebrow { margin-bottom: 16px; }
+  .cta-band-headline { margin-bottom: 18px; }
+  .cta-band-body { margin-bottom: 22px; }
+  .cta-band-buttons { gap: 10px; }
+  .cta-band-button { padding: 12px 22px; font-size: 13px; }
+}

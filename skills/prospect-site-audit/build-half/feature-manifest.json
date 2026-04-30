@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "description": "P1 SIMPLIFY-tooling feature manifest — institutional memory of which features the engine emits, with markers and test-page references. Verified by build-half/scripts/verify_feature_manifest.py against rendered fixture HTML. Every active feature must appear in its test_page; every removed feature must NOT appear (catches accidental re-introduction). Selection rationale per entry explains the load-bearing logic so future contributors can read the manifest without reverse-engineering the codebase.",
+  "scoping_notes": [
+    "Stage 1 (Session 4, 2026-04-29): emit-shape markers only — HTML class names, data attributes, schema script tags. CSS-rule coverage (e.g. .hero-crossfade rule presence in composer-system.css) earns its own cycle if it surfaces.",
+    "Marker convention: use `class=\"X` prefix-aware pattern for class-based markers — handles single-class and multi-class attributes; avoids CSS-variable false positives (e.g. `--manifesto-band-bg` would match a bare-substring grep but not a `class=\"manifesto-band` grep).",
+    "test_page is the fixture page where the feature is expected to emit. Verify script checks marker presence (active) or absence (removed) only on that page.",
+    "Genealogy: P1 codified at Session 4 Phase 0.5 close. Bug class surfaced at Session 3 Round 3 — v0.7.2 → v0.8/v1.0 SIMPLIFY refactor silently dropped count-up animation + hero crossfade slideshow. Both were ported back from T&F Electric flagship same session. Without a manifest, silent drops only surface via prospect cold-walk on production; manifest catches them at build time."
+  ],
+  "features": [
+    {
+      "id": "count-up-lead-stat",
+      "marker": "data-target=\"",
+      "test_page": "homepage",
+      "status": "active",
+      "selection_rationale": "Silent-drop archetype — removed in v0.7.2 → v0.8 SIMPLIFY without rationale, ported back Round 3 (Session 3, 2026-04-29). Load-bearing because the lead stat (review count, years in business) is the homepage's primary trust-numerical anchor; static delivery undercuts the spectacle bar.",
+      "ported_from": "v0.7.2 monolith (tandf-electric-v07.vercel.app/script.js — numberTicker IIFE)"
+    },
+    {
+      "id": "hero-crossfade-slideshow",
+      "marker": "class=\"hero hero-crossfade\"",
+      "test_page": "homepage",
+      "status": "active",
+      "selection_rationale": "Silent-drop archetype, same v0.7.2 provenance as count-up. Load-bearing because the rotating hero photo carries the visual spectacle bar for prospects with ≥3 hero candidates; conditional emit (engine sparse-drops to single-photo when < 3 candidates), so test_page coverage assumes Testerman fixture has ≥3 (currently 5).",
+      "ported_from": "v0.7.2 monolith (crossfadeSlideshow IIFE + CSS)"
+    },
+    {
+      "id": "stats-band-dark",
+      "marker": "class=\"stats-section",
+      "test_page": "homepage",
+      "status": "active",
+      "selection_rationale": "anti-slop-rules.md mandates dark stats section (not optional) — see anti-slop-rules.md §'Banned layout patterns' / 'The stats on a white background pattern'. Load-bearing because it defines the spectacle floor for the homepage and prevents the SaaS-template-flat read."
+    },
+    {
+      "id": "services-bento-featured-card",
+      "marker": "class=\"service-card service-card-featured\"",
+      "test_page": "homepage",
+      "status": "active",
+      "selection_rationale": "anti-slop-rules.md mandates asymmetric services grid; identical-card grids are explicitly banned ('reads as ChatGPT made this'). Load-bearing because the FEATURED 2x2 card is the asymmetry that distinguishes the bento from a flat template grid."
+    },
+    {
+      "id": "footer-wordmark",
+      "marker": "class=\"wordmark",
+      "test_page": "homepage",
+      "status": "active",
+      "selection_rationale": "Brand identity surface — every prospect's footer carries the wordmark (or `wordmark wordmark--mark-only` variant when wordmarkTextVisible=false per Round 3 P10 backstop). Missing = unbranded footer = AI-template tell. Substring matches both variants."
+    },
+    {
+      "id": "mobile-cta-bar",
+      "marker": "class=\"mobile-cta-bar",
+      "test_page": "homepage",
+      "status": "active",
+      "selection_rationale": "Phase 3b conversion-critical — fixed-bottom bar with tel: link + #contact anchor. Load-bearing because mobile is the primary contractor-prospect surface (homeowner finds contractor via phone search while standing in flooded basement); persistent CTA is the conversion path."
+    },
+    {
+      "id": "json-ld-local-business",
+      "marker": "application/ld+json",
+      "test_page": "homepage",
+      "status": "active",
+      "selection_rationale": "SEO-load-bearing — LocalBusiness schema with aggregateRating + owner + location is what makes the site indexable for local-services rich-results searches. Missing schema = invisible to Google rich snippets, AI search overviews, Perplexity citations."
+    },
+    {
+      "id": "cta-band",
+      "marker": "class=\"cta-band",
+      "test_page": "homepage",
+      "status": "active",
+      "selection_rationale": "Per P2 codification (Session 3 Round 2 LESSONS.md entry): the homepage ships ONE warmth surface, and that surface IS the cta-band conversion ladder. Load-bearing because the cta-band is the homepage's only authored-warmth conversion pivot — manifesto-band was removed because it competed for this attention budget."
+    },
+    {
+      "id": "cred-grid-about",
+      "marker": "class=\"cred-grid",
+      "test_page": "about",
+      "status": "active",
+      "selection_rationale": "About-page primary trust surface — flagship-canonical credential cells (License / Insurance / Award / Affiliation / Reviews / Experience). Load-bearing because the about page's reason-to-exist content is credential-grounded; without cred-grid, about.html collapses to founder bio with no public-record anchor."
+    },
+    {
+      "id": "service-detail-section",
+      "marker": "class=\"service-detail-section",
+      "test_page": "services",
+      "status": "active",
+      "selection_rationale": "Services-page main content — per-service blocks with index-label / title / description / bullets / photo. Load-bearing because the services page's reason-to-exist is the per-service depth; without service-detail-section, services.html collapses to a bare overview bento and the long-tail SEO surface disappears."
+    },
+    {
+      "id": "manifesto-band",
+      "marker": "class=\"manifesto-band",
+      "test_page": "homepage",
+      "status": "removed",
+      "removed": "Session 3 Round 2 (2026-04-29)",
+      "selection_rationale": "Removed per P2 codification — homepage ships ONE warmth surface (cta-band); decorative warmth bands compete for the same attention budget and degrade conversion. Voice principle preserved per prose-rules.md §6.4 (declarative-register pattern lives on, but the engine-emitted band is gone). Manifest entry catches accidental re-introduction in a future SIMPLIFY refactor that doesn't read the LESSONS.md history."
+    }
+  ]
+}
