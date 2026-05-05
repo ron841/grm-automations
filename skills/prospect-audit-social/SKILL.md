@@ -1,9 +1,21 @@
 ---
 name: prospect-audit-social
-description: Run Stage 1 (Audit) of the GRM no-website pipeline against a single prospect. Captures public-source evidence (Places API, FB, Google Reviews via Playwright), runs k-means logo color extraction, and emits the v0.2 Design-seat handoff package: a root README.md plus an `audit/` tree with intake.md, reviews.md, structured JSON (summary, reviews, gbp-raw), and a per-photo manifest split into gbp/ and fb/ subdirectories. Use when the user types /prospect-audit-social, or asks to audit, capture, or intake a single prospect by name + place_id. Per-prospect on-demand only; not batch.
+description: Run Stage 1 (Audit) of the GRM no-website pipeline against a single prospect. Captures public-source evidence (Places API, FB, Google Reviews via Playwright), runs k-means logo color extraction, and emits the v0.3 Design-seat handoff package: a root README.md, an `audit/` tree (intake.md, reviews.md, structured JSON, photos manifest split gbp/fb), and a single `audit/manifest.json` entry point with inlined small files plus content hashes. Use when the user types /prospect-audit-social, or asks to audit, capture, or intake a single prospect by name + place_id. Per-prospect on-demand only; not batch.
 ---
 
-# Prospect Audit (Social) - v0.2
+# Prospect Audit (Social) - v0.3
+
+## Operator setup (one-time)
+
+Before first use, upload these files from `~/grm-pipeline/` to your Claude Design project's knowledge panel so Design reads them locally instead of fetching them per turn:
+
+- `grm-pipeline-contract.md`
+- `grm-design-defaults.md`
+- `grm-decisions-ledger.md`
+- `grm-lessons.md`
+- `categories/<the relevant category profile>.md` (e.g. `contractor-profile.md`, `restaurant-profile.md`)
+
+The skill still emits SHA-pinned URLs to these standing docs for human operator inspection, but Design's runtime reads them from project knowledge. This collapses cold-start fan-out from 11 URLs to 1 (the prospect's `audit/manifest.json`).
 
 Single command:
 
@@ -19,17 +31,25 @@ Optional flags:
 - `--dry-run` run everything except GitHub create
 - `--fb-handle HANDLE` skip handle guessing
 
-## What this skill produces (v0.2 layout)
+## What this skill produces (v0.3 layout)
 
 A populated per-prospect workspace at `~/grm-sites-prospects/<prospect-slug>/`:
 
 ```
-README.md                            Design seat entry point at root.
-                                     Includes SHA-pinned standing-doc URLs,
-                                     prospect-package URLs, photo manifest
-                                     summary, open questions, stock seat prompt.
+README.md                            Human-facing entry point. Notes that Design
+                                     reads standing docs from project knowledge
+                                     in production. Single line points at
+                                     audit/manifest.json. Photo summary +
+                                     open questions + stock seat prompt remain.
 audit/
-  intake.md                          v0.1 16-section intake.md, three-state tagged.
+  manifest.json                      v0.3 Design-seat entry point. One fetch
+                                     returns inlined intake.md + summary.json +
+                                     photos/manifest.json (and brief.md if
+                                     present), pointer-only entries for
+                                     reviews.md + reviews.json, sha256 of every
+                                     file, and a one-paragraph open-questions
+                                     summary plus photo provenance counts.
+  intake.md                          16-section intake.md, three-state tagged.
   reviews.md                         saturation summary + chronological review corpus.
   data/
     summary.json                     structured pull from intake (NAP, hours_by_day,
@@ -37,8 +57,7 @@ audit/
     reviews.json                     per-review array with attached owner_reply.
                                      Schema: {reviewer_name, rating, date_iso,
                                      text, owner_reply, source}.
-    gbp-raw.json                     raw Places API response (renamed from
-                                     place-details-raw.json).
+    gbp-raw.json                     raw Places API response.
   photos/
     manifest.json                    array of {filename, source, customer_attributed,
                                      caption_text, suggested_slot, operator_veto}.
@@ -53,23 +72,65 @@ process-notes.md                     capture log: phase outcomes, retries, defer
                                      SHA pinning source, cache mode.
 ```
 
-The `README.md` is the single doc Design opens. It includes raw GitHub URLs to the prospect's audit files plus the GRM standing docs pinned to a specific grm-pipeline commit SHA.
+In v0.3, Design's single fetch is `audit/manifest.json`. README.md remains for human inspection.
 
-## v0.2 vs v0.1: what changed
+## audit/manifest.json contract
+
+Schema:
+
+```jsonc
+{
+  "prospect": "<slug>",
+  "audit_skill_version": "0.3",
+  "standing_docs_expected_sha": "<grm-pipeline HEAD SHA at audit time>",
+  "files": {
+    "intake.md":            { "url": "...", "sha256": "<hex>", "inline": "<content>" },
+    "reviews.md":           { "url": "...", "sha256": "<hex>" },
+    "data/summary.json":    { "url": "...", "sha256": "<hex>", "inline": "<content>" },
+    "data/reviews.json":    { "url": "...", "sha256": "<hex>" },
+    "photos/manifest.json": { "url": "...", "sha256": "<hex>", "inline": "<content>" },
+    "brief.md":             { "url": "...", "sha256": "<hex>", "inline": "<content>" }
+  },
+  "open_questions_summary": "<one-paragraph categorical summary>",
+  "photo_count_by_provenance": { "owner-uploaded": N, "customer-uploaded": N }
+}
+```
+
+Inline rules:
+
+- Embed: `intake.md`, `data/summary.json`, `photos/manifest.json`, `brief.md` (if present).
+- Pointer-only (heavy / optional reads): `reviews.md`, `data/reviews.json`.
+- `brief.md` field is omitted entirely when no brief exists.
+- JSON-string escaping is standard (`\n`, `\"`, `\\`); the writer uses `json.dumps` so escaping is automatic.
+
+`sha256`: hex lowercase, computed from file bytes. Design verifies inline content matches the hash, and Design can detect drift between manifest and underlying files.
+
+`open_questions_summary`: one paragraph distilled from intake.md tag categories (count per `[pending-walkthrough]`, `[pending-synthesis]`, `[gap]`, etc.). Distinct from README's verbose per-field listing.
+
+`photo_count_by_provenance`: tallied from `audit/photos/manifest.json`. v0.3 rule: `customer_attributed=true` → `customer-uploaded`; `false` or `[gap]` → `owner-uploaded` (FB photos carry `[gap]` until v0.4 wires attribution capture).
+
+`standing_docs_expected_sha`: the grm-pipeline SHA the prospect was audited against. Design uses this to detect when its project knowledge is out of date relative to the latest pipeline.
+
+## v0.3 vs v0.2: what changed
+
+- New: `audit/manifest.json` as the Design-seat entry point. Single fetch returns inlined small files plus sha256 hashes for every file (inlined or pointer-only).
+- README's "This prospect (reading order)" 6-URL block collapses to a single "Design seat reads" line pointing at `audit/manifest.json`.
+- README "Standing docs" section now flagged "In production, Design reads these from its project knowledge panel"; URLs stay for human operator inspection.
+- Stock seat prompt rewritten: standing docs come from project knowledge; one prospect-manifest fetch replaces the 6-URL fan-out.
+- Operator setup step (one-time) documented in this SKILL.md.
+- Bumped `SKILL_VERSION` to `v0.3`.
+- `audit_skill_version` in manifest reports the numeric form `"0.3"` (no leading `v`).
+
+## v0.2 vs v0.1: what changed (historical)
 
 - Output restructured under `audit/` so the Design seat reads one wrapper instead of a flat workspace.
 - New: `README.md` at the repo root with a stock seat prompt and SHA-pinned standing-doc URLs.
-- New: `audit/data/summary.json` with structured NAP, hours_by_day, services, trades, ratings, social URLs.
-- New: `audit/data/reviews.json` with one entry per review and `owner_reply` attached.
-- New: `audit/reviews.md` with saturation summary + chronological corpus (oldest first, approximate ISO dates).
-- New: `audit/photos/manifest.json` with per-photo metadata (source, customer-attribution flag, caption_text placeholder, suggested_slot heuristic, operator_veto null).
+- New: `audit/data/summary.json`, `audit/data/reviews.json`, `audit/reviews.md`, `audit/photos/manifest.json`.
 - Renamed: `place-details-raw.json` → `audit/data/gbp-raw.json`.
 - Photos split: `images/` (mixed) → `audit/photos/gbp/` + `audit/photos/fb/`.
-- Eliminated: `voice-corpus/` folder. Its contents fold into `audit/data/reviews.json`, `audit/reviews.md`, and `audit/data/summary.json`.
-- New: `--from-cache` flag to reuse scraped artifacts when the workspace is wiped for layout validation.
-- New: `parse_relative_date()` produces approximate ISO dates from GBP relative phrases.
-- New: `infer_category()` maps GBP types to a category-profile slug (auto, bars-taverns, contractor, farm-nursery, personal-care, pet-services, restaurant). Defaults to `contractor`.
-- New: `pin_grm_pipeline_sha()` pins the standing-doc URLs. Primary path is `git ls-remote`; falls back to a local `~/grm-pipeline` clone, then to literal `[pending-pin]` plus stderr warning.
+- Eliminated: `voice-corpus/` folder.
+- New: `--from-cache` flag for fast revalidation runs.
+- New: `parse_relative_date()`, `infer_category()`, `pin_grm_pipeline_sha()` helpers.
 
 ## Ten-phase pipeline
 
@@ -167,11 +228,11 @@ or with a Google Maps URL:
 
 Claude Code detects the trigger and runs `audit.py` with the two arguments. The skill produces the workspace and reports back: workspace path, GitHub repo URL, capture summary (photos N gbp + N fb, reviews captured M with saturation status), pinned grm-pipeline SHA, and the deferred-state list.
 
-## What v0.2 does not do (v0.3 backlog)
+## What v0.3 does not do (v0.4 backlog)
 
 - Vision-based `suggested_slot` for photo manifest. Currently filename-pattern only.
 - FB photo `caption_text` capture. Would require parent-post extraction from the FB photos grid.
-- FB photo `customer_attributed` inference. Tagged `[gap]` for v0.2.
+- FB photo `customer_attributed` inference. Tagged `[gap]` for v0.3 and counted under owner-uploaded by the manifest provenance rule.
 - Audit skill auto-creating GitHub repos. Phase 10 assumes the repo already exists or that `gh repo create` succeeds inline.
 - IG content scraping beyond profile picture and bio.
 - Email extraction from FB About when obfuscated as image (would require OCR).
@@ -181,12 +242,13 @@ Claude Code detects the trigger and runs `audit.py` with the two arguments. The 
 - Multi-prospect batch capture. Per-prospect on-demand only.
 - Synthesis-layer authoring (voice argument, persona, section sequence). Design owns. The skill stops at intake + handoff package.
 - FL Division of Corporations registry lookup for owner full-name verification.
+- Negative-cache mitigation for raw GitHub URLs. Design's runtime concern, not the skill's.
 
-If a build run hits a v0.3 candidate, log it to `~/grm-pipeline/grm-lessons.md` and skip. Do not extend v0.2 mid-run.
+If a build run hits a v0.4 candidate, log it to `~/grm-pipeline/grm-lessons.md` and skip. Do not extend v0.3 mid-run.
 
 ## Reference
 
-- Build target: `~/grm-pipeline/grm-audit-skill-v0.1-spec.md` (v0.2 deltas in this SKILL.md)
+- Build target: `~/grm-pipeline/grm-audit-skill-v0.1-spec.md` (v0.2 + v0.3 deltas in this SKILL.md)
 - Universal disciplines: `~/grm-pipeline/grm-pipeline-contract.md`
 - Technical defaults: `~/grm-pipeline/grm-build-defaults.md`
 - Friction record: `~/grm-pipeline/grm-lessons.md`

@@ -54,6 +54,7 @@ Exit codes:
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import re
 import shutil
@@ -74,7 +75,7 @@ import kmeans_palette
 from saturation import categorize_review, JOB_NOUN_PATTERNS, PRAISE_PATTERNS
 
 PROSPECTS_ROOT = Path.home() / "grm-sites-prospects"
-SKILL_VERSION = "v0.2"
+SKILL_VERSION = "v0.3"
 
 # Standing docs at the grm-pipeline repo root, in the order specified by the
 # Design seat handoff contract. Categories profile is appended dynamically.
@@ -955,41 +956,44 @@ def extract_open_questions(intake_md: str) -> list[tuple[str, str]]:
 def build_readme(ctx: dict, sha: str, slug: str, intake_md: str,
                   gbp_count: int, fb_count: int,
                   customer_attributed_count: int) -> str:
-    """Compose README.md at the repo root: the Design seat's entry point."""
+    """Compose README.md at the repo root.
+
+    v0.3: standing docs stay listed for human operator inspection but are
+    flagged as "read from project knowledge in production"; the prospect
+    reading list collapses to a single audit/manifest.json pointer. The
+    Design seat fetches one URL, gets inlined-content for small files, and
+    the heavy reads (reviews.md, data/reviews.json) stay pointer-only.
+    """
     place = ctx["place"]
     business_name = place.get("displayName", {}).get("text", ctx["business_name"])
     category = ctx.get("category", "contractor")
     raw_pipeline = f"https://raw.githubusercontent.com/{GRM_PIPELINE_REPO}/{sha}"
     raw_prospect = f"https://raw.githubusercontent.com/ron841/grm-prospect-{slug}/main"
+    manifest_url = f"{raw_prospect}/audit/manifest.json"
 
     standing_urls = [f"{raw_pipeline}/{f}" for f in STANDING_DOCS_FILES]
     standing_urls.append(f"{raw_pipeline}/categories/{category}-profile.md")
-
-    prospect_files = [
-        "audit/intake.md",
-        "audit/reviews.md",
-        "audit/data/summary.json",
-        "audit/data/reviews.json",
-        "audit/data/gbp-raw.json",
-        "audit/photos/manifest.json",
-    ]
-    prospect_urls = [f"{raw_prospect}/{p}" for p in prospect_files]
-    readme_url = f"{raw_prospect}/README.md"
 
     out: list[str] = []
     out.append(f"# {business_name} - Prospect Package")
     out.append("")
     out.append("[Design seat. Read this file first.]")
     out.append("")
-    out.append(f"## Standing docs (pinned to grm-pipeline commit {sha})")
+    out.append(
+        f"## Standing docs (canonical reference, pinned to grm-pipeline commit {sha})"
+    )
+    out.append("")
+    out.append(
+        "> In production, Design reads these from its project knowledge "
+        "panel. URLs are kept here for human operator inspection."
+    )
     out.append("")
     for u in standing_urls:
         out.append(f"- {u}")
     out.append("")
-    out.append("## This prospect (reading order)")
+    out.append("## Design seat reads")
     out.append("")
-    for u in prospect_urls:
-        out.append(f"- {u}")
+    out.append(f"- {manifest_url}")
     out.append("")
     out.append("## Photo manifest summary")
     out.append("")
@@ -1012,18 +1016,17 @@ def build_readme(ctx: dict, sha: str, slug: str, intake_md: str,
     out.append("")
     out.append("```")
     out.append(
-        "You are the Design seat in the GRM pipeline. Read the GRM standing "
-        f"docs (pinned to grm-pipeline commit {sha}) in this order:"
+        "You are the Design seat in the GRM pipeline. Standing docs are in "
+        "your project knowledge. Read them in canonical order: "
+        "pipeline-contract, design-defaults, decisions-ledger, lessons, "
+        "then the relevant category profile."
     )
     out.append("")
-    for u in standing_urls:
-        out.append(u)
-    out.append("")
-    out.append("Then read the prospect package at:")
-    out.append(readme_url)
+    out.append("Then fetch the prospect manifest at:")
+    out.append(manifest_url)
     out.append("")
     out.append(
-        "Follow the README's reading order. Produce the full Design pack: "
+        "Follow the manifest's file inventory. Author the full Design pack: "
         "synthesis.md, content-inventory.md, slots.md, Home.html, "
         "BUILD-DECISIONS.md, and pack-README.md. Forcing-function check must "
         "pass before you ship. Every string in content-inventory.md "
@@ -1037,6 +1040,112 @@ def build_readme(ctx: dict, sha: str, slug: str, intake_md: str,
     )
     out.append("```")
     return "\n".join(out) + "\n"
+
+
+def _file_sha256(path: Path) -> str:
+    """Hex-lowercase SHA256 of a file's bytes."""
+    h = hashlib.sha256()
+    with path.open("rb") as f:
+        for chunk in iter(lambda: f.read(65536), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def _open_questions_summary(intake_md: str) -> str:
+    """One-paragraph categorical summary of intake's pending tags.
+
+    Distinct from README's verbose per-field listing. Counts each tag class
+    and emits a single readable sentence per non-empty class.
+    """
+    questions = extract_open_questions(intake_md)
+    if not questions:
+        return "Every intake field has a captured value. No open questions."
+
+    classes = [
+        ("[pending-walkthrough]", "fields await operator walkthrough"),
+        ("[pending-synthesis]", "fields await Design synthesis"),
+        ("[gap]", "fields tagged [gap] (operator confirms absence)"),
+        ("[pending-extraction]", "fields deferred to v0.4 extraction"),
+        ("[verification-deferred]", "fields tagged verification-deferred"),
+        ("[pending-image-review]", "fields await image review"),
+        ("[scrape-failed]", "fields tagged [scrape-failed] (capture debt)"),
+        ("[low-confidence]", "fields flagged low-confidence"),
+    ]
+    parts: list[str] = []
+    for tag, phrase in classes:
+        n = sum(1 for _f, v in questions if tag in v)
+        if n:
+            parts.append(f"{n} {phrase}")
+    if not parts:
+        return "Every intake field has a captured value. No open questions."
+    return ". ".join(parts) + "."
+
+
+def build_manifest_json(out_dir: Path, ctx: dict, intake_md: str,
+                         pipeline_sha: str) -> dict:
+    """Compose audit/manifest.json: the v0.3 Design-seat entry point.
+
+    Inlines small / always-needed files (intake.md, data/summary.json,
+    photos/manifest.json, brief.md if present). Leaves heavy / optional
+    reads pointer-only (reviews.md, data/reviews.json). Every file gets a
+    sha256 hash so Design can detect mismatches between manifest and
+    underlying file (e.g., partial updates, mid-flight edits).
+    """
+    slug = ctx["slug"]
+    audit_dir = out_dir / "audit"
+    raw_prospect = f"https://raw.githubusercontent.com/ron841/grm-prospect-{slug}/main"
+
+    # (relative-path, inline?) ordered tuples. brief.md appended if present.
+    file_specs: list[tuple[str, bool]] = [
+        ("intake.md", True),
+        ("reviews.md", False),
+        ("data/summary.json", True),
+        ("data/reviews.json", False),
+        ("photos/manifest.json", True),
+    ]
+    if (audit_dir / "brief.md").exists():
+        file_specs.append(("brief.md", True))
+
+    files: dict = {}
+    for rel, inline in file_specs:
+        path = audit_dir / rel
+        if not path.exists():
+            continue
+        entry = {
+            "url": f"{raw_prospect}/audit/{rel}",
+            "sha256": _file_sha256(path),
+        }
+        if inline:
+            entry["inline"] = path.read_text(encoding="utf-8")
+        files[rel] = entry
+
+    # Photo provenance counts from photos/manifest.json. v0.3 rule:
+    # customer_attributed=true -> customer-uploaded; false or "[gap]" ->
+    # owner-uploaded (FB photos in v0.3 carry "[gap]" because attribution
+    # capture is v0.4 backlog).
+    photos_manifest = json.loads(
+        (audit_dir / "photos" / "manifest.json").read_text(encoding="utf-8")
+    )
+    owner = sum(
+        1 for p in photos_manifest
+        if p.get("customer_attributed") is False
+        or p.get("customer_attributed") == "[gap]"
+    )
+    customer = sum(
+        1 for p in photos_manifest if p.get("customer_attributed") is True
+    )
+
+    return {
+        "prospect": slug,
+        "audit_skill_version": SKILL_VERSION.lstrip("v"),
+        "standing_docs_expected_sha": pipeline_sha,
+        "files": files,
+        "open_questions_summary": _open_questions_summary(intake_md),
+        "photo_count_by_provenance": {
+            "owner-uploaded": owner,
+            "customer-uploaded": customer,
+        },
+    }
 
 
 def write_process_notes(out_dir: Path, ctx: dict) -> None:
@@ -1067,7 +1176,7 @@ def write_process_notes(out_dir: Path, ctx: dict) -> None:
 
 
 def github_publish(slug: str, out_dir: Path,
-                    commit_message: str = "Initial intake from prospect-audit-social v0.2") -> str | None:
+                    commit_message: str = "Initial intake from prospect-audit-social v0.3") -> str | None:
     """Initialize or update repo at github.com/ron841/grm-prospect-{slug}.
 
     Behavior:
@@ -1544,6 +1653,13 @@ def run(business_name: str, place_id: str, *,
     )
     (out_dir / "README.md").write_text(readme_md, encoding="utf-8")
 
+    # audit/manifest.json (Design seat's single entry point in v0.3).
+    # Built last so its sha256 entries reflect the just-written files.
+    manifest_doc = build_manifest_json(out_dir, ctx, intake_md, pipeline_sha)
+    (audit_dir / "manifest.json").write_text(
+        json.dumps(manifest_doc, indent=2, ensure_ascii=False), encoding="utf-8"
+    )
+
     # process-notes.md (root)
     write_process_notes(out_dir, ctx)
 
@@ -1558,7 +1674,8 @@ def run(business_name: str, place_id: str, *,
         return 1
     phase_log.append((
         "Phase 9",
-        "OK; v0.2 layout written (README + audit/ + process-notes); forcing-function passed"
+        "OK; v0.3 layout written (README + audit/ + manifest.json + process-notes); "
+        "forcing-function passed"
     ))
     successful.append("Phase 9")
 
@@ -1572,7 +1689,7 @@ def run(business_name: str, place_id: str, *,
     # Phase 10.
     repo_url = None
     if publish and not dry_run:
-        commit_msg = f"v0.2: restructure to Design seat spec"
+        commit_msg = "v0.3: emit manifest.json as Design seat entry point"
         print(f"Phase 10: GitHub publish to ron841/grm-prospect-{slug} ...")
         repo_url = github_publish(slug, out_dir, commit_message=commit_msg)
         if repo_url:
