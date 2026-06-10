@@ -307,8 +307,11 @@ def get_fill_pool():
 
 
 def get_companies_with_tomorrow_call_task():
-    """Company IDs that already have an open CALL task due tomorrow —
-    guards against duplicates if the script runs twice in one evening."""
+    """IDEMPOTENCY GUARD: count NOT_STARTED CALL tasks already due on the
+    target day and collect their company IDs. The fill loop creates only
+    (MAX_TASKS minus this count) and skips these companies — so running
+    the script twice in one evening can never produce duplicates or
+    push the day past 45 calls."""
     tmrw = tomorrow_et()
     tasks = search_all(
         "tasks",
@@ -316,7 +319,7 @@ def get_companies_with_tomorrow_call_task():
             {"propertyName": "hs_task_type",   "operator": "EQ",  "value": "CALL"},
             {"propertyName": "hs_timestamp",   "operator": "GTE", "value": str(day_start_ms(tmrw))},
             {"propertyName": "hs_timestamp",   "operator": "LT",  "value": str(day_start_ms(tmrw + timedelta(days=1)))},
-            {"propertyName": "hs_task_status", "operator": "NEQ", "value": "COMPLETED"},
+            {"propertyName": "hs_task_status", "operator": "EQ",  "value": "NOT_STARTED"},
         ],
         ["hs_task_subject"],
     )
