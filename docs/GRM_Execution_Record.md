@@ -767,3 +767,12 @@ Session type: Pre-launch editorial sweep, layout fixes, and Vercel deployment.
 - To request a callback: add a company note containing `callback: <day> <time>` (e.g. `callback: Thursday 2pm`). It schedules first the night before.
 - To capture an email: paste it into a company note the day you get it. Add `name: First Last` next to it if you want the contact named.
 - If a run fails, GitHub emails you — check the Actions log.
+
+### Token rotation — June 10, 2026
+
+- HubSpot API token rotated. New PAT generated and saved as `HUBSPOT_TOKEN` repo secret in `ron841/grm-automations`.
+- Read-only verification GET to `/crm/v3/objects/contacts?limit=1` returned HTTP 200 — new token confirmed live.
+- Old Mac script `~/grm_daily_calls.py` deleted. No plaintext copies of the token remain on any local machine.
+- Today's 45-call batch moved to June 10 1:00 PM manual run (GitHub Actions workflow_dispatch).
+- Idempotency guard is live — the script spot-checks 3 tasks per run and fails loudly on missing associations.
+- Nightly run schedule unchanged: GitHub Actions Sun–Thu 23:30 UTC (~7:30 PM ET).

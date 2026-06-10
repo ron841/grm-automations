@@ -43,6 +43,7 @@ The HubSpot call-list automation no longer runs on Ron's Mac. The cron entry was
 - NEW: end-of-day email capture. Any email address Ron pastes into a company note during the day becomes a next-day `Email: [Company]` task, with the contact auto-matched or auto-created and associated to the company. Add `name: First Last` next to the email in the note to name the contact. Our own @getrootedmedia.com addresses are ignored; contacts with an open EMAIL task are skipped.
 - HubSpot token lives in the repo secret `HUBSPOT_TOKEN`, read from the environment — never hardcoded.
 - Manual run: GitHub → Actions → "GRM Nightly Call List" → Run workflow. Verified end to end June 10: 45 tasks created, associations confirmed.
+- Token rotated June 10: new PAT set as `HUBSPOT_TOKEN` repo secret, verified with read-only GET (HTTP 200). Old Mac script `~/grm_daily_calls.py` deleted — no plaintext token copies remain. Today's batch ran via manual dispatch at 1:00 PM. Idempotency guard live. Nightly schedule: GitHub Actions Sun–Thu.
 
 ## Brand system location
 
