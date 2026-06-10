@@ -1,0 +1,27 @@
+name: GRM Nightly Call List
+
+on:
+  schedule:
+    # 23:30 UTC Sun-Thu ≈ 7:30 PM EDT (6:30 PM EST in winter — fine).
+    # Builds Mon-Fri call lists for the following morning.
+    - cron: "30 23 * * 0-4"
+  workflow_dispatch: {}
+
+jobs:
+  nightly-calls:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Build tomorrow's call list + email capture
+        env:
+          HUBSPOT_TOKEN: ${{ secrets.HUBSPOT_TOKEN }}
+        run: python scripts/grm_daily_calls.py
