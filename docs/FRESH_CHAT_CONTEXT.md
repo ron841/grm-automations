@@ -33,6 +33,17 @@ SATURDAY CARRYOVER STILL PENDING:
 - /meta-ads-campaign skill in Claude Code
 - Website build (waiting on brand assets)
 
+## Nightly call system — updated June 10, 2026
+
+The HubSpot call-list automation no longer runs on Ron's Mac. The cron entry was removed June 10 and the system rebuilt from a clean slate:
+
+- The old task backlog (2,539 open tasks, 2,530 missing their company association due to a silent two-call bug) was wiped via batch archive.
+- New script lives at `scripts/grm_daily_calls.py` in this repo. It runs on GitHub Actions (`.github/workflows/nightly-calls.yml`) Sun–Thu at 23:30 UTC (~7:30 PM ET) and builds tomorrow's 45-call list: callback notes (`callback: <day> <time>` in a company's most recent note) schedule first, then random fill from New/Attempted leads (Attempted retries only after 3 quiet days).
+- Every task is created WITH its company association in a single API call — the fix for the old orphaned-task bug — and each run spot-checks 3 created tasks and fails loudly if an association is missing.
+- NEW: end-of-day email capture. Any email address Ron pastes into a company note during the day becomes a next-day `Email: [Company]` task, with the contact auto-matched or auto-created and associated to the company. Add `name: First Last` next to the email in the note to name the contact. Our own @getrootedmedia.com addresses are ignored; contacts with an open EMAIL task are skipped.
+- HubSpot token lives in the repo secret `HUBSPOT_TOKEN`, read from the environment — never hardcoded.
+- Manual run: GitHub → Actions → "GRM Nightly Call List" → Run workflow. Verified end to end June 10: 45 tasks created, associations confirmed.
+
 ## Brand system location
 
 brand/BRAND_RULES.md — colors, fonts, logo rules

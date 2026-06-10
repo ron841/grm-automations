@@ -724,3 +724,46 @@ Session type: Pre-launch editorial sweep, layout fixes, and Vercel deployment.
 - "And when your agent closes the deal" → "When your agent closes the deal" — homepage HomeStory.tsx
 - Eyebrow labels bumped site-wide: 10px→12px, 11px→13px — commit 358c55f
 - All changes live on getrootedmedia.com via auto-deploy
+
+---
+
+## TUESDAY JUNE 10 — COMPLETED ✅
+
+**Goal:** Clean-slate rebuild of the nightly call system + move it off the Mac onto GitHub Actions.
+
+**Why:** An audit found 2,539 open call tasks in HubSpot, and 2,530 of them had NO company association. The old script created each task first and associated it second — and that second call failed silently for months. Tasks without a company are useless on the call screen.
+
+**What actually got built:**
+
+### Old system retired
+- Mac cron entry for `~/grm_daily_calls.py` removed (`crontab` now empty). The Mac no longer runs this automation — it lives on GitHub Actions permanently.
+- All 2,539 NOT_STARTED tasks batch-archived via the HubSpot API. Verified: 0 NOT_STARTED tasks remained after the wipe.
+
+### New script: `scripts/grm_daily_calls.py` (in this repo)
+- Builds tomorrow's 45-call list nightly. Priority order:
+  1. **Callbacks first** — companies whose most recent note contains `callback: <day> <time>` matching tomorrow (understands "tomorrow", weekday names, 6/11, 2026-06-11, "June 11").
+  2. **Random fill** from companies with `grm_lead_status = New`, or `Attempted` with no activity in the last 3 days. New companies move to Attempted when scheduled.
+- **THE CRITICAL FIX:** every task is created WITH its company association in a single API call (`associations` array in the create payload). No more create-then-associate.
+- After each run the script fetches 3 random created tasks and confirms each has a company association — if any is missing, the workflow fails loudly.
+- Token comes from the `HUBSPOT_TOKEN` environment variable (GitHub secret) — never hardcoded.
+
+### New feature: end-of-day email capture
+- Second pass each night: scans all notes created today for email addresses (ignores @getrootedmedia.com).
+- For each email found: matches an existing contact or creates one (parses a name only if the note says `name: ...`), associated with the note's company in the same create call.
+- Creates a next-day task `Email: [Company Name]` (type EMAIL, 9 AM ET, owner Ron) associated with BOTH the contact and the company.
+- Dedupe: skips if the contact already has an open EMAIL task.
+- So the workflow is: jot an email into a company note during the day → tomorrow morning an EMAIL task is waiting with the contact attached.
+
+### GitHub Actions: `.github/workflows/nightly-calls.yml`
+- Schedule: `30 23 * * 0-4` — Sun–Thu 23:30 UTC ≈ 7:30 PM EDT (6:30 PM EST in winter), building Mon–Fri call lists.
+- Manual runs: Actions tab → "GRM Nightly Call List" → Run workflow.
+- Python 3.11, installs `requests`, reads `HUBSPOT_TOKEN` from repo secrets.
+
+### Verified end to end
+- Manual workflow_dispatch run on June 10: exactly 45 call tasks created, all 3 spot-checked tasks had company associations, email-capture pass ran (0 emails found today — expected), 0 errors.
+
+**Ron's ongoing actions:**
+- Nothing nightly — it runs itself Sun–Thu evenings.
+- To request a callback: add a company note containing `callback: <day> <time>` (e.g. `callback: Thursday 2pm`). It schedules first the night before.
+- To capture an email: paste it into a company note the day you get it. Add `name: First Last` next to it if you want the contact named.
+- If a run fails, GitHub emails you — check the Actions log.
