@@ -11,11 +11,11 @@ import CTFoundingPartner from "@/components/sections/ct/CTFoundingPartner";
 export const metadata: Metadata = {
   title: "The Closing Table | Monthly Magazine for Marion County Real Estate",
   description:
-    "Monthly print magazine for the top 500 agents and service companies in Marion and Sumter Counties. Issue 1 June 2026.",
+    "The monthly magazine for top-producing real estate agents in Marion and Sumter Counties. A new Get Rooted Media title launching Spring 2027.",
   openGraph: {
     title: "The Closing Table | Monthly Magazine for Marion County Real Estate",
     description:
-      "Monthly print magazine for the top 500 agents and service companies in Marion and Sumter Counties. Issue 1 June 2026.",
+      "The monthly magazine for top-producing real estate agents in Marion and Sumter Counties. A new Get Rooted Media title launching Spring 2027.",
     type: "website",
     url: "https://getrootedmedia.com/the-closing-table",
     siteName: "Get Rooted Media",

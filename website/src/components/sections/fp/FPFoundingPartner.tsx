@@ -17,7 +17,7 @@ export default function FPFoundingPartner() {
         <div className="mx-auto mb-10 h-[3px] w-10 bg-grm-teal" />
 
         <p className="mb-8 font-nunito text-lg text-white/80">
-          Category positions are limited. The first issue is July 2026.
+          Category positions are limited. The first issue mails this fall.
         </p>
 
         <p className="mb-8 font-nunito text-lg text-white/80">

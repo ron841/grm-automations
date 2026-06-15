@@ -37,7 +37,7 @@ export default function HomeFinalCTA() {
           </a>
           <p className="mt-4">
             <a
-              href="/media-kits/closing-table-media-kit.pdf"
+              href="/media-kits/front-porch-media-kit.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="font-nunito text-[15px] text-grm-teal no-underline transition-colors hover:underline"

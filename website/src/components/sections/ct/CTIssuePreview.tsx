@@ -3,7 +3,7 @@ export default function CTIssuePreview() {
     <section className="bg-grm-black px-6 py-20 lg:px-8">
       <div className="mx-auto max-w-3xl text-center">
         <p className="mb-4 font-comfortaa text-[13px] font-bold uppercase tracking-widest text-grm-teal">
-          ISSUE 1 &middot; JUNE 2026
+          ISSUE 1 &middot; SPRING 2027
         </p>
         <div className="mx-auto mb-10 h-[3px] w-10 bg-grm-teal" />
 

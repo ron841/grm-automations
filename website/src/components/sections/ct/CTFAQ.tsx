@@ -26,7 +26,7 @@ const FAQS = [
   {
     question: "When does Issue 1 come out?",
     answer:
-      "June 2026. Businesses who come in now are founding partners. After Issue 1, you\u2019re an advertiser. Right now, you\u2019re part of the beginning.",
+      "Spring 2027. Businesses who come in now are founding partners. After Issue 1, you\u2019re an advertiser. Right now, you\u2019re part of the beginning.",
   },
 ];
 

@@ -40,18 +40,18 @@ export default function Footer() {
                 <span className="font-nunito">Storefront</span>
               </Link>
               <Link
-                href="/the-closing-table"
-                className="text-sm text-white transition-colors hover:text-grm-teal"
-              >
-                <span className="font-grand-hotel">The</span>{" "}
-                <span className="font-nunito">Closing Table</span>
-              </Link>
-              <Link
                 href="/the-front-porch"
                 className="text-sm text-white transition-colors hover:text-grm-teal"
               >
                 <span className="font-grand-hotel">The</span>{" "}
                 <span className="font-nunito">Front Porch</span>
+              </Link>
+              <Link
+                href="/the-closing-table"
+                className="text-sm text-white transition-colors hover:text-grm-teal"
+              >
+                <span className="font-grand-hotel">The</span>{" "}
+                <span className="font-nunito">Closing Table</span>
               </Link>
             </nav>
           </div>
