@@ -776,3 +776,40 @@ Session type: Pre-launch editorial sweep, layout fixes, and Vercel deployment.
 - Today's 45-call batch moved to June 10 1:00 PM manual run (GitHub Actions workflow_dispatch).
 - Idempotency guard is live — the script spot-checks 3 tasks per run and fails loudly on missing associations.
 - Nightly run schedule unchanged: GitHub Actions Sun–Thu 23:30 UTC (~7:30 PM ET).
+
+---
+
+## MONDAY JUNE 15 — COMPLETED ✅
+
+**Goal:** Move calls out of the Task system, make Tasks email-only, unify callbacks into the daily 45, make the 45 a systematic tier blend, and fix the lead-status drift.
+
+**Why:** Two structural problems with the v2 design:
+1. The daily 45 were CALL *tasks*, and the script flipped a company New→Attempted the moment a task was QUEUED — so a company that was merely *scheduled* (never actually dialed) looked "Attempted". Status drifted: the board had drifted to 296 New / 254 Attempted with no company ever truly worked. The pool kept shrinking.
+2. Calls didn't belong in Tasks at all — Ron calls from a list, not a to-do queue. Tasks should only hold the email follow-ups.
+
+**The new model — calls live on the Company:**
+- A company is flagged for a calling day by a **date property, `grm_next_call_date`**. A saved Companies view ("Today's Calls" = `grm_next_call_date is today`) shows the day's batch. Ron calls straight from that list. **No CALL tasks anymore.**
+- **Tasks are EMAIL-ONLY** — the next-day follow-ups generated from emails captured in notes the day before (unchanged email-capture logic).
+- **Callbacks unify into the 45.** "callback: tomorrow", "call back in 2 days", "cb friday", "callback 6/18", a line starting with "call <when>", etc. → the parsed date is stamped on `grm_next_call_date`, counted toward the 45 (not stacked on top).
+- **Status changes ONLY on real logged work.** The new `grm_last_call_date` records the last real dial. The worked-detection pass checks each day's stamped companies for a note or CALL logged that day; if worked, it sets `grm_last_call_date` and promotes New→Attempted. **Stamping/queuing never changes status.**
+- **Calling cadence — no call status is an exit.** Only a booked **Deal** (meeting in pipeline) or **Not a Fit** removes a company from the pool. Re-dial intervals keyed off `grm_last_call_date`: New = now (top priority), Connected = 2+ days, Attempted = 3+ days, Not Now = 14+ days.
+- **The 45 is a systematic TIER BLEND, not random:** per day **A=13, B+=14, B=4, Untiered=14** (=45), scaled to remaining slots after callbacks. Within each tier draw New first, then eligible Connected/Attempted/Not Now. If a tier is short, backfill A → B+ → B → Untiered so the day still reaches 45 when 45 eligible exist. The run logs the actual mix built.
+
+**What got built:**
+- **`scripts/grm_daily_calls.py` rewritten (v3).** Removed all CALL-task creation and all flip-on-queue status logic. Nightly builds the next day in five passes: (A) callback stamping, (B) worked-detection, (C) tier-blend target-day build on `grm_next_call_date`, (D) email capture (EMAIL tasks only), (E) spot-check that 3 created EMAIL tasks carry contact + company associations (fails the run if not).
+- **`scripts/grm_reset_reseed.py`** (one-time) + **`.github/workflows/reset-reseed.yml`** (guarded manual dispatch — only runs when you type `RESET-AND-RESEED` into the confirm box; anything else is a dry run).
+
+**New company properties (created live):** `grm_next_call_date` ("Next Call Date") and `grm_last_call_date` ("Last Call Date"), both date-type, co-located with the other GRM lead properties (`grm_tier` group).
+
+**Full reset + today reseed — executed and verified:**
+- Archived **180** NOT_STARTED CALL tasks → 0 remain. ✅
+- Reset **all 550** companies to `grm_lead_status = New` → 0 Attempted remain. ✅
+- Cleared `grm_next_call_date` (0 were set). ✅
+- Reseeded today (2026-06-15) with the tier blend: **45 companies** stamped, mix **A:13 B+:14 B:4 Untiered:14**. ✅
+- (The armed Actions run exited 1 on a false-negative verification — its read-back searches fired before HubSpot's search index caught up to the bulk writes / brand-new properties. All writes had succeeded; confirmed independently via read-only search. Follow-up commit added `wait_for_count()` polling so future runs don't false-fail on index lag.)
+
+**Ron's ongoing actions:**
+- Call from the **"Today's Calls"** Companies view (filter: `grm_next_call_date is today`). Nightly build runs itself Sun–Thu evenings for the next morning.
+- Request a callback: add a company note like `callback: Thursday` or `call back in 2 days`. It's stamped for that day and counts toward the 45.
+- Log a call (a note or a logged CALL on the company) the day you work it — that's what advances status and records the last-dial date. Just scheduling a company does nothing to its status.
+- A booked meeting (create a Deal) or marking **Not a Fit** removes a company from the calling pool. Everything else stays in rotation.

@@ -1,6 +1,6 @@
 # GRM Fresh Chat Context
 
-Last updated: Tuesday March 24, 2026
+Last updated: Monday June 15, 2026
 
 ## How to start any new session
 
@@ -33,17 +33,25 @@ SATURDAY CARRYOVER STILL PENDING:
 - /meta-ads-campaign skill in Claude Code
 - Website build (waiting on brand assets)
 
-## Nightly call system — updated June 10, 2026
+## Nightly call system — REDESIGNED June 15, 2026 (calls live on the Company)
 
-The HubSpot call-list automation no longer runs on Ron's Mac. The cron entry was removed June 10 and the system rebuilt from a clean slate:
+The automation runs on GitHub Actions (`scripts/grm_daily_calls.py` via `.github/workflows/nightly-calls.yml`, Sun–Thu 23:30 UTC ≈ 7:30 PM ET). It no longer runs on Ron's Mac. As of June 15 the design changed fundamentally:
 
-- The old task backlog (2,539 open tasks, 2,530 missing their company association due to a silent two-call bug) was wiped via batch archive.
-- New script lives at `scripts/grm_daily_calls.py` in this repo. It runs on GitHub Actions (`.github/workflows/nightly-calls.yml`) Sun–Thu at 23:30 UTC (~7:30 PM ET) and builds tomorrow's 45-call list: callback notes (`callback: <day> <time>` in a company's most recent note) schedule first, then random fill from New/Attempted leads (Attempted retries only after 3 quiet days).
-- Every task is created WITH its company association in a single API call — the fix for the old orphaned-task bug — and each run spot-checks 3 created tasks and fails loudly if an association is missing.
-- NEW: end-of-day email capture. Any email address Ron pastes into a company note during the day becomes a next-day `Email: [Company]` task, with the contact auto-matched or auto-created and associated to the company. Add `name: First Last` next to the email in the note to name the contact. Our own @getrootedmedia.com addresses are ignored; contacts with an open EMAIL task are skipped.
-- HubSpot token lives in the repo secret `HUBSPOT_TOKEN`, read from the environment — never hardcoded.
-- Manual run: GitHub → Actions → "GRM Nightly Call List" → Run workflow. Verified end to end June 10: 45 tasks created, associations confirmed.
-- Token rotated June 10: new PAT set as `HUBSPOT_TOKEN` repo secret, verified with read-only GET (HTTP 200). Old Mac script `~/grm_daily_calls.py` deleted — no plaintext token copies remain. Today's batch ran via manual dispatch at 1:00 PM. Idempotency guard live. Nightly schedule: GitHub Actions Sun–Thu.
+**Calls left the Task system.** A company is flagged for a calling day by the date property **`grm_next_call_date`**. Ron calls from a saved Companies view, **"Today's Calls"** (filter: `grm_next_call_date is today`). There are NO CALL tasks anymore.
+
+**Tasks are EMAIL-ONLY.** The only tasks the system creates are the next-day `Email: [Company]` follow-ups generated from emails captured in notes the day before (contact auto-matched/created and associated to the company; add `name: First Last` next to the email to name the contact; @getrootedmedia.com ignored; contacts with an open EMAIL task skipped). Each run spot-checks 3 created EMAIL tasks for contact + company associations and fails loudly if any is missing.
+
+**Callbacks unify into the 45.** A company note like `callback: Thursday`, `call back in 2 days`, `cb friday`, `callback 6/18`, or a line starting with `call <when>` stamps `grm_next_call_date` for that day and counts toward the 45 — not stacked on top.
+
+**The 45 is a systematic tier blend, not random:** per day **A=13, B+=14, B=4, Untiered=14** (scaled to remaining slots after callbacks; New drawn first within each tier, then eligible Connected/Attempted/Not Now; shortfalls backfill A → B+ → B → Untiered).
+
+**Status changes ONLY on real logged work** (root-cause fix for the old drift, where queuing a task flipped New→Attempted). The new `grm_last_call_date` tracks the last real dial. A nightly worked-detection pass checks each stamped day's companies for a note or CALL logged that day; if worked, sets `grm_last_call_date` and promotes New→Attempted. Scheduling never changes status.
+
+**Calling cadence — no call status is an exit.** Only a booked **Deal** (meeting in pipeline) or **Not a Fit** removes a company from the pool. Re-dial intervals off `grm_last_call_date`: New = now, Connected = 2+ days, Attempted = 3+ days, Not Now = 14+ days.
+
+**June 15 reset + reseed (done):** archived 180 NOT_STARTED CALL tasks (0 remain), reset all 550 companies to New (0 Attempted), created `grm_next_call_date` + `grm_last_call_date` properties, reseeded today with 45 companies (mix A:13 B+:14 B:4 U:14). One-time reset lives in `scripts/grm_reset_reseed.py` + the guarded `reset-reseed.yml` workflow (only runs when you type `RESET-AND-RESEED`).
+
+**Unchanged:** HubSpot token in repo secret `HUBSPOT_TOKEN` (env only, never hardcoded). Manual nightly run: GitHub → Actions → "GRM Nightly Call List" → Run workflow.
 
 ## Brand system location
 
