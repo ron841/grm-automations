@@ -12,12 +12,12 @@ export const metadata: Metadata = {
   title:
     "The Front Porch | Bi-Monthly Resource Guide for Marion County New Homeowners",
   description:
-    "The bi-monthly resource guide mailed to every new homeowner in Marion County within their first 60 days. Issue 1 July 2026.",
+    "The bi-monthly resource guide mailed to every new homeowner in Marion County within their first 60 days. Launching this fall.",
   openGraph: {
     title:
       "The Front Porch | Bi-Monthly Resource Guide for Marion County New Homeowners",
     description:
-      "The bi-monthly resource guide mailed to every new homeowner in Marion County within their first 60 days. Issue 1 July 2026.",
+      "The bi-monthly resource guide mailed to every new homeowner in Marion County within their first 60 days. Launching this fall.",
     type: "website",
     url: "https://getrootedmedia.com/the-front-porch",
     siteName: "Get Rooted Media",

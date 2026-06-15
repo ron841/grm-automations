@@ -33,7 +33,7 @@ export default function FPClosingCTA() {
           </a>
           <p className="mt-4">
             <a
-              href="/media-kits/front-porch-media-kit.pdf"
+              href="/media-kits/the-front-porch-media-kit.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="font-nunito text-[15px] text-grm-teal no-underline transition-colors hover:underline"

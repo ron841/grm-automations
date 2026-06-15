@@ -48,7 +48,7 @@ export default function CTFoundingPartner() {
         </a>
         <p className="mt-4">
           <a
-            href="/media-kits/closing-table-media-kit.pdf"
+            href="/media-kits/the-closing-table-media-kit.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="font-nunito text-[15px] text-white/50 no-underline transition-colors hover:text-white hover:underline"

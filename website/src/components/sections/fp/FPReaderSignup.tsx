@@ -33,7 +33,7 @@ export default function FPReaderSignup() {
           </h2>
 
           <p className="mb-2 font-nunito text-base text-grm-black">
-            The Front Porch launches July 2026.
+            The Front Porch launches this fall.
           </p>
 
           <p className="mb-8 font-nunito text-base leading-relaxed text-grm-black/70">
