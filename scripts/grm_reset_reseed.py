@@ -43,6 +43,25 @@ CONFIRM = os.environ.get("CONFIRM_RESET")
 ARMED = CONFIRM == "RESET-AND-RESEED"
 
 
+def wait_for_count(label, run_search, expected, attempts=8, delay=5):
+    """Poll a count-search until it equals `expected`, tolerating HubSpot's
+    search-index lag. Bulk writes (and brand-new properties) take a few seconds
+    to become searchable, so an immediate read-back can false-fail even though
+    every write succeeded. Returns True once the index agrees, else False."""
+    n = None
+    for i in range(attempts):
+        n = len(run_search())
+        if n == expected:
+            print(f"    VERIFY: {label} = {n} (expected {expected})  ✅")
+            return True
+        if i < attempts - 1:
+            print(f"    …{label} = {n}, expected {expected}; waiting for search "
+                  f"index to settle (try {i + 1}/{attempts})")
+            time.sleep(delay)
+    print(f"    VERIFY: {label} = {n} (expected {expected})  ❌")
+    return False
+
+
 # ─── STEP 1: PROPERTIES ──────────────────────────────────────────────────────
 def grm_group_name():
     """Reuse the property group that grm_tier already lives in (the 'grm_'
@@ -111,15 +130,16 @@ def archive_call_tasks():
                           {"inputs": [{"id": x} for x in chunk]})
         print(f"    archived {len(chunk)} (HTTP {status})")
         time.sleep(0.2)
-    # Verify 0 remain.
-    remaining = g.search_all(
-        "tasks",
-        [{"propertyName": "hs_task_type",   "operator": "EQ", "value": "CALL"},
-         {"propertyName": "hs_task_status", "operator": "EQ", "value": "NOT_STARTED"}],
-        ["hs_object_id"],
+    # Verify 0 remain (polling for the index to settle after the archive).
+    return wait_for_count(
+        "NOT_STARTED CALL tasks remain",
+        lambda: g.search_all(
+            "tasks",
+            [{"propertyName": "hs_task_type",   "operator": "EQ", "value": "CALL"},
+             {"propertyName": "hs_task_status", "operator": "EQ", "value": "NOT_STARTED"}],
+            ["hs_object_id"]),
+        expected=0,
     )
-    print(f"    VERIFY: {len(remaining)} NOT_STARTED CALL task(s) remain "
-          f"(expected 0){'  ✅' if not remaining else '  ❌'}")
 
 
 def reset_all_companies_to_new():
@@ -143,13 +163,14 @@ def reset_all_companies_to_new():
                                       for x in chunk]})
         print(f"    updated {len(chunk)} (HTTP {status})")
         time.sleep(0.2)
-    attempted = g.search_all(
-        "companies",
-        [{"propertyName": "grm_lead_status", "operator": "EQ", "value": "Attempted"}],
-        ["hs_object_id"],
+    return wait_for_count(
+        "Attempted companies remain",
+        lambda: g.search_all(
+            "companies",
+            [{"propertyName": "grm_lead_status", "operator": "EQ", "value": "Attempted"}],
+            ["hs_object_id"]),
+        expected=0,
     )
-    print(f"    VERIFY: {len(attempted)} Attempted remain (expected 0)"
-          f"{'  ✅' if not attempted else '  ❌'}")
 
 
 def clear_next_call_dates():
@@ -177,9 +198,11 @@ def clear_next_call_dates():
 def step2_reset():
     print("\nSTEP 2 — RESET")
     print("─" * 60)
-    archive_call_tasks()
-    reset_all_companies_to_new()
+    ok_tasks = archive_call_tasks()
+    ok_status = reset_all_companies_to_new()
     clear_next_call_dates()
+    # In dry-run the verify helpers aren't reached (returns None) — treat as OK.
+    return (ok_tasks is not False) and (ok_status is not False)
 
 
 # ─── STEP 4: RESEED TODAY ────────────────────────────────────────────────────
@@ -191,13 +214,15 @@ def step4_reseed():
         print("  [DRY] would build today's 45-company calling day via tier blend")
         return
     already, filled, tier_mix = g.build_target_day(today)
-    # Verify exactly 45 are stamped for today.
-    stamped = g.companies_stamped_for(today)
     mix_str = " ".join(f"{t}:{tier_mix.get(t, 0)}" for t in g.TIER_ORDER)
-    print(f"\n  VERIFY: {len(stamped)} companies stamped for {g.iso_date(today)} "
-          f"(expected {g.MAX_CALLS}){'  ✅' if len(stamped) == g.MAX_CALLS else '  ❌'}")
     print(f"  Tier mix built — {mix_str}")
-    return len(stamped)
+    # Verify exactly MAX_CALLS are stamped for today (polling for index settle).
+    ok = wait_for_count(
+        f"companies stamped for {g.iso_date(today)}",
+        lambda: g.companies_stamped_for(today),
+        expected=g.MAX_CALLS,
+    )
+    return ok
 
 
 # ─── MAIN ────────────────────────────────────────────────────────────────────
@@ -211,16 +236,16 @@ def main():
     if ARMED and not props_ok:
         sys.exit("FATAL: properties could not be ensured — aborting before reset.")
 
-    step2_reset()
-    stamped = step4_reseed()
+    reset_ok = step2_reset()
+    reseed_ok = step4_reseed()
 
     print("\n" + "=" * 60)
     if not ARMED:
         print("  DRY RUN complete — no writes made. Set CONFIRM_RESET=RESET-AND-RESEED to run.")
     else:
-        ok = stamped == g.MAX_CALLS
-        print(f"  RESET + RESEED complete — {stamped} companies stamped for today"
-              f"{'  ✅' if ok else '  ❌ (expected 45)'}")
+        ok = bool(reset_ok) and bool(reseed_ok)
+        print(f"  RESET + RESEED complete — verifications "
+              f"{'all passed  ✅' if ok else 'FAILED  ❌'}")
         if not ok:
             sys.exit(1)
     print("=" * 60)
