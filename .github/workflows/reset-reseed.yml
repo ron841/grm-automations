@@ -1,0 +1,36 @@
+name: GRM Reset + Reseed (one-time, manual)
+
+# ONE-TIME migration to the v3 "calls live on the Company" model.
+# This is destructive in a bounded way (archives NOT_STARTED CALL tasks, resets
+# every company's grm_lead_status to New, clears grm_next_call_date) and then
+# reseeds today's 45-company calling day. It runs ONLY on manual dispatch and
+# ONLY when you type the confirmation phrase into the input box — so it cannot
+# fire by accident or on a schedule.
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: 'Type RESET-AND-RESEED to actually run (anything else = dry run).'
+        required: true
+        default: ""
+
+jobs:
+  reset-reseed:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Reset board + reseed today
+        env:
+          HUBSPOT_TOKEN: ${{ secrets.HUBSPOT_TOKEN }}
+          CONFIRM_RESET: ${{ github.event.inputs.confirm }}
+        run: python scripts/grm_reset_reseed.py
