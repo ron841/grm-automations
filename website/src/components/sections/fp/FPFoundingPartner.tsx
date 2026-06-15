@@ -55,7 +55,7 @@ export default function FPFoundingPartner() {
 
         <p className="mt-4">
           <a
-            href="/media-kits/front-porch-media-kit.pdf"
+            href="/media-kits/the-front-porch-media-kit.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="font-nunito text-sm text-white/50 no-underline transition-colors hover:text-white hover:underline"
