@@ -83,7 +83,7 @@ const schema = {
           "acceptedAnswer": {
             "@type": "Answer",
             "text":
-              "SEO gets you ranked on Google. AI recommendation gets you quoted by ChatGPT and other assistants when someone asks for the best in your trade. Both run on the same foundation: clean code, clear facts, and structured data. We build for both at once.",
+              "SEO gets you ranked on Google. AI recommendation gets ChatGPT and other assistants to quote you when someone asks for the best in your trade. Both run on the same foundation: clean code, clear facts, and structured data. We build for both at once.",
           },
         },
         {
@@ -409,7 +409,7 @@ export default function WebPage() {
             </div>
             <div className="item">
               <div className="q">What is the difference between SEO and getting recommended by AI?</div>
-              <div className="a">SEO gets you ranked on Google. AI recommendation gets you quoted by ChatGPT and other assistants when someone asks for the best in your trade. Both run on the same foundation: clean code, clear facts, and structured data. We build for both at once.</div>
+              <div className="a">SEO gets you ranked on Google. AI recommendation gets ChatGPT and other assistants to quote you when someone asks for the best in your trade. Both run on the same foundation: clean code, clear facts, and structured data. We build for both at once.</div>
             </div>
             <div className="item">
               <div className="q">Why custom Next.js instead of Wix, Squarespace, or WordPress?</div>
