@@ -6,14 +6,14 @@ import "./landing.css";
 export const metadata: Metadata = {
   title: "The Storefront — Websites built to be recommended by AI | Get Rooted Media",
   description:
-    "The Storefront: a website that the AI actually recommends. For Marion County contractors. $800 to build, $150 a month to keep sharp. Live in 14 days.",
+    "The Storefront: a website that the AI actually recommends. For Marion County contractors. $1,000 to build, $150 a month to keep sharp. Live in 14 days.",
   alternates: {
     canonical: "https://getrootedmedia.com/the-storefront",
   },
   openGraph: {
     title: "The Storefront — Websites built to be recommended by AI",
     description:
-      "For Marion County contractors. $800 to build, $150 a month. Live in 14 days.",
+      "For Marion County contractors. $1,000 to build, $150 a month. Live in 14 days.",
     type: "website",
     url: "https://getrootedmedia.com/the-storefront",
     siteName: "Get Rooted Media",
@@ -49,7 +49,7 @@ const schema = {
         {
           "@type": "Offer",
           "name": "Setup",
-          "price": "800",
+          "price": "1000",
           "priceCurrency": "USD",
         },
         {
@@ -70,11 +70,29 @@ const schema = {
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "What is The Storefront?",
+          "name": "Will my site show up on Google?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text":
-              "A website built for Marion County contractors that is specifically optimized to be recommended by AI assistants like ChatGPT. Includes schema markup, fact-dense copy, and quarterly content refresh.",
+              "Yes. Every site we build ships server-rendered and fast, with clean structure Google can read on the first crawl. We set up your local signals for Ocala and Marion County so you rank for the work you do in the towns you serve.",
+          },
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between SEO and getting recommended by AI?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text":
+              "SEO gets you ranked on Google. AI recommendation gets you quoted by ChatGPT and other assistants when someone asks for the best in your trade. Both run on the same foundation: clean code, clear facts, and structured data. We build for both at once.",
+          },
+        },
+        {
+          "@type": "Question",
+          "name": "Why custom Next.js instead of Wix, Squarespace, or WordPress?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text":
+              "Drag-and-drop builders bury your content in heavy code that loads slow and reads messy. Custom Next.js gives you faster pages, cleaner markup, and the schema AI engines look for. A template cannot match that.",
           },
         },
         {
@@ -83,25 +101,16 @@ const schema = {
           "acceptedAnswer": {
             "@type": "Answer",
             "text":
-              "$800 one-time setup fee, then $150 per month for hosting, updates, AI citation monitoring, and quarterly refresh.",
+              "A flat $1,000 to build, due at signing. Then $150 a month for hosting, updates, AI citation monitoring, and a scheduled content refresh. No retainers. No upsells.",
           },
         },
         {
           "@type": "Question",
-          "name": "How long does it take to build?",
+          "name": "Can I see it before I pay?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text":
-              "Your Storefront is live within 14 days of signing and receipt of the setup fee.",
-          },
-        },
-        {
-          "@type": "Question",
-          "name": "Do I get to see it before I sign?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text":
-              "Yes. We build a free preview of your homepage within 7 days. If you like it, we migrate. If you do not, nothing changes.",
+              "Yes. We build a free preview of your homepage within 7 days. If you like it, we migrate it to your domain. If you do not, nothing changes and you keep the wireframe.",
           },
         },
       ],
@@ -296,11 +305,30 @@ export default function WebPage() {
             <li>
               <div className="n">06</div>
               <div>
-                <div className="ft">Quarterly content refresh.</div>
+                <div className="ft">Scheduled content refresh.</div>
                 <div className="dk">Every thirteen weeks we update your review counts, rotate a seasonal FAQ, and swap a project photo. AI assistants read that as freshness, and freshness earns citations.</div>
               </div>
             </li>
           </ol>
+        </div>
+      </section>
+
+      {/* ============ 5b. SEO + GEO (teal) ============ */}
+      <section className="seo sec--teal" data-screen-label="5b Found everywhere">
+        <div className="container">
+          <div className="eb">— Found everywhere</div>
+          <h2>FOUND ON GOOGLE.<br />CITED BY AI.</h2>
+          <div className="body">
+            <div>
+              <p>Most local websites sit invisible. Yours will not. Every page we build ships with the foundation Google rewards: server-rendered HTML that crawls clean, load times that pass Core Web Vitals, and structured data that tells search engines exactly who you are and where you work.</p>
+              <p>We tune the local signals for Ocala and Marion County, so your business shows up when a neighbor searches for what you do.</p>
+            </div>
+            <div>
+              <p>Search is splitting in two. People ask Google. They ask AI. We build for both.</p>
+              <p>Clean structure and direct answers make your site easy for Google to rank and easy for AI engines to quote. One site, found everywhere your customers look.</p>
+            </div>
+          </div>
+          <div className="buildline">This runs on custom Next.js code, not a drag-and-drop template. You get faster pages, cleaner markup, and search performance a website builder cannot match.</div>
         </div>
       </section>
 
@@ -312,13 +340,13 @@ export default function WebPage() {
           <div className="price-grid">
             <div className="p">
               <div className="lbl">— Setup, one-time</div>
-              <div className="num">$800</div>
+              <div className="num">$1,000</div>
               <div className="sub">Due at signing. Live in 14 days. Includes schema, copywriting, photography review, migration.</div>
             </div>
             <div className="p">
               <div className="lbl">— Then, monthly</div>
               <div className="num">$150 <span className="mo">/ mo</span></div>
-              <div className="sub">Hosting, updates, AI citation monitoring, quarterly refresh, real humans on the phone.</div>
+              <div className="sub">Hosting, updates, AI citation monitoring, scheduled content refresh, real humans on the phone.</div>
             </div>
           </div>
         </div>
@@ -365,6 +393,36 @@ export default function WebPage() {
               <span className="num">15 minutes →</span>
               <span className="sub">cal.com/ron-kolb-cdlgsw</span>
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ============ 8b. FAQ (black) ============ */}
+      <section className="faq sec--black" id="faq" data-screen-label="8b FAQ">
+        <div className="container">
+          <div className="eb">— Common questions</div>
+          <h2>Questions contractors ask before they sign.</h2>
+          <div className="qa">
+            <div className="item">
+              <div className="q">Will my site show up on Google?</div>
+              <div className="a">Yes. Every site we build ships server-rendered and fast, with clean structure Google can read on the first crawl. We set up your local signals for Ocala and Marion County so you rank for the work you do in the towns you serve.</div>
+            </div>
+            <div className="item">
+              <div className="q">What is the difference between SEO and getting recommended by AI?</div>
+              <div className="a">SEO gets you ranked on Google. AI recommendation gets you quoted by ChatGPT and other assistants when someone asks for the best in your trade. Both run on the same foundation: clean code, clear facts, and structured data. We build for both at once.</div>
+            </div>
+            <div className="item">
+              <div className="q">Why custom Next.js instead of Wix, Squarespace, or WordPress?</div>
+              <div className="a">Drag-and-drop builders bury your content in heavy code that loads slow and reads messy. Custom Next.js gives you faster pages, cleaner markup, and the schema AI engines look for. A template cannot match that.</div>
+            </div>
+            <div className="item">
+              <div className="q">What does The Storefront cost?</div>
+              <div className="a">A flat $1,000 to build, due at signing. Then $150 a month for hosting, updates, AI citation monitoring, and a scheduled content refresh. No retainers. No upsells.</div>
+            </div>
+            <div className="item">
+              <div className="q">Can I see it before I pay?</div>
+              <div className="a">Yes. We build a free preview of your homepage within 7 days. If you like it, we migrate it to your domain. If you do not, nothing changes and you keep the wireframe.</div>
+            </div>
           </div>
         </div>
       </section>
