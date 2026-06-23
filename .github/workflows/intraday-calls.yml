@@ -1,0 +1,34 @@
+name: GRM Intraday Calls (advance + self-heal)
+
+on:
+  schedule:
+    # Hourly 12:00–22:00 UTC, Mon–Fri ≈ 8 AM–6 PM ET.
+    # Advances lead status from calls logged so far today, books meetings, and
+    # self-heals an empty list if the nightly run was missed/failed — so the
+    # morning call list is never empty. It does NOT clear the live 45.
+    - cron: "0 12-22 * * 1-5"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry run (read-only, no writes to HubSpot)"
+        type: boolean
+        default: false
+
+jobs:
+  intraday-calls:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Advance status + self-heal today's list
+        env:
+          HUBSPOT_TOKEN: ${{ secrets.HUBSPOT_TOKEN }}
+        run: python scripts/grm_daily_calls.py --intraday ${{ (github.event_name == 'workflow_dispatch' && inputs.dry_run) && '--dry-run' || '' }}

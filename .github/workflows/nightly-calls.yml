@@ -5,7 +5,12 @@ on:
     # 23:30 UTC Sun-Thu ≈ 7:30 PM EDT (6:30 PM EST in winter — fine).
     # Builds Mon-Fri call lists for the following morning.
     - cron: "30 23 * * 0-4"
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry run (read-only, no writes to HubSpot)"
+        type: boolean
+        default: false
 
 jobs:
   nightly-calls:
@@ -24,4 +29,4 @@ jobs:
       - name: Build tomorrow's call list + email capture
         env:
           HUBSPOT_TOKEN: ${{ secrets.HUBSPOT_TOKEN }}
-        run: python scripts/grm_daily_calls.py
+        run: python scripts/grm_daily_calls.py ${{ (github.event_name == 'workflow_dispatch' && inputs.dry_run) && '--dry-run' || '' }}

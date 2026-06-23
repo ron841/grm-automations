@@ -1,48 +1,55 @@
 #!/usr/bin/env python3
 """
-grm_daily_calls.py — GRM Nightly Builder (v3 — Calls live on the Company, not in Tasks)
+grm_daily_calls.py — GRM Call-List Builder (v3.1 — calls live on the Company)
 
-WHAT CHANGED IN v3 (and why)
+Calls do not live in the Task system. A company is flagged for a calling day by
+a DATE property, ``grm_next_call_date``. A saved Companies view ("Today's Calls")
+filtered to grm_next_call_date = TODAY is the call list Ron dials straight from.
+
+Ron's daily loop (in the company preview):
+  • logs a CALL  (incl. "left a voicemail")  → that company is "called"
+  • writes a NOTE starting MEETING/APPT       → an appointment was booked
+  • pastes an email into a NOTE               → an email follow-up is owed
+
+The automation turns that into:
+  • CALLED      → grm_last_call_date stamped, New→Attempted, taken off today's list
+  • APPOINTMENT → a Deal ("Meeting Set", right pipeline) created, removed from pool
+  • UNREACHED   → carried forward to the next calling day (never lost)
+  • re-dials    → a called-but-unreached company comes back automatically after a
+                  cooldown (Connected 2d, Attempted 3d, Not Now 14d)
+  • email       → a next-day EMAIL task tied to BOTH the contact and the company
+
 ────────────────────────────────────────────────────────────────────────────
-Calls left the Task system entirely. The old design created 45 CALL *tasks*
-every night, and it flipped a company's lead status New→Attempted the moment a
-task was QUEUED — so a company that was merely scheduled (never actually dialed)
-looked "Attempted". Status drifted and the pool emptied.
+TWO RUN MODES
+  (default / nightly)   build the NEXT calling day:
+      A) callbacks    — stamp parsed callback dates from today's notes
+      M) meetings     — MEETING/APPT notes → create Deals, drop from pool
+      B) worked       — stamp grm_last_call_date + promote from REAL calls/notes,
+                        and CLEAR today's reached companies off the list
+      C) build        — clear→rebuild the target day to exactly 45 (carry-forward
+                        unreached first, then due re-dials, then a fresh-New tier
+                        blend A=13 B+=14 B=4 Untiered=14)
+      D) email        — today's emailed notes → next-day EMAIL tasks
+      E) spot-check   — confirm the EMAIL tasks carry their associations
 
-v3 fixes both problems:
+  --intraday            keep TODAY honest during business hours (a second
+                        workflow runs this hourly):
+      • worked-detection for today (advance status same-day; does NOT clear the
+        list so the day's 45 stay visible while Ron works)
+      • meetings for today (drop booked companies same-day)
+      • SELF-HEAL: if today's list is unexpectedly empty (a missed/failed
+        nightly run), build it on the spot so the morning is never empty
 
-  • A company is flagged for a calling day by a DATE PROPERTY,
-    `grm_next_call_date`. A saved Companies view ("Today's Calls") shows the
-    day's batch, and Ron calls straight from that list. No CALL tasks at all.
-
-  • Lead status now changes ONLY when real work is logged (a note or a CALL
-    engagement on the company that day) — never on stamp/queue. We track the
-    last real dial in `grm_last_call_date`.
-
-  • Tasks are now EMAIL-ONLY: the follow-ups generated from emails captured the
-    day before (PASS D below).
-
-THE NIGHTLY RUN builds the NEXT day (the "target day") in five passes:
-
-  A) CALLBACK PASS       — scan today's notes for callback intent, stamp the
-                           parsed date on `grm_next_call_date`.
-  B) WORKED-DETECTION    — for companies stamped for TODAY (the day finishing),
-                           if real work was logged, set `grm_last_call_date` and
-                           promote New→Attempted. Stamping never changes status.
-  C) BUILD TARGET DAY    — fill the target day up to 45 companies using a
-                           systematic tier blend (A=13, B+=14, B=4, Untiered=14),
-                           drawing eligible companies and stamping
-                           `grm_next_call_date`.
-  D) EMAIL CAPTURE       — scan today's notes for emails → next-day EMAIL tasks.
-  E) SPOT-CHECK          — confirm 3 EMAIL tasks created this run carry their
-                           contact + company associations; fail the run if not.
+Eligibility is computed from REAL CALL associations (not only the lagging stamp),
+so a company dialed yesterday is never re-served even if a stamp/promotion lagged.
 
 The HubSpot token comes from the HUBSPOT_TOKEN environment variable (a GitHub
-Actions secret) — it is never hardcoded here.
+Actions secret) — never hardcoded.
 
 Usage:
-  HUBSPOT_TOKEN=... python3 scripts/grm_daily_calls.py            # live (target = tomorrow)
-  HUBSPOT_TOKEN=... python3 scripts/grm_daily_calls.py --dry-run  # no writes
+  HUBSPOT_TOKEN=... python3 scripts/grm_daily_calls.py             # nightly, target = tomorrow
+  HUBSPOT_TOKEN=... python3 scripts/grm_daily_calls.py --dry-run   # nightly, no writes
+  HUBSPOT_TOKEN=... python3 scripts/grm_daily_calls.py --intraday  # maintain today + self-heal
 """
 
 import os
@@ -69,24 +76,36 @@ OUR_DOMAIN   = "getrootedmedia.com"            # ignore our own addresses on ema
 ASSOC_TASK_TO_COMPANY    = 192
 ASSOC_TASK_TO_CONTACT    = 204
 ASSOC_CONTACT_TO_COMPANY = 279
+ASSOC_DEAL_TO_COMPANY    = 341   # HubSpot-defined deal→company
+ASSOC_DEAL_TO_CONTACT    = 3     # HubSpot-defined deal→contact
 
-# Daily tier blend — the systematic mix the target day is built from.
+# Daily tier blend — the systematic mix the fresh-New top-up is built from.
 # (sums to MAX_CALLS = 45)
 TIER_TARGETS = {"A": 13, "B+": 14, "B": 4, "Untiered": 14}
-# Priority order used both for filling each tier and for backfilling shortfalls.
 TIER_ORDER   = ["A", "B+", "B", "Untiered"]
 
-# Re-dial cooldown by status, measured in days against grm_last_call_date.
-# New has no cooldown (always eligible, top priority). A status with no
-# last_call_date recorded is treated as eligible (never dialed → no cooldown).
+# Re-dial cooldown by status, in days, measured against the last REAL call.
+# New has no cooldown UNLESS it was actually dialed within the Attempted window
+# (a New that's been called is really an un-promoted Attempted — see is_eligible).
 REDIAL_DAYS = {"Connected": 2, "Attempted": 3, "Not Now": 14}
-# Lowest number = highest priority when ordering within a tier.
+NEW_DIALED_COOLDOWN = REDIAL_DAYS["Attempted"]   # 3d guard so New-dialed-yesterday isn't re-served
+# Lowest number = highest priority when ordering re-dials (most overdue first uses last_call).
 STATUS_RANK = {"New": 0, "Connected": 1, "Attempted": 2, "Not Now": 3}
 
 # Statuses that are NEVER eligible (removed from the calling pool entirely).
 EXCLUDED_STATUSES = {"Not a Fit"}
+# Statuses that re-dial (everything callable that isn't New / excluded).
+REDIAL_STATUSES = ["Connected", "Attempted", "Not Now"]
 
-DRY_RUN = "--dry-run" in sys.argv
+# Publication → deal pipeline label (resolved to live IDs at runtime).
+PIPELINE_LABELS = {"CT": "Closing Table", "FP": "Front Porch"}
+MEETING_STAGE_LABEL = "Meeting Set"
+
+DRY_RUN  = "--dry-run" in sys.argv
+INTRADAY = "--intraday" in sys.argv
+
+# How far back to look at real CALL engagements (covers the longest cooldown).
+CALL_LOOKBACK_DAYS = max(REDIAL_DAYS.values()) + 1   # 15
 
 # ─── API HELPER ──────────────────────────────────────────────────────────────
 session = requests.Session()
@@ -113,8 +132,7 @@ def api(method, path, body=None, params=None):
 
 
 def search_all(object_type, filters, properties, sorts=None):
-    """Run a CRM search and follow pagination until every page is collected.
-    Returns the full list of result objects."""
+    """Run a CRM search and follow pagination until every page is collected."""
     results, after = [], None
     while True:
         body = {
@@ -138,6 +156,24 @@ def search_all(object_type, filters, properties, sorts=None):
     return results
 
 
+def batch_associations(from_type, to_type, ids):
+    """Return {from_id: [to_id, ...]} via the v4 batch-read endpoint.
+    Far cheaper than one GET per object when mapping many engagements at once."""
+    out, ids = {}, [str(i) for i in ids]
+    for i in range(0, len(ids), 100):
+        chunk = ids[i:i + 100]
+        resp, status = api("POST",
+                           f"/crm/v4/associations/{from_type}/{to_type}/batch/read",
+                           {"inputs": [{"id": x} for x in chunk]})
+        if status != 200:
+            print(f"  [WARN] batch assoc {from_type}->{to_type} failed: {status} {resp}")
+            continue
+        for row in resp.get("results", []):
+            frm = str(row.get("from", {}).get("id"))
+            out.setdefault(frm, []).extend(str(t.get("toObjectId")) for t in row.get("to", []))
+    return out
+
+
 # ─── DATE HELPERS ────────────────────────────────────────────────────────────
 def now_et():
     return datetime.now(tz=TZ)
@@ -153,25 +189,18 @@ def tomorrow_et():
 
 def nine_am_ms(d):
     """9:00 AM Eastern on date d, as epoch milliseconds (HubSpot task due time)."""
-    dt = datetime(d.year, d.month, d.day, 9, 0, 0, tzinfo=TZ)
-    return int(dt.timestamp() * 1000)
+    return int(datetime(d.year, d.month, d.day, 9, 0, 0, tzinfo=TZ).timestamp() * 1000)
 
 
 def et_day_start_ms(d):
-    """Midnight Eastern on date d, as epoch milliseconds. Used for 'created
-    today' style filters on engagement timestamps (notes/calls)."""
-    dt = datetime(d.year, d.month, d.day, 0, 0, 0, tzinfo=TZ)
-    return int(dt.timestamp() * 1000)
+    """Midnight Eastern on date d, epoch ms. For 'created today' engagement filters."""
+    return int(datetime(d.year, d.month, d.day, 0, 0, 0, tzinfo=TZ).timestamp() * 1000)
 
 
 def utc_midnight_ms(d):
-    """Midnight UTC on date d, as epoch milliseconds.
-
-    HubSpot stores DATE-type properties (grm_next_call_date, grm_last_call_date)
-    as midnight UTC. To filter 'grm_next_call_date == this calendar date' we must
-    compare against this value, not the Eastern midnight."""
-    dt = datetime(d.year, d.month, d.day, 0, 0, 0, tzinfo=UTC)
-    return int(dt.timestamp() * 1000)
+    """Midnight UTC on date d, epoch ms. HubSpot stores DATE-type properties
+    (grm_next_call_date, grm_last_call_date) as midnight UTC — filter against this."""
+    return int(datetime(d.year, d.month, d.day, 0, 0, 0, tzinfo=UTC).timestamp() * 1000)
 
 
 def iso_date(d):
@@ -180,15 +209,12 @@ def iso_date(d):
 
 
 def parse_date_property(raw):
-    """Turn a stored date-property value into a date object, or None.
-
-    HubSpot returns date properties as a midnight-UTC epoch-ms string
-    (e.g. '1718409600000'); we also tolerate an ISO 'YYYY-MM-DD' string."""
+    """Stored date-property value → date object, or None. HubSpot returns date
+    properties as a midnight-UTC epoch-ms string; tolerate ISO too."""
     if not raw:
         return None
     try:
-        ms = int(raw)
-        return datetime.fromtimestamp(ms / 1000, tz=UTC).date()
+        return datetime.fromtimestamp(int(raw) / 1000, tz=UTC).date()
     except (ValueError, TypeError):
         try:
             return date.fromisoformat(str(raw)[:10])
@@ -196,8 +222,15 @@ def parse_date_property(raw):
             return None
 
 
-# ─── CALLBACK PARSING ────────────────────────────────────────────────────────
-# Weekday names + common abbreviations, lowercase.
+def ms_to_et_date(ms):
+    """Epoch-ms (UTC instant) → the Eastern calendar date it falls on."""
+    try:
+        return datetime.fromtimestamp(int(ms) / 1000, tz=UTC).astimezone(TZ).date()
+    except (ValueError, TypeError):
+        return None
+
+
+# ─── CALLBACK / MEETING PARSING ──────────────────────────────────────────────
 WEEKDAY_LOOKUP = {
     "monday": 0, "mon": 0,
     "tuesday": 1, "tue": 1, "tues": 1,
@@ -210,21 +243,24 @@ WEEKDAY_LOOKUP = {
 MONTH_NAMES = ["january", "february", "march", "april", "may", "june", "july",
                "august", "september", "october", "november", "december"]
 
-# The phrases that introduce a callback. Each captures the <when> that follows.
-# Order matters: more specific phrases are tried before looser ones so that,
-# e.g., "call back tomorrow" is read as a callback rather than "call <when>".
+# Phrases that introduce a callback; each captures the <when> that follows.
 CALLBACK_TRIGGERS = [
-    re.compile(r"callback:\s*(.+)", re.IGNORECASE),   # "callback: <when>"
-    re.compile(r"\bcall back\s+(.+)", re.IGNORECASE),  # "call back <when>"
-    re.compile(r"\bcallback\s+(.+)", re.IGNORECASE),   # "callback <when>"
-    re.compile(r"\bcb\s+(.+)", re.IGNORECASE),         # "cb <when>"
-    re.compile(r"^\s*call\s+(.+)", re.IGNORECASE),     # a line STARTING with "call <when>"
+    re.compile(r"callback:\s*(.+)", re.IGNORECASE),
+    re.compile(r"\bcall back\s+(.+)", re.IGNORECASE),
+    re.compile(r"\bcallback\s+(.+)", re.IGNORECASE),
+    re.compile(r"\bcb\s+(.+)", re.IGNORECASE),
+    re.compile(r"^\s*call\s+(.+)", re.IGNORECASE),
 ]
+
+# A meeting marker is a LINE that STARTS with MEETING / APPT / APPOINTMENT.
+# Everything after the marker is an optional <when> (close date).
+MEETING_MARKER = re.compile(r"^\s*(?:meeting|appt|appointment)\b[:.\-\s]*(.*)$", re.IGNORECASE)
+# Loose detector — used only to flag notes that LOOK like a meeting but lack a marker.
+MEETING_HINT = re.compile(r"\b(meeting|appt|appointment|booked|scheduled|demo|sit[- ]?down)\b",
+                          re.IGNORECASE)
 
 
 def _next_weekday(ref, target_weekday, force_next_week=False):
-    """The next calendar date on or after ref+1 whose weekday == target.
-    With force_next_week (for 'next <weekday>'), skip a full extra week."""
     days_ahead = (target_weekday - ref.weekday()) % 7
     if days_ahead == 0:
         days_ahead = 7  # 'wednesday' said on a Wednesday means the coming one
@@ -234,25 +270,20 @@ def _next_weekday(ref, target_weekday, force_next_week=False):
 
 
 def parse_when(text, ref):
-    """Resolve a <when> expression to a calendar date relative to ref (today),
-    or None if no recognized time expression is present.
-
+    """Resolve a <when> expression to a calendar date relative to ref, or None.
     Recognized: tomorrow | in N days | N days | <weekday> | next <weekday> |
     M/D[/Y] | YYYY-MM-DD | 'Month D'."""
-    s = text.strip().lower()
+    s = (text or "").strip().lower()
     if not s:
         return None
 
-    # tomorrow
     if re.match(r"tomorrow\b", s):
         return ref + timedelta(days=1)
 
-    # "in N days" / "N days"
     m = re.search(r"\bin\s+(\d{1,3})\s+days?\b", s) or re.match(r"(\d{1,3})\s+days?\b", s)
     if m:
         return ref + timedelta(days=int(m.group(1)))
 
-    # ISO date: 2026-06-11
     m = re.search(r"\b(\d{4})-(\d{1,2})-(\d{1,2})\b", s)
     if m:
         try:
@@ -260,11 +291,9 @@ def parse_when(text, ref):
         except ValueError:
             return None
 
-    # US numeric date: 6/11 or 6/11/2026
     m = re.search(r"\b(\d{1,2})/(\d{1,2})(?:/(\d{2,4}))?\b", s)
     if m:
-        month, day = int(m.group(1)), int(m.group(2))
-        year = m.group(3)
+        month, day, year = int(m.group(1)), int(m.group(2)), m.group(3)
         if year:
             year = int(year)
             if year < 100:
@@ -275,15 +304,13 @@ def parse_when(text, ref):
             d = date(year, month, day)
         except ValueError:
             return None
-        # No-year date already past this year → assume next year.
-        if not m.group(3) and d < ref:
+        if not m.group(3) and d < ref:        # no-year date already past → next year
             try:
                 d = date(year + 1, month, day)
             except ValueError:
                 return None
         return d
 
-    # Month-name date: "June 11" / "Jun 11"
     for i, month in enumerate(MONTH_NAMES, start=1):
         m = re.search(rf"\b(?:{month}|{month[:3]})\.?\s+(\d{{1,2}})\b", s)
         if m:
@@ -292,19 +319,17 @@ def parse_when(text, ref):
                 d = date(ref.year, i, day)
             except ValueError:
                 return None
-            if d < ref:                       # month already passed → next year
+            if d < ref:
                 try:
                     d = date(ref.year + 1, i, day)
                 except ValueError:
                     return None
             return d
 
-    # "next <weekday>" — a full week beyond the coming occurrence.
     m = re.search(r"\bnext\s+([a-z]+)\b", s)
     if m and m.group(1) in WEEKDAY_LOOKUP:
         return _next_weekday(ref, WEEKDAY_LOOKUP[m.group(1)], force_next_week=True)
 
-    # plain "<weekday>"
     for name, wd in WEEKDAY_LOOKUP.items():
         if re.search(rf"\b{name}\b", s):
             return _next_weekday(ref, wd)
@@ -314,8 +339,7 @@ def parse_when(text, ref):
 
 def parse_callback_date(note_body, ref):
     """Find callback intent in a note and resolve it to a date, or None.
-    Only returns a date when a recognized time expression is present — so a
-    prospect merely saying 'they'll call' is not mistaken for a callback."""
+    Only returns a date when a recognized time expression is present."""
     for line in (note_body or "").splitlines():
         for trigger in CALLBACK_TRIGGERS:
             m = trigger.search(line.strip())
@@ -326,20 +350,48 @@ def parse_callback_date(note_body, ref):
     return None
 
 
-# ─── ASSOCIATION HELPER ──────────────────────────────────────────────────────
+def parse_meeting(note_body, ref):
+    """If a line starts with a meeting marker, return (True, close_date_or_None).
+    The close date is parsed from the rest of the marker line if present.
+    Returns (False, None) when no marker line exists."""
+    for line in (note_body or "").splitlines():
+        m = MEETING_MARKER.match(line)
+        if m:
+            return True, parse_when(m.group(1), ref)
+    return False, None
+
+
+def looks_like_meeting(note_body):
+    return bool(MEETING_HINT.search(note_body or ""))
+
+
+# ─── ASSOCIATION / READ HELPERS ──────────────────────────────────────────────
 def companies_for_note(note_id):
-    """Return the set of company IDs associated with a note."""
     assoc, status = api("GET", f"/crm/v4/objects/notes/{note_id}/associations/companies")
-    if status != 200:
-        return set()
-    return {str(a["toObjectId"]) for a in assoc.get("results", [])}
+    return {str(a["toObjectId"]) for a in assoc.get("results", [])} if status == 200 else set()
+
+
+def contacts_for_note(note_id):
+    assoc, status = api("GET", f"/crm/v4/objects/notes/{note_id}/associations/contacts")
+    return [str(a["toObjectId"]) for a in assoc.get("results", [])] if status == 200 else []
+
+
+def company_props(cid, names):
+    co, status = api("GET", f"/crm/v3/objects/companies/{cid}",
+                     params={"properties": ",".join(names)})
+    return co.get("properties", {}) if status == 200 else {}
 
 
 def company_name(cid):
-    co, status = api("GET", f"/crm/v3/objects/companies/{cid}", params={"properties": "name"})
-    if status == 200:
-        return co.get("properties", {}).get("name") or f"Company {cid}"
-    return f"Company {cid}"
+    return company_props(cid, ["name"]).get("name") or f"Company {cid}"
+
+
+def notes_created_on(day, props=None):
+    return search_all(
+        "notes",
+        [{"propertyName": "hs_createdate", "operator": "GTE", "value": str(et_day_start_ms(day))}],
+        props or ["hs_note_body"],
+    )
 
 
 # ─── COMPANY WRITES ──────────────────────────────────────────────────────────
@@ -347,40 +399,20 @@ def set_company_props(company_id, props):
     """PATCH one company's properties. No-op (returns True) under --dry-run."""
     if DRY_RUN:
         return True
-    _, status = api("PATCH", f"/crm/v3/objects/companies/{company_id}",
-                    {"properties": props})
+    _, status = api("PATCH", f"/crm/v3/objects/companies/{company_id}", {"properties": props})
     return status in (200, 201)
 
 
 def stamp_next_call_date(company_id, d):
-    return set_company_props(company_id, {"grm_next_call_date": iso_date(d)})
+    """Set grm_next_call_date to date d, or clear it when d is None."""
+    return set_company_props(company_id, {"grm_next_call_date": iso_date(d) if d else ""})
 
 
-# ─── DEAL EXCLUSION ──────────────────────────────────────────────────────────
-def get_deal_company_ids():
-    """Company IDs with an associated DEAL (= a booked meeting, now in the
-    pipeline). These leave the calling pool. Deals are few, so we enumerate
-    them and collect their company associations."""
-    deal_ids = [d["id"] for d in search_all("deals",
-                [{"propertyName": "hs_object_id", "operator": "HAS_PROPERTY"}],
-                ["dealname"])]
-    company_ids = set()
-    for did in deal_ids:
-        assoc, status = api("GET", f"/crm/v4/objects/deals/{did}/associations/companies")
-        if status == 200:
-            for a in assoc.get("results", []):
-                company_ids.add(str(a["toObjectId"]))
-    return company_ids
-
-
-# ─── COMPANIES STAMPED FOR A GIVEN DAY ───────────────────────────────────────
 def companies_stamped_for(d):
-    """Companies whose grm_next_call_date equals calendar date d.
-    Returns list of {id, name, grm_lead_status}."""
+    """Companies whose grm_next_call_date equals calendar date d."""
     rows = search_all(
         "companies",
-        [{"propertyName": "grm_next_call_date", "operator": "EQ",
-          "value": str(utc_midnight_ms(d))}],
+        [{"propertyName": "grm_next_call_date", "operator": "EQ", "value": str(utc_midnight_ms(d))}],
         ["name", "grm_lead_status", "grm_next_call_date"],
     )
     return [{"id": str(r["id"]),
@@ -389,26 +421,122 @@ def companies_stamped_for(d):
             for r in rows]
 
 
-# ─── PASS A: CALLBACK PASS ───────────────────────────────────────────────────
-def callback_pass(ref=None):
-    """Scan notes created today for callback intent and stamp the parsed date
-    on grm_next_call_date for the note's company. Returns count stamped."""
-    ref = ref or today_et()
+# ─── REAL-CALL MAP (the activity source of truth) ─────────────────────────────
+def recent_calls_by_company(since_date):
+    """{company_id: latest Eastern call date} from real CALL engagements logged on
+    or after since_date. This — not the stamp — drives worked-detection and the
+    re-dial cooldown, so the system is robust to a lagging grm_last_call_date."""
+    calls = search_all(
+        "calls",
+        [{"propertyName": "hs_timestamp", "operator": "GTE", "value": str(et_day_start_ms(since_date))}],
+        ["hs_timestamp"],
+    )
+    if not calls:
+        return {}
+    call_date = {c["id"]: ms_to_et_date(c.get("properties", {}).get("hs_timestamp")) for c in calls}
+    by_company = {}
+    assoc = batch_associations("calls", "companies", [c["id"] for c in calls])
+    for call_id, cids in assoc.items():
+        d = call_date.get(call_id)
+        if not d:
+            continue
+        for cid in cids:
+            if cid not in by_company or d > by_company[cid]:
+                by_company[cid] = d
+    return by_company
+
+
+# ─── DEALS ───────────────────────────────────────────────────────────────────
+def open_deal_company_ids():
+    """Company IDs with an OPEN deal (a booked meeting still in play). These leave
+    the calling pool. Closed-won/closed-lost deals do not exclude a company."""
+    deals = search_all("deals",
+                       [{"propertyName": "hs_object_id", "operator": "HAS_PROPERTY"}],
+                       ["dealname", "hs_is_closed"])
+    open_ids = [d["id"] for d in deals
+                if str(d.get("properties", {}).get("hs_is_closed")).lower() != "true"]
+    if not open_ids:
+        return set()
+    company_ids = set()
+    assoc = batch_associations("deals", "companies", open_ids)
+    for cids in assoc.values():
+        company_ids.update(cids)
+    return company_ids
+
+
+def resolve_meeting_stages():
+    """Resolve live pipeline + 'Meeting Set' stage IDs from the API.
+    Returns {"CT": (pipeline_id, stage_id), "FP": (pipeline_id, stage_id)}."""
+    resp, status = api("GET", "/crm/v3/pipelines/deals")
+    out = {}
+    if status != 200:
+        print(f"  [WARN] could not read deal pipelines: {status} {resp}")
+        return out
+    for pl in resp.get("results", []):
+        label = (pl.get("label") or "")
+        key = next((k for k, frag in PIPELINE_LABELS.items() if frag.lower() in label.lower()), None)
+        if not key:
+            continue
+        stage_id = next((s["id"] for s in pl.get("stages", [])
+                         if (s.get("label") or "").strip().lower() == MEETING_STAGE_LABEL.lower()), None)
+        if stage_id:
+            out[key] = (pl["id"], stage_id)
+    return out
+
+
+def pipeline_for_publication(pub, stages):
+    """Map grm_publication → (pipeline_id, stage_id). CT→CT, FP→FP,
+    'CT + FP' (and anything mentioning CT) → CT. Default CT."""
+    pub = (pub or "").upper()
+    if "CT" in pub and "CT" in stages:
+        return stages["CT"]
+    if "FP" in pub and "FP" in stages:
+        return stages["FP"]
+    return stages.get("CT") or stages.get("FP")
+
+
+def create_deal(company_id, cname, contact_id, close_date, stages):
+    """Create a Meeting-Set deal WITH its company (and contact) association in ONE
+    call, in the pipeline chosen by the company's grm_publication."""
+    pub = company_props(company_id, ["grm_publication"]).get("grm_publication")
+    resolved = pipeline_for_publication(pub, stages)
+    if not resolved:
+        print(f"  [ERROR] no pipeline/stage resolved for {cname} (pub={pub}) — deal skipped")
+        return None
+    pipeline_id, stage_id = resolved
+    props = {"dealname": f"{cname} — Meeting", "pipeline": pipeline_id, "dealstage": stage_id}
+    if close_date:
+        props["closedate"] = str(utc_midnight_ms(close_date))
+    associations = [{
+        "to": {"id": str(company_id)},
+        "types": [{"associationCategory": "HUBSPOT_DEFINED", "associationTypeId": ASSOC_DEAL_TO_COMPANY}],
+    }]
+    if contact_id:
+        associations.append({
+            "to": {"id": str(contact_id)},
+            "types": [{"associationCategory": "HUBSPOT_DEFINED", "associationTypeId": ASSOC_DEAL_TO_CONTACT}],
+        })
+    if DRY_RUN:
+        return "DRY-RUN"
+    resp, status = api("POST", "/crm/v3/objects/deals", {"properties": props, "associations": associations})
+    if status not in (200, 201):
+        print(f"  [ERROR] deal create failed ({cname}): {status} {resp}")
+        return None
+    return resp.get("id")
+
+
+# ─── PASS A: CALLBACKS ───────────────────────────────────────────────────────
+def callback_pass(ref):
+    """Stamp grm_next_call_date from callback intent in today's notes."""
     print("\nPASS A — CALLBACKS (notes created today)")
     print("─" * 60)
-    notes = search_all(
-        "notes",
-        [{"propertyName": "hs_createdate", "operator": "GTE",
-          "value": str(et_day_start_ms(ref))}],
-        ["hs_note_body"],
-    )
+    notes = notes_created_on(ref)
     print(f"  Notes created today: {len(notes)}")
-
     stamped = 0
     for note in notes:
         body = note.get("properties", {}).get("hs_note_body", "") or ""
         d = parse_callback_date(body, ref)
-        if not d or d < ref:           # ignore unparseable or already-past dates
+        if not d or d < ref:
             continue
         for cid in companies_for_note(note["id"]):
             if stamp_next_call_date(cid, d):
@@ -418,222 +546,262 @@ def callback_pass(ref=None):
     return stamped
 
 
-# ─── PASS B: WORKED DETECTION ────────────────────────────────────────────────
-def worked_today(company_id, day):
-    """True if a note OR a CALL engagement was logged on this company on `day`."""
-    start = str(et_day_start_ms(day))
-    notes = api("POST", "/crm/v3/objects/notes/search", {
-        "filterGroups": [{"filters": [
-            {"propertyName": "associations.company", "operator": "EQ", "value": str(company_id)},
-            {"propertyName": "hs_createdate", "operator": "GTE", "value": start},
-        ]}],
-        "properties": ["hs_object_id"], "limit": 1,
-    })[0]
-    if notes.get("total", 0) > 0:
-        return True
-    calls = api("POST", "/crm/v3/objects/calls/search", {
-        "filterGroups": [{"filters": [
-            {"propertyName": "associations.company", "operator": "EQ", "value": str(company_id)},
-            {"propertyName": "hs_timestamp", "operator": "GTE", "value": start},
-        ]}],
-        "properties": ["hs_object_id"], "limit": 1,
-    })[0]
-    return calls.get("total", 0) > 0
-
-
-def worked_detection_pass(day=None):
-    """For each company stamped for `day` (the day just finishing): if real work
-    was logged, set grm_last_call_date = day and promote New→Attempted. If not
-    worked, leave it New so it returns to the pool. Stamping never changes
-    status — only real work does."""
-    day = day or today_et()
-    print(f"\nPASS B — WORKED DETECTION (companies stamped for {iso_date(day)})")
+# ─── PASS M: MEETINGS → DEALS ────────────────────────────────────────────────
+def meeting_pass(ref, deal_ids, stages):
+    """MEETING/APPT notes → create a Deal, drop the company from the calling pool.
+    Marker required. Notes that look like a meeting but lack a marker are logged
+    for manual review (never auto-acted). Mutates deal_ids in place."""
+    print("\nPASS M — MEETINGS (notes created today)")
     print("─" * 60)
-    stamped = companies_stamped_for(day)
-    print(f"  Companies stamped for today: {len(stamped)}")
-
-    worked = 0
-    for co in stamped:
-        if not worked_today(co["id"], day):
+    notes = notes_created_on(ref)
+    created, review = 0, []
+    for note in notes:
+        body = note.get("properties", {}).get("hs_note_body", "") or ""
+        marked, close_date = parse_meeting(body, ref)
+        if not marked:
+            if looks_like_meeting(body):
+                review.append(note["id"])
             continue
-        worked += 1
-        props = {"grm_last_call_date": iso_date(day)}
-        # Real work promotes a New lead into the Attempted cadence; an already
-        # Attempted/Connected/Not Now lead keeps its status.
-        if co["grm_lead_status"] == "New":
-            props["grm_lead_status"] = "Attempted"
-        set_company_props(co["id"], props)
-        print(f"    [WORKED] {co['name']} "
-              f"({co['grm_lead_status']}{' → Attempted' if co['grm_lead_status'] == 'New' else ''})")
-    print(f"  Worked today: {worked} | Not worked (stay in pool): {len(stamped) - worked}")
-    return worked
+        contacts = contacts_for_note(note["id"])
+        contact_id = contacts[0] if contacts else None
+        for cid in companies_for_note(note["id"]):
+            if cid in deal_ids:                       # already has an open deal — dedupe
+                continue
+            cname = company_name(cid)
+            did = create_deal(cid, cname, contact_id, close_date, stages)
+            if did:
+                deal_ids.add(cid)
+                stamp_next_call_date(cid, None)       # booked → off the calling list
+                created += 1
+                when = f" (close {iso_date(close_date)})" if close_date else ""
+                print(f"    [MEETING] {cname} → deal {did}{when}")
+            else:
+                print(f"    [MEETING] {cname} — deal NOT created (see error above)")
+    for nid in review:
+        print(f"    [REVIEW] note {nid} looks like a meeting but has no MEETING/APPT marker")
+    print(f"  Deals created: {created} | flagged for review: {len(review)}")
+    return created, review
+
+
+# ─── PASS B: WORKED DETECTION ────────────────────────────────────────────────
+def companies_noted_on(day):
+    notes = notes_created_on(day, props=["hs_object_id"])
+    ids = set()
+    if notes:
+        for cids in batch_associations("notes", "companies", [n["id"] for n in notes]).values():
+            ids.update(cids)
+    return ids
+
+
+def worked_detection_pass(day, call_map, clear_reached):
+    """For every company with REAL work logged today (a CALL — incl. off-list — or
+    a note): stamp grm_last_call_date and promote New→Attempted. Stamping/queuing
+    never changes status; only real work does. When clear_reached (nightly), also
+    clear that company off TODAY's list — but never a future-dated callback."""
+    print(f"\nPASS B — WORKED DETECTION ({iso_date(day)})")
+    print("─" * 60)
+    called_today = {cid for cid, d in call_map.items() if d == day}
+    worked = called_today | companies_noted_on(day)
+    print(f"  Worked today: {len(worked)} (called {len(called_today)} + noted)")
+
+    promoted = cleared = 0
+    for cid in worked:
+        p = company_props(cid, ["grm_lead_status", "grm_next_call_date", "name"])
+        status = p.get("grm_lead_status") or "New"
+        if status in EXCLUDED_STATUSES:
+            continue
+        last = call_map.get(cid) or day
+        updates = {"grm_last_call_date": iso_date(last)}
+        if status == "New":
+            updates["grm_lead_status"] = "Attempted"
+            promoted += 1
+        ncd = parse_date_property(p.get("grm_next_call_date"))
+        if clear_reached and ncd == day:              # only clear TODAY's stamp
+            updates["grm_next_call_date"] = ""
+            cleared += 1
+        set_company_props(cid, updates)
+        name = p.get("name") or f"Company {cid}"
+        print(f"    [WORKED] {name} ({status}{' → Attempted' if status == 'New' else ''})")
+    print(f"  Promoted New→Attempted: {promoted} | cleared off today's list: {cleared}")
+    return len(worked)
 
 
 # ─── PASS C: BUILD THE TARGET DAY ────────────────────────────────────────────
-def is_eligible(status, last_call_date, target):
-    """Eligibility by status, keyed off grm_last_call_date and re-dial cooldown.
-    New is always eligible. A status with no last_call_date is eligible."""
-    if status == "New":
-        return True
+def is_eligible(status, last_call, target):
+    """Eligibility by status + real last-call date vs the re-dial cooldown."""
     if status in EXCLUDED_STATUSES:
         return False
+    if status == "New":
+        # A New that was really dialed within the Attempted window is an
+        # un-promoted Attempted — keep it out so it's never re-served too soon.
+        if last_call and (target - last_call).days < NEW_DIALED_COOLDOWN:
+            return False
+        return True
     cooldown = REDIAL_DAYS.get(status)
     if cooldown is None:
-        return False                      # unknown status → not eligible
-    if last_call_date is None:
-        return True                       # never dialed → no cooldown
-    return (target - last_call_date).days >= cooldown
+        return False
+    if last_call is None:
+        return True
+    return (target - last_call).days >= cooldown
 
 
-def get_eligible_pool(target, exclude_ids, deal_ids):
-    """Build the eligible calling pool grouped by tier.
-
-    Pool = all companies EXCEPT 'Not a Fit', EXCEPT companies with a deal,
-    that HAVE a phone number, are not already stamped for the target day, and
-    are eligible by the status/cooldown rules. Each tier's list is ordered
-    New-first, then Connected/Attempted/Not Now (most-overdue first)."""
+def get_eligible_pool(target, exclude_ids, deal_ids, call_map):
+    """All callable companies for the target day. Each company carries enough
+    context to classify it as carry-forward / re-dial / fresh-New downstream.
+    Future-stamped companies (reserved for a later day) are left out."""
     rows = search_all(
         "companies",
         [{"propertyName": "phone", "operator": "HAS_PROPERTY"}],
-        ["name", "grm_lead_status", "grm_tier", "grm_last_call_date"],
+        ["name", "grm_lead_status", "grm_tier", "grm_last_call_date", "grm_next_call_date"],
     )
-    by_tier = {t: [] for t in TIER_ORDER}
+    pool = []
     for r in rows:
         cid = str(r["id"])
-        p = r.get("properties", {})
-        status = p.get("grm_lead_status") or "New"
         if cid in exclude_ids or cid in deal_ids:
             continue
+        p = r.get("properties", {})
+        status = p.get("grm_lead_status") or "New"
         if status in EXCLUDED_STATUSES:
             continue
-        last_call = parse_date_property(p.get("grm_last_call_date"))
+        next_call = parse_date_property(p.get("grm_next_call_date"))
+        if next_call and next_call > target:          # reserved for a future day
+            continue
+        # Real last-call = newer of the stamp and the real CALL engagement.
+        stamp_last = parse_date_property(p.get("grm_last_call_date"))
+        real_last = call_map.get(cid)
+        last_call = max([d for d in (stamp_last, real_last) if d], default=None)
         if not is_eligible(status, last_call, target):
             continue
-        tier = p.get("grm_tier") if p.get("grm_tier") in by_tier else "Untiered"
-        by_tier[tier].append({
+        tier = p.get("grm_tier") if p.get("grm_tier") in TIER_TARGETS else "Untiered"
+        pool.append({
             "id": cid,
             "name": p.get("name") or f"Company {cid}",
             "status": status,
             "tier": tier,
             "last_call": last_call,
+            "carry": bool(next_call and next_call < target and status == "New"),
         })
-
-    # Order each tier: New first, then by cooldown bucket; within a bucket the
-    # most-overdue (oldest last_call) first. None last_call sorts oldest.
-    def sort_key(c):
-        rank = STATUS_RANK.get(c["status"], 9)
-        last_ord = c["last_call"].toordinal() if c["last_call"] else 0
-        return (rank, last_ord)
-
-    for tier in by_tier:
-        by_tier[tier].sort(key=sort_key)
-    return by_tier
+    return pool
 
 
 def scaled_targets(slots):
-    """Scale the per-day tier blend (sums to 45) down to `slots` remaining
-    seats, preserving proportions and summing to exactly `slots`."""
-    base_total = sum(TIER_TARGETS.values())  # 45
+    """Scale the 45-blend down to `slots`, preserving proportions, summing to slots."""
+    base_total = sum(TIER_TARGETS.values())
     if slots >= base_total:
         return dict(TIER_TARGETS)
-    # Largest-remainder method so the rounded parts still sum to `slots`.
     exact = {t: TIER_TARGETS[t] * slots / base_total for t in TIER_ORDER}
     floored = {t: int(exact[t]) for t in TIER_ORDER}
     leftover = slots - sum(floored.values())
-    # Hand out the leftover seats to the tiers with the largest fractional part.
-    order = sorted(TIER_ORDER, key=lambda t: exact[t] - floored[t], reverse=True)
-    for t in order[:leftover]:
+    for t in sorted(TIER_ORDER, key=lambda t: exact[t] - floored[t], reverse=True)[:leftover]:
         floored[t] += 1
     return floored
 
 
-def tier_blend_fill(by_tier, slots):
-    """Select up to `slots` companies using the tier blend, then backfill any
-    shortfall from other tiers in priority order A → B+ → B → Untiered."""
+def tier_blend_fill(candidates, slots):
+    """Pick up to `slots` fresh-New companies on the tier blend, backfilling any
+    short tier from the others in priority order A → B+ → B → Untiered."""
+    by_tier = {t: [] for t in TIER_ORDER}
+    for c in candidates:
+        by_tier[c["tier"]].append(c)
     targets = scaled_targets(slots)
     selected, used = [], set()
-
-    # First pass: take up to each tier's target.
     for tier in TIER_ORDER:
         take = targets.get(tier, 0)
-        for co in by_tier.get(tier, []):
+        for co in by_tier[tier]:
             if take <= 0:
                 break
             if co["id"] in used:
                 continue
-            selected.append(co)
-            used.add(co["id"])
-            take -= 1
-
-    # Backfill: if a tier was short, pull from any tier in priority order.
-    if len(selected) < slots:
+            selected.append(co); used.add(co["id"]); take -= 1
+    if len(selected) < slots:                          # backfill short tiers
         for tier in TIER_ORDER:
-            for co in by_tier.get(tier, []):
+            for co in by_tier[tier]:
                 if len(selected) >= slots:
                     break
                 if co["id"] in used:
                     continue
-                selected.append(co)
-                used.add(co["id"])
+                selected.append(co); used.add(co["id"])
             if len(selected) >= slots:
                 break
     return selected[:slots]
 
 
-def build_target_day(target, deal_ids=None):
-    """Build the target calling day up to MAX_CALLS companies.
-
-    Companies already stamped for the target day (callbacks + future-dated)
-    come first and are counted; we only fill the gap up to 45 and never exceed
-    it. Sets grm_next_call_date = target on each newly selected company.
-    Returns (already_count, filled_count, tier_mix)."""
+def build_target_day(target, call_map, deal_ids):
+    """Rebuild the target calling day to exactly MAX_CALLS, in priority order:
+        1) already stamped for the day (callbacks / future reschedules)
+        2) carry-forward — unreached companies you didn't get to (never lost)
+        3) due re-dials — called-but-unreached, past their cooldown (oldest first)
+        4) fresh New — the tier blend, scaled to whatever slots remain
+    Returns (already, carried, redials, fresh, tier_mix)."""
     print(f"\nPASS C — BUILD CALLING DAY for {target.strftime('%A, %B %d, %Y')}")
     print("─" * 60)
 
-    if deal_ids is None:
-        deal_ids = get_deal_company_ids()
-        print(f"  Companies excluded (associated deal): {len(deal_ids)}")
-
-    # (1) Already stamped for the target day — idempotency guard + callbacks.
     already = companies_stamped_for(target)
     already_ids = {c["id"] for c in already}
-    print(f"  Already stamped for target day: {len(already)}")
+    print(f"  Already stamped (callbacks/reschedules): {len(already)}")
+    print(f"  Companies excluded (open deal): {len(deal_ids)}")
 
     slots = MAX_CALLS - len(already)
     if slots <= 0:
         print(f"  Target day already at/over {MAX_CALLS} — nothing to fill.")
-        return len(already), 0, {}
+        return len(already), 0, 0, 0, {}
 
-    # (2) Eligible pool, grouped by tier.
-    by_tier = get_eligible_pool(target, exclude_ids=already_ids, deal_ids=deal_ids)
-    counts = {t: len(by_tier[t]) for t in TIER_ORDER}
-    print(f"  Eligible pool by tier: A:{counts['A']} B+:{counts['B+']} "
-          f"B:{counts['B']} U:{counts['Untiered']}")
+    pool = get_eligible_pool(target, already_ids, deal_ids, call_map)
 
-    # (3) Tier-blend fill.
-    selected = tier_blend_fill(by_tier, slots)
+    carry_src  = sorted([c for c in pool if c["carry"]],
+                        key=lambda c: (c["last_call"] or date.min))
+    redial_src = sorted([c for c in pool if not c["carry"] and c["status"] in REDIAL_STATUSES],
+                        key=lambda c: (c["last_call"] or date.min))   # most overdue first
+    fresh_src  = [c for c in pool if not c["carry"] and c["status"] == "New"]
+    print(f"  Eligible pool: carry-forward {len(carry_src)} | re-dials {len(redial_src)} | "
+          f"fresh-New {len(fresh_src)}")
+
+    selected, used = [], set()
+
+    def take(seq, n):
+        for co in seq:
+            if n <= 0:
+                break
+            if co["id"] in used:
+                continue
+            selected.append(co); used.add(co["id"]); n -= 1
+        return n
+
+    remaining = slots
+    remaining = take(carry_src, remaining)             # 2) carry-forward
+    remaining = take(redial_src, remaining)            # 3) due re-dials
+    if remaining > 0:                                  # 4) fresh-New tier blend
+        for co in tier_blend_fill([c for c in fresh_src if c["id"] not in used], remaining):
+            selected.append(co); used.add(co["id"])
 
     tier_mix = {t: 0 for t in TIER_ORDER}
+    carried = redials = fresh = 0
     for co in selected:
-        if stamp_next_call_date(co["id"], target):
-            tier_mix[co["tier"]] += 1
+        if not stamp_next_call_date(co["id"], target):
+            continue
+        tier_mix[co["tier"]] += 1
+        if co["carry"]:
+            carried += 1
+        elif co["status"] in REDIAL_STATUSES:
+            redials += 1
+        else:
+            fresh += 1
 
     mix_str = " ".join(f"{t}:{tier_mix[t]}" for t in TIER_ORDER)
-    total_for_day = len(already) + sum(tier_mix.values())
-    print(f"  Filled {sum(tier_mix.values())} new (target {slots}). "
-          f"Tier mix built — {mix_str}")
-    print(f"  Total stamped for {iso_date(target)}: {total_for_day} / {MAX_CALLS}")
-    return len(already), sum(tier_mix.values()), tier_mix
+    total = len(already) + carried + redials + fresh
+    print(f"  Carried {carried} | re-dials {redials} | fresh {fresh} "
+          f"(target {slots}). Tier mix — {mix_str}")
+    print(f"  Total stamped for {iso_date(target)}: {total} / {MAX_CALLS}")
+    return len(already), carried, redials, fresh, tier_mix
 
 
-# ─── PASS D: EMAIL CAPTURE (unchanged behavior) ──────────────────────────────
+# ─── PASS D: EMAIL CAPTURE ───────────────────────────────────────────────────
 EMAIL_RE = re.compile(r"[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}")
 NAME_RE  = re.compile(r"name:\s*([A-Za-z'\-]+)(?:[ \t]+([A-Za-z'\-]+))?", re.IGNORECASE)
 
 
 def create_task(subject, task_type, due_ms, association_specs):
-    """Create a HubSpot task WITH its associations in ONE API call.
-    association_specs is a list of (object_id, association_type_id) tuples."""
+    """Create a HubSpot task WITH its associations in ONE API call."""
     payload = {
         "properties": {
             "hs_task_subject":  subject,
@@ -643,11 +811,8 @@ def create_task(subject, task_type, due_ms, association_specs):
             "hubspot_owner_id": RON_OWNER_ID,
         },
         "associations": [
-            {
-                "to": {"id": str(obj_id)},
-                "types": [{"associationCategory": "HUBSPOT_DEFINED",
-                           "associationTypeId": type_id}],
-            }
+            {"to": {"id": str(obj_id)},
+             "types": [{"associationCategory": "HUBSPOT_DEFINED", "associationTypeId": type_id}]}
             for obj_id, type_id in association_specs
         ],
     }
@@ -662,8 +827,7 @@ def create_task(subject, task_type, due_ms, association_specs):
 
 def find_contact_by_email(email):
     resp, status = api("POST", "/crm/v3/objects/contacts/search", {
-        "filterGroups": [{"filters": [
-            {"propertyName": "email", "operator": "EQ", "value": email}]}],
+        "filterGroups": [{"filters": [{"propertyName": "email", "operator": "EQ", "value": email}]}],
         "properties": ["email"], "limit": 1,
     })
     if status == 200 and resp.get("results"):
@@ -672,7 +836,6 @@ def find_contact_by_email(email):
 
 
 def create_contact(email, first_name, last_name, company_id):
-    """Create a contact and associate it with the company in the SAME call."""
     payload = {"properties": {"email": email}}
     if first_name:
         payload["properties"]["firstname"] = first_name
@@ -681,8 +844,7 @@ def create_contact(email, first_name, last_name, company_id):
     if company_id:
         payload["associations"] = [{
             "to": {"id": str(company_id)},
-            "types": [{"associationCategory": "HUBSPOT_DEFINED",
-                       "associationTypeId": ASSOC_CONTACT_TO_COMPANY}],
+            "types": [{"associationCategory": "HUBSPOT_DEFINED", "associationTypeId": ASSOC_CONTACT_TO_COMPANY}],
         }]
     if DRY_RUN:
         return "DRY-RUN"
@@ -708,17 +870,11 @@ def has_open_email_task(contact_id):
 
 
 def run_email_capture(target):
-    """Scan today's notes for prospect emails and queue next-day EMAIL tasks
-    (due 9 AM ET on the target day). Returns (emails_found, created_task_ids, errors)."""
+    """Today's emailed notes → next-day EMAIL tasks (due 9 AM ET on target)."""
     print("\nPASS D — EMAIL CAPTURE (notes created today)")
     print("─" * 60)
     due_ms = nine_am_ms(target)
-    notes = search_all(
-        "notes",
-        [{"propertyName": "hs_createdate", "operator": "GTE",
-          "value": str(et_day_start_ms(today_et()))}],
-        ["hs_note_body"],
-    )
+    notes = notes_created_on(today_et())
     print(f"  Notes created today: {len(notes)}")
 
     emails_found, created_ids, errors = 0, [], []
@@ -726,11 +882,9 @@ def run_email_capture(target):
 
     for note in notes:
         body = note.get("properties", {}).get("hs_note_body", "") or ""
-        emails = [e for e in EMAIL_RE.findall(body)
-                  if not e.lower().endswith("@" + OUR_DOMAIN)]
+        emails = [e for e in EMAIL_RE.findall(body) if not e.lower().endswith("@" + OUR_DOMAIN)]
         if not emails:
             continue
-
         cids = companies_for_note(note["id"])
         company_id = next(iter(cids)) if cids else None
         cname = company_name(company_id) if company_id else "Unknown Company"
@@ -747,10 +901,8 @@ def run_email_capture(target):
             if contact_id:
                 print(f"    contact matched: {contact_id}")
             else:
-                first, last = None, None
                 m = NAME_RE.search(body)
-                if m:
-                    first, last = m.group(1), m.group(2)
+                first, last = (m.group(1), m.group(2)) if m else (None, None)
                 contact_id = create_contact(email, first, last, company_id)
                 if not contact_id:
                     errors.append(f"contact create failed: {email}")
@@ -777,67 +929,96 @@ def run_email_capture(target):
 
 # ─── PASS E: SPOT-CHECK ──────────────────────────────────────────────────────
 def verify_email_tasks(task_ids):
-    """Confirm 3 EMAIL tasks created this run each carry BOTH a contact and a
-    company association. Returns False (loudly) if any is missing."""
+    """Confirm up to 3 EMAIL tasks created this run carry BOTH a contact and a
+    company association. Retries once for HubSpot's brief read lag before failing."""
     print("\nPASS E — SPOT-CHECK (EMAIL task associations)")
     print("─" * 60)
     if DRY_RUN or not task_ids:
         print("  [VERIFY] skipped (dry run or no EMAIL tasks created)")
         return True
-    sample = task_ids[:3]
     all_ok = True
-    for tid in sample:
-        comp, cs = api("GET", f"/crm/v4/objects/tasks/{tid}/associations/companies")
-        cont, ts = api("GET", f"/crm/v4/objects/tasks/{tid}/associations/contacts")
-        has_company = cs == 200 and bool(comp.get("results"))
-        has_contact = ts == 200 and bool(cont.get("results"))
-        print(f"  [VERIFY] task {tid}: company {'OK' if has_company else 'MISSING'}, "
-              f"contact {'OK' if has_contact else 'MISSING'}")
-        if not (has_company and has_contact):
-            all_ok = False
+    for tid in task_ids[:3]:
+        ok = False
+        for attempt in (1, 2):
+            comp, cs = api("GET", f"/crm/v4/objects/tasks/{tid}/associations/companies")
+            cont, ts = api("GET", f"/crm/v4/objects/tasks/{tid}/associations/contacts")
+            ok = (cs == 200 and bool(comp.get("results"))) and (ts == 200 and bool(cont.get("results")))
+            if ok or attempt == 2:
+                break
+            time.sleep(2)
+        print(f"  [VERIFY] task {tid}: {'OK' if ok else 'MISSING association'}")
+        all_ok = all_ok and ok
     if not all_ok:
         print("  [VERIFY] *** EMAIL TASK ASSOCIATION CHECK FAILED. INVESTIGATE NOW. ***")
     return all_ok
 
 
 # ─── MAIN ────────────────────────────────────────────────────────────────────
-def main():
-    label = "DRY RUN — NOTHING WRITTEN" if DRY_RUN else "LIVE RUN"
-    print("=" * 60)
-    print(f"  GRM NIGHTLY (v3) — {label}")
-    print(f"  {now_et().strftime('%Y-%m-%d %I:%M %p ET')}")
-    print("=" * 60)
+def run_nightly():
+    today, target = today_et(), tomorrow_et()
+    call_map = recent_calls_by_company(today - timedelta(days=CALL_LOOKBACK_DAYS))
+    stages   = resolve_meeting_stages()
+    deal_ids = open_deal_company_ids()
 
-    target = tomorrow_et()
-
-    # A) Stamp callbacks parsed from today's notes.
-    callback_pass(today_et())
-
-    # B) Record real work logged on today's stamped companies; promote status.
-    worked_detection_pass(today_et())
-
-    # C) Fill the target day up to 45 with the tier blend.
-    already, filled, tier_mix = build_target_day(target)
-
-    # D) Turn emails captured today into next-day EMAIL tasks.
+    callback_pass(today)
+    meeting_pass(today, deal_ids, stages)               # mutates deal_ids
+    worked_detection_pass(today, call_map, clear_reached=True)
+    already, carried, redials, fresh, tier_mix = build_target_day(target, call_map, deal_ids)
     emails_found, email_task_ids, email_errors = run_email_capture(target)
-
-    # E) Spot-check the EMAIL tasks we created.
     associations_ok = verify_email_tasks(email_task_ids)
 
     print("\n" + "=" * 60)
     mix_str = " ".join(f"{t}:{tier_mix.get(t, 0)}" for t in TIER_ORDER)
-    print(f"  SUMMARY: {already} pre-stamped + {filled} filled = "
-          f"{already + filled} for {iso_date(target)} (mix {mix_str}) | "
-          f"{emails_found} email(s) found | {len(email_task_ids)} EMAIL task(s) | "
+    print(f"  SUMMARY ({iso_date(target)}): {already} kept + {carried} carried + "
+          f"{redials} re-dials + {fresh} fresh = {already + carried + redials + fresh} / {MAX_CALLS} "
+          f"(mix {mix_str})")
+    print(f"  {emails_found} email(s) → {len(email_task_ids)} EMAIL task(s) | "
           f"{len(email_errors)} error(s)")
     for e in email_errors:
         print(f"  [!] {e}")
     print("=" * 60)
-
-    # Fail the workflow loudly if the spot-check failed or any error occurred.
     if not associations_ok or email_errors:
         sys.exit(1)
+
+
+def run_intraday():
+    """Hourly during business hours: advance status from work logged so far today,
+    book any meetings, and self-heal an empty list — without clearing the live 45."""
+    today = today_et()
+    call_map = recent_calls_by_company(today - timedelta(days=CALL_LOOKBACK_DAYS))
+    stages   = resolve_meeting_stages()
+    deal_ids = open_deal_company_ids()
+
+    meeting_pass(today, deal_ids, stages)
+    worked_detection_pass(today, call_map, clear_reached=False)
+
+    stamped_today = companies_stamped_for(today)
+    print(f"\nSELF-HEAL CHECK — companies stamped for {iso_date(today)}: {len(stamped_today)}")
+    healed = None
+    if not stamped_today:
+        print("  Today's list is EMPTY — building it now.")
+        healed = build_target_day(today, call_map, deal_ids)
+
+    print("\n" + "=" * 60)
+    if healed:
+        already, carried, redials, fresh, _ = healed
+        print(f"  INTRADAY SELF-HEAL: built {already + carried + redials + fresh} for {iso_date(today)}")
+    else:
+        print(f"  INTRADAY: today's list intact ({len(stamped_today)}); status advanced from real work.")
+    print("=" * 60)
+
+
+def main():
+    label = "DRY RUN — NOTHING WRITTEN" if DRY_RUN else "LIVE RUN"
+    mode = "INTRADAY" if INTRADAY else "NIGHTLY"
+    print("=" * 60)
+    print(f"  GRM CALLS (v3.1) — {mode} — {label}")
+    print(f"  {now_et().strftime('%Y-%m-%d %I:%M %p ET')}")
+    print("=" * 60)
+    if INTRADAY:
+        run_intraday()
+    else:
+        run_nightly()
 
 
 if __name__ == "__main__":
