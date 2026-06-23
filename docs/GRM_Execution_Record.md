@@ -813,3 +813,31 @@ Session type: Pre-launch editorial sweep, layout fixes, and Vercel deployment.
 - Request a callback: add a company note like `callback: Thursday` or `call back in 2 days`. It's stamped for that day and counts toward the 45.
 - Log a call (a note or a logged CALL on the company) the day you work it — that's what advances status and records the last-dial date. Just scheduling a company does nothing to its status.
 - A booked meeting (create a Deal) or marking **Not a Fit** removes a company from the calling pool. Everything else stays in rotation.
+
+---
+
+## MONDAY JUNE 23, 2026 — NIGHTLY CALLS v3.1 (audit + hardening)
+
+**Why:** symptoms reported — calls logged but status not advancing, the daily list not reliably refreshing, some mornings empty. Audit of the live v3 builder (and the live HubSpot portal 245734871) found the gaps below. (Note: the Desktop clone was 11 commits behind `origin/main`; the deployed builder was already v3, not the older task-based v2 — always audit against `origin/main`.)
+
+**What the audit found:**
+- Worked-detection only scanned companies *stamped for today* and ran *once nightly* — off-list dials were missed and a day's calls only advanced at night.
+- Eligibility keyed off the lagging `grm_last_call_date` stamp, so a company dialed yesterday could be re-served if the stamp/promotion lagged.
+- No explicit carry-forward of unreached companies and no self-heal — a single missed/failed/late nightly run left the next morning empty with no recovery.
+- Re-dials of called-but-unreached leads were starved by the large New pool.
+- Meetings booked in notes did nothing (no Deal created). `grm_next_call_date` was never cleared after a call, leaving stale stamps (18 on 6/16, 19 on 6/22).
+
+**What got built (`scripts/grm_daily_calls.py` v3.1):**
+- **Worked-detection from REAL CALL engagements (+ notes), incl. off-list dials.** A single bounded calls search builds a {company → last real call date} map. Reached companies get `grm_last_call_date` stamped, New→Attempted, and (nightly) are **cleared off today's list** — but never a future-dated callback. Eligibility uses the *newer* of the stamp and the real call, so a company dialed yesterday is never re-served even if the stamp lagged.
+- **Build rebuilds the day to exactly 45**, in priority order: (1) callbacks/reschedules already stamped → (2) **carry-forward** unreached companies (never lost) → (3) **due re-dials** oldest-first (Connected 2d / Attempted 3d / Not Now 14d) → (4) **fresh-New tier blend** A13/B+14/B4/Untiered14, scaled to remaining slots. Net effect: the old day is cleared and the next day is a fresh 45.
+- **Meeting → Deal (PASS M):** a note line starting `MEETING` / `APPT` creates a Deal at **"Meeting Set"** in the pipeline chosen by `grm_publication` (CT→CT, FP→FP, CT+FP→CT), with company (+contact if present) associated in one call and the close date parsed if present. The company drops from the calling pool. Marker-less but meeting-ish notes are **logged for review**, never auto-acted. The pool excludes **open-deal** companies only (closed-won/lost return to rotation).
+- **Intraday mode + `.github/workflows/intraday-calls.yml`** (hourly 12:00–22:00 UTC, Mon–Fri ≈ 8 AM–6 PM ET): advances status from real work *same-day* and **self-heals an empty list** (builds today on the spot if a nightly run was missed) — without clearing the live 45. This is the durable fix for empty mornings.
+- Both workflows gained a `dry_run` dispatch input for safe testing. Pipeline/stage IDs are resolved from the live API at runtime (no hardcoding). Token still read from the `HUBSPOT_TOKEN` secret.
+
+**Verified (2026-06-23, via GitHub Actions against the live portal):**
+- Nightly **dry-run**: clean A→E, built 45 for 2026-06-24 (mix A:13 B+:14 B:4 Untiered:14); open-deal exclusion engaged; a seeded email note produced an EMAIL task; a company with an existing deal was de-duped (no second deal).
+- Intraday **live** (disposable test company): MEETING note → Deal created in the **CT** pipeline at **Meeting Set** with the parsed close date; the called company promoted New→Attempted with `grm_last_call_date` set; today's live 45 left intact (self-heal correctly no-op). Test artifacts neutralized (company set Not a Fit, deal closed, note blanked) — IDs handed to Ron to delete: company 329940940528, deal 332288476911, note 378496901859, call 378524509901.
+
+**How Ron books a meeting now:** in the company note, start a line with **`MEETING`** or **`APPT`** (date/time optional), e.g. `MEETING: Thu 2pm` or `APPT 6/25 10am`. Free-typed "scheduled a meeting" is logged for review but won't auto-create a deal. Logging a call (incl. "left a voicemail") still advances status; reach someone or write them off by setting **Connected / Not Now / Not a Fit** yourself and the re-dial timing follows (2d / 14d / never).
+
+**Open / for Ron:** delete the 4 QA test records above; the 37 historical stale `grm_next_call_date` stamps (6/16, 6/22) are harmless (invisible to the daily view) and self-heal as those companies come due — clear them only if you want a tidy report. The orphaned `grm_call_made` checkbox is left untouched (not consumed by the builder).
