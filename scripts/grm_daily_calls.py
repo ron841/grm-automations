@@ -52,6 +52,7 @@ Usage:
   HUBSPOT_TOKEN=... python3 scripts/grm_daily_calls.py --intraday  # maintain today + self-heal
 """
 
+import html
 import os
 import re
 import sys
@@ -372,16 +373,6 @@ def looks_like_meeting(note_body):
 
 
 # ─── ASSOCIATION / READ HELPERS ──────────────────────────────────────────────
-def companies_for_note(note_id):
-    assoc, status = api("GET", f"/crm/v4/objects/notes/{note_id}/associations/companies")
-    return {str(a["toObjectId"]) for a in assoc.get("results", [])} if status == 200 else set()
-
-
-def contacts_for_note(note_id):
-    assoc, status = api("GET", f"/crm/v4/objects/notes/{note_id}/associations/contacts")
-    return [str(a["toObjectId"]) for a in assoc.get("results", [])] if status == 200 else []
-
-
 def company_props(cid, names):
     co, status = api("GET", f"/crm/v3/objects/companies/{cid}",
                      params={"properties": ",".join(names)})
@@ -398,6 +389,48 @@ def notes_created_on(day, props=None):
         [{"propertyName": "hs_createdate", "operator": "GTE", "value": str(et_day_start_ms(day))}],
         props or ["hs_note_body"],
     )
+
+
+def calls_created_on(day, props=None):
+    return search_all(
+        "calls",
+        [{"propertyName": "hs_createdate", "operator": "GTE", "value": str(et_day_start_ms(day))}],
+        props or ["hs_call_body"],
+    )
+
+
+# HubSpot rich-text bodies arrive as HTML. Block-level closers become newlines
+# so line-based parsing (MEETING markers, callback triggers) still sees lines.
+HTML_BREAK_RE = re.compile(r"</p\s*>|</div\s*>|<br\s*/?\s*>", re.IGNORECASE)
+HTML_TAG_RE   = re.compile(r"<[^>]+>")
+
+
+def strip_html(body):
+    text = HTML_BREAK_RE.sub("\n", body or "")
+    text = HTML_TAG_RE.sub(" ", text)
+    return html.unescape(text)
+
+
+def writeups_created_on(day):
+    """Today's prose wherever Ron typed it — NOTE bodies AND CALL log bodies —
+    as [(object_type, id, plain_text_body), ...]. Ron writes emails, names and
+    callback intent into the call log while dialing, so scanning notes alone
+    misses most of what he captures."""
+    items = [("notes", n["id"], strip_html(n.get("properties", {}).get("hs_note_body", "")))
+             for n in notes_created_on(day)]
+    items += [("calls", c["id"], strip_html(c.get("properties", {}).get("hs_call_body", "")))
+              for c in calls_created_on(day)]
+    return items
+
+
+def companies_for(obj_type, obj_id):
+    assoc, status = api("GET", f"/crm/v4/objects/{obj_type}/{obj_id}/associations/companies")
+    return {str(a["toObjectId"]) for a in assoc.get("results", [])} if status == 200 else set()
+
+
+def contacts_for(obj_type, obj_id):
+    assoc, status = api("GET", f"/crm/v4/objects/{obj_type}/{obj_id}/associations/contacts")
+    return [str(a["toObjectId"]) for a in assoc.get("results", [])] if status == 200 else []
 
 
 # ─── COMPANY WRITES ──────────────────────────────────────────────────────────
@@ -533,18 +566,17 @@ def create_deal(company_id, cname, contact_id, close_date, stages):
 
 # ─── PASS A: CALLBACKS ───────────────────────────────────────────────────────
 def callback_pass(ref):
-    """Stamp grm_next_call_date from callback intent in today's notes."""
-    print("\nPASS A — CALLBACKS (notes created today)")
+    """Stamp grm_next_call_date from callback intent in today's notes + call logs."""
+    print("\nPASS A — CALLBACKS (notes + call logs created today)")
     print("─" * 60)
-    notes = notes_created_on(ref)
-    print(f"  Notes created today: {len(notes)}")
+    writeups = writeups_created_on(ref)
+    print(f"  Write-ups created today: {len(writeups)}")
     stamped = 0
-    for note in notes:
-        body = note.get("properties", {}).get("hs_note_body", "") or ""
+    for obj_type, obj_id, body in writeups:
         d = parse_callback_date(body, ref)
         if not d or d < ref:
             continue
-        for cid in companies_for_note(note["id"]):
+        for cid in companies_for(obj_type, obj_id):
             if stamp_next_call_date(cid, d):
                 stamped += 1
                 print(f"    [CALLBACK] {company_name(cid)} → {iso_date(d)}")
@@ -554,23 +586,23 @@ def callback_pass(ref):
 
 # ─── PASS M: MEETINGS → DEALS ────────────────────────────────────────────────
 def meeting_pass(ref, deal_ids, stages):
-    """MEETING/APPT notes → create a Deal, drop the company from the calling pool.
-    Marker required. Notes that look like a meeting but lack a marker are logged
-    for manual review (never auto-acted). Mutates deal_ids in place."""
-    print("\nPASS M — MEETINGS (notes created today)")
+    """MEETING/APPT write-ups (notes or call logs) → create a Deal, drop the company
+    from the calling pool. Marker required. Write-ups that look like a meeting but
+    lack a marker are logged for manual review (never auto-acted). Mutates deal_ids
+    in place."""
+    print("\nPASS M — MEETINGS (notes + call logs created today)")
     print("─" * 60)
-    notes = notes_created_on(ref)
+    writeups = writeups_created_on(ref)
     created, review = 0, []
-    for note in notes:
-        body = note.get("properties", {}).get("hs_note_body", "") or ""
+    for obj_type, obj_id, body in writeups:
         marked, close_date = parse_meeting(body, ref)
         if not marked:
             if looks_like_meeting(body):
-                review.append(note["id"])
+                review.append(f"{obj_type[:-1]} {obj_id}")
             continue
-        contacts = contacts_for_note(note["id"])
+        contacts = contacts_for(obj_type, obj_id)
         contact_id = contacts[0] if contacts else None
-        for cid in companies_for_note(note["id"]):
+        for cid in companies_for(obj_type, obj_id):
             if cid in deal_ids:                       # already has an open deal — dedupe
                 continue
             cname = company_name(cid)
@@ -583,8 +615,8 @@ def meeting_pass(ref, deal_ids, stages):
                 print(f"    [MEETING] {cname} → deal {did}{when}")
             else:
                 print(f"    [MEETING] {cname} — deal NOT created (see error above)")
-    for nid in review:
-        print(f"    [REVIEW] note {nid} looks like a meeting but has no MEETING/APPT marker")
+    for ref_label in review:
+        print(f"    [REVIEW] {ref_label} looks like a meeting but has no MEETING/APPT marker")
     print(f"  Deals created: {created} | flagged for review: {len(review)}")
     return created, review
 
@@ -876,22 +908,21 @@ def has_open_email_task(contact_id):
 
 
 def run_email_capture(target):
-    """Today's emailed notes → next-day EMAIL tasks (due 9 AM ET on target)."""
-    print("\nPASS D — EMAIL CAPTURE (notes created today)")
+    """Emails in today's notes + call logs → next-day EMAIL tasks (due 9 AM ET on target)."""
+    print("\nPASS D — EMAIL CAPTURE (notes + call logs created today)")
     print("─" * 60)
     due_ms = nine_am_ms(target)
-    notes = notes_created_on(today_et())
-    print(f"  Notes created today: {len(notes)}")
+    writeups = writeups_created_on(today_et())
+    print(f"  Write-ups created today: {len(writeups)}")
 
     emails_found, created_ids, errors = 0, [], []
     processed_emails = set()
 
-    for note in notes:
-        body = note.get("properties", {}).get("hs_note_body", "") or ""
+    for obj_type, obj_id, body in writeups:
         emails = [e for e in EMAIL_RE.findall(body) if not e.lower().endswith("@" + OUR_DOMAIN)]
         if not emails:
             continue
-        cids = companies_for_note(note["id"])
+        cids = companies_for(obj_type, obj_id)
         company_id = next(iter(cids)) if cids else None
         cname = company_name(company_id) if company_id else "Unknown Company"
 
@@ -901,7 +932,7 @@ def run_email_capture(target):
                 continue
             processed_emails.add(email)
             emails_found += 1
-            print(f"  [EMAIL FOUND] {email} (note {note['id']}, {cname})")
+            print(f"  [EMAIL FOUND] {email} ({obj_type[:-1]} {obj_id}, {cname})")
 
             contact_id = find_contact_by_email(email)
             if contact_id:
