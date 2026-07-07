@@ -223,11 +223,17 @@ def parse_date_property(raw):
 
 
 def ms_to_et_date(ms):
-    """Epoch-ms (UTC instant) → the Eastern calendar date it falls on."""
+    """Epoch-ms or ISO-8601 (UTC instant) → the Eastern calendar date it falls on.
+    The v3 search API returns datetime properties (e.g. a call's hs_timestamp) as
+    ISO strings, not epoch-ms — tolerate both or every real call goes invisible."""
     try:
         return datetime.fromtimestamp(int(ms) / 1000, tz=UTC).astimezone(TZ).date()
     except (ValueError, TypeError):
-        return None
+        try:
+            return (datetime.fromisoformat(str(ms).replace("Z", "+00:00"))
+                    .astimezone(TZ).date())
+        except (ValueError, TypeError):
+            return None
 
 
 # ─── CALLBACK / MEETING PARSING ──────────────────────────────────────────────
