@@ -3,24 +3,24 @@
 import { useState } from "react";
 
 export default function FPReaderSignup() {
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const submitted = status === "success";
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
     const data = new FormData(form);
 
+    setStatus("submitting");
     try {
       const res = await fetch("https://formspree.io/f/meepogwz", {
         method: "POST",
         body: data,
         headers: { Accept: "application/json" },
       });
-      if (res.ok) {
-        setSubmitted(true);
-      }
+      setStatus(res.ok ? "success" : "error");
     } catch {
-      // Fail silently — form stays visible for retry
+      setStatus("error");
     }
   }
 
@@ -33,7 +33,7 @@ export default function FPReaderSignup() {
           </h2>
 
           <p className="mb-2 font-nunito text-base text-grm-black">
-            The Front Porch launches this fall.
+            The Front Porch launches this November.
           </p>
 
           <p className="mb-8 font-nunito text-base leading-relaxed text-grm-black/70">
@@ -72,11 +72,17 @@ export default function FPReaderSignup() {
                 required
                 className="rounded-md border border-grm-black/15 bg-grm-cream px-4 py-3 font-nunito text-sm text-grm-black placeholder:text-grm-black/40 focus:border-grm-teal focus:outline-none"
               />
+              {status === "error" && (
+                <p role="alert" className="font-nunito text-sm text-[#b3261e]">
+                  Something went wrong. Try again or email ron@getrootedmedia.com.
+                </p>
+              )}
               <button
                 type="submit"
-                className="mt-2 rounded-[2px] bg-grm-teal px-6 py-3 font-nunito text-sm font-bold text-white transition-opacity hover:opacity-90"
+                disabled={status === "submitting"}
+                className="mt-2 rounded-[2px] bg-grm-teal px-6 py-3 font-nunito text-sm font-bold text-white transition-opacity hover:opacity-90 disabled:opacity-60"
               >
-                Sign Me Up
+                {status === "submitting" ? "Sending…" : "Sign Me Up"}
               </button>
             </form>
           )}

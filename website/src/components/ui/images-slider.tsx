@@ -2,6 +2,7 @@
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 import React, { useEffect, useState } from "react";
+import { preload } from "react-dom";
 
 export const ImagesSlider = ({
   images,
@@ -24,6 +25,9 @@ export const ImagesSlider = ({
   const [loading, setLoading] = useState(false);
   const [loadedImages, setLoadedImages] = useState<string[]>([]);
 
+  // Hint the browser to fetch the first frame during SSR, before hydration
+  preload(images[0], { as: "image", fetchPriority: "high" });
+
   const handleNext = () => {
     setCurrentIndex((prevIndex) =>
       prevIndex + 1 === images.length ? 0 : prevIndex + 1
@@ -42,18 +46,23 @@ export const ImagesSlider = ({
 
   const loadImages = () => {
     setLoading(true);
-    const loadPromises = images.map((image) => {
-      return new Promise((resolve, reject) => {
+    const load = (src: string) =>
+      new Promise<string>((resolve, reject) => {
         const img = new Image();
-        img.src = image;
-        img.onload = () => resolve(image);
+        img.src = src;
+        img.onload = () => resolve(src);
         img.onerror = reject;
       });
-    });
 
-    Promise.all(loadPromises)
-      .then((loadedImages) => {
-        setLoadedImages(loadedImages as string[]);
+    // Show the first frame the moment it's ready; the rest load behind it so
+    // the hero never sits blank waiting on the full set.
+    load(images[0])
+      .then((first) => {
+        setLoadedImages([first]);
+        return Promise.all(images.slice(1).map(load));
+      })
+      .then((rest) => {
+        setLoadedImages([images[0], ...rest]);
         setLoading(false);
       })
       .catch((error) => console.error("Failed to load images", error));
@@ -126,8 +135,8 @@ export const ImagesSlider = ({
         perspective: "1000px",
       }}
     >
-      {areImagesLoaded && children}
-      {areImagesLoaded && overlay && (
+      {children}
+      {overlay && (
         <div
           className={cn("absolute inset-0 bg-black/60 z-40", overlayClassName)}
         />
@@ -137,7 +146,7 @@ export const ImagesSlider = ({
         <AnimatePresence>
           <motion.img
             key={currentIndex}
-            src={loadedImages[currentIndex]}
+            src={loadedImages[currentIndex] ?? loadedImages[0]}
             initial="initial"
             animate="visible"
             exit={direction === "up" ? "upExit" : "downExit"}

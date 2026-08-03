@@ -12,16 +12,19 @@ export const metadata: Metadata = {
   title:
     "The Front Porch | Bi-Monthly Resource Guide for Marion County New Homeowners",
   description:
-    "The bi-monthly resource guide mailed to every new homeowner in Marion County within their first 60 days. Launching this fall.",
+    "The bi-monthly resource guide mailed to every new homeowner in Marion County within their first 60 days. Launching November 2026.",
+  alternates: {
+    canonical: "/the-front-porch",
+  },
   openGraph: {
     title:
       "The Front Porch | Bi-Monthly Resource Guide for Marion County New Homeowners",
     description:
-      "The bi-monthly resource guide mailed to every new homeowner in Marion County within their first 60 days. Launching this fall.",
+      "The bi-monthly resource guide mailed to every new homeowner in Marion County within their first 60 days. Launching November 2026.",
     type: "website",
     url: "https://getrootedmedia.com/the-front-porch",
     siteName: "Get Rooted Media",
-    images: [{ url: "/images/ct-hero.webp" }],
+    images: [{ url: "/images/fp-hero.webp" }],
   },
 };
 

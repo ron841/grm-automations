@@ -5,7 +5,7 @@ export default function CTAgentCallout() {
         {/* LEFT — 60% */}
         <div className="w-full md:w-[60%]">
           <p className="mb-4 font-comfortaa text-[12px] font-bold uppercase tracking-[0.2em] text-grm-teal">
-            ISSUE 1 &middot; SPRING 2027
+            ISSUE 1 &middot; MARCH 2027
           </p>
           <div className="mb-6 h-px w-8 bg-grm-teal" />
           <h2 className="font-merriweather text-[28px] font-bold leading-[1.3] text-white md:text-[32px]">

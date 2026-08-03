@@ -7,7 +7,7 @@ export default function HomeStory() {
       <div className="relative order-2 min-h-[380px] w-full md:order-1 md:min-h-[560px] md:w-1/2">
         <Image
           src="/images/hero/4-Ocala-2.webp"
-          alt="Downtown Ocala, Marion County"
+          alt="Tuscawilla Park in Ocala with Spanish moss and lake reflection at golden hour"
           fill
           className="object-cover object-center"
           sizes="(max-width: 768px) 100vw, 50vw"

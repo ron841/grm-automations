@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: "About | Get Rooted Media | Marion County, Florida",
   description:
     "A father and son. Thirty years in publishing and a front-row seat to the fastest-growing county in America. Meet Ron Kolb and Cameron Cowart.",
+  alternates: {
+    canonical: "/about",
+  },
   openGraph: {
     title: "About | Get Rooted Media | Marion County, Florida",
     description:
@@ -12,7 +15,7 @@ export const metadata: Metadata = {
     type: "website",
     url: "https://getrootedmedia.com/about",
     siteName: "Get Rooted Media",
-    images: [{ url: "/images/ct-hero.webp" }],
+    images: [{ url: "/images/hero/4-Ocala-2.webp" }],
   },
 };
 
@@ -60,8 +63,10 @@ export default function AboutPage() {
           <div
             className="absolute inset-0"
             style={{
-              background:
+              background: [
                 "linear-gradient(to right, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.55) 100%)",
+                "linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 35%)",
+              ].join(", "),
             }}
           />
           <div className="absolute bottom-0 left-0 p-8 md:p-10">
@@ -136,8 +141,10 @@ export default function AboutPage() {
           <div
             className="absolute inset-0"
             style={{
-              background:
+              background: [
                 "linear-gradient(to left, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.55) 100%)",
+                "linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 35%)",
+              ].join(", "),
             }}
           />
           <div className="absolute bottom-0 right-0 p-8 text-right md:p-10">

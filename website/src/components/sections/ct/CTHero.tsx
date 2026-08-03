@@ -30,7 +30,7 @@ export default function CTHero() {
           {/* Eyebrow */}
           <p className="mb-4 font-comfortaa text-[13px] font-bold uppercase tracking-[0.2em] text-grm-teal">
             A GET ROOTED MEDIA PUBLICATION &middot; MONTHLY &middot; MARION
-            COUNTY
+            COUNTY &amp; THE VILLAGES
           </p>
 
           {/* Publication name — script "The" + serif "Closing Table" */}

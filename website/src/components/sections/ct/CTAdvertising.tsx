@@ -54,7 +54,8 @@ export default function CTAdvertising() {
           <p className="font-nunito text-[15px] leading-[1.7] text-white/60">
             Two mixers and one annual awards gala. Every advertiser receives two
             complimentary tickets. Your brand in the room with the top 500
-            agents and service companies in Marion and Sumter Counties.
+            agents and top 500 service companies in Marion County and The
+            Villages.
           </p>
         </div>
       </div>

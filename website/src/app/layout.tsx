@@ -20,7 +20,7 @@ const grandHotel = Grand_Hotel({
 
 const merriweather = Merriweather({
   subsets: ["latin"],
-  weight: ["300", "400"],
+  weight: ["400", "700"],
   style: ["normal", "italic"],
   variable: "--font-merriweather",
   display: "swap",
@@ -34,6 +34,10 @@ const nunito = Nunito({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://getrootedmedia.com"),
+  alternates: {
+    canonical: "/",
+  },
   title: "Get Rooted Media | Marion County's Local Media Company",
   description:
     "Two publications serving Marion County. The Closing Table for top-producing real estate agents. The Front Porch for new homeowners. Locally rooted. Professionally grown.",

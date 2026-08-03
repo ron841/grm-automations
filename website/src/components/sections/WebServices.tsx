@@ -28,7 +28,7 @@ export default function WebServices() {
           </p>
 
           <p>
-            That is most home services businesses here. Real reputations, bad
+            That is most local businesses here. Real reputations, bad
             websites, a phone book full of vendors who all sound the same and
             all build the same WordPress template at the same price.
           </p>

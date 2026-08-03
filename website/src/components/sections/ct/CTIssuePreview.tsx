@@ -3,7 +3,7 @@ export default function CTIssuePreview() {
     <section className="bg-grm-black px-6 py-20 lg:px-8">
       <div className="mx-auto max-w-3xl text-center">
         <p className="mb-4 font-comfortaa text-[13px] font-bold uppercase tracking-widest text-grm-teal">
-          ISSUE 1 &middot; SPRING 2027
+          THE KIND OF STORY WE TELL
         </p>
         <div className="mx-auto mb-10 h-[3px] w-10 bg-grm-teal" />
 
@@ -12,8 +12,8 @@ export default function CTIssuePreview() {
         </h2>
 
         <p className="mb-6 font-nunito text-lg leading-relaxed text-white/80">
-          She&apos;s closed more than $35 million in the last 18 months. No
-          Facebook ads. No Zillow leads. No cold calls.
+          Picture the cover of Issue 1. An agent who closed $35 million in 18
+          months. No Facebook ads. No Zillow leads. No cold calls.
         </p>
 
         <p className="mb-10 font-nunito text-lg leading-relaxed text-white/80">
@@ -22,21 +22,19 @@ export default function CTIssuePreview() {
           they do the same for her.
         </p>
 
-        {/* Pull quote */}
+        {/* Pull quote — the founding idea, in brand voice */}
         <div className="mx-auto max-w-xl border-l-[3px] border-grm-teal py-2 pl-6 text-left">
           <p className="font-merriweather text-xl italic leading-relaxed text-grm-teal">
-            &ldquo;I&apos;ve been in this market for 22 years. I&apos;ve never
-            seen a publication that actually understood what we do until
-            now.&rdquo;
+            People call it a referral network. We call it a closing table.
+            Everyone has a seat. Everyone eats.
           </p>
           <p className="mt-3 font-nunito text-sm text-white/60">
-            A Marion County Top Producer
+            The idea this magazine is named for
           </p>
         </div>
 
         <p className="mx-auto mt-10 max-w-md font-merriweather text-base italic text-white/60">
-          People call it a referral network. I call it a closing table. Everyone
-          has a seat. Everyone eats.
+          If an agent just came to mind, that&apos;s who Issue 1 is for.
         </p>
       </div>
     </section>

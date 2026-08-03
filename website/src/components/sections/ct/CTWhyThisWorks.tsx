@@ -1,7 +1,7 @@
 const STATS = [
-  { number: "500", label: "Marion County\u2019s top real estate service companies per issue" },
-  { number: "350", label: "Marion County top producers, verified from Stellar MLS transaction data" },
-  { number: "150", label: "Sumter County and The Villages top producers" },
+  { number: "500", label: "Top-producing agents per issue. 350 Marion County, 150 Sumter County and The Villages, verified from Stellar MLS transaction data" },
+  { number: "500", label: "Top service companies per issue. The lenders, title reps, inspectors, and trades that build their business on realtor referrals" },
+  { number: "1,000", label: "Total mailed circulation, every month" },
   { number: "$2.8B", label: "In annual Marion County home sales volume" },
   { number: "12", label: "Issues per year" },
 ];

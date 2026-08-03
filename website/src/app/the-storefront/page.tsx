@@ -6,17 +6,18 @@ import "./landing.css";
 export const metadata: Metadata = {
   title: "The Storefront — Websites built to be recommended by AI | Get Rooted Media",
   description:
-    "The Storefront: a website that the AI actually recommends. For Marion County contractors. $1,000 to build, $150 a month to keep sharp. Live in 14 days.",
+    "The Storefront: a website that the AI actually recommends. For Marion County businesses. $1,000 to build, $100 a month to keep sharp. Live in 14 days.",
   alternates: {
     canonical: "https://getrootedmedia.com/the-storefront",
   },
   openGraph: {
     title: "The Storefront — Websites built to be recommended by AI",
     description:
-      "For Marion County contractors. $1,000 to build, $150 a month. Live in 14 days.",
+      "For Marion County businesses. $1,000 to build, $100 a month. Live in 14 days.",
     type: "website",
     url: "https://getrootedmedia.com/the-storefront",
     siteName: "Get Rooted Media",
+    images: [{ url: "/images/hero/4-Ocala-1.webp" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -44,7 +45,7 @@ const schema = {
         "areaServed": "Marion County, FL",
       },
       "serviceType":
-        "Website design and development for home-services contractors",
+        "Custom website design and development for Marion County businesses",
       "offers": [
         {
           "@type": "Offer",
@@ -55,7 +56,7 @@ const schema = {
         {
           "@type": "Offer",
           "name": "Monthly",
-          "price": "150",
+          "price": "100",
           "priceCurrency": "USD",
           "priceSpecification": {
             "@type": "UnitPriceSpecification",
@@ -83,7 +84,7 @@ const schema = {
           "acceptedAnswer": {
             "@type": "Answer",
             "text":
-              "SEO gets you ranked on Google. AI recommendation gets ChatGPT and other assistants to quote you when someone asks for the best in your trade. Both run on the same foundation: clean code, clear facts, and structured data. We build for both at once.",
+              "SEO gets you ranked on Google. AI recommendation gets ChatGPT and other assistants to quote you when someone asks for the best at what you do. Both run on the same foundation: clean code, clear facts, and structured data. We build for both at once.",
           },
         },
         {
@@ -101,7 +102,7 @@ const schema = {
           "acceptedAnswer": {
             "@type": "Answer",
             "text":
-              "A flat $1,000 to build, due at signing. Then $150 a month for hosting, updates, AI citation monitoring, and a scheduled content refresh. No retainers. No upsells.",
+              "A flat $1,000 to build, due at signing. Then $100 a month for hosting, AI citation monitoring, and any change you want made, every month. No retainers. No upsells. The program is reserved for Get Rooted advertising partners.",
           },
         },
         {
@@ -185,14 +186,14 @@ export default function WebPage() {
             </div>
             <div>
               <p>They care about schema markup, fact density in the first paragraph, and whether their crawlers are allowed in at all. All of that ships on day one of a well-built site.</p>
-              <p>And the assistant picks one contractor per query. One. Not ten. If your site is not the one it picks, you do not get a second chance on that search.</p>
+              <p>And the assistant picks one business per query. One. Not ten. If your site is not the one it picks, you do not get a second chance on that search.</p>
             </div>
           </div>
 
           <div className="pull">
             <span className="mark" aria-hidden="true">&ldquo;</span>
             <span className="body">Your competitor&apos;s ten-year Google moat is worth <em>nothing</em> in this new game.</span>
-            <div className="tail">The first contractor in Marion County to ship a site built for AI citation owns that query for years.</div>
+            <div className="tail">The first business in your category to ship a site built for AI citation owns that query for years.</div>
           </div>
         </div>
       </section>
@@ -201,14 +202,14 @@ export default function WebPage() {
       <section className="diagnosis sec--cream" data-screen-label="03 Diagnosis">
         <div className="container">
           <div className="eb">— Section 02 &nbsp;·&nbsp; The diagnosis</div>
-          <h2>Every Marion County contractor site we look at has the same three holes.</h2>
+          <h2>Every Marion County business site we look at has the same three holes.</h2>
 
           <ol className="holes">
             <li>
               <div className="n">01</div>
               <div>
                 <div className="ft">No schema markup.</div>
-                <div className="dk">The AI has to guess what trade you run, what you charge, where you work, and whether you are trustworthy. It usually guesses wrong or gives up.</div>
+                <div className="dk">The AI has to guess what business you run, what you charge, where you work, and whether you are trustworthy. It usually guesses wrong or gives up.</div>
               </div>
             </li>
             <li>
@@ -234,7 +235,7 @@ export default function WebPage() {
         <div className="container">
           <div className="test">
             <div className="eb">— Thirty-second test</div>
-            <div className="head">Pull out your phone. Open ChatGPT. Ask: <em>&ldquo;Best [your trade] in Ocala.&rdquo;</em></div>
+            <div className="head">Pull out your phone. Open ChatGPT. Ask: <em>&ldquo;Best [what you do] in Ocala.&rdquo;</em></div>
             <div className="tail">If your name is not the one it hands back, we should talk.</div>
             <div className="cta-row">
               <a className="cta" href="#preview" data-cta="test-preview">Get my free preview →</a>
@@ -345,10 +346,15 @@ export default function WebPage() {
             </div>
             <div className="p">
               <div className="lbl">— Then, monthly</div>
-              <div className="num">$150 <span className="mo">/ mo</span></div>
-              <div className="sub">Hosting, updates, AI citation monitoring, scheduled content refresh, real humans on the phone.</div>
+              <div className="num">$100 <span className="mo">/ mo</span></div>
+              <div className="sub">Hosting, AI citation monitoring, and any change you want made, every month. Real humans on the phone.</div>
             </div>
           </div>
+          <p className="partner">
+            <strong>Reserved for Get Rooted partners.</strong> The Storefront is
+            built for the businesses that advertise in The Front Porch and The
+            Closing Table. Ask about both on the same call.
+          </p>
         </div>
       </section>
 
@@ -364,8 +370,8 @@ export default function WebPage() {
           <p className="body">We build a preview of your new homepage. You see the schema, the fact-dense opener, the way ChatGPT will read it. If you like it, we migrate it to your domain. If you do not, nothing changes and you keep the wireframe.</p>
 
           <div className="intake">
-            <h3>Request your free preview.</h3>
-            <p className="note">Three fields. No call required yet. We review every submission personally.</p>
+            <h3>How do I get in?</h3>
+            <p className="note">Start with the free preview. Three fields, no call required. We review every submission personally.</p>
             <PreviewIntakeForm />
           </div>
         </div>
@@ -376,8 +382,8 @@ export default function WebPage() {
         <div className="container">
           <div className="ron">
             <div className="eb">— Sign-off</div>
-            <h2>We built Get Rooted Media out of Ocala because Marion County is full of good contractors whose phones ought to ring more than they do.</h2>
-            <p>The ones who unlock the shop at 6:45, load the truck by seven, and run next week&apos;s numbers at the kitchen table on Sunday. If that is your phone, this is the fix.</p>
+            <h2>We built Get Rooted Media out of Ocala because Marion County is full of good businesses whose phones ought to ring more than they do.</h2>
+            <p>The ones who unlock the shop at 6:45 and run next week&apos;s numbers at the kitchen table on Sunday. If that is your phone, this is the fix.</p>
             <div className="tag">Locally rooted. Professionally grown.</div>
           </div>
 
@@ -401,7 +407,7 @@ export default function WebPage() {
       <section className="faq sec--black" id="faq" data-screen-label="8b FAQ">
         <div className="container">
           <div className="eb">— Common questions</div>
-          <h2>Questions contractors ask before they sign.</h2>
+          <h2>Questions business owners ask before they sign.</h2>
           <div className="qa">
             <div className="item">
               <div className="q">Will my site show up on Google?</div>
@@ -409,7 +415,7 @@ export default function WebPage() {
             </div>
             <div className="item">
               <div className="q">What is the difference between SEO and getting recommended by AI?</div>
-              <div className="a">SEO gets you ranked on Google. AI recommendation gets ChatGPT and other assistants to quote you when someone asks for the best in your trade. Both run on the same foundation: clean code, clear facts, and structured data. We build for both at once.</div>
+              <div className="a">SEO gets you ranked on Google. AI recommendation gets ChatGPT and other assistants to quote you when someone asks for the best at what you do. Both run on the same foundation: clean code, clear facts, and structured data. We build for both at once.</div>
             </div>
             <div className="item">
               <div className="q">Why custom Next.js instead of Wix, Squarespace, or WordPress?</div>
@@ -417,7 +423,7 @@ export default function WebPage() {
             </div>
             <div className="item">
               <div className="q">What does The Storefront cost?</div>
-              <div className="a">A flat $1,000 to build, due at signing. Then $150 a month for hosting, updates, AI citation monitoring, and a scheduled content refresh. No retainers. No upsells.</div>
+              <div className="a">A flat $1,000 to build, due at signing. Then $100 a month for hosting, AI citation monitoring, and any change you want made, every month. No retainers. No upsells. The program is reserved for Get Rooted advertising partners.</div>
             </div>
             <div className="item">
               <div className="q">Can I see it before I pay?</div>

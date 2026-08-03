@@ -24,7 +24,7 @@ export default function HomePublications() {
           />
           <div className="absolute inset-0 flex flex-col items-end justify-center p-7 text-right md:p-12">
             <p className="font-comfortaa text-[12px] font-bold uppercase tracking-[0.18em] text-grm-teal">
-              BI-MONTHLY GUIDE &middot; THIS FALL
+              BI-MONTHLY GUIDE &middot; NOVEMBER 2026
             </p>
             <div className="mt-3">
               <span className="block text-right font-grand-hotel text-[44px] leading-none text-grm-black md:text-[44px]">
@@ -67,7 +67,7 @@ export default function HomePublications() {
           />
           <div className="absolute inset-0 flex flex-col justify-center p-7 md:p-12">
             <p className="font-comfortaa text-[12px] font-bold uppercase tracking-[0.18em] text-grm-teal">
-              MONTHLY MAGAZINE &middot; SPRING 2027
+              MONTHLY MAGAZINE &middot; MARCH 2027
             </p>
             <div className="mt-3">
               <span className="block font-grand-hotel text-[44px] leading-none text-white md:text-[44px]">
@@ -80,8 +80,9 @@ export default function HomePublications() {
             <div className="my-5 h-px w-8 bg-grm-teal" />
             <p className="max-w-[320px] font-nunito text-[15px] leading-relaxed text-white/80 md:text-[16px]">
               The monthly magazine for top-producing real estate agents in
-              Marion and Sumter Counties. 500 agents. $2.8 billion in annual
-              home sales. The next title from Get Rooted Media.
+              Marion County and The Villages. 500 top agents. 500 top service
+              companies. $2.8 billion in annual home sales. The next title
+              from Get Rooted Media.
             </p>
             <Link
               href="/the-closing-table"

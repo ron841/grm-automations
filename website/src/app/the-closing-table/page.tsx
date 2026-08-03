@@ -9,13 +9,16 @@ import CTFAQ from "@/components/sections/ct/CTFAQ";
 import CTFoundingPartner from "@/components/sections/ct/CTFoundingPartner";
 
 export const metadata: Metadata = {
-  title: "The Closing Table | Monthly Magazine for Marion County Real Estate",
+  title: "The Closing Table | Monthly Magazine for Marion County & The Villages Real Estate",
   description:
-    "The monthly magazine for top-producing real estate agents in Marion and Sumter Counties. A new Get Rooted Media title launching Spring 2027.",
+    "The monthly magazine for top-producing real estate agents in Marion County and The Villages. A new Get Rooted Media title launching March 2027.",
+  alternates: {
+    canonical: "/the-closing-table",
+  },
   openGraph: {
-    title: "The Closing Table | Monthly Magazine for Marion County Real Estate",
+    title: "The Closing Table | Monthly Magazine for Marion County & The Villages Real Estate",
     description:
-      "The monthly magazine for top-producing real estate agents in Marion and Sumter Counties. A new Get Rooted Media title launching Spring 2027.",
+      "The monthly magazine for top-producing real estate agents in Marion County and The Villages. A new Get Rooted Media title launching March 2027.",
     type: "website",
     url: "https://getrootedmedia.com/the-closing-table",
     siteName: "Get Rooted Media",

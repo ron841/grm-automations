@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: "Let's Talk | Get Rooted Media | Marion County, Florida",
   description:
     "Book 30 minutes with Ron or Cameron. We'll show you who reads it, how it works, and whether it's the right fit.",
+  alternates: {
+    canonical: "/contact",
+  },
   openGraph: {
     title: "Let's Talk | Get Rooted Media | Marion County, Florida",
     description:
@@ -12,7 +15,7 @@ export const metadata: Metadata = {
     type: "website",
     url: "https://getrootedmedia.com/contact",
     siteName: "Get Rooted Media",
-    images: [{ url: "/images/ct-hero.webp" }],
+    images: [{ url: "/images/hero/4-Ocala-2.webp" }],
   },
 };
 

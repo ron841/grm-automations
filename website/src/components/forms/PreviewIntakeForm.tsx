@@ -5,7 +5,10 @@ import { useState, type FormEvent } from "react";
 type Status = "idle" | "submitting" | "success" | "error";
 
 const STATIC_FORMS_ENDPOINT = "https://api.staticforms.xyz/submit";
-const ACCESS_KEY = process.env.NEXT_PUBLIC_STATICFORMS_KEY;
+// StaticForms keys are public-by-design (they ship in client JS on every GRM
+// site). Hardcoded because the env-var path compiled to a runtime lookup that
+// was always undefined in the browser, silently breaking every submission.
+const ACCESS_KEY = "sf_e0e200934d4f36c17a10d00c";
 
 export default function PreviewIntakeForm() {
   const [status, setStatus] = useState<Status>("idle");
@@ -98,7 +101,7 @@ export default function PreviewIntakeForm() {
         {status === "submitting" ? "Sending…" : "Send me my preview →"}
       </button>
       <div className="fine">
-        We reply within one business day. We never sell your email. Marion County contractors only.
+        We reply within one business day. We never sell your email. Marion County businesses only.
       </div>
     </form>
   );

@@ -6,7 +6,7 @@ const FAQS = [
   {
     question: "How is this different from Real Producers?",
     answer:
-      "Real Producers mails only to agents. The Closing Table mails to agents and the 500 service companies who support real estate in Marion County. Your ad reaches both sides of the referral relationship.",
+      "Real Producers mails only to agents. The Closing Table mails to the top 500 agents and the top 500 service companies that support real estate across Marion County and The Villages. Your ad reaches both sides of the referral relationship.",
   },
   {
     question: "I\u2019m a lender. Will agents actually see my ad?",
@@ -26,7 +26,7 @@ const FAQS = [
   {
     question: "When does Issue 1 come out?",
     answer:
-      "Spring 2027. Businesses who come in now are founding partners. After Issue 1, you\u2019re an advertiser. Right now, you\u2019re part of the beginning.",
+      "March 2027. Businesses who come in now are founding partners. After Issue 1, you\u2019re an advertiser. Right now, you\u2019re part of the beginning.",
   },
 ];
 
